@@ -1,0 +1,131 @@
+/* Global Theme CSS - Applied to all pages */
+
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base Theme Variables */
+:root {
+  /* KAIF Color Palette */
+  --color-primary: #90B3A7;
+  --color-secondary: #D4A574;
+  --color-tertiary: #B8C4A8;
+  
+  /* Backgrounds */
+  --color-background: #FFFFFF;
+  --color-surface: #FFFFFF;
+  --color-surface-secondary: #FDFCFA;
+  
+  /* Text colors */
+  --color-text-primary: #2C3E2D;
+  --color-text-secondary: #5A6B5D;
+  --color-text-light: #8B9A8E;
+  --color-text-white: #FFFFFF;
+  --color-text-dark: #1A2B1D;
+  
+  /* Zone Colors */
+  --color-spa: #90B3A7;
+  --color-restaurant: #D4A574;
+  --color-fitness: #E8734A;
+  --color-combat: #2D5B69;
+  --color-pool: #4A90B8;
+  --color-beauty: #C8A8E9;
+  --color-sauna: #8B7355;
+  
+  /* Status Colors */
+  --color-success: #5CB3CC;
+  --color-warning: #FFD166;
+  --color-error: #EF476F;
+  --color-info: #4A90B8;
+  
+  /* Typography */
+  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: "Playfair Display", Georgia, serif;
+  
+  /* Spacing */
+  --section-padding: 5rem 0;
+  --container-padding: 1rem;
+  
+  /* Border radius */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 24px;
+  --border-radius-circle: 50%;
+  
+  /* Z-index */
+  --z-index-base: 1;
+  --z-index-above: 10;
+  --z-index-dropdown: 100;
+  --z-index-sticky: 1000;
+  --z-index-fixed: 1100;
+  --z-index-modal-backdrop: 1200;
+  --z-index-modal: 1300;
+  --z-index-popover: 1400;
+  --z-index-tooltip: 1500;
+}
+
+/* Remove orange highlight on mobile */
+a, button, input, textarea, select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Base body styles */
+body {
+  font-family: var(--font-primary);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Typography base styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: var(--color-text-dark);
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* Link styles */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-secondary);
+}
+
+/* Button base styles */
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-primary);
+}
+
+/* Basic utility classes */
+.text-center {
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Section base styles */
+section {
+  padding: var(--section-padding);
+}

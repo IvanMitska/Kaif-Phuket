@@ -1,0 +1,404 @@
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
+// Основной контейнер на всю высоту экрана с подложкой видео/изображения
+const HeroContainer = styled(motion.div)`
+  position: relative;
+  height: 100vh;
+  min-height: 700px; /* Минимальная высота для корректного отображения на маленьких экранах */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #000;
+`;
+
+// Видеофон
+const VideoBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  
+  video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    object-fit: cover;
+  }
+`;
+
+// Альтернативный фон-изображение если видео не загрузилось
+const ImageBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+`;
+
+// Оверлей для затемнения и создания визуального контраста
+const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+    rgba(0, 0, 0, 0.6) 0%, 
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.4) 100%);
+  z-index: 0;
+`;
+
+// Контейнер для контента
+const HeroContent = styled(motion.div)`
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  z-index: 1;
+  color: white;
+  text-align: center;
+  padding: 0 2rem;
+  
+  /* Стилизация в зависимости от размера экрана */
+  @media (max-width: 767px) {
+    padding: 0 1.5rem;
+  }
+`;
+
+// Основной заголовок
+const HeroTitle = styled(motion.h1)`
+  font-family: ${({ theme }) => theme?.fonts?.elegant};
+  font-size: clamp(3rem, 9vw, 5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+`;
+
+// Подзаголовок под основным заголовком
+const HeroSubtitle = styled(motion.p)`
+  font-family: ${({ theme }) => theme?.fonts?.primary};
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  font-weight: 300;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+`;
+
+// Акцентное слово с фирменным стилем
+const AccentWord = styled.span`
+  position: relative;
+  font-style: italic;
+  color: ${({ theme }) => theme?.colors?.primary || '#90B3A7'};
+`;
+
+// Контейнер для кнопок
+const ButtonsContainer = styled(motion.div)`
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 300px;
+    margin: 2.5rem auto 0;
+  }
+`;
+
+// Плавающий индикатор скролла
+const ScrollIndicator = styled(motion.div)`
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1;
+  
+  span {
+    font-family: ${({ theme }) => theme?.fonts?.primary};
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  svg {
+    width: 2rem;
+    height: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+    animation: bounce 2s infinite;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+`;
+
+// Логотип
+const Logo = styled(motion.img)`
+  height: 3rem;
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+  
+  @media (max-width: 767px) {
+    height: 2.5rem;
+  }
+`;
+
+// Основная кнопка
+const PrimaryButton = styled(Link)`
+  padding: 1.2rem 3rem;
+  font-family: ${({ theme }) => theme?.fonts?.primary};
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    
+    &::before {
+      transform: translateX(100%);
+    }
+  }
+  
+  @media (max-width: 767px) {
+    width: 100%;
+    padding: 1.1rem 2rem;
+  }
+`;
+
+// Вторичная прозрачная кнопка
+const SecondaryButton = styled(Link)`
+  padding: 1.2rem 3rem;
+  font-family: ${({ theme }) => theme?.fonts?.primary};
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
+    border-radius: 50px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  &:hover {
+    color: #fff;
+    border-color: transparent;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    
+    &::before {
+      opacity: 1;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    width: 100%;
+    padding: 1.1rem 2rem;
+  }
+`;
+
+const HeroFullscreen = () => {
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const { t } = useTranslation();
+  
+  // Обработчик завершения загрузки видео
+  const handleVideoLoad = () => {
+    setIsVideoLoaded(true);
+  };
+  
+  // Scroll до следующего раздела
+  const scrollToNextSection = () => {
+    const nextSection = document.getElementById('philosophy');
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  
+  // Эффекты анимации появления элементов
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        duration: 0.6,
+        when: "beforeChildren",
+        staggerChildren: 0.2
+      }
+    }
+  };
+  
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.215, 0.61, 0.355, 1]
+      }
+    }
+  };
+  
+  return (
+    <HeroContainer
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
+      {/* Видео или фоновое изображение */}
+      <VideoBackground>
+        {/* Добавляем preload="auto" для предзагрузки видео */}
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+          preload="auto"
+          onCanPlayThrough={handleVideoLoad}
+        >
+          <source src="/videos/hero-bg.mp4" type="video/mp4" />
+        </video>
+      </VideoBackground>
+      
+      {/* Запасной фон, если видео не загрузилось */}
+      {!isVideoLoaded && <ImageBackground />}
+      
+      {/* Оверлей для улучшения видимости текста */}
+      <Overlay />
+      
+      {/* Основной контент героя */}
+      <HeroContent>
+        <motion.div variants={itemVariants}>
+          <Logo src="/images/logo-light.png" alt="KAIF" />
+        </motion.div>
+        
+        <HeroTitle variants={itemVariants}>
+          {t('hero.title', 'Премиальное пространство для тела и души')}
+        </HeroTitle>
+        
+        <HeroSubtitle variants={itemVariants}>
+          {t('hero.subtitle', 'Откройте для себя уникальный велнес и фитнес-комплекс с философией баланса между внутренней и внешней красотой')}
+        </HeroSubtitle>
+        
+        <ButtonsContainer variants={itemVariants}>
+          <PrimaryButton to="/services">
+            {t('hero.primaryButton', 'Услуги и программы')}
+          </PrimaryButton>
+          <SecondaryButton to="/booking">
+            {t('hero.secondaryButton', 'Забронировать')}
+          </SecondaryButton>
+        </ButtonsContainer>
+      </HeroContent>
+      
+      {/* Индикатор скролла */}
+      <ScrollIndicator 
+        variants={itemVariants}
+        onClick={scrollToNextSection}
+        animate={{ 
+          y: [0, 10, 0],
+        }}
+        transition={{ 
+          duration: 1.5, 
+          repeat: Infinity,
+          repeatType: "loop",
+          ease: "easeInOut"
+        }}
+      >
+        <span>{t('hero.scrollIndicator', 'Узнать больше')}</span>
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          fill="none" 
+          viewBox="0 0 24 24" 
+          stroke="currentColor"
+        >
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={2} 
+            d="M19 14l-7 7m0 0l-7-7m7 7V3" 
+          />
+        </svg>
+      </ScrollIndicator>
+    </HeroContainer>
+  );
+};
+
+export default HeroFullscreen;
