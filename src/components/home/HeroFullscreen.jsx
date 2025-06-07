@@ -111,7 +111,6 @@ const ContentContainer = styled.div`
     border-radius: 32px;
     margin: 1.5rem 1rem;
     min-height: calc(100vh - 3rem);
-    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 `;
 
