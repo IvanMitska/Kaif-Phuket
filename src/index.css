@@ -522,3 +522,34 @@ header *::after {
   visibility: hidden !important;
   opacity: 0 !important;
 }
+
+/* Ультра-специфичная защита для бургер кнопки */
+#unique-burger-button::before,
+#unique-burger-button::after,
+#unique-burger-button *::before,
+#unique-burger-button *::after {
+  display: none !important;
+  content: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -99999px !important;
+  top: -99999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  z-index: -99999 !important;
+  pointer-events: none !important;
+}
+
+/* Защита от любых возможных дублирующих элементов */
+.mobile-menu-button + *,
+#unique-burger-button + * {
+  display: none !important;
+}
+
+/* Убираем все возможные артефакты рядом с кнопкой */
+.mobile-menu-button ~ *:not(.mobile-menu-container),
+#unique-burger-button ~ *:not(.mobile-menu-container) {
+  position: relative !important;
+  z-index: 1 !important;
+}

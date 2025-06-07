@@ -193,11 +193,32 @@ const MobileMenuButton = styled.button`
   color: #2C3E2D;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
   
   /* Убираем все псевдоэлементы */
   &::before,
   &::after {
     display: none !important;
+    content: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+    width: 0 !important;
+    height: 0 !important;
+    z-index: -9999 !important;
+  }
+  
+  /* Убираем псевдоэлементы у всех дочерних элементов */
+  * {
+    &::before,
+    &::after {
+      display: none !important;
+      content: none !important;
+      visibility: hidden !important;
+    }
   }
   
   /* Современная тень */
@@ -546,8 +567,22 @@ const Header = () => {
               $isOpen={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="mobile-menu-button"
+              id="unique-burger-button"
+              style={{ 
+                overflow: 'hidden',
+                position: 'relative',
+                isolation: 'isolate',
+                zIndex: 1000
+              }}
             >
-              ☰
+              <span style={{ 
+                display: 'block', 
+                fontSize: '1.2rem',
+                lineHeight: '1',
+                fontFamily: 'monospace'
+              }}>
+                ≡
+              </span>
             </MobileMenuButton>
           </RightSection>
         </HeaderContainer>
