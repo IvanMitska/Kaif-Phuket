@@ -227,78 +227,178 @@ const MobileMenu = styled.div`
   left: 0;
   width: 100%;
   height: 100vh;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 249, 0.98) 100%);
+  backdrop-filter: blur(20px);
   z-index: 999;
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  padding-top: 6rem;
+  padding-top: 5rem;
+  overflow-y: auto;
+`;
+
+const MobileMenuContent = styled.div`
+  max-width: 400px;
+  margin: 0 auto;
+  width: 100%;
+`;
+
+const MobileNavSection = styled.div`
+  margin-bottom: 3rem;
 `;
 
 const MobileNavLink = styled(Link)`
+  display: flex;
+  align-items: center;
   color: #2C3E2D;
   text-decoration: none;
-  font-size: 1.25rem;
-  font-weight: 500;
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(144, 179, 167, 0.1);
-  transition: color 0.3s ease;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(144, 179, 167, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
   
-  &:hover,
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(144, 179, 167, 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  &:hover {
+    color: #90B3A7;
+    background: rgba(144, 179, 167, 0.08);
+    border-color: rgba(144, 179, 167, 0.2);
+    transform: translateX(8px);
+    box-shadow: 0 8px 25px rgba(144, 179, 167, 0.15);
+    
+    &::before {
+      left: 100%;
+    }
+  }
+  
   &.active {
     color: #90B3A7;
+    background: rgba(144, 179, 167, 0.12);
+    border-color: rgba(144, 179, 167, 0.3);
+    font-weight: 700;
+    
+    &::after {
+      content: '●';
+      margin-left: auto;
+      font-size: 0.8rem;
+    }
   }
 `;
 
 const MobileLanguageSection = styled.div`
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(144, 179, 167, 0.1);
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(144, 179, 167, 0.15);
+  backdrop-filter: blur(10px);
 `;
 
 const MobileLanguageTitle = styled.div`
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 700;
   color: #2C3E2D;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+`;
+
+const MobileLanguageGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
 `;
 
 const MobileLanguageButton = styled.button`
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   width: 100%;
-  padding: 0.75rem 0;
-  background: transparent;
-  border: none;
+  padding: 1rem 1.5rem;
+  background: ${({ $active }) => $active ? 'rgba(144, 179, 167, 0.15)' : 'rgba(255, 255, 255, 0.8)'};
+  border: 2px solid ${({ $active }) => $active ? '#90B3A7' : 'rgba(144, 179, 167, 0.2)'};
+  border-radius: 12px;
   color: ${({ $active }) => $active ? '#90B3A7' : '#2C3E2D'};
-  font-size: 1rem;
-  font-weight: ${({ $active }) => $active ? '600' : '500'};
-  text-align: left;
+  font-size: 1.1rem;
+  font-weight: ${({ $active }) => $active ? '700' : '600'};
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
   
   &:hover {
+    background: rgba(144, 179, 167, 0.12);
+    border-color: #90B3A7;
     color: #90B3A7;
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(144, 179, 167, 0.2);
   }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+  
+  .flag {
+    font-size: 1.5rem;
+  }
+  
+  .name {
+    flex: 1;
+    text-align: left;
+  }
+  
+  ${({ $active }) => $active && `
+    &::after {
+      content: '✓';
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  `}
 `;
 
 const CloseButton = styled.button`
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  background: transparent;
-  border: none;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(144, 179, 167, 0.2);
+  border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
   color: #2C3E2D;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
   
   &:hover {
+    background: rgba(144, 179, 167, 0.1);
+    border-color: #90B3A7;
     color: #90B3A7;
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 4px 15px rgba(144, 179, 167, 0.3);
+  }
+  
+  &:active {
+    transform: rotate(90deg) scale(0.95);
   }
 `;
 
@@ -436,54 +536,61 @@ const Header = () => {
             ×
           </CloseButton>
           
-          <MobileNavLink 
-            to="/" 
-            className={isActive('/') ? 'active' : ''}
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            {t('nav.home')}
-          </MobileNavLink>
-          <MobileNavLink 
-            to="/restaurant" 
-            className={isActive('/restaurant') ? 'active' : ''}
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            {t('nav.restaurant')}
-          </MobileNavLink>
-          <MobileNavLink 
-            to="/spa" 
-            className={isActive('/spa') ? 'active' : ''}
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            {t('nav.spa')}
-          </MobileNavLink>
-          <MobileNavLink 
-            to="/beauty" 
-            className={isActive('/beauty') ? 'active' : ''}
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            {t('nav.beauty')}
-          </MobileNavLink>
-          <MobileNavLink 
-            to="/sports" 
-            className={isActive('/sports') ? 'active' : ''}
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            {t('nav.sports')}
-          </MobileNavLink>
-
-          <MobileLanguageSection>
-            <MobileLanguageTitle>{t('language')}</MobileLanguageTitle>
-            {languages.map((lang) => (
-              <MobileLanguageButton
-                key={lang.code}
-                $active={i18n.language === lang.code}
-                onClick={() => changeLanguage(lang.code)}
+          <MobileMenuContent>
+            <MobileNavSection>
+              <MobileNavLink 
+                to="/" 
+                className={isActive('/') ? 'active' : ''}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
-                {lang.flag} {lang.name}
-              </MobileLanguageButton>
-            ))}
-          </MobileLanguageSection>
+                🏠 {t('nav.home')}
+              </MobileNavLink>
+              <MobileNavLink 
+                to="/restaurant" 
+                className={isActive('/restaurant') ? 'active' : ''}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                🍽️ {t('nav.restaurant')}
+              </MobileNavLink>
+              <MobileNavLink 
+                to="/spa" 
+                className={isActive('/spa') ? 'active' : ''}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                🧘‍♀️ {t('nav.spa')}
+              </MobileNavLink>
+              <MobileNavLink 
+                to="/beauty" 
+                className={isActive('/beauty') ? 'active' : ''}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                💅 {t('nav.beauty')}
+              </MobileNavLink>
+              <MobileNavLink 
+                to="/sports" 
+                className={isActive('/sports') ? 'active' : ''}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                🏋️‍♂️ {t('nav.sports')}
+              </MobileNavLink>
+            </MobileNavSection>
+
+            <MobileLanguageSection>
+              <MobileLanguageTitle>🌍 Язык / Language</MobileLanguageTitle>
+              <MobileLanguageGrid>
+                {languages.map((lang) => (
+                  <MobileLanguageButton
+                    key={lang.code}
+                    $active={i18n.language === lang.code}
+                    onClick={() => changeLanguage(lang.code)}
+                  >
+                    <span className="flag">{lang.flag}</span>
+                    <span className="name">{lang.name}</span>
+                  </MobileLanguageButton>
+                ))}
+              </MobileLanguageGrid>
+            </MobileLanguageSection>
+          </MobileMenuContent>
         </MobileMenu>
       )}
     </>
