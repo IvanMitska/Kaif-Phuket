@@ -594,6 +594,7 @@ const Header = () => {
             <MobileMenuButton 
               $isOpen={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="mobile-menu-button"
             >
               ☰
             </MobileMenuButton>
@@ -602,7 +603,7 @@ const Header = () => {
       </StyledHeader>
 
       {/* Mobile Menu */}
-      <MobileMenuContainer $isOpen={isMobileMenuOpen}>
+      <MobileMenuContainer $isOpen={isMobileMenuOpen} className="mobile-menu-container">
         <MobileMenuContent $isOpen={isMobileMenuOpen}>
           <MobileMenuHeader $isOpen={isMobileMenuOpen}>
             <CloseButton onClick={() => setIsMobileMenuOpen(false)}>

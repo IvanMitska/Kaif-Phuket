@@ -468,3 +468,57 @@ a:hover {
 KAIF - Global Styles
 =============================================================================
 */
+
+/* =============================================================================
+   MOBILE MENU ARTIFACT PROTECTION
+   ============================================================================= */
+
+/* Глобальная защита от артефактов в мобильном меню */
+.mobile-menu-container *::before,
+.mobile-menu-container *::after,
+.mobile-menu-button::before,
+.mobile-menu-button::after,
+header *::before,
+header *::after {
+  display: none !important;
+  content: none !important;
+  visibility: hidden !important;
+}
+
+/* Дополнительная защита для styled-components */
+[class*="MobileMenu"]::before,
+[class*="MobileMenu"]::after,
+[class*="Header"]::before,
+[class*="Header"]::after {
+  display: none !important;
+  content: none !important;
+  visibility: hidden !important;
+}
+
+/* Экстремальная защита от всех возможных артефактов */
+button::before,
+button::after,
+.mobile-menu-button::before,
+.mobile-menu-button::after {
+  display: none !important;
+  content: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  z-index: -9999 !important;
+}
+
+/* Специфичная защита для header */
+header button::before,
+header button::after,
+header *::before,
+header *::after {
+  display: none !important;
+  content: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
