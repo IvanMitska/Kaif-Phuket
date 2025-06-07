@@ -185,16 +185,22 @@ const MobileMenuButton = styled.button`
   justify-content: center;
   width: 3rem;
   height: 3rem;
-  background: rgba(144, 179, 167, 0.06);
-  border: none;
-  border-radius: 16px;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 0;
   cursor: pointer;
   font-size: 1.2rem;
-  color: #2C3E2D;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #000;
   position: relative;
   overflow: hidden;
-  isolation: isolate;
+  
+  /* Убираем ВСЕ возможные эффекты */
+  box-shadow: none !important;
+  outline: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  transition: none !important;
   
   /* Убираем все псевдоэлементы */
   &::before,
@@ -204,11 +210,11 @@ const MobileMenuButton = styled.button`
     visibility: hidden !important;
     opacity: 0 !important;
     position: absolute !important;
-    left: -9999px !important;
-    top: -9999px !important;
+    left: -99999px !important;
+    top: -99999px !important;
     width: 0 !important;
     height: 0 !important;
-    z-index: -9999 !important;
+    z-index: -99999 !important;
   }
   
   /* Убираем псевдоэлементы у всех дочерних элементов */
@@ -221,34 +227,15 @@ const MobileMenuButton = styled.button`
     }
   }
   
-  /* Современная тень */
-  box-shadow: 
-    0 1px 3px rgba(144, 179, 167, 0.08),
-    0 4px 12px rgba(144, 179, 167, 0.04);
-  
-  &:hover {
-    background: rgba(144, 179, 167, 0.12);
-    transform: translateY(-1px);
-    box-shadow: 
-      0 2px 6px rgba(144, 179, 167, 0.12),
-      0 8px 24px rgba(144, 179, 167, 0.08);
+  &:hover,
+  &:active,
+  &:focus {
+    background: #e0e0e0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    transform: none !important;
+    filter: none !important;
   }
-  
-  &:active {
-    transform: translateY(0);
-    box-shadow: 
-      0 1px 3px rgba(144, 179, 167, 0.08),
-      0 4px 12px rgba(144, 179, 167, 0.04);
-  }
-  
-  ${({ $isOpen }) => $isOpen && `
-    background: rgba(144, 179, 167, 0.15);
-    transform: rotate(90deg);
-    
-    &:hover {
-      transform: rotate(90deg) translateY(-1px);
-    }
-  `}
   
   @media (min-width: 1024px) {
     display: none;
@@ -258,7 +245,6 @@ const MobileMenuButton = styled.button`
     width: 2.75rem;
     height: 2.75rem;
     font-size: 1.1rem;
-    border-radius: 14px;
   }
 `;
 
@@ -571,18 +557,11 @@ const Header = () => {
               style={{ 
                 overflow: 'hidden',
                 position: 'relative',
-                isolation: 'isolate',
-                zIndex: 1000
+                zIndex: 1000,
+                fontFamily: 'Arial, sans-serif'
               }}
             >
-              <span style={{ 
-                display: 'block', 
-                fontSize: '1.2rem',
-                lineHeight: '1',
-                fontFamily: 'monospace'
-              }}>
-                ≡
-              </span>
+              MENU
             </MobileMenuButton>
           </RightSection>
         </HeaderContainer>
