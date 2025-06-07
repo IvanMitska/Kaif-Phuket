@@ -249,13 +249,9 @@ const MobileMenuContainer = styled.div`
   bottom: 0;
   width: 320px;
   max-width: 85vw;
-  background: rgba(255, 255, 255, 0.98);
+  background: white;
   border-left: 1px solid rgba(144, 179, 167, 0.08);
   z-index: 95;
-  transform: translateX(${props => props.$isOpen ? '0' : '100%'});
-  transition: transform ${props => props.$isOpen ? 
-    '0.3s cubic-bezier(0.4, 0, 0.2, 1)' : 
-    '0.25s cubic-bezier(0.4, 0, 0.2, 1)'};
   overflow-y: auto;
   
   /* Убираем все псевдоэлементы */
@@ -272,12 +268,7 @@ const MobileMenuContainer = styled.div`
     }
   }
   
-  /* Современная тень */
-  box-shadow: ${props => props.$isOpen ? 
-    `-8px 0 32px rgba(0, 0, 0, 0.08), 
-     -4px 0 16px rgba(0, 0, 0, 0.04),
-     -2px 0 8px rgba(144, 179, 167, 0.06)` : 
-    'none'};
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.08);
   
   @media (min-width: 1024px) {
     display: none;
@@ -294,11 +285,6 @@ const MobileMenuContent = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  opacity: ${props => props.$isOpen ? '1' : '0'};
-  transform: translateY(${props => props.$isOpen ? '0' : '20px'});
-  transition: all ${props => props.$isOpen ? 
-    '0.5s ease 0.2s' : 
-    '0.3s ease'};
 `;
 
 const MobileMenuHeader = styled.div`
@@ -307,12 +293,6 @@ const MobileMenuHeader = styled.div`
   margin-bottom: 2rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid rgba(144, 179, 167, 0.1);
-  opacity: ${props => props.$isOpen ? '1' : '0'};
-  transform: translateX(${props => props.$isOpen ? '0' : '30px'}) 
-             rotate(${props => props.$isOpen ? '0deg' : '10deg'});
-  transition: all ${props => props.$isOpen ? 
-    '0.4s ease 0.3s' : 
-    '0.2s ease'};
 `;
 
 const CloseButton = styled.button`
@@ -352,22 +332,10 @@ const MobileNavList = styled.ul`
   margin: 0;
   padding: 0;
   flex: 1;
-  opacity: ${props => props.$isOpen ? '1' : '0'};
-  transform: translateY(${props => props.$isOpen ? '0' : '40px'});
-  transition: all ${props => props.$isOpen ? 
-    '0.6s ease 0.4s' : 
-    '0.25s ease'};
 `;
 
 const MobileNavItem = styled.li`
   margin-bottom: 0.5rem;
-  opacity: ${props => props.$isOpen ? '1' : '0'};
-  transform: translateX(${props => props.$isOpen ? '0' : '50px'}) 
-             rotateY(${props => props.$isOpen ? '0deg' : '15deg'});
-  transition: all ${props => props.$isOpen ? 
-    `0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${props.$delay ? `calc(0.5s + ${props.$delay})` : '0.5s'}` : 
-    '0.2s ease'};
-  transform-origin: left center;
 `;
 
 const MobileNavLink = styled(Link)`
@@ -411,13 +379,6 @@ const MobileLanguageSection = styled.div`
   margin-top: auto;
   padding-top: 2rem;
   border-top: 1px solid rgba(144, 179, 167, 0.1);
-  opacity: ${props => props.$isOpen ? '1' : '0'};
-  transform: translateY(${props => props.$isOpen ? '0' : '50px'}) 
-             scale(${props => props.$isOpen ? '1' : '0.9'});
-  transition: all ${props => props.$isOpen ? 
-    '0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s' : 
-    '0.2s ease'};
-  transform-origin: center bottom;
 `;
 
 const MobileLanguageTitle = styled.h3`
@@ -428,22 +389,12 @@ const MobileLanguageTitle = styled.h3`
   letter-spacing: 0.1em;
   margin-bottom: 1rem;
   text-align: center;
-  opacity: ${props => props.$isOpen ? '1' : '0'};
-  transform: translateY(${props => props.$isOpen ? '0' : '20px'});
-  transition: all ${props => props.$isOpen ? 
-    '0.4s ease 0.9s' : 
-    '0.15s ease'};
 `;
 
 const MobileLanguageGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
-  opacity: ${props => props.$isOpen ? '1' : '0'};
-  transform: translateY(${props => props.$isOpen ? '0' : '30px'});
-  transition: all ${props => props.$isOpen ? 
-    '0.5s ease 1s' : 
-    '0.1s ease'};
 `;
 
 const MobileLanguageButton = styled.button`
@@ -602,59 +553,58 @@ const Header = () => {
         </HeaderContainer>
       </StyledHeader>
 
-      {/* Mobile Menu */}
-      <MobileMenuContainer $isOpen={isMobileMenuOpen} className="mobile-menu-container">
-        <MobileMenuContent $isOpen={isMobileMenuOpen}>
-          <MobileMenuHeader $isOpen={isMobileMenuOpen}>
-            <CloseButton onClick={() => setIsMobileMenuOpen(false)}>
-              ×
-            </CloseButton>
-          </MobileMenuHeader>
+      {/* Mobile Menu - только когда открыто */}
+      {isMobileMenuOpen && (
+        <MobileMenuContainer className="mobile-menu-container">
+          <MobileMenuContent>
+            <MobileMenuHeader>
+              <CloseButton onClick={() => setIsMobileMenuOpen(false)}>
+                ×
+              </CloseButton>
+            </MobileMenuHeader>
 
-          <MobileNavList $isOpen={isMobileMenuOpen}>
-            {navigationLinks.map((link, index) => (
-              <MobileNavItem 
-                key={link.path}
-                $isOpen={isMobileMenuOpen}
-                $delay={`${index * 0.1}s`}
-              >
-                <MobileNavLink 
-                  to={link.path}
-                  className={isActive(link.path) ? 'active' : ''}
+            <MobileNavList>
+              {navigationLinks.map((link, index) => (
+                <MobileNavItem key={link.path}>
+                  <MobileNavLink 
+                    to={link.path}
+                    className={isActive(link.path) ? 'active' : ''}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </MobileNavLink>
+                </MobileNavItem>
+              ))}
+            </MobileNavList>
+
+            <MobileLanguageSection>
+              <MobileLanguageTitle>
+                {t('common.select_language') || 'Выберите язык'}
+              </MobileLanguageTitle>
+              <MobileLanguageGrid>
+                <MobileLanguageButton
+                  $active={i18n.language === 'en'}
+                  onClick={() => changeLanguage('en')}
                 >
-                  {link.label}
-                </MobileNavLink>
-              </MobileNavItem>
-            ))}
-          </MobileNavList>
-
-          <MobileLanguageSection $isOpen={isMobileMenuOpen}>
-            <MobileLanguageTitle $isOpen={isMobileMenuOpen}>
-              {t('common.select_language') || 'Выберите язык'}
-            </MobileLanguageTitle>
-            <MobileLanguageGrid $isOpen={isMobileMenuOpen}>
-              <MobileLanguageButton
-                $active={i18n.language === 'en'}
-                onClick={() => changeLanguage('en')}
-              >
-                EN
-              </MobileLanguageButton>
-              <MobileLanguageButton
-                $active={i18n.language === 'ru'}
-                onClick={() => changeLanguage('ru')}
-              >
-                RU
-              </MobileLanguageButton>
-              <MobileLanguageButton
-                $active={i18n.language === 'th'}
-                onClick={() => changeLanguage('th')}
-              >
-                TH
-              </MobileLanguageButton>
-            </MobileLanguageGrid>
-          </MobileLanguageSection>
-        </MobileMenuContent>
-      </MobileMenuContainer>
+                  EN
+                </MobileLanguageButton>
+                <MobileLanguageButton
+                  $active={i18n.language === 'ru'}
+                  onClick={() => changeLanguage('ru')}
+                >
+                  RU
+                </MobileLanguageButton>
+                <MobileLanguageButton
+                  $active={i18n.language === 'th'}
+                  onClick={() => changeLanguage('th')}
+                >
+                  TH
+                </MobileLanguageButton>
+              </MobileLanguageGrid>
+            </MobileLanguageSection>
+          </MobileMenuContent>
+        </MobileMenuContainer>
+      )}
     </>
   );
 };
