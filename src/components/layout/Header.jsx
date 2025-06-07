@@ -28,7 +28,7 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 0.75rem 2rem;
   
   @media (max-width: 768px) {
     padding: 1rem;
@@ -42,7 +42,7 @@ const LogoSection = styled(Link)`
 `;
 
 const Logo = styled.img`
-  height: 2.5rem;
+  height: 2.2rem;
   width: auto;
   transition: transform 0.3s ease;
   
@@ -51,7 +51,7 @@ const Logo = styled.img`
   }
   
   @media (max-width: 768px) {
-    height: 2.2rem;
+    height: 2rem;
   }
 `;
 
@@ -61,7 +61,7 @@ const Navigation = styled.nav`
   @media (min-width: 1024px) {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
+    gap: 2rem;
   }
 `;
 
@@ -69,9 +69,9 @@ const NavLink = styled(Link)`
   color: #2C3E2D;
   text-decoration: none;
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   position: relative;
-  padding: 0.5rem 0;
+  padding: 0.375rem 0;
   transition: color 0.3s ease;
   
   &::after {
@@ -80,7 +80,7 @@ const NavLink = styled(Link)`
     bottom: 0;
     left: 0;
     width: 0;
-    height: 2px;
+    height: 1px;
     background: #90B3A7;
     transition: width 0.3s ease;
   }
@@ -106,7 +106,7 @@ const NavLink = styled(Link)`
 const RightSection = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
 `;
 
 // Языковой селектор
@@ -121,57 +121,57 @@ const LanguageSelector = styled.div`
 const LanguageButton = styled.button`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: rgba(144, 179, 167, 0.1);
-  border: 1px solid rgba(144, 179, 167, 0.2);
-  border-radius: 25px;
-  color: #2C3E2D;
-  font-size: 0.875rem;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background: transparent;
+  border: 1px solid rgba(144, 179, 167, 0.1);
+  border-radius: 4px;
+  color: #666;
+  font-size: 0.75rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.15s ease;
   
   &:hover {
-    background: rgba(144, 179, 167, 0.15);
-    border-color: rgba(144, 179, 167, 0.3);
-    transform: translateY(-1px);
+    background: rgba(144, 179, 167, 0.05);
+    border-color: rgba(144, 179, 167, 0.2);
+    color: #2C3E2D;
   }
 `;
 
 const LanguageDropdown = styled.div`
   position: absolute;
-  top: calc(100% + 0.5rem);
+  top: calc(100% + 0.25rem);
   right: 0;
-  min-width: 120px;
+  min-width: 100px;
   background: white;
-  border: 1px solid rgba(144, 179, 167, 0.2);
-  border-radius: 12px;
-  padding: 0.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(144, 179, 167, 0.15);
+  border-radius: 6px;
+  padding: 0.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   opacity: ${props => props.$isOpen ? '1' : '0'};
   visibility: ${props => props.$isOpen ? 'visible' : 'hidden'};
-  transform: translateY(${props => props.$isOpen ? '0' : '-10px'});
-  transition: all 0.2s ease;
+  transform: translateY(${props => props.$isOpen ? '0' : '-5px'});
+  transition: all 0.15s ease;
   z-index: 1001;
 `;
 
 const LanguageOption = styled.button`
   display: block;
   width: 100%;
-  padding: 0.5rem 0.75rem;
-  background: ${({ $active }) => $active ? 'rgba(144, 179, 167, 0.1)' : 'transparent'};
+  padding: 0.375rem 0.5rem;
+  background: ${({ $active }) => $active ? 'rgba(144, 179, 167, 0.08)' : 'transparent'};
   border: none;
-  border-radius: 8px;
-  color: ${({ $active }) => $active ? '#90B3A7' : '#2C3E2D'};
-  font-size: 0.875rem;
+  border-radius: 4px;
+  color: ${({ $active }) => $active ? '#90B3A7' : '#666'};
+  font-size: 0.75rem;
   font-weight: ${({ $active }) => $active ? '600' : '500'};
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   text-align: left;
   
   &:hover {
-    background: rgba(144, 179, 167, 0.1);
+    background: rgba(144, 179, 167, 0.08);
     color: #90B3A7;
   }
 `;
@@ -182,8 +182,8 @@ const MobileMenuButton = styled.button`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.25rem;
+  height: 2.25rem;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -195,20 +195,20 @@ const MobileMenuButton = styled.button`
 `;
 
 const MenuLine = styled.div`
-  width: 1.5rem;
-  height: 2px;
+  width: 1.25rem;
+  height: 1.5px;
   background: #2C3E2D;
   border-radius: 1px;
   transition: all 0.3s ease;
   transform-origin: center;
   
   &:not(:last-child) {
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }
   
   ${({ $isOpen }) => $isOpen && `
     &:nth-child(1) {
-      transform: rotate(45deg) translate(3px, 3px);
+      transform: rotate(45deg) translate(2.5px, 2.5px);
     }
     
     &:nth-child(2) {
@@ -216,7 +216,7 @@ const MenuLine = styled.div`
     }
     
     &:nth-child(3) {
-      transform: rotate(-45deg) translate(3px, -3px);
+      transform: rotate(-45deg) translate(2.5px, -2.5px);
     }
   `}
 `;
@@ -405,9 +405,8 @@ const Header = () => {
               <LanguageButton
                 onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
               >
-                <span>{currentLanguage.flag}</span>
                 <span>{currentLanguage.code.toUpperCase()}</span>
-                <span style={{ transform: isLanguageDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease' }}>
+                <span style={{ transform: isLanguageDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.15s ease', fontSize: '0.7rem' }}>
                   ▼
                 </span>
               </LanguageButton>
@@ -419,7 +418,7 @@ const Header = () => {
                     $active={i18n.language === lang.code}
                     onClick={() => changeLanguage(lang.code)}
                   >
-                    {lang.flag} {lang.name}
+                    {lang.name}
                   </LanguageOption>
                 ))}
               </LanguageDropdown>
