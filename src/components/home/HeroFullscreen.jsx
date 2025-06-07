@@ -109,7 +109,6 @@ const ContentContainer = styled.div`
       rgba(0, 0, 0, 0.04) 50%, 
       rgba(0, 0, 0, 0.08) 100%);
     border-radius: 32px;
-    backdrop-filter: blur(16px);
     margin: 1.5rem 1rem;
     min-height: calc(100vh - 3rem);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -222,7 +221,6 @@ const BaseButton = styled(motion(Link))`
     padding: 1.125rem 1.75rem;
     font-size: 0.95rem;
     border-radius: 18px;
-    backdrop-filter: blur(16px);
   }
 `;
 
@@ -262,7 +260,6 @@ const SecondaryButton = styled(BaseButton)`
   background: rgba(255, 255, 255, 0.08);
   color: white !important;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(16px);
   box-shadow: 
     0 4px 16px rgba(0, 0, 0, 0.2),
     0 8px 32px rgba(0, 0, 0, 0.1);

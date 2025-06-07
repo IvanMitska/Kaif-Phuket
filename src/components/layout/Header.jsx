@@ -148,7 +148,6 @@ const LanguageDropdown = styled.div`
   right: 0;
   min-width: 120px;
   background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(20px);
   border: 1px solid rgba(144, 179, 167, 0.15);
   border-radius: 8px;
   padding: 0.5rem;
@@ -616,7 +615,6 @@ const Header = () => {
       {/* Mobile Menu */}
       <MobileMenuOverlay 
         $isOpen={isMobileMenuOpen} 
-        onClick={() => setIsMobileMenuOpen(false)} 
       />
       
       <MobileMenuContainer $isOpen={isMobileMenuOpen}>
