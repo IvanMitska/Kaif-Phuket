@@ -372,31 +372,31 @@ const Header = () => {
               to="/" 
               className={isActive('/') ? 'active' : ''}
             >
-              {t('nav.home')}
+              {t('navigation.home')}
             </NavLink>
             <NavLink 
               to="/restaurant" 
               className={isActive('/restaurant') ? 'active' : ''}
             >
-              {t('nav.restaurant')}
+              {t('navigation.restaurant')}
             </NavLink>
             <NavLink 
               to="/spa" 
               className={isActive('/spa') ? 'active' : ''}
             >
-              {t('nav.spa')}
+              {t('navigation.spa')}
             </NavLink>
             <NavLink 
               to="/beauty" 
               className={isActive('/beauty') ? 'active' : ''}
             >
-              {t('nav.beauty')}
+              {t('navigation.beauty')}
             </NavLink>
             <NavLink 
               to="/sports" 
               className={isActive('/sports') ? 'active' : ''}
             >
-              {t('nav.sports')}
+              {t('navigation.sports')}
             </NavLink>
           </Navigation>
 
@@ -447,39 +447,39 @@ const Header = () => {
             className={isActive('/') ? 'active' : ''}
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            {t('nav.home')}
+            {t('navigation.home')}
           </MobileNavLink>
           <MobileNavLink 
             to="/restaurant" 
             className={isActive('/restaurant') ? 'active' : ''}
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            {t('nav.restaurant')}
+            {t('navigation.restaurant')}
           </MobileNavLink>
           <MobileNavLink 
             to="/spa" 
             className={isActive('/spa') ? 'active' : ''}
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            {t('nav.spa')}
+            {t('navigation.spa')}
           </MobileNavLink>
           <MobileNavLink 
             to="/beauty" 
             className={isActive('/beauty') ? 'active' : ''}
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            {t('nav.beauty')}
+            {t('navigation.beauty')}
           </MobileNavLink>
           <MobileNavLink 
             to="/sports" 
             className={isActive('/sports') ? 'active' : ''}
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            {t('nav.sports')}
+            {t('navigation.sports')}
           </MobileNavLink>
 
           <MobileLanguageSection>
-            <MobileLanguageTitle>Выбрать язык</MobileLanguageTitle>
+            <MobileLanguageTitle>{t('common.select_language')}</MobileLanguageTitle>
             <MobileLanguageGrid>
               {languages.map((lang) => (
                 <MobileLanguageButton
