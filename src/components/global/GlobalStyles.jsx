@@ -1,8 +1,20 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
+// Import custom KAIF font
+import kaifFontPath from '../../assets/fonts/kaif.ttf';
+
 // Глобальные стили для всего сайта, включая страницы СПА, спорт и контакты
 const GlobalStyles = createGlobalStyle`
+  /* KAIF brand font */
+  @font-face {
+    font-family: 'KAIF';
+    src: url(${kaifFontPath}) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
   /* Стиль для исправления проблем с переходами между страницами */
   .route-transition {
     transform: translateZ(0);
@@ -10,6 +22,16 @@ const GlobalStyles = createGlobalStyle`
     perspective: 1000px;
     will-change: transform;
     contain: layout paint style;
+    animation: fadeIn 0.5s ease forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   /* Глобальное правило для сохранения стилей между страницами */
@@ -17,6 +39,7 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   }
   
   /* Базовые стили для всего сайта, основанные на теме */

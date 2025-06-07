@@ -1,61 +1,90 @@
-/* Global Theme CSS - Applied to all pages */
+/* ===================================================
+   KAIF Global Theme CSS - Optimized Version
+   =================================================== */
 
-/* Reset */
+/* Custom Font Declaration */
+@font-face {
+  font-family: "KAIF";
+  src: url("../assets/fonts/kaif.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Импортированные стили из hide-scrollbar.css */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Импортированные стили из no-highlight.css */
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Reset & Base Styles */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Base Theme Variables */
 :root {
   /* KAIF Color Palette */
-  --color-primary: #90B3A7;
-  --color-secondary: #D4A574;
-  --color-tertiary: #B8C4A8;
-  
+  --color-primary: #90b3a7;
+  --color-secondary: #d4a574;
+  --color-tertiary: #b8c4a8;
+
   /* Backgrounds */
-  --color-background: #FFFFFF;
-  --color-surface: #FFFFFF;
-  --color-surface-secondary: #FDFCFA;
-  
-  /* Text colors */
-  --color-text-primary: #2C3E2D;
-  --color-text-secondary: #5A6B5D;
-  --color-text-light: #8B9A8E;
-  --color-text-white: #FFFFFF;
-  --color-text-dark: #1A2B1D;
-  
+  --color-background: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-secondary: #fdfcfa;
+
+  /* Text Colors */
+  --color-text-primary: #2c3e2d;
+  --color-text-secondary: #5a6b5d;
+  --color-text-light: #8b9a8e;
+  --color-text-white: #ffffff;
+  --color-text-dark: #1a2b1d;
+
   /* Zone Colors */
-  --color-spa: #90B3A7;
-  --color-restaurant: #D4A574;
-  --color-fitness: #E8734A;
-  --color-combat: #2D5B69;
-  --color-pool: #4A90B8;
-  --color-beauty: #C8A8E9;
-  --color-sauna: #8B7355;
-  
+  --color-spa: #90b3a7;
+  --color-restaurant: #d4a574;
+  --color-fitness: #e8734a;
+  --color-combat: #2d5b69;
+  --color-pool: #4a90b8;
+  --color-beauty: #c8a8e9;
+  --color-sauna: #8b7355;
+
   /* Status Colors */
-  --color-success: #5CB3CC;
-  --color-warning: #FFD166;
-  --color-error: #EF476F;
-  --color-info: #4A90B8;
-  
+  --color-success: #5cb3cc;
+  --color-warning: #ffd166;
+  --color-error: #ef476f;
+  --color-info: #4a90b8;
+
   /* Typography */
-  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-heading: "Playfair Display", Georgia, serif;
-  
+  --font-primary: "KAIF", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: "KAIF", "Playfair Display", Georgia, serif;
+
   /* Spacing */
   --section-padding: 5rem 0;
   --container-padding: 1rem;
-  
+
   /* Border radius */
   --border-radius-sm: 4px;
   --border-radius-md: 8px;
   --border-radius-lg: 16px;
   --border-radius-xl: 24px;
   --border-radius-circle: 50%;
-  
+
   /* Z-index */
   --z-index-base: 1;
   --z-index-above: 10;
@@ -69,7 +98,11 @@
 }
 
 /* Remove orange highlight on mobile */
-a, button, input, textarea, select {
+a,
+button,
+input,
+textarea,
+select {
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -80,19 +113,37 @@ body {
   background-color: var(--color-background);
   line-height: 1.6;
   font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 /* Typography base styles */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.2;
   margin-bottom: 1rem;
   color: var(--color-text-dark);
+  letter-spacing: 0.01em;
 }
 
-p {
+p,
+span,
+div,
+a,
+button,
+input,
+textarea,
+li,
+label {
+  font-family: var(--font-primary);
+  font-weight: 400;
   margin-bottom: 1rem;
+  letter-spacing: 0.01em;
 }
 
 /* Link styles */

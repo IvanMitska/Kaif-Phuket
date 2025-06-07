@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 // Импорт изображений для слайдера
@@ -9,8 +9,9 @@ import heroSpaImage from '../../assets/images/hero/hero-spa.jpg';
 import heroPoolImage from '../../assets/images/hero/hero-pool.jpg';
 import heroRestaurantImage from '../../assets/images/hero/hero-restaurant.jpg';
 import heroFitnessImage from '../../assets/images/hero/hero-fitness.jpg';
-import headerLogo from '../../assets/images/logos/new-hero-logo.png';
-import arrowDownIcon from '../../assets/icons/arrow-down.svg';
+
+// Импорт логотипа для главной страницы
+import homepageLogo from '../../assets/images/logos/logo-homepage.png';
 
 // Массив изображений для слайдера
 const slideImages = [
@@ -41,10 +42,10 @@ const SliderContainer = styled.div`
   width: 100%;
   height: 100%;
   z-index: 1;
-  background-color: #000; // Черный фон для слайдера
+  background-color: #000;
 `;
 
-// Отдельный слайд
+// Отдельный слайд с улучшенным затемнением
 const Slide = styled.div`
   position: absolute;
   top: 0;
@@ -54,13 +55,6 @@ const Slide = styled.div`
   opacity: ${props => props.$active ? 1 : 0};
   transition: opacity 1.5s ease-in-out;
   
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-  
   &::after {
     content: '';
     position: absolute;
@@ -68,181 +62,290 @@ const Slide = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3));
+    background: linear-gradient(
+      135deg,
+      rgba(0,0,0,0.75) 0%,
+      rgba(0,0,0,0.65) 30%,
+      rgba(0,0,0,0.55) 60%,
+      rgba(0,0,0,0.7) 100%
+    );
+    z-index: 2;
+  }
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(0.85) contrast(1.1);
   }
 `;
 
-// Контейнер для контента
+// Контейнер для контента с улучшенным дизайном
 const ContentContainer = styled.div`
   position: relative;
   z-index: 10;
   text-align: center;
-  padding: 0 2rem;
-  max-width: 1000px;
+  padding: 3rem 2rem;
+  max-width: 1100px;
   margin: 0 auto;
-`;
-
-// Логотип
-const Logo = styled.img`
-  max-width: 450px;
-  height: auto;
-  margin: 1rem auto 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
   
   @media (max-width: 768px) {
-    max-width: 280px;
+    padding: 2rem 1.5rem;
+    min-height: 100vh;
+    max-width: 95%;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 2rem 1.25rem;
+    min-height: 100vh;
+    background: linear-gradient(135deg, 
+      rgba(0, 0, 0, 0.08) 0%, 
+      rgba(0, 0, 0, 0.04) 50%, 
+      rgba(0, 0, 0, 0.08) 100%);
+    border-radius: 32px;
+    backdrop-filter: blur(16px);
+    margin: 1.5rem 1rem;
+    min-height: calc(100vh - 3rem);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 `;
 
-// Подзаголовок
-const Subtitle = styled.p`
-  font-size: 1.2rem;
+// Улучшенный заголовок
+const MainTitle = styled(motion.h1)`
+  font-family: 'KAIF', 'Inter', sans-serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: white;
+  margin: 1.5rem 0 1rem;
+  text-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.6),
+    0 4px 16px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  
+  @media (max-width: 768px) {
+    margin: 1rem 0 0.75rem;
+    font-size: clamp(1.75rem, 6vw, 2.2rem);
+  }
+  
+  @media (max-width: 480px) {
+    font-size: clamp(1.5rem, 7vw, 1.9rem);
+    margin: 0.75rem 0 0.5rem;
+  }
+`;
+
+// Улучшенный подзаголовок
+const Subtitle = styled(motion.p)`
+  font-size: clamp(1rem, 2vw, 1.2rem);
   line-height: 1.6;
-  color: rgba(255,255,255,1);
-  margin-bottom: 2.5rem;
+  color: rgba(255,255,255,0.95);
+  margin-bottom: 3rem;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  font-weight: 300;
-  letter-spacing: 0.3px;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-shadow: 
+    0 1px 4px rgba(0, 0, 0, 0.5),
+    0 2px 8px rgba(0, 0, 0, 0.3);
   
   @media (max-width: 768px) {
-    font-size: 1rem;
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
+    margin-bottom: 2.5rem;
+    max-width: 90%;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: clamp(0.9rem, 4vw, 1rem);
+    margin-bottom: 2rem;
+    line-height: 1.5;
   }
 `;
 
-// Группа кнопок
+// Улучшенная группа кнопок с симметричным дизайном
 const ButtonGroup = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 1.2rem;
   justify-content: center;
-  margin-bottom: 2rem;
+  align-items: center;
+  margin-top: 0.5rem;
   
   @media (max-width: 768px) {
     flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    margin: 0.5rem auto 0;
+    gap: 0.8rem;
+  }
+`;
+
+// Базовые стили для кнопок
+const BaseButton = styled(motion(Link))`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  text-decoration: none;
+  border-radius: 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  min-width: 200px;
+  width: 200px;
+  text-align: center;
+  
+  /* Переопределяем глобальные стили */
+  &:hover {
+    text-decoration: none !important;
+  }
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 1.25rem 2rem;
+    font-size: 1rem;
+    min-width: unset;
+    border-radius: 20px;
+    max-width: 280px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 1.125rem 1.75rem;
+    font-size: 0.95rem;
+    border-radius: 18px;
+    backdrop-filter: blur(16px);
   }
 `;
 
 // Первичная кнопка
-const PrimaryButton = styled(Link)`
-  padding: 1rem 2.5rem;
-  background-color: transparent;
-  color: white;
-  border: 1px solid white;
-  text-decoration: none;
-  font-size: 0.9rem;
-  letter-spacing: 1.5px;
-  font-weight: 400;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  border-radius: 30px;
-  display: inline-block;
-  -webkit-tap-highlight-color: transparent;
+const PrimaryButton = styled(BaseButton)`
+  background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
+  color: white !important;
+  border: none;
+  box-shadow: 
+    0 4px 16px rgba(144, 179, 167, 0.3),
+    0 8px 32px rgba(144, 179, 167, 0.15);
   
   &:hover {
-    background-color: white;
-    color: #000;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px) !important;
+    box-shadow: 
+      0 6px 24px rgba(144, 179, 167, 0.4),
+      0 12px 48px rgba(144, 179, 167, 0.2) !important;
+    background: linear-gradient(135deg, #A8C5B8 0%, #B8CFC2 100%) !important;
+    color: white !important;
+    text-decoration: none !important;
   }
   
-  @media (max-width: 768px) {
-    width: 100%;
-    text-align: center;
+  &:active {
+    transform: translateY(-1px) !important;
+  }
+  
+  &:focus {
+    outline: none !important;
+    box-shadow: 
+      0 0 0 3px rgba(144, 179, 167, 0.3),
+      0 4px 16px rgba(144, 179, 167, 0.3) !important;
   }
 `;
 
 // Вторичная кнопка
-const SecondaryButton = styled(Link)`
-  padding: 1rem 2.5rem;
-  background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
-  color: white;
-  border: none;
-  text-decoration: none;
-  font-size: 0.9rem;
-  letter-spacing: 1.5px;
-  font-weight: 400;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  border-radius: 30px;
-  display: inline-block;
-  box-shadow: 0 5px 15px rgba(144, 179, 167, 0.3);
-  -webkit-tap-highlight-color: transparent;
+const SecondaryButton = styled(BaseButton)`
+  background: rgba(255, 255, 255, 0.08);
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.1);
   
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(144, 179, 167, 0.4);
-    background: linear-gradient(135deg, #A8C5B8 0%, #90B3A7 100%);
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 
+      0 6px 24px rgba(0, 0, 0, 0.25),
+      0 12px 48px rgba(0, 0, 0, 0.15) !important;
+    color: white !important;
+    text-decoration: none !important;
   }
   
-  @media (max-width: 768px) {
-    width: 100%;
-    text-align: center;
+  &:active {
+    transform: translateY(-1px) !important;
   }
-`;
-
-// Индикаторы слайдов
-const SlideIndicators = styled.div`
-  position: absolute;
-  bottom: 3rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 0.5rem;
-  z-index: 10;
-`;
-
-// Индикатор слайда
-const Indicator = styled.button`
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: ${props => props.$active ? 'white' : 'rgba(255, 255, 255, 0.5)'};
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
   
-  &:hover {
-    background-color: white;
+  &:focus {
+    outline: none !important;
+    box-shadow: 
+      0 0 0 3px rgba(255, 255, 255, 0.3),
+      0 4px 16px rgba(0, 0, 0, 0.2) !important;
   }
 `;
 
-// Скролл вниз
-const ScrollDown = styled.div`
-  position: absolute;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 10;
-  
-  p {
-    font-size: 0.8rem;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: rgba(255, 255, 255, 0.8);
-  }
-`;
-
-// Анимация стрелки вниз
-const ArrowDown = styled.img`
-  width: 24px;
-  height: 24px;
-  opacity: 0.8;
-  animation: arrowBounce 2s infinite;
-  
-  @keyframes arrowBounce {
-    0%, 100% {
-      transform: translateY(0);
+// Анимации для мобильных устройств
+const mobileAnimations = {
+  logo: {
+    initial: { 
+      scale: 0.8, 
+      opacity: 0, 
+      y: 30,
+      rotateY: -15 
+    },
+    animate: { 
+      scale: 1, 
+      opacity: 1, 
+      y: 0,
+      rotateY: 0,
+      transition: {
+        duration: 1.2,
+        ease: [0.25, 0.46, 0.45, 0.94],
+        delay: 0.2
+      }
     }
-    50% {
-      transform: translateY(10px);
+  },
+  subtitle: {
+    initial: { 
+      opacity: 0, 
+      y: 40,
+      scale: 0.95
+    },
+    animate: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 1,
+        ease: [0.25, 0.46, 0.45, 0.94],
+        delay: 0.6
+      }
+    }
+  },
+  buttons: {
+    initial: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.9
+    },
+    animate: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94],
+        delay: 1
+      }
     }
   }
-`;
+};
 
 const HeroFullscreen = () => {
   const { t } = useTranslation();
@@ -256,10 +359,48 @@ const HeroFullscreen = () => {
     
     return () => clearInterval(interval);
   }, []);
+
+  // Улучшенная анимация для контента
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
   
-  // Обработчик нажатия на индикатор слайда
-  const handleIndicatorClick = (index) => {
-    setCurrentSlide(index);
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: { 
+      y: 0, 
+      opacity: 1,
+      transition: { 
+        duration: 0.8, 
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
+  
+  const buttonVariants = {
+    hidden: { scale: 0.9, opacity: 0 },
+    visible: { 
+      scale: 1, 
+      opacity: 1,
+      transition: { 
+        duration: 0.6, 
+        type: "spring", 
+        stiffness: 120,
+        damping: 15
+      }
+    },
+    hover: { 
+      scale: 1.02,
+      transition: { duration: 0.3, ease: "easeOut" }
+    },
+    tap: { scale: 0.98 }
   };
 
   return (
@@ -273,10 +414,18 @@ const HeroFullscreen = () => {
           >
             <img 
               src={image} 
-              alt={`KAIF - Слайд ${index + 1}`}
+              alt={`KAIF - Слайд ${index + 1}`} 
+              loading="lazy"
               onError={(e) => {
-                console.error(`Failed to load image: ${image}`);
-                e.target.src = slideImages[0]; // Fallback to first image
+                console.error(`Failed to load slide image: ${image}`);
+                // Пробуем запасной вариант из unsplash для тестирования
+                const fallbackImages = [
+                  "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=85",
+                  "https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                  "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                  "https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                ];
+                e.target.src = fallbackImages[index % fallbackImages.length];
               }}
             />
           </Slide>
@@ -284,45 +433,84 @@ const HeroFullscreen = () => {
       </SliderContainer>
       
       {/* Основной контент */}
-      <ContentContainer>
-        <Logo 
-          src={headerLogo} 
-          alt="KAIF" 
+      <ContentContainer as={motion.div} 
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.img 
+          src={homepageLogo} 
+          alt="KAIF Logo" 
+          initial={mobileAnimations.logo.initial}
+          animate={mobileAnimations.logo.animate}
+          whileHover={{ 
+            scale: 1.05, 
+            rotateY: 5,
+            transition: { duration: 0.3 }
+          }}
+          style={{
+            maxWidth: '320px',
+            height: 'auto',
+            margin: '0 auto 0.6rem',
+            filter: 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7))'
+          }}
+          css={`
+            @media (max-width: 480px) {
+              max-width: 280px;
+              margin-bottom: 0.5rem;
+            }
+            
+            @media (max-width: 768px) {
+              max-width: 300px;
+            }
+          `}
         />
         
-        <Subtitle>
-          Откройте для себя уникальный велнес и фитнес-комплекс с философией баланса между внутренней и внешней красотой
+        <MainTitle as={motion.h1} variants={itemVariants}>
+          Премиальный оздоровительный комплекс
+        </MainTitle>
+        
+        <Subtitle 
+          as={motion.p} 
+          initial={mobileAnimations.subtitle.initial}
+          animate={mobileAnimations.subtitle.animate}
+        >
+          Уникальное пространство для поддержания внутренней гармонии и внешней красоты на острове Пхукет
         </Subtitle>
         
-        <ButtonGroup>
-          <PrimaryButton to="/services">
-            Услуги и программы
+        <ButtonGroup
+          as={motion.div}
+          initial={mobileAnimations.buttons.initial}
+          animate={mobileAnimations.buttons.animate}
+        >
+          <PrimaryButton 
+            to="/sports"
+            as={motion(Link)}
+            whileHover={{ 
+              scale: 1.05, 
+              y: -5,
+              boxShadow: "0 15px 40px rgba(144, 179, 167, 0.6)"
+            }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
+            Категории
           </PrimaryButton>
-          <SecondaryButton to="/booking">
-            Забронировать
+          <SecondaryButton 
+            to="/contacts"
+            as={motion(Link)}
+            whileHover={{ 
+              scale: 1.05, 
+              y: -5,
+              boxShadow: "0 15px 40px rgba(255, 255, 255, 0.4)"
+            }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
+            Записаться
           </SecondaryButton>
         </ButtonGroup>
       </ContentContainer>
-      
-      {/* Индикаторы слайдов */}
-      <SlideIndicators>
-        {slideImages.map((_, index) => (
-          <Indicator 
-            key={`indicator-${index}`}
-            $active={index === currentSlide}
-            onClick={() => handleIndicatorClick(index)}
-          />
-        ))}
-      </SlideIndicators>
-      
-      {/* Скролл вниз */}
-      <ScrollDown>
-        <p>Прокрутить вниз</p>
-        <ArrowDown 
-          src={arrowDownIcon} 
-          alt="Scroll down"
-        />
-      </ScrollDown>
     </HeroContainer>
   );
 };

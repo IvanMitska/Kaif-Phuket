@@ -1,305 +1,361 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
 
 // Импортируем логотип
-import headerLogo from '../../assets/images/logos/logo-header.png';
+import headerLogo from '../../assets/images/logos/new-hero-logo.png';
 
 // =============================================================================
-// WELLNESS SANCTUARY HEADER COMPONENTS
+// KAIF HEADER COMPONENT
 // =============================================================================
 
-const StyledHeader = styled(motion.header)`
+const StyledHeader = styled.header`
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
   z-index: 100;
-  padding: 0;
-  transition: all 0.4s ease;
-  background: white;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.98);
+  border-bottom: 1px solid rgba(144, 179, 167, 0.08);
+  
+  /* Современная тень */
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.02),
+    0 4px 12px rgba(0, 0, 0, 0.03),
+    0 16px 32px rgba(0, 0, 0, 0.02);
+  
+  /* Полная очистка от всех возможных артефактов */
+  &::before,
+  &::after {
+    display: none !important;
+  }
+  
+  * {
+    &::before,
+    &::after {
+      display: none !important;
+    }
+  }
 `;
 
 const HeaderContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 1.5rem;
-  
-  @media (min-width: 1024px) {
-    padding: 0 2rem;
-  }
-`;
-
-const HeaderContent = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 0 2rem;
   height: 4rem;
   
-  @media (min-width: 1024px) {
-    height: 4.5rem;
+  @media (max-width: 768px) {
+    padding: 0 1rem;
   }
 `;
 
-// Logo Component
-const LogoContainer = styled(motion.div)`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  margin-left: 0;
-`;
 
-const LogoImage = styled.img`
-  height: 30px;
+
+const Logo = styled.img`
+  height: 2.5rem;
   width: auto;
-  object-fit: contain;
   
-  @media (min-width: 768px) {
-    height: 36px;
+  @media (max-width: 768px) {
+    height: 3rem;
   }
 `;
 
-// Удален компонент LogoSubtext
-
-
-// Desktop Navigation
-const DesktopNav = styled.nav`
+const Nav = styled.nav`
   display: none;
   
   @media (min-width: 1024px) {
     display: flex;
-    align-items: center;
     gap: 2rem;
   }
 `;
 
-const NavList = styled.ul`
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-`;
-
-const NavItem = styled.li`
-  position: relative;
-`;
-
 const NavLink = styled(Link)`
-  position: relative;
-  font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: ${({ theme }) => theme?.colors?.text?.primary || '#2C3E2D'};
+  color: #2C3E2D;
   text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  padding: 0.5rem 0;
-  letter-spacing: 0.01em;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: ${({ theme }) => theme?.colors?.text?.primary || '#2C3E2D'};
-    transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
+  font-weight: 500;
+  position: relative;
   
   &:hover {
-    color: ${({ theme }) => theme?.colors?.text?.primary || '#2C3E2D'};
-  }
-  
-  &:hover::after,
-  &.active::after {
-    width: 100%;
+    color: #90B3A7;
   }
   
   &.active {
-    color: ${({ theme }) => theme?.colors?.text?.primary || '#2C3E2D'};
-    font-weight: 500;
+    color: #90B3A7;
+    font-weight: 600;
+  }
+  
+
+`;
+
+const RightSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+  @media (max-width: 768px) {
+    gap: 0.5rem;
   }
 `;
 
-// Language Switcher
-const LanguageContainer = styled.div`
+const LanguageSelector = styled.div`
   position: relative;
-  z-index: 100;
 `;
 
-const LanguageButton = styled(motion.button)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.15rem;
-  padding: 0.35rem 0.5rem;
-  background: transparent;
+const LanguageButton = styled.button`
+  padding: 0.625rem 1rem;
+  background: rgba(144, 179, 167, 0.06);
   border: none;
-  border-radius: 2px;
-  color: #2C3E2D;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.03em;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #2C3E2D;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Современная тень */
+  box-shadow: 
+    0 1px 3px rgba(144, 179, 167, 0.08),
+    0 4px 12px rgba(144, 179, 167, 0.04);
   
   &:hover {
-    background: rgba(0, 0, 0, 0.03);
+    background: rgba(144, 179, 167, 0.12);
+    transform: translateY(-1px);
+    box-shadow: 
+      0 2px 6px rgba(144, 179, 167, 0.12),
+      0 8px 24px rgba(144, 179, 167, 0.08);
   }
   
-  svg {
-    width: 0.8rem;
-    height: 0.8rem;
-    transition: transform 0.3s ease;
+  &:active {
+    transform: translateY(0);
   }
   
-  &.open svg {
-    transform: rotate(180deg);
+  @media (max-width: 480px) {
+    display: none;
   }
 `;
 
-const DropdownContainer = styled(motion.div)`
+const LanguageDropdown = styled.div`
   position: absolute;
   top: calc(100% + 0.5rem);
   right: 0;
-  min-width: 150px;
-  background: rgba(255, 255, 255, 0.95);
+  min-width: 120px;
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(144, 179, 167, 0.15);
-  border-radius: 16px;
+  border-radius: 8px;
   padding: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(144, 179, 167, 0.1), 0 4px 6px -2px rgba(144, 179, 167, 0.05);
-  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  opacity: ${props => props.$isOpen ? '1' : '0'};
+  visibility: ${props => props.$isOpen ? 'visible' : 'hidden'};
+  transform: translateY(${props => props.$isOpen ? '0' : '-10px'});
+  transition: all 0.2s ease;
 `;
 
-const LanguageOption = styled(motion.button)`
-  display: flex;
-  align-items: center;
+const LanguageOption = styled.button`
+  display: block;
   width: 100%;
-  padding: 0.75rem 1rem;
-  border: none;
+  padding: 0.5rem 0.75rem;
   background: ${({ $active }) => $active ? 'rgba(144, 179, 167, 0.1)' : 'transparent'};
-  color: ${({ $active, theme }) => $active ? (theme?.colors?.primary || '#90B3A7') : (theme?.colors?.text?.primary || '#2C3E2D')};
-  font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
+  border: none;
+  border-radius: 6px;
+  color: ${({ $active }) => $active ? '#90B3A7' : '#2C3E2D'};
   font-size: 0.875rem;
   font-weight: ${({ $active }) => $active ? '600' : '500'};
-  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.2s ease;
+  text-align: left;
   
   &:hover {
     background: rgba(144, 179, 167, 0.1);
-    color: ${({ theme }) => theme?.colors?.primary || '#90B3A7'};
+    color: #90B3A7;
   }
 `;
 
-// Mobile Navigation
-const MobileNavButton = styled(motion.button)`
+const MobileMenuButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0;
-  background: rgba(144, 179, 167, 0.1);
-  border: 1px solid rgba(144, 179, 167, 0.2);
-  border-radius: 8px;
-  color: ${({ theme }) => theme?.colors?.text?.primary || '#2C3E2D'};
+  width: 3rem;
+  height: 3rem;
+  background: rgba(144, 179, 167, 0.06);
+  border: none;
+  border-radius: 16px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-size: 1.2rem;
+  color: #2C3E2D;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  
+  /* Современная тень */
+  box-shadow: 
+    0 1px 3px rgba(144, 179, 167, 0.08),
+    0 4px 12px rgba(144, 179, 167, 0.04);
+  
+  &:hover {
+    background: rgba(144, 179, 167, 0.12);
+    transform: translateY(-1px);
+    box-shadow: 
+      0 2px 6px rgba(144, 179, 167, 0.12),
+      0 8px 24px rgba(144, 179, 167, 0.08);
+  }
+  
+  &:active {
+    transform: translateY(0);
+    box-shadow: 
+      0 1px 3px rgba(144, 179, 167, 0.08),
+      0 4px 12px rgba(144, 179, 167, 0.04);
+  }
+  
+  ${({ $isOpen }) => $isOpen && `
+    background: rgba(144, 179, 167, 0.15);
+    transform: rotate(90deg);
+    
+    &:hover {
+      transform: rotate(90deg) translateY(-1px);
+    }
+  `}
   
   @media (min-width: 1024px) {
     display: none;
   }
   
-  &:hover {
-    background: rgba(144, 179, 167, 0.15);
-    transform: translateY(-1px);
-  }
-  
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    transition: transform 0.3s ease;
+  @media (max-width: 480px) {
+    width: 2.75rem;
+    height: 2.75rem;
+    font-size: 1.1rem;
+    border-radius: 14px;
   }
 `;
 
-const MobileNavOverlay = styled(motion.div)`
+// Добавляем стили для мобильного меню
+const MobileMenuOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(44, 62, 45, 0.5);
-  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, ${props => props.$isOpen ? '0.4' : '0'});
   z-index: 90;
+  opacity: ${props => props.$isOpen ? '1' : '0'};
+  visibility: ${props => props.$isOpen ? 'visible' : 'hidden'};
+  transition: all ${props => props.$isOpen ? '0.3s ease' : '0.3s ease'};
   
   @media (min-width: 1024px) {
     display: none;
   }
 `;
 
-const MobileNavContainer = styled(motion.div)`
+const MobileMenuContainer = styled.div`
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
-  width: 100%;
-  max-width: 20rem;
+  width: 320px;
+  max-width: 85vw;
   background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(20px);
-  border-left: 1px solid rgba(144, 179, 167, 0.1);
+  border-left: 1px solid rgba(144, 179, 167, 0.08);
   z-index: 95;
+  transform: translateX(${props => props.$isOpen ? '0' : '100%'});
+  transition: transform ${props => props.$isOpen ? 
+    '0.3s cubic-bezier(0.4, 0, 0.2, 1)' : 
+    '0.25s cubic-bezier(0.4, 0, 0.2, 1)'};
   overflow-y: auto;
+  
+  /* Убираем все псевдоэлементы */
+  &::before,
+  &::after {
+    display: none !important;
+  }
+  
+  /* Глобальная защита от артефактов */
+  * {
+    &::before,
+    &::after {
+      display: none !important;
+    }
+  }
+  
+  /* Современная тень */
+  box-shadow: ${props => props.$isOpen ? 
+    `-8px 0 32px rgba(0, 0, 0, 0.08), 
+     -4px 0 16px rgba(0, 0, 0, 0.04),
+     -2px 0 8px rgba(144, 179, 167, 0.06)` : 
+    'none'};
   
   @media (min-width: 1024px) {
     display: none;
   }
+  
+  @media (max-width: 480px) {
+    width: 100vw;
+    max-width: 100vw;
+  }
 `;
 
-const MobileNavContent = styled.div`
+const MobileMenuContent = styled.div`
   padding: 2rem 1.5rem;
   height: 100%;
   display: flex;
   flex-direction: column;
+  opacity: ${props => props.$isOpen ? '1' : '0'};
+  transform: translateY(${props => props.$isOpen ? '0' : '20px'});
+  transition: all ${props => props.$isOpen ? 
+    '0.5s ease 0.2s' : 
+    '0.3s ease'};
 `;
 
-const MobileNavHeader = styled.div`
+const MobileMenuHeader = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-end;
   margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid rgba(144, 179, 167, 0.1);
+  opacity: ${props => props.$isOpen ? '1' : '0'};
+  transform: translateX(${props => props.$isOpen ? '0' : '30px'}) 
+             rotate(${props => props.$isOpen ? '0deg' : '10deg'});
+  transition: all ${props => props.$isOpen ? 
+    '0.4s ease 0.3s' : 
+    '0.2s ease'};
 `;
 
-const CloseButton = styled(motion.button)`
+const CloseButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
-  padding: 0;
   background: rgba(144, 179, 167, 0.1);
   border: 1px solid rgba(144, 179, 167, 0.2);
-  border-radius: 8px;
-  color: ${({ theme }) => theme?.colors?.text?.primary || '#2C3E2D'};
+  border-radius: 50%;
   cursor: pointer;
+  font-size: 1.2rem;
+  color: #2C3E2D;
   transition: all 0.3s ease;
+  position: relative;
+  
+  /* Убираем все псевдоэлементы */
+  &::before,
+  &::after {
+    display: none !important;
+  }
   
   &:hover {
     background: rgba(144, 179, 167, 0.2);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 4px 15px rgba(144, 179, 167, 0.3);
   }
   
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
+  &:active {
+    transform: rotate(90deg) scale(0.95);
   }
 `;
 
@@ -308,33 +364,58 @@ const MobileNavList = styled.ul`
   margin: 0;
   padding: 0;
   flex: 1;
+  opacity: ${props => props.$isOpen ? '1' : '0'};
+  transform: translateY(${props => props.$isOpen ? '0' : '40px'});
+  transition: all ${props => props.$isOpen ? 
+    '0.6s ease 0.4s' : 
+    '0.25s ease'};
 `;
 
 const MobileNavItem = styled.li`
   margin-bottom: 0.5rem;
+  opacity: ${props => props.$isOpen ? '1' : '0'};
+  transform: translateX(${props => props.$isOpen ? '0' : '50px'}) 
+             rotateY(${props => props.$isOpen ? '0deg' : '15deg'});
+  transition: all ${props => props.$isOpen ? 
+    `0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${props.$delay ? `calc(0.5s + ${props.$delay})` : '0.5s'}` : 
+    '0.2s ease'};
+  transform-origin: left center;
 `;
 
 const MobileNavLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  color: ${({ theme }) => theme?.colors?.text?.primary || '#2C3E2D'};
-  font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 1.125rem;
-  font-weight: 500;
+  display: block;
+  padding: 1.25rem 1.5rem;
+  color: #2C3E2D;
   text-decoration: none;
-  border-radius: 12px;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-weight: 500;
+  font-size: 1.1rem;
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  margin: 0.25rem 0;
   
-  &:hover,
-  &.active {
-    background: rgba(144, 179, 167, 0.1);
-    color: ${({ theme }) => theme?.colors?.primary || '#90B3A7'};
-    transform: translateX(0.25rem);
+  /* Убираем все псевдоэлементы */
+  &::before,
+  &::after {
+    display: none !important;
+  }
+  
+  &:hover {
+    background: rgba(144, 179, 167, 0.08);
+    color: #90B3A7;
+    transform: translateX(4px);
+    box-shadow: 
+      0 2px 8px rgba(144, 179, 167, 0.08),
+      0 4px 16px rgba(144, 179, 167, 0.04);
   }
   
   &.active {
+    background: rgba(144, 179, 167, 0.12);
+    color: #90B3A7;
     font-weight: 600;
+    box-shadow: 
+      0 2px 8px rgba(144, 179, 167, 0.12),
+      0 4px 16px rgba(144, 179, 167, 0.06);
   }
 `;
 
@@ -342,101 +423,83 @@ const MobileLanguageSection = styled.div`
   margin-top: auto;
   padding-top: 2rem;
   border-top: 1px solid rgba(144, 179, 167, 0.1);
+  opacity: ${props => props.$isOpen ? '1' : '0'};
+  transform: translateY(${props => props.$isOpen ? '0' : '50px'}) 
+             scale(${props => props.$isOpen ? '1' : '0.9'});
+  transition: all ${props => props.$isOpen ? 
+    '0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s' : 
+    '0.2s ease'};
+  transform-origin: center bottom;
 `;
 
 const MobileLanguageTitle = styled.h3`
-  font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
   font-size: 0.875rem;
   font-weight: 600;
-  color: ${({ theme }) => theme?.colors?.text?.light || '#8B9A8E'};
+  color: #8B9A8E;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 1rem;
+  text-align: center;
+  opacity: ${props => props.$isOpen ? '1' : '0'};
+  transform: translateY(${props => props.$isOpen ? '0' : '20px'});
+  transition: all ${props => props.$isOpen ? 
+    '0.4s ease 0.9s' : 
+    '0.15s ease'};
 `;
 
 const MobileLanguageGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
+  opacity: ${props => props.$isOpen ? '1' : '0'};
+  transform: translateY(${props => props.$isOpen ? '0' : '30px'});
+  transition: all ${props => props.$isOpen ? 
+    '0.5s ease 1s' : 
+    '0.1s ease'};
 `;
 
-const MobileLanguageButton = styled(motion.button)`
-  padding: 0.75rem;
-  background: ${({ $active }) => $active ? 'rgba(144, 179, 167, 0.15)' : 'rgba(144, 179, 167, 0.05)'};
-  border: 1px solid ${({ $active }) => $active ? 'rgba(144, 179, 167, 0.3)' : 'rgba(144, 179, 167, 0.1)'};
-  border-radius: 8px;
-  color: ${({ $active, theme }) => $active ? (theme?.colors?.primary || '#90B3A7') : (theme?.colors?.text?.primary || '#2C3E2D')};
-  font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 0.875rem;
+const MobileLanguageButton = styled.button`
+  padding: 1rem;
+  background: ${({ $active }) => $active ? 'rgba(144, 179, 167, 0.12)' : 'rgba(144, 179, 167, 0.04)'};
+  border: none;
+  border-radius: 16px;
+  color: ${({ $active }) => $active ? '#90B3A7' : '#2C3E2D'};
+  font-size: 0.9rem;
   font-weight: ${({ $active }) => $active ? '600' : '500'};
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  
+  /* Убираем все псевдоэлементы */
+  &::before,
+  &::after {
+    display: none !important;
+  }
+  
+  /* Современная тень */
+  box-shadow: ${({ $active }) => $active ? 
+    '0 2px 8px rgba(144, 179, 167, 0.12), 0 4px 16px rgba(144, 179, 167, 0.06)' :
+    '0 1px 3px rgba(144, 179, 167, 0.06), 0 2px 8px rgba(144, 179, 167, 0.03)'};
   
   &:hover {
-    background: rgba(144, 179, 167, 0.15);
-    border-color: rgba(144, 179, 167, 0.3);
+    background: ${({ $active }) => $active ? 'rgba(144, 179, 167, 0.15)' : 'rgba(144, 179, 167, 0.08)'};
+    transform: translateY(-1px);
+    box-shadow: 
+      0 3px 12px rgba(144, 179, 167, 0.12),
+      0 6px 24px rgba(144, 179, 167, 0.06);
+  }
+  
+  &:active {
+    transform: translateY(0);
   }
 `;
-
-// =============================================================================
-// HEADER COMPONENT
-// =============================================================================
 
 const Header = () => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
-  const langDropdownRef = useRef(null);
 
-  // Check if route is active
-  const isActive = (path) => location.pathname === path;
-
-  // Handle scroll event
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target)) {
-        setIsLangDropdownOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [location.pathname]);
-
-  // Handle language change
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-    setIsLangDropdownOpen(false);
-  };
-
-  // Get language display
-  const getLanguageDisplay = () => {
-    switch(i18n.language) {
-      case 'en': return 'EN';
-      case 'ru': return 'RU';
-      case 'th': return 'TH';
-      default: return 'EN';
-    }
-  };
-
-  // Navigation links
   const navigationLinks = [
     { path: '/', label: t('navigation.home') },
     { path: '/restaurant', label: t('navigation.restaurant') },
@@ -445,265 +508,169 @@ const Header = () => {
     { path: '/contacts', label: t('navigation.contacts') },
   ];
 
-  // Animation variants
-  const headerVariants = {
-    hidden: { y: -100, opacity: 0 },
-    visible: { 
-      y: 0, 
-      opacity: 1,
-      transition: { 
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94]
+  // Проверяем активную ссылку
+  const isActive = (path) => location.pathname === path;
+
+  // Функция смены языка
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    setIsMobileMenuOpen(false);
+    setIsLangDropdownOpen(false);
+  };
+
+  // Закрываем меню при смене маршрута
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setIsLangDropdownOpen(false);
+  }, [location.pathname]);
+
+  // Блокируем скролл когда меню открыто
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
+  // Закрываем dropdown при клике вне его
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest('.language-selector')) {
+        setIsLangDropdownOpen(false);
       }
-    }
-  };
+    };
 
-  const logoVariants = {
-    hover: { 
-      scale: 1.05,
-      transition: { duration: 0.3 }
-    }
-  };
-
-  const mobileNavVariants = {
-    hidden: { x: '100%' },
-    visible: { 
-      x: 0,
-      transition: { 
-        type: 'spring',
-        damping: 25,
-        stiffness: 200
-      }
-    }
-  };
-
-  const overlayVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 }
-  };
-
-  const dropdownVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: -10,
-      scale: 0.95
-    },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      scale: 1,
-      transition: { 
-        duration: 0.2,
-        ease: 'easeOut'
-      }
-    }
-  };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
     <>
-      <StyledHeader
-        $scrolled={isScrolled}
-        variants={headerVariants}
-        initial="hidden"
-        animate="visible"
-      >
+      <StyledHeader>
         <HeaderContainer>
-          <HeaderContent>
-            {/* Logo */}
-            <Link to="/">
-              <LogoContainer
-                variants={logoVariants}
-                whileHover="hover"
+          {/* Logo - всегда слева */}
+          <Link to="/">
+            <Logo src={headerLogo} alt="KAIF" />
+          </Link>
+
+          {/* Desktop Navigation */}
+          <Nav>
+            {navigationLinks.map((link) => (
+              <NavLink 
+                key={link.path} 
+                to={link.path}
+                className={isActive(link.path) ? 'active' : ''}
               >
-                <LogoImage src={headerLogo} alt="KAIF" />
-              </LogoContainer>
-            </Link>
+                {link.label}
+              </NavLink>
+            ))}
+          </Nav>
 
-            {/* Desktop Navigation */}
-            <DesktopNav>
-              <NavList>
-                {navigationLinks.map((link) => (
-                  <NavItem key={link.path}>
-                    <NavLink 
-                      to={link.path} 
-                      className={isActive(link.path) ? 'active' : ''}
-                    >
-                      {link.label}
-                    </NavLink>
-                  </NavItem>
-                ))}
-              </NavList>
-            </DesktopNav>
-
-            {/* Language Switcher & Mobile Menu Button */}
-            <div className="flex items-center gap-3">
-              {/* Language Switcher */}
-              <LanguageContainer ref={langDropdownRef}>
-                <LanguageButton
-                  onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-                  className={isLangDropdownOpen ? 'open' : ''}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+          {/* Right Section */}
+          <RightSection>
+            <LanguageSelector className="language-selector">
+              <LanguageButton onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}>
+                {i18n.language.toUpperCase()}
+                <span style={{ transform: isLangDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease' }}>
+                  ▼
+                </span>
+              </LanguageButton>
+              
+              <LanguageDropdown $isOpen={isLangDropdownOpen}>
+                <LanguageOption 
+                  $active={i18n.language === 'en'} 
+                  onClick={() => changeLanguage('en')}
                 >
-                  {getLanguageDisplay()}
-                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </LanguageButton>
-
-                <AnimatePresence>
-                  {isLangDropdownOpen && (
-                    <DropdownContainer
-                      variants={dropdownVariants}
-                      initial="hidden"
-                      animate="visible"
-                      exit="hidden"
-                    >
-                      <LanguageOption 
-                        $active={i18n.language === 'en'} 
-                        onClick={() => changeLanguage('en')}
-                        whileHover={{ x: 2 }}
-                      >
-                        English
-                      </LanguageOption>
-                      <LanguageOption 
-                        $active={i18n.language === 'ru'} 
-                        onClick={() => changeLanguage('ru')}
-                        whileHover={{ x: 2 }}
-                      >
-                        Русский
-                      </LanguageOption>
-                      <LanguageOption 
-                        $active={i18n.language === 'th'} 
-                        onClick={() => changeLanguage('th')}
-                        whileHover={{ x: 2 }}
-                      >
-                        ไทย
-                      </LanguageOption>
-                    </DropdownContainer>
-                  )}
-                </AnimatePresence>
-              </LanguageContainer>
-
-              {/* Mobile Menu Button */}
-              <MobileNavButton
-                onClick={() => setIsMobileMenuOpen(prev => !prev)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </MobileNavButton>
-            </div>
-          </HeaderContent>
+                  English
+                </LanguageOption>
+                <LanguageOption 
+                  $active={i18n.language === 'ru'} 
+                  onClick={() => changeLanguage('ru')}
+                >
+                  Русский
+                </LanguageOption>
+                <LanguageOption 
+                  $active={i18n.language === 'th'} 
+                  onClick={() => changeLanguage('th')}
+                >
+                  ไทย
+                </LanguageOption>
+              </LanguageDropdown>
+            </LanguageSelector>
+            
+            <MobileMenuButton 
+              $isOpen={isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              ☰
+            </MobileMenuButton>
+          </RightSection>
         </HeaderContainer>
       </StyledHeader>
 
-      {/* Mobile Navigation */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <>
-            <MobileNavOverlay
-              variants={overlayVariants}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              onClick={() => setIsMobileMenuOpen(false)}
-            />
-            <MobileNavContainer
-              variants={mobileNavVariants}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-            >
-              <MobileNavContent>
-                <MobileNavHeader>
-                  <LogoContainer>
-                    <LogoImage 
-                      src={headerLogo} 
-                      alt="KAIF" 
-                      style={{ height: '45px' }} 
-                    />
-                  </LogoContainer>
-                  <CloseButton
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </CloseButton>
-                </MobileNavHeader>
+      {/* Mobile Menu */}
+      <MobileMenuOverlay 
+        $isOpen={isMobileMenuOpen} 
+        onClick={() => setIsMobileMenuOpen(false)} 
+      />
+      
+      <MobileMenuContainer $isOpen={isMobileMenuOpen}>
+        <MobileMenuContent $isOpen={isMobileMenuOpen}>
+          <MobileMenuHeader $isOpen={isMobileMenuOpen}>
+            <CloseButton onClick={() => setIsMobileMenuOpen(false)}>
+              ×
+            </CloseButton>
+          </MobileMenuHeader>
 
-                <MobileNavList>
-                  {navigationLinks.map((link, index) => (
-                    <MobileNavItem key={link.path}>
-                      <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ 
-                          opacity: 1, 
-                          x: 0,
-                          transition: { delay: index * 0.1 }
-                        }}
-                      >
-                        <MobileNavLink
-                          to={link.path}
-                          className={isActive(link.path) ? 'active' : ''}
-                        >
-                          {link.label}
-                        </MobileNavLink>
-                      </motion.div>
-                    </MobileNavItem>
-                  ))}
-                </MobileNavList>
+          <MobileNavList $isOpen={isMobileMenuOpen}>
+            {navigationLinks.map((link, index) => (
+              <MobileNavItem 
+                key={link.path}
+                $isOpen={isMobileMenuOpen}
+                $delay={`${index * 0.1}s`}
+              >
+                <MobileNavLink 
+                  to={link.path}
+                  className={isActive(link.path) ? 'active' : ''}
+                >
+                  {link.label}
+                </MobileNavLink>
+              </MobileNavItem>
+            ))}
+          </MobileNavList>
 
-                <MobileLanguageSection>
-                  <MobileLanguageTitle>
-                    {t('common.select_language')}
-                  </MobileLanguageTitle>
-                  <MobileLanguageGrid>
-                    <MobileLanguageButton
-                      $active={i18n.language === 'en'}
-                      onClick={() => {
-                        changeLanguage('en');
-                        setIsMobileMenuOpen(false);
-                      }}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      EN
-                    </MobileLanguageButton>
-                    <MobileLanguageButton
-                      $active={i18n.language === 'ru'}
-                      onClick={() => {
-                        changeLanguage('ru');
-                        setIsMobileMenuOpen(false);
-                      }}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      RU
-                    </MobileLanguageButton>
-                    <MobileLanguageButton
-                      $active={i18n.language === 'th'}
-                      onClick={() => {
-                        changeLanguage('th');
-                        setIsMobileMenuOpen(false);
-                      }}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      TH
-                    </MobileLanguageButton>
-                  </MobileLanguageGrid>
-                </MobileLanguageSection>
-              </MobileNavContent>
-            </MobileNavContainer>
-          </>
-        )}
-      </AnimatePresence>
+          <MobileLanguageSection $isOpen={isMobileMenuOpen}>
+            <MobileLanguageTitle $isOpen={isMobileMenuOpen}>
+              {t('common.select_language') || 'Выберите язык'}
+            </MobileLanguageTitle>
+            <MobileLanguageGrid $isOpen={isMobileMenuOpen}>
+              <MobileLanguageButton
+                $active={i18n.language === 'en'}
+                onClick={() => changeLanguage('en')}
+              >
+                EN
+              </MobileLanguageButton>
+              <MobileLanguageButton
+                $active={i18n.language === 'ru'}
+                onClick={() => changeLanguage('ru')}
+              >
+                RU
+              </MobileLanguageButton>
+              <MobileLanguageButton
+                $active={i18n.language === 'th'}
+                onClick={() => changeLanguage('th')}
+              >
+                TH
+              </MobileLanguageButton>
+            </MobileLanguageGrid>
+          </MobileLanguageSection>
+        </MobileMenuContent>
+      </MobileMenuContainer>
     </>
   );
 };

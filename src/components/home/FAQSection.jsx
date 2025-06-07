@@ -47,19 +47,19 @@ const SectionBadge = styled(motion.div)`
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background: rgba(0, 180, 216, 0.08); /* Голубой из логотипа с прозрачностью */
-  border: 1px solid rgba(0, 180, 216, 0.15); /* Голубой бордер */
+  background: rgba(144, 179, 167, 0.08); /* Зеленый цвет KAIF с прозрачностью */
+  border: 1px solid rgba(144, 179, 167, 0.15); /* Зеленый бордер */
   border-radius: 24px;
   font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
   font-size: 0.875rem;
   font-weight: 500;
-  color: #00B4D8; /* Голубой из логотипа */
+  color: #90B3A7; /* Зеленый цвет KAIF */
   margin-bottom: 2rem;
   
   svg {
     width: 1rem;
     height: 1rem;
-    color: #00B4D8; /* Голубой из логотипа */
+    color: #90B3A7; /* Зеленый цвет KAIF */
   }
 `;
 
@@ -147,13 +147,13 @@ const QuestionContent = styled.div`
 const QuestionIcon = styled.div`
   width: 2.5rem;
   height: 2.5rem;
-  background: rgba(255, 105, 180, 0.08); /* Розовый из логотипа с прозрачностью */
-  border: 1px solid rgba(255, 105, 180, 0.15); /* Розовый бордер */
+  background: rgba(144, 179, 167, 0.08); /* Зеленый цвет KAIF с прозрачностью */
+  border: 1px solid rgba(144, 179, 167, 0.15); /* Зеленый бордер */
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #FF69B4; /* Розовый из логотипа */
+  color: #90B3A7; /* Зеленый цвет KAIF */
   transition: all 0.3s ease;
   flex-shrink: 0;
   
@@ -163,7 +163,7 @@ const QuestionIcon = styled.div`
   }
   
   ${FAQItem}:hover & {
-    background: ${({ theme }) => theme?.colors?.gradients?.logo || 'linear-gradient(135deg, #FF6347 0%, #00B4D8 33%, #FF69B4 66%, #5CB848 100%)'};
+    background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%); /* Градиент зеленого цвета */
     color: white;
     border-color: transparent;
   }
@@ -232,7 +232,7 @@ const SupportSection = styled(motion.div)`
 
 const SupportCard = styled(motion.div)`
   background: white;
-  border: 1px solid rgba(0, 180, 216, 0.1); /* Голубой из логотипа */
+  border: 1px solid rgba(144, 179, 167, 0.1); /* Зеленый цвет KAIF */
   border-radius: 16px;
   padding: 2rem 1.5rem;
   text-align: center;
@@ -247,7 +247,7 @@ const SupportCard = styled(motion.div)`
     left: 0;
     width: 100%;
     height: 3px;
-    background: ${({ theme }) => theme?.colors?.gradients?.logo || 'linear-gradient(135deg, #FF6347 0%, #00B4D8 33%, #FF69B4 66%, #5CB848 100%)'};
+    background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.6s ease;
@@ -255,8 +255,8 @@ const SupportCard = styled(motion.div)`
   
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0, 180, 216, 0.15); /* Тень с голубым из логотипа */
-    border-color: rgba(255, 105, 180, 0.2); /* Розовый из логотипа */
+    box-shadow: 0 12px 30px rgba(144, 179, 167, 0.15); /* Тень с зеленым цветом KAIF */
+    border-color: rgba(144, 179, 167, 0.2); /* Зеленый цвет KAIF */
     
     &::before {
       transform: scaleX(1);
@@ -269,13 +269,13 @@ const SupportIcon = styled.div`
   width: 3rem;
   height: 3rem;
   margin: 0 auto 1.5rem;
-  background: rgba(92, 184, 72, 0.08); /* Зеленый из логотипа с прозрачностью */
-  border: 1px solid rgba(92, 184, 72, 0.15); /* Зеленый бордер */
+  background: rgba(144, 179, 167, 0.08); /* Зеленый цвет KAIF с прозрачностью */
+  border: 1px solid rgba(144, 179, 167, 0.15); /* Зеленый бордер */
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #5CB848; /* Зеленый из логотипа */
+  color: #90B3A7; /* Зеленый цвет KAIF */
   transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
@@ -287,7 +287,7 @@ const SupportIcon = styled.div`
   }
   
   ${SupportCard}:hover & {
-    background: ${({ theme }) => theme?.colors?.gradients?.logo || 'linear-gradient(135deg, #FF6347 0%, #00B4D8 33%, #FF69B4 66%, #5CB848 100%)'};
+    background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%); /* Градиент зеленого цвета */
     color: white;
     border-color: transparent;
     transform: scale(1.1);

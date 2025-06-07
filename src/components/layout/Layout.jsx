@@ -5,15 +5,37 @@ import Header from './Header';
 import Footer from './Footer';
 import PageHead from './PageHead';
 
+// Основной контейнер страницы
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  height: 100%;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+`;
+
 // Стилизованный контейнер для сохранения стилей при переходах между страницами
 const MainContainer = styled.main`
-  flex-grow: 1;
+  flex: 1;
   padding-top: 4rem;
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 4rem);
   width: 100%;
-  will-change: opacity, transform; /* Оптимизация производительности */
+  will-change: opacity, transform;
+  background: transparent;
+  margin: 0;
+  padding-bottom: 0;
+  
+  @media (min-width: 768px) {
+    padding-top: 4.5rem;
+  }
+  
+  @media (min-width: 1024px) {
+    padding-top: 5rem;
+  }
 `;
 
 const Layout = ({ children }) => {
@@ -44,14 +66,14 @@ const Layout = ({ children }) => {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <PageContainer>
       <PageHead />
       <Header />
       <MainContainer>
         {children}
       </MainContainer>
       <Footer />
-    </div>
+    </PageContainer>
   );
 };
 

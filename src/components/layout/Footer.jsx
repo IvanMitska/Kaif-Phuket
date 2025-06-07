@@ -22,10 +22,12 @@ import footerLogo from '../../assets/images/logos/logo-footer.png';
 const FooterWrapper = styled.footer`
   position: relative;
   background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
-  padding: 5rem 2rem 2rem;
+  padding: 3rem 2rem 0;
   color: white;
   z-index: 1;
   overflow: hidden;
+  margin: -5px 0 0 0;
+  min-height: auto;
   
   &::before {
     content: '';
@@ -38,11 +40,19 @@ const FooterWrapper = styled.footer`
     z-index: -1;
   }
   
-  @media (max-width: 768px) {
-    padding: 4rem 1rem 2rem;
-      radial-gradient(circle at 50% 50%, rgba(200, 168, 233, 0.08) 0%, transparent 50%);
-    pointer-events: none;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
     z-index: 1;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 2.5rem 1rem 0;
   }
 `;
 
@@ -51,27 +61,27 @@ const FooterContent = styled.div`
   z-index: 10;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 4rem 1.5rem 2rem;
+  padding: 2rem 1.5rem 0;
   
   @media (min-width: 1024px) {
-    padding: 5rem 2rem 2rem;
+    padding: 3rem 2rem 0;
   }
 `;
 
 const FooterMain = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem;
-  margin-bottom: 3rem;
+  gap: 2rem;
+  margin-bottom: 2rem;
   
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
-    gap: 4rem;
+    gap: 3rem;
   }
   
   @media (min-width: 1024px) {
-    grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    gap: 3rem;
+    grid-template-columns: 1.8fr 1fr 1fr 1.2fr;
+    gap: 2.5rem;
   }
 `;
 
@@ -85,49 +95,49 @@ const BrandSection = styled(motion.div)`
     text-align: center;
     align-items: center;
     grid-column: 1 / -1;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 `;
 
 const FooterLogo = styled(motion.img)`
   height: auto;
-  width: 440px; /* Увеличенный размер логотипа */
+  width: 360px;
   object-fit: contain;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   filter: brightness(1.2) contrast(1.1);
   display: block;
   
   /* Десктопная версия и iPad Pro с отрицательным отступом */
   @media (min-width: 1024px) {
-    margin-left: -4.4rem; /* Точно выровненный отступ по левой границе текста */
+    margin-left: -3.5rem;
     align-self: flex-start;
   }
   
   /* Специальные стили для iPad Pro (1024px и выше по ширине) */
   @media (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
-    margin-left: -4.2rem; /* Такой же отступ как и в веб-версии */
-    width: 380px;
+    margin-left: -3.2rem;
+    width: 320px;
   }
   
   /* Стили для iPad Air и маленьких планшетов (820-900px) */
   @media (min-width: 820px) and (max-width: 900px) {
-    margin: 0 auto 2.5rem; /* Центрирование как на мобильных */
-    width: 360px;
+    margin: 0 auto 1.5rem;
+    width: 300px;
     align-self: center;
   }
   
   /* Стили для средних планшетов */
   @media (min-width: 901px) and (max-width: 1023px) {
-    margin-left: 0; /* Убираем отрицательный отступ полностью */
-    width: 360px;
+    margin-left: 0;
+    width: 300px;
     align-self: flex-start;
   }
   
   /* Мобильная версия с центрированием */
   @media (max-width: 768px) {
-    margin: 0 auto 2.5rem;
-    width: 380px; /* Увеличенный размер на мобильных */
-    align-self: center; /* Центрирование на мобильных устройствах */
+    margin: 0 auto 1.5rem;
+    width: 320px;
+    align-self: center;
   }
 `;
 
@@ -142,18 +152,18 @@ const BrandSubtitle = styled.p`
 
 const BrandDescription = styled.p`
   font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 1.25rem; /* Увеличенный размер текста */
-  line-height: 1.8;
-  margin-bottom: 2rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
   color: rgba(255, 255, 255, 0.9);
-  max-width: 450px;
+  max-width: 400px;
   
   @media (max-width: 1023px) {
-    max-width: 540px;
+    max-width: 480px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    font-size: 1.15rem; /* Увеличенный размер на мобильных */
+    font-size: 0.95rem;
   }
 `;
 
@@ -167,8 +177,8 @@ const SocialLinks = styled.div`
 `;
 
 const SocialLink = styled(motion.a)`
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
@@ -189,8 +199,8 @@ const SocialLink = styled(motion.a)`
   }
   
   svg {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1rem;
+    height: 1rem;
   }
 `;
 
@@ -205,9 +215,9 @@ const FooterSection = styled(motion.div)`
 
 const SectionTitle = styled.h3`
   font-family: ${({ theme }) => theme?.fonts?.heading || '"Playfair Display", serif'};
-  font-size: 1.7rem; /* Увеличенный размер заголовков */
+  font-size: 1.4rem;
   font-weight: 500;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.25rem;
   color: white;
   position: relative;
   
@@ -215,8 +225,8 @@ const SectionTitle = styled.h3`
     content: '';
     position: absolute;
     left: 0;
-    bottom: -0.6rem;
-    width: 50px;
+    bottom: -0.5rem;
+    width: 40px;
     height: 2px;
     background: linear-gradient(135deg, 
       ${({ theme }) => theme?.colors?.primary || '#90B3A7'} 0%, 
@@ -226,7 +236,7 @@ const SectionTitle = styled.h3`
   
   @media (max-width: 1023px) {
     text-align: center;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     
     &::after {
       left: 50%;
@@ -238,10 +248,10 @@ const SectionTitle = styled.h3`
 const FooterLink = styled(Link)`
   display: block;
   font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 1.1rem; /* Увеличенный размер текста ссылок */
+  font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
-  padding: 0.5rem 0;
+  padding: 0.4rem 0;
   transition: all 0.3s ease;
   
   &:hover {
@@ -254,7 +264,7 @@ const ContactItem = styled(motion.div)`
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   
   @media (max-width: 1023px) {
     justify-content: center;
@@ -262,8 +272,8 @@ const ContactItem = styled(motion.div)`
   }
   
   svg {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1.1rem;
+    height: 1.1rem;
     color: rgba(144, 179, 167, 0.8);
     margin-top: 0.125rem;
     flex-shrink: 0;
@@ -272,7 +282,7 @@ const ContactItem = styled(motion.div)`
 
 const ContactText = styled.div`
   font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 1.1rem; /* Увеличенный размер текста контактов */
+  font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.5;
 `;
@@ -289,8 +299,7 @@ const ContactLink = styled.a`
 
 // Footer Bottom
 const FooterBottom = styled.div`
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 2rem;
+  padding: 1.5rem 0 1rem 0;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -306,7 +315,7 @@ const FooterBottom = styled.div`
 
 const Copyright = styled.p`
   font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 1rem; /* Увеличенный размер текста копирайта */
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.6);
   margin: 0;
   
@@ -322,7 +331,7 @@ const LegalLinks = styled.div`
   
   a {
     font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-    font-size: 1rem; /* Увеличенный размер текста ссылок */
+    font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
     transition: color 0.3s ease;
@@ -407,7 +416,8 @@ const Footer = () => {
       transition: {
         duration: 12,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: "easeInOut",
+        repeatType: "mirror"
       }
     }
   };
@@ -419,9 +429,7 @@ const Footer = () => {
     { path: '/restaurant', label: t('navigation.restaurant'), id: 'restaurant' },
     { path: '/spa', label: t('navigation.spa_and_beauty'), id: 'spa' },
     { path: '/sports', label: t('navigation.sports'), id: 'sports-main' },
-    { path: '/about', label: t('navigation.about'), id: 'about' },
     { path: '/contacts', label: t('navigation.contacts'), id: 'contacts' },
-    { path: '/promotions', label: t('navigation.promotions'), id: 'promotions' },
   ];
 
   const serviceLinks = [
@@ -430,7 +438,6 @@ const Footer = () => {
     { path: '/sports', label: 'Фитнес-центр', id: 'sports-fitness' },
     { path: '/beauty', label: 'Салон красоты', id: 'beauty' },
     { path: '/sports', label: 'Бойцовский клуб', id: 'sports-club' },
-    { path: '/promotions', label: 'Акции', id: 'promotions' },
   ];
 
   return (
@@ -470,8 +477,7 @@ const Footer = () => {
               <FooterLogo
                 src={footerLogo}
                 alt="KAIF"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
+                whileHover={{ scale: 1.05, transition: { duration: 0.3, ease: "easeOut" } }}
               />
               <BrandDescription>
                 Премиальный оздоровительный комплекс на Пхукете. 
@@ -483,7 +489,7 @@ const Footer = () => {
                   href="https://facebook.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1 }}
+                  whileHover={{ scale: 1.1, transition: { duration: 0.3, ease: "easeOut" } }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <svg fill="currentColor" viewBox="0 0 24 24">
@@ -494,7 +500,7 @@ const Footer = () => {
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1 }}
+                  whileHover={{ scale: 1.1, transition: { duration: 0.3, ease: "easeOut" } }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <svg fill="currentColor" viewBox="0 0 24 24">
@@ -503,7 +509,7 @@ const Footer = () => {
                 </SocialLink>
                 <SocialLink
                   href={`tel:${t('common.phone_number')}`}
-                  whileHover={{ scale: 1.1 }}
+                  whileHover={{ scale: 1.1, transition: { duration: 0.3, ease: "easeOut" } }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <PhoneIcon />

@@ -3,13 +3,20 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowLongRightIcon, BoltIcon, SparklesIcon } from '@heroicons/react/24/outline';
+import { 
+  ArrowLongRightIcon, 
+  FireIcon, 
+  SparklesIcon,
+  HeartIcon,
+  BuildingStorefrontIcon,
+  BoltIcon
+} from '@heroicons/react/24/outline';
 
 // Основной контейнер
 const SectionContainer = styled.section`
   position: relative;
   padding: 6rem 0;
-  background-color: #ffffff; /* Чистый белый фон */
+  background-color: #ffffff;
   overflow: hidden;
   
   @media (min-width: 768px) {
@@ -40,7 +47,7 @@ const Overline = styled(motion.div)`
   font-weight: 400;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #FF6347; /* Оранжево-красный из логотипа */
+  color: #FF6347;
   margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
@@ -101,7 +108,7 @@ const CategoryTitle = styled.h3`
     width: 24px;
     height: 24px;
     margin-right: 1rem;
-    color: #5CB848; /* Зеленый из логотипа */
+    color: #5CB848;
   }
 `;
 
@@ -130,19 +137,38 @@ const GridContainer = styled.div`
 // Карточка зоны
 const ZoneCard = styled(motion.div)`
   position: relative;
-  height: 320px;
+  height: 280px;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.5s ease;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: pointer;
+  
+  @media (min-width: 480px) {
+    height: 320px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  }
   
   @media (min-width: 768px) {
+    height: 360px;
+    border-radius: 24px;
+  }
+  
+  @media (min-width: 1024px) {
     height: 380px;
   }
   
   &:hover {
     transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  }
+  
+  @media (max-width: 480px) {
+    &:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+    }
   }
   
   &::after {
@@ -154,20 +180,37 @@ const ZoneCard = styled(motion.div)`
     height: 100%;
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.2) 0%,
-      rgba(0, 0, 0, 0.9) 100%
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.7) 100%
     );
     z-index: 1;
     transition: all 0.5s ease;
   }
   
   &:hover::after {
-    opacity: 0.95;
     background: linear-gradient(
       to bottom,
-      rgba(144, 179, 167, 0.4) 0%,
-      rgba(168, 197, 184, 0.9) 100%
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0.6) 100%
     );
+  }
+  
+  @media (max-width: 480px) {
+    &::after {
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.15) 0%,
+        rgba(0, 0, 0, 0.8) 100%
+      );
+    }
+    
+    &:hover::after {
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.1) 0%,
+        rgba(0, 0, 0, 0.7) 100%
+      );
+    }
   }
 `;
 
@@ -193,86 +236,122 @@ const CardContent = styled.div`
   padding: 2rem;
   z-index: 2;
   color: #fff;
+  transform: translateY(0);
+  transition: transform 0.4s ease;
+  
+  ${ZoneCard}:hover & {
+    transform: translateY(-5px);
+  }
 `;
 
 // Название зоны
 const ZoneName = styled.h3`
-  font-family: 'Montserrat', sans-serif; /* Более современный шрифт */
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.75rem;
-  font-weight: 400;
+  font-weight: 600;
   margin: 0 0 0.5rem;
   letter-spacing: 0.5px;
-  color: #fff; /* Белый текст для читаемости на изображениях */
-  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8); /* Текстовая тень для лучшей читаемости */
+  color: #fff;
+  text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+  
+  ${ZoneCard}:hover & {
+    transform: translateY(-2px);
+    text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.9);
+  }
 `;
 
 // Описание зоны
 const ZoneDescription = styled.p`
-  font-family: 'Inter', sans-serif; /* Современный шрифт */
-  font-size: 0.9rem; /* Уменьшенный размер */
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
   line-height: 1.5;
   margin: 0 0 1.5rem;
   opacity: 0.9;
-  color: #fff; /* Белый текст для описания */
-  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.7); /* Текстовая тень для лучшей читаемости */
+  color: #fff;
+  text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.7);
   letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+  
+  ${ZoneCard}:hover & {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
 `;
 
 // Кнопка "Подробнее"
 const ExploreButton = styled(Link)`
   display: inline-flex;
   align-items: center;
-  font-family: 'Montserrat', sans-serif; /* Современный шрифт */
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.8px;
-  color: #fff;
-  text-decoration: none;
-  padding: 0.6rem 1.2rem;
-  background: linear-gradient(
-    135deg,
-    rgba(144, 179, 167, 0.6) 0%,
-    rgba(168, 197, 184, 0.5) 100%
-  );
+  color: #fff !important;
+  text-decoration: none !important;
+  padding: 0.8rem 1.5rem;
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 30px;
-  transition: all 0.3s ease;
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
+  transform: translateY(10px);
+  opacity: 0.8;
   
   svg {
     width: 18px;
     height: 18px;
     margin-left: 0.5rem;
     transition: transform 0.3s ease;
+    color: #fff !important;
   }
   
   &::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-    pointer-events: none;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transition: left 0.6s ease;
   }
   
-  &:hover {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border-color: rgba(255, 255, 255, 0.4);
-    color: #fff;
+  ${ZoneCard}:hover & {
+    transform: translateY(0);
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #fff !important;
     
-    &::before {
-      transform: translateX(100%);
+    svg {
+      transform: translateX(4px);
+      color: #fff !important;
     }
   }
   
-  &:hover svg {
-    transform: translateX(5px);
+  &:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+    transform: translateY(-2px) !important;
+    color: #fff !important;
+    text-decoration: none !important;
+    
+    svg {
+      color: #fff !important;
+    }
+  }
+  
+  &:hover::before {
+    left: 100%;
+  }
+  
+  &:visited,
+  &:link,
+  &:active {
+    color: #fff !important;
+    text-decoration: none !important;
   }
 `;
 
@@ -333,8 +412,6 @@ const TabsContainer = styled.div`
   margin-bottom: 3rem;
   position: relative;
   
-  /* Удалена линия под кнопками для более чистого дизайна */
-  
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
@@ -343,73 +420,97 @@ const TabsContainer = styled.div`
 `;
 
 const TabButton = styled.button`
-  background: ${props => props.$active ? `${({ theme }) => theme?.colors?.gradients?.logo || 'linear-gradient(135deg, rgba(255, 99, 71, 0.40) 0%, rgba(255, 99, 71, 0.35) 5%, rgba(206, 128, 114, 0.30) 12%, rgba(157, 157, 157, 0.25) 20%, rgba(108, 186, 200, 0.30) 28%, rgba(0, 180, 216, 0.40) 36%, rgba(71, 168, 203, 0.35) 44%, rgba(142, 157, 188, 0.30) 52%, rgba(214, 145, 173, 0.35) 60%, rgba(255, 105, 180, 0.40) 68%, rgba(219, 140, 149, 0.35) 76%, rgba(183, 175, 118, 0.30) 84%, rgba(147, 210, 95, 0.35) 92%, rgba(92, 184, 72, 0.40) 100%)'}` : 'transparent'};
-  color: ${props => props.$active ? '#fff' : '#2C3E2D'};
-  border: 1px solid ${props => props.$active ? 'transparent' : '#00B4D8'}; /* Голубой из логотипа */
-  border-radius: 30px;
-  padding: 0.8rem 2rem;
+  background: ${props => props.$active 
+    ? 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)' 
+    : 'rgba(255, 255, 255, 0.1)'
+  };
+  color: ${props => props.$active ? 'white' : '#2C3E2D'};
+  border: 2px solid ${props => props.$active ? 'transparent' : 'rgba(144, 179, 167, 0.3)'};
+  border-radius: 50px;
+  padding: 1rem 2.5rem;
   font-family: ${({ theme }) => theme?.fonts?.primary};
-  font-size: 1rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
   margin: 0 0.8rem;
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
-  box-shadow: ${props => props.$active ? '0 8px 20px rgba(0, 180, 216, 0.2)' : 'none'}; /* Тень с голубым из логотипа */
+  box-shadow: ${props => props.$active 
+    ? '0 8px 25px rgba(144, 179, 167, 0.4)' 
+    : '0 4px 15px rgba(0, 0, 0, 0.1)'
+  };
+  backdrop-filter: blur(10px);
+  min-width: 180px;
+  justify-content: center;
   
   svg {
     width: 18px;
     height: 18px;
     margin-right: 0.6rem;
-    transition: transform 0.3s ease;
-    color: ${props => props.$active ? '#fff' : '#5CB848'}; /* Зеленый из логотипа для неактивных */
+    transition: all 0.3s ease;
+    color: ${props => props.$active ? 'white' : '#90B3A7'};
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transition: left 0.6s ease;
   }
   
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 180, 216, 0.15);
-    border-color: ${props => props.$active ? 'transparent' : '#FF69B4'}; /* Розовый из логотипа при наведении */
+    transform: translateY(-2px);
+    box-shadow: ${props => props.$active 
+      ? '0 12px 35px rgba(144, 179, 167, 0.6)' 
+      : '0 8px 25px rgba(144, 179, 167, 0.3)'
+    };
+    background: ${props => props.$active 
+      ? 'linear-gradient(135deg, #A8C5B8 0%, #B8CFC2 100%)' 
+      : 'rgba(144, 179, 167, 0.1)'
+    };
+    border-color: ${props => props.$active ? 'transparent' : 'rgba(144, 179, 167, 0.5)'};
+    color: ${props => props.$active ? 'white' : '#90B3A7'};
     
     svg {
-      transform: ${props => props.$active ? 'scale(1.2)' : 'none'};
-      color: ${props => props.$active ? '#fff' : '#FF69B4'}; /* Розовый из логотипа при наведении */
+      transform: scale(1.1);
+      color: ${props => props.$active ? 'white' : '#90B3A7'};
     }
+  }
+  
+  &:hover::before {
+    left: 100%;
   }
   
   &:focus {
     outline: none;
+    box-shadow: 0 0 0 3px rgba(144, 179, 167, 0.3);
   }
   
-  &::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    pointer-events: none;
-  }
-  
-  &:active::after {
-    opacity: 1;
+  &:active {
+    transform: translateY(-1px);
   }
   
   @media (max-width: 768px) {
     width: 80%;
     justify-content: center;
-    margin: 0;
+    margin: 0 0 1rem 0;
+    min-width: unset;
+    padding: 0.9rem 2rem;
   }
 `;
 
 const ExclusiveZones = () => {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState('all'); // 'all', 'activity', 'relax'
+  const [activeTab, setActiveTab] = useState('all');
   
   // Функция для отображения карточек зон
   const renderZones = (zones) => {
@@ -494,10 +595,20 @@ const ExclusiveZones = () => {
           </TabButton>
         </TabsContainer>
         
-        <CategoriesContainer>
+        <CategoriesContainer
+          as={motion.div}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          key={activeTab}
+        >
           {/* Зона Активити */}
           {(activeTab === 'all' || activeTab === 'activity') && (
-            <>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
               <CategoryHeader
                 as={motion.div}
                 initial={{ opacity: 0, y: 20 }}
@@ -514,12 +625,16 @@ const ExclusiveZones = () => {
               <GridContainer>
                 {renderZones(activityZones)}
               </GridContainer>
-            </>
+            </motion.div>
           )}
           
           {/* Зона Релакс */}
           {(activeTab === 'all' || activeTab === 'relax') && (
-            <>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: activeTab === 'all' ? 0.3 : 0 }}
+            >
               <CategoryHeader
                 as={motion.div}
                 initial={{ opacity: 0, y: 20 }}
@@ -536,7 +651,7 @@ const ExclusiveZones = () => {
               <GridContainer>
                 {renderZones(relaxZones)}
               </GridContainer>
-            </>
+            </motion.div>
           )}
         </CategoriesContainer>
       </ContentWrapper>
