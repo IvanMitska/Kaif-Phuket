@@ -194,6 +194,12 @@ const MobileMenuButton = styled.button`
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   
+  /* Убираем все псевдоэлементы */
+  &::before,
+  &::after {
+    display: none !important;
+  }
+  
   /* Современная тень */
   box-shadow: 
     0 1px 3px rgba(144, 179, 167, 0.08),
@@ -236,23 +242,6 @@ const MobileMenuButton = styled.button`
 `;
 
 // Добавляем стили для мобильного меню
-const MobileMenuOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, ${props => props.$isOpen ? '0.4' : '0'});
-  z-index: 90;
-  opacity: ${props => props.$isOpen ? '1' : '0'};
-  visibility: ${props => props.$isOpen ? 'visible' : 'hidden'};
-  transition: all ${props => props.$isOpen ? '0.3s ease' : '0.3s ease'};
-  
-  @media (min-width: 1024px) {
-    display: none;
-  }
-`;
-
 const MobileMenuContainer = styled.div`
   position: fixed;
   top: 0;
@@ -613,10 +602,6 @@ const Header = () => {
       </StyledHeader>
 
       {/* Mobile Menu */}
-      <MobileMenuOverlay 
-        $isOpen={isMobileMenuOpen} 
-      />
-      
       <MobileMenuContainer $isOpen={isMobileMenuOpen}>
         <MobileMenuContent $isOpen={isMobileMenuOpen}>
           <MobileMenuHeader $isOpen={isMobileMenuOpen}>
