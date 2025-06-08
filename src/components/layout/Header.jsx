@@ -94,7 +94,7 @@ const NavLink = styled(Link)`
   cursor: pointer;
   display: flex;
   align-items: center;
-  height: 36px;
+  height: 34px;
   
   &::before {
     content: '';
@@ -154,74 +154,88 @@ const LanguageSelector = styled.div`
 `;
 
 const LanguageButton = styled(motion.button)`
-  padding: 0.6rem 1rem;
-  background: rgba(144, 179, 167, 0.03);
-  border: 1px solid rgba(144, 179, 167, 0.15);
-  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
   color: #374151;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  min-width: 50px;
+  letter-spacing: 0.08em;
+  min-width: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 36px;
+  height: 34px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   
   &:hover {
-    border-color: #90B3A7;
-    color: #90B3A7;
-    background: rgba(144, 179, 167, 0.08);
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(144, 179, 167, 0.25);
+    color: #2d3748;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(144, 179, 167, 0.15);
   }
   
   &:active {
     transform: translateY(0);
-    box-shadow: 0 1px 4px rgba(144, 179, 167, 0.2);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
 `;
 
 const LanguageDropdown = styled(motion.div)`
   position: absolute;
-  top: calc(100% + 0.5rem);
+  top: calc(100% + 0.75rem);
   right: 0;
-  min-width: 100px;
+  min-width: 120px;
   background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
-  padding: 0.4rem;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(25px);
+  border: none;
+  border-radius: 14px;
+  padding: 0.6rem;
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.12),
+    0 4px 12px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(255, 255, 255, 0.3);
   z-index: 1001;
+  overflow: hidden;
 `;
 
 const LanguageOption = styled(motion.button)`
   display: block;
   width: 100%;
-  padding: 0.5rem 0.75rem;
+  padding: 0.7rem 0.8rem;
+  margin-bottom: 0.2rem;
   background: transparent;
   border: none;
-  border-radius: 5px;
-  color: ${({ $active }) => $active ? '#90B3A7' : '#6b7280'};
-  font-size: 0.75rem;
+  border-radius: 10px;
+  color: ${({ $active }) => $active ? '#374151' : '#6b7280'};
+  font-size: 0.8rem;
   font-weight: ${({ $active }) => $active ? '600' : '500'};
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
   text-align: left;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
   
   &:hover {
     background: rgba(144, 179, 167, 0.08);
-    color: #90B3A7;
+    color: #374151;
+    transform: translateX(2px);
   }
   
   ${({ $active }) => $active && `
     background: rgba(144, 179, 167, 0.12);
+    color: #374151;
+    font-weight: 600;
   `}
 `;
 
@@ -503,17 +517,30 @@ const Header = () => {
               
               {isLanguageDropdownOpen && (
                 <LanguageDropdown
-                  initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                  initial={{ opacity: 0, y: -12, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -8, scale: 0.95 }}
-                  transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ 
+                    duration: 0.3, 
+                    ease: [0.4, 0.0, 0.2, 1],
+                    opacity: { duration: 0.25 },
+                    y: { duration: 0.3 },
+                    scale: { duration: 0.25 }
+                  }}
                 >
                   {languages.map((lang) => (
                     <LanguageOption
                       key={lang.code}
                       $active={i18n.language === lang.code}
-                      whileHover={{ x: 2 }}
+                      whileHover={{ x: 3, scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ 
+                        delay: 0.1 + (languages.findIndex(l => l.code === lang.code) * 0.05),
+                        duration: 0.25,
+                        ease: [0.4, 0.0, 0.2, 1]
+                      }}
                       onClick={() => changeLanguage(lang.code)}
                     >
                       {lang.name}
