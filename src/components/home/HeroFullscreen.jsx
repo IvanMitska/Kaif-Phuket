@@ -97,14 +97,14 @@ const ContentContainer = styled.div`
   justify-content: center;
   
   @media (max-width: 768px) {
-    padding: 2rem 1.5rem;
+    padding: 2rem 0;
     /* Сдвигаем контент немного выше для лучшей видимости кнопок */
     justify-content: flex-start;
     padding-top: 15vh;
   }
   
   @media (max-width: 480px) {
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 0;
     padding-top: 12vh;
   }
   
@@ -127,6 +127,11 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0 1rem;
+  
+  @media (max-width: 480px) {
+    padding: 0 1.5rem;
+  }
 `;
 
 // Увеличенный логотип с лучшим контрастом
@@ -134,7 +139,7 @@ const LogoImage = styled(motion.img)`
   max-width: 520px;
   width: auto;
   height: auto;
-  margin: 0 auto 3rem;
+  margin: 0 0 3rem 0;
   display: block;
   filter: 
     drop-shadow(0 25px 80px rgba(0, 0, 0, 0.9))
@@ -142,12 +147,12 @@ const LogoImage = styled(motion.img)`
   
   @media (max-width: 768px) {
     max-width: 450px;
-    margin: 0 auto 2.5rem;
+    margin: 0 0 2.5rem 0;
   }
   
   @media (max-width: 480px) {
     max-width: 420px;
-    margin: 0 auto 2rem;
+    margin: 0 0 2rem 0;
   }
   
   /* Для маленьких экранов но все еще достаточно большой */
