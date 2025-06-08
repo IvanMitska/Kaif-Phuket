@@ -9,6 +9,7 @@ import heroSpaImage from '../../assets/images/hero/hero-spa.jpg';
 import heroPoolImage from '../../assets/images/hero/hero-pool.jpg';
 import heroRestaurantImage from '../../assets/images/hero/hero-restaurant.jpg';
 import heroFitnessImage from '../../assets/images/hero/hero-fitness.jpg';
+import heroLuxuryImage from '../../assets/images/hero/hero-luxury.png';
 
 // Импорт логотипа для главной страницы
 import homepageLogo from '../../assets/images/logos/logo-homepage.png';
@@ -21,7 +22,7 @@ const slideImages = [
   heroFitnessImage
 ];
 
-// Основной контейнер
+// Основной контейнер с улучшенным дизайном
 const HeroContainer = styled.section`
   position: relative;
   width: 100%;
@@ -32,9 +33,10 @@ const HeroContainer = styled.section`
   align-items: center;
   color: white;
   overflow: hidden;
+  background: #000;
 `;
 
-// Контейнер для слайдера
+// Слайдер с современным затемнением
 const SliderContainer = styled.div`
   position: absolute;
   top: 0;
@@ -42,10 +44,9 @@ const SliderContainer = styled.div`
   width: 100%;
   height: 100%;
   z-index: 1;
-  background-color: #000;
 `;
 
-// Отдельный слайд с улучшенным затемнением
+// Слайд с оптимальным затемнением для читаемости
 const Slide = styled.div`
   position: absolute;
   top: 0;
@@ -53,7 +54,7 @@ const Slide = styled.div`
   width: 100%;
   height: 100%;
   opacity: ${props => props.$active ? 1 : 0};
-  transition: opacity 1.5s ease-in-out;
+  transition: opacity 2s ease-in-out;
   
   &::after {
     content: '';
@@ -64,10 +65,9 @@ const Slide = styled.div`
     height: 100%;
     background: linear-gradient(
       135deg,
-      rgba(0,0,0,0.75) 0%,
-      rgba(0,0,0,0.65) 30%,
-      rgba(0,0,0,0.55) 60%,
-      rgba(0,0,0,0.7) 100%
+      rgba(0,0,0,0.65) 0%,
+      rgba(0,0,0,0.45) 50%,
+      rgba(0,0,0,0.55) 100%
     );
     z-index: 2;
   }
@@ -77,17 +77,17 @@ const Slide = styled.div`
     height: 100%;
     object-fit: cover;
     object-position: center;
-    filter: brightness(0.85) contrast(1.1);
+    filter: brightness(0.8) contrast(1.1) saturate(0.9);
   }
 `;
 
-// Контейнер для контента с улучшенным дизайном
+// Контейнер контента - минималистичный и элегантный
 const ContentContainer = styled.div`
   position: relative;
   z-index: 10;
   text-align: center;
   padding: 3rem 2rem;
-  max-width: 1100px;
+  max-width: 800px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -98,175 +98,84 @@ const ContentContainer = styled.div`
   
   @media (max-width: 768px) {
     padding: 2rem 1.5rem;
-    min-height: 100vh;
-    max-width: 95%;
-    margin: 0 auto;
-  }
-  
-  @media (max-width: 480px) {
-    padding: 2rem 1.25rem;
-    min-height: 100vh;
-    background: linear-gradient(135deg, 
-      rgba(0, 0, 0, 0.08) 0%, 
-      rgba(0, 0, 0, 0.04) 50%, 
-      rgba(0, 0, 0, 0.08) 100%);
-    border-radius: 32px;
-    margin: 1.5rem auto;
-    min-height: calc(100vh - 3rem);
-    max-width: calc(100% - 2rem);
-    width: calc(100% - 2rem);
-  }
-`;
-
-// Улучшенный заголовок - увеличенный и bold
-const MainTitle = styled(motion.h1)`
-  font-family: 'KAIF', 'Inter', sans-serif;
-  font-size: clamp(3rem, 8vw, 5.5rem);
-  font-weight: 800;
-  color: white;
-  margin: 1.5rem 0 4rem;
-  text-shadow: 
-    0 4px 20px rgba(0, 0, 0, 0.8),
-    0 8px 40px rgba(0, 0, 0, 0.4);
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  max-width: 1000px;
-  text-align: center;
-  
-  @media (max-width: 768px) {
-    margin: 1rem 0 3rem;
-    font-size: clamp(2.5rem, 8vw, 3.5rem);
-  }
-  
-  @media (max-width: 480px) {
-    font-size: clamp(2rem, 9vw, 2.8rem);
-    margin: 0.75rem 0 2.5rem;
-  }
-`;
-
-// Улучшенный подзаголовок
-const Subtitle = styled(motion.p)`
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  line-height: 1.6;
-  color: rgba(255,255,255,0.95);
-  margin-bottom: 3rem;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  text-shadow: 
-    0 1px 4px rgba(0, 0, 0, 0.5),
-    0 2px 8px rgba(0, 0, 0, 0.3);
-  
-  @media (max-width: 768px) {
-    font-size: clamp(0.95rem, 3vw, 1.1rem);
-    margin-bottom: 2.5rem;
     max-width: 90%;
   }
   
   @media (max-width: 480px) {
-    font-size: clamp(0.9rem, 4vw, 1rem);
-    margin-bottom: 2rem;
-    line-height: 1.5;
+    padding: 1.5rem 1rem;
+    max-width: 95%;
   }
 `;
 
-// Стилизованный логотип для правильного центрирования
+// Увеличенный логотип с лучшим контрастом
 const LogoImage = styled(motion.img)`
-  max-width: 450px;
+  max-width: 480px;
   height: auto;
-  margin: 0 auto 1rem;
+  margin: 0 auto 3rem;
   display: block;
-  filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.8));
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  
-  @media (max-width: 480px) {
-    max-width: 350px;
-    margin: 0 auto 0.75rem;
-  }
+  filter: 
+    drop-shadow(0 25px 80px rgba(0, 0, 0, 0.9))
+    drop-shadow(0 10px 30px rgba(0, 0, 0, 0.7));
   
   @media (max-width: 768px) {
     max-width: 380px;
-    margin: 0 auto 0.85rem;
-  }
-  
-  @media (min-width: 1024px) {
-    max-width: 500px;
-    margin: 0 auto 1.2rem;
-  }
-`;
-
-// Улучшенная группа кнопок с симметричным дизайном
-const ButtonGroup = styled.div`
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-  
-  @media (max-width: 768px) {
-    flex-direction: column;
-    width: 100%;
-    max-width: 400px;
-    margin: 1rem auto 0;
-    gap: 1rem;
-  }
-`;
-
-// Базовые стили для кнопок
-const BaseButton = styled(motion(Link))`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 2.5rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: none;
-  text-decoration: none;
-  border-radius: 24px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-  min-width: 200px;
-  width: 200px;
-  text-align: center;
-  
-  /* Переопределяем глобальные стили */
-  &:hover {
-    text-decoration: none !important;
-  }
-  
-  @media (max-width: 768px) {
-    width: 100%;
-    padding: 1.25rem 2rem;
-    font-size: 1rem;
-    min-width: unset;
-    border-radius: 20px;
-    max-width: 280px;
+    margin: 0 auto 2.5rem;
   }
   
   @media (max-width: 480px) {
-    padding: 1.125rem 1.75rem;
-    font-size: 0.95rem;
-    border-radius: 18px;
+    max-width: 340px;
+    margin: 0 auto 2rem;
   }
 `;
 
-// Первичная кнопка - "Записаться"
-const PrimaryButton = styled(BaseButton)`
-  background: linear-gradient(135deg, #90B3A7 0%, #7da399 100%);
-  color: white !important;
+// Улучшенный заголовок с лучшей читаемостью
+const MainTitle = styled(motion.h1)`
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0 0 4rem;
+  text-shadow: 
+    0 6px 25px rgba(0, 0, 0, 0.9),
+    0 2px 8px rgba(0, 0, 0, 0.8);
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  max-width: 600px;
+  
+  @media (max-width: 768px) {
+    margin: 0 0 3.5rem;
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+  }
+  
+  @media (max-width: 480px) {
+    margin: 0 0 3rem;
+    letter-spacing: 0.03em;
+  }
+`;
+
+// Белая кнопка с чёрным текстом - премиальный вид
+const PrimaryButton = styled(motion(Link))`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 3rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  background: rgba(255, 255, 255, 0.95);
   border: none;
-  font-weight: 700;
-  font-size: 1.1rem;
-  padding: 1.5rem 3.5rem;
-  border-radius: 8px;
-  box-shadow: 0 8px 25px rgba(144, 179, 167, 0.3);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
+  min-width: 220px;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    0 15px 50px rgba(0, 0, 0, 0.2);
   
   &::before {
     content: '';
@@ -275,16 +184,23 @@ const PrimaryButton = styled(BaseButton)`
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s;
+    background: linear-gradient(
+      90deg, 
+      transparent, 
+      rgba(0, 0, 0, 0.05), 
+      transparent
+    );
+    transition: left 0.6s ease;
   }
   
   &:hover {
-    background: linear-gradient(135deg, #7da399 0%, #6a8e82 100%) !important;
-    transform: translateY(-3px) !important;
-    box-shadow: 0 12px 35px rgba(144, 179, 167, 0.4) !important;
-    color: white !important;
-    text-decoration: none !important;
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+    box-shadow: 
+      0 12px 35px rgba(0, 0, 0, 0.4),
+      0 20px 60px rgba(0, 0, 0, 0.25);
+    color: #000;
+    text-decoration: none;
     
     &::before {
       left: 100%;
@@ -292,78 +208,92 @@ const PrimaryButton = styled(BaseButton)`
   }
   
   &:active {
-    transform: translateY(-1px) !important;
-  }
-  
-  &:focus {
-    outline: none !important;
-    box-shadow: 0 0 0 3px rgba(144, 179, 167, 0.3) !important;
+    transform: translateY(-1px);
   }
   
   @media (max-width: 768px) {
-    padding: 1.25rem 2.5rem;
-    font-size: 1rem;
+    padding: 1.1rem 2.5rem;
+    font-size: 0.85rem;
+    min-width: 200px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 1rem 2rem;
+    font-size: 0.8rem;
+    min-width: 180px;
+    width: 100%;
+    max-width: 300px;
   }
 `;
 
-// Вторичная кнопка - "Категории"
-const SecondaryButton = styled(BaseButton)`
+// Вторичная кнопка - элегантная и тонкая
+const SecondaryButton = styled(motion(Link))`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 3rem;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
   background: transparent;
-  color: white !important;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  font-weight: 600;
-  font-size: 1.1rem;
-  padding: 1.5rem 3.5rem;
-  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
-  overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.05);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-  }
+  min-width: 220px;
+  margin-top: 1.2rem;
   
   &:hover {
-    border-color: rgba(255, 255, 255, 0.8) !important;
-    color: white !important;
-    transform: translateY(-3px) !important;
-    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1) !important;
-    text-decoration: none !important;
-    
-    &::before {
-      transform: scaleX(1);
-    }
+    color: rgba(255, 255, 255, 1);
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+    text-decoration: none;
   }
   
   &:active {
-    transform: translateY(-1px) !important;
-  }
-  
-  &:focus {
-    outline: none !important;
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3) !important;
+    transform: translateY(0);
   }
   
   @media (max-width: 768px) {
-    padding: 1.25rem 2.5rem;
-    font-size: 1rem;
+    padding: 1.1rem 2.5rem;
+    font-size: 0.85rem;
+    min-width: 200px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 1rem 2rem;
+    font-size: 0.8rem;
+    min-width: 180px;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 1rem;
   }
 `;
 
-// Анимации для мобильных устройств
-const smoothAnimations = {
+// Контейнер кнопок - вертикальное расположение для элегантности
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  
+  @media (max-width: 480px) {
+    width: 100%;
+    max-width: 320px;
+  }
+`;
+
+// Улучшенные анимации
+const animations = {
   logo: {
     initial: { 
-      scale: 0.8, 
-      opacity: 0, 
+      scale: 0.85, 
+      opacity: 0,
       y: 30
     },
     animate: { 
@@ -371,60 +301,39 @@ const smoothAnimations = {
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 1.2,
-        ease: [0.22, 1, 0.36, 1],
-        delay: 0.1
+        duration: 1.4,
+        ease: [0.25, 0.46, 0.45, 0.94],
+        delay: 0.6
       }
     }
   },
   title: {
     initial: { 
       opacity: 0, 
-      y: 40,
-      scale: 0.95
+      y: 25
     },
     animate: { 
       opacity: 1, 
       y: 0,
-      scale: 1,
       transition: {
-        duration: 1,
-        ease: [0.22, 1, 0.36, 1],
-        delay: 0.4
-      }
-    }
-  },
-  subtitle: {
-    initial: { 
-      opacity: 0, 
-      y: 30,
-      scale: 0.96
-    },
-    animate: { 
-      opacity: 1, 
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1],
-        delay: 0.7
+        duration: 1.1,
+        ease: [0.25, 0.46, 0.45, 0.94],
+        delay: 1.3
       }
     }
   },
   buttons: {
     initial: { 
       opacity: 0, 
-      y: 40,
-      scale: 0.9
+      y: 25
     },
     animate: { 
       opacity: 1, 
       y: 0,
-      scale: 1,
       transition: {
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1],
-        delay: 1
+        duration: 0.9,
+        ease: [0.25, 0.46, 0.45, 0.94],
+        delay: 1.9
       }
     }
   }
@@ -434,57 +343,14 @@ const HeroFullscreen = () => {
   const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
   
-  // Эффект для автоматического переключения слайдов
+  // Автоматическое переключение слайдов
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % slideImages.length);
-    }, 6000);
+    }, 8000);
     
     return () => clearInterval(interval);
   }, []);
-
-  // Улучшенная анимация для контента
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
-      }
-    }
-  };
-  
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: { 
-      y: 0, 
-      opacity: 1,
-      transition: { 
-        duration: 0.8, 
-        ease: [0.25, 0.46, 0.45, 0.94]
-      }
-    }
-  };
-  
-  const buttonVariants = {
-    hidden: { scale: 0.9, opacity: 0 },
-    visible: { 
-      scale: 1, 
-      opacity: 1,
-      transition: { 
-        duration: 0.6, 
-        type: "spring", 
-        stiffness: 120,
-        damping: 15
-      }
-    },
-    hover: { 
-      scale: 1.02,
-      transition: { duration: 0.3, ease: "easeOut" }
-    },
-    tap: { scale: 0.98 }
-  };
 
   return (
     <HeroContainer>
@@ -500,8 +366,6 @@ const HeroFullscreen = () => {
               alt={`KAIF - Слайд ${index + 1}`} 
               loading="lazy"
               onError={(e) => {
-                console.error(`Failed to load slide image: ${image}`);
-                // Пробуем запасной вариант из unsplash для тестирования
                 const fallbackImages = [
                   "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=85",
                   "https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -516,71 +380,62 @@ const HeroFullscreen = () => {
       </SliderContainer>
       
       {/* Основной контент */}
-      <ContentContainer as={motion.div} 
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
+      <ContentContainer>
         <LogoImage 
           src={homepageLogo} 
-          alt="KAIF Logo" 
-          initial={smoothAnimations.logo.initial}
-          animate={smoothAnimations.logo.animate}
+          alt="KAIF" 
+          initial={animations.logo.initial}
+          animate={animations.logo.animate}
           whileHover={{ 
-            scale: 1.05,
+            scale: 1.03,
             transition: { 
               duration: 0.3,
-              ease: [0.22, 1, 0.36, 1]
+              ease: [0.25, 0.46, 0.45, 0.94]
             }
           }}
         />
         
         <MainTitle 
           as={motion.h1} 
-          initial={smoothAnimations.title.initial}
-          animate={smoothAnimations.title.animate}
+          initial={animations.title.initial}
+          animate={animations.title.animate}
         >
-          Премиальный оздоровительный комплекс
+          Премиальный комплекс на Пхукете
         </MainTitle>
         
-
-        
-        <ButtonGroup
+        <ButtonContainer
           as={motion.div}
-          initial={smoothAnimations.buttons.initial}
-          animate={smoothAnimations.buttons.animate}
+          initial={animations.buttons.initial}
+          animate={animations.buttons.animate}
         >
           <PrimaryButton 
             to="/contacts"
-            as={motion(Link)}
             whileHover={{ 
-              scale: 1.05, 
-              y: -3,
+              scale: 1.03,
               transition: {
                 duration: 0.2,
-                ease: [0.22, 1, 0.36, 1]
+                ease: [0.25, 0.46, 0.45, 0.94]
               }
             }}
-            whileTap={{ scale: 0.98 }}
+            whileTap={{ scale: 0.97 }}
           >
             Записаться
           </PrimaryButton>
+          
           <SecondaryButton 
             to="/sports"
-            as={motion(Link)}
             whileHover={{ 
-              scale: 1.02, 
-              y: -3,
+              scale: 1.02,
               transition: {
                 duration: 0.2,
-                ease: [0.22, 1, 0.36, 1]
+                ease: [0.25, 0.46, 0.45, 0.94]
               }
             }}
             whileTap={{ scale: 0.98 }}
           >
-            Категории
+            Узнать больше
           </SecondaryButton>
-        </ButtonGroup>
+        </ButtonContainer>
       </ContentContainer>
     </HeroContainer>
   );

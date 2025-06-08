@@ -7,9 +7,17 @@ import { XMarkIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/2
 // Основной контейнер
 const SectionContainer = styled.section`
   position: relative;
-  padding: 10rem 0;
+  padding: 6rem 0;
   background: linear-gradient(135deg, #fafafa 0%, #ffffff 50%, #f8fffe 100%);
   overflow: hidden;
+  
+  @media (max-width: 768px) {
+    padding: 3rem 0;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 2rem 0;
+  }
   
   &::before {
     content: '';
@@ -41,10 +49,14 @@ const ContentWrapper = styled.div`
 // Заголовок секции
 const SectionHeader = styled.div`
   text-align: center;
-  margin-bottom: 6rem;
+  margin-bottom: 4rem;
   
   @media (max-width: 768px) {
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    margin-bottom: 2rem;
   }
 `;
 
@@ -120,14 +132,20 @@ const SectionSubtitle = styled(motion.p)`
   font-size: 1.25rem;
   color: #5A6B5D;
   max-width: 800px;
-  margin: 0 auto 5rem;
+  margin: 0 auto 3rem;
   line-height: 1.8;
   font-weight: 400;
   opacity: 0.9;
   
   @media (max-width: 768px) {
     font-size: 1.125rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
   }
 `;
 
@@ -137,11 +155,16 @@ const FilterBar = styled(motion.div)`
   justify-content: center;
   flex-wrap: wrap;
   gap: 1.5rem;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
   
   @media (max-width: 768px) {
     gap: 1rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (max-width: 480px) {
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
   }
 `;
 
@@ -277,15 +300,15 @@ const SliderTrack = styled(motion.div)`
 const Slide = styled(motion.div)`
   flex-shrink: 0;
   width: 100%;
-  height: 600px;
+  height: 500px;
   position: relative;
   
   @media (max-width: 768px) {
-    height: 450px;
+    height: 350px;
   }
   
   @media (max-width: 480px) {
-    height: 400px;
+    height: 280px;
   }
 `;
 
@@ -295,6 +318,7 @@ const SlideImage = styled.img`
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+  loading: lazy;
   
   &:hover {
     transform: scale(1.02);
@@ -452,11 +476,16 @@ const SliderDots = styled.div`
   display: flex;
   justify-content: center;
   gap: 16px;
-  margin-top: 3rem;
+  margin-top: 2rem;
   
   @media (max-width: 768px) {
-    margin-top: 2.5rem;
+    margin-top: 1.5rem;
     gap: 12px;
+  }
+  
+  @media (max-width: 480px) {
+    margin-top: 1rem;
+    gap: 10px;
   }
 `;
 
@@ -593,96 +622,79 @@ const GallerySection = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Обновленные данные галереи с реальными изображениями
+  // Создаем функцию для получения оптимизированных URL изображений
+  const getOptimizedImageUrl = (baseUrl, isMobile = false) => {
+    const width = isMobile ? 600 : 800;
+    const quality = isMobile ? 60 : 70;
+    return baseUrl.replace(/w=\d+/, `w=${width}`).replace(/q=\d+/, `q=${quality}`);
+  };
+
+  // Определяем, мобильное ли устройство
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
+  // Оптимизированные данные галереи с адаптивными изображениями
   const galleryData = [
     // СПА
     {
       id: 1,
-      image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=85',
+      image: getOptimizedImageUrl('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=70', isMobile),
       title: 'Тайский массаж',
       category: 'spa',
       description: 'Традиционный тайский массаж в исполнении опытных мастеров'
     },
     {
       id: 2,
-      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=85',
+      image: getOptimizedImageUrl('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=70', isMobile),
       title: 'Ароматерапия',
       category: 'spa',
       description: 'Расслабляющие процедуры с натуральными эфирными маслами'
     },
     {
       id: 3,
-      image: 'https://images.unsplash.com/photo-1596178065887-1198b6148b2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=85',
+      image: getOptimizedImageUrl('https://images.unsplash.com/photo-1596178065887-1198b6148b2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=70', isMobile),
       title: 'Сауна и хаммам',
       category: 'spa',
-      description: 'Самая большая сауна в Таиланде - 50м²'
+      description: 'Самая большая сауна в Таиланде - 150м²'
     },
     // Фитнес
     {
       id: 4,
-      image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=85',
+      image: getOptimizedImageUrl('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=70', isMobile),
       title: 'Тренажерный зал',
       category: 'fitness',
       description: 'Более 70 современных тренажеров премиум-класса'
     },
     {
       id: 5,
-      image: 'https://images.unsplash.com/photo-1549060279-7e168fcee0c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=85',
+      image: getOptimizedImageUrl('https://images.unsplash.com/photo-1549060279-7e168fcee0c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=70', isMobile),
       title: 'Персональные тренировки',
       category: 'fitness',
       description: 'Индивидуальные программы с сертифицированными тренерами'
     },
+    // Бассейны (сократили количество)
     {
       id: 6,
-      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=85',
-      title: 'Боевые искусства',
-      category: 'fitness',
-      description: 'MMA, бокс и муай-тай с профессиональными тренерами'
-    },
-    // Бассейны
-    {
-      id: 7,
-      image: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=85',
+      image: getOptimizedImageUrl('https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=70', isMobile),
       title: 'Олимпийский бассейн',
       category: 'pool',
       description: '25-метровый бассейн с подогревом воды'
     },
+    // Релаксация (сократили количество)
     {
-      id: 8,
-      image: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=85',
-      title: 'Аква-фитнес',
-      category: 'pool',
-      description: 'Водные тренировки для всех уровней подготовки'
-    },
-    {
-      id: 9,
-      image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=85',
-      title: 'Детская зона',
-      category: 'pool',
-      description: 'Безопасная зона для детей от 3 до 14 лет'
-    },
-    // Релаксация
-    {
-      id: 10,
-      image: 'https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=85',
+      id: 7,
+      image: getOptimizedImageUrl('https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=70', isMobile),
       title: 'Ресторан',
       category: 'relax',
-      description: '5 кухонь мира с панорамной террасой'
+      description: 'Ресторан на 200 мест с восточной и русской кухней'
     },
     {
-      id: 11,
-      image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=85',
+      id: 8,
+      image: getOptimizedImageUrl('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=70', isMobile),
       title: 'Салон красоты',
       category: 'relax',
       description: 'Косметология и премиальные уходовые процедуры'
-    },
-    {
-      id: 12,
-      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=85',
-      title: 'Зона отдыха',
-      category: 'relax',
-      description: 'Комфортные пространства для релаксации'
     }
   ];
 
@@ -700,11 +712,15 @@ const GallerySection = () => {
     ? galleryData 
     : galleryData.filter(item => item.category === activeFilter);
 
-  // Автоматическое переключение слайдов
+  // Автоматическое переключение слайдов (отключено на мобильных)
   useEffect(() => {
+    // Отключаем автоплей на мобильных устройствах для экономии ресурсов
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) return;
+    
     const interval = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % filteredGallery.length);
-    }, 5000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, [filteredGallery.length]);
@@ -714,17 +730,35 @@ const GallerySection = () => {
     setCurrentSlide(0);
   }, [activeFilter]);
 
-  // Навигация слайдера
+  // Предзагрузка следующего изображения для улучшения производительности
+  useEffect(() => {
+    if (filteredGallery.length > 1) {
+      const nextIndex = (currentSlide + 1) % filteredGallery.length;
+      const nextImage = new Image();
+      nextImage.src = filteredGallery[nextIndex]?.image;
+    }
+  }, [currentSlide, filteredGallery]);
+
+  // Навигация слайдера с debounce
   const nextSlide = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
     setCurrentSlide(prev => (prev + 1) % filteredGallery.length);
+    setTimeout(() => setIsTransitioning(false), 600);
   };
 
   const prevSlide = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
     setCurrentSlide(prev => (prev - 1 + filteredGallery.length) % filteredGallery.length);
+    setTimeout(() => setIsTransitioning(false), 600);
   };
 
   const goToSlide = (index) => {
+    if (isTransitioning || index === currentSlide) return;
+    setIsTransitioning(true);
     setCurrentSlide(index);
+    setTimeout(() => setIsTransitioning(false), 600);
   };
 
   // Открытие модального окна
@@ -815,6 +849,8 @@ const GallerySection = () => {
                       alt={item.title}
                       onClick={() => openModal(item)}
                       style={{ cursor: 'pointer' }}
+                      loading="lazy"
+                      decoding="async"
                     />
                     <SlideOverlay>
                       <motion.div

@@ -171,7 +171,7 @@ const HomePage = () => {
         style={{
           display: 'flex', 
           justifyContent: 'center', 
-          padding: '60px 20px', 
+          padding: '40px 20px', 
           background: 'linear-gradient(135deg, rgba(144, 179, 167, 0.05) 0%, rgba(168, 197, 184, 0.03) 100%)'
         }}
         initial={{ opacity: 0, y: 30 }}

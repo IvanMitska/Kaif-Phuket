@@ -7,58 +7,24 @@ import { useRef } from 'react';
 // Основной контейнер
 const SectionContainer = styled.section`
   position: relative;
-  padding: 8rem 0 10rem;
-  background-color: #ffffff;
+  padding: 8rem 0;
+  background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(144, 179, 167, 0.3), transparent);
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(144, 179, 167, 0.3), transparent);
-  }
 `;
 
 // Декоративные элементы
-const BackgroundShape = styled(motion.div)`
+const FloatingShape = styled(motion.div)`
   position: absolute;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(144, 179, 167, 0.08) 0%, rgba(168, 197, 184, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(144, 179, 167, 0.08) 0%, rgba(168, 197, 184, 0.04) 100%);
   filter: blur(60px);
   z-index: 0;
   pointer-events: none;
 `;
 
-const TopShape = styled(BackgroundShape)`
-  width: 400px;
-  height: 400px;
-  top: -200px;
-  right: 10%;
-`;
-
-const BottomShape = styled(BackgroundShape)`
-  width: 300px;
-  height: 300px;
-  bottom: -150px;
-  left: 5%;
-`;
-
 // Внутренний контейнер
 const ContentWrapper = styled.div`
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
   position: relative;
@@ -72,37 +38,36 @@ const ContentWrapper = styled.div`
 // Заголовок секции
 const SectionHeader = styled.div`
   text-align: center;
-  margin-bottom: 6rem;
+  margin-bottom: 5rem;
 `;
 
 // Маленький текст над заголовком
 const Overline = styled(motion.div)`
   font-family: 'Inter', sans-serif;
   font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 2px;
+  font-weight: 600;
+  letter-spacing: 3px;
   text-transform: uppercase;
   color: #90B3A7;
   margin-bottom: 1.5rem;
-  display: inline-flex;
-  align-items: center;
+  position: relative;
   
-  &::before {
+  &::before,
+  &::after {
     content: '';
-    display: inline-block;
+    position: absolute;
+    top: 50%;
     width: 40px;
     height: 1px;
     background: #90B3A7;
-    margin-right: 1rem;
+  }
+  
+  &::before {
+    left: -60px;
   }
   
   &::after {
-    content: '';
-    display: inline-block;
-    width: 40px;
-    height: 1px;
-    background: #90B3A7;
-    margin-left: 1rem;
+    right: -60px;
   }
 `;
 
@@ -128,8 +93,8 @@ const Subtitle = styled(motion.p)`
   font-weight: 400;
 `;
 
-// Сетка с преимуществами
-const AdvantagesGrid = styled.div`
+// Сетка с карточками
+const FacilitiesGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 2rem;
@@ -144,23 +109,19 @@ const AdvantagesGrid = styled.div`
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
   }
-  
-  @media (min-width: 1280px) {
-    margin: 5rem 0 0;
-  }
 `;
 
-// Карточка с преимуществом
-const AdvantageCard = styled(motion.div)`
-  text-align: center;
-  padding: 3rem 2rem;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.8);
+// Элегантная карточка
+const FacilityCard = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(144, 179, 167, 0.1);
+  border-radius: 20px;
+  padding: 3rem 2rem 2.5rem;
+  text-align: center;
+  border: 1px solid ${props => props.$borderColor};
+  transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
   position: relative;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   
   &::before {
     content: '';
@@ -168,143 +129,189 @@ const AdvantageCard = styled(motion.div)`
     top: 0;
     left: 0;
     width: 100%;
-    height: 3px;
-    background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
+    height: 4px;
+    background: ${props => props.$accent};
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.4s ease;
+    transition: transform 0.5s ease;
   }
-  
-  &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(144, 179, 167, 0.15);
-    border-color: rgba(144, 179, 167, 0.2);
-    background: rgba(255, 255, 255, 0.95);
-    
-    &::before {
-      transform: scaleX(1);
-    }
-  }
-`;
-
-// Числовая инфографика
-const Number = styled(motion.div)`
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(3.5rem, 6vw, 5rem);
-  font-weight: 300;
-  line-height: 1;
-  background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 1.5rem;
-  position: relative;
-  display: inline-block;
   
   &::after {
     content: '';
     position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50px;
-    height: 2px;
-    background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
-    border-radius: 1px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: ${props => props.$accent};
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  &:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px rgba(144, 179, 167, 0.15);
+    border-color: ${props => props.$accent};
+    
+    &::before {
+      transform: scaleX(1);
+    }
+    
+    &::after {
+      opacity: 0.02;
+    }
   }
 `;
 
-// Единица измерения
-const Unit = styled.span`
-  font-size: 0.4em;
-  vertical-align: super;
-  margin-left: 0.2rem;
-  opacity: 0.8;
+// Емодзи как декоративный элемент
+const FacilityEmoji = styled.div`
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+  
+  ${FacilityCard}:hover & {
+    transform: scale(1.1);
+  }
 `;
 
-// Название преимущества
-const AdvantageName = styled.h3`
+// Статистика
+const FacilityStats = styled.div`
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+`;
+
+const StatNumber = styled(motion.span)`
   font-family: 'Playfair Display', serif;
-  font-size: 1.375rem;
+  font-size: 3rem;
+  font-weight: 400;
+  color: ${props => props.$color};
+  letter-spacing: -0.02em;
+  display: block;
+  line-height: 1;
+`;
+
+const StatUnit = styled.span`
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: ${props => props.$color};
+  opacity: 0.8;
+  margin-left: 0.25rem;
+`;
+
+// Название фацилити
+const FacilityName = styled.h3`
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
   font-weight: 500;
   color: #2C3E2D;
   margin: 1.5rem 0 1rem;
-  letter-spacing: 0.3px;
+  letter-spacing: -0.01em;
+  position: relative;
+  z-index: 2;
 `;
 
-// Описание преимущества
-const AdvantageDescription = styled.p`
+// Описание фацилити
+const FacilityDescription = styled.p`
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
   line-height: 1.6;
   color: #5A6B5D;
   margin: 0;
   font-weight: 400;
+  position: relative;
+  z-index: 2;
 `;
 
-// Обновленные данные согласно официальному сайту
-const advantagesData = [
+// Данные с фирменными цветами KAIF
+const facilitiesData = [
   {
     id: 'gym',
+    emoji: '💪',
     number: '70',
     unit: '+',
     name: 'Тренажеров',
     description: 'Современное оборудование для эффективных тренировок',
-    color: 'fitness'
+    accent: 'linear-gradient(135deg, #E8734A 0%, #F28A5F 100%)',
+    color: '#E8734A',
+    borderColor: 'rgba(232, 115, 74, 0.15)'
   },
   {
-    id: 'spa',
-    number: '50',
-    unit: 'м²',
-    name: 'Сауна',
-    description: 'Самая большая сауна в Таиланде',
-    color: 'sauna'
+    id: 'banya',
+    emoji: '🔥',
+    number: '150',
+    unit: 'm2',
+    name: 'Русская баня',
+    description: 'Самая большая панорамная русская парная на Пхукете',
+    accent: 'linear-gradient(135deg, #8B4513 0%, #CD853F 100%)',
+    color: '#8B4513',
+    borderColor: 'rgba(139, 69, 19, 0.15)'
   },
   {
-    id: 'fight',
-    number: '5',
+    id: 'restaurant',
+    emoji: '🍽️',
+    number: '200',
     unit: '',
-    name: 'Кухонь мира',
-    description: 'Ресторан с разнообразной кухней',
-    color: 'restaurant'
+    name: 'Мест в ресторане',
+    description: 'Ресторан на открытом воздухе с восточной и русской кухней',
+    accent: 'linear-gradient(135deg, #D4A574 0%, #E6B885 100%)',
+    color: '#D4A574',
+    borderColor: 'rgba(212, 165, 116, 0.15)'
   },
   {
     id: 'pool',
+    emoji: '🏊‍♂️',
     number: '25',
     unit: 'м',
     name: 'Бассейн',
     description: 'Олимпийский стандарт с подогревом',
-    color: 'pool'
+    accent: 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)',
+    color: '#90B3A7',
+    borderColor: 'rgba(144, 179, 167, 0.15)'
   }
 ];
 
-// Простой и надежный компонент для анимированного подсчета чисел
-const AnimatedCounter = ({ value }) => {
+// Компонент для анимированного счетчика
+const AnimatedCounter = ({ value, delay = 0 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
-  const [displayValue, setDisplayValue] = React.useState(0);
+  const [displayValue, setDisplayValue] = React.useState('0');
   
   React.useEffect(() => {
     if (isInView) {
-      const finalValue = parseInt(value) || 0;
-      const duration = 2000; // 2 секунды
-      const steps = 60; // количество шагов
-      const stepValue = finalValue / steps;
-      let currentStep = 0;
-      
-      const timer = setInterval(() => {
-        currentStep++;
-        if (currentStep >= steps) {
-          setDisplayValue(finalValue);
-          clearInterval(timer);
-        } else {
-          setDisplayValue(Math.floor(stepValue * currentStep));
+      const timer = setTimeout(() => {
+        const numericValue = parseInt(value.replace(/\D/g, '')) || 0;
+        
+        if (numericValue === 0) {
+          setDisplayValue(value);
+          return;
         }
-      }, duration / steps);
+        
+        const duration = 2000;
+        const steps = 60;
+        const stepValue = numericValue / steps;
+        let currentStep = 0;
+        
+        const counter = setInterval(() => {
+          currentStep++;
+          if (currentStep >= steps) {
+            setDisplayValue(value);
+            clearInterval(counter);
+          } else {
+            const currentValue = Math.floor(stepValue * currentStep);
+            setDisplayValue(value.replace(/\d+/, currentValue.toString()));
+          }
+        }, duration / steps);
+        
+        return () => clearInterval(counter);
+      }, delay);
       
-      return () => clearInterval(timer);
+      return () => clearTimeout(timer);
     }
-  }, [isInView, value]);
+  }, [isInView, value, delay]);
   
   return <span ref={ref}>{displayValue}</span>;
 };
@@ -312,7 +319,7 @@ const AnimatedCounter = ({ value }) => {
 const AdvantagesSection = () => {
   const { t } = useTranslation();
   
-  // Анимации при появлении
+  // Анимации
   const fadeInUp = {
     hidden: { opacity: 0, y: 40 },
     visible: { 
@@ -330,34 +337,37 @@ const AdvantagesSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15
+        staggerChildren: 0.2
       }
     }
   };
   
   return (
-    <SectionContainer id="advantages">
-      <TopShape
+    <SectionContainer id="facilities">
+      {/* Декоративные элементы */}
+      <FloatingShape
+        style={{ width: '400px', height: '400px', top: '5%', right: '0%' }}
         animate={{ 
           scale: [1, 1.1, 1],
-          opacity: [0.3, 0.5, 0.3]
+          opacity: [0.3, 0.6, 0.3]
         }}
         transition={{ 
-          duration: 8, 
+          duration: 12, 
           repeat: Infinity,
           repeatType: "reverse" 
         }}
       />
-      <BottomShape
+      <FloatingShape
+        style={{ width: '300px', height: '300px', bottom: '5%', left: '0%' }}
         animate={{ 
           scale: [1, 1.2, 1],
-          opacity: [0.2, 0.4, 0.2]
+          opacity: [0.2, 0.5, 0.2]
         }}
         transition={{ 
-          duration: 10, 
+          duration: 15, 
           repeat: Infinity,
           repeatType: "reverse",
-          delay: 2
+          delay: 4
         }}
       />
       
@@ -369,7 +379,7 @@ const AdvantagesSection = () => {
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeInUp}
           >
-            {t('advantages.overline', 'НАШИ ФАЦИЛИТИ')}
+            {t('facilities.overline', 'НАШИ ФАЦИЛИТИ')}
           </Overline>
           
           <Title
@@ -379,7 +389,7 @@ const AdvantagesSection = () => {
             variants={fadeInUp}
             transition={{ delay: 0.2 }}
           >
-            {t('advantages.title', 'Пространство для гармонии и саморазвития')}
+            {t('facilities.title', 'Пространство для гармонии и саморазвития')}
           </Title>
           
           <Subtitle
@@ -389,7 +399,7 @@ const AdvantagesSection = () => {
             variants={fadeInUp}
             transition={{ delay: 0.3 }}
           >
-            {t('advantages.subtitle', 'Мы создаем пространство, где жизнь становится ярче. Наша миссия — сделать отдых и заботу о себе не обязанностью, а удовольствием')}
+            {t('facilities.subtitle', 'Мы создаем пространство, где жизнь становится ярче. Наша миссия — сделать отдых и заботу о себе не обязанностью, а удовольствием')}
           </Subtitle>
         </SectionHeader>
         
@@ -399,25 +409,32 @@ const AdvantagesSection = () => {
           viewport={{ once: true, amount: 0.2 }}
           variants={staggerContainer}
         >
-          <AdvantagesGrid>
-            {advantagesData.map((advantage, index) => (
-              <AdvantageCard
-                key={advantage.id}
+          <FacilitiesGrid>
+            {facilitiesData.map((facility, index) => (
+              <FacilityCard
+                key={facility.id}
                 variants={fadeInUp}
+                $accent={facility.accent}
+                $borderColor={facility.borderColor}
                 whileHover={{ 
                   scale: 1.02,
                   transition: { duration: 0.3 }
                 }}
               >
-                <Number $color={advantage.color}>
-                  <AnimatedCounter value={advantage.number} />
-                  {advantage.unit && <Unit>{advantage.unit}</Unit>}
-                </Number>
-                <AdvantageName $color={advantage.color}>{advantage.name}</AdvantageName>
-                <AdvantageDescription>{advantage.description}</AdvantageDescription>
-              </AdvantageCard>
+                <FacilityEmoji>{facility.emoji}</FacilityEmoji>
+                
+                <FacilityStats>
+                  <StatNumber $color={facility.color}>
+                    <AnimatedCounter value={facility.number} delay={index * 300} />
+                    {facility.unit && <StatUnit $color={facility.color}>{facility.unit}</StatUnit>}
+                  </StatNumber>
+                </FacilityStats>
+                
+                <FacilityName>{facility.name}</FacilityName>
+                <FacilityDescription>{facility.description}</FacilityDescription>
+              </FacilityCard>
             ))}
-          </AdvantagesGrid>
+          </FacilitiesGrid>
         </motion.div>
       </ContentWrapper>
     </SectionContainer>

@@ -318,9 +318,9 @@ const AboutPreviewSection = () => {
 
   // Stats
   const stats = [
-    { number: '50м²', label: 'Самая большая сауна' },
+    { number: '50m2', label: 'Русская баня' },
     { number: '70+', label: 'Тренажеров' },
-    { number: '5', label: 'Кухонь мира' },
+    { number: '50+', label: 'Авторских блюд' },
     { number: '25м', label: 'Олимпийский бассейн' },
   ];
 
@@ -349,7 +349,7 @@ const AboutPreviewSection = () => {
     {
       icon: <SparklesIcon />,
       title: 'Ресторан',
-      description: '5 кухонь мира, здоровое питание и панорамная терраса'
+      description: '50+ авторских блюд от шеф-повара и панорамная терраса'
     },
     {
       icon: <SparklesIcon />,

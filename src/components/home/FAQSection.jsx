@@ -21,9 +21,17 @@ import {
 
 const FAQContainer = styled.section`
   position: relative;
-  padding: 8rem 0;
+  padding: 4rem 0;
   background: linear-gradient(135deg, rgba(144, 179, 167, 0.05) 0%, rgba(168, 197, 184, 0.03) 100%); /* Легкий градиент в зеленых тонах */
   overflow: hidden;
+  
+  @media (max-width: 768px) {
+    padding: 3rem 0;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 2rem 0;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -39,7 +47,15 @@ const ContentWrapper = styled.div`
 
 const SectionHeader = styled(motion.div)`
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
+  
+  @media (max-width: 768px) {
+    margin-bottom: 2.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    margin-bottom: 2rem;
+  }
 `;
 
 const SectionBadge = styled(motion.div)`
@@ -413,7 +429,7 @@ const FAQSection = () => {
       category: 'general',
       icon: <QuestionMarkCircleIcon />,
       question: 'Что включает в себя комплекс KAIF?',
-      answer: 'KAIF - это многофункциональный комплекс, включающий фитнес-центр с 70+ тренажерами, боевые искусства, 25-метровый бассейн, СПА-центр, самую большую сауну в Таиланде (50м²), турецкий хаммам, салон красоты и ресторан с 5 кухнями мира.'
+      answer: 'KAIF — уникальный комплекс на Пхукете, где можно сочетать активность, отдых и уход за собой в одном месте. На территории находятся: современный спортзал, олимпийский бассейн с зонами для релакса, студия танцев и функциональных тренировок, зал боевых искусств, бьюти-студия, СПА в качестве русской сауны, тайского хаммама и массажных услуг, ресторан с восточной кухней, русской классикой и блюдами на мангале.'
     },
     {
       category: 'general',
@@ -438,12 +454,6 @@ const FAQSection = () => {
       icon: <UserGroupIcon />,
       question: 'Нужен ли опыт для занятий?',
       answer: 'Нет! У нас есть программы для всех уровней подготовки. Новичкам предоставляем вводный инструктаж, персональные консультации и программы "первые шаги" для безопасного начала тренировок.'
-    },
-    {
-      category: 'services',
-      icon: <MapPinIcon />,
-      question: 'Какие СПА-процедуры доступны?',
-      answer: 'Мы предлагаем традиционный тайский массаж, ароматерапию, массаж горячими камнями, балийские ритуалы, европейские косметологические процедуры и авторские wellness-программы.'
     },
     {
       category: 'payment',

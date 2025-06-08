@@ -12,6 +12,9 @@ import {
   BoltIcon
 } from '@heroicons/react/24/outline';
 
+// Импорт локального изображения для карточки "Русская баня"
+import heroLuxuryImage from '../../assets/images/hero/hero-luxury.png';
+
 // Основной контейнер
 const SectionContainer = styled.section`
   position: relative;
@@ -181,7 +184,7 @@ const ZoneCard = styled(motion.div)`
     background: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.1) 0%,
-      rgba(0, 0, 0, 0.7) 100%
+      rgba(0, 0, 0, 0.8) 100%
     );
     z-index: 1;
     transition: all 0.5s ease;
@@ -191,7 +194,7 @@ const ZoneCard = styled(motion.div)`
     background: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.05) 0%,
-      rgba(0, 0, 0, 0.6) 100%
+      rgba(0, 0, 0, 0.7) 100%
     );
   }
   
@@ -264,18 +267,20 @@ const ZoneName = styled.h3`
 // Описание зоны
 const ZoneDescription = styled.p`
   font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   line-height: 1.5;
   margin: 0 0 1.5rem;
-  opacity: 0.9;
+  opacity: 0.95;
   color: #fff;
-  text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.7);
-  letter-spacing: 0.3px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
   transition: all 0.3s ease;
+  text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.8);
   
   ${ZoneCard}:hover & {
     opacity: 1;
     transform: translateY(-2px);
+    text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.9);
   }
 `;
 
@@ -393,7 +398,7 @@ const relaxZones = [
     id: 'banya',
     name: 'Русская баня',
     description: 'Традиционные банные процедуры и оздоровление',
-    image: '/images/zones/banya.jpg',
+    image: heroLuxuryImage,
     path: '/banya'
   },
   {
