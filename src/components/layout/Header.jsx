@@ -388,7 +388,9 @@ const MobileNavLink = styled(motion(Link))`
   border-radius: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   position: relative;
+  text-align: center;
   
   &::after {
     content: '';
@@ -399,11 +401,12 @@ const MobileNavLink = styled(motion(Link))`
     width: 0;
     height: 1px;
     background: #e5e7eb;
-    transition: width 0.3s ease-out;
+    transition: all 0.3s ease-out;
   }
   
   &:hover {
     color: #1f2937;
+    transform: translateY(-1px);
     
     &::after {
       width: 70%;
@@ -680,30 +683,41 @@ const Header = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
             onClick={() => setIsMobileMenuOpen(false)}
           />
           <MobileMenu
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
-            exit={{ 
+            exit={{
               x: "100%",
               transition: {
-                duration: 0.5,
-                ease: [0.68, -0.55, 0.265, 1.55],
-                times: [0, 0.7, 1],
+                duration: 0.4,
+                ease: [0.4, 0.0, 0.2, 1],
                 x: {
-                  keyframes: [0, -20, "100%"],
-                  times: [0, 0.3, 1]
+                  keyframes: [0, -15, "100%"],
+                  times: [0, 0.2, 1],
+                  ease: ["easeOut", [0.68, -0.55, 0.265, 1.55]]
                 }
               }
             }}
-            transition={{ duration: 0.4, ease: [0.4, 0.0, 0.2, 1] }}
+            transition={{ 
+              duration: 0.3, 
+              ease: "easeOut",
+              type: "tween"
+            }}
           >
             <MobileMenuHeader>
               <CloseButton
-                whileHover={{ scale: 1.1, rotate: 90 }}
+                whileHover={{ scale: 1.15, rotate: 90 }}
                 whileTap={{ scale: 0.9 }}
+                initial={{ opacity: 0, rotate: -90, scale: 0.8 }}
+                animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                transition={{ 
+                  delay: 0.1, 
+                  duration: 0.3, 
+                  ease: [0.25, 0.46, 0.45, 0.94] 
+                }}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 ×
@@ -716,10 +730,17 @@ const Header = () => {
                   to="/" 
                   className={isActive('/') ? 'active' : ''}
                   onClick={() => handleNavClick('/')}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1, duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
-                  whileHover={{ x: 4 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ 
+                    delay: 0.1, 
+                    duration: 0.4, 
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    type: "spring",
+                    staggerChildren: 0.1
+                  }}
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   Главная
                 </MobileNavLink>
@@ -727,10 +748,16 @@ const Header = () => {
                   to="/restaurant" 
                   className={isActive('/restaurant') ? 'active' : ''}
                   onClick={() => handleNavClick('/restaurant')}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.15, duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
-                  whileHover={{ x: 4 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ 
+                    delay: 0.2, 
+                    duration: 0.4, 
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    type: "spring"
+                  }}
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   Ресторан
                 </MobileNavLink>
@@ -738,10 +765,16 @@ const Header = () => {
                   to="/spa" 
                   className={isActive('/spa') ? 'active' : ''}
                   onClick={() => handleNavClick('/spa')}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2, duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
-                  whileHover={{ x: 4 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ 
+                    delay: 0.3, 
+                    duration: 0.4, 
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    type: "spring"
+                  }}
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   СПА
                 </MobileNavLink>
@@ -749,10 +782,16 @@ const Header = () => {
                   to="/sports" 
                   className={isActive('/sports') ? 'active' : ''}
                   onClick={() => handleNavClick('/sports')}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.25, duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
-                  whileHover={{ x: 4 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ 
+                    delay: 0.4, 
+                    duration: 0.4, 
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    type: "spring"
+                  }}
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   Спорт
                 </MobileNavLink>
@@ -760,34 +799,46 @@ const Header = () => {
                   to="/banya" 
                   className={isActive('/banya') ? 'active' : ''}
                   onClick={() => handleNavClick('/banya')}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3, duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
-                  whileHover={{ x: 4 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ 
+                    delay: 0.5, 
+                    duration: 0.4, 
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    type: "spring"
+                  }}
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   Баня
                 </MobileNavLink>
               </MobileNavSection>
               
-              <MobileLanguageSection
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
-              >
+                              <MobileLanguageSection
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    delay: 0.6, 
+                    duration: 0.4, 
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    type: "spring" 
+                  }}
+                >
                 <MobileLanguageTitle>Язык / Language</MobileLanguageTitle>
                 <MobileLanguageGrid>
                   {languages.map((lang, index) => (
                     <MobileLanguageButton
                       key={lang.code}
                       $active={i18n.language === lang.code}
-                      whileHover={{ scale: 1.05 }}
+                      whileHover={{ scale: 1.08, y: -3 }}
                       whileTap={{ scale: 0.95 }}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
+                      initial={{ opacity: 0, scale: 0.7, y: 20 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
                       transition={{ 
-                        delay: 0.5 + (index * 0.05),
-                        duration: 0.2,
-                        ease: [0.4, 0.0, 0.2, 1]
+                        delay: 0.7 + (index * 0.1),
+                        duration: 0.4,
+                        ease: [0.25, 0.46, 0.45, 0.94],
+                        type: "spring"
                       }}
                       onClick={() => changeLanguage(lang.code)}
                     >
