@@ -370,35 +370,35 @@ const FAQSection = () => {
 
   // Animation variants
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0.3 },
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.8,
-        staggerChildren: 0.1
+        duration: 0.5,
+        staggerChildren: 0.05
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0.5, y: 10 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.4,
         ease: "easeOut"
       }
     }
   };
 
   const faqVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0.4, y: 15 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.3,
         ease: "easeOut"
       }
     }
@@ -472,23 +472,18 @@ const FAQSection = () => {
   return (
     <FAQContainer>
       <ContentWrapper>
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
+        <div>
           <SectionHeader>
-            <SectionBadge variants={itemVariants}>
+            <SectionBadge>
               <ChatBubbleLeftRightIcon />
               Ответы на вопросы
             </SectionBadge>
             
-            <SectionTitle variants={itemVariants}>
+            <SectionTitle>
               Часто задаваемые вопросы
             </SectionTitle>
             
-            <SectionSubtitle variants={itemVariants}>
+            <SectionSubtitle>
               Всё, что нужно знать о нашем многофункциональном комплексе
             </SectionSubtitle>
           </SectionHeader>
@@ -502,7 +497,7 @@ const FAQSection = () => {
                   variants={faqVariants}
                   custom={index}
                   whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
+                  viewport={{ once: true, amount: 0.1 }}
                 >
                   <FAQItem $isOpen={openFAQ === index}>
                     <QuestionButton onClick={() => toggleFAQ(index)}>
@@ -627,7 +622,7 @@ const FAQSection = () => {
               </motion.div>
             </SupportSection>
           </FAQGrid>
-        </motion.div>
+        </div>
       </ContentWrapper>
     </FAQContainer>
   );
