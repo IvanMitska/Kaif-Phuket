@@ -144,34 +144,7 @@ const LogoImage = styled(motion.img)`
   }
 `;
 
-// Улучшенный заголовок с лучшей читаемостью
-const MainTitle = styled(motion.h1)`
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: clamp(1.3rem, 3.5vw, 1.9rem);
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.95);
-  margin: 0 0 4rem;
-  text-shadow: 
-    0 6px 25px rgba(0, 0, 0, 0.9),
-    0 2px 8px rgba(0, 0, 0, 0.8);
-  letter-spacing: 0.05em;
-  line-height: 1.4;
-  max-width: 600px;
-  
-  @media (max-width: 768px) {
-    margin: 0 0 3.5rem;
-    font-size: clamp(1.2rem, 4vw, 1.6rem);
-    /* Приподнимаем текст на планшетах */
-    transform: translateY(-1rem);
-  }
-  
-  @media (max-width: 480px) {
-    margin: 0 0 3rem;
-    letter-spacing: 0.03em;
-    /* Приподнимаем текст на мобильных */
-    transform: translateY(-1.5rem);
-  }
-`;
+
 
 // Белая кнопка с чёрным текстом - премиальный вид
 const PrimaryButton = styled(motion(Link))`
@@ -354,21 +327,6 @@ const animations = {
       }
     }
   },
-  title: {
-    initial: { 
-      opacity: 0, 
-      y: 15
-    },
-    animate: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-        delay: 0.6
-      }
-    }
-  },
   buttons: {
     initial: { 
       opacity: 0, 
@@ -380,7 +338,7 @@ const animations = {
       transition: {
         duration: 0.5,
         ease: "easeOut",
-        delay: 1.0
+        delay: 0.6
       }
     }
   }
@@ -442,13 +400,6 @@ const HeroFullscreen = () => {
           }}
         />
         
-        <MainTitle 
-          as={motion.h1} 
-          initial={animations.title.initial}
-          animate={animations.title.animate}
-        >
-          Премиальный комплекс на Пхукете
-        </MainTitle>
         
         <ButtonContainer
           as={motion.div}
