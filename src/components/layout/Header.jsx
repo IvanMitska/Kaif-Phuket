@@ -133,11 +133,9 @@ const RightSection = styled.div`
   height: 100%;
 `;
 
-// Компактный языковой селектор
+// Элегантный языковой селектор без стрелки
 const LanguageSelector = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.2rem;
+  position: relative;
   
   @media (max-width: 768px) {
     display: none;
@@ -145,27 +143,63 @@ const LanguageSelector = styled.div`
 `;
 
 const LanguageButton = styled(motion.button)`
-  padding: 0.3rem 0.5rem;
+  padding: 0.3rem 0.6rem;
   background: transparent;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  color: ${({ $active }) => $active ? '#90B3A7' : '#6b7280'};
+  border: 1px solid rgba(107, 114, 128, 0.2);
+  border-radius: 6px;
+  color: #6b7280;
   font-size: 0.75rem;
-  font-weight: ${({ $active }) => $active ? '600' : '500'};
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  min-width: 36px;
+  min-width: 42px;
   
   &:hover {
-    border-color: ${({ $active }) => $active ? '#90B3A7' : 'rgba(107, 114, 128, 0.3)'};
-    background: ${({ $active }) => $active ? 'rgba(144, 179, 167, 0.1)' : 'rgba(107, 114, 128, 0.05)'};
+    border-color: #90B3A7;
+    color: #90B3A7;
+    background: rgba(144, 179, 167, 0.05);
+  }
+`;
+
+const LanguageDropdown = styled(motion.div)`
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 100px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  padding: 0.4rem;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+  z-index: 1001;
+`;
+
+const LanguageOption = styled(motion.button)`
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  color: ${({ $active }) => $active ? '#90B3A7' : '#6b7280'};
+  font-size: 0.75rem;
+  font-weight: ${({ $active }) => $active ? '600' : '500'};
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  
+  &:hover {
+    background: rgba(144, 179, 167, 0.08);
+    color: #90B3A7;
   }
   
   ${({ $active }) => $active && `
-    border-color: #90B3A7;
-    background: rgba(144, 179, 167, 0.1);
+    background: rgba(144, 179, 167, 0.12);
   `}
 `;
 
@@ -437,17 +471,34 @@ const Header = () => {
 
           <RightSection>
             <LanguageSelector className="language-selector">
-              {languages.map((lang) => (
-                <LanguageButton
-                  key={lang.code}
-                  $active={i18n.language === lang.code}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => changeLanguage(lang.code)}
+              <LanguageButton
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+              >
+                {currentLanguage.code}
+              </LanguageButton>
+              
+              {isLanguageDropdownOpen && (
+                <LanguageDropdown
+                  initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -8, scale: 0.95 }}
+                  transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  {lang.code}
-                </LanguageButton>
-              ))}
+                  {languages.map((lang) => (
+                    <LanguageOption
+                      key={lang.code}
+                      $active={i18n.language === lang.code}
+                      whileHover={{ x: 2 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => changeLanguage(lang.code)}
+                    >
+                      {lang.name}
+                    </LanguageOption>
+                  ))}
+                </LanguageDropdown>
+              )}
             </LanguageSelector>
 
             <MobileMenuButton
