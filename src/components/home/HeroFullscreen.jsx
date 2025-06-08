@@ -90,44 +90,43 @@ const ContentContainer = styled.div`
   z-index: 10;
   text-align: center;
   padding: 3rem 2rem;
-  max-width: 800px;
-  margin: 0 auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  width: 100%;
-  left: 50%;
-  transform: translateX(-50%);
   
   @media (max-width: 768px) {
     padding: 2rem 1.5rem;
-    max-width: 90%;
     /* Сдвигаем контент немного выше для лучшей видимости кнопок */
     justify-content: flex-start;
     padding-top: 15vh;
-    height: 90vh;
   }
   
   @media (max-width: 480px) {
     padding: 1.5rem 1rem;
-    max-width: 95%;
     padding-top: 12vh;
-    height: 85vh;
   }
   
   /* Специально для iPhone */
   @media (max-width: 414px) and (max-height: 896px) {
     padding-top: 10vh;
-    height: 80vh;
   }
   
   /* Для маленьких iPhone */
   @media (max-width: 375px) and (max-height: 812px) {
     padding-top: 8vh;
-    height: 75vh;
   }
+`;
+
+// Контейнер для центрирования содержимого
+const ContentWrapper = styled.div`
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 // Увеличенный логотип с лучшим контрастом
@@ -402,54 +401,56 @@ const HeroFullscreen = () => {
       
       {/* Основной контент */}
       <ContentContainer>
-        <LogoImage 
-          src={homepageLogo} 
-          alt="KAIF" 
-          initial={animations.logo.initial}
-          animate={animations.logo.animate}
-          whileHover={{ 
-            scale: 1.02,
-            transition: { 
-              duration: 0.2,
-              ease: "easeOut"
-            }
-          }}
-        />
-        
-        
-        <ButtonContainer
-          as={motion.div}
-          initial={animations.buttons.initial}
-          animate={animations.buttons.animate}
-        >
-          <PrimaryButton 
-            to="/contacts"
+        <ContentWrapper>
+          <LogoImage 
+            src={homepageLogo} 
+            alt="KAIF" 
+            initial={animations.logo.initial}
+            animate={animations.logo.animate}
             whileHover={{ 
               scale: 1.02,
-              transition: {
-                duration: 0.15,
+              transition: { 
+                duration: 0.2,
                 ease: "easeOut"
               }
             }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Записаться
-          </PrimaryButton>
+          />
           
-          <SecondaryButton 
-            to="/sports"
-            whileHover={{ 
-              scale: 1.01,
-              transition: {
-                duration: 0.15,
-                ease: "easeOut"
-              }
-            }}
-            whileTap={{ scale: 0.99 }}
+          
+          <ButtonContainer
+            as={motion.div}
+            initial={animations.buttons.initial}
+            animate={animations.buttons.animate}
           >
-            Узнать больше
-          </SecondaryButton>
-        </ButtonContainer>
+            <PrimaryButton 
+              to="/contacts"
+              whileHover={{ 
+                scale: 1.02,
+                transition: {
+                  duration: 0.15,
+                  ease: "easeOut"
+                }
+              }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Записаться
+            </PrimaryButton>
+            
+            <SecondaryButton 
+              to="/sports"
+              whileHover={{ 
+                scale: 1.01,
+                transition: {
+                  duration: 0.15,
+                  ease: "easeOut"
+                }
+              }}
+              whileTap={{ scale: 0.99 }}
+            >
+              Узнать больше
+            </SecondaryButton>
+          </ButtonContainer>
+        </ContentWrapper>
       </ContentContainer>
     </HeroContainer>
   );
