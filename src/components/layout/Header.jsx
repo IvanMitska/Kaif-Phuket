@@ -22,6 +22,11 @@ const StyledHeader = styled(motion.header)`
   -webkit-backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.03);
   transition: all 0.3s ease;
+  min-height: 50px;
+  
+  @media (max-width: 768px) {
+    min-height: 45px;
+  }
 `;
 
 const HeaderContainer = styled.div`
@@ -30,11 +35,12 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   max-width: 1600px;
   margin: 0 auto;
-  padding: 0.5rem 2rem;
+  padding: 0.25rem 2rem;
   position: relative;
+  height: 100%;
   
   @media (max-width: 768px) {
-    padding: 0.6rem 1.25rem;
+    padding: 0.3rem 1.25rem;
   }
 `;
 
@@ -51,7 +57,7 @@ const LogoSection = styled(Link)`
 `;
 
 const Logo = styled.img`
-  height: 2.2rem;
+  height: 1.8rem;
   width: auto;
   transition: all 0.3s ease;
   
@@ -60,7 +66,7 @@ const Logo = styled.img`
   }
   
   @media (max-width: 768px) {
-    height: 1.9rem;
+    height: 1.6rem;
   }
 `;
 
