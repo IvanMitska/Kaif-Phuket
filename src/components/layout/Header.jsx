@@ -29,13 +29,13 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   max-width: 1600px;
   margin: 0 auto;
-  padding: 0.15rem 2rem;
+  padding: 0.4rem 2rem;
   position: relative;
-  min-height: 50px;
+  min-height: 32px;
   
   @media (max-width: 768px) {
-    padding: 0.15rem 1.25rem;
-    min-height: 45px;
+    padding: 0.35rem 1.25rem;
+    min-height: 28px;
   }
 `;
 
@@ -44,25 +44,25 @@ const LogoSection = styled(Link)`
   align-items: center;
   text-decoration: none;
   z-index: 10;
-  margin-left: 0.5rem;
+  margin-left: 1.5rem;
   
   @media (max-width: 768px) {
-    margin-left: 0;
+    margin-left: 0.5rem;
   }
 `;
 
 const Logo = styled.img`
   height: auto;
-  max-height: 32px;
+  max-height: 42px;
   width: auto;
   transition: all 0.3s ease;
   
   &:hover {
-    transform: scale(1.02);
+    transform: scale(1.05);
   }
   
   @media (max-width: 768px) {
-    max-height: 28px;
+    max-height: 36px;
   }
 `;
 
@@ -88,12 +88,13 @@ const NavLink = styled(Link)`
   font-size: 0.8rem;
   letter-spacing: 0.01em;
   position: relative;
-  padding: 0.5rem 0;
+  padding: 0.3rem 0;
   transition: all 0.3s ease;
   text-transform: uppercase;
   cursor: pointer;
   display: flex;
   align-items: center;
+  height: 36px;
   
   &::before {
     content: '';
@@ -133,9 +134,14 @@ const NavLink = styled(Link)`
 const RightSection = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   z-index: 10;
   height: 100%;
+  margin-right: 0.5rem;
+  
+  @media (max-width: 768px) {
+    margin-right: 0;
+  }
 `;
 
 // Элегантный языковой селектор без стрелки
@@ -148,26 +154,34 @@ const LanguageSelector = styled.div`
 `;
 
 const LanguageButton = styled(motion.button)`
-  padding: 0.4rem 0.6rem;
-  background: transparent;
-  border: 1px solid rgba(107, 114, 128, 0.2);
-  border-radius: 6px;
-  color: #6b7280;
-  font-size: 0.75rem;
+  padding: 0.6rem 1rem;
+  background: rgba(144, 179, 167, 0.03);
+  border: 1px solid rgba(144, 179, 167, 0.15);
+  border-radius: 8px;
+  color: #374151;
+  font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  min-width: 42px;
+  letter-spacing: 0.1em;
+  min-width: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 36px;
   
   &:hover {
     border-color: #90B3A7;
     color: #90B3A7;
-    background: rgba(144, 179, 167, 0.05);
+    background: rgba(144, 179, 167, 0.08);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(144, 179, 167, 0.15);
+  }
+  
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(144, 179, 167, 0.2);
   }
 `;
 
