@@ -21,13 +21,16 @@ import {
 
 
 
-// Основные стили
+// Основные стили с оптимизацией производительности
 const SectionContainer = styled(motion.section)`
   position: relative;
   padding: 6rem 0;
   background: linear-gradient(135deg, #fafafa 0%, #ffffff 50%, #f8fffe 100%);
   overflow: hidden;
   min-height: 100vh;
+  /* Оптимизация производительности */
+  will-change: auto;
+  transform: translateZ(0);
   
   @media (max-width: 1024px) {
     padding: 4rem 0;
@@ -177,13 +180,16 @@ const FilterButton = styled(motion.button)`
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.25s ease-out;
   position: relative;
   overflow: hidden;
   font-family: 'Inter', sans-serif;
   text-decoration: none;
   min-width: 140px;
   text-align: center;
+  /* Оптимизация производительности */
+  will-change: transform, background-color, box-shadow;
+  transform: translateZ(0);
   
   background: ${({ active }) => active 
     ? 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)' 
@@ -327,10 +333,12 @@ const SlideImage = styled(motion.img)`
   outline: none;
   vertical-align: top;
   object-position: ${props => props.$customPosition || 'center'};
+  /* Оптимизация загрузки изображений */
+  loading: lazy;
   
   &:hover {
-    transform: scale(1.02) translateZ(0);
-    transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transform: scale(1.01) translateZ(0);
+    transition: transform 0.3s ease-out;
   }
 `;
 
@@ -401,7 +409,7 @@ const SlideDescription = styled(motion.p)`
 const SliderButton = styled(motion.button)`
   position: absolute !important;
   top: 50% !important;
-  transform: translateY(-50%) !important;
+  transform: translateY(-50%) translateZ(0) !important;
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
   color: #2C3E2D;
@@ -413,20 +421,22 @@ const SliderButton = styled(motion.button)`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease-out;
   z-index: 10;
   opacity: 0.8;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  /* Оптимизация производительности */
+  will-change: transform, opacity;
   
   &:hover {
     opacity: 1;
     background: rgba(255, 255, 255, 1);
-    transform: translateY(-50%) scale(1.05) !important;
+    transform: translateY(-50%) scale(1.03) translateZ(0) !important;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   }
   
   &:active {
-    transform: translateY(-50%) scale(0.95) !important;
+    transform: translateY(-50%) scale(0.97) translateZ(0) !important;
   }
   
   &:disabled {
@@ -673,7 +683,7 @@ const GallerySection = () => {
   const { getOptimizedAnimation, isReducedMotion } = usePerformanceOptimization();
   const [sectionRef, isSectionVisible] = useIntersectionObserver({ threshold: 0.1 });
 
-  // Мемоизированные данные галереи
+  // Оптимизированные данные галереи с уменьшенным набором
   const galleryData = useMemo(() => [
     // СПА
     {
@@ -690,55 +700,31 @@ const GallerySection = () => {
       category: 'spa',
       description: 'Расслабляющие процедуры с натуральными эфирными маслами премиум-качества.'
     },
-    {
-      id: 3,
-      image: '/src/assets/images/spa/services/banya-new.jpg',
-      title: 'Баня',
-      category: 'spa',
-      description: 'Традиционная русская баня с березовыми вениками и парильщиком.'
-    },
     // Фитнес
     {
-      id: 4,
+      id: 3,
       image: '/src/assets/images/sports/gym/gym-1.JPG',
       title: 'Тренажерный зал',
       category: 'fitness',
       description: 'Более 70 современных тренажеров премиум-класса. Профессиональное оборудование для всех видов тренировок.'
     },
-    {
-      id: 5,
-      image: '/src/assets/images/sports/fight-club/fight-1.jpg',
-      title: 'Файт-клуб',
-      category: 'fitness',
-      description: 'Профессиональный ринг для занятий боксом и единоборствами с опытными тренерами.'
-    },
 
 
+      // Релаксация
+      {
+        id: 4,
+        image: '/src/assets/images/beauty/services/facial-new.jpg',
+        title: 'Косметология',
+        category: 'relax',
+        description: 'Профессиональные процедуры для лица с использованием премиум косметики.'
+      }
+    ], []);
 
-    // Релаксация
-    {
-      id: 9,
-      image: '/src/assets/images/beauty/services/facial-new.jpg',
-      title: 'Косметология',
-      category: 'relax',
-      description: 'Профессиональные процедуры для лица с использованием премиум косметики.'
-    },
-    {
-      id: 10,
-      image: '/src/assets/images/beauty/services/manicure-new.jpg',
-      title: 'Маникюр и педикюр',
-      category: 'relax',
-      description: 'Профессиональный уход за руками и ногами в комфортной обстановке.'
-    },
-
-  ], []);
-
-  // Фильтры
+  // Упрощенные фильтры
   const filters = useMemo(() => [
     { id: 'all', label: 'ВСЕ' },
     { id: 'spa', label: 'СПА' },
-    { id: 'fitness', label: 'ФИТНЕС' },
-    { id: 'relax', label: 'РЕЛАКСАЦИЯ' }
+    { id: 'fitness', label: 'ФИТНЕС' }
   ], []);
 
   // Фильтрация данных
@@ -772,16 +758,16 @@ const GallerySection = () => {
   // Состояние автопроигрывания
   const [isAutoplay, setIsAutoplay] = useState(true);
 
-  // Автоматическое переключение слайдов
+  // Автоматическое переключение слайдов с оптимизацией
   useEffect(() => {
-    if (filteredGallery.length <= 1 || !isAutoplay) return;
+    if (filteredGallery.length <= 1 || !isAutoplay || !isSectionVisible) return;
     
     const interval = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % filteredGallery.length);
-    }, 4000); // Переключение каждые 4 секунды
+    }, 6000); // Увеличиваем интервал для плавности
 
     return () => clearInterval(interval);
-  }, [filteredGallery.length, isAutoplay]);
+  }, [filteredGallery.length, isAutoplay, isSectionVisible]);
 
   // Обработчики для управления автопроигрыванием
   const handleMouseEnter = useCallback(() => {
@@ -1067,4 +1053,8 @@ const GallerySection = () => {
   );
 };
 
+// Оптимизированный экспорт для lazy loading
+export { GallerySection };
+
+// Легкий экспорт по умолчанию для производительности
 export default GallerySection; 
