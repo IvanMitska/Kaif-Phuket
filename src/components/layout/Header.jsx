@@ -30,11 +30,11 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   max-width: 1600px;
   margin: 0 auto;
-  padding: 0.8rem 2.5rem;
+  padding: 0.5rem 2rem;
   position: relative;
   
   @media (max-width: 768px) {
-    padding: 1rem 1.5rem;
+    padding: 0.6rem 1.25rem;
   }
 `;
 
@@ -51,7 +51,7 @@ const LogoSection = styled(Link)`
 `;
 
 const Logo = styled.img`
-  height: 2.8rem;
+  height: 2.2rem;
   width: auto;
   transition: all 0.3s ease;
   
@@ -60,7 +60,7 @@ const Logo = styled.img`
   }
   
   @media (max-width: 768px) {
-    height: 2.4rem;
+    height: 1.9rem;
   }
 `;
 
@@ -73,7 +73,7 @@ const Navigation = styled.nav`
   @media (min-width: 1024px) {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
+    gap: 2rem;
   }
 `;
 
@@ -81,10 +81,10 @@ const NavLink = styled(Link)`
   color: #374151;
   text-decoration: none;
   font-weight: 400;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   letter-spacing: 0.01em;
   position: relative;
-  padding: 0.5rem 0;
+  padding: 0.35rem 0;
   transition: all 0.3s ease;
   text-transform: uppercase;
   cursor: pointer;
@@ -127,7 +127,7 @@ const NavLink = styled(Link)`
 const RightSection = styled.div`
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
   z-index: 10;
 `;
 
@@ -201,8 +201,8 @@ const MobileMenuButton = styled(motion.button)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 2rem;
-  height: 2rem;
+  width: 1.75rem;
+  height: 1.75rem;
   background: transparent;
   border: none;
   cursor: pointer;
