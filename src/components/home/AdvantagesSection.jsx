@@ -277,7 +277,7 @@ const facilitiesData = [
 // Компонент для анимированного счетчика
 const AnimatedCounter = ({ value, delay = 0 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [displayValue, setDisplayValue] = React.useState('0');
   
   React.useEffect(() => {
@@ -290,8 +290,8 @@ const AnimatedCounter = ({ value, delay = 0 }) => {
           return;
         }
         
-        const duration = 2000;
-        const steps = 60;
+        const duration = 1500;
+        const steps = 45;
         const stepValue = numericValue / steps;
         let currentStep = 0;
         
@@ -337,7 +337,7 @@ const AdvantagesSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.1
       }
     }
   };
@@ -376,7 +376,7 @@ const AdvantagesSection = () => {
           <Overline
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1 }}
             variants={fadeInUp}
           >
             {t('facilities.overline', 'НАШИ ФАЦИЛИТИ')}
@@ -385,9 +385,9 @@ const AdvantagesSection = () => {
           <Title
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1 }}
             variants={fadeInUp}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.1 }}
           >
             {t('facilities.title', 'Пространство для гармонии и саморазвития')}
           </Title>
@@ -395,9 +395,9 @@ const AdvantagesSection = () => {
           <Subtitle
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1 }}
             variants={fadeInUp}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.15 }}
           >
             {t('facilities.subtitle', 'Мы создаем пространство, где жизнь становится ярче. Наша миссия — сделать отдых и заботу о себе не обязанностью, а удовольствием')}
           </Subtitle>
@@ -406,7 +406,7 @@ const AdvantagesSection = () => {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.1 }}
           variants={staggerContainer}
         >
           <FacilitiesGrid>
@@ -425,7 +425,7 @@ const AdvantagesSection = () => {
                 
                 <FacilityStats>
                   <StatNumber $color={facility.color}>
-                    <AnimatedCounter value={facility.number} delay={index * 300} />
+                    <AnimatedCounter value={facility.number} delay={index * 100} />
                     {facility.unit && <StatUnit $color={facility.color}>{facility.unit}</StatUnit>}
                   </StatNumber>
                 </FacilityStats>
