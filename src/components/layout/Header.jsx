@@ -20,7 +20,6 @@ const StyledHeader = styled(motion.header)`
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
   transition: all 0.3s ease;
 `;
 
@@ -30,11 +29,13 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   max-width: 1600px;
   margin: 0 auto;
-  padding: 0.1rem 2rem;
+  padding: 0.15rem 2rem;
   position: relative;
+  min-height: 50px;
   
   @media (max-width: 768px) {
-    padding: 0.1rem 1.25rem;
+    padding: 0.15rem 1.25rem;
+    min-height: 45px;
   }
 `;
 
@@ -69,12 +70,14 @@ const Navigation = styled.nav`
   display: none;
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  transform: translate(-50%, -50%);
   
   @media (min-width: 1024px) {
     display: flex;
     align-items: center;
     gap: 2rem;
+    height: 100%;
   }
 `;
 
@@ -85,10 +88,12 @@ const NavLink = styled(Link)`
   font-size: 0.8rem;
   letter-spacing: 0.01em;
   position: relative;
-  padding: 0.35rem 0;
+  padding: 0.5rem 0;
   transition: all 0.3s ease;
   text-transform: uppercase;
   cursor: pointer;
+  display: flex;
+  align-items: center;
   
   &::before {
     content: '';
@@ -143,7 +148,7 @@ const LanguageSelector = styled.div`
 `;
 
 const LanguageButton = styled(motion.button)`
-  padding: 0.3rem 0.6rem;
+  padding: 0.4rem 0.6rem;
   background: transparent;
   border: 1px solid rgba(107, 114, 128, 0.2);
   border-radius: 6px;
@@ -155,6 +160,9 @@ const LanguageButton = styled(motion.button)`
   text-transform: uppercase;
   letter-spacing: 0.05em;
   min-width: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
   &:hover {
     border-color: #90B3A7;
