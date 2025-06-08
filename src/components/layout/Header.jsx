@@ -392,7 +392,8 @@ const MobileNavLink = styled(motion(Link))`
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 0;
     height: 1px;
     background: #e5e7eb;
@@ -403,7 +404,7 @@ const MobileNavLink = styled(motion(Link))`
     color: #1f2937;
     
     &::after {
-      width: 100%;
+      width: 70%;
     }
   }
   
@@ -411,7 +412,8 @@ const MobileNavLink = styled(motion(Link))`
     color: #90B3A7;
     
     &::after {
-      width: 100%;
+      width: 65%;
+      height: 3px;
       background: #90B3A7;
     }
   }
@@ -439,26 +441,34 @@ const MobileLanguageTitle = styled.h3`
 
 const MobileLanguageGrid = styled.div`
   display: flex;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
 `;
 
 const MobileLanguageButton = styled(motion.button)`
-  padding: 0.4rem 0.8rem;
-  background: ${({ $active }) => $active ? '#f9fafb' : 'transparent'};
-  border: 1px solid ${({ $active }) => $active ? '#90B3A7' : '#e5e7eb'};
-  border-radius: 6px;
-  color: ${({ $active }) => $active ? '#90B3A7' : '#6b7280'};
-  font-size: 0.75rem;
-  font-weight: ${({ $active }) => $active ? '600' : '500'};
+  padding: 0.65rem 1.2rem;
+  background: ${({ $active }) => $active ? '#90B3A7' : 'transparent'};
+  border: 2px solid ${({ $active }) => $active ? '#90B3A7' : '#e5e7eb'};
+  border-radius: 8px;
+  color: ${({ $active }) => $active ? 'white' : '#6b7280'};
+  font-size: 0.875rem;
+  font-weight: ${({ $active }) => $active ? '700' : '600'};
   cursor: pointer;
   transition: all 0.3s ease-out;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  min-width: 56px;
   
   &:hover {
     border-color: #90B3A7;
-    color: #90B3A7;
-    background: #f9fafb;
+    color: ${({ $active }) => $active ? 'white' : '#90B3A7'};
+    background: ${({ $active }) => $active ? '#7da399' : '#f9fafb'};
+    transform: translateY(-1px);
+  }
+  
+  &:active {
+    transform: translateY(0);
   }
 `;
 
@@ -652,7 +662,18 @@ const Header = () => {
           <MobileMenu
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
-            exit={{ x: "100%" }}
+            exit={{ 
+              x: "100%",
+              transition: {
+                duration: 0.5,
+                ease: [0.68, -0.55, 0.265, 1.55],
+                times: [0, 0.7, 1],
+                x: {
+                  keyframes: [0, -20, "100%"],
+                  times: [0, 0.3, 1]
+                }
+              }
+            }}
             transition={{ duration: 0.4, ease: [0.4, 0.0, 0.2, 1] }}
           >
             <MobileMenuHeader>
