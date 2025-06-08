@@ -285,6 +285,9 @@ const ButtonContainer = styled.div`
   @media (max-width: 768px) {
     margin-bottom: 3rem;
     gap: 0.5rem;
+    /* Небольшая корректировка позиции для планшетов */
+    position: relative;
+    bottom: 0.5rem;
   }
   
   @media (max-width: 480px) {
@@ -292,20 +295,20 @@ const ButtonContainer = styled.div`
     max-width: 320px;
     margin-bottom: 4rem;
     gap: 0.8rem;
-    /* Поднимаем кнопки выше для видимости на iPhone */
+    /* Немного поднимаем кнопки для видимости на iPhone */
     position: relative;
-    bottom: 3rem;
+    bottom: 1.5rem;
   }
   
   /* Для iPhone в портретной ориентации */
   @media (max-width: 414px) and (max-height: 896px) {
-    bottom: 3rem;
+    bottom: 2rem;
     margin-bottom: 5rem;
   }
   
   /* Для маленьких iPhone (SE, Mini) */
   @media (max-width: 375px) and (max-height: 812px) {
-    bottom: 4rem;
+    bottom: 2.5rem;
     margin-bottom: 6rem;
   }
 `;
