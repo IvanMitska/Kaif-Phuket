@@ -348,7 +348,6 @@ const MobileLanguageButton = styled(motion.button)`
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
-  const [isNavigating, setIsNavigating] = useState(false);
   const { t, i18n } = useTranslation();
   const location = useLocation();
 
@@ -359,19 +358,9 @@ const Header = () => {
   };
 
   const handleNavClick = (path) => {
-    // Предотвращаем множественные клики
-    if (isNavigating) return;
-    
-    setIsNavigating(true);
-    
     // Сразу закрываем меню
     setIsMobileMenuOpen(false);
     setIsLanguageDropdownOpen(false);
-    
-    // Сбрасываем флаг навигации через короткое время
-    setTimeout(() => {
-      setIsNavigating(false);
-    }, 500);
   };
 
   const changeLanguage = (lng) => {
@@ -417,9 +406,8 @@ const Header = () => {
   useEffect(() => {
     setIsMobileMenuOpen(false);
     setIsLanguageDropdownOpen(false);
-    setIsNavigating(false);
     
-    // Мгновенная прокрутка без задержки
+    // Прокрутка вверх при смене страницы
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
@@ -439,50 +427,35 @@ const Header = () => {
             <NavLink 
               to="/" 
               className={isActive('/') ? 'active' : ''}
-              onClick={(e) => {
-                if (isNavigating) e.preventDefault();
-                handleNavClick('/');
-              }}
+              onClick={() => handleNavClick('/')}
             >
               Главная
             </NavLink>
             <NavLink 
               to="/restaurant" 
               className={isActive('/restaurant') ? 'active' : ''}
-              onClick={(e) => {
-                if (isNavigating) e.preventDefault();
-                handleNavClick('/restaurant');
-              }}
+              onClick={() => handleNavClick('/restaurant')}
             >
               Ресторан
             </NavLink>
             <NavLink 
               to="/spa" 
               className={isActive('/spa') ? 'active' : ''}
-              onClick={(e) => {
-                if (isNavigating) e.preventDefault();
-                handleNavClick('/spa');
-              }}
+              onClick={() => handleNavClick('/spa')}
             >
               СПА
             </NavLink>
             <NavLink 
               to="/sports" 
               className={isActive('/sports') ? 'active' : ''}
-              onClick={(e) => {
-                if (isNavigating) e.preventDefault();
-                handleNavClick('/sports');
-              }}
+              onClick={() => handleNavClick('/sports')}
             >
               Спорт
             </NavLink>
             <NavLink 
               to="/banya" 
               className={isActive('/banya') ? 'active' : ''}
-              onClick={(e) => {
-                if (isNavigating) e.preventDefault();
-                handleNavClick('/banya');
-              }}
+              onClick={() => handleNavClick('/banya')}
             >
               Баня
             </NavLink>
@@ -558,50 +531,35 @@ const Header = () => {
           <MobileNavLink 
             to="/" 
             className={isActive('/') ? 'active' : ''}
-            onClick={(e) => {
-              if (isNavigating) e.preventDefault();
-              handleNavClick('/');
-            }}
+            onClick={() => handleNavClick('/')}
           >
             Главная
           </MobileNavLink>
           <MobileNavLink 
             to="/restaurant" 
             className={isActive('/restaurant') ? 'active' : ''}
-            onClick={(e) => {
-              if (isNavigating) e.preventDefault();
-              handleNavClick('/restaurant');
-            }}
+            onClick={() => handleNavClick('/restaurant')}
           >
             Ресторан
           </MobileNavLink>
           <MobileNavLink 
             to="/spa" 
             className={isActive('/spa') ? 'active' : ''}
-            onClick={(e) => {
-              if (isNavigating) e.preventDefault();
-              handleNavClick('/spa');
-            }}
+            onClick={() => handleNavClick('/spa')}
           >
             СПА
           </MobileNavLink>
           <MobileNavLink 
             to="/sports" 
             className={isActive('/sports') ? 'active' : ''}
-            onClick={(e) => {
-              if (isNavigating) e.preventDefault();
-              handleNavClick('/sports');
-            }}
+            onClick={() => handleNavClick('/sports')}
           >
             Спорт
           </MobileNavLink>
           <MobileNavLink 
             to="/banya" 
             className={isActive('/banya') ? 'active' : ''}
-            onClick={(e) => {
-              if (isNavigating) e.preventDefault();
-              handleNavClick('/banya');
-            }}
+            onClick={() => handleNavClick('/banya')}
           >
             Баня
           </MobileNavLink>
