@@ -89,7 +89,7 @@ module.exports = {
         'zone-fitness': '#E8734A',
         'zone-combat': '#2D5B69',
         'zone-pool': '#4A90B8',
-        'zone-beauty': '#C8A8E9',
+        'zone-banya': '#8B4513',
         'zone-sauna': '#8B7355',
         
         background: '#F5F3F0',

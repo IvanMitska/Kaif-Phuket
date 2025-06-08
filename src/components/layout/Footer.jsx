@@ -427,7 +427,7 @@ const Footer = () => {
   const navigationLinks = [
     { path: '/', label: t('navigation.home'), id: 'home' },
     { path: '/restaurant', label: t('navigation.restaurant'), id: 'restaurant' },
-    { path: '/spa', label: t('navigation.spa_and_beauty'), id: 'spa' },
+    { path: '/spa', label: t('navigation.spa'), id: 'spa' },
     { path: '/sports', label: t('navigation.sports'), id: 'sports-main' },
     { path: '/contacts', label: t('navigation.contacts'), id: 'contacts' },
   ];
@@ -436,7 +436,7 @@ const Footer = () => {
     { path: '/spa', label: 'Сауна и хаммам', id: 'spa-sauna' },
     { path: '/restaurant', label: 'Ресторан', id: 'restaurant' },
     { path: '/sports', label: 'Фитнес-центр', id: 'sports-fitness' },
-    { path: '/beauty', label: 'Салон красоты', id: 'beauty' },
+    { path: '/banya', label: 'Русская баня', id: 'banya' },
     { path: '/sports', label: 'Бойцовский клуб', id: 'sports-club' },
   ];
 

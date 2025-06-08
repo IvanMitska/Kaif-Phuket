@@ -30,7 +30,7 @@ export const theme = {
       fitness: '#E8734A',    // Спортзал
       combat: '#2D5B69',     // Боевые искусства
       pool: '#4A90B8',       // Бассейн
-      beauty: '#C8A8E9',     // Салон красоты
+      banya: '#8B4513',      // Русская баня
       sauna: '#8B7355',      // Баня и хаммам
     },
 
@@ -54,7 +54,7 @@ export const theme = {
       fitness: 'linear-gradient(135deg, #E8734A 0%, #F28A5F 100%)',
       combat: 'linear-gradient(135deg, #2D5B69 0%, #3D7084 100%)',
       pool: 'linear-gradient(135deg, #4A90B8 0%, #5FA3CC 100%)',
-      beauty: 'linear-gradient(135deg, #C8A8E9 0%, #D6BBF0 100%)',
+      banya: 'linear-gradient(135deg, #8B4513 0%, #CD853F 100%)',
       sauna: 'linear-gradient(135deg, #8B7355 0%, #A18A6D 100%)',
     },
   },

@@ -2,15 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { 
-  SparklesIcon, 
-  StarIcon, 
-  CheckCircleIcon, 
-  ArrowRightIcon, 
-  UserIcon,
-  ClockIcon,
-  PhoneIcon
-} from '@heroicons/react/24/solid';
 
 // Импортируем компоненты SPA
 import SpaHeroSection from '../components/spa/SpaHeroSection';
@@ -32,50 +23,24 @@ const SpaContainer = styled(motion.div)`
 `;
 
 /**
- * Декоративный элемент фона
- */
-const BackgroundDecoration = styled(motion.div)`
-  position: absolute;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(144, 179, 167, 0.05) 0%, rgba(168, 197, 184, 0.05) 100%);
-  filter: blur(70px);
-  z-index: 0;
-  pointer-events: none;
-`;
-
-const TopRightDecoration = styled(BackgroundDecoration)`
-  width: 50vw;
-  height: 50vw;
-  top: -10%;
-  right: -15%;
-  opacity: 0.6;
-`;
-
-const BottomLeftDecoration = styled(BackgroundDecoration)`
-  width: 60vw;
-  height: 60vw;
-  bottom: 10%;
-  left: -20%;
-  opacity: 0.4;
-`;
-
-
-/**
  * SPA Page Component
- * 
- * Современная страница для SPA & Beauty секции в стиле Modern Oasis
- * Интегрирует модульные компоненты с анимациями и обновленным дизайном
+ * Современная страница для SPA & Beauty секции
  */
 const SpaPage = () => {
   const { t } = useTranslation();
   
   // Добавлено сохранение стилей при рендеринге страницы
   React.useEffect(() => {
+    console.log('SpaPage загружается...');
     // Добавляем класс для спа страницы
     document.body.classList.add('spa-page');
     
+    // Принудительно прокручиваем вверх при загрузке страницы
+    window.scrollTo(0, 0);
+    
     // Удаляем класс при уходе со страницы
     return () => {
+      console.log('SpaPage выгружается...');
       document.body.classList.remove('spa-page');
     };
   }, []);
@@ -87,48 +52,14 @@ const SpaPage = () => {
     exit: { opacity: 0 }
   };
   
-  const decorationVariants = {
-    initial: { scale: 0.8, opacity: 0 },
-    animate: { scale: 1, opacity: 1 }
-  };
-  
   return (
     <SpaContainer
       initial="initial"
       animate="animate"
       exit="exit"
       variants={pageVariants}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.2 }}
     >
-      {/* Декоративные элементы фона */}
-      <TopRightDecoration 
-        variants={decorationVariants}
-        animate={{ 
-          scale: [1, 1.05, 1],
-          opacity: [0.6, 0.7, 0.6]
-        }}
-        transition={{ 
-          duration: 8, 
-          repeat: Infinity,
-          repeatType: "reverse",
-          delay: 0.2
-        }}
-      />
-      
-      <BottomLeftDecoration 
-        variants={decorationVariants}
-        animate={{ 
-          scale: [1, 1.1, 1],
-          opacity: [0.4, 0.5, 0.4]
-        }}
-        transition={{ 
-          duration: 10, 
-          repeat: Infinity,
-          repeatType: "reverse",
-          delay: 0.4
-        }}
-      />
-      
       {/* Компоненты страницы */}
       <SpaHeroSection />
       <SpaServicesSection />

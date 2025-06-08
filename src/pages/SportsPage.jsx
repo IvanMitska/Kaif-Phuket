@@ -8,11 +8,16 @@ import { PageContainer } from '../styles/sports/CommonStyles';
 const SportsPage = () => {
   // Добавлено сохранение стилей при рендеринге страницы
   useEffect(() => {
+    console.log('SportsPage загружается...');
     // Добавляем класс для спортивной страницы
     document.body.classList.add('sports-page');
     
+    // Принудительно прокручиваем вверх при загрузке страницы
+    window.scrollTo(0, 0);
+    
     // Удаляем класс при уходе со страницы
     return () => {
+      console.log('SportsPage выгружается...');
       document.body.classList.remove('sports-page');
     };
   }, []);
@@ -21,7 +26,7 @@ const SportsPage = () => {
     <PageContainer
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.2 }}
     >
       {/* Секции разделены на отдельные компоненты */}
       <HeroSection />

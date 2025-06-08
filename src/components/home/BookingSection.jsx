@@ -557,7 +557,7 @@ const BookingSection = () => {
                     <option value="fitness">Фитнес-тренировка</option>
                     <option value="restaurant">Ресторан</option>
                     <option value="pool">Бассейн</option>
-                    <option value="beauty">Салон красоты</option>
+                    <option value="banya">Русская баня</option>
                   </Select>
                 </FormGroup>
                 

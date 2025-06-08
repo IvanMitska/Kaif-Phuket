@@ -19,31 +19,35 @@ import {
   BottomLeftShape 
 } from '../../../styles/sports/CommonStyles';
 
-// Данные слайдера
+// Данные слайдера - оптимизированные
 const sliderData = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+    emoji: "🏋️‍♂️",
     title: "Тренажерный зал",
-    subtitle: "Современное оборудование"
+    subtitle: "Современное оборудование",
+    gradient: "linear-gradient(135deg, rgba(210, 155, 132, 0.15) 0%, rgba(139, 69, 19, 0.1) 100%)"
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+    emoji: "🥊",
     title: "Бойцовский клуб",
-    subtitle: "Профессиональный ринг"
+    subtitle: "Профессиональный ринг",
+    gradient: "linear-gradient(135deg, rgba(220, 38, 127, 0.15) 0%, rgba(139, 69, 19, 0.1) 100%)"
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+    emoji: "👨‍🏫",
     title: "Персональный тренинг",
-    subtitle: "Индивидуальный подход"
+    subtitle: "Индивидуальный подход",
+    gradient: "linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 69, 19, 0.1) 100%)"
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1576443486731-ab46ed3a0a0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+    emoji: "🏊‍♂️",
     title: "Бассейн",
-    subtitle: "Релаксация и восстановление"
+    subtitle: "Релаксация и восстановление",
+    gradient: "linear-gradient(135deg, rgba(14, 165, 233, 0.15) 0%, rgba(139, 69, 19, 0.1) 100%)"
   }
 ];
 
@@ -51,104 +55,77 @@ const GallerySection = () => {
   const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
-  const [dragging, setDragging] = useState(false);
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
   const [autoplayActive, setAutoplayActive] = useState(true);
 
-  // Автоматическое переключение слайдов
+  // Автоплей слайдера
   useEffect(() => {
-    let interval;
-    if (autoplayActive) {
-      interval = setInterval(() => {
-        nextSlide();
-      }, 5000);
-    }
+    if (!autoplayActive) return;
     
-    return () => {
-      if (interval) clearInterval(interval);
-    };
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 4000);
+    
+    return () => clearInterval(interval);
   }, [currentSlide, autoplayActive]);
 
-  // Переключение на предыдущий слайд
-  const prevSlide = () => {
-    setDirection(-1);
-    setCurrentSlide(prev => 
-      prev === 0 ? sliderData.length - 1 : prev - 1
-    );
-  };
-  
-  // Переключение на следующий слайд
   const nextSlide = () => {
     setDirection(1);
-    setCurrentSlide(prev => 
-      prev === sliderData.length - 1 ? 0 : prev + 1
-    );
+    setCurrentSlide((prev) => (prev + 1) % sliderData.length);
   };
-  
-  // Переключение на конкретный слайд
+
+  const prevSlide = () => {
+    setDirection(-1);
+    setCurrentSlide((prev) => (prev - 1 + sliderData.length) % sliderData.length);
+  };
+
   const goToSlide = (index) => {
     setDirection(index > currentSlide ? 1 : -1);
     setCurrentSlide(index);
   };
-  
-  // Обработчики жестов смахивания
+
+  // Touch события для мобильных устройств
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
   const handleTouchStart = (e) => {
-    setTouchStart(e.touches[0].clientX);
-    setDragging(true);
-    setAutoplayActive(false);
+    setTouchStart(e.targetTouches[0].clientX);
   };
-  
+
   const handleTouchMove = (e) => {
-    if (!dragging) return;
-    setTouchEnd(e.touches[0].clientX);
+    setTouchEnd(e.targetTouches[0].clientX);
   };
-  
+
   const handleTouchEnd = () => {
-    setDragging(false);
-    setAutoplayActive(true);
+    if (!touchStart || !touchEnd) return;
     
-    if (touchStart - touchEnd > 75) {
-      // Свайп влево - следующий слайд
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
       nextSlide();
-    } else if (touchEnd - touchStart > 75) {
-      // Свайп вправо - предыдущий слайд
-      prevSlide();
     }
-  };
-  
-  // Для клавиатурной навигации
-  const handleKeyDown = (e) => {
-    if (e.key === 'ArrowLeft') {
+    if (isRightSwipe) {
       prevSlide();
-    } else if (e.key === 'ArrowRight') {
-      nextSlide();
     }
   };
 
-  // Варианты анимации для слайдов
   const variants = {
     enter: (direction) => ({
       x: direction > 0 ? 1000 : -1000,
       opacity: 0
     }),
     center: {
+      zIndex: 1,
       x: 0,
       opacity: 1
     },
     exit: (direction) => ({
+      zIndex: 0,
       x: direction < 0 ? 1000 : -1000,
       opacity: 0
     })
   };
-
-  // Эффект для добавления обработчика клавиатуры
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [currentSlide]);
 
   return (
     <Section id="gallery">
@@ -217,11 +194,20 @@ const GallerySection = () => {
                   opacity: { duration: 0.2 }
                 }}
               >
-                <img 
-                  src={sliderData[currentSlide].image} 
-                  alt={sliderData[currentSlide].title}
-                  loading="lazy"
-                />
+                <div style={{
+                  width: '100%',
+                  height: '400px',
+                  background: sliderData[currentSlide].gradient,
+                  borderRadius: '20px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '5rem',
+                  marginBottom: '2rem'
+                }}>
+                  {sliderData[currentSlide].emoji}
+                </div>
                 <div className="slide-overlay">
                   <div className="slide-title">{t(`sports.gallery.${sliderData[currentSlide].title.toLowerCase().replace(/\s+/g, '_')}`, sliderData[currentSlide].title)}</div>
                   <div className="slide-subtitle">{t(`sports.gallery.subtitle_${sliderData[currentSlide].title.toLowerCase().replace(/\s+/g, '_')}`, sliderData[currentSlide].subtitle)}</div>

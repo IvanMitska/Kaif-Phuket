@@ -4,8 +4,7 @@
     "restaurant": "Restaurant",
     "spa": "SPA",
     "sports": "Sports",
-    "beauty": "Beauty Salon",
-    "spa_and_beauty": "SPA & Beauty",
+    "banya": "Russian Banya",
     "about": "About Us",
     "promotions": "Promotions",
     "contacts": "Contacts"
@@ -63,9 +62,9 @@
         "title": "Sports Facilities",
         "description": "Stay fit with our 70+ equipment gym and specialized areas"
       },
-      "beauty": {
-        "title": "Beauty Salon",
-        "description": "Full-cycle salon for all your beauty needs"
+      "banya": {
+        "title": "Russian Banya",
+        "description": "Traditional Russian bath and wellness rituals"
       }
     },
     "promotions": {
@@ -278,28 +277,7 @@
       "description": "Saturday workouts with professional athletes, all proceeds go to Child Watch Phuket Foundation"
     }
   },
-  "beauty": {
-    "title": "Beauty Salon",
-    "description": "Full-cycle beauty salon for all your needs",
-    "services": {
-      "title": "Our Services",
-      "categories": {
-        "cosmetology": "Cosmetology",
-        "laser": "Laser Procedures",
-        "endosphere": "Endosphere Therapy",
-        "nails": "Nail Care",
-        "hair": "Hair Styling & Care"
-      }
-    },
-    "specialists": {
-      "title": "Our Specialists",
-      "description": "Meet our professional team"
-    },
-    "booking": {
-      "title": "Book an Appointment",
-      "description": "Schedule your beauty treatment"
-    }
-  },
+
   "about": {
     "title": "About Us",
     "description": "KAIF - Jungle Club & Spa is Phuket's premier wellness complex",
@@ -314,7 +292,7 @@
       "restaurant": "Restaurant with 5 cuisines",
       "dance_studio": "Dance and yoga studio (available for rent)",
       "gym": "Fitness center with 70+ equipment",
-      "beauty_salon": "Full-cycle beauty salon",
+
       "pool": "25m swimming pool",
       "massage": "Various massage techniques",
       "fight_club": "Fight club",

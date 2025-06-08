@@ -172,8 +172,8 @@ const ServiceCard = styled(motion.div)`
         return 'linear-gradient(135deg, rgba(144, 179, 167, 0.05) 0%, rgba(144, 179, 167, 0.02) 100%)';
       case 'restaurant':
         return 'linear-gradient(135deg, rgba(212, 165, 116, 0.05) 0%, rgba(212, 165, 116, 0.02) 100%)';
-      case 'beauty':
-        return 'linear-gradient(135deg, rgba(200, 168, 233, 0.05) 0%, rgba(200, 168, 233, 0.02) 100%)';
+      case 'banya':
+        return 'linear-gradient(135deg, rgba(139, 69, 19, 0.05) 0%, rgba(139, 69, 19, 0.02) 100%)';
       case 'sauna':
         return 'linear-gradient(135deg, rgba(139, 115, 85, 0.05) 0%, rgba(139, 115, 85, 0.02) 100%)';
       default:
@@ -194,8 +194,8 @@ const ServiceCard = styled(motion.div)`
         return 'rgba(144, 179, 167, 0.15)';
       case 'restaurant':
         return 'rgba(212, 165, 116, 0.15)';
-      case 'beauty':
-        return 'rgba(200, 168, 233, 0.15)';
+      case 'banya':
+        return 'rgba(139, 69, 19, 0.15)';
       case 'sauna':
         return 'rgba(139, 115, 85, 0.15)';
       default:
@@ -248,8 +248,8 @@ const ServiceCard = styled(motion.div)`
           return '0 25px 50px rgba(144, 179, 167, 0.2)';
         case 'restaurant':
           return '0 25px 50px rgba(212, 165, 116, 0.2)';
-        case 'beauty':
-          return '0 25px 50px rgba(200, 168, 233, 0.2)';
+        case 'banya':
+          return '0 25px 50px rgba(139, 69, 19, 0.2)';
         case 'sauna':
           return '0 25px 50px rgba(139, 115, 85, 0.2)';
         default:
@@ -268,8 +268,8 @@ const ServiceCard = styled(motion.div)`
           return 'rgba(144, 179, 167, 0.3)';
         case 'restaurant':
           return 'rgba(212, 165, 116, 0.3)';
-        case 'beauty':
-          return 'rgba(200, 168, 233, 0.3)';
+        case 'banya':
+          return 'rgba(139, 69, 19, 0.3)';
         case 'sauna':
           return 'rgba(139, 115, 85, 0.3)';
         default:
@@ -301,8 +301,8 @@ const ServiceIcon = styled.div`
         return 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)';
       case 'restaurant':
         return 'linear-gradient(135deg, #D4A574 0%, #E1B885 100%)';
-      case 'beauty':
-        return 'linear-gradient(135deg, #C8A8E9 0%, #D4B8F0 100%)';
+      case 'banya':
+        return 'linear-gradient(135deg, #8B4513 0%, #CD853F 100%)';
       case 'sauna':
         return 'linear-gradient(135deg, #8B7355 0%, #A08866 100%)';
       default:
@@ -422,8 +422,8 @@ const ServiceButton = styled(motion.button)`
         return 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)';
       case 'restaurant':
         return 'linear-gradient(135deg, #D4A574 0%, #E1B885 100%)';
-      case 'beauty':
-        return 'linear-gradient(135deg, #C8A8E9 0%, #D4B8F0 100%)';
+      case 'banya':
+        return 'linear-gradient(135deg, #8B4513 0%, #CD853F 100%)';
       case 'sauna':
         return 'linear-gradient(135deg, #8B7355 0%, #A08866 100%)';
       default:
@@ -454,8 +454,8 @@ const ServiceButton = styled(motion.button)`
           return '0 6px 20px rgba(144, 179, 167, 0.4)';
         case 'restaurant':
           return '0 6px 20px rgba(212, 165, 116, 0.4)';
-        case 'beauty':
-          return '0 6px 20px rgba(200, 168, 233, 0.4)';
+        case 'banya':
+          return '0 6px 20px rgba(139, 69, 19, 0.4)';
         case 'sauna':
           return '0 6px 20px rgba(139, 115, 85, 0.4)';
         default:
@@ -580,12 +580,12 @@ const ServicesSection = () => {
         link: '/spa'
       },
       {
-        zone: 'beauty',
-        icon: '💅',
-        title: 'Салон красоты',
-        description: 'Полный спектр beauty-услуг от профессиональных мастеров.',
-        features: ['Уход за лицом и телом', 'Маникюр и педикюр', 'Парикмахерские услуги', 'Косметология'],
-        link: '/beauty'
+        zone: 'banya',
+        icon: '🔥',
+        title: 'Русская баня',
+        description: 'Традиционные банные процедуры и парные ритуалы.',
+        features: ['Настоящая русская баня', 'Парные процедуры', 'Веники и ароматы', 'Чайная церемония'],
+        link: '/banya'
       },
       {
         zone: 'restaurant',

@@ -45,25 +45,6 @@ const Layout = ({ children }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
-  
-  // Добавим обработчик для предотвращения потери стилей
-  useEffect(() => {
-    // Принудительное обновление стилей при смене маршрута
-    const forceStylesUpdate = () => {
-      // Добавляем класс для сохранения состояния стилей
-      document.body.classList.add('route-transition');
-      
-      // Микротаск для принудительного рендеринга
-      setTimeout(() => {
-        document.body.classList.remove('route-transition');
-      }, 50);
-    };
-    
-    // Вызываем обработчик при смене маршрута
-    forceStylesUpdate();
-    
-    return () => {}
-  }, [location.pathname]);
 
   return (
     <PageContainer>

@@ -32,13 +32,13 @@ const HeroSection = () => {
         <HeroContent
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           style={{ paddingTop: '2rem' }}
         >
           <HeroTitle
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
           >
             {t('sports.hero.title', 'Достигайте новых <span>спортивных высот</span> с KAIF')}
           </HeroTitle>
@@ -46,7 +46,7 @@ const HeroSection = () => {
           <HeroSubtitle
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
           >
             {t('sports.hero.subtitle', 'В KAIF Jungle Club & SPA вы найдете все необходимое для активного образа жизни, тренировок и спортивного развлечения в атмосфере роскоши и комфорта.')}
           </HeroSubtitle>
@@ -54,7 +54,7 @@ const HeroSection = () => {
           <HeroCTAContainer
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
           >
             <PrimaryButton
               whileHover={{ scale: 1.03 }}
@@ -76,12 +76,12 @@ const HeroSection = () => {
           <HeroStatsContainer
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
           >
             <HeroStat
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
+              transition={{ duration: 0.4, delay: 0.8 }}
             >
               <HeroStatNumber>5+</HeroStatNumber>
               <HeroStatLabel>{t('sports.hero.stats.facilities', 'Спортивных объектов')}</HeroStatLabel>
@@ -90,7 +90,7 @@ const HeroSection = () => {
             <HeroStat
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.9 }}
+              transition={{ duration: 0.4, delay: 0.9 }}
             >
               <HeroStatNumber>10+</HeroStatNumber>
               <HeroStatLabel>{t('sports.hero.stats.trainers', 'Профессиональных тренеров')}</HeroStatLabel>
@@ -99,7 +99,7 @@ const HeroSection = () => {
             <HeroStat
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 1 }}
+              transition={{ duration: 0.4, delay: 1 }}
             >
               <HeroStatNumber>24/7</HeroStatNumber>
               <HeroStatLabel>{t('sports.hero.stats.access', 'Доступ для резидентов')}</HeroStatLabel>
@@ -110,15 +110,26 @@ const HeroSection = () => {
         <HeroImageContainer
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
           style={{ marginTop: '2rem' }}
         >
-          <HeroImage
-            src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-            alt="Sports facility"
-            whileHover={{ scale: 1.03 }}
-            transition={{ duration: 0.5 }}
-          />
+          <div style={{
+            width: '100%',
+            maxWidth: '500px',
+            height: '400px',
+            background: 'linear-gradient(135deg, rgba(210, 155, 132, 0.1) 0%, rgba(139, 69, 19, 0.15) 50%, rgba(210, 155, 132, 0.08) 100%)',
+            borderRadius: '30px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 20px 40px rgba(210, 155, 132, 0.15)',
+            border: '1px solid rgba(210, 155, 132, 0.2)',
+            fontSize: '4rem',
+            color: 'rgba(210, 155, 132, 0.8)',
+            fontWeight: 'bold'
+          }}>
+            🏋️‍♂️
+          </div>
         </HeroImageContainer>
       </HeroContainer>
     </HeroSectionContainer>

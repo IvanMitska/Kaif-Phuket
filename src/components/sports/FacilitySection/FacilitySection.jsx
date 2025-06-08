@@ -398,21 +398,18 @@ const FacilitySection = () => {
           
           <div className="facility-gallery">
             <FacilityGallery>
-              <GalleryImage 
-                src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.4 }}
-              />
-              <GalleryImage 
-                src="https://images.unsplash.com/photo-1508215885820-4585e56135c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.4 }}
-              />
-              <GalleryImage 
-                src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.4 }}
-              />
+              <div style={{
+                background: 'linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(210, 155, 132, 0.15) 100%)',
+                borderRadius: '20px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '3rem',
+                gridColumn: '1 / -1',
+                gridRow: '1 / -1'
+              }}>
+                💃🕺
+              </div>
             </FacilityGallery>
           </div>
         </SportFacility>

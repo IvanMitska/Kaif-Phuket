@@ -390,11 +390,11 @@ const relaxZones = [
     path: '/spa'
   },
   {
-    id: 'beauty',
-    name: 'Салон красоты',
-    description: 'Косметология и премиальные уходовые процедуры',
-    image: '/images/zones/beauty.jpg',
-    path: '/beauty'
+    id: 'banya',
+    name: 'Русская баня',
+    description: 'Традиционные банные процедуры и оздоровление',
+    image: '/images/zones/banya.jpg',
+    path: '/banya'
   },
   {
     id: 'restaurant',

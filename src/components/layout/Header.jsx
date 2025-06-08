@@ -2,23 +2,25 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 // Импортируем логотип
 import headerLogo from '../../assets/images/logos/new-hero-logo.png';
 
 // =============================================================================
-// MODERN KAIF HEADER - CLEAN & BEAUTIFUL
+// ELEGANT MINIMALIST KAIF HEADER
 // =============================================================================
 
-const StyledHeader = styled.header`
+const StyledHeader = styled(motion.header)`
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(144, 179, 167, 0.1);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
   transition: all 0.3s ease;
 `;
 
@@ -26,12 +28,13 @@ const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 0.75rem 2rem;
+  padding: 0.8rem 2.5rem;
+  position: relative;
   
   @media (max-width: 768px) {
-    padding: 1rem;
+    padding: 1rem 1.5rem;
   }
 `;
 
@@ -39,65 +42,83 @@ const LogoSection = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
+  z-index: 10;
+  margin-left: 0.5rem;
+  
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
 `;
 
 const Logo = styled.img`
-  height: 2.2rem;
+  height: 2.8rem;
   width: auto;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
   
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
   
   @media (max-width: 768px) {
-    height: 2rem;
+    height: 2.4rem;
   }
 `;
 
 const Navigation = styled.nav`
   display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   
   @media (min-width: 1024px) {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 2.5rem;
   }
 `;
 
 const NavLink = styled(Link)`
-  color: #2C3E2D;
+  color: #374151;
   text-decoration: none;
-  font-weight: 500;
-  font-size: 0.875rem;
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
   position: relative;
-  padding: 0.375rem 0;
-  transition: color 0.3s ease;
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  cursor: pointer;
   
-  &::after {
+  &::before {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
     width: 0;
     height: 1px;
     background: #90B3A7;
-    transition: width 0.3s ease;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
   }
   
   &:hover {
     color: #90B3A7;
     
-    &::after {
+    &::before {
       width: 100%;
     }
   }
   
+  &:active {
+    transform: translateY(1px);
+    color: #7a9d93;
+  }
+  
   &.active {
     color: #90B3A7;
-    font-weight: 600;
+    font-weight: 500;
     
-    &::after {
+    &::before {
       width: 100%;
     }
   }
@@ -106,10 +127,11 @@ const NavLink = styled(Link)`
 const RightSection = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1.5rem;
+  z-index: 10;
 `;
 
-// Языковой селектор
+// Элегантный языковой селектор
 const LanguageSelector = styled.div`
   position: relative;
   
@@ -118,192 +140,203 @@ const LanguageSelector = styled.div`
   }
 `;
 
-const LanguageButton = styled.button`
+const LanguageButton = styled(motion.button)`
   display: flex;
   align-items: center;
-  gap: 0.25rem;
-  padding: 0.25rem 0.5rem;
+  gap: 0.3rem;
+  padding: 0.25rem 0;
   background: transparent;
-  border: 1px solid rgba(144, 179, 167, 0.1);
-  border-radius: 4px;
-  color: #666;
-  font-size: 0.75rem;
+  border: none;
+  color: #6b7280;
+  font-size: 0.8rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1;
   
   &:hover {
-    background: rgba(144, 179, 167, 0.05);
-    border-color: rgba(144, 179, 167, 0.2);
-    color: #2C3E2D;
-  }
-`;
-
-const LanguageDropdown = styled.div`
-  position: absolute;
-  top: calc(100% + 0.25rem);
-  right: 0;
-  min-width: 100px;
-  background: white;
-  border: 1px solid rgba(144, 179, 167, 0.15);
-  border-radius: 6px;
-  padding: 0.25rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  opacity: ${props => props.$isOpen ? '1' : '0'};
-  visibility: ${props => props.$isOpen ? 'visible' : 'hidden'};
-  transform: translateY(${props => props.$isOpen ? '0' : '-5px'});
-  transition: all 0.15s ease;
-  z-index: 1001;
-`;
-
-const LanguageOption = styled.button`
-  display: block;
-  width: 100%;
-  padding: 0.375rem 0.5rem;
-  background: ${({ $active }) => $active ? 'rgba(144, 179, 167, 0.08)' : 'transparent'};
-  border: none;
-  border-radius: 4px;
-  color: ${({ $active }) => $active ? '#90B3A7' : '#666'};
-  font-size: 0.75rem;
-  font-weight: ${({ $active }) => $active ? '600' : '500'};
-  cursor: pointer;
-  transition: all 0.15s ease;
-  text-align: left;
-  
-  &:hover {
-    background: rgba(144, 179, 167, 0.08);
     color: #90B3A7;
   }
 `;
 
-// Мобильное меню
-const MobileMenuButton = styled.button`
+const LanguageDropdown = styled(motion.div)`
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 100px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  padding: 0.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  z-index: 1001;
+`;
+
+const LanguageOption = styled(motion.button)`
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: ${({ $active }) => $active ? '#90B3A7' : '#6b7280'};
+  font-size: 0.75rem;
+  font-weight: ${({ $active }) => $active ? '600' : '500'};
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  
+  &:hover {
+    background: rgba(144, 179, 167, 0.05);
+    color: #90B3A7;
+  }
+`;
+
+// Тонкое мобильное меню
+const MobileMenuButton = styled(motion.button)`
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2rem;
+  height: 2rem;
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
+  transition: all 0.3s ease;
   
   @media (max-width: 1023px) {
     display: flex;
   }
+  
+  &:hover {
+    opacity: 0.7;
+  }
 `;
 
-const MenuLine = styled.div`
-  width: 1.25rem;
-  height: 1.5px;
-  background: #2C3E2D;
-  border-radius: 1px;
+const MenuLine = styled(motion.div)`
+  width: 1rem;
+  height: 1px;
+  background: #6b7280;
+  margin: 2px 0;
   transition: all 0.3s ease;
   transform-origin: center;
   
-  &:not(:last-child) {
-    margin-bottom: 3px;
+  &:nth-child(1) {
+    transform: ${props => props.$isOpen ? 'translateY(5px) rotate(45deg)' : 'translateY(0) rotate(0)'};
   }
   
-  ${({ $isOpen }) => $isOpen && `
-    &:nth-child(1) {
-      transform: rotate(45deg) translate(2.5px, 2.5px);
-    }
-    
-    &:nth-child(2) {
-      opacity: 0;
-    }
-    
-    &:nth-child(3) {
-      transform: rotate(-45deg) translate(2.5px, -2.5px);
-    }
-  `}
+  &:nth-child(2) {
+    opacity: ${props => props.$isOpen ? '0' : '1'};
+    transform: ${props => props.$isOpen ? 'translateX(10px)' : 'translateX(0)'};
+  }
+  
+  &:nth-child(3) {
+    transform: ${props => props.$isOpen ? 'translateY(-5px) rotate(-45deg)' : 'translateY(0) rotate(0)'};
+  }
 `;
 
-const MobileMenu = styled.div`
+// Мобильное меню
+const MobileMenu = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
   z-index: 999;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
-  padding-top: 6rem;
-`;
-
-const MobileNavLink = styled(Link)`
-  display: block;
-  color: #2C3E2D;
-  text-decoration: none;
-  font-size: 1.25rem;
-  font-weight: 500;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid rgba(144, 179, 167, 0.1);
-  transition: color 0.3s ease;
-  
-  &:hover,
-  &.active {
-    color: #90B3A7;
-  }
-`;
-
-const MobileLanguageSection = styled.div`
-  margin-top: auto;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(144, 179, 167, 0.1);
-`;
-
-const MobileLanguageTitle = styled.div`
-  font-size: 1rem;
-  font-weight: 600;
-  color: #666;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-`;
-
-const MobileLanguageGrid = styled.div`
-  display: flex;
   justify-content: center;
+  align-items: center;
   gap: 2rem;
+  padding: 2rem;
 `;
 
-const MobileLanguageButton = styled.button`
-  background: transparent;
-  border: none;
-  color: ${({ $active }) => $active ? '#90B3A7' : '#666'};
-  font-size: 1rem;
-  font-weight: ${({ $active }) => $active ? '600' : '500'};
-  cursor: pointer;
-  transition: color 0.3s ease;
-  
-  &:hover {
-    color: #90B3A7;
-  }
-`;
-
-const CloseButton = styled.button`
+const CloseButton = styled(motion.button)`
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 2rem;
+  right: 2rem;
   width: 2.5rem;
   height: 2.5rem;
   background: transparent;
   border: none;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  color: #2C3E2D;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.3s ease;
   
   &:hover {
+    color: #90B3A7;
+    transform: rotate(90deg);
+  }
+`;
+
+const MobileNavLink = styled(Link)`
+  color: #374151;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  
+  &:hover {
+    color: #90B3A7;
+    background: rgba(144, 179, 167, 0.05);
+  }
+  
+  &.active {
+    color: #90B3A7;
+    background: rgba(144, 179, 167, 0.1);
+  }
+`;
+
+const MobileLanguageSection = styled.div`
+  margin-top: 2rem;
+  text-align: center;
+`;
+
+const MobileLanguageTitle = styled.h3`
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+`;
+
+const MobileLanguageGrid = styled.div`
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+`;
+
+const MobileLanguageButton = styled(motion.button)`
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid ${({ $active }) => $active ? '#90B3A7' : 'rgba(107, 114, 128, 0.2)'};
+  border-radius: 20px;
+  color: ${({ $active }) => $active ? '#90B3A7' : '#6b7280'};
+  font-size: 0.8rem;
+  font-weight: ${({ $active }) => $active ? '600' : '500'};
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  
+  &:hover {
+    border-color: #90B3A7;
     color: #90B3A7;
   }
 `;
@@ -315,10 +348,31 @@ const CloseButton = styled.button`
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
   const { t, i18n } = useTranslation();
   const location = useLocation();
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path) => {
+    if (path === '/' && location.pathname === '/') return true;
+    if (path !== '/' && location.pathname.startsWith(path)) return true;
+    return false;
+  };
+
+  const handleNavClick = (path) => {
+    // Предотвращаем множественные клики
+    if (isNavigating) return;
+    
+    setIsNavigating(true);
+    
+    // Сразу закрываем меню
+    setIsMobileMenuOpen(false);
+    setIsLanguageDropdownOpen(false);
+    
+    // Сбрасываем флаг навигации через короткое время
+    setTimeout(() => {
+      setIsNavigating(false);
+    }, 500);
+  };
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -327,9 +381,9 @@ const Header = () => {
   };
 
   const languages = [
-    { code: 'ru', name: 'Русский', flag: '🇷🇺' },
-    { code: 'en', name: 'English', flag: '🇺🇸' },
-    { code: 'th', name: 'ไทย', flag: '🇹🇭' }
+    { code: 'ru', name: 'Русский' },
+    { code: 'en', name: 'English' },
+    { code: 'th', name: 'ไทย' }
   ];
 
   const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
@@ -359,9 +413,23 @@ const Header = () => {
     };
   }, [isMobileMenuOpen]);
 
+  // Закрытие мобильного меню при изменении маршрута
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setIsLanguageDropdownOpen(false);
+    setIsNavigating(false);
+    
+    // Мгновенная прокрутка без задержки
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <>
-      <StyledHeader>
+      <StyledHeader
+        initial={{ y: -80 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+      >
         <HeaderContainer>
           <LogoSection to="/">
             <Logo src={headerLogo} alt="KAIF" />
@@ -371,60 +439,97 @@ const Header = () => {
             <NavLink 
               to="/" 
               className={isActive('/') ? 'active' : ''}
+              onClick={(e) => {
+                if (isNavigating) e.preventDefault();
+                handleNavClick('/');
+              }}
             >
-              {t('navigation.home')}
+              Главная
             </NavLink>
             <NavLink 
               to="/restaurant" 
               className={isActive('/restaurant') ? 'active' : ''}
+              onClick={(e) => {
+                if (isNavigating) e.preventDefault();
+                handleNavClick('/restaurant');
+              }}
             >
-              {t('navigation.restaurant')}
+              Ресторан
             </NavLink>
             <NavLink 
               to="/spa" 
               className={isActive('/spa') ? 'active' : ''}
+              onClick={(e) => {
+                if (isNavigating) e.preventDefault();
+                handleNavClick('/spa');
+              }}
             >
-              {t('navigation.spa')}
-            </NavLink>
-            <NavLink 
-              to="/beauty" 
-              className={isActive('/beauty') ? 'active' : ''}
-            >
-              {t('navigation.beauty')}
+              СПА
             </NavLink>
             <NavLink 
               to="/sports" 
               className={isActive('/sports') ? 'active' : ''}
+              onClick={(e) => {
+                if (isNavigating) e.preventDefault();
+                handleNavClick('/sports');
+              }}
             >
-              {t('navigation.sports')}
+              Спорт
+            </NavLink>
+            <NavLink 
+              to="/banya" 
+              className={isActive('/banya') ? 'active' : ''}
+              onClick={(e) => {
+                if (isNavigating) e.preventDefault();
+                handleNavClick('/banya');
+              }}
+            >
+              Баня
             </NavLink>
           </Navigation>
 
           <RightSection>
             <LanguageSelector className="language-selector">
               <LanguageButton
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
               >
-                <span>{currentLanguage.code.toUpperCase()}</span>
-                <span style={{ transform: isLanguageDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.15s ease', fontSize: '0.7rem' }}>
+                <span>{currentLanguage.code}</span>
+                <motion.span 
+                  animate={{ rotate: isLanguageDropdownOpen ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  style={{ fontSize: '0.6rem', lineHeight: 1 }}
+                >
                   ▼
-                </span>
+                </motion.span>
               </LanguageButton>
               
-              <LanguageDropdown $isOpen={isLanguageDropdownOpen}>
-                {languages.map((lang) => (
-                  <LanguageOption
-                    key={lang.code}
-                    $active={i18n.language === lang.code}
-                    onClick={() => changeLanguage(lang.code)}
-                  >
-                    {lang.name}
-                  </LanguageOption>
-                ))}
-              </LanguageDropdown>
+              {isLanguageDropdownOpen && (
+                <LanguageDropdown
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {languages.map((lang) => (
+                    <LanguageOption
+                      key={lang.code}
+                      $active={i18n.language === lang.code}
+                      whileHover={{ x: 2 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => changeLanguage(lang.code)}
+                    >
+                      {lang.name}
+                    </LanguageOption>
+                  ))}
+                </LanguageDropdown>
+              )}
             </LanguageSelector>
 
             <MobileMenuButton
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               <MenuLine $isOpen={isMobileMenuOpen} />
@@ -436,57 +541,83 @@ const Header = () => {
       </StyledHeader>
 
       {isMobileMenuOpen && (
-        <MobileMenu>
-          <CloseButton onClick={() => setIsMobileMenuOpen(false)}>
+        <MobileMenu
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <CloseButton
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
             ×
           </CloseButton>
           
           <MobileNavLink 
             to="/" 
             className={isActive('/') ? 'active' : ''}
-            onClick={() => setIsMobileMenuOpen(false)}
+            onClick={(e) => {
+              if (isNavigating) e.preventDefault();
+              handleNavClick('/');
+            }}
           >
-            {t('navigation.home')}
+            Главная
           </MobileNavLink>
           <MobileNavLink 
             to="/restaurant" 
             className={isActive('/restaurant') ? 'active' : ''}
-            onClick={() => setIsMobileMenuOpen(false)}
+            onClick={(e) => {
+              if (isNavigating) e.preventDefault();
+              handleNavClick('/restaurant');
+            }}
           >
-            {t('navigation.restaurant')}
+            Ресторан
           </MobileNavLink>
           <MobileNavLink 
             to="/spa" 
             className={isActive('/spa') ? 'active' : ''}
-            onClick={() => setIsMobileMenuOpen(false)}
+            onClick={(e) => {
+              if (isNavigating) e.preventDefault();
+              handleNavClick('/spa');
+            }}
           >
-            {t('navigation.spa')}
-          </MobileNavLink>
-          <MobileNavLink 
-            to="/beauty" 
-            className={isActive('/beauty') ? 'active' : ''}
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            {t('navigation.beauty')}
+            СПА
           </MobileNavLink>
           <MobileNavLink 
             to="/sports" 
             className={isActive('/sports') ? 'active' : ''}
-            onClick={() => setIsMobileMenuOpen(false)}
+            onClick={(e) => {
+              if (isNavigating) e.preventDefault();
+              handleNavClick('/sports');
+            }}
           >
-            {t('navigation.sports')}
+            Спорт
+          </MobileNavLink>
+          <MobileNavLink 
+            to="/banya" 
+            className={isActive('/banya') ? 'active' : ''}
+            onClick={(e) => {
+              if (isNavigating) e.preventDefault();
+              handleNavClick('/banya');
+            }}
+          >
+            Баня
           </MobileNavLink>
 
           <MobileLanguageSection>
-            <MobileLanguageTitle>{t('common.select_language')}</MobileLanguageTitle>
+            <MobileLanguageTitle>Язык</MobileLanguageTitle>
             <MobileLanguageGrid>
               {languages.map((lang) => (
                 <MobileLanguageButton
                   key={lang.code}
                   $active={i18n.language === lang.code}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => changeLanguage(lang.code)}
                 >
-                  {lang.code.toUpperCase()}
+                  {lang.code}
                 </MobileLanguageButton>
               ))}
             </MobileLanguageGrid>

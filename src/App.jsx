@@ -24,7 +24,7 @@ import HomePage from './pages/HomePage';
 import RestaurantPage from './pages/RestaurantPage';
 import SpaPage from './pages/SpaPage';
 import SportsPage from './pages/SportsPage';
-import BeautyPage from './pages/BeautyPage';
+import BanyaPage from './pages/BanyaPage';
 // Импорт AboutPageNew удален, так как компонент больше не используется
 import ContactsPage from './pages/ContactsPage';
 
@@ -33,13 +33,14 @@ const AnimatedRoutes = () => {
   const location = useLocation();
   
   return (
-    <Routes location={location} key={location.pathname}>
+    <Routes location={location}>
       <Route path="/" element={<HomePage />} />
       <Route path="/restaurant" element={<RestaurantPage />} />
       <Route path="/spa" element={<SpaPage />} />
       <Route path="/sports" element={<SportsPage />} />
-      <Route path="/beauty" element={<BeautyPage />} />
+      <Route path="/banya" element={<BanyaPage />} />
       <Route path="/contacts" element={<ContactsPage />} />
+      {/* Добавляем точные маршруты для предотвращения конфликтов */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

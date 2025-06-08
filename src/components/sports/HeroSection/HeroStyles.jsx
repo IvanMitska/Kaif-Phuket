@@ -25,10 +25,11 @@ export const HeroBackground = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
-    background-size: cover;
-    background-position: center;
-    filter: brightness(0.6);
+    background: linear-gradient(135deg, 
+      #1a1a1a 0%, 
+      #2d2d2d 50%, 
+      #1a1a1a 100%
+    );
   }
   
   &::after {
