@@ -118,27 +118,29 @@ const ContentContainer = styled.div`
   }
 `;
 
-// Улучшенный заголовок
+// Улучшенный заголовок - увеличенный и bold
 const MainTitle = styled(motion.h1)`
   font-family: 'KAIF', 'Inter', sans-serif;
-  font-size: clamp(2rem, 4vw, 2.8rem);
-  font-weight: 700;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 800;
   color: white;
-  margin: 1.5rem 0 1rem;
+  margin: 1.5rem 0 4rem;
   text-shadow: 
-    0 2px 8px rgba(0, 0, 0, 0.6),
-    0 4px 16px rgba(0, 0, 0, 0.3);
+    0 4px 20px rgba(0, 0, 0, 0.8),
+    0 8px 40px rgba(0, 0, 0, 0.4);
   letter-spacing: -0.02em;
   line-height: 1.1;
+  max-width: 1000px;
+  text-align: center;
   
   @media (max-width: 768px) {
-    margin: 1rem 0 0.75rem;
-    font-size: clamp(1.75rem, 6vw, 2.2rem);
+    margin: 1rem 0 3rem;
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
   }
   
   @media (max-width: 480px) {
-    font-size: clamp(1.5rem, 7vw, 1.9rem);
-    margin: 0.75rem 0 0.5rem;
+    font-size: clamp(2rem, 9vw, 2.8rem);
+    margin: 0.75rem 0 2.5rem;
   }
 `;
 
@@ -199,17 +201,17 @@ const LogoImage = styled(motion.img)`
 // Улучшенная группа кнопок с симметричным дизайном
 const ButtonGroup = styled.div`
   display: flex;
-  gap: 1.2rem;
+  gap: 2rem;
   justify-content: center;
   align-items: center;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   
   @media (max-width: 768px) {
     flex-direction: column;
     width: 100%;
-    max-width: 320px;
-    margin: 0.5rem auto 0;
-    gap: 0.8rem;
+    max-width: 400px;
+    margin: 1rem auto 0;
+    gap: 1rem;
   }
 `;
 
@@ -253,23 +255,40 @@ const BaseButton = styled(motion(Link))`
   }
 `;
 
-// Первичная кнопка
+// Первичная кнопка - "Записаться"
 const PrimaryButton = styled(BaseButton)`
-  background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
+  background: linear-gradient(135deg, #90B3A7 0%, #7da399 100%);
   color: white !important;
   border: none;
-  box-shadow: 
-    0 4px 16px rgba(144, 179, 167, 0.3),
-    0 8px 32px rgba(144, 179, 167, 0.15);
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 1.5rem 3.5rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(144, 179, 167, 0.3);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+  }
   
   &:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 
-      0 6px 24px rgba(144, 179, 167, 0.4),
-      0 12px 48px rgba(144, 179, 167, 0.2) !important;
-    background: linear-gradient(135deg, #A8C5B8 0%, #B8CFC2 100%) !important;
+    background: linear-gradient(135deg, #7da399 0%, #6a8e82 100%) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 12px 35px rgba(144, 179, 167, 0.4) !important;
     color: white !important;
     text-decoration: none !important;
+    
+    &::before {
+      left: 100%;
+    }
   }
   
   &:active {
@@ -278,30 +297,50 @@ const PrimaryButton = styled(BaseButton)`
   
   &:focus {
     outline: none !important;
-    box-shadow: 
-      0 0 0 3px rgba(144, 179, 167, 0.3),
-      0 4px 16px rgba(144, 179, 167, 0.3) !important;
+    box-shadow: 0 0 0 3px rgba(144, 179, 167, 0.3) !important;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 1.25rem 2.5rem;
+    font-size: 1rem;
   }
 `;
 
-// Вторичная кнопка
+// Вторичная кнопка - "Категории"
 const SecondaryButton = styled(BaseButton)`
-  background: rgba(255, 255, 255, 0.08);
+  background: transparent;
   color: white !important;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 
-    0 4px 16px rgba(0, 0, 0, 0.2),
-    0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 1.5rem 3.5rem;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
   
   &:hover {
-    background: rgba(255, 255, 255, 0.15) !important;
-    border-color: rgba(255, 255, 255, 0.3) !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 
-      0 6px 24px rgba(0, 0, 0, 0.25),
-      0 12px 48px rgba(0, 0, 0, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.8) !important;
     color: white !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1) !important;
     text-decoration: none !important;
+    
+    &::before {
+      transform: scaleX(1);
+    }
   }
   
   &:active {
@@ -310,9 +349,12 @@ const SecondaryButton = styled(BaseButton)`
   
   &:focus {
     outline: none !important;
-    box-shadow: 
-      0 0 0 3px rgba(255, 255, 255, 0.3),
-      0 4px 16px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3) !important;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 1.25rem 2.5rem;
+    font-size: 1rem;
   }
 `;
 
@@ -501,13 +543,7 @@ const HeroFullscreen = () => {
           Премиальный оздоровительный комплекс
         </MainTitle>
         
-        <Subtitle 
-          as={motion.p} 
-          initial={smoothAnimations.subtitle.initial}
-          animate={smoothAnimations.subtitle.animate}
-        >
-          Уникальное пространство для поддержания внутренней гармонии и внешней красоты на острове Пхукет
-        </Subtitle>
+
         
         <ButtonGroup
           as={motion.div}
@@ -515,34 +551,34 @@ const HeroFullscreen = () => {
           animate={smoothAnimations.buttons.animate}
         >
           <PrimaryButton 
-            to="/sports"
-            as={motion(Link)}
-            whileHover={{ 
-              scale: 1.03, 
-              y: -3,
-              transition: {
-                duration: 0.2,
-                ease: [0.22, 1, 0.36, 1]
-              }
-            }}
-            whileTap={{ scale: 0.97 }}
-          >
-            Категории
-          </PrimaryButton>
-          <SecondaryButton 
             to="/contacts"
             as={motion(Link)}
             whileHover={{ 
-              scale: 1.03, 
+              scale: 1.05, 
               y: -3,
               transition: {
                 duration: 0.2,
                 ease: [0.22, 1, 0.36, 1]
               }
             }}
-            whileTap={{ scale: 0.97 }}
+            whileTap={{ scale: 0.98 }}
           >
             Записаться
+          </PrimaryButton>
+          <SecondaryButton 
+            to="/sports"
+            as={motion(Link)}
+            whileHover={{ 
+              scale: 1.02, 
+              y: -3,
+              transition: {
+                duration: 0.2,
+                ease: [0.22, 1, 0.36, 1]
+              }
+            }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Категории
           </SecondaryButton>
         </ButtonGroup>
       </ContentContainer>
