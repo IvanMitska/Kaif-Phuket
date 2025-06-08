@@ -25,7 +25,7 @@ const StyledHeader = styled(motion.header)`
 
 const HeaderContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
   max-width: 1600px;
   margin: 0 auto;
@@ -37,6 +37,11 @@ const HeaderContainer = styled.div`
     padding: 0.5rem 1.25rem;
     min-height: 42px;
   }
+  
+  & > * {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 const LogoSection = styled(Link)`
@@ -45,6 +50,7 @@ const LogoSection = styled(Link)`
   text-decoration: none;
   z-index: 10;
   margin-left: 1.5rem;
+  height: 100%;
   
   @media (max-width: 768px) {
     margin-left: 0.5rem;
@@ -134,10 +140,12 @@ const NavLink = styled(Link)`
 const RightSection = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   z-index: 10;
   height: 100%;
   margin-right: 0.5rem;
+  position: relative;
   
   @media (max-width: 768px) {
     margin-right: 0;
@@ -174,6 +182,7 @@ const LanguageButton = styled(motion.button)`
   justify-content: center;
   height: 34px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin: auto 0;
   
   &:hover {
     background: rgba(255, 255, 255, 0.9);
