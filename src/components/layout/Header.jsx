@@ -361,7 +361,8 @@ const MobileMenuContent = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 2rem 0;
+  padding: 2rem 0 0 0;
+  position: relative;
 `;
 
 // Навигационная секция
@@ -371,7 +372,8 @@ const MobileNavSection = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 0 1.5rem;
-  gap: 0.5rem;
+  gap: 1rem;
+  padding-bottom: 120px; /* Освобождаем место для фиксированных кнопок языков */
 `;
 
 const MobileNavLink = styled(motion(Link))`
@@ -382,7 +384,7 @@ const MobileNavLink = styled(motion(Link))`
   text-transform: uppercase;
   letter-spacing: 0.05em;
   transition: all 0.3s ease-out;
-  padding: 1rem 0;
+  padding: 1.25rem 0;
   border-radius: 0;
   display: flex;
   align-items: center;
@@ -427,7 +429,13 @@ const MenuDivider = styled.div`
 `;
 
 const MobileLanguageSection = styled(motion.div)`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   padding: 1.5rem 1.5rem 2rem 1.5rem;
+  background: #ffffff;
+  border-top: 1px solid #f3f4f6;
 `;
 
 const MobileLanguageTitle = styled.h3`
@@ -441,34 +449,50 @@ const MobileLanguageTitle = styled.h3`
 
 const MobileLanguageGrid = styled.div`
   display: flex;
-  gap: 0.75rem;
+  gap: 1rem;
   justify-content: center;
   align-items: center;
 `;
 
 const MobileLanguageButton = styled(motion.button)`
-  padding: 0.65rem 1.2rem;
-  background: ${({ $active }) => $active ? '#90B3A7' : 'transparent'};
+  padding: 0.75rem 1.4rem;
+  background: transparent;
   border: 2px solid ${({ $active }) => $active ? '#90B3A7' : '#e5e7eb'};
-  border-radius: 8px;
-  color: ${({ $active }) => $active ? 'white' : '#6b7280'};
-  font-size: 0.875rem;
-  font-weight: ${({ $active }) => $active ? '700' : '600'};
+  border-radius: 10px;
+  color: ${({ $active }) => $active ? '#90B3A7' : '#6b7280'};
+  font-size: 0.9rem;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease-out;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  min-width: 56px;
+  letter-spacing: 0.08em;
+  min-width: 64px;
+  position: relative;
+  
+  ${({ $active }) => $active && `
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 3px;
+      background: #90B3A7;
+      border-radius: 2px;
+    }
+  `}
   
   &:hover {
     border-color: #90B3A7;
-    color: ${({ $active }) => $active ? 'white' : '#90B3A7'};
-    background: ${({ $active }) => $active ? '#7da399' : '#f9fafb'};
-    transform: translateY(-1px);
+    color: #90B3A7;
+    background: rgba(144, 179, 167, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(144, 179, 167, 0.2);
   }
   
   &:active {
-    transform: translateY(0);
+    transform: translateY(-1px);
   }
 `;
 
@@ -744,8 +768,6 @@ const Header = () => {
                   Баня
                 </MobileNavLink>
               </MobileNavSection>
-              
-              <MenuDivider />
               
               <MobileLanguageSection
                 initial={{ opacity: 0, y: 20 }}
