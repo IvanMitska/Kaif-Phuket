@@ -94,11 +94,13 @@ const ContentContainer = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  width: 100%;
   
   @media (max-width: 768px) {
     padding: 2rem 1.5rem;
     min-height: 100vh;
     max-width: 95%;
+    margin: 0 auto;
   }
   
   @media (max-width: 480px) {
@@ -109,8 +111,10 @@ const ContentContainer = styled.div`
       rgba(0, 0, 0, 0.04) 50%, 
       rgba(0, 0, 0, 0.08) 100%);
     border-radius: 32px;
-    margin: 1.5rem 1rem;
+    margin: 1.5rem auto;
     min-height: calc(100vh - 3rem);
+    max-width: calc(100% - 2rem);
+    width: calc(100% - 2rem);
   }
 `;
 
@@ -163,6 +167,32 @@ const Subtitle = styled(motion.p)`
     font-size: clamp(0.9rem, 4vw, 1rem);
     margin-bottom: 2rem;
     line-height: 1.5;
+  }
+`;
+
+// Стилизованный логотип для правильного центрирования
+const LogoImage = styled(motion.img)`
+  max-width: 450px;
+  height: auto;
+  margin: 0 auto 1rem;
+  display: block;
+  filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.8));
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  
+  @media (max-width: 480px) {
+    max-width: 350px;
+    margin: 0 auto 0.75rem;
+  }
+  
+  @media (max-width: 768px) {
+    max-width: 380px;
+    margin: 0 auto 0.85rem;
+  }
+  
+  @media (min-width: 1024px) {
+    max-width: 500px;
+    margin: 0 auto 1.2rem;
   }
 `;
 
@@ -464,7 +494,7 @@ const HeroFullscreen = () => {
         initial="hidden"
         animate="visible"
       >
-        <motion.img 
+        <LogoImage 
           src={homepageLogo} 
           alt="KAIF Logo" 
           initial={modernAnimations.logo.initial}
@@ -479,28 +509,6 @@ const HeroFullscreen = () => {
               damping: 20 
             }
           }}
-          style={{
-            maxWidth: '450px',
-            height: 'auto',
-            margin: '0 auto 1rem',
-            filter: 'drop-shadow(0 8px 25px rgba(0, 0, 0, 0.8))',
-            transformStyle: 'preserve-3d',
-            backfaceVisibility: 'hidden'
-          }}
-          css={`
-            @media (max-width: 480px) {
-              max-width: 350px;
-              margin-bottom: 0.75rem;
-            }
-            
-            @media (max-width: 768px) {
-              max-width: 380px;
-            }
-            
-            @media (min-width: 1024px) {
-              max-width: 500px;
-            }
-          `}
         />
         
         <MainTitle 
