@@ -317,26 +317,20 @@ const SecondaryButton = styled(BaseButton)`
 `;
 
 // Анимации для мобильных устройств
-const modernAnimations = {
+const smoothAnimations = {
   logo: {
     initial: { 
-      scale: 0.6, 
+      scale: 0.8, 
       opacity: 0, 
-      y: 60,
-      rotateY: -20,
-      rotateX: 10 
+      y: 30
     },
     animate: { 
       scale: 1, 
       opacity: 1, 
       y: 0,
-      rotateY: 0,
-      rotateX: 0,
       transition: {
-        type: "spring",
-        stiffness: 80,
-        damping: 15,
-        mass: 1,
+        duration: 1.2,
+        ease: [0.22, 1, 0.36, 1],
         delay: 0.1
       }
     }
@@ -344,19 +338,16 @@ const modernAnimations = {
   title: {
     initial: { 
       opacity: 0, 
-      y: 50,
-      scale: 0.9,
-      filter: "blur(8px)"
+      y: 40,
+      scale: 0.95
     },
     animate: { 
       opacity: 1, 
       y: 0,
       scale: 1,
-      filter: "blur(0px)",
       transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 20,
+        duration: 1,
+        ease: [0.22, 1, 0.36, 1],
         delay: 0.4
       }
     }
@@ -364,19 +355,16 @@ const modernAnimations = {
   subtitle: {
     initial: { 
       opacity: 0, 
-      y: 40,
-      scale: 0.95,
-      filter: "blur(4px)"
+      y: 30,
+      scale: 0.96
     },
     animate: { 
       opacity: 1, 
       y: 0,
       scale: 1,
-      filter: "blur(0px)",
       transition: {
-        type: "spring",
-        stiffness: 120,
-        damping: 25,
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1],
         delay: 0.7
       }
     }
@@ -384,19 +372,16 @@ const modernAnimations = {
   buttons: {
     initial: { 
       opacity: 0, 
-      y: 60,
-      scale: 0.8,
-      filter: "blur(6px)"
+      y: 40,
+      scale: 0.9
     },
     animate: { 
       opacity: 1, 
       y: 0,
       scale: 1,
-      filter: "blur(0px)",
       transition: {
-        type: "spring",
-        stiffness: 150,
-        damping: 30,
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1],
         delay: 1
       }
     }
@@ -497,57 +482,50 @@ const HeroFullscreen = () => {
         <LogoImage 
           src={homepageLogo} 
           alt="KAIF Logo" 
-          initial={modernAnimations.logo.initial}
-          animate={modernAnimations.logo.animate}
+          initial={smoothAnimations.logo.initial}
+          animate={smoothAnimations.logo.animate}
           whileHover={{ 
-            scale: 1.08, 
-            rotateY: 8,
-            rotateX: 3,
+            scale: 1.05,
             transition: { 
-              type: "spring",
-              stiffness: 200,
-              damping: 20 
+              duration: 0.3,
+              ease: [0.22, 1, 0.36, 1]
             }
           }}
         />
         
         <MainTitle 
           as={motion.h1} 
-          initial={modernAnimations.title.initial}
-          animate={modernAnimations.title.animate}
+          initial={smoothAnimations.title.initial}
+          animate={smoothAnimations.title.animate}
         >
           Премиальный оздоровительный комплекс
         </MainTitle>
         
         <Subtitle 
           as={motion.p} 
-          initial={modernAnimations.subtitle.initial}
-          animate={modernAnimations.subtitle.animate}
+          initial={smoothAnimations.subtitle.initial}
+          animate={smoothAnimations.subtitle.animate}
         >
           Уникальное пространство для поддержания внутренней гармонии и внешней красоты на острове Пхукет
         </Subtitle>
         
         <ButtonGroup
           as={motion.div}
-          initial={modernAnimations.buttons.initial}
-          animate={modernAnimations.buttons.animate}
+          initial={smoothAnimations.buttons.initial}
+          animate={smoothAnimations.buttons.animate}
         >
           <PrimaryButton 
             to="/sports"
             as={motion(Link)}
             whileHover={{ 
-              scale: 1.08, 
-              y: -8,
-              rotateY: 5,
-              boxShadow: "0 20px 50px rgba(144, 179, 167, 0.7)"
+              scale: 1.03, 
+              y: -3,
+              transition: {
+                duration: 0.2,
+                ease: [0.22, 1, 0.36, 1]
+              }
             }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ 
-              type: "spring", 
-              stiffness: 400, 
-              damping: 25,
-              mass: 0.8 
-            }}
+            whileTap={{ scale: 0.97 }}
           >
             Категории
           </PrimaryButton>
@@ -555,18 +533,14 @@ const HeroFullscreen = () => {
             to="/contacts"
             as={motion(Link)}
             whileHover={{ 
-              scale: 1.08, 
-              y: -8,
-              rotateY: -5,
-              boxShadow: "0 20px 50px rgba(255, 255, 255, 0.5)"
+              scale: 1.03, 
+              y: -3,
+              transition: {
+                duration: 0.2,
+                ease: [0.22, 1, 0.36, 1]
+              }
             }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ 
-              type: "spring", 
-              stiffness: 400, 
-              damping: 25,
-              mass: 0.8 
-            }}
+            whileTap={{ scale: 0.97 }}
           >
             Записаться
           </SecondaryButton>
