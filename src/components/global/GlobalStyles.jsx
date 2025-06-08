@@ -76,9 +76,9 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    /* Оптимизация для плавной прокрутки */
+    /* Оптимизация для плавной прокрутки БЕЗ snap behavior */
     -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
   
   /* Дополнительные оптимизации для мобильных устройств */
@@ -97,6 +97,19 @@ const GlobalStyles = createGlobalStyle`
       -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
     }
+  }
+  
+  /* Отключение автоматической фиксации при прокрутке */
+  html, body {
+    scroll-snap-type: none !important;
+    scroll-snap-align: none !important;
+    scroll-snap-stop: normal !important;
+  }
+  
+  /* Предотвращение рывков в секциях */
+  section, div, main {
+    scroll-snap-align: none !important;
+    scroll-snap-type: none !important;
   }
   
   /* Типография */

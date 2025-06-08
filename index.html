@@ -33,9 +33,9 @@
         overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        /* Улучшения для плавной прокрутки */
+        /* Улучшения для плавной прокрутки БЕЗ snap behavior */
         -webkit-overflow-scrolling: touch;
-        scroll-behavior: smooth;
+        scroll-behavior: auto;
       }
       
       #root {
@@ -49,7 +49,7 @@
       
       /* Убираем проблемы с рывками при скролле */
       html {
-        scroll-behavior: smooth;
+        scroll-behavior: auto;
       }
       
       /* Оптимизация для мобильных устройств */

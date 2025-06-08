@@ -27,7 +27,7 @@ const SectionContainer = styled(motion.section)`
   padding: 6rem 0;
   background: linear-gradient(135deg, #fafafa 0%, #ffffff 50%, #f8fffe 100%);
   overflow: hidden;
-  min-height: 100vh;
+  min-height: auto;
   /* Оптимизация производительности */
   will-change: auto;
   transform: translateZ(0);

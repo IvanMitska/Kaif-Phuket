@@ -26,7 +26,7 @@ const slideImages = [
 const HeroContainer = styled.section`
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -93,7 +93,7 @@ const ContentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 95vh;
   width: 100%;
   
   @media (max-width: 768px) {
@@ -102,24 +102,26 @@ const ContentContainer = styled.div`
     /* Сдвигаем контент немного выше для лучшей видимости кнопок */
     justify-content: flex-start;
     padding-top: 15vh;
+    min-height: 90vh;
   }
   
   @media (max-width: 480px) {
     padding: 1.5rem 1rem;
     max-width: 95%;
     padding-top: 12vh;
+    min-height: 85vh;
   }
   
   /* Специально для iPhone */
   @media (max-width: 414px) and (max-height: 896px) {
     padding-top: 10vh;
-    min-height: 90vh;
+    min-height: 80vh;
   }
   
   /* Для маленьких iPhone */
   @media (max-width: 375px) and (max-height: 812px) {
     padding-top: 8vh;
-    min-height: 85vh;
+    min-height: 75vh;
   }
 `;
 
