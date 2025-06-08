@@ -161,11 +161,15 @@ const MainTitle = styled(motion.h1)`
   @media (max-width: 768px) {
     margin: 0 0 3.5rem;
     font-size: clamp(1.2rem, 4vw, 1.6rem);
+    /* Приподнимаем текст на планшетах */
+    transform: translateY(-1rem);
   }
   
   @media (max-width: 480px) {
     margin: 0 0 3rem;
     letter-spacing: 0.03em;
+    /* Приподнимаем текст на мобильных */
+    transform: translateY(-1.5rem);
   }
 `;
 
@@ -242,32 +246,34 @@ const PrimaryButton = styled(motion(Link))`
   }
 `;
 
-// Вторичная кнопка - элегантная и тонкая
+// Вторичная кнопка - улучшенная видимость
 const SecondaryButton = styled(motion(Link))`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 1.2rem 3rem;
   font-size: 0.9rem;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.1em;
   text-decoration: none;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.8);
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 12px;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease-out;
   position: relative;
   min-width: 220px;
   margin-top: 1.2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   
   &:hover {
     color: rgba(255, 255, 255, 1);
-    border-color: rgba(255, 255, 255, 0.6);
-    background: rgba(255, 255, 255, 0.08);
-    transform: translateY(-1px);
-    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
     text-decoration: none;
   }
   
@@ -288,6 +294,10 @@ const SecondaryButton = styled(motion(Link))`
     width: 100%;
     max-width: 300px;
     margin-top: 1rem;
+    /* Улучшенная видимость на мобильных */
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
   }
 `;
 
@@ -311,7 +321,7 @@ const ButtonContainer = styled.div`
     gap: 0.8rem;
     /* Поднимаем кнопки выше для видимости на iPhone */
     position: relative;
-    bottom: 2rem;
+    bottom: 3rem;
   }
   
   /* Для iPhone в портретной ориентации */
