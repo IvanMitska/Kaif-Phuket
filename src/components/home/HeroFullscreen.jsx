@@ -130,7 +130,7 @@ const ContentContainer = styled.div`
 
 // Увеличенный логотип с лучшим контрастом
 const LogoImage = styled(motion.img)`
-  max-width: 480px;
+  max-width: 520px;
   height: auto;
   margin: 0 auto 3rem;
   display: block;
@@ -139,13 +139,18 @@ const LogoImage = styled(motion.img)`
     drop-shadow(0 10px 30px rgba(0, 0, 0, 0.7));
   
   @media (max-width: 768px) {
-    max-width: 380px;
+    max-width: 450px;
     margin: 0 auto 2.5rem;
   }
   
   @media (max-width: 480px) {
-    max-width: 340px;
+    max-width: 420px;
     margin: 0 auto 2rem;
+  }
+  
+  /* Для маленьких экранов но все еще достаточно большой */
+  @media (max-width: 375px) {
+    max-width: 380px;
   }
 `;
 
