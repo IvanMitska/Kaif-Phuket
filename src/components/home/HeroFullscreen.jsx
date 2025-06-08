@@ -287,23 +287,47 @@ const SecondaryButton = styled(BaseButton)`
 `;
 
 // Анимации для мобильных устройств
-const mobileAnimations = {
+const modernAnimations = {
   logo: {
     initial: { 
-      scale: 0.8, 
+      scale: 0.6, 
       opacity: 0, 
-      y: 30,
-      rotateY: -15 
+      y: 60,
+      rotateY: -20,
+      rotateX: 10 
     },
     animate: { 
       scale: 1, 
       opacity: 1, 
       y: 0,
       rotateY: 0,
+      rotateX: 0,
       transition: {
-        duration: 1.2,
-        ease: [0.25, 0.46, 0.45, 0.94],
-        delay: 0.2
+        type: "spring",
+        stiffness: 80,
+        damping: 15,
+        mass: 1,
+        delay: 0.1
+      }
+    }
+  },
+  title: {
+    initial: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.9,
+      filter: "blur(8px)"
+    },
+    animate: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      filter: "blur(0px)",
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+        delay: 0.4
       }
     }
   },
@@ -311,32 +335,38 @@ const mobileAnimations = {
     initial: { 
       opacity: 0, 
       y: 40,
-      scale: 0.95
+      scale: 0.95,
+      filter: "blur(4px)"
     },
     animate: { 
       opacity: 1, 
       y: 0,
       scale: 1,
+      filter: "blur(0px)",
       transition: {
-        duration: 1,
-        ease: [0.25, 0.46, 0.45, 0.94],
-        delay: 0.6
+        type: "spring",
+        stiffness: 120,
+        damping: 25,
+        delay: 0.7
       }
     }
   },
   buttons: {
     initial: { 
       opacity: 0, 
-      y: 50,
-      scale: 0.9
+      y: 60,
+      scale: 0.8,
+      filter: "blur(6px)"
     },
     animate: { 
       opacity: 1, 
       y: 0,
       scale: 1,
+      filter: "blur(0px)",
       transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        type: "spring",
+        stiffness: 150,
+        damping: 30,
         delay: 1
       }
     }
@@ -437,58 +467,79 @@ const HeroFullscreen = () => {
         <motion.img 
           src={homepageLogo} 
           alt="KAIF Logo" 
-          initial={mobileAnimations.logo.initial}
-          animate={mobileAnimations.logo.animate}
+          initial={modernAnimations.logo.initial}
+          animate={modernAnimations.logo.animate}
           whileHover={{ 
-            scale: 1.05, 
-            rotateY: 5,
-            transition: { duration: 0.3 }
+            scale: 1.08, 
+            rotateY: 8,
+            rotateX: 3,
+            transition: { 
+              type: "spring",
+              stiffness: 200,
+              damping: 20 
+            }
           }}
           style={{
-            maxWidth: '320px',
+            maxWidth: '450px',
             height: 'auto',
-            margin: '0 auto 0.6rem',
-            filter: 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7))'
+            margin: '0 auto 1rem',
+            filter: 'drop-shadow(0 8px 25px rgba(0, 0, 0, 0.8))',
+            transformStyle: 'preserve-3d',
+            backfaceVisibility: 'hidden'
           }}
           css={`
             @media (max-width: 480px) {
-              max-width: 280px;
-              margin-bottom: 0.5rem;
+              max-width: 350px;
+              margin-bottom: 0.75rem;
             }
             
             @media (max-width: 768px) {
-              max-width: 300px;
+              max-width: 380px;
+            }
+            
+            @media (min-width: 1024px) {
+              max-width: 500px;
             }
           `}
         />
         
-        <MainTitle as={motion.h1} variants={itemVariants}>
+        <MainTitle 
+          as={motion.h1} 
+          initial={modernAnimations.title.initial}
+          animate={modernAnimations.title.animate}
+        >
           Премиальный оздоровительный комплекс
         </MainTitle>
         
         <Subtitle 
           as={motion.p} 
-          initial={mobileAnimations.subtitle.initial}
-          animate={mobileAnimations.subtitle.animate}
+          initial={modernAnimations.subtitle.initial}
+          animate={modernAnimations.subtitle.animate}
         >
           Уникальное пространство для поддержания внутренней гармонии и внешней красоты на острове Пхукет
         </Subtitle>
         
         <ButtonGroup
           as={motion.div}
-          initial={mobileAnimations.buttons.initial}
-          animate={mobileAnimations.buttons.animate}
+          initial={modernAnimations.buttons.initial}
+          animate={modernAnimations.buttons.animate}
         >
           <PrimaryButton 
             to="/sports"
             as={motion(Link)}
             whileHover={{ 
-              scale: 1.05, 
-              y: -5,
-              boxShadow: "0 15px 40px rgba(144, 179, 167, 0.6)"
+              scale: 1.08, 
+              y: -8,
+              rotateY: 5,
+              boxShadow: "0 20px 50px rgba(144, 179, 167, 0.7)"
             }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 400, 
+              damping: 25,
+              mass: 0.8 
+            }}
           >
             Категории
           </PrimaryButton>
@@ -496,12 +547,18 @@ const HeroFullscreen = () => {
             to="/contacts"
             as={motion(Link)}
             whileHover={{ 
-              scale: 1.05, 
-              y: -5,
-              boxShadow: "0 15px 40px rgba(255, 255, 255, 0.4)"
+              scale: 1.08, 
+              y: -8,
+              rotateY: -5,
+              boxShadow: "0 20px 50px rgba(255, 255, 255, 0.5)"
             }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 400, 
+              damping: 25,
+              mass: 0.8 
+            }}
           >
             Записаться
           </SecondaryButton>
