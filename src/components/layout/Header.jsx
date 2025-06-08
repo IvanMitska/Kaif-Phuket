@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Импортируем логотип
 import headerLogo from '../../assets/images/logos/new-hero-logo.png';
@@ -677,16 +677,17 @@ const Header = () => {
         </HeaderContainer>
       </StyledHeader>
 
-      {isMobileMenuOpen && (
-        <>
-          <MobileMenuBackdrop
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            onClick={() => setIsMobileMenuOpen(false)}
-          />
-          <MobileMenu
+      <AnimatePresence mode="wait">
+        {isMobileMenuOpen && (
+          <>
+            <MobileMenuBackdrop
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
+            <MobileMenu
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{
@@ -849,8 +850,9 @@ const Header = () => {
               </MobileLanguageSection>
             </MobileMenuContent>
           </MobileMenu>
-        </>
-      )}
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 };
