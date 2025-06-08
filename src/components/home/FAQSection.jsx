@@ -21,16 +21,16 @@ import {
 
 const FAQContainer = styled.section`
   position: relative;
-  padding: 4rem 0;
+  padding: 3rem 0;
   background: linear-gradient(135deg, rgba(144, 179, 167, 0.05) 0%, rgba(168, 197, 184, 0.03) 100%); /* Легкий градиент в зеленых тонах */
   overflow: hidden;
   
   @media (max-width: 768px) {
-    padding: 3rem 0;
+    padding: 1.5rem 0;
   }
   
   @media (max-width: 480px) {
-    padding: 2rem 0;
+    padding: 1rem 0;
   }
 `;
 
@@ -47,14 +47,14 @@ const ContentWrapper = styled.div`
 
 const SectionHeader = styled(motion.div)`
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   
   @media (max-width: 768px) {
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
   }
   
   @media (max-width: 480px) {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 `;
 

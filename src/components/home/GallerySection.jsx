@@ -7,16 +7,16 @@ import { XMarkIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/2
 // Основной контейнер
 const SectionContainer = styled.section`
   position: relative;
-  padding: 6rem 0;
+  padding: 5rem 0;
   background: linear-gradient(135deg, #fafafa 0%, #ffffff 50%, #f8fffe 100%);
   overflow: hidden;
   
   @media (max-width: 768px) {
-    padding: 3rem 0;
+    padding: 2rem 0;
   }
   
   @media (max-width: 480px) {
-    padding: 2rem 0;
+    padding: 1.5rem 0;
   }
   
   &::before {
@@ -49,14 +49,14 @@ const ContentWrapper = styled.div`
 // Заголовок секции
 const SectionHeader = styled.div`
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   
   @media (max-width: 768px) {
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
   }
   
   @media (max-width: 480px) {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -132,19 +132,19 @@ const SectionSubtitle = styled(motion.p)`
   font-size: 1.25rem;
   color: #5A6B5D;
   max-width: 800px;
-  margin: 0 auto 3rem;
+  margin: 0 auto 2.5rem;
   line-height: 1.8;
   font-weight: 400;
   opacity: 0.9;
   
   @media (max-width: 768px) {
     font-size: 1.125rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
   
   @media (max-width: 480px) {
     font-size: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     line-height: 1.6;
   }
 `;
@@ -155,16 +155,16 @@ const FilterBar = styled(motion.div)`
   justify-content: center;
   flex-wrap: wrap;
   gap: 1.5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
   
   @media (max-width: 768px) {
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
   
   @media (max-width: 480px) {
     gap: 0.75rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -476,15 +476,15 @@ const SliderDots = styled.div`
   display: flex;
   justify-content: center;
   gap: 16px;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   
   @media (max-width: 768px) {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     gap: 12px;
   }
   
   @media (max-width: 480px) {
-    margin-top: 1rem;
+    margin-top: 0.75rem;
     gap: 10px;
   }
 `;

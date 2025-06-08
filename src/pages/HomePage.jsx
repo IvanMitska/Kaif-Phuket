@@ -12,6 +12,22 @@ import AdvantagesSection from '../components/home/AdvantagesSection';
 import GallerySection from '../components/home/GallerySection';
 import FAQSection from '../components/home/FAQSection';
 
+// Контейнер для кнопки контактов
+const ContactButtonContainer = styled(motion.div)`
+  display: flex;
+  justify-content: center;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, rgba(144, 179, 167, 0.05) 0%, rgba(168, 197, 184, 0.03) 100%);
+  
+  @media (max-width: 768px) {
+    padding: 20px 20px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 15px 20px;
+  }
+`;
+
 // Стилизованная кнопка в стиле hero кнопок
 const ContactButton = styled(motion(Link))`
   display: inline-flex;
@@ -167,13 +183,7 @@ const HomePage = () => {
       <FAQSection />
       
       {/* Кнопка для перехода на страницу контактов */}
-      <motion.div 
-        style={{
-          display: 'flex', 
-          justifyContent: 'center', 
-          padding: '40px 20px', 
-          background: 'linear-gradient(135deg, rgba(144, 179, 167, 0.05) 0%, rgba(168, 197, 184, 0.03) 100%)'
-        }}
+      <ContactButtonContainer
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -194,7 +204,7 @@ const HomePage = () => {
             <path d="M12 5l7 7-7 7"></path>
           </svg>
         </ContactButton>
-      </motion.div>
+      </ContactButtonContainer>
     </motion.main>
   );
 };
