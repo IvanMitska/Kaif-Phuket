@@ -29,13 +29,13 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   max-width: 1600px;
   margin: 0 auto;
-  padding: 0.4rem 2rem;
+  padding: 0.6rem 2rem;
   position: relative;
-  min-height: 32px;
+  min-height: 48px;
   
   @media (max-width: 768px) {
-    padding: 0.35rem 1.25rem;
-    min-height: 28px;
+    padding: 0.5rem 1.25rem;
+    min-height: 42px;
   }
 `;
 
@@ -147,6 +147,9 @@ const RightSection = styled.div`
 // Элегантный языковой селектор без стрелки
 const LanguageSelector = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
   
   @media (max-width: 768px) {
     display: none;
