@@ -98,6 +98,8 @@ const ContentContainer = styled.div`
   justify-content: center;
   height: 100%;
   width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   
   @media (max-width: 768px) {
     padding: 2rem 1.5rem;
@@ -131,6 +133,7 @@ const ContentContainer = styled.div`
 // Увеличенный логотип с лучшим контрастом
 const LogoImage = styled(motion.img)`
   max-width: 520px;
+  width: auto;
   height: auto;
   margin: 0 auto 3rem;
   display: block;
