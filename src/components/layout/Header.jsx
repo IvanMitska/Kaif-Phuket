@@ -52,12 +52,16 @@ const LogoSection = styled(Link)`
 
 const Logo = styled.img`
   height: auto;
-  max-height: 100%;
+  max-height: 40px;
   width: auto;
   transition: all 0.3s ease;
   
   &:hover {
     transform: scale(1.02);
+  }
+  
+  @media (max-width: 768px) {
+    max-height: 35px;
   }
 `;
 
