@@ -327,52 +327,50 @@ const ButtonContainer = styled.div`
   }
 `;
 
-// Улучшенные анимации
+// Оптимизированные анимации для быстрой загрузки
 const animations = {
   logo: {
     initial: { 
-      scale: 0.85, 
-      opacity: 0,
-      y: 30
+      scale: 0.95, 
+      opacity: 0
     },
     animate: { 
       scale: 1, 
-      opacity: 1, 
-      y: 0,
+      opacity: 1,
       transition: {
-        duration: 1.4,
-        ease: [0.25, 0.46, 0.45, 0.94],
-        delay: 0.6
+        duration: 0.8,
+        ease: "easeOut",
+        delay: 0.2
       }
     }
   },
   title: {
     initial: { 
       opacity: 0, 
-      y: 25
+      y: 15
     },
     animate: { 
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 1.1,
-        ease: [0.25, 0.46, 0.45, 0.94],
-        delay: 1.3
+        duration: 0.6,
+        ease: "easeOut",
+        delay: 0.6
       }
     }
   },
   buttons: {
     initial: { 
       opacity: 0, 
-      y: 25
+      y: 15
     },
     animate: { 
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 0.9,
-        ease: [0.25, 0.46, 0.45, 0.94],
-        delay: 1.9
+        duration: 0.5,
+        ease: "easeOut",
+        delay: 1.0
       }
     }
   }
@@ -426,10 +424,10 @@ const HeroFullscreen = () => {
           initial={animations.logo.initial}
           animate={animations.logo.animate}
           whileHover={{ 
-            scale: 1.03,
+            scale: 1.02,
             transition: { 
-              duration: 0.3,
-              ease: [0.25, 0.46, 0.45, 0.94]
+              duration: 0.2,
+              ease: "easeOut"
             }
           }}
         />
@@ -450,13 +448,13 @@ const HeroFullscreen = () => {
           <PrimaryButton 
             to="/contacts"
             whileHover={{ 
-              scale: 1.03,
+              scale: 1.02,
               transition: {
-                duration: 0.2,
-                ease: [0.25, 0.46, 0.45, 0.94]
+                duration: 0.15,
+                ease: "easeOut"
               }
             }}
-            whileTap={{ scale: 0.97 }}
+            whileTap={{ scale: 0.98 }}
           >
             Записаться
           </PrimaryButton>
@@ -464,13 +462,13 @@ const HeroFullscreen = () => {
           <SecondaryButton 
             to="/sports"
             whileHover={{ 
-              scale: 1.02,
+              scale: 1.01,
               transition: {
-                duration: 0.2,
-                ease: [0.25, 0.46, 0.45, 0.94]
+                duration: 0.15,
+                ease: "easeOut"
               }
             }}
-            whileTap={{ scale: 0.98 }}
+            whileTap={{ scale: 0.99 }}
           >
             Узнать больше
           </SecondaryButton>
