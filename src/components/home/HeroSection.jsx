@@ -31,7 +31,7 @@ const BackgroundVideo = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 100%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.7) 100%);
   }
   
   img {
@@ -58,11 +58,14 @@ const ContentWrapper = styled.div`
 
 // Верхняя часть с основным заголовком
 const HeroHeader = styled.div`
-  margin-bottom: 5rem;
-  max-width: 800px;
+  margin-bottom: 6rem;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   
   @media (max-width: 768px) {
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
   }
 `;
 
@@ -104,70 +107,128 @@ const MainTitle = styled(motion.h1)`
   }
 `;
 
-// Подзаголовок
+// Подзаголовок - теперь главный заголовок
 const Subtitle = styled(motion.h2)`
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
-  font-weight: 300;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
   color: white;
-  margin: 0 0 2rem;
-  max-width: 650px;
-`;
-
-// Описание
-const Description = styled(motion.p)`
-  font-size: clamp(1rem, 1.5vw, 1.1rem);
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 3rem;
-  max-width: 550px;
+  margin: 0 0 4rem;
+  max-width: 900px;
+  line-height: 1.1;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+  
+  @media (max-width: 768px) {
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+  }
 `;
 
 // Контейнер для кнопок
 const ButtonContainer = styled(motion.div)`
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
+  margin-top: 1rem;
+  
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+  }
   
   @media (max-width: 576px) {
     flex-direction: column;
     gap: 1rem;
+    width: 100%;
+    max-width: 400px;
   }
 `;
 
-// Основная кнопка
-const PrimaryButton = styled(Link)`
-  padding: 1.25rem 3rem;
-  background: white;
-  color: black;
-  font-weight: 600;
-  font-size: 1rem;
+// Основная кнопка - Записаться
+const PrimaryButton = styled(motion(Link))`
+  padding: 1.5rem 3.5rem;
+  background: linear-gradient(135deg, #90B3A7 0%, #7da399 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
   letter-spacing: 1px;
   text-transform: uppercase;
   text-decoration: none;
   border: none;
+  border-radius: 8px;
+  cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(144, 179, 167, 0.3);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+  }
   
   &:hover {
-    background: rgba(255, 255, 255, 0.9);
-    transform: translateY(-5px);
+    background: linear-gradient(135deg, #7da399 0%, #6a8e82 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(144, 179, 167, 0.4);
+    
+    &::before {
+      left: 100%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    padding: 1.25rem 2.5rem;
+    font-size: 1rem;
   }
 `;
 
-// Вторичная кнопка
-const SecondaryButton = styled.button`
-  padding: 1.25rem 3rem;
+// Вторичная кнопка - Категории
+const SecondaryButton = styled(motion.button)`
+  padding: 1.5rem 3.5rem;
   background: transparent;
   color: white;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.1rem;
   letter-spacing: 1px;
   text-transform: uppercase;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
   
   &:hover {
-    border-color: white;
-    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.8);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+    
+    &::before {
+      transform: scaleX(1);
+    }
+  }
+  
+  @media (max-width: 576px) {
+    padding: 1.25rem 2.5rem;
+    font-size: 1rem;
   }
 `;
 
@@ -464,33 +525,31 @@ const HeroSection = () => {
           </MainTitle>
           
           <Subtitle
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            Многофункциональный комплекс
+            Премиальный оздоровительный комплекс
           </Subtitle>
-          
-          <Description
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            Современное пространство, объединяющее фитнес, релаксацию, 
-            гастрономию и красоту в одном месте
-          </Description>
           
           <ButtonContainer
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
-            <PrimaryButton to="/spa">
-              ЗАБРОНИРОВАТЬ
+            <PrimaryButton 
+              to="/contacts"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Записаться
             </PrimaryButton>
             
-            <SecondaryButton>
-              ВИРТУАЛЬНЫЙ ТУР
+            <SecondaryButton
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Категории
             </SecondaryButton>
           </ButtonContainer>
         </HeroHeader>
