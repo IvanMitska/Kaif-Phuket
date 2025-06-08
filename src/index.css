@@ -48,16 +48,32 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  /* Отключаем scroll-snap для всех элементов */
+  scroll-snap-type: none !important;
+  scroll-snap-align: none !important;
+  scroll-snap-stop: normal !important;
+}
+
+/* Дополнительные правила для секций */
+section,
+div,
+main,
+article {
+  scroll-snap-type: none !important;
+  scroll-snap-align: none !important;
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   font-size: 16px;
   line-height: 1.5;
   margin: 0;
   padding: 0;
   height: 100%;
   overflow-x: hidden;
+  /* Отключаем все scroll-snap свойства */
+  scroll-snap-type: none !important;
+  scroll-snap-align: none !important;
 }
 
 body {
@@ -75,6 +91,12 @@ body {
   text-rendering: optimizeLegibility;
   margin: 0;
   padding: 0;
+  /* Отключаем все scroll-snap свойства */
+  scroll-snap-type: none !important;
+  scroll-snap-align: none !important;
+  /* Отключаем эластичный скролл для iOS */
+  overscroll-behavior: none;
+  -webkit-overscroll-behavior: none;
 }
 
 #root {

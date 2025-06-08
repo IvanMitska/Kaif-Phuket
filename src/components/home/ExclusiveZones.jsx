@@ -165,15 +165,19 @@ const ZoneCard = styled(motion.div)`
     height: 380px;
   }
   
-  &:hover {
-    transform: translateY(-8px) scale(1.01) translateZ(0);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  /* Hover только для устройств с курсором */
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-8px) scale(1.01) translateZ(0);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    }
   }
   
-  @media (max-width: 480px) {
+  /* Убираем hover для touch устройств */
+  @media (hover: none) or (pointer: coarse) {
     &:hover {
-      transform: translateY(-6px) scale(1.005) translateZ(0);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      transform: none;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
   }
   
@@ -193,28 +197,24 @@ const ZoneCard = styled(motion.div)`
     transition: background 0.3s ease-out;
   }
   
-  &:hover::after {
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.05) 0%,
-      rgba(0, 0, 0, 0.7) 100%
-    );
-  }
-  
-  @media (max-width: 480px) {
-    &::after {
+  /* Hover эффект только для устройств с курсором */
+  @media (hover: hover) and (pointer: fine) {
+    &:hover::after {
       background: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0.15) 0%,
-        rgba(0, 0, 0, 0.8) 100%
+        rgba(0, 0, 0, 0.05) 0%,
+        rgba(0, 0, 0, 0.7) 100%
       );
     }
-    
+  }
+  
+  /* Отключаем hover для touch устройств */
+  @media (hover: none) or (pointer: coarse) {
     &:hover::after {
       background: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 0.1) 0%,
-        rgba(0, 0, 0, 0.7) 100%
+        rgba(0, 0, 0, 0.8) 100%
       );
     }
   }
@@ -228,8 +228,18 @@ const ZoneImage = styled.img`
   object-position: center;
   transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   
-  ${ZoneCard}:hover & {
-    transform: scale(1.1);
+  /* Hover только для устройств с курсором */
+  @media (hover: hover) and (pointer: fine) {
+    ${ZoneCard}:hover & {
+      transform: scale(1.1);
+    }
+  }
+  
+  /* Отключаем hover для touch устройств */
+  @media (hover: none) or (pointer: coarse) {
+    ${ZoneCard}:hover & {
+      transform: scale(1);
+    }
   }
 `;
 
@@ -245,8 +255,18 @@ const CardContent = styled.div`
   transform: translateY(0);
   transition: transform 0.4s ease;
   
-  ${ZoneCard}:hover & {
-    transform: translateY(-5px);
+  /* Hover только для устройств с курсором */
+  @media (hover: hover) and (pointer: fine) {
+    ${ZoneCard}:hover & {
+      transform: translateY(-5px);
+    }
+  }
+  
+  /* Отключаем hover для touch устройств */
+  @media (hover: none) or (pointer: coarse) {
+    ${ZoneCard}:hover & {
+      transform: translateY(0);
+    }
   }
 `;
 
@@ -261,9 +281,20 @@ const ZoneName = styled.h3`
   text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.8);
   transition: all 0.3s ease;
   
-  ${ZoneCard}:hover & {
-    transform: translateY(-2px);
-    text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.9);
+  /* Hover только для устройств с курсором */
+  @media (hover: hover) and (pointer: fine) {
+    ${ZoneCard}:hover & {
+      transform: translateY(-2px);
+      text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.9);
+    }
+  }
+  
+  /* Отключаем hover для touch устройств */
+  @media (hover: none) or (pointer: coarse) {
+    ${ZoneCard}:hover & {
+      transform: translateY(0);
+      text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.8);
+    }
   }
 `;
 
@@ -280,10 +311,22 @@ const ZoneDescription = styled.p`
   transition: all 0.3s ease;
   text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.8);
   
-  ${ZoneCard}:hover & {
-    opacity: 1;
-    transform: translateY(-2px);
-    text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.9);
+  /* Hover только для устройств с курсором */
+  @media (hover: hover) and (pointer: fine) {
+    ${ZoneCard}:hover & {
+      opacity: 1;
+      transform: translateY(-2px);
+      text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.9);
+    }
+  }
+  
+  /* Отключаем hover для touch устройств */
+  @media (hover: none) or (pointer: coarse) {
+    ${ZoneCard}:hover & {
+      opacity: 0.95;
+      transform: translateY(0);
+      text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.8);
+    }
   }
 `;
 
@@ -327,32 +370,58 @@ const ExploreButton = styled(Link)`
     transition: left 0.6s ease;
   }
   
-  ${ZoneCard}:hover & {
-    transform: translateY(0);
-    opacity: 1;
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.3);
-    color: #fff !important;
-    
-    svg {
-      transform: translateX(4px);
+  /* Hover только для устройств с курсором */
+  @media (hover: hover) and (pointer: fine) {
+    ${ZoneCard}:hover & {
+      transform: translateY(0);
+      opacity: 1;
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.3);
       color: #fff !important;
+      
+      svg {
+        transform: translateX(4px);
+        color: #fff !important;
+      }
+    }
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.3) !important;
+      transform: translateY(-2px) !important;
+      color: #fff !important;
+      text-decoration: none !important;
+      
+      svg {
+        color: #fff !important;
+      }
+    }
+    
+    &:hover::before {
+      left: 100%;
     }
   }
   
-  &:hover {
-    background: rgba(255, 255, 255, 0.3) !important;
-    transform: translateY(-2px) !important;
-    color: #fff !important;
-    text-decoration: none !important;
-    
-    svg {
-      color: #fff !important;
+  /* Отключаем hover для touch устройств */
+  @media (hover: none) or (pointer: coarse) {
+    ${ZoneCard}:hover & {
+      transform: translateY(10px);
+      opacity: 0.8;
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.2);
+      
+      svg {
+        transform: translateX(0);
+      }
     }
-  }
-  
-  &:hover::before {
-    left: 100%;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.15) !important;
+      transform: translateY(10px) !important;
+    }
+    
+    &:hover::before {
+      left: -100%;
+    }
   }
   
   &:visited,

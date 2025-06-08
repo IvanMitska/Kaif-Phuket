@@ -296,6 +296,9 @@ const SliderTrack = styled(motion.div)`
   background: transparent;
   margin: 0;
   padding: 0;
+  /* GPU ускорение для плавности */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 `;
 
 const Slide = styled(motion.div)`
@@ -688,14 +691,14 @@ const GallerySection = () => {
     // СПА
     {
       id: 1,
-      image: '/src/assets/images/spa/services/thai-massage-new.jpg',
+      image: '/images/spa/services/thai-massage.jpg',
       title: 'Тайский массаж',
       category: 'spa',
       description: 'Традиционный тайский массаж в исполнении опытных мастеров. Восстановление энергии и гармонии тела.'
     },
     {
       id: 2,
-      image: '/src/assets/images/spa/services/aromatherapy-new.jpg',
+      image: '/images/spa/services/aromatherapy.jpg',
       title: 'Ароматерапия',
       category: 'spa',
       description: 'Расслабляющие процедуры с натуральными эфирными маслами премиум-качества.'
@@ -703,17 +706,16 @@ const GallerySection = () => {
     // Фитнес
     {
       id: 3,
-      image: '/src/assets/images/sports/gym/gym-1.JPG',
+      image: '/images/sports/gym/gym-1.jpg',
       title: 'Тренажерный зал',
       category: 'fitness',
       description: 'Более 70 современных тренажеров премиум-класса. Профессиональное оборудование для всех видов тренировок.'
     },
 
-
       // Релаксация
       {
         id: 4,
-        image: '/src/assets/images/beauty/services/facial-new.jpg',
+        image: '/images/beauty/services/facial.jpg',
         title: 'Косметология',
         category: 'relax',
         description: 'Профессиональные процедуры для лица с использованием премиум косметики.'
@@ -764,7 +766,7 @@ const GallerySection = () => {
     
     const interval = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % filteredGallery.length);
-    }, 6000); // Увеличиваем интервал для плавности
+    }, 4000); // Оптимальный интервал для плавности
 
     return () => clearInterval(interval);
   }, [filteredGallery.length, isAutoplay, isSectionVisible]);
@@ -913,8 +915,8 @@ const GallerySection = () => {
                 animate={{ x: `-${currentSlide * 100}%` }}
                 transition={{
                   type: "tween",
-                  ease: [0.25, 0.1, 0.25, 1],
-                  duration: 0.6
+                  ease: "easeOut",
+                  duration: 0.4
                 }}
               >
                 {filteredGallery.map((item, index) => (
