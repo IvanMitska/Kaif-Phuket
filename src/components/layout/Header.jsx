@@ -516,9 +516,11 @@ const Header = () => {
   };
 
   const handleNavClick = (path) => {
-    // Сразу закрываем меню
-    setIsMobileMenuOpen(false);
-    setIsLanguageDropdownOpen(false);
+    // Закрываем меню с небольшой задержкой для анимации
+    setTimeout(() => {
+      setIsMobileMenuOpen(false);
+      setIsLanguageDropdownOpen(false);
+    }, 100);
   };
 
   const changeLanguage = (lng) => {
@@ -677,37 +679,33 @@ const Header = () => {
         </HeaderContainer>
       </StyledHeader>
 
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         {isMobileMenuOpen && (
           <>
             <MobileMenuBackdrop
+              key="backdrop"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
               onClick={() => setIsMobileMenuOpen(false)}
             />
             <MobileMenu
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{
-              x: "100%",
-              transition: {
-                duration: 0.4,
-                ease: [0.4, 0.0, 0.2, 1],
-                x: {
-                  keyframes: [0, -15, "100%"],
-                  times: [0, 0.2, 1],
-                  ease: ["easeOut", [0.68, -0.55, 0.265, 1.55]]
+              key="menu"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ 
+                x: "110%",
+                transition: {
+                  duration: 0.4,
+                  ease: [0.68, -0.55, 0.265, 1.55]
                 }
-              }
-            }}
-            transition={{ 
-              duration: 0.3, 
-              ease: "easeOut",
-              type: "tween"
-            }}
-          >
+              }}
+              transition={{ 
+                duration: 0.3, 
+                ease: "easeOut"
+              }}
+            >
             <MobileMenuHeader>
               <CloseButton
                 whileHover={{ scale: 1.15, rotate: 90 }}
