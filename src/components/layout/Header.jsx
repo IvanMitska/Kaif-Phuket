@@ -30,11 +30,11 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   max-width: 1600px;
   margin: 0 auto;
-  padding: 0.15rem 2rem;
+  padding: 0.1rem 2rem;
   position: relative;
   
   @media (max-width: 768px) {
-    padding: 0.2rem 1.25rem;
+    padding: 0.1rem 1.25rem;
   }
 `;
 
@@ -52,7 +52,7 @@ const LogoSection = styled(Link)`
 
 const Logo = styled.img`
   height: auto;
-  max-height: 40px;
+  max-height: 32px;
   width: auto;
   transition: all 0.3s ease;
   
@@ -61,7 +61,7 @@ const Logo = styled.img`
   }
   
   @media (max-width: 768px) {
-    max-height: 35px;
+    max-height: 28px;
   }
 `;
 
@@ -128,13 +128,16 @@ const NavLink = styled(Link)`
 const RightSection = styled.div`
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 0.75rem;
   z-index: 10;
+  height: 100%;
 `;
 
-// Элегантный языковой селектор
+// Компактный языковой селектор
 const LanguageSelector = styled.div`
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
   
   @media (max-width: 768px) {
     display: none;
@@ -142,58 +145,28 @@ const LanguageSelector = styled.div`
 `;
 
 const LanguageButton = styled(motion.button)`
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.25rem 0;
+  padding: 0.3rem 0.5rem;
   background: transparent;
-  border: none;
-  color: #6b7280;
-  font-size: 0.8rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  line-height: 1;
-  
-  &:hover {
-    color: #90B3A7;
-  }
-`;
-
-const LanguageDropdown = styled(motion.div)`
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  right: 0;
-  min-width: 100px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 8px;
-  padding: 0.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  z-index: 1001;
-`;
-
-const LanguageOption = styled(motion.button)`
-  display: block;
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  background: transparent;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 4px;
   color: ${({ $active }) => $active ? '#90B3A7' : '#6b7280'};
   font-size: 0.75rem;
   font-weight: ${({ $active }) => $active ? '600' : '500'};
   cursor: pointer;
-  transition: all 0.2s ease;
-  text-align: left;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  min-width: 36px;
   
   &:hover {
-    background: rgba(144, 179, 167, 0.05);
-    color: #90B3A7;
+    border-color: ${({ $active }) => $active ? '#90B3A7' : 'rgba(107, 114, 128, 0.3)'};
+    background: ${({ $active }) => $active ? 'rgba(144, 179, 167, 0.1)' : 'rgba(107, 114, 128, 0.05)'};
   }
+  
+  ${({ $active }) => $active && `
+    border-color: #90B3A7;
+    background: rgba(144, 179, 167, 0.1);
+  `}
 `;
 
 // Тонкое мобильное меню
@@ -464,41 +437,17 @@ const Header = () => {
 
           <RightSection>
             <LanguageSelector className="language-selector">
-              <LanguageButton
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
-              >
-                <span>{currentLanguage.code}</span>
-                <motion.span 
-                  animate={{ rotate: isLanguageDropdownOpen ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  style={{ fontSize: '0.6rem', lineHeight: 1 }}
+              {languages.map((lang) => (
+                <LanguageButton
+                  key={lang.code}
+                  $active={i18n.language === lang.code}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => changeLanguage(lang.code)}
                 >
-                  ▼
-                </motion.span>
-              </LanguageButton>
-              
-              {isLanguageDropdownOpen && (
-                <LanguageDropdown
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {languages.map((lang) => (
-                    <LanguageOption
-                      key={lang.code}
-                      $active={i18n.language === lang.code}
-                      whileHover={{ x: 2 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => changeLanguage(lang.code)}
-                    >
-                      {lang.name}
-                    </LanguageOption>
-                  ))}
-                </LanguageDropdown>
-              )}
+                  {lang.code}
+                </LanguageButton>
+              ))}
             </LanguageSelector>
 
             <MobileMenuButton
