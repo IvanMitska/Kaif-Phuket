@@ -296,104 +296,169 @@ const MenuLine = styled(motion.div)`
   }
 `;
 
-// Мобильное меню
-const MobileMenu = styled(motion.div)`
+// Backdrop для мобильного меню
+const MobileMenuBackdrop = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(20px);
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 998;
+`;
+
+// Современное минималистичное мобильное меню
+const MobileMenu = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+  background: #ffffff;
   z-index: 999;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  padding: 0;
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12);
+  
+  @media (max-width: 360px) {
+    width: 280px;
+  }
+`;
+
+// Header секция меню
+const MobileMenuHeader = styled.div`
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
-  gap: 2rem;
-  padding: 2rem;
+  padding: 1.5rem 1.5rem 0 1.5rem;
+  min-height: 80px;
 `;
 
 const CloseButton = styled(motion.button)`
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
   width: 2.5rem;
   height: 2.5rem;
   background: transparent;
   border: none;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  color: #6b7280;
+  font-size: 1.25rem;
+  color: #9ca3af;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-out;
   
   &:hover {
-    color: #90B3A7;
+    color: #374151;
+    background: rgba(0, 0, 0, 0.04);
     transform: rotate(90deg);
   }
 `;
 
-const MobileNavLink = styled(Link)`
+// Основной контент меню
+const MobileMenuContent = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+`;
+
+// Навигационная секция
+const MobileNavSection = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 1.5rem;
+  gap: 0.5rem;
+`;
+
+const MobileNavLink = styled(motion(Link))`
   color: #374151;
   text-decoration: none;
-  font-weight: 400;
-  font-size: 1.25rem;
+  font-weight: 500;
+  font-size: 1.1rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  transition: all 0.3s ease;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease-out;
+  padding: 1rem 0;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #e5e7eb;
+    transition: width 0.3s ease-out;
+  }
   
   &:hover {
-    color: #90B3A7;
-    background: rgba(144, 179, 167, 0.05);
+    color: #1f2937;
+    
+    &::after {
+      width: 100%;
+    }
   }
   
   &.active {
     color: #90B3A7;
-    background: rgba(144, 179, 167, 0.1);
+    
+    &::after {
+      width: 100%;
+      background: #90B3A7;
+    }
   }
 `;
 
-const MobileLanguageSection = styled.div`
-  margin-top: 2rem;
-  text-align: center;
+// Разделитель
+const MenuDivider = styled.div`
+  height: 1px;
+  background: #f3f4f6;
+  margin: 2rem 1.5rem;
+`;
+
+const MobileLanguageSection = styled(motion.div)`
+  padding: 1.5rem 1.5rem 2rem 1.5rem;
 `;
 
 const MobileLanguageTitle = styled.h3`
-  font-size: 0.9rem;
-  color: #6b7280;
-  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-bottom: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 const MobileLanguageGrid = styled.div`
   display: flex;
-  gap: 0.75rem;
-  justify-content: center;
+  gap: 0.5rem;
 `;
 
 const MobileLanguageButton = styled(motion.button)`
-  padding: 0.5rem 1rem;
-  background: transparent;
-  border: 1px solid ${({ $active }) => $active ? '#90B3A7' : 'rgba(107, 114, 128, 0.2)'};
-  border-radius: 20px;
+  padding: 0.4rem 0.8rem;
+  background: ${({ $active }) => $active ? '#f9fafb' : 'transparent'};
+  border: 1px solid ${({ $active }) => $active ? '#90B3A7' : '#e5e7eb'};
+  border-radius: 6px;
   color: ${({ $active }) => $active ? '#90B3A7' : '#6b7280'};
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: ${({ $active }) => $active ? '600' : '500'};
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-out;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   
   &:hover {
     border-color: #90B3A7;
     color: #90B3A7;
+    background: #f9fafb;
   }
 `;
 
@@ -576,73 +641,121 @@ const Header = () => {
       </StyledHeader>
 
       {isMobileMenuOpen && (
-        <MobileMenu
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <CloseButton
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+        <>
+          <MobileMenuBackdrop
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
             onClick={() => setIsMobileMenuOpen(false)}
+          />
+          <MobileMenu
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.4, ease: [0.4, 0.0, 0.2, 1] }}
           >
-            ×
-          </CloseButton>
-          
-          <MobileNavLink 
-            to="/" 
-            className={isActive('/') ? 'active' : ''}
-            onClick={() => handleNavClick('/')}
-          >
-            Главная
-          </MobileNavLink>
-          <MobileNavLink 
-            to="/restaurant" 
-            className={isActive('/restaurant') ? 'active' : ''}
-            onClick={() => handleNavClick('/restaurant')}
-          >
-            Ресторан
-          </MobileNavLink>
-          <MobileNavLink 
-            to="/spa" 
-            className={isActive('/spa') ? 'active' : ''}
-            onClick={() => handleNavClick('/spa')}
-          >
-            СПА
-          </MobileNavLink>
-          <MobileNavLink 
-            to="/sports" 
-            className={isActive('/sports') ? 'active' : ''}
-            onClick={() => handleNavClick('/sports')}
-          >
-            Спорт
-          </MobileNavLink>
-          <MobileNavLink 
-            to="/banya" 
-            className={isActive('/banya') ? 'active' : ''}
-            onClick={() => handleNavClick('/banya')}
-          >
-            Баня
-          </MobileNavLink>
-
-          <MobileLanguageSection>
-            <MobileLanguageTitle>Язык</MobileLanguageTitle>
-            <MobileLanguageGrid>
-              {languages.map((lang) => (
-                <MobileLanguageButton
-                  key={lang.code}
-                  $active={i18n.language === lang.code}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => changeLanguage(lang.code)}
+            <MobileMenuHeader>
+              <CloseButton
+                whileHover={{ scale: 1.1, rotate: 90 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                ×
+              </CloseButton>
+            </MobileMenuHeader>
+            
+            <MobileMenuContent>
+              <MobileNavSection>
+                <MobileNavLink 
+                  to="/" 
+                  className={isActive('/') ? 'active' : ''}
+                  onClick={() => handleNavClick('/')}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1, duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
+                  whileHover={{ x: 4 }}
                 >
-                  {lang.code}
-                </MobileLanguageButton>
-              ))}
-            </MobileLanguageGrid>
-          </MobileLanguageSection>
-        </MobileMenu>
+                  Главная
+                </MobileNavLink>
+                <MobileNavLink 
+                  to="/restaurant" 
+                  className={isActive('/restaurant') ? 'active' : ''}
+                  onClick={() => handleNavClick('/restaurant')}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.15, duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
+                  whileHover={{ x: 4 }}
+                >
+                  Ресторан
+                </MobileNavLink>
+                <MobileNavLink 
+                  to="/spa" 
+                  className={isActive('/spa') ? 'active' : ''}
+                  onClick={() => handleNavClick('/spa')}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2, duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
+                  whileHover={{ x: 4 }}
+                >
+                  СПА
+                </MobileNavLink>
+                <MobileNavLink 
+                  to="/sports" 
+                  className={isActive('/sports') ? 'active' : ''}
+                  onClick={() => handleNavClick('/sports')}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.25, duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
+                  whileHover={{ x: 4 }}
+                >
+                  Спорт
+                </MobileNavLink>
+                <MobileNavLink 
+                  to="/banya" 
+                  className={isActive('/banya') ? 'active' : ''}
+                  onClick={() => handleNavClick('/banya')}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3, duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
+                  whileHover={{ x: 4 }}
+                >
+                  Баня
+                </MobileNavLink>
+              </MobileNavSection>
+              
+              <MenuDivider />
+              
+              <MobileLanguageSection
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
+              >
+                <MobileLanguageTitle>Язык / Language</MobileLanguageTitle>
+                <MobileLanguageGrid>
+                  {languages.map((lang, index) => (
+                    <MobileLanguageButton
+                      key={lang.code}
+                      $active={i18n.language === lang.code}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ 
+                        delay: 0.5 + (index * 0.05),
+                        duration: 0.2,
+                        ease: [0.4, 0.0, 0.2, 1]
+                      }}
+                      onClick={() => changeLanguage(lang.code)}
+                    >
+                      {lang.code}
+                    </MobileLanguageButton>
+                  ))}
+                </MobileLanguageGrid>
+              </MobileLanguageSection>
+            </MobileMenuContent>
+          </MobileMenu>
+        </>
       )}
     </>
   );
