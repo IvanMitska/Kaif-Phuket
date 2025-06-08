@@ -1,543 +1,56 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Импортируем логотип
 import headerLogo from '../../assets/images/logos/new-hero-logo.png';
 
 // =============================================================================
-// ELEGANT MINIMALIST KAIF HEADER
+// МАКСИМАЛЬНО ПРОСТОЙ ХЕДЕР
 // =============================================================================
 
-const StyledHeader = styled(motion.header)`
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  transition: all 0.3s ease;
-`;
-
-const HeaderContainer = styled.div`
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0.6rem 2rem;
-  position: relative;
-  min-height: 48px;
-  
-  @media (max-width: 768px) {
-    padding: 0.5rem 1.25rem;
-    min-height: 42px;
-  }
-  
-  & > * {
-    display: flex;
-    align-items: center;
-  }
-`;
-
-const LogoSection = styled(Link)`
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  z-index: 10;
-  margin-left: 1.5rem;
-  height: 100%;
-  
-  @media (max-width: 768px) {
-    margin-left: 0.5rem;
-  }
-`;
-
-const Logo = styled.img`
-  height: auto;
-  max-height: 42px;
-  width: auto;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    transform: scale(1.05);
-  }
-  
-  @media (max-width: 768px) {
-    max-height: 36px;
-  }
-`;
-
-const Navigation = styled.nav`
-  display: none;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  
-  @media (min-width: 1024px) {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    height: 100%;
-  }
-`;
-
-const NavLink = styled(Link)`
-  color: #374151;
-  text-decoration: none;
-  font-weight: 400;
-  font-size: 0.8rem;
-  letter-spacing: 0.01em;
-  position: relative;
-  padding: 0.3rem 0;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  height: 34px;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 1px;
-    background: #90B3A7;
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
-  }
-  
-  &:hover {
-    color: #90B3A7;
-    
-    &::before {
-      width: 100%;
-    }
-  }
-  
-  &:active {
-    transform: translateY(1px);
-    color: #7a9d93;
-  }
-  
-  &.active {
-    color: #90B3A7;
-    font-weight: 500;
-    
-    &::before {
-      width: 100%;
-    }
-  }
-`;
-
-const RightSection = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  z-index: 10;
-  height: 100%;
-  margin-right: 0.5rem;
-  position: relative;
-  
-  @media (max-width: 768px) {
-    margin-right: 0;
-  }
-`;
-
-// Элегантный языковой селектор без стрелки
-const LanguageSelector = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  height: 100%;
-  
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-
-const LanguageButton = styled(motion.button)`
-  padding: 0.5rem 0.9rem;
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 10px;
-  color: #374151;
-  font-size: 0.8rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  min-width: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 34px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  margin: auto 0;
-  
-  &:hover {
-    background: rgba(255, 255, 255, 0.9);
-    border-color: rgba(144, 179, 167, 0.25);
-    color: #2d3748;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transform: translateY(-1px);
-  }
-  
-  &:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  }
-`;
-
-const LanguageDropdown = styled(motion.div)`
-  position: absolute;
-  top: calc(100% + 0.75rem);
-  right: 0;
-  min-width: 120px;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(25px);
-  border: none;
-  border-radius: 14px;
-  padding: 0.6rem;
-  box-shadow: 
-    0 10px 40px rgba(0, 0, 0, 0.12),
-    0 4px 12px rgba(0, 0, 0, 0.05),
-    0 0 0 1px rgba(255, 255, 255, 0.3);
-  z-index: 1001;
-  overflow: hidden;
-`;
-
-const LanguageOption = styled(motion.button)`
-  display: block;
-  width: 100%;
-  padding: 0.7rem 0.8rem;
-  margin-bottom: 0.2rem;
-  background: transparent;
-  border: none;
-  border-radius: 10px;
-  color: ${({ $active }) => $active ? '#374151' : '#6b7280'};
-  font-size: 0.8rem;
-  font-weight: ${({ $active }) => $active ? '600' : '500'};
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
-  text-align: left;
-  text-transform: capitalize;
-  letter-spacing: 0.02em;
-  line-height: 1.2;
-  
-  &:last-child {
-    margin-bottom: 0;
-  }
-  
-  &:hover {
-    background: rgba(144, 179, 167, 0.08);
-    color: #374151;
-    transform: translateX(2px);
-  }
-  
-  ${({ $active }) => $active && `
-    background: rgba(144, 179, 167, 0.12);
-    color: #374151;
-    font-weight: 600;
-  `}
-`;
-
-// Тонкое мобильное меню
-const MobileMenuButton = styled(motion.button)`
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: all 0.3s ease;
-  
-  @media (max-width: 1023px) {
-    display: flex;
-  }
-  
-  &:hover {
-    opacity: 0.7;
-  }
-`;
-
-const MenuLine = styled(motion.div)`
-  width: 1rem;
-  height: 1px;
-  background: #6b7280;
-  margin: 2px 0;
-  transition: all 0.3s ease;
-  transform-origin: center;
-  
-  &:nth-child(1) {
-    transform: ${props => props.$isOpen ? 'translateY(5px) rotate(45deg)' : 'translateY(0) rotate(0)'};
-  }
-  
-  &:nth-child(2) {
-    opacity: ${props => props.$isOpen ? '0' : '1'};
-    transform: ${props => props.$isOpen ? 'translateX(10px)' : 'translateX(0)'};
-  }
-  
-  &:nth-child(3) {
-    transform: ${props => props.$isOpen ? 'translateY(-5px) rotate(-45deg)' : 'translateY(0) rotate(0)'};
-  }
-`;
-
-// Backdrop для мобильного меню
-const MobileMenuBackdrop = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 998;
-`;
-
-// Современное минималистичное мобильное меню
-const MobileMenu = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 320px;
-  height: 100vh;
-  background: #ffffff;
-  z-index: 999;
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12);
-  
-  @media (max-width: 360px) {
-    width: 280px;
-  }
-`;
-
-// Header секция меню
-const MobileMenuHeader = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 1.5rem 1.5rem 0 1.5rem;
-  min-height: 80px;
-`;
-
-const CloseButton = styled(motion.button)`
-  width: 2.5rem;
-  height: 2.5rem;
-  background: transparent;
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  color: #9ca3af;
-  cursor: pointer;
-  transition: all 0.3s ease-out;
-  
-  &:hover {
-    color: #374151;
-    background: rgba(0, 0, 0, 0.04);
-    transform: rotate(90deg);
-  }
-`;
-
-// Основной контент меню
-const MobileMenuContent = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 2rem 0 0 0;
-  position: relative;
-`;
-
-// Навигационная секция
-const MobileNavSection = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 1.5rem;
-  gap: 1rem;
-  padding-bottom: 120px; /* Освобождаем место для фиксированных кнопок языков */
-`;
-
-const MobileNavLink = styled(motion(Link))`
-  color: #374151;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: all 0.3s ease-out;
-  padding: 1.25rem 0;
-  border-radius: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  text-align: center;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 1px;
-    background: #e5e7eb;
-    transition: all 0.3s ease-out;
-  }
-  
-  &:hover {
-    color: #1f2937;
-    transform: translateY(-1px);
-    
-    &::after {
-      width: 70%;
-    }
-  }
-  
-  &.active {
-    color: #90B3A7;
-    
-    &::after {
-      width: 65%;
-      height: 3px;
-      background: #90B3A7;
-    }
-  }
-`;
-
-// Разделитель
-const MenuDivider = styled.div`
-  height: 1px;
-  background: #f3f4f6;
-  margin: 2rem 1.5rem;
-`;
-
-const MobileLanguageSection = styled(motion.div)`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1.5rem 1.5rem 2rem 1.5rem;
-  background: #ffffff;
-  border-top: 1px solid #f3f4f6;
-`;
-
-const MobileLanguageTitle = styled.h3`
-  font-size: 0.75rem;
-  color: #9ca3af;
-  margin-bottom: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 600;
-`;
-
-const MobileLanguageGrid = styled.div`
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  align-items: center;
-`;
-
-const MobileLanguageButton = styled(motion.button)`
-  padding: 0.75rem 1.4rem;
-  background: transparent;
-  border: 2px solid ${({ $active }) => $active ? '#90B3A7' : '#e5e7eb'};
-  border-radius: 10px;
-  color: ${({ $active }) => $active ? '#90B3A7' : '#6b7280'};
-  font-size: 0.9rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease-out;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  min-width: 64px;
-  position: relative;
-  
-  ${({ $active }) => $active && `
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60%;
-      height: 3px;
-      background: #90B3A7;
-      border-radius: 2px;
-    }
-  `}
-  
-  &:hover {
-    border-color: #90B3A7;
-    color: #90B3A7;
-    background: rgba(144, 179, 167, 0.05);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(144, 179, 167, 0.2);
-  }
-  
-  &:active {
-    transform: translateY(-1px);
-  }
-`;
-
-// =============================================================================
-// MAIN HEADER COMPONENT
-// =============================================================================
-
-const Header = () => {
+const HeaderComponent = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
-  const { t, i18n } = useTranslation();
+  const [hoveredNav, setHoveredNav] = useState(null);
+  const [debounceTimeout, setDebounceTimeout] = useState(null);
+  const { i18n } = useTranslation();
   const location = useLocation();
+  const navigate = useNavigate();
 
-  const isActive = (path) => {
+  const isActive = useCallback((path) => {
     if (path === '/' && location.pathname === '/') return true;
     if (path !== '/' && location.pathname.startsWith(path)) return true;
     return false;
-  };
+  }, [location.pathname]);
 
-  const handleNavClick = (path) => {
-    // Закрываем меню с небольшой задержкой для анимации
-    setTimeout(() => {
-      setIsMobileMenuOpen(false);
-      setIsLanguageDropdownOpen(false);
-    }, 100);
-  };
-
-  const changeLanguage = (lng) => {
+  const changeLanguage = useCallback((lng) => {
     i18n.changeLanguage(lng);
     setIsLanguageDropdownOpen(false);
-    setIsMobileMenuOpen(false);
-  };
+  }, [i18n]);
 
-  const languages = [
+  const debouncedNavigate = useCallback((path) => {
+    if (debounceTimeout) {
+      clearTimeout(debounceTimeout);
+    }
+    
+    const timeout = setTimeout(() => {
+      navigate(path);
+    }, 100);
+    
+    setDebounceTimeout(timeout);
+  }, [navigate, debounceTimeout]);
+
+  const languages = useMemo(() => [
     { code: 'ru', name: 'Русский' },
     { code: 'en', name: 'English' },
     { code: 'th', name: 'ไทย' }
-  ];
+  ], []);
 
-  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
+  const currentLanguage = useMemo(() => 
+    languages.find(lang => lang.code === i18n.language) || languages[0]
+  , [languages, i18n.language]);
 
-  // Закрытие дропдауна при клике вне его
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (!event.target.closest('.language-selector')) {
@@ -549,305 +62,502 @@ const Header = () => {
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
-  // Блокировка скролла при открытом мобильном меню
+  useEffect(() => {
+    return () => {
+      if (debounceTimeout) {
+        clearTimeout(debounceTimeout);
+      }
+    };
+  }, [debounceTimeout]);
+
+  const navItems = useMemo(() => [
+    { path: '/', label: 'Главная' },
+    { path: '/restaurant', label: 'Ресторан' },
+    { path: '/spa', label: 'СПА' },
+    { path: '/sports', label: 'Спорт' },
+    { path: '/banya', label: 'Баня' },
+    { path: '/contacts', label: 'Контакты' }
+  ], []);
+
+  const getNavLinkStyle = useCallback((path) => ({
+    color: isActive(path) ? '#90B3A7' : (hoveredNav === path ? '#333333' : '#666666'),
+    textDecoration: 'none',
+    fontSize: '14px',
+    fontWeight: '500',
+    textTransform: 'uppercase',
+    letterSpacing: '1px',
+    position: 'relative',
+    transition: 'all 0.3s ease',
+    whiteSpace: 'nowrap',
+    height: '65px',
+    display: 'flex',
+    alignItems: 'center',
+    margin: 0,
+    padding: 0,
+    cursor: 'pointer'
+  }), [isActive, hoveredNav]);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   useEffect(() => {
     if (isMobileMenuOpen) {
+      document.body.classList.add('mobile-menu-open');
       document.body.style.overflow = 'hidden';
     } else {
+      document.body.classList.remove('mobile-menu-open');
       document.body.style.overflow = 'unset';
     }
-
+    
     return () => {
+      document.body.classList.remove('mobile-menu-open');
       document.body.style.overflow = 'unset';
     };
   }, [isMobileMenuOpen]);
 
-  // Закрытие мобильного меню при изменении маршрута
+  // Закрываем мобильное меню при изменении размера экрана
   useEffect(() => {
-    setIsMobileMenuOpen(false);
-    setIsLanguageDropdownOpen(false);
-    
-    // Прокрутка вверх при смене страницы
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+    const handleResize = () => {
+      if (window.innerWidth > 768 && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMobileMenuOpen]);
 
   return (
     <>
-      <StyledHeader
-        initial={{ y: -80 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-      >
-        <HeaderContainer>
-          <LogoSection to="/">
-            <Logo src={headerLogo} alt="KAIF" />
-          </LogoSection>
+      <header style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '65px',
+        backgroundColor: '#ffffff',
+        zIndex: 1000,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: 0,
+        padding: 0,
+        boxSizing: 'border-box',
+        boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)'
+      }}>
+        <div style={{
+          width: '100%',
+          maxWidth: '1200px',
+          height: '65px',
+          display: 'flex',
+          alignItems: 'center',
+          padding: '0 3rem',
+          margin: 0,
+          boxSizing: 'border-box'
+        }}>
+          {/* Левая секция - Логотип */}
+          <div style={{
+            flex: '1',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            height: '65px',
+            margin: 0,
+            padding: 0
+          }}>
+            <div 
+              onClick={() => debouncedNavigate('/')}
+              style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                textDecoration: 'none', 
+                height: '65px',
+                margin: 0,
+                padding: 0,
+                cursor: 'pointer'
+              }}
+            >
+              <img 
+                src={headerLogo} 
+                alt="KAIF" 
+                style={{
+                  height: '38px',
+                  width: 'auto',
+                  display: 'block',
+                  margin: 0,
+                  padding: 0
+                }} 
+              />
+            </div>
+          </div>
 
-          <Navigation>
-            <NavLink 
-              to="/" 
-              className={isActive('/') ? 'active' : ''}
-              onClick={() => handleNavClick('/')}
-            >
-              Главная
-            </NavLink>
-            <NavLink 
-              to="/restaurant" 
-              className={isActive('/restaurant') ? 'active' : ''}
-              onClick={() => handleNavClick('/restaurant')}
-            >
-              Ресторан
-            </NavLink>
-            <NavLink 
-              to="/spa" 
-              className={isActive('/spa') ? 'active' : ''}
-              onClick={() => handleNavClick('/spa')}
-            >
-              СПА
-            </NavLink>
-            <NavLink 
-              to="/sports" 
-              className={isActive('/sports') ? 'active' : ''}
-              onClick={() => handleNavClick('/sports')}
-            >
-              Спорт
-            </NavLink>
-            <NavLink 
-              to="/banya" 
-              className={isActive('/banya') ? 'active' : ''}
-              onClick={() => handleNavClick('/banya')}
-            >
-              Баня
-            </NavLink>
-          </Navigation>
-
-          <RightSection>
-            <LanguageSelector className="language-selector">
-              <LanguageButton
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
-              >
-                {currentLanguage.code}
-              </LanguageButton>
-              
-              {isLanguageDropdownOpen && (
-                <LanguageDropdown
-                  initial={{ opacity: 0, y: -12, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -8, scale: 0.95 }}
-                  transition={{ 
-                    duration: 0.3, 
-                    ease: [0.4, 0.0, 0.2, 1],
-                    opacity: { duration: 0.25 },
-                    y: { duration: 0.3 },
-                    scale: { duration: 0.25 }
-                  }}
+          {/* Центральная секция - Навигация (десктоп) */}
+          <div style={{
+            flex: '1',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '65px',
+            margin: 0,
+            padding: 0
+          }}>
+            <nav style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '2.5rem',
+              height: '65px',
+              margin: 0,
+              padding: 0,
+              '@media (max-width: 768px)': {
+                display: 'none'
+              }
+            }} className="desktop-nav">
+              {navItems.map((item) => (
+                <div
+                  key={item.path}
+                  style={getNavLinkStyle(item.path)}
+                  onMouseEnter={() => setHoveredNav(item.path)}
+                  onMouseLeave={() => setHoveredNav(null)}
+                  onClick={() => debouncedNavigate(item.path)}
                 >
-                  {languages.map((lang) => (
-                    <LanguageOption
-                      key={lang.code}
-                      $active={i18n.language === lang.code}
-                      whileHover={{ x: 3, scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ 
-                        delay: 0.1 + (languages.findIndex(l => l.code === lang.code) * 0.05),
-                        duration: 0.25,
-                        ease: [0.4, 0.0, 0.2, 1]
+                  {item.label}
+                  
+                  {/* Активная линия */}
+                  {isActive(item.path) && (
+                    <div style={{
+                      position: 'absolute',
+                      bottom: '-2px',
+                      left: 0,
+                      right: 0,
+                      height: '2px',
+                      background: '#90B3A7',
+                      borderRadius: '1px'
+                    }} />
+                  )}
+                  
+                  {/* Hover линия с анимацией */}
+                  {!isActive(item.path) && hoveredNav === item.path && (
+                    <motion.div
+                      initial={{ scaleX: 0, opacity: 0 }}
+                      animate={{ scaleX: 1, opacity: 1 }}
+                      exit={{ scaleX: 0, opacity: 0 }}
+                      transition={{ duration: 0.2, ease: 'easeOut' }}
+                      style={{
+                        position: 'absolute',
+                        bottom: '-2px',
+                        left: 0,
+                        right: 0,
+                        height: '2px',
+                        background: '#90B3A7',
+                        borderRadius: '1px',
+                        transformOrigin: 'left'
                       }}
-                      onClick={() => changeLanguage(lang.code)}
-                    >
-                      {lang.name}
-                    </LanguageOption>
-                  ))}
-                </LanguageDropdown>
-              )}
-            </LanguageSelector>
+                    />
+                  )}
+                </div>
+              ))}
+            </nav>
+          </div>
 
-            <MobileMenuButton
+          {/* Правая секция - Языки и Бургер */}
+          <div style={{
+            flex: '1',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            gap: '1rem',
+            height: '65px',
+            margin: 0,
+            padding: 0
+          }}>
+            {/* Бургер-меню для мобильных */}
+            <motion.button
+              className="mobile-burger"
+              onClick={toggleMobileMenu}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '2.5rem',
+                height: '2.5rem',
+                padding: 0,
+                background: 'rgba(144, 179, 167, 0.1)',
+                border: '1px solid rgba(144, 179, 167, 0.2)',
+                borderRadius: '8px',
+                color: '#2C3E2D',
+                cursor: 'pointer',
+                transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                marginRight: '-2rem'
+              }}
             >
-              <MenuLine $isOpen={isMobileMenuOpen} />
-              <MenuLine $isOpen={isMobileMenuOpen} />
-              <MenuLine $isOpen={isMobileMenuOpen} />
-            </MobileMenuButton>
-          </RightSection>
-        </HeaderContainer>
-      </StyledHeader>
+              <svg 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+                style={{
+                  width: '1.25rem',
+                  height: '1.25rem',
+                  transition: 'transform 0.3s ease'
+                }}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </motion.button>
+            <div className="language-selector" style={{ 
+              position: 'relative', 
+              display: 'flex', 
+              alignItems: 'center', 
+              height: '65px',
+              margin: 0,
+              padding: 0
+            }}>
+              <button
+                onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+                style={{
+                  background: '#f8f9fa',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: '6px',
+                  color: '#666666',
+                  fontSize: '13px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  padding: '8px 12px',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: '36px',
+                  minWidth: '50px',
+                  margin: 0
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.borderColor = '#90B3A7';
+                  e.target.style.color = '#90B3A7';
+                  e.target.style.background = '#f0fffe';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.borderColor = '#e2e8f0';
+                  e.target.style.color = '#666666';
+                  e.target.style.background = '#f8f9fa';
+                }}
+              >
+                {currentLanguage.code.toUpperCase()}
+              </button>
+              
+              <AnimatePresence>
+                {isLanguageDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -8, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                    style={{
+                      position: 'absolute',
+                      top: 'calc(100% + 6px)',
+                      right: 0,
+                      background: '#ffffff',
+                      border: '1px solid #e2e8f0',
+                      borderRadius: '6px',
+                      boxShadow: '0 6px 20px rgba(0, 0, 0, 0.15)',
+                      padding: '6px 0',
+                      minWidth: '120px',
+                      zIndex: 1005
+                    }}
+                  >
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => changeLanguage(lang.code)}
+                        style={{
+                          width: '100%',
+                          padding: '6px 12px',
+                          textAlign: 'left',
+                          background: 'none',
+                          border: 'none',
+                          color: i18n.language === lang.code ? '#90B3A7' : '#666666',
+                          fontWeight: i18n.language === lang.code ? '600' : '500',
+                          fontSize: '13px',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.background = '#f8fffe';
+                          e.target.style.color = '#90B3A7';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.background = 'none';
+                          e.target.style.color = i18n.language === lang.code ? '#90B3A7' : '#666666';
+                        }}
+                      >
+                        {lang.name}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
+      </header>
 
+      {/* Мобильное меню */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
-            <MobileMenuBackdrop
-              key="backdrop"
+            {/* Overlay */}
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                background: 'rgba(44, 62, 45, 0.5)',
+                backdropFilter: 'blur(4px)',
+                zIndex: 999
+              }}
               onClick={() => setIsMobileMenuOpen(false)}
             />
-            <MobileMenu
-              key="menu"
-              initial={{ x: "100%" }}
+            
+            {/* Slide-in контейнер */}
+            <motion.div
+              initial={{ x: '100%' }}
               animate={{ x: 0 }}
-              exit={{ 
-                x: "110%",
-                transition: {
-                  duration: 0.4,
-                  ease: [0.68, -0.55, 0.265, 1.55]
-                }
+              exit={{ x: '100%' }}
+              transition={{
+                type: 'spring',
+                damping: 25,
+                stiffness: 200
               }}
-              transition={{ 
-                duration: 0.3, 
-                ease: "easeOut"
+              style={{
+                position: 'fixed',
+                top: '65px',
+                right: 0,
+                width: '100%',
+                maxWidth: '20rem',
+                height: 'calc(100vh - 65px)',
+                background: '#ffffff',
+                backdropFilter: 'blur(20px)',
+                borderLeft: '1px solid rgba(144, 179, 167, 0.1)',
+                zIndex: 999,
+                overflowY: 'auto'
               }}
             >
-            <MobileMenuHeader>
-              <CloseButton
-                whileHover={{ scale: 1.15, rotate: 90 }}
-                whileTap={{ scale: 0.9 }}
-                initial={{ opacity: 0, rotate: -90, scale: 0.8 }}
-                animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                transition={{ 
-                  delay: 0.1, 
-                  duration: 0.3, 
-                  ease: [0.25, 0.46, 0.45, 0.94] 
-                }}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                ×
-              </CloseButton>
-            </MobileMenuHeader>
-            
-            <MobileMenuContent>
-              <MobileNavSection>
-                <MobileNavLink 
-                  to="/" 
-                  className={isActive('/') ? 'active' : ''}
-                  onClick={() => handleNavClick('/')}
-                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ 
-                    delay: 0.1, 
-                    duration: 0.4, 
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                    type: "spring",
-                    staggerChildren: 0.1
-                  }}
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Главная
-                </MobileNavLink>
-                <MobileNavLink 
-                  to="/restaurant" 
-                  className={isActive('/restaurant') ? 'active' : ''}
-                  onClick={() => handleNavClick('/restaurant')}
-                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ 
-                    delay: 0.2, 
-                    duration: 0.4, 
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                    type: "spring"
-                  }}
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Ресторан
-                </MobileNavLink>
-                <MobileNavLink 
-                  to="/spa" 
-                  className={isActive('/spa') ? 'active' : ''}
-                  onClick={() => handleNavClick('/spa')}
-                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ 
-                    delay: 0.3, 
-                    duration: 0.4, 
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                    type: "spring"
-                  }}
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  СПА
-                </MobileNavLink>
-                <MobileNavLink 
-                  to="/sports" 
-                  className={isActive('/sports') ? 'active' : ''}
-                  onClick={() => handleNavClick('/sports')}
-                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ 
-                    delay: 0.4, 
-                    duration: 0.4, 
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                    type: "spring"
-                  }}
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Спорт
-                </MobileNavLink>
-                <MobileNavLink 
-                  to="/banya" 
-                  className={isActive('/banya') ? 'active' : ''}
-                  onClick={() => handleNavClick('/banya')}
-                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ 
-                    delay: 0.5, 
-                    duration: 0.4, 
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                    type: "spring"
-                  }}
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Баня
-                </MobileNavLink>
-              </MobileNavSection>
-              
-                              <MobileLanguageSection
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    delay: 0.6, 
-                    duration: 0.4, 
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                    type: "spring" 
-                  }}
-                >
-                <MobileLanguageTitle>Язык / Language</MobileLanguageTitle>
-                <MobileLanguageGrid>
-                  {languages.map((lang, index) => (
-                    <MobileLanguageButton
-                      key={lang.code}
-                      $active={i18n.language === lang.code}
-                      whileHover={{ scale: 1.08, y: -3 }}
-                      whileTap={{ scale: 0.95 }}
-                      initial={{ opacity: 0, scale: 0.7, y: 20 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      transition={{ 
-                        delay: 0.7 + (index * 0.1),
-                        duration: 0.4,
-                        ease: [0.25, 0.46, 0.45, 0.94],
-                        type: "spring"
-                      }}
-                      onClick={() => changeLanguage(lang.code)}
-                    >
-                      {lang.code}
-                    </MobileLanguageButton>
+              <div style={{
+                padding: '2rem 1.5rem',
+                minHeight: 'calc(100vh - 65px)',
+                display: 'flex',
+                flexDirection: 'column'
+              }}>
+
+                {/* Навигационные ссылки */}
+                <ul style={{
+                  listStyle: 'none',
+                  margin: 0,
+                  padding: 0,
+                  flex: 1,
+                  paddingTop: '1rem'
+                }}>
+                  {navItems.map((item, index) => (
+                    <li key={item.path} style={{ marginBottom: '0.5rem' }}>
+                      <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ 
+                          opacity: 1, 
+                          x: 0,
+                          transition: { delay: index * 0.1 }
+                        }}
+                      >
+                        <div
+                          onClick={() => {
+                            if (item.path !== location.pathname) {
+                              debouncedNavigate(item.path);
+                            }
+                            setIsMobileMenuOpen(false);
+                          }}
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            padding: '1rem',
+                            color: '#2C3E2D',
+                            fontFamily: "'Inter', sans-serif",
+                            fontSize: '1.125rem',
+                            fontWeight: '500',
+                            textDecoration: 'none',
+                            borderRadius: '12px',
+                            transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                            cursor: 'pointer',
+                            background: isActive(item.path) ? 'rgba(144, 179, 167, 0.1)' : 'transparent',
+                            transform: isActive(item.path) ? 'translateX(0.25rem)' : 'translateX(0)',
+                            fontWeight: isActive(item.path) ? '600' : '500',
+                            color: isActive(item.path) ? '#90B3A7' : '#2C3E2D'
+                          }}
+                        >
+                          {item.label}
+                        </div>
+                      </motion.div>
+                    </li>
                   ))}
-                </MobileLanguageGrid>
-              </MobileLanguageSection>
-            </MobileMenuContent>
-          </MobileMenu>
+                </ul>
+
+                {/* Языковая секция */}
+                <div style={{
+                  marginTop: 'auto',
+                  paddingTop: '2rem',
+                  borderTop: '1px solid rgba(144, 179, 167, 0.1)'
+                }}>
+                  <h3 style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: '0.875rem',
+                    fontWeight: '600',
+                    color: '#8B9A8E',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    marginBottom: '1rem'
+                  }}>
+                    SELECT LANGUAGE
+                  </h3>
+                  
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(3, 1fr)',
+                    gap: '0.5rem'
+                  }}>
+                    {languages.map((lang, index) => (
+                      <motion.button
+                        key={lang.code}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => {
+                          changeLanguage(lang.code);
+                          setIsMobileMenuOpen(false);
+                        }}
+                        style={{
+                          padding: '0.75rem',
+                          background: i18n.language === lang.code ? 'rgba(144, 179, 167, 0.15)' : 'rgba(144, 179, 167, 0.05)',
+                          border: `1px solid ${i18n.language === lang.code ? 'rgba(144, 179, 167, 0.3)' : 'rgba(144, 179, 167, 0.1)'}`,
+                          borderRadius: '8px',
+                          color: i18n.language === lang.code ? '#90B3A7' : '#2C3E2D',
+                          fontFamily: "'Inter', sans-serif",
+                          fontSize: '0.875rem',
+                          fontWeight: i18n.language === lang.code ? '600' : '500',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease'
+                        }}
+                      >
+                        {lang.code.toUpperCase()}
+                      </motion.button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </>
         )}
       </AnimatePresence>
@@ -855,4 +565,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderComponent; 

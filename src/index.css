@@ -433,7 +433,16 @@ a:hover {
    RESPONSIVE DESIGN
    ============================================================================= */
 
-@media (max-width: 768px) {
+/* Стили для бургер-меню */
+.mobile-burger {
+  display: none !important;
+}
+
+.desktop-nav {
+  display: flex !important;
+}
+
+@media screen and (max-width: 768px) {
   :root {
     --section-padding: 3rem 0;
     --container-padding: 1rem;
@@ -446,6 +455,49 @@ a:hover {
   h1 {
     font-size: clamp(2rem, 8vw, 2.5rem);
   }
+
+  header .desktop-nav {
+    display: none !important;
+  }
+
+  header .mobile-burger {
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* Скрываем языковую панель на мобильных в пользу меню */
+  header .language-selector {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  header .mobile-burger {
+    display: none !important;
+  }
+
+  header .desktop-nav {
+    display: flex !important;
+  }
+
+  header .language-selector {
+    display: flex !important;
+  }
+}
+
+/* Предотвращаем скролл при открытом мобильном меню */
+body.mobile-menu-open {
+  overflow: hidden;
+}
+
+/* Анимация для бургер-линий */
+.burger-line {
+  transition: all 0.3s ease;
+}
+
+/* Улучшенная тень для хедера */
+header {
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08) !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -465,91 +517,22 @@ a:hover {
 
 /*
 =============================================================================
-KAIF - Global Styles
+KAIF - Header Styles
 =============================================================================
 */
 
-/* =============================================================================
-   MOBILE MENU ARTIFACT PROTECTION
-   ============================================================================= */
-
-/* Глобальная защита от артефактов в мобильном меню */
-.mobile-menu-container *::before,
-.mobile-menu-container *::after,
-.mobile-menu-button::before,
-.mobile-menu-button::after,
-header *::before,
-header *::after {
-  display: none !important;
-  content: none !important;
-  visibility: hidden !important;
+/* Чистые стили для хедера без конфликтов */
+header {
+  position: relative;
+  display: block;
 }
 
-/* Дополнительная защита для styled-components */
-[class*="MobileMenu"]::before,
-[class*="MobileMenu"]::after,
-[class*="Header"]::before,
-[class*="Header"]::after {
-  display: none !important;
-  content: none !important;
-  visibility: hidden !important;
+header * {
+  box-sizing: border-box;
 }
 
-/* Экстремальная защита от всех возможных артефактов */
-button::before,
-button::after,
-.mobile-menu-button::before,
-.mobile-menu-button::after {
-  display: none !important;
-  content: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  position: absolute !important;
-  left: -9999px !important;
-  top: -9999px !important;
-  width: 0 !important;
-  height: 0 !important;
-  z-index: -9999 !important;
-}
-
-/* Специфичная защита для header */
-header button::before,
-header button::after,
-header *::before,
-header *::after {
-  display: none !important;
-  content: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-}
-
-/* Ультра-специфичная защита для бургер кнопки */
-#unique-burger-button::before,
-#unique-burger-button::after,
-#unique-burger-button *::before,
-#unique-burger-button *::after {
-  display: none !important;
-  content: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  position: absolute !important;
-  left: -99999px !important;
-  top: -99999px !important;
-  width: 0 !important;
-  height: 0 !important;
-  z-index: -99999 !important;
-  pointer-events: none !important;
-}
-
-/* Защита от любых возможных дублирующих элементов */
-.mobile-menu-button + *,
-#unique-burger-button + * {
-  display: none !important;
-}
-
-/* Убираем все возможные артефакты рядом с кнопкой */
-.mobile-menu-button ~ *:not(.mobile-menu-container),
-#unique-burger-button ~ *:not(.mobile-menu-container) {
-  position: relative !important;
-  z-index: 1 !important;
+/* Разрешаем псевдоэлементы для подчеркивания навигации */
+header a::after {
+  display: block !important;
+  content: "" !important;
 }

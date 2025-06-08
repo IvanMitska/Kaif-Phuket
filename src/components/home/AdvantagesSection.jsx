@@ -256,7 +256,7 @@ const facilitiesData = [
     number: '200',
     unit: '',
     name: 'Мест в ресторане',
-    description: 'Ресторан на открытом воздухе с восточной и русской кухней',
+    description: 'Ресторан на открытом воздухе',
     accent: 'linear-gradient(135deg, #D4A574 0%, #E6B885 100%)',
     color: '#D4A574',
     borderColor: 'rgba(212, 165, 116, 0.15)'
@@ -267,7 +267,7 @@ const facilitiesData = [
     number: '25',
     unit: 'м',
     name: 'Бассейн',
-    description: 'Олимпийский стандарт с подогревом',
+    description: 'Бассейн 25 метров',
     accent: 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)',
     color: '#90B3A7',
     borderColor: 'rgba(144, 179, 167, 0.15)'

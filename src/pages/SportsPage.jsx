@@ -1,9 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { motion } from 'framer-motion';
 
-// Импорт компонентов секций
-import { HeroSection, FacilitySection, GallerySection, ScheduleSection } from '../components/sports';
+// Ленивая загрузка компонентов спорта для оптимизации
+const HeroSection = React.lazy(() => import('../components/sports/HeroSection/HeroSection'));
+const FacilitySection = React.lazy(() => import('../components/sports/FacilitySection/FacilitySection'));
+const GallerySection = React.lazy(() => import('../components/sports/GallerySection/GallerySection'));
+const ScheduleSection = React.lazy(() => import('../components/sports/ScheduleSection/ScheduleSection'));
 import { PageContainer } from '../styles/sports/CommonStyles';
+
+// Невидимый компонент загрузки
+const InvisibleLoader = () => null;
 
 const SportsPage = () => {
   // Добавлено сохранение стилей при рендеринге страницы
@@ -28,11 +34,12 @@ const SportsPage = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.2 }}
     >
-      {/* Секции разделены на отдельные компоненты */}
-      <HeroSection />
-      <FacilitySection />
-      <GallerySection />
-      <ScheduleSection />
+      <Suspense fallback={<InvisibleLoader />}>
+        <HeroSection />
+        <FacilitySection />
+        <GallerySection />
+        <ScheduleSection />
+      </Suspense>
     </PageContainer>
   );
 };

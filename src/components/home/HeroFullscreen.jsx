@@ -99,11 +99,27 @@ const ContentContainer = styled.div`
   @media (max-width: 768px) {
     padding: 2rem 1.5rem;
     max-width: 90%;
+    /* Сдвигаем контент немного выше для лучшей видимости кнопок */
+    justify-content: flex-start;
+    padding-top: 15vh;
   }
   
   @media (max-width: 480px) {
     padding: 1.5rem 1rem;
     max-width: 95%;
+    padding-top: 12vh;
+  }
+  
+  /* Специально для iPhone */
+  @media (max-width: 414px) and (max-height: 896px) {
+    padding-top: 10vh;
+    min-height: 90vh;
+  }
+  
+  /* Для маленьких iPhone */
+  @media (max-width: 375px) and (max-height: 812px) {
+    padding-top: 8vh;
+    min-height: 85vh;
   }
 `;
 
@@ -281,10 +297,33 @@ const ButtonContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 0;
+  margin-bottom: 2rem;
+  
+  @media (max-width: 768px) {
+    margin-bottom: 3rem;
+    gap: 0.5rem;
+  }
   
   @media (max-width: 480px) {
     width: 100%;
     max-width: 320px;
+    margin-bottom: 4rem;
+    gap: 0.8rem;
+    /* Поднимаем кнопки выше для видимости на iPhone */
+    position: relative;
+    bottom: 2rem;
+  }
+  
+  /* Для iPhone в портретной ориентации */
+  @media (max-width: 414px) and (max-height: 896px) {
+    bottom: 3rem;
+    margin-bottom: 5rem;
+  }
+  
+  /* Для маленьких iPhone (SE, Mini) */
+  @media (max-width: 375px) and (max-height: 812px) {
+    bottom: 4rem;
+    margin-bottom: 6rem;
   }
 `;
 

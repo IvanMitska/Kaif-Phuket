@@ -5,12 +5,18 @@
     <!-- Настройки favicon для всех страниц -->
     <link rel="shortcut icon" type="image/png" href="/favicon.png">
     <link rel="icon" type="image/png" href="/favicon.png">
-    <meta name="theme-color" content="#2C614F">
+    <meta name="theme-color" content="#ffffff">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Preload критических ресурсов -->
+    <link rel="preload" href="/src/assets/images/logos/logo-header.png" as="image" type="image/png">
+    
     <!-- Google Fonts - современные шрифты для многофункционального комплекса -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
     
     <!-- Базовые стили для предотвращения мерцания -->
     <style>
@@ -23,6 +29,9 @@
         overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        /* Улучшения для плавной прокрутки */
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
       }
       
       #root {
@@ -32,6 +41,19 @@
       
       * {
         box-sizing: border-box;
+      }
+      
+      /* Убираем проблемы с рывками при скролле */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      /* Оптимизация для мобильных устройств */
+      @media (max-width: 768px) {
+        body {
+          -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+        }
       }
     </style>
     

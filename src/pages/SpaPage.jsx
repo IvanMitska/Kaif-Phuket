@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
-// Импортируем компоненты SPA
-import SpaHeroSection from '../components/spa/SpaHeroSection';
-import SpaServicesSection from '../components/spa/SpaServicesSection';
-import SpaFeaturesSection from '../components/spa/SpaFeaturesSection';
-import SpaTestimonialsSection from '../components/spa/SpaTestimonialsSection';
-import SpaBookingSection from '../components/spa/SpaBookingSection';
-import SpaFAQSection from '../components/spa/SpaFAQSection';
+// Ленивая загрузка компонентов СПА для оптимизации
+const SpaHeroSection = React.lazy(() => import('../components/spa/SpaHeroSection'));
+const SpaServicesSection = React.lazy(() => import('../components/spa/SpaServicesSection'));
+const SpaFeaturesSection = React.lazy(() => import('../components/spa/SpaFeaturesSection'));
+const SpaTestimonialsSection = React.lazy(() => import('../components/spa/SpaTestimonialsSection'));
+const SpaBookingSection = React.lazy(() => import('../components/spa/SpaBookingSection'));
+const SpaFAQSection = React.lazy(() => import('../components/spa/SpaFAQSection'));
 
 /**
  * Контейнер для SPA страницы в стиле Modern Oasis
@@ -21,6 +21,9 @@ const SpaContainer = styled(motion.div)`
   font-family: ${props => props.theme.fonts.primary};
   overflow-x: hidden;
 `;
+
+// Невидимый компонент загрузки
+const InvisibleLoader = () => null;
 
 /**
  * SPA Page Component
@@ -60,13 +63,14 @@ const SpaPage = () => {
       variants={pageVariants}
       transition={{ duration: 0.2 }}
     >
-      {/* Компоненты страницы */}
-      <SpaHeroSection />
-      <SpaServicesSection />
-      <SpaFeaturesSection />
-      <SpaTestimonialsSection />
-      <SpaFAQSection />
-      <SpaBookingSection />
+      <Suspense fallback={<InvisibleLoader />}>
+        <SpaHeroSection />
+        <SpaServicesSection />
+        <SpaFeaturesSection />
+        <SpaTestimonialsSection />
+        <SpaFAQSection />
+        <SpaBookingSection />
+      </Suspense>
     </SpaContainer>
   );
 };

@@ -42,6 +42,32 @@ const GlobalStyles = createGlobalStyle`
     transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   }
   
+  /* Оптимизация производительности */
+  .will-change-transform {
+    will-change: transform;
+  }
+  
+  .will-change-opacity {
+    will-change: opacity;
+  }
+  
+  /* Улучшения для анимаций */
+  @media (prefers-reduced-motion: no-preference) {
+    * {
+      backface-visibility: hidden;
+      perspective: 1000px;
+    }
+  }
+  
+  /* Отключение анимаций для пользователей с настройкой reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
   /* Базовые стили для всего сайта, основанные на теме */
   body {
     font-family: ${({ theme }) => theme.fonts.primary || '"Inter", sans-serif'};
@@ -50,6 +76,27 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    /* Оптимизация для плавной прокрутки */
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  /* Дополнительные оптимизации для мобильных устройств */
+  @media (max-width: 768px) {
+    body {
+      /* Устранение рывков при скролле */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      /* Отключение эластичной прокрутки для предотвращения зеленого цвета */
+      overscroll-behavior: none;
+      -webkit-overscroll-behavior: none;
+    }
+    
+    html {
+      /* Улучшение прокрутки на мобильных */
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
   }
   
   /* Типография */

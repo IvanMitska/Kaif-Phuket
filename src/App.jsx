@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { useTranslation } from 'react-i18next';
@@ -19,30 +19,36 @@ import './index.css';
 import { theme } from './theme.fixed';
 import Layout from './components/layout/Layout';
 
-// Pages
+// Pages - оптимизированная загрузка
 import HomePage from './pages/HomePage';
-import RestaurantPage from './pages/RestaurantPage';
-import SpaPage from './pages/SpaPage';
-import SportsPage from './pages/SportsPage';
-import BanyaPage from './pages/BanyaPage';
-// Импорт AboutPageNew удален, так как компонент больше не используется
-import ContactsPage from './pages/ContactsPage';
+const RestaurantPage = React.lazy(() => import('./pages/RestaurantPage'));
+const SpaPage = React.lazy(() => import('./pages/SpaPage'));
+const SportsPage = React.lazy(() => import('./pages/SportsPage'));
+const BanyaPage = React.lazy(() => import('./pages/BanyaPage'));
+const ContactsPage = React.lazy(() => import('./pages/ContactsPage'));
+
+
+// Невидимый компонент загрузки - без индикаторов
+const InvisibleLoader = () => null;
 
 // Компонент для управления переходами между страницами с сохранением стилей
 const AnimatedRoutes = () => {
   const location = useLocation();
   
   return (
-    <Routes location={location}>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/restaurant" element={<RestaurantPage />} />
-      <Route path="/spa" element={<SpaPage />} />
-      <Route path="/sports" element={<SportsPage />} />
-      <Route path="/banya" element={<BanyaPage />} />
-      <Route path="/contacts" element={<ContactsPage />} />
-      {/* Добавляем точные маршруты для предотвращения конфликтов */}
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <Suspense fallback={<InvisibleLoader />}>
+      <Routes location={location}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/restaurant" element={<RestaurantPage />} />
+        <Route path="/spa" element={<SpaPage />} />
+        <Route path="/sports" element={<SportsPage />} />
+        <Route path="/banya" element={<BanyaPage />} />
+        <Route path="/contacts" element={<ContactsPage />} />
+
+        {/* Добавляем точные маршруты для предотвращения конфликтов */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Suspense>
   );
 };
 

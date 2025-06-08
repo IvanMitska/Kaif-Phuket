@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import HeroFullscreen from '../components/home/HeroFullscreen';
 import ExclusiveZones from '../components/home/ExclusiveZones';
 import AdvantagesSection from '../components/home/AdvantagesSection';
-import GallerySection from '../components/home/GallerySection';
+import { GallerySection } from '../components/common';
 import FAQSection from '../components/home/FAQSection';
 
 // Контейнер для кнопки контактов

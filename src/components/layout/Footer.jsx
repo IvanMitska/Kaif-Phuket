@@ -152,7 +152,7 @@ const BrandSubtitle = styled.p`
 
 const BrandDescription = styled.p`
   font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;
   color: rgba(255, 255, 255, 0.9);
@@ -163,7 +163,7 @@ const BrandDescription = styled.p`
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
   }
 `;
 
@@ -215,7 +215,7 @@ const FooterSection = styled(motion.div)`
 
 const SectionTitle = styled.h3`
   font-family: ${({ theme }) => theme?.fonts?.heading || '"Playfair Display", serif'};
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 1.25rem;
   color: white;
@@ -236,7 +236,7 @@ const SectionTitle = styled.h3`
   
   @media (max-width: 1023px) {
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     
     &::after {
       left: 50%;
@@ -248,7 +248,7 @@ const SectionTitle = styled.h3`
 const FooterLink = styled(Link)`
   display: block;
   font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   padding: 0.4rem 0;
@@ -282,7 +282,7 @@ const ContactItem = styled(motion.div)`
 
 const ContactText = styled.div`
   font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.5;
 `;
@@ -315,7 +315,7 @@ const FooterBottom = styled.div`
 
 const Copyright = styled.p`
   font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.6);
   margin: 0;
   
@@ -331,7 +331,7 @@ const LegalLinks = styled.div`
   
   a {
     font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
     transition: color 0.3s ease;
@@ -565,15 +565,7 @@ const Footer = () => {
                 </ContactText>
               </ContactItem>
 
-              <ContactItem>
-                <HeartIcon />
-                <ContactText>
-                  <span style={{ color: 'rgba(184, 196, 168, 0.8)' }}>
-                    Child Watch Phuket<br />
-                    Foundation
-                  </span>
-                </ContactText>
-              </ContactItem>
+
             </FooterSection>
           </FooterMain>
 

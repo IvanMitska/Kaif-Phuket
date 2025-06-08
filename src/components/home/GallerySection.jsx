@@ -703,7 +703,7 @@ const GallerySection = () => {
     { id: 'all', label: 'Все' },
     { id: 'spa', label: 'СПА' },
     { id: 'fitness', label: 'Фитнес' },
-    { id: 'pool', label: 'Бассейны' },
+    { id: 'pool', label: 'Бассейн' },
     { id: 'relax', label: 'Релаксация' }
   ];
 

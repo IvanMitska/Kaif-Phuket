@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { 
@@ -47,15 +47,39 @@ import {
 
 import { Section, SectionTag, SectionTitle, SectionSubtitle, ContentContainer, TopRightShape, BookButton } from '../../../styles/sports/CommonStyles';
 
-// Импорт локальных изображений для тренажерного зала
-import gymImage1 from '../../../assets/images/sports/gym/gym-1.jpg';
-import gymImage2 from '../../../assets/images/sports/gym/gym-2.jpg';
-import gymImage3 from '../../../assets/images/sports/gym/gym-3.jpg';
+// Используем ленивую загрузку изображений
+const gymImages = [
+  '/src/assets/images/sports/gym/gym-1.jpg',
+  '/src/assets/images/sports/gym/gym-2.jpg', 
+  '/src/assets/images/sports/gym/gym-3.jpg'
+];
 
-// Импорт локальных изображений для бойцовского клуба
-import fightImage1 from '../../../assets/images/sports/fight-club/fight-1.jpg';
-import fightImage2 from '../../../assets/images/sports/fight-club/fight-2.jpg';
-import fightImage3 from '../../../assets/images/sports/fight-club/fight-3.jpg';
+const fightImages = [
+  '/src/assets/images/sports/fight-club/fight-1.jpg',
+  '/src/assets/images/sports/fight-club/fight-2.jpg',
+  '/src/assets/images/sports/fight-club/fight-3.jpg'
+];
+
+// Компонент для ленивой загрузки изображений
+const LazyImage = ({ src, alt, ...props }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
+
+  return (
+    <GalleryImage
+      src={hasError ? '/placeholder-image.jpg' : src}
+      alt={alt}
+      loading="lazy"
+      onLoad={() => setIsLoaded(true)}
+      onError={() => setHasError(true)}
+      style={{ 
+        opacity: isLoaded ? 1 : 0.7,
+        transition: 'opacity 0.3s ease'
+      }}
+      {...props}
+    />
+  );
+};
 
 const FacilitySection = () => {
   const { t } = useTranslation();
@@ -194,18 +218,21 @@ const FacilitySection = () => {
           
           <div className="facility-gallery">
             <FacilityGallery>
-              <GalleryImage 
-                src={gymImage1}
+              <LazyImage 
+                src={gymImages[0]}
+                alt="Тренажерный зал"
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.4 }}
               />
-              <GalleryImage 
-                src={gymImage2}
+              <LazyImage 
+                src={gymImages[1]}
+                alt="Тренажерный зал"
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.4 }}
               />
-              <GalleryImage 
-                src={gymImage3}
+              <LazyImage 
+                src={gymImages[2]}
+                alt="Тренажерный зал"
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.4 }}
               />
@@ -281,18 +308,21 @@ const FacilitySection = () => {
           
           <div className="facility-gallery">
             <FacilityGallery>
-              <GalleryImage 
-                src={fightImage1}
+              <LazyImage 
+                src={fightImages[0]}
+                alt="Бойцовский клуб"
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.4 }}
               />
-              <GalleryImage 
-                src={fightImage2}
+              <LazyImage 
+                src={fightImages[1]}
+                alt="Бойцовский клуб"
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.4 }}
               />
-              <GalleryImage 
-                src={fightImage3}
+              <LazyImage 
+                src={fightImages[2]}
+                alt="Бойцовский клуб"
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.4 }}
               />

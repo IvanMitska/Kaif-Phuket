@@ -144,8 +144,11 @@ const ZoneCard = styled(motion.div)`
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
   cursor: pointer;
+  /* Оптимизация производительности */
+  will-change: transform, box-shadow;
+  transform: translateZ(0);
   
   @media (min-width: 480px) {
     height: 320px;
@@ -163,14 +166,14 @@ const ZoneCard = styled(motion.div)`
   }
   
   &:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px) scale(1.01) translateZ(0);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
   }
   
   @media (max-width: 480px) {
     &:hover {
-      transform: translateY(-8px) scale(1.01);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+      transform: translateY(-6px) scale(1.005) translateZ(0);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
     }
   }
   
@@ -187,7 +190,7 @@ const ZoneCard = styled(motion.div)`
       rgba(0, 0, 0, 0.8) 100%
     );
     z-index: 1;
-    transition: all 0.5s ease;
+    transition: background 0.3s ease-out;
   }
   
   &:hover::after {
@@ -378,7 +381,7 @@ const activityZones = [
   },
   {
     id: 'pool',
-    name: 'Бассейн олимпийский',
+    name: 'Бассейн',
     description: 'Плавание в 25-метровом бассейне',
     image: '/images/zones/pool.jpg',
     path: '/pool'
@@ -438,7 +441,7 @@ const TabButton = styled.button`
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.25s ease-out;
   cursor: pointer;
   margin: 0 0.8rem;
   display: flex;
@@ -452,6 +455,9 @@ const TabButton = styled.button`
   backdrop-filter: blur(10px);
   min-width: 180px;
   justify-content: center;
+  /* Оптимизация производительности */
+  will-change: transform, background-color, box-shadow;
+  transform: translateZ(0);
   
   svg {
     width: 18px;
@@ -473,10 +479,10 @@ const TabButton = styled.button`
   }
   
   &:hover {
-    transform: translateY(-2px);
+    transform: translateY(-1px) translateZ(0);
     box-shadow: ${props => props.$active 
-      ? '0 12px 35px rgba(144, 179, 167, 0.6)' 
-      : '0 8px 25px rgba(144, 179, 167, 0.3)'
+      ? '0 10px 30px rgba(144, 179, 167, 0.5)' 
+      : '0 6px 20px rgba(144, 179, 167, 0.25)'
     };
     background: ${props => props.$active 
       ? 'linear-gradient(135deg, #A8C5B8 0%, #B8CFC2 100%)' 
@@ -486,7 +492,7 @@ const TabButton = styled.button`
     color: ${props => props.$active ? 'white' : '#90B3A7'};
     
     svg {
-      transform: scale(1.1);
+      transform: scale(1.05) translateZ(0);
       color: ${props => props.$active ? 'white' : '#90B3A7'};
     }
   }
@@ -517,15 +523,15 @@ const ExclusiveZones = () => {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('all');
   
-  // Функция для отображения карточек зон
-  const renderZones = (zones) => {
+  // Функция для отображения карточек зон без множественных анимаций
+  const renderZones = (zones, categoryKey) => {
     return zones.map((zone, index) => (
       <ZoneCard 
-        key={zone.id}
+        key={`${categoryKey}-${zone.id}`}
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.1 }}
-        transition={{ duration: 0.8, delay: index * 0.1 }}
+        viewport={{ once: true, amount: 0.1, margin: "-50px" }}
+        transition={{ duration: 0.6, delay: index * 0.05 }}
       >
         <ZoneImage src={zone.image} alt={zone.name} />
         <CardContent>
@@ -540,9 +546,11 @@ const ExclusiveZones = () => {
     ));
   };
   
-  // Обработчик изменения вкладки
+  // Обработчик изменения вкладки с дебаунсом
   const handleTabChange = (tab) => {
-    setActiveTab(tab);
+    if (tab !== activeTab) {
+      setActiveTab(tab);
+    }
   };
   
   return (
@@ -569,13 +577,7 @@ const ExclusiveZones = () => {
         </SectionHeader>
         
         {/* Кнопки-вкладки */}
-        <TabsContainer
-          as={motion.div}
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.8 }}
-          transition={{ duration: 0.5 }}
-        >
+        <TabsContainer>
           <TabButton 
             $active={activeTab === 'all'} 
             onClick={() => handleTabChange('all')}
@@ -600,27 +602,11 @@ const ExclusiveZones = () => {
           </TabButton>
         </TabsContainer>
         
-        <CategoriesContainer
-          as={motion.div}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          key={activeTab}
-        >
+        <CategoriesContainer>
           {/* Зона Активити */}
           {(activeTab === 'all' || activeTab === 'activity') && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <CategoryHeader
-                as={motion.div}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.8 }}
-              >
+            <div>
+              <CategoryHeader>
                 <CategoryTitle>
                   <BoltIcon />
                   {t('zones.activity', 'Активити')}
@@ -628,25 +614,15 @@ const ExclusiveZones = () => {
               </CategoryHeader>
               
               <GridContainer>
-                {renderZones(activityZones)}
+                {renderZones(activityZones, 'activity')}
               </GridContainer>
-            </motion.div>
+            </div>
           )}
           
           {/* Зона Релакс */}
           {(activeTab === 'all' || activeTab === 'relax') && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: activeTab === 'all' ? 0.3 : 0 }}
-            >
-              <CategoryHeader
-                as={motion.div}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.8 }}
-              >
+            <div>
+              <CategoryHeader>
                 <CategoryTitle>
                   <SparklesIcon />
                   {t('zones.relax', 'Релакс')}
@@ -654,9 +630,9 @@ const ExclusiveZones = () => {
               </CategoryHeader>
               
               <GridContainer>
-                {renderZones(relaxZones)}
+                {renderZones(relaxZones, 'relax')}
               </GridContainer>
-            </motion.div>
+            </div>
           )}
         </CategoriesContainer>
       </ContentWrapper>
