@@ -29,11 +29,8 @@ const BanyaContainer = styled(motion.div)`
 const BanyaPage = () => {
   const { t } = useTranslation();
   
-  console.log('BanyaPage рендерится!'); // Диагностика
-  
   // Добавлено сохранение стилей при рендеринге страницы
   React.useEffect(() => {
-    console.log('BanyaPage загружается... useEffect выполнен');
     // Добавляем класс для страницы бани
     document.body.classList.add('banya-page');
     
@@ -42,7 +39,6 @@ const BanyaPage = () => {
     
     // Удаляем класс при уходе со страницы
     return () => {
-      console.log('BanyaPage выгружается...');
       document.body.classList.remove('banya-page');
     };
   }, []);
@@ -62,17 +58,13 @@ const BanyaPage = () => {
       variants={pageVariants}
       transition={{ duration: 0.2 }}
     >
-      {/* Пробуем загрузить только Hero секцию */}
+      {/* Компоненты страницы */}
       <BanyaHeroSection />
-      
-      {/* Остальные компоненты (временно закомментированы для диагностики) */}
-      {/*
       <BanyaServicesSection />
       <BanyaFeaturesSection />
       <BanyaTestimonialsSection />
       <BanyaFAQSection />
       <BanyaBookingSection />
-      */}
     </BanyaContainer>
   );
 };
