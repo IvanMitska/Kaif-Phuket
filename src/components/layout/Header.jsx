@@ -64,6 +64,31 @@ const HeaderComponent = () => {
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
+  // Отладка скролла
+  useEffect(() => {
+    const handleScroll = () => {
+      const header = document.querySelector('.kaif-header');
+      if (header) {
+        const rect = header.getBoundingClientRect();
+        const computedStyle = window.getComputedStyle(header);
+        console.log('Header debug:', {
+          scrollY: window.scrollY,
+          position: computedStyle.position,
+          top: computedStyle.top,
+          visibility: computedStyle.visibility,
+          opacity: computedStyle.opacity,
+          display: computedStyle.display,
+          transform: computedStyle.transform,
+          zIndex: computedStyle.zIndex,
+          rect: rect
+        });
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   useEffect(() => {
     return () => {
       if (debounceTimeout) {
@@ -155,7 +180,7 @@ const HeaderComponent = () => {
         width: '100%',
         height: '65px',
         backgroundColor: '#ffffff',
-        zIndex: 1000,
+        zIndex: 99999,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -165,8 +190,27 @@ const HeaderComponent = () => {
         boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
         // Принудительные стили для фиксации
         transform: 'none',
-        willChange: 'auto'
+        willChange: 'auto',
+        // ОТЛАДКА - делаем хедер очень заметным
+        border: '3px solid red',
+        opacity: 1,
+        visibility: 'visible'
       }}>
+        {/* ОТЛАДКА - индикатор внутри хедера */}
+        <div style={{
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          background: 'blue',
+          color: 'white',
+          padding: '2px 8px',
+          fontSize: '10px',
+          zIndex: 10001
+        }}>
+          HEADER CONTENT
+        </div>
+        
         <div style={{
           width: '100%',
           maxWidth: '1200px',

@@ -30,6 +30,10 @@ header.kaif-header {
   margin: 0 !important;
   padding: 0 !important;
 
+  /* ПРИНУДИТЕЛЬНАЯ ВИДИМОСТЬ */
+  visibility: visible !important;
+  opacity: 1 !important;
+
   /* Убираем все трансформации */
   transform: none !important;
   -webkit-transform: none !important;
@@ -44,6 +48,12 @@ header.kaif-header {
   will-change: auto !important;
   contain: none !important;
   isolation: auto !important;
+
+  /* Убираем возможные overflow проблемы */
+  overflow: visible !important;
+  clip: auto !important;
+  -webkit-clip-path: none !important;
+  clip-path: none !important;
 }
 
 /* Убеждаемся что контент не перекрывает хедер */
