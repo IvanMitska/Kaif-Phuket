@@ -20,7 +20,6 @@ const PageContainer = styled.div`
 // Стилизованный контейнер для сохранения стилей при переходах между страницами
 const MainContainer = styled.main`
   flex: 1;
-  padding-top: 65px;
   display: flex;
   flex-direction: column;
   width: 100%;

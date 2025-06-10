@@ -132,10 +132,26 @@ const HeaderComponent = () => {
 
   return (
     <>
-      <header style={{
+      {/* Тестовый индикатор для проверки fixed позиционирования */}
+      <div style={{
+        position: 'fixed',
+        top: '70px',
+        right: '10px',
+        background: 'red',
+        color: 'white',
+        padding: '5px 10px',
+        fontSize: '12px',
+        zIndex: 9999,
+        borderRadius: '4px'
+      }}>
+        Fixed Test
+      </div>
+      
+      <header className="kaif-header" style={{
         position: 'fixed',
         top: 0,
         left: 0,
+        right: 0,
         width: '100%',
         height: '65px',
         backgroundColor: '#ffffff',
@@ -146,7 +162,10 @@ const HeaderComponent = () => {
         margin: 0,
         padding: 0,
         boxSizing: 'border-box',
-        boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)'
+        boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+        // Принудительные стили для фиксации
+        transform: 'none',
+        willChange: 'auto'
       }}>
         <div style={{
           width: '100%',
