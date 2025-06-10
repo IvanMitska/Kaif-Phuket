@@ -7,14 +7,13 @@ import { useTranslation } from 'react-i18next';
 import BanyaHeroSection from '../components/banya/BanyaHeroSection';
 import BanyaServicesSection from '../components/banya/BanyaServicesSection';
 import BanyaFeaturesSection from '../components/banya/BanyaFeaturesSection';
-import BanyaTestimonialsSection from '../components/banya/BanyaTestimonialsSection';
 import BanyaBookingSection from '../components/banya/BanyaBookingSection';
 import BanyaFAQSection from '../components/banya/BanyaFAQSection';
 
 /**
  * Контейнер для страницы Бани в стиле Modern Oasis
  */
-const BanyaContainer = styled(motion.div)`
+const BanyaContainer = styled.div`
   background-color: ${props => props.theme.colors.background};
   color: ${props => props.theme.colors.text.primary};
   min-height: 100vh;
@@ -28,6 +27,7 @@ const BanyaContainer = styled(motion.div)`
  */
 const BanyaPage = () => {
   const { t } = useTranslation();
+  const [isReady, setIsReady] = React.useState(false);
   
   // Добавлено сохранение стилей при рендеринге страницы
   React.useEffect(() => {
@@ -38,10 +38,16 @@ const BanyaPage = () => {
     // Принудительно прокручиваем вверх при загрузке страницы
     window.scrollTo(0, 0);
     
+    // Убеждаемся что страница готова к отображению
+    const timer = setTimeout(() => {
+      setIsReady(true);
+    }, 50);
+    
     // Удаляем класс при уходе со страницы
     return () => {
       console.log('BanyaPage выгружается...');
       document.body.classList.remove('banya-page');
+      clearTimeout(timer);
     };
   }, []);
   
@@ -52,8 +58,13 @@ const BanyaPage = () => {
     exit: { opacity: 0 }
   };
   
+  if (!isReady) {
+    return null;
+  }
+
   return (
     <BanyaContainer
+      as={motion.div}
       initial="initial"
       animate="animate"
       exit="exit"
@@ -63,7 +74,6 @@ const BanyaPage = () => {
       <BanyaHeroSection />
       <BanyaServicesSection />
       <BanyaFeaturesSection />
-      <BanyaTestimonialsSection />
       <BanyaFAQSection />
       <BanyaBookingSection />
     </BanyaContainer>

@@ -267,7 +267,7 @@ const facilitiesData = [
     number: '25',
     unit: 'м',
     name: 'Бассейн',
-    description: 'Бассейн 25 метров',
+    // description: '',
     accent: 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)',
     color: '#90B3A7',
     borderColor: 'rgba(144, 179, 167, 0.15)'

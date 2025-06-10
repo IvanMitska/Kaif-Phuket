@@ -2,6 +2,7 @@ import React, { useEffect, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { HelmetProvider } from 'react-helmet-async';
 import GlobalFontStyle from './components/global/GlobalFontStyle';
 import GlobalStyles from './components/global/GlobalStyles';
 
@@ -11,6 +12,9 @@ import LoadingScreen from './components/global/LoadingScreen';
 
 // Import i18n configuration
 import './i18n';
+
+// Подавляем CSS предупреждения в development режиме
+import './utils/suppressCSSWarnings';
 
 // Оптимизированные импорты CSS
 import './styles/global-theme.css';
@@ -26,6 +30,8 @@ const SpaPage = React.lazy(() => import('./pages/SpaPage'));
 const SportsPage = React.lazy(() => import('./pages/SportsPage'));
 const BanyaPage = React.lazy(() => import('./pages/BanyaPage'));
 const ContactsPage = React.lazy(() => import('./pages/ContactsPage'));
+const PrivacyPage = React.lazy(() => import('./pages/PrivacyPage'));
+const TermsPage = React.lazy(() => import('./pages/TermsPage'));
 
 
 // Невидимый компонент загрузки - без индикаторов
@@ -44,6 +50,8 @@ const AnimatedRoutes = () => {
         <Route path="/sports" element={<SportsPage />} />
         <Route path="/banya" element={<BanyaPage />} />
         <Route path="/contacts" element={<ContactsPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/terms" element={<TermsPage />} />
 
         {/* Добавляем точные маршруты для предотвращения конфликтов */}
         <Route path="*" element={<Navigate to="/" replace />} />
@@ -81,15 +89,17 @@ function App() {
 
   // Основное приложение
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalFontStyle />
-      <GlobalStyles />
-      <LoadingProvider>
-        <Router basename="/">
-          <AppContent />
-        </Router>
-      </LoadingProvider>
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider theme={theme}>
+        <GlobalFontStyle />
+        <GlobalStyles />
+        <LoadingProvider>
+          <Router basename="/">
+            <AppContent />
+          </Router>
+        </LoadingProvider>
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }
 

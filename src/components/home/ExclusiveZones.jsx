@@ -439,21 +439,21 @@ const activityZones = [
     name: 'Тренажерный зал',
     description: 'Современное пространство с премиальным оборудованием',
     image: '/images/zones/fitness.jpg',
-    path: '/fitness'
+    path: '/sports'
   },
   {
     id: 'combat',
     name: 'Боевые искусства',
     description: 'MMA, бокс и муай-тай с профессиональными тренерами',
     image: '/images/zones/combat.jpg',
-    path: '/combat'
+    path: '/sports'
   },
   {
     id: 'pool',
     name: 'Бассейн',
     description: 'Плавание в 25-метровом бассейне',
     image: '/images/zones/pool.jpg',
-    path: '/pool'
+    path: '/sports'
   }
 ];
 

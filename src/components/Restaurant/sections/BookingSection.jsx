@@ -91,10 +91,43 @@ const BookingSection = () => {
             
             <a 
               href="tel:+66624805877"
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-white font-semibold rounded-full shadow-md hover:bg-opacity-90 transition-all duration-300 text-lg"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                padding: '14px 35px',
+                fontSize: '14px',
+                fontWeight: '600',
+                letterSpacing: '1px',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+                borderRadius: '50px',
+                transition: 'all 0.3s ease-out',
+                position: 'relative',
+                overflow: 'hidden',
+                minWidth: '220px',
+                textAlign: 'center',
+                background: 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)',
+                color: 'white',
+                border: '2px solid transparent',
+                boxShadow: '0 6px 20px rgba(144, 179, 167, 0.3)',
+                willChange: 'transform, box-shadow',
+                transform: 'translateZ(0)'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.transform = 'translateY(-2px) translateZ(0)';
+                e.target.style.boxShadow = '0 8px 25px rgba(144, 179, 167, 0.5)';
+                e.target.style.background = 'linear-gradient(135deg, #A8C5B8 0%, #B8CFC2 100%)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = 'translateZ(0)';
+                e.target.style.boxShadow = '0 6px 20px rgba(144, 179, 167, 0.3)';
+                e.target.style.background = 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)';
+              }}
             >
               {t('restaurant.booking.call_now', 'Позвонить сейчас')}
-              <PhoneIcon className="w-5 h-5" />
+              <PhoneIcon style={{ width: '16px', height: '16px', transition: 'transform 0.2s ease' }} />
             </a>
           </motion.div>
           
@@ -114,24 +147,7 @@ const BookingSection = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             </div>
-            
-            <motion.div 
-              className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-lg"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <div className="flex items-center gap-4">
-                <div className="flex">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <StarIcon key={star} className="w-5 h-5 text-yellow-400" />
-                  ))}
-                </div>
-                <div className="h-6 w-px bg-gray-300"></div>
-                <p className="font-medium">4.9 (2.5k+)</p>
-              </div>
-            </motion.div>
+
           </motion.div>
         </div>
       </div>

@@ -142,7 +142,7 @@ const ButtonContainer = styled(motion.div)`
 `;
 
 // Основная кнопка - Записаться
-const PrimaryButton = styled(motion(Link))`
+const PrimaryButton = styled(motion.create(Link))`
   padding: 1.5rem 3.5rem;
   background: linear-gradient(135deg, #90B3A7 0%, #7da399 100%);
   color: white;

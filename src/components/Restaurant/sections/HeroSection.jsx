@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { StarIcon, ClockIcon } from '@heroicons/react/24/solid';
+import { StarIcon } from '@heroicons/react/24/solid';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
 
 const HeroSection = ({ menuSectionRef }) => {
@@ -108,29 +108,9 @@ const HeroSection = ({ menuSectionRef }) => {
                 <p className="font-medium">4.9 (1.2k+)</p>
               </div>
               <p className="text-sm text-gray-500">{t('restaurant.hero.reviews', 'Excellent Reviews')}</p>
-            </motion.div>
+                        </motion.div>
             
-            <motion.div 
-              className="absolute -top-6 -right-6 bg-white rounded-xl p-4 shadow-lg"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              <div className="flex items-center gap-2">
-                <ClockIcon className="w-5 h-5 text-primary" />
-                <p className="font-medium">30-45 {t('restaurant.hero.min', 'min')}</p>
-              </div>
-              <p className="text-sm text-gray-500">{t('restaurant.hero.delivery', 'Delivery Time')}</p>
-            </motion.div>
-            
-            <motion.div
-              className="absolute bottom-10 right-10 bg-primary text-white py-1.5 px-4 rounded-full text-sm font-medium shadow-lg"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-            >
-              {t('restaurant.hero.featured', 'Featured')}
-            </motion.div>
+
           </div>
         </motion.div>
       </div>

@@ -51,6 +51,8 @@ const HeaderComponent = () => {
     languages.find(lang => lang.code === i18n.language) || languages[0]
   , [languages, i18n.language]);
 
+
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (!event.target.closest('.language-selector')) {
@@ -485,10 +487,8 @@ const HeaderComponent = () => {
                             display: 'flex',
                             alignItems: 'center',
                             padding: '1rem',
-                            color: '#2C3E2D',
                             fontFamily: "'Inter', sans-serif",
                             fontSize: '1.125rem',
-                            fontWeight: '500',
                             textDecoration: 'none',
                             borderRadius: '12px',
                             transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',

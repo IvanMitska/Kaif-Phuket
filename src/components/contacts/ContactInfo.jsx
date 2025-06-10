@@ -140,6 +140,14 @@ const ContactInfo = () => {
           <div style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>
             {t('contacts.info.phone.hours')}
           </div>
+          <ContactLink 
+            href="https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20записаться%20в%20KAIF"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Написать в WhatsApp
+            <ArrowTopRightOnSquareIcon />
+          </ContactLink>
         </div>
       )
     },

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 // Компонент для управления метаданными страницы (title, favicon и т.д.)
 const PageHead = ({ title = 'KAIF | Премиальный велнес-центр в Пхукете' }) => {

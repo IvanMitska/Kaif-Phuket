@@ -1,33 +1,24 @@
 import React from 'react';
-import { AnimatePresence } from 'framer-motion';
 import styled, { keyframes } from 'styled-components';
 
 // Импортируем логотип
 import logoHeader from '../../assets/images/logos/logo-header.png';
 
-// CSS анимации
+// Минимальные CSS анимации
 const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 `;
 
 const fadeOut = keyframes`
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+  from { opacity: 1; }
+  to { opacity: 0; }
 `;
 
 const logoAppear = keyframes`
   0% {
     opacity: 0;
-    transform: translateY(30px) scale(0.8);
+    transform: translateY(20px) scale(0.9);
   }
   100% {
     opacity: 1;
@@ -47,20 +38,17 @@ const LoadingContainer = styled.div`
   justify-content: center;
   z-index: 9999;
   
-  /* CSS анимация появления */
-  animation: ${fadeIn} 0.3s ease-out forwards;
+  /* Оптимизированные анимации */
+  animation: ${fadeIn} 0.2s ease-out forwards;
   
-  /* Когда компонент исчезает */
   &.exiting {
-    animation: ${fadeOut} 0.4s ease-in forwards;
+    animation: ${fadeOut} 0.3s ease-in forwards;
   }
   
-  /* Улучшаем производительность */
+  /* Оптимизация производительности */
   will-change: opacity;
   transform: translateZ(0);
-  -webkit-transform: translateZ(0);
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
 `;
 
 const LogoContainer = styled.div`
@@ -70,28 +58,24 @@ const LogoContainer = styled.div`
 `;
 
 const LogoImage = styled.img`
-  width: 200px;
+  width: 180px;
   height: auto;
   object-fit: contain;
   
-  /* CSS анимация логотипа */
-  animation: ${logoAppear} 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+  /* Упрощенная анимация */
+  animation: ${logoAppear} 0.6s ease-out 0.1s both;
   
-  /* Улучшаем качество и производительность */
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
+  /* Оптимизация */
   will-change: transform, opacity;
   transform: translateZ(0);
-  -webkit-transform: translateZ(0);
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
   
   @media (min-width: 768px) {
-    width: 250px;
+    width: 220px;
   }
   
   @media (min-width: 1024px) {
-    width: 300px;
+    width: 260px;
   }
 `;
 
@@ -105,11 +89,11 @@ const LoadingScreen = ({ isVisible }) => {
       setIsExiting(false);
     } else if (shouldRender) {
       setIsExiting(true);
-      // Убираем компонент после завершения анимации исчезновения
+      // Уменьшаем время анимации
       const timer = setTimeout(() => {
         setShouldRender(false);
         setIsExiting(false);
-      }, 400);
+      }, 300);
       return () => clearTimeout(timer);
     }
   }, [isVisible, shouldRender]);
@@ -122,6 +106,7 @@ const LoadingScreen = ({ isVisible }) => {
         <LogoImage
           src={logoHeader}
           alt="KAIF"
+          loading="eager"
         />
       </LogoContainer>
     </LoadingContainer>

@@ -13,11 +13,23 @@ import '../styles/hide-scrollbar.css';
 
 // Стилизованные компоненты для страницы ресторана
 const RestaurantContainer = styled(motion.div)`
-  background-color: ${props => props.theme.colors.background};
   color: ${props => props.theme.colors.text.primary};
-  min-height: 100vh;
   font-family: ${props => props.theme.fonts.primary};
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  
+  /* Убираем все возможные границы */
+  * {
+    border: none !important;
+    outline: none !important;
+  }
+  
+  button {
+    border: none !important;
+    outline: none !important;
+  }
 `;
 
 // Компоненты для секции меню
@@ -62,14 +74,8 @@ const MenuCard = styled(motion.div)`
   background-color: white;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
   cursor: pointer;
-  
-  &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  }
 `;
 
 const MenuCardImage = styled.div`
@@ -360,86 +366,329 @@ const HeroButton = styled(motion.button)`
 
 // Основной компонент страницы ресторана
 // Компонент с вкладками категорий меню
+// Кастомный компонент для сортировки без конфликтов
+const SortDropdown = ({ sortType, setSortType, t }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Определяем мобильное устройство
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const sortOptions = [
+    { value: 'default', label: t('restaurant.menu.sort.default', 'По умолчанию') },
+    { value: 'popular', label: t('restaurant.menu.sort.popular', 'Популярные') },
+    { value: 'price_low', label: t('restaurant.menu.sort.price_low', 'Сначала дешёвые') },
+    { value: 'price_high', label: t('restaurant.menu.sort.price_high', 'Сначала дорогие') },
+    { value: 'name', label: t('restaurant.menu.sort.name', 'По алфавиту') }
+  ];
+
+  const currentOption = sortOptions.find(option => option.value === sortType);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div className={`relative ${isMobile ? 'w-full' : 'w-auto'}`} ref={dropdownRef} style={{ zIndex: 9999 }}>
+      <motion.button
+        className={isMobile ? 'sort-dropdown-mobile' : ''}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: isMobile ? 'center' : 'space-between',
+          gap: '8px',
+          textAlign: 'center',
+          lineHeight: '1',
+          background: 'rgba(255, 255, 255, 0.95)',
+          border: 'none',
+          borderRadius: '50px',
+          padding: isMobile ? '10px 16px' : '8px 14px',
+          fontSize: isMobile ? '14px' : '13px',
+          fontWeight: '500',
+          color: '#5A6B5D',
+          cursor: 'pointer',
+          minWidth: isMobile ? 'auto' : '160px',
+          width: isMobile ? '100%' : 'auto',
+          maxWidth: isMobile ? '100%' : '220px',
+          transition: 'all 0.3s ease',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(10px)',
+          minHeight: isMobile ? '42px' : '38px',
+          zIndex: 9999,
+          position: 'relative'
+        }}
+        whileHover={{ 
+          borderColor: '#90B3A7',
+          boxShadow: '0 4px 12px rgba(144, 179, 167, 0.15)',
+          scale: 1.02
+        }}
+        whileTap={{ scale: 0.98 }}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span style={{ 
+          overflow: 'hidden', 
+          textOverflow: 'ellipsis', 
+          whiteSpace: 'nowrap',
+          flex: 1,
+          textAlign: isMobile ? 'center' : 'left',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: isMobile ? 'center' : 'flex-start',
+          lineHeight: '1'
+        }}>
+          {currentOption?.label}
+        </span>
+        <motion.svg
+          width={isMobile ? "16" : "14"}
+          height={isMobile ? "16" : "14"}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#90B3A7"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          style={{ flexShrink: 0 }}
+        >
+          <polyline points="6,9 12,15 18,9"></polyline>
+        </motion.svg>
+      </motion.button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="sort-dropdown-list"
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            style={{
+              position: 'absolute',
+              top: '100%',
+              left: '0',
+              right: '0',
+              marginTop: isMobile ? '8px' : '6px',
+              background: 'rgba(255, 255, 255, 0.98)',
+              border: 'none',
+              borderRadius: isMobile ? '20px' : '16px',
+              boxShadow: isMobile 
+                ? '0 15px 40px rgba(0, 0, 0, 0.15), 0 6px 20px rgba(144, 179, 167, 0.12)'
+                : '0 12px 35px rgba(0, 0, 0, 0.12), 0 4px 15px rgba(144, 179, 167, 0.1)',
+              zIndex: 999999,
+              overflow: 'hidden',
+              minWidth: isMobile ? 'auto' : '200px',
+              width: '100%',
+              maxWidth: isMobile ? '100%' : '280px',
+              backdropFilter: 'blur(15px)',
+              WebkitBackdropFilter: 'blur(15px)'
+            }}
+          >
+            {sortOptions.map((option, index) => (
+              <motion.button
+                key={option.value}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.2, delay: index * 0.05 }}
+                style={{
+                  width: '100%',
+                  padding: isMobile ? '12px 16px' : '10px 14px',
+                  fontSize: isMobile ? '14px' : '13px',
+                  fontWeight: sortType === option.value ? '600' : '500',
+                  textAlign: isMobile ? 'center' : 'left',
+                  background: sortType === option.value ? 'rgba(144, 179, 167, 0.12)' : 'transparent',
+                  color: sortType === option.value ? '#90B3A7' : '#5A6B5D',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  position: 'relative',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: isMobile ? 'center' : 'space-between',
+                  minHeight: isMobile ? '44px' : 'auto',
+                  lineHeight: '1.2'
+                }}
+                whileHover={{
+                  background: sortType === option.value ? 'rgba(144, 179, 167, 0.18)' : 'rgba(144, 179, 167, 0.08)',
+                  x: 4
+                }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => {
+                  setSortType(option.value);
+                  setIsOpen(false);
+                }}
+              >
+                <span style={{ 
+                  flex: isMobile ? 'none' : '1',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: isMobile ? 'center' : 'flex-start',
+                  lineHeight: '1.2'
+                }}>{option.label}</span>
+                {sortType === option.value && !isMobile && (
+                  <motion.svg
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#90B3A7"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polyline points="20,6 9,17 4,12"></polyline>
+                  </motion.svg>
+                )}
+                {sortType === option.value && isMobile && (
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    style={{
+                      position: 'absolute',
+                      right: '16px',
+                      width: '5px',
+                      height: '5px',
+                      borderRadius: '50%',
+                      background: '#90B3A7'
+                    }}
+                  />
+                )}
+              </motion.button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 const MenuCategoriesTabs = ({ activeCategory, setActiveCategory }) => {
   const { t } = useTranslation();
   const scrollContainerRef = useRef(null);
   
-  // Все доступные категории меню
-  const menuCategories = [
-    { id: 'all', name: t('restaurant.menu.categories.all', 'Все блюда') },
-    { id: 'breakfast', name: t('restaurant.menu.categories.breakfast', 'Breakfast') },
-    { id: 'lunch', name: t('restaurant.menu.categories.lunch', 'Обеды') },
-    { id: 'dinner', name: t('restaurant.menu.categories.dinner', 'Ужины') },
-    { id: 'soups', name: t('restaurant.menu.categories.soups', 'Супы') },
-    { id: 'salads', name: t('restaurant.menu.categories.salads', 'Салаты') },
-    { id: 'grill', name: t('restaurant.menu.categories.grill', 'Гриль') },
-    { id: 'garnish', name: t('restaurant.menu.categories.garnish', 'Гарниры') },
-    { id: 'sauces', name: t('restaurant.menu.categories.sauces', 'Соусы') },
-    { id: 'bread', name: t('restaurant.menu.categories.bread', 'Хлеб') },
-    { id: 'burgers', name: t('restaurant.menu.categories.burgers', 'Бургеры') },
-    { id: 'shawarma', name: t('restaurant.menu.categories.shawarma', 'Шаурма') },
-    { id: 'desserts', name: t('restaurant.menu.categories.desserts', 'Десерты') },
-    { id: 'tea', name: t('restaurant.menu.categories.tea', 'Чай') },
-    { id: 'coffee', name: t('restaurant.menu.categories.coffee', 'Кофе') },
-    { id: 'smoothies', name: t('restaurant.menu.categories.smoothies', 'Смузи') },
-    { id: 'lemonades', name: t('restaurant.menu.categories.lemonades', 'Лимонады') },
-    { id: 'juices', name: t('restaurant.menu.categories.juices', 'Соки') },
-    { id: 'cocktails', name: t('restaurant.menu.categories.cocktails', 'Коктейли') },
-    { id: 'wine', name: t('restaurant.menu.categories.wine', 'Вино') },
-    { id: 'beer', name: t('restaurant.menu.categories.beer', 'Пиво') },
-    { id: 'strong_alcohol', name: t('restaurant.menu.categories.strong_alcohol', 'Крепкий алкоголь') },
+  // Компактная структура основных категорий
+  const mainCategories = [
+    { id: 'all', name: t('restaurant.menu.categories.all', 'Все блюда'), priority: 1 },
+    { id: 'breakfast', name: t('restaurant.menu.categories.breakfast', 'Завтраки'), priority: 2 },
+    { id: 'soup', name: t('restaurant.menu.categories.soup', 'Супы'), priority: 3 },
+    { id: 'salad', name: t('restaurant.menu.categories.salad', 'Салаты'), priority: 4 },
+    { id: 'grill', name: t('restaurant.menu.categories.grill', 'Гриль'), priority: 5 },
+    { id: 'burger', name: t('restaurant.menu.categories.burger', 'Бургеры'), priority: 6 },
+    { id: 'dessert', name: t('restaurant.menu.categories.dessert', 'Десерты'), priority: 7 },
+    { id: 'tea', name: t('restaurant.menu.categories.tea', 'Чай'), priority: 8 },
+    { id: 'coffee', name: t('restaurant.menu.categories.coffee', 'Кофе'), priority: 9 },
+    { id: 'cocktail', name: t('restaurant.menu.categories.cocktail', 'Коктейли'), priority: 10 },
+    { id: 'wine', name: t('restaurant.menu.categories.wine', 'Вино'), priority: 11 }
   ];
 
-  // Скролл к активной категории
+  // Автоскролл к активной категории
   useEffect(() => {
-    if (scrollContainerRef.current) {
+    if (scrollContainerRef.current && activeCategory) {
       const activeButton = scrollContainerRef.current.querySelector(`[data-category="${activeCategory}"]`);
       if (activeButton) {
         const container = scrollContainerRef.current;
         const scrollLeft = activeButton.offsetLeft - (container.clientWidth / 2) + (activeButton.clientWidth / 2);
-        container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+        container.scrollTo({ left: Math.max(0, scrollLeft), behavior: 'smooth' });
       }
     }
   }, [activeCategory]);
 
   return (
-    <div className="relative mb-8">
-      {/* Стилизованный градиент слева для индикации скролла */}
-      <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-      
+    <div className="mb-8">
       {/* Контейнер с горизонтальным скроллом */}
       <motion.div 
-        ref={scrollContainerRef}
-        className="flex overflow-x-auto pb-4 hide-scrollbar"
+        className="relative"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        style={{
-          scrollbarWidth: 'none', // Firefox
-          msOverflowStyle: 'none' // IE/Edge
-        }}
       >
-        <div className="flex space-x-3 px-2">
-          {menuCategories.map((category) => (
-            <motion.button 
-              key={category.id}
-              data-category={category.id}
-              className={`px-5 py-2.5 rounded-full text-sm whitespace-nowrap transition-all duration-300 ${activeCategory === category.id 
-                ? 'bg-primary text-white font-medium shadow-md' 
-                : 'bg-gray-50 text-gray-600 border border-gray-100 hover:bg-gray-100'}`}
-              whileHover={{ y: -2, scale: 1.05 }}
-              whileTap={{ y: 0, scale: 0.95 }}
-              onClick={() => setActiveCategory(category.id)}
-            >
-              {category.name}
-            </motion.button>
-          ))}
+        {/* Градиент слева */}
+        <div className="absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-r from-white via-white to-transparent z-10 pointer-events-none"></div>
+        
+        {/* Скроллящиеся табы */}
+        <div 
+          ref={scrollContainerRef}
+          className="flex overflow-x-auto pb-2 hide-scrollbar"
+          style={{
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            WebkitOverflowScrolling: 'touch'
+          }}
+        >
+          <div className="flex space-x-3 px-6">
+            {mainCategories.map((category) => (
+              <motion.button 
+                key={category.id}
+                data-category={category.id}
+                style={{
+                  padding: '12px 20px',
+                  borderRadius: '25px',
+                  fontSize: '14px',
+                  fontWeight: activeCategory === category.id ? '600' : '500',
+                  letterSpacing: '0.2px',
+                  whiteSpace: 'nowrap',
+                  flexShrink: 0,
+                  transition: 'all 0.3s ease-out',
+                  background: activeCategory === category.id 
+                    ? 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)' 
+                    : 'rgba(255, 255, 255, 0.8)',
+                  color: activeCategory === category.id ? 'white' : '#5A6B5D',
+                  border: 'none',
+                  boxShadow: activeCategory === category.id 
+                    ? '0 4px 15px rgba(144, 179, 167, 0.3)' 
+                    : '0 2px 8px rgba(0, 0, 0, 0.05)',
+                  cursor: 'pointer'
+                }}
+                whileHover={{ 
+                  y: -2, 
+                  scale: 1.02,
+                  boxShadow: activeCategory === category.id 
+                    ? '0 6px 20px rgba(144, 179, 167, 0.4)' 
+                    : '0 4px 12px rgba(144, 179, 167, 0.15)'
+                }}
+                whileTap={{ y: 0, scale: 0.98 }}
+                onClick={() => setActiveCategory(category.id)}
+                onMouseEnter={(e) => {
+                  if (activeCategory !== category.id) {
+                    e.target.style.background = 'rgba(144, 179, 167, 0.1)';
+                    e.target.style.color = '#90B3A7';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (activeCategory !== category.id) {
+                    e.target.style.background = 'rgba(255, 255, 255, 0.8)';
+                    e.target.style.color = '#5A6B5D';
+                  }
+                }}
+              >
+                {category.name}
+              </motion.button>
+            ))}
+          </div>
         </div>
+        
+        {/* Градиент справа */}
+        <div className="absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-white via-white to-transparent z-10 pointer-events-none"></div>
       </motion.div>
-      
-      {/* Стилизованный градиент справа для индикации скролла */}
-      <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
     </div>
   );
 };
@@ -521,45 +770,46 @@ const RestaurantPage = () => {
       transition={{ duration: 0.5 }}
     >
       {/* Modern Hero Section */}
-      <section className="py-24 px-4 md:px-8 relative overflow-hidden" style={{ position: 'relative' }}>
-        {/* Background image with blur effect */}
-        <div className="absolute inset-0 z-0" style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          filter: 'blur(8px) brightness(0.7)',
-          transform: 'scale(1.1)', // Немного увеличиваем изображение, чтобы избежать прозрачных краев при размытии
+      <section style={{
+        position: 'relative',
+        height: '100vh',
+        width: '100vw',
+        margin: 0,
+        padding: 0,
+        overflow: 'hidden',
+        left: '50%',
+        right: '50%',
+        marginLeft: '-50vw',
+        marginRight: '-50vw'
+      }}>
+        {/* Background image */}
+        <div 
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundImage: `url('https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            filter: 'blur(2px) brightness(0.7)',
+            transform: 'scale(1.01)'
+          }}
+        ></div>
+        
+        {/* Dark overlay */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.5))'
         }}></div>
-        {/* Additional dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
-        {/* Decorative elements */}
-        <motion.div 
-          className="absolute top-20 right-20 w-64 h-64 rounded-full bg-primary opacity-5"
-          animate={{ 
-            scale: [1, 1.2, 1],
-            rotate: [0, 90, 0]
-          }}
-          transition={{ 
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut" 
-          }}
-        />
-        <motion.div 
-          className="absolute -bottom-20 -left-20 w-96 h-96 rounded-full bg-primary opacity-5"
-          animate={{ 
-            scale: [1, 1.3, 1],
-            rotate: [0, -90, 0]
-          }}
-          transition={{ 
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-        />
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center min-h-[70vh] relative z-10">
+        <div className="relative z-10 h-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center py-24 px-4 md:px-8">
           {/* Hero content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -583,7 +833,7 @@ const RestaurantPage = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white font-bold rounded-full shadow-lg hover:bg-opacity-90 transition-all duration-300 text-lg border-2 border-white"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white font-bold rounded-full shadow-lg hover:bg-opacity-90 transition-all duration-300 text-lg border-none"
               onClick={() => {
                 // Плавный скролл к секции меню при нажатии на кнопку
                 menuSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -602,7 +852,7 @@ const RestaurantPage = () => {
             className="relative"
           >
             <div className="relative">
-              <div className="w-[400px] h-[400px] mx-auto rounded-full overflow-hidden border-8 border-white shadow-2xl">
+              <div className="w-[400px] h-[400px] mx-auto rounded-full overflow-hidden border-none shadow-2xl">
                 <img 
                   src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
                   alt="Elegant dish" 
@@ -610,6 +860,7 @@ const RestaurantPage = () => {
                 />
               </div>
               
+              {/* Rating badge */}
               <motion.div 
                 className="absolute -bottom-6 -left-6 bg-white rounded-xl p-4 shadow-lg"
                 initial={{ opacity: 0, y: 20 }}
@@ -622,51 +873,75 @@ const RestaurantPage = () => {
                 </div>
                 <p className="text-sm text-gray-500">{t('restaurant.hero.reviews', 'Excellent Reviews')}</p>
               </motion.div>
-              
-              <motion.div 
-                className="absolute -top-6 -right-6 bg-white rounded-xl p-4 shadow-lg"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
-              >
-                <div className="flex items-center gap-2">
-                  <ClockIcon className="w-5 h-5 text-primary" />
-                  <p className="font-medium">30-45 {t('restaurant.hero.min', 'min')}</p>
-                </div>
-                <p className="text-sm text-gray-500">{t('restaurant.hero.delivery', 'Delivery Time')}</p>
-              </motion.div>
-              
-              <motion.div
-                className="absolute bottom-10 right-10 bg-primary text-white py-1.5 px-4 rounded-full text-sm font-medium shadow-lg"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.7 }}
-              >
-                {t('restaurant.hero.featured', 'Featured')}
-              </motion.div>
             </div>
           </motion.div>
         </div>
       </section>
       
       {/* Секция меню */}
-      <section ref={menuSectionRef} className="py-20 px-4 md:px-8 max-w-7xl mx-auto" id="menu-section">
+      <section ref={menuSectionRef} className="py-20 px-4 md:px-8 max-w-7xl mx-auto bg-white" id="menu-section" style={{
+        backgroundColor: 'white',
+        position: 'relative',
+        zIndex: 1
+      }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <span className="inline-block py-1 px-3 rounded-full bg-opacity-10 bg-primary text-primary text-sm font-medium mb-4">
+          <motion.span 
+            style={{
+              display: 'inline-block',
+              padding: '8px 20px',
+              borderRadius: '50px',
+              background: 'linear-gradient(135deg, rgba(144, 179, 167, 0.1), rgba(168, 197, 184, 0.15))',
+              color: '#90B3A7',
+              fontSize: '14px',
+              fontWeight: '600',
+              letterSpacing: '0.5px',
+              marginBottom: '20px',
+              border: 'none'
+            }}
+            initial={{ scale: 0.8, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             {t('restaurant.menu.tag', 'Изысканные блюда')}
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold font-playfair mb-6">
+          </motion.span>
+          <motion.h2 
+            style={{
+              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+              fontWeight: '700',
+              fontFamily: 'Playfair Display, serif',
+              marginBottom: '24px',
+              background: 'linear-gradient(135deg, #2C3E2D 0%, #90B3A7 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text'
+            }}
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
             {t('restaurant.menu.title', 'Наше меню')}
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            style={{
+              fontSize: '18px',
+              color: '#5A6B5D',
+              maxWidth: '600px',
+              margin: '0 auto',
+              lineHeight: '1.6',
+              fontWeight: '400'
+            }}
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             {t('restaurant.menu.description', 'Откройте для себя разнообразие вкусов в нашем меню, созданном талантливыми шеф-поварами')}
-          </p>
+          </motion.p>
         </motion.div>
 
         <div className="mb-16">
@@ -674,40 +949,35 @@ const RestaurantPage = () => {
           <MenuCategoriesTabs activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
           
           {/* Sort Controls - Сортировка */}
-          <div className="flex flex-col md:flex-row justify-between items-center mt-8 mb-6">
-            <div className="flex items-center gap-2 mb-4 md:mb-0">
-              <span className="inline-flex items-center justify-center w-8 h-8 bg-primary bg-opacity-10 rounded-full text-primary font-semibold text-sm">
-                {menuItems.filter(item => activeCategory === 'all' || item.category === activeCategory).length}
+          <motion.div 
+            className="flex justify-center md:justify-end items-center mt-12 mb-8 px-4 md:px-0 sort-container"
+            style={{ position: 'relative', zIndex: 10000 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.div 
+              className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <span style={{
+                color: '#5A6B5D',
+                fontWeight: '500',
+                fontSize: '15px',
+                textAlign: 'center'
+              }}>
+                {t('restaurant.menu.sort_by', 'Сортировать:')}
               </span>
-              <p className="text-gray-600 font-medium">
-                {t('restaurant.menu.items_available', 'доступных позиций')}
-              </p>
-            </div>
-            
-            <div className="flex items-center gap-4">
-              <span className="text-gray-600 font-medium text-sm md:text-base">                
-                {t('restaurant.menu.sort_by', 'Сортировать:')}              
-              </span>
-              <div className="relative inline-block">
-                <select 
-                  className="appearance-none bg-transparent border-b border-gray-300 py-1 pl-1 pr-8 text-sm md:text-base focus:outline-none focus:border-primary transition-all duration-300"
-                  value={sortType}
-                  onChange={(e) => setSortType(e.target.value)}
-                >
-                  <option value="default">{t('restaurant.menu.sort.default', 'По умолчанию')}</option>
-                  <option value="popular">{t('restaurant.menu.sort.popular', 'Популярные')}</option>
-                  <option value="price_low">{t('restaurant.menu.sort.price_low', 'Сначала дешёвые')}</option>
-                  <option value="price_high">{t('restaurant.menu.sort.price_high', 'Сначала дорогие')}</option>
-                  <option value="name">{t('restaurant.menu.sort.name', 'По алфавиту')}</option>
-                </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-600">
-                  <svg className="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
+              
+              <SortDropdown 
+                sortType={sortType}
+                setSortType={setSortType}
+                t={t}
+              />
+            </motion.div>
+          </motion.div>
 
           {/* Menu Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
@@ -718,12 +988,16 @@ const RestaurantPage = () => {
                 .map((item, index) => (
                 <motion.div 
                   key={item.id} 
-                  className="bg-white rounded-2xl overflow-hidden shadow-lg"
+                  className="bg-white rounded-2xl overflow-hidden menu-item-card"
+                  style={{ 
+                    position: 'relative', 
+                    zIndex: 1,
+                    border: '1px solid #e5e5e5'
+                  }}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.1 * (index % 6) }}
-                  whileHover={{ y: -10 }}
                 >
                   <div className="h-64 overflow-hidden relative">
                     <img 
@@ -775,44 +1049,107 @@ const RestaurantPage = () => {
           {menuItems.filter(item => activeCategory === 'all' || item.category === activeCategory).length > visibleItems && (
             <div className="text-center mt-8">
               <motion.button
-                className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-semibold rounded-full shadow-md hover:bg-opacity-90 transition-all duration-300"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '12px 30px',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  letterSpacing: '0.5px',
+                  textDecoration: 'none',
+                  borderRadius: '50px',
+                  transition: 'all 0.3s ease-out',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  minWidth: '180px',
+                  textAlign: 'center',
+                  background: 'transparent',
+                  color: '#90B3A7',
+                  border: '2px solid #90B3A7',
+                  boxShadow: 'none',
+                  willChange: 'transform, box-shadow',
+                  transform: 'translateZ(0)',
+                  cursor: 'pointer'
+                }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = 'translateY(-2px) translateZ(0)';
+                  e.target.style.background = '#90B3A7';
+                  e.target.style.color = 'white';
+                  e.target.style.boxShadow = '0 4px 15px rgba(144, 179, 167, 0.2)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = 'translateZ(0)';
+                  e.target.style.background = 'transparent';
+                  e.target.style.color = '#90B3A7';
+                  e.target.style.boxShadow = 'none';
+                }}
                 onClick={() => setVisibleItems(prev => prev + 6)}
               >
-                <span className="text-base font-medium">{t('restaurant.menu.show_more', 'Показать еще')}</span>
-                <ChevronRightIcon className="w-5 h-5" />
+                {t('restaurant.menu.show_more', 'Показать еще')}
+                <ChevronRightIcon style={{ width: '16px', height: '16px', transition: 'transform 0.2s ease' }} />
               </motion.button>
-              <p className="mt-2 text-gray-500 text-sm">
-                {t('restaurant.menu.showing_count', 'Показано {{visible}} из {{total}}', {
-                  visible: Math.min(visibleItems, menuItems.filter(item => activeCategory === 'all' || item.category === activeCategory).length),
-                  total: menuItems.filter(item => activeCategory === 'all' || item.category === activeCategory).length
-                })}
-              </p>
             </div>
           )}
 
           {/* View Full Menu Button */}
           <div className="text-center mt-12">
             <motion.button
-              className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-semibold rounded-full shadow-lg border-2 border-white hover:bg-opacity-90 transition-all duration-300 relative z-10"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                padding: '16px 35px',
+                fontSize: '14px',
+                fontWeight: '600',
+                letterSpacing: '1px',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+                borderRadius: '50px',
+                transition: 'all 0.3s ease-out',
+                position: 'relative',
+                overflow: 'hidden',
+                minWidth: '250px',
+                textAlign: 'center',
+                background: 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)',
+                color: 'white',
+                border: '2px solid transparent',
+                boxShadow: '0 6px 20px rgba(144, 179, 167, 0.3)',
+                willChange: 'transform, box-shadow',
+                transform: 'translateZ(0)',
+                cursor: 'pointer',
+                zIndex: 10
+              }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onMouseEnter={(e) => {
+                e.target.style.transform = 'translateY(-2px) translateZ(0)';
+                e.target.style.boxShadow = '0 8px 25px rgba(144, 179, 167, 0.5)';
+                e.target.style.background = 'linear-gradient(135deg, #A8C5B8 0%, #B8CFC2 100%)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = 'translateZ(0)';
+                e.target.style.boxShadow = '0 6px 20px rgba(144, 179, 167, 0.3)';
+                e.target.style.background = 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)';
+              }}
               onClick={() => {
                 // Плавный скролл к секции меню при нажатии на кнопку
                 menuSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              <span className="text-base font-bold">{t('restaurant.menu.view_all', 'Открыть полное меню')}</span>
-              <ArrowRightIcon className="w-5 h-5" />
+              {t('restaurant.menu.view_all', 'Открыть полное меню')}
+              <ArrowRightIcon style={{ width: '16px', height: '16px', transition: 'transform 0.2s ease' }} />
             </motion.button>
-            <p className="mt-2 text-gray-600 font-medium">{t('restaurant.menu.navigation_hint', 'Нажмите, чтобы перейти к полному меню ресторана')}</p>
           </div>
         </div>
       </section>
 
       {/* Секция бронирования */}
-      <section className="py-24 bg-gray-50 relative overflow-hidden">
+      <section className="py-24 bg-white relative overflow-hidden">
         {/* Decorative elements */}
         <motion.div 
           className="absolute top-20 right-20 w-64 h-64 rounded-full bg-primary opacity-5"
@@ -883,10 +1220,43 @@ const RestaurantPage = () => {
               
               <a 
                 href="tel:+66624805877"
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-white font-semibold rounded-full shadow-md hover:bg-opacity-90 transition-all duration-300 text-lg"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '14px 35px',
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  letterSpacing: '1px',
+                  textTransform: 'uppercase',
+                  textDecoration: 'none',
+                  borderRadius: '50px',
+                  transition: 'all 0.3s ease-out',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  minWidth: '220px',
+                  textAlign: 'center',
+                  background: 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)',
+                  color: 'white',
+                  border: '2px solid transparent',
+                  boxShadow: '0 6px 20px rgba(144, 179, 167, 0.3)',
+                  willChange: 'transform, box-shadow',
+                  transform: 'translateZ(0)'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = 'translateY(-2px) translateZ(0)';
+                  e.target.style.boxShadow = '0 8px 25px rgba(144, 179, 167, 0.5)';
+                  e.target.style.background = 'linear-gradient(135deg, #A8C5B8 0%, #B8CFC2 100%)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = 'translateZ(0)';
+                  e.target.style.boxShadow = '0 6px 20px rgba(144, 179, 167, 0.3)';
+                  e.target.style.background = 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)';
+                }}
               >
                 {t('restaurant.booking.call_now', 'Позвонить сейчас')}
-                <PhoneIcon className="w-5 h-5" />
+                <PhoneIcon style={{ width: '16px', height: '16px', transition: 'transform 0.2s ease' }} />
               </a>
             </motion.div>
             
@@ -906,24 +1276,7 @@ const RestaurantPage = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
               </div>
-              
-              <motion.div 
-                className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-lg"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-              >
-                <div className="flex items-center gap-4">
-                  <div className="flex">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <StarIcon key={star} className="w-5 h-5 text-yellow-400" />
-                    ))}
-                  </div>
-                  <div className="h-6 w-px bg-gray-300"></div>
-                  <p className="font-medium">4.9 (2.5k+)</p>
-                </div>
-              </motion.div>
+
             </motion.div>
           </div>
         </div>

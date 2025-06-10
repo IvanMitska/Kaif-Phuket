@@ -45,17 +45,17 @@ const ContactButtonContainer = styled(motion.div)`
   padding: 30px 20px;
   background: linear-gradient(135deg, rgba(144, 179, 167, 0.05) 0%, rgba(168, 197, 184, 0.03) 100%);
   
-  @media (max-width: 768px) {
+  @media screen and (max-width: 768px) {
     padding: 20px 20px;
   }
   
-  @media (max-width: 480px) {
+  @media screen and (max-width: 480px) {
     padding: 15px 20px;
   }
 `;
 
 // Стилизованная кнопка в стиле hero кнопок
-const ContactButton = styled(motion(Link))`
+const ContactButton = styled(motion.create(Link))`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -122,7 +122,7 @@ const ContactButton = styled(motion(Link))`
     transform: translateX(3px);
   }
   
-  @media (max-width: 768px) {
+  @media screen and (max-width: 768px) {
     width: 100%;
     max-width: 320px;
     padding: 1rem 2rem;

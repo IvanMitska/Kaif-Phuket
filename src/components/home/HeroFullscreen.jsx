@@ -164,7 +164,7 @@ const LogoImage = styled(motion.img)`
 
 
 // Белая кнопка с чёрным текстом - премиальный вид
-const PrimaryButton = styled(motion(Link))`
+const PrimaryButton = styled(motion.create(Link))`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -237,7 +237,7 @@ const PrimaryButton = styled(motion(Link))`
 `;
 
 // Вторичная кнопка - улучшенная видимость
-const SecondaryButton = styled(motion(Link))`
+const SecondaryButton = styled(motion.button)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -257,6 +257,8 @@ const SecondaryButton = styled(motion(Link))`
   min-width: 220px;
   margin-top: 1.2rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  font-family: inherit;
   
   &:hover {
     color: rgba(255, 255, 255, 1);
@@ -442,7 +444,17 @@ const HeroFullscreen = () => {
             </PrimaryButton>
             
             <SecondaryButton 
-              to="/sports"
+              as="button"
+              onClick={() => {
+                const element = document.getElementById('exclusive-zones');
+                if (element) {
+                  element.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start',
+                    inline: 'nearest' 
+                  });
+                }
+              }}
               whileHover={{ 
                 scale: 1.01,
                 transition: {

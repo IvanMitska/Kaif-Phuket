@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from './Header';
@@ -32,10 +32,19 @@ const MainContainer = styled.main`
 
 const Layout = ({ children }) => {
   const location = useLocation();
+  const [isPageLoaded, setIsPageLoaded] = useState(false);
 
-  // Scroll to top on route change
+  // Scroll to top on route change and handle page loading
   useEffect(() => {
+    setIsPageLoaded(false);
     window.scrollTo(0, 0);
+    
+    // Даем время страnice загрузиться
+    const timer = setTimeout(() => {
+      setIsPageLoaded(true);
+    }, 100);
+    
+    return () => clearTimeout(timer);
   }, [location.pathname]);
 
   return (
@@ -45,7 +54,7 @@ const Layout = ({ children }) => {
       <MainContainer>
         {children}
       </MainContainer>
-      <Footer />
+      {isPageLoaded && <Footer />}
     </PageContainer>
   );
 };
