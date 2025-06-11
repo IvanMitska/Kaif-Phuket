@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -432,55 +432,7 @@ const ExploreButton = styled(Link)`
   }
 `;
 
-// Данные для категории "Активити"
-const activityZones = [
-  {
-    id: 'fitness',
-    name: 'Тренажерный зал',
-    description: 'Современное пространство с премиальным оборудованием',
-    image: '/images/zones/fitness.jpg',
-    path: '/sports'
-  },
-  {
-    id: 'combat',
-    name: 'Боевые искусства',
-    description: 'MMA, бокс и муай-тай с профессиональными тренерами',
-    image: '/images/zones/combat.jpg',
-    path: '/sports'
-  },
-  {
-    id: 'pool',
-    name: 'Бассейн',
-    description: 'Плавание в 25-метровом бассейне',
-    image: '/images/zones/pool.jpg',
-    path: '/sports'
-  }
-];
 
-// Данные для категории "Релакс"
-const relaxZones = [
-  {
-    id: 'spa',
-    name: 'СПА-комплекс',
-    description: 'Расслабляющие процедуры и премиальные массажи',
-    image: '/images/zones/spa.jpg',
-    path: '/spa'
-  },
-  {
-    id: 'banya',
-    name: 'Русская баня',
-    description: 'Традиционные банные процедуры и оздоровление',
-    image: heroLuxuryImage,
-    path: '/banya'
-  },
-  {
-    id: 'restaurant',
-    name: 'Ресторан',
-    description: 'Изысканная кухня и авторское меню',
-    image: '/images/zones/restaurant.jpg',
-    path: '/restaurant'
-  }
-];
 
 // Контейнер для кнопок-вкладок
 const TabsContainer = styled.div`
@@ -591,6 +543,56 @@ const TabButton = styled.button`
 const ExclusiveZones = () => {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('all');
+
+  // Данные для категории "Активити" с переводами
+  const activityZones = useMemo(() => [
+    {
+      id: 'fitness',
+      name: t('zones.activity.fitness.name'),
+      description: t('zones.activity.fitness.description'),
+      image: '/images/zones/fitness.jpg',
+      path: '/sports'
+    },
+    {
+      id: 'combat',
+      name: t('zones.activity.combat.name'),
+      description: t('zones.activity.combat.description'),
+      image: '/images/zones/combat.jpg',
+      path: '/sports'
+    },
+    {
+      id: 'pool',
+      name: t('zones.activity.pool.name'),
+      description: t('zones.activity.pool.description'),
+      image: '/images/zones/pool.jpg',
+      path: '/sports'
+    }
+  ], [t]);
+
+  // Данные для категории "Релакс" с переводами
+  const relaxZones = useMemo(() => [
+    {
+      id: 'spa',
+      name: t('zones.relax.spa.name'),
+      description: t('zones.relax.spa.description'),
+      image: '/images/zones/spa.jpg',
+      path: '/spa'
+    },
+    {
+      id: 'banya',
+      name: t('zones.relax.banya.name'),
+      description: t('zones.relax.banya.description'),
+      image: heroLuxuryImage,
+      path: '/banya'
+    },
+    {
+      id: 'restaurant',
+      name: t('zones.relax.restaurant.name'),
+      description: t('zones.relax.restaurant.description'),
+      image: '/images/zones/restaurant.jpg',
+      path: '/restaurant'
+    }
+  ], [t]);
   
   // Функция для отображения карточек зон без множественных анимаций
   const renderZones = (zones, categoryKey) => {
@@ -659,7 +661,7 @@ const ExclusiveZones = () => {
             onClick={() => handleTabChange('activity')}
           >
             <BoltIcon />
-            {t('zones.activity', 'Активити')}
+            {t('zones.activity_label', 'Активити')}
           </TabButton>
           
           <TabButton 
@@ -667,7 +669,7 @@ const ExclusiveZones = () => {
             onClick={() => handleTabChange('relax')}
           >
             <SparklesIcon />
-            {t('zones.relax', 'Релакс')}
+            {t('zones.relax_label', 'Релакс')}
           </TabButton>
         </TabsContainer>
         
@@ -678,7 +680,7 @@ const ExclusiveZones = () => {
               <CategoryHeader>
                 <CategoryTitle>
                   <BoltIcon />
-                  {t('zones.activity', 'Активити')}
+                  {t('zones.activity_label', 'Активити')}
                 </CategoryTitle>
               </CategoryHeader>
               
@@ -694,7 +696,7 @@ const ExclusiveZones = () => {
               <CategoryHeader>
                 <CategoryTitle>
                   <SparklesIcon />
-                  {t('zones.relax', 'Релакс')}
+                  {t('zones.relax_label', 'Релакс')}
                 </CategoryTitle>
               </CategoryHeader>
               

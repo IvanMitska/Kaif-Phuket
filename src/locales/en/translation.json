@@ -879,6 +879,9 @@
       "title": "Contact Information",
       "hours": "Opening Hours: 7:00 - 22:00 daily"
     },
+    "hours": {
+      "booking": "Online booking available"
+    },
     "feedback": {
       "title": "Feedback",
       "description": "We value your opinion"

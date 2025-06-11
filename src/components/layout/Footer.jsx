@@ -433,11 +433,11 @@ const Footer = () => {
   ];
 
   const serviceLinks = [
-    { path: '/spa', label: 'Сауна и хаммам', id: 'spa-sauna' },
-    { path: '/restaurant', label: 'Ресторан', id: 'restaurant' },
-    { path: '/sports', label: 'Фитнес-центр', id: 'sports-fitness' },
-    { path: '/banya', label: 'Русская баня', id: 'banya' },
-    { path: '/sports', label: 'Бойцовский клуб', id: 'sports-club' },
+    { path: '/spa', label: t('footer.services.sauna'), id: 'spa-sauna' },
+    { path: '/restaurant', label: t('navigation.restaurant'), id: 'restaurant' },
+    { path: '/sports', label: t('footer.services.fitness'), id: 'sports-fitness' },
+    { path: '/banya', label: t('navigation.banya'), id: 'banya' },
+    { path: '/sports', label: t('footer.services.fight_club'), id: 'sports-club' },
   ];
 
   return (
@@ -480,13 +480,22 @@ const Footer = () => {
                 whileHover={{ scale: 1.05, transition: { duration: 0.3, ease: "easeOut" } }}
               />
               <BrandDescription>
-                Премиальный оздоровительный комплекс на Пхукете. 
-                Мы создаем уникальный опыт wellness для восстановления 
-                гармонии тела и души.
+                {t('footer.brand.description')}
               </BrandDescription>
               <SocialLinks>
                 <SocialLink
-                  href="https://facebook.com"
+                  href="https://www.instagram.com/kaif.phuket/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, transition: { duration: 0.3, ease: "easeOut" } }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <svg fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                </SocialLink>
+                <SocialLink
+                  href="https://web.facebook.com/kaifphuketfb?mibextid=LQQJ4d&_rdc=1&_rdr#"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, transition: { duration: 0.3, ease: "easeOut" } }}
@@ -497,25 +506,29 @@ const Footer = () => {
                   </svg>
                 </SocialLink>
                 <SocialLink
-                  href="https://instagram.com"
+                  href="https://t.me/kaifphuketchat"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, transition: { duration: 0.3, ease: "easeOut" } }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <svg fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-2.717 0-4.915-2.198-4.915-4.915S5.732 7.158 8.449 7.158s4.915 2.198 4.915 4.915-2.198 4.915-4.915 4.915zm7.44-9.622a1.158 1.158 0 11-2.316 0 1.158 1.158 0 012.316 0z"/>
+                    <path d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.789l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"/>
                   </svg>
                 </SocialLink>
                 <SocialLink
-                  href={`tel:${t('common.phone_number')}`}
+                  href="https://www.youtube.com/@KaifPhuket"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, transition: { duration: 0.3, ease: "easeOut" } }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <PhoneIcon />
+                  <svg fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
                 </SocialLink>
                 <SocialLink
-                  href="https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20записаться%20в%20KAIF"
+                  href="https://api.whatsapp.com/send/?phone=66624805877&text&type=phone_number&app_absent=0"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, transition: { duration: 0.3, ease: "easeOut" } }}
@@ -530,7 +543,7 @@ const Footer = () => {
 
             {/* Navigation */}
             <FooterSection variants={itemVariants}>
-              <SectionTitle>Навигация</SectionTitle>
+              <SectionTitle>{t('footer.navigation')}</SectionTitle>
               {navigationLinks.map((link) => (
                 <FooterLink key={link.id} to={link.path}>
                   {link.label}
@@ -540,7 +553,7 @@ const Footer = () => {
 
             {/* Services */}
             <FooterSection variants={itemVariants}>
-              <SectionTitle>Услуги</SectionTitle>
+              <SectionTitle>{t('footer.services.title')}</SectionTitle>
               {serviceLinks.map((link) => (
                 <FooterLink key={link.id} to={link.path}>
                   {link.label}
@@ -550,20 +563,21 @@ const Footer = () => {
 
             {/* Contact Info */}
             <FooterSection variants={itemVariants}>
-              <SectionTitle>Контакты</SectionTitle>
+              <SectionTitle>{t('navigation.contacts')}</SectionTitle>
               
               <ContactItem>
                 <MapPinIcon />
                 <ContactText>
-                  {t('common.address')}
+                  73, Baan Chalekiri Village,<br />
+                  6 Pra Phuket Keaw Road, Kathu
                 </ContactText>
               </ContactItem>
 
               <ContactItem>
                 <PhoneIcon />
                 <ContactText>
-                  <ContactLink href={`tel:${t('common.phone_number')}`}>
-                    {t('common.phone_number')}
+                  <ContactLink href="tel:+66624805877">
+                    +66 62 480 5877
                   </ContactLink>
                 </ContactText>
               </ContactItem>
@@ -571,8 +585,8 @@ const Footer = () => {
               <ContactItem>
                 <ClockIcon />
                 <ContactText>
-                  Ежедневно<br />
-                  7:00 - 22:00
+                  {t('footer.schedule.daily')}<br />
+                  {t('footer.schedule.hours')}
                 </ContactText>
               </ContactItem>
 
@@ -584,11 +598,11 @@ const Footer = () => {
           <FooterBottom>
             <Copyright>
               &copy; {currentYear} <span className="highlight">KAIF</span>. 
-              Все права защищены.
+              {t('footer.copyright')}
             </Copyright>
             <LegalLinks>
-              <Link to="/privacy">Политика конфиденциальности</Link>
-              <Link to="/terms">Условия использования</Link>
+              <Link to="/privacy">{t('footer.legal.privacy')}</Link>
+              <Link to="/terms">{t('footer.legal.terms')}</Link>
             </LegalLinks>
           </FooterBottom>
         </motion.div>

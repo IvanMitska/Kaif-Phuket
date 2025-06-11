@@ -99,8 +99,8 @@ const HeroSection = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: 1 }}
             >
-              <HeroStatNumber>24/7</HeroStatNumber>
-              <HeroStatLabel>{t('sports.hero.stats.access', 'Доступ для резидентов')}</HeroStatLabel>
+              <HeroStatNumber>70+</HeroStatNumber>
+              <HeroStatLabel>{t('sports.hero.stats.access', 'Современное оборудование')}</HeroStatLabel>
             </HeroStat>
           </HeroStatsContainer>
         </HeroContent>

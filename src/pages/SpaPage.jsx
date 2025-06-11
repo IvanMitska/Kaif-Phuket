@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 const SpaHeroSection = React.lazy(() => import('../components/spa/SpaHeroSection'));
 const SpaServicesSection = React.lazy(() => import('../components/spa/SpaServicesSection'));
 const SpaFeaturesSection = React.lazy(() => import('../components/spa/SpaFeaturesSection'));
-const SpaTestimonialsSection = React.lazy(() => import('../components/spa/SpaTestimonialsSection'));
+// const SpaTestimonialsSection = React.lazy(() => import('../components/spa/SpaTestimonialsSection')); // Отключено
 const SpaBookingSection = React.lazy(() => import('../components/spa/SpaBookingSection'));
 const SpaFAQSection = React.lazy(() => import('../components/spa/SpaFAQSection'));
 
@@ -67,7 +67,7 @@ const SpaPage = () => {
         <SpaHeroSection />
         <SpaServicesSection />
         <SpaFeaturesSection />
-        <SpaTestimonialsSection />
+        {/* <SpaTestimonialsSection /> */}
         <SpaFAQSection />
         <SpaBookingSection />
       </Suspense>

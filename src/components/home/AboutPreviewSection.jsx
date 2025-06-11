@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -317,46 +317,46 @@ const AboutPreviewSection = () => {
   };
 
   // Stats
-  const stats = [
-    { number: '50m2', label: 'Русская баня' },
-    { number: '70+', label: 'Тренажеров' },
-    { number: '50+', label: 'Авторских блюд' },
-    { number: '25м', label: 'Олимпийский бассейн' },
-  ];
+  const stats = useMemo(() => [
+    { number: '50m2', label: t('home.about.stats.banya') },
+    { number: '70+', label: t('home.about.stats.equipment') },
+    { number: '50+', label: t('home.about.stats.dishes') },
+    { number: '25м', label: t('home.about.stats.pool') },
+  ], [t]);
 
   // Особенности комплекса
-  const features = [
+  const features = useMemo(() => [
     {
       icon: <SparklesIcon />,
-      title: 'СПА-комплекс',
-      description: 'Самая большая сауна в Таиланде, хаммам и массажные кабинеты'
+      title: t('home.about.features.spa.title'),
+      description: t('home.about.features.spa.description')
     },
     {
       icon: <BuildingOffice2Icon />,
-      title: 'Тренажерный зал',
-      description: 'Более 70 современных тренажеров и профессиональные тренеры'
+      title: t('home.about.features.gym.title'),
+      description: t('home.about.features.gym.description')
     },
     {
       icon: <UserGroupIcon />,
-      title: 'Боевые искусства',
-      description: 'MMA, бокс, муай-тай с профессиональными тренерами'
+      title: t('home.about.features.martial.title'),
+      description: t('home.about.features.martial.description')
     },
     {
       icon: <BuildingOffice2Icon />,
-      title: 'Олимпийский бассейн',
-      description: '25-метровый бассейн с подогревом и аква-фитнесом'
+      title: t('home.about.features.pool.title'),
+      description: t('home.about.features.pool.description')
     },
     {
       icon: <SparklesIcon />,
-      title: 'Ресторан',
-      description: '50+ авторских блюд от шеф-повара и панорамная терраса'
+      title: t('home.about.features.restaurant.title'),
+      description: t('home.about.features.restaurant.description')
     },
     {
       icon: <SparklesIcon />,
-      title: 'Салон красоты',
-      description: 'Косметология, уходы, парикмахерские услуги'
+      title: t('home.about.features.beauty.title'),
+      description: t('home.about.features.beauty.description')
     }
-  ];
+  ], [t]);
 
   return (
     <AboutContainer>
@@ -372,25 +372,17 @@ const AboutPreviewSection = () => {
             <AboutContent>
               <AboutBadge variants={itemVariants}>
                 <CheckBadgeIcon />
-                О комплексе
+                {t('home.about.badge')}
               </AboutBadge>
               
-              <AboutTitle variants={itemVariants}>
-                Многофункциональный<br />
-                комплекс KAIF
-              </AboutTitle>
+              <AboutTitle variants={itemVariants} dangerouslySetInnerHTML={{ __html: t('home.about.title') }} />
               
               <AboutDescription variants={itemVariants}>
-                KAIF PHUKET – это премиальный комплекс, где вы восстанавливаете силы, заряжаетесь энергией и 
-                наслаждаетесь каждым моментом. Всё здесь создано так, чтобы вам хотелось 
-                вернуться: тренировки, которые вдохновляют, отдых, который наполняет, и 
-                атмосфера, которая дарит настоящий кайф.  
+                {t('home.about.description1')}
               </AboutDescription>
               
               <AboutDescription variants={itemVariants}>
-                Мы создали уникальное пространство на Пхукете, где премиальный сервис 
-                встречается с тайским гостеприимством. KAIF — это не просто спа-комплекс, 
-                это философия здорового образа жизни и гармонии.
+                {t('home.about.description2')}
               </AboutDescription>
 
               {/* Статистики */}

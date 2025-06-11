@@ -6,7 +6,7 @@
     <link rel="shortcut icon" type="image/png" href="/favicon.png">
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="theme-color" content="#ffffff">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
     
     <!-- Preconnect для внешних ресурсов -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,8 +53,7 @@
       /* Оптимизация для мобильных устройств */
       @media (max-width: 768px) {
         body {
-          -webkit-transform: translateZ(0);
-          transform: translateZ(0);
+          /* Убираем transform, который может создавать stacking context */
         }
       }
       
@@ -74,12 +73,18 @@
         0%, 100% { opacity: 1; }
         50% { opacity: 0.5; }
       }
+
+
     </style>
     
     <title>KAIF - Jungle Club & Spa | Phuket</title>
   </head>
   <body>
+
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+
   </body>
 </html>

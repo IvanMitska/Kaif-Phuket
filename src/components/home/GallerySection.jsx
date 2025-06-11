@@ -700,11 +700,11 @@ const GallerySection = () => {
 
   // Фильтры
   const filters = [
-    { id: 'all', label: 'Все' },
-    { id: 'spa', label: 'СПА' },
-    { id: 'fitness', label: 'Фитнес' },
-    { id: 'pool', label: 'Бассейн' },
-    { id: 'relax', label: 'Релаксация' }
+    { id: 'all', label: t('gallery.filters.all') },
+    { id: 'spa', label: t('gallery.filters.spa') },
+    { id: 'fitness', label: t('gallery.filters.fitness') },
+    { id: 'pool', label: t('gallery.filters.pool') },
+    { id: 'relax', label: t('gallery.filters.relax') }
   ];
 
   // Фильтрация данных
@@ -783,7 +783,7 @@ const GallerySection = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            Галерея
+            {t('gallery.overline')}
           </Overline>
           <SectionTitle
             initial={{ opacity: 0, y: 40 }}
@@ -791,7 +791,7 @@ const GallerySection = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            Впечатления KAIF
+            {t('gallery.title')}
           </SectionTitle>
           <SectionSubtitle
             initial={{ opacity: 0, y: 30 }}
@@ -799,8 +799,7 @@ const GallerySection = () => {
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            Погрузитесь в атмосферу KAIF через нашу галерею фотографий. 
-            Познакомьтесь с нашими услугами и возможностями комплекса.
+            {t('gallery.subtitle')}
           </SectionSubtitle>
         </SectionHeader>
         

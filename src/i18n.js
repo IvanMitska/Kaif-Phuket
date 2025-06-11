@@ -23,8 +23,17 @@ i18n
         translation: thTranslation,
       },
     },
-    fallbackLng: 'en',
+    lng: 'ru', // Устанавливаем русский по умолчанию
+    fallbackLng: 'ru',
     debug: process.env.NODE_ENV === 'development',
+    
+    detection: {
+      order: ['localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
+      lookupLocalStorage: 'i18nextLng',
+      lookupSessionStorage: 'i18nextLng',
+      caches: ['localStorage', 'sessionStorage'],
+    },
+    
     interpolation: {
       escapeValue: false, // React already safes from XSS
     },

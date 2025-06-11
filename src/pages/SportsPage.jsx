@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 // Ленивая загрузка компонентов спорта для оптимизации
 const HeroSection = React.lazy(() => import('../components/sports/HeroSection/HeroSection'));
 const FacilitySection = React.lazy(() => import('../components/sports/FacilitySection/FacilitySection'));
-const GallerySection = React.lazy(() => import('../components/sports/GallerySection/GallerySection'));
 const ScheduleSection = React.lazy(() => import('../components/sports/ScheduleSection/ScheduleSection'));
 import { PageContainer } from '../styles/sports/CommonStyles';
 
@@ -37,7 +36,6 @@ const SportsPage = () => {
       <Suspense fallback={<InvisibleLoader />}>
         <HeroSection />
         <FacilitySection />
-        <GallerySection />
         <ScheduleSection />
       </Suspense>
     </PageContainer>

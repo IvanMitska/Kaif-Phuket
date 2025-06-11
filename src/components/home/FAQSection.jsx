@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -423,51 +423,51 @@ const FAQSection = () => {
     }
   };
 
-  // FAQ данные
-  const faqs = [
+  // FAQ данные с переводами
+  const faqs = useMemo(() => [
     {
       category: 'general',
       icon: <QuestionMarkCircleIcon />,
-      question: 'Что включает в себя комплекс KAIF?',
-      answer: 'KAIF — уникальный комплекс на Пхукете, где можно сочетать активность, отдых и уход за собой в одном месте. На территории находятся: современный спортзал, олимпийский бассейн с зонами для релакса, студия танцев и функциональных тренировок, зал боевых искусств, бьюти-студия, СПА в качестве русской сауны, тайского хаммама и массажных услуг, ресторан с восточной кухней, русской классикой и блюдами на мангале.'
+      question: t('faq.questions.what_includes.question'),
+      answer: t('faq.questions.what_includes.answer')
     },
     {
       category: 'general',
       icon: <ClockIcon />,
-      question: 'Режим работы комплекса?',
-      answer: 'Мы работаем ежедневно с 6:00 до 23:00. Некоторые зоны (СПА, ресторан) могут иметь отдельный график. Рекомендуем уточнять время работы конкретных услуг при бронировании.'
+      question: t('faq.questions.working_hours.question'),
+      answer: t('faq.questions.working_hours.answer')
     },
     {
       category: 'booking',
       icon: <UserGroupIcon />,
-      question: 'Как забронировать услуги?',
-      answer: 'Бронирование доступно через наш сайт, мобильное приложение, по телефону +66 76 123 456 или WhatsApp. Рекомендуем бронировать заранее, особенно СПА-процедуры и столики в ресторане.'
+      question: t('faq.questions.how_to_book.question'),
+      answer: t('faq.questions.how_to_book.answer')
     },
     {
       category: 'booking',
       icon: <CreditCardIcon />,
-      question: 'Можно ли приобрести абонементы?',
-      answer: 'Да! У нас есть различные абонементы: дневные, недельные, месячные и годовые. Также доступны комбинированные пакеты, включающие несколько услуг со скидкой до 30%.'
+      question: t('faq.questions.memberships.question'),
+      answer: t('faq.questions.memberships.answer')
     },
     {
       category: 'services',
       icon: <UserGroupIcon />,
-      question: 'Нужен ли опыт для занятий?',
-      answer: 'Нет! У нас есть программы для всех уровней подготовки. Новичкам предоставляем вводный инструктаж, персональные консультации и программы "первые шаги" для безопасного начала тренировок.'
+      question: t('faq.questions.experience_needed.question'),
+      answer: t('faq.questions.experience_needed.answer')
     },
     {
       category: 'payment',
       icon: <CreditCardIcon />,
-      question: 'Какие способы оплаты принимаются?',
-      answer: 'Принимаем наличные (THB, USD, EUR), банковские карты всех систем, мобильные платежи, криптовалюты и банковские переводы. Доступна рассрочка для крупных пакетов услуг.'
+      question: t('faq.questions.payment_methods.question'),
+      answer: t('faq.questions.payment_methods.answer')
     },
     {
       category: 'payment',
       icon: <QuestionMarkCircleIcon />,
-      question: 'Есть ли программа лояльности?',
-      answer: 'Да! Программа KAIF Rewards дает накопительные скидки, бонусы за приведение друзей, эксклюзивные мероприятия и приоритетное бронирование. Накопленные баллы можно тратить на любые услуги.'
+      question: t('faq.questions.loyalty_program.question'),
+      answer: t('faq.questions.loyalty_program.answer')
     }
-  ];
+  ], [t]);
 
   return (
     <FAQContainer>
@@ -476,15 +476,15 @@ const FAQSection = () => {
           <SectionHeader>
             <SectionBadge>
               <ChatBubbleLeftRightIcon />
-              Ответы на вопросы
+              {t('faq.badge')}
             </SectionBadge>
             
             <SectionTitle>
-              Часто задаваемые вопросы
+              {t('faq.title')}
             </SectionTitle>
             
             <SectionSubtitle>
-              Всё, что нужно знать о нашем многофункциональном комплексе
+              {t('faq.subtitle')}
             </SectionSubtitle>
           </SectionHeader>
 
@@ -550,18 +550,18 @@ const FAQSection = () => {
                   <SupportIcon>
                     <PhoneIcon />
                   </SupportIcon>
-                  <SupportTitle>Служба поддержки</SupportTitle>
+                  <SupportTitle>{t('faq.support.title')}</SupportTitle>
                   <SupportDescription>
-                    Наша команда готова помочь вам 24/7. Свяжитесь с нами любым удобным способом.
+                    {t('faq.support.description')}
                   </SupportDescription>
                   <SupportInfo>
                     <InfoItem>
                       <MapPinIcon />
-                      Пхукет, Таиланд
+                      {t('faq.support.location')}
                     </InfoItem>
                     <InfoItem>
                       <ClockIcon />
-                      24/7 поддержка
+                      {t('faq.support.hours')}
                     </InfoItem>
                   </SupportInfo>
                 </SupportCard>
@@ -577,18 +577,18 @@ const FAQSection = () => {
                   <SupportIcon>
                     <ChatBubbleLeftRightIcon />
                   </SupportIcon>
-                  <SupportTitle>WhatsApp чат</SupportTitle>
+                  <SupportTitle>{t('faq.whatsapp.title')}</SupportTitle>
                   <SupportDescription>
-                    Быстрые ответы в мессенджере. Бронирование, вопросы, поддержка - всё в одном чате.
+                    {t('faq.whatsapp.description')}
                   </SupportDescription>
                   <SupportInfo>
                     <InfoItem>
                       <UserGroupIcon />
-                      Мгновенные ответы
+                      {t('faq.whatsapp.instant_replies')}
                     </InfoItem>
                     <InfoItem>
                       <PhoneIcon />
-                      Персональный менеджер
+                      {t('faq.whatsapp.personal_manager')}
                     </InfoItem>
                   </SupportInfo>
                 </SupportCard>
@@ -604,14 +604,14 @@ const FAQSection = () => {
                   <SupportIcon>
                     <QuestionMarkCircleIcon />
                   </SupportIcon>
-                  <SupportTitle>Персональные консультации</SupportTitle>
+                  <SupportTitle>{t('faq.consultation.title')}</SupportTitle>
                   <SupportDescription>
-                    Индивидуальный подход к каждому гостю. Поможем составить программу под ваши цели.
+                    {t('faq.consultation.description')}
                   </SupportDescription>
                   <SupportInfo>
                     <InfoItem>
                       <QuestionMarkCircleIcon />
-                      Бесплатная консультация
+                      {t('faq.consultation.free')}
                     </InfoItem>
                     <InfoItem>
                       <CreditCardIcon />

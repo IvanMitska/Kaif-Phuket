@@ -1,273 +1,386 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import { FaPlus, FaMinus } from 'react-icons/fa';
+import { 
+  QuestionMarkCircleIcon,
+  ClockIcon,
+  CreditCardIcon,
+  UserGroupIcon,
+  PlusIcon,
+  MinusIcon,
+  ChatBubbleLeftRightIcon,
+  HeartIcon
+} from '@heroicons/react/24/solid';
 
 // =============================================================================
-// СЕКЦИЯ FAQ SPA
+// SPA FAQ СЕКЦИЯ (НА ОСНОВЕ ГЛАВНОЙ СТРАНИЦЫ)
 // =============================================================================
 
-const FaqSectionContainer = styled.section`
-  padding: 8rem 2rem;
-  background: linear-gradient(135deg, 
-    #ede9e4 0%,
-    #e6e2dc 50%,
-    #ddd8d0 100%
-  );
+const FAQContainer = styled.section`
   position: relative;
+  padding: 5rem 0;
+  background: linear-gradient(135deg, rgba(144, 179, 167, 0.05) 0%, rgba(168, 197, 184, 0.03) 100%);
   overflow: hidden;
+  
+  @media (max-width: 768px) {
+    padding: 3rem 0;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 2rem 0;
+  }
 `;
 
-const FloatingElements = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 1;
-`;
-
-const FloatingCircle = styled(motion.div)`
-  position: absolute;
-  border-radius: 50%;
-  background: ${props => props.$color};
-  filter: blur(50px);
-  opacity: 0.3;
-`;
-
-const SectionContainer = styled.div`
-  max-width: 1000px;
+const ContentWrapper = styled.div`
+  position: relative;
+  max-width: 800px;
   margin: 0 auto;
-  position: relative;
-  z-index: 10;
+  padding: 0 1.5rem;
+  
+  @media (min-width: 1024px) {
+    padding: 0 2rem;
+  }
 `;
 
-const FaqTitle = styled(motion.h2)`
-  font-family: ${props => props.theme?.fonts?.elegant || '"Playfair Display", serif'};
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  background: linear-gradient(135deg, #5A6B5D 0%, #7A8A7D 50%, #90B3A7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+const SectionHeader = styled(motion.div)`
   text-align: center;
   margin-bottom: 3rem;
-  font-weight: 600;
+  
+  @media (max-width: 768px) {
+    margin-bottom: 2rem;
+  }
+  
+  @media (max-width: 480px) {
+    margin-bottom: 1.5rem;
+  }
 `;
 
-const FaqList = styled.div`
+const SectionBadge = styled(motion.div)`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(144, 179, 167, 0.08);
+  border: 1px solid rgba(144, 179, 167, 0.15);
+  border-radius: 24px;
+  font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #90B3A7;
+  margin-bottom: 2rem;
+  
+  svg {
+    width: 1rem;
+    height: 1rem;
+    color: #90B3A7;
+  }
+`;
+
+const SectionTitle = styled(motion.h2)`
+  font-family: ${({ theme }) => theme?.fonts?.heading || '"Poppins", sans-serif'};
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: #0f172a;
+  letter-spacing: -0.025em;
+`;
+
+const SectionSubtitle = styled(motion.p)`
+  font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto;
+`;
+
+const FAQList = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 `;
 
-const FaqItemWrapper = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(144, 179, 167, 0.08);
+const FAQItem = styled(motion.div)`
+  background: white;
+  border: 1px solid ${({ $isOpen }) => 
+    $isOpen ? '#e2e8f0' : '#f1f5f9'
+  };
+  border-radius: 16px;
   overflow: hidden;
-  border: 1px solid rgba(144, 179, 167, 0.1);
-  backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
+  
+  ${({ $isOpen }) => $isOpen && `
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+  `}
+  
+  &:hover {
+    border-color: #e2e8f0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+`;
+
+const QuestionButton = styled.button`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
   transition: all 0.3s ease;
   
   &:hover {
-    box-shadow: 0 15px 40px rgba(144, 179, 167, 0.12);
-    background: rgba(255, 255, 255, 0.9);
+    background: #f8fafc;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 1.2rem 1.5rem;
   }
 `;
 
-const FaqQuestion = styled(motion.div)`
+const QuestionContent = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
-  cursor: pointer;
-  font-size: 1.1rem;
+  gap: 1rem;
+  flex: 1;
+`;
+
+const QuestionIcon = styled.div`
+  width: 2.5rem;
+  height: 2.5rem;
+  background: rgba(144, 179, 167, 0.08);
+  border: 1px solid rgba(144, 179, 167, 0.15);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #90B3A7;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  ${FAQItem}:hover & {
+    background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
+    color: white;
+    border-color: transparent;
+  }
+`;
+
+const QuestionText = styled.h3`
+  font-family: ${({ theme }) => theme?.fonts?.heading || '"Poppins", sans-serif'};
+  font-size: 1.125rem;
   font-weight: 600;
-  color: ${props => props.$isOpen ? 'white' : '#5A6B5D'};
-  background: ${props => props.$isOpen 
-    ? 'linear-gradient(135deg, #90B3A7 0%, #B8C4A8 100%)' 
-    : 'transparent'
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.4;
+`;
+
+const ToggleIcon = styled(motion.div)`
+  width: 2rem;
+  height: 2rem;
+  background: ${({ $isOpen }) => 
+    $isOpen ? 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)' : 'rgba(144, 179, 167, 0.08)'
+  };
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ $isOpen }) => 
+    $isOpen ? 'white' : '#90B3A7'
   };
   transition: all 0.3s ease;
-  font-family: ${props => props.theme?.fonts?.heading || '"Poppins", sans-serif'};
-
-  &:hover {
-    background: ${props => props.$isOpen 
-      ? 'linear-gradient(135deg, #90B3A7 0%, #B8C4A8 100%)' 
-      : 'rgba(144, 179, 167, 0.1)'
-    };
-    color: ${props => props.$isOpen ? 'white' : '#90B3A7'};
+  flex-shrink: 0;
+  box-shadow: ${({ $isOpen }) => 
+    $isOpen ? '0 4px 8px rgba(0, 0, 0, 0.1)' : 'none'
+  };
+  
+  svg {
+    width: 1rem;
+    height: 1rem;
   }
 `;
 
-const FaqAnswer = styled(motion.div)`
-  padding: 0 2rem 1.5rem 2rem;
-  font-size: 1rem;
-  color: #6B7B6E;
-  line-height: 1.7;
+const AnswerWrapper = styled(motion.div)`
   overflow: hidden;
-  font-weight: 400;
-  font-family: ${props => props.theme?.fonts?.primary || 'Inter, sans-serif'};
 `;
 
-const IconWrapper = styled.span`
-  font-size: 1rem;
-  color: ${props => props.$isOpen ? 'white' : '#90B3A7'};
-  transition: all 0.3s ease;
-  transform: ${props => props.$isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
+const AnswerContent = styled.div`
+  padding: 0 2rem 2rem 5.5rem;
+  
+  @media (max-width: 768px) {
+    padding: 0 1.5rem 2rem 1.5rem;
+  }
 `;
+
+const AnswerText = styled.p`
+  font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #64748b;
+  margin: 0;
+`;
+
+// =============================================================================
+// SPA FAQ SECTION COMPONENT
+// =============================================================================
 
 const SpaFAQSection = () => {
   const { t } = useTranslation();
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openFAQ, setOpenFAQ] = useState(null);
 
-  const toggleItem = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
+  const toggleFAQ = (index) => {
+    setOpenFAQ(openFAQ === index ? null : index);
   };
 
-  const answerVariants = {
-    hidden: { opacity: 0, height: 0, y: -10 },
-    visible: { 
-      opacity: 1, 
-      height: 'auto', 
-      y: 0, 
-      transition: { 
-        duration: 0.4, 
-        ease: "easeInOut" 
-      } 
-    },
-    exit: { 
-      opacity: 0, 
-      height: 0, 
-      y: -10, 
-      transition: { 
-        duration: 0.3, 
-        ease: "easeInOut" 
-      } 
-    }
-  };
-
-  const floatVariants = {
-    initial: { y: 0 },
-    animate: {
-      y: [-5, 5, -5],
+  // Animation variants
+  const faqVariants = {
+    hidden: { opacity: 0.4, y: 15 },
+    visible: {
+      opacity: 1,
+      y: 0,
       transition: {
-        duration: 8,
-        repeat: Infinity,
-        ease: "easeInOut"
+        duration: 0.3,
+        ease: "easeOut"
       }
     }
   };
 
-  const faqData = [
+  const answerVariants = {
+    hidden: {
+      height: 0,
+      opacity: 0,
+      transition: {
+        height: { duration: 0.3 },
+        opacity: { duration: 0.2 }
+      }
+    },
+    visible: {
+      height: "auto",
+      opacity: 1,
+      transition: {
+        height: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
+        opacity: { duration: 0.3, delay: 0.1 }
+      }
+    }
+  };
+
+  // SPA FAQ данные
+  const faqs = [
     {
-      key: 'faq1',
-      question: 'Какие услуги предлагает SPA-центр?',
-      answer: 'Мы предлагаем широкий спектр услуг: тайский массаж, ароматерапия, сауну, хаммам, косметологические процедуры и услуги салона красоты.'
+      category: 'services',
+      icon: <HeartIcon />,
+      question: t('spa.faq.questions.services.question', 'Какие SPA услуги вы предлагаете?'),
+      answer: t('spa.faq.questions.services.answer', 'Мы предлагаем полный спектр SPA услуг: массаж (тайский, масляный, спортивный), косметологические процедуры, лазерную эпиляцию, маникюр, педикюр, уход за волосами, а также сауну и хаммам.')
     },
     {
-      key: 'faq2',
-      question: 'Как записаться на процедуру?',
-      answer: 'Вы можете записаться по телефону +66 62 480 5877, через WhatsApp или лично посетив наш центр. Онлайн-бронирование скоро будет доступно.'
+      category: 'booking',
+      icon: <ClockIcon />,
+      question: t('spa.faq.questions.booking.question', 'Как записаться на SPA процедуру?'),
+      answer: t('spa.faq.questions.booking.answer', 'Записаться можно по телефону +66 62 480 5877, через WhatsApp или лично в нашем центре. Рекомендуем бронировать заранее, особенно на популярные процедуры.')
     },
     {
-      key: 'faq3',
-      question: 'Каковы правила отмены записи?',
-      answer: 'Мы просим уведомлять об отмене не менее чем за 24 часа. При отмене менее чем за 24 часа может взиматься плата за отмену.'
+      category: 'policy',
+      icon: <QuestionMarkCircleIcon />,
+      question: t('spa.faq.questions.policy.question', 'Каковы правила отмены записи?'),
+      answer: t('spa.faq.questions.policy.answer', 'Просим уведомлять об отмене не менее чем за 24 часа до назначенного времени. При отмене менее чем за 24 часа может взиматься плата за отмену в размере 50% от стоимости процедуры.')
     },
     {
-      key: 'faq4',
-      question: 'Есть ли подарочные сертификаты?',
-      answer: 'Да, мы предлагаем подарочные сертификаты различного номинала. Их можно приобрести у нас в центре или забронировать по телефону.'
+      category: 'payment',
+      icon: <CreditCardIcon />,
+      question: t('spa.faq.questions.payment.question', 'Какие способы оплаты принимаются?'),
+      answer: t('spa.faq.questions.payment.answer', 'Мы принимаем наличные (THB, USD, EUR), банковские карты всех систем, а также мобильные платежи. Оплата производится после процедуры.')
     },
     {
-      key: 'faq5',
-      question: 'Нужно ли что-то приносить с собой?',
-      answer: 'Мы предоставляем все необходимое: полотенца, халаты, тапочки. Вам нужно только прийти и расслабиться.'
+      category: 'preparation',
+      icon: <UserGroupIcon />,
+      question: t('spa.faq.questions.preparation.question', 'Нужно ли что-то приносить с собой?'),
+      answer: t('spa.faq.questions.preparation.answer', 'Мы предоставляем все необходимое: полотенца, халаты, тапочки и косметические средства. Вам нужно только прийти и расслабиться.')
+    },
+    {
+      category: 'gifts',
+      icon: <HeartIcon />,
+      question: t('spa.faq.questions.gifts.question', 'Есть ли подарочные сертификаты?'),
+      answer: t('spa.faq.questions.gifts.answer', 'Да! Мы предлагаем подарочные сертификаты различного номинала на любые SPA услуги. Их можно приобрести в нашем центре или заказать по телефону.')
     }
   ];
 
   return (
-    <FaqSectionContainer>
-      <FloatingElements>
-        <FloatingCircle
-          $color="linear-gradient(135deg, rgba(144, 179, 167, 0.04) 0%, rgba(184, 196, 168, 0.04) 100%)"
-          style={{ width: '200px', height: '200px', top: '20%', left: '20%' }}
-          variants={floatVariants}
-          initial="initial"
-          animate="animate"
-        />
-        <FloatingCircle
-          $color="linear-gradient(135deg, rgba(184, 196, 168, 0.03) 0%, rgba(144, 179, 167, 0.03) 100%)"
-          style={{ width: '150px', height: '150px', bottom: '30%', right: '25%' }}
-          variants={floatVariants}
-          initial="initial"
-          animate="animate"
-          transition={{ delay: 4 }}
-        />
-      </FloatingElements>
+    <FAQContainer>
+      <ContentWrapper>
+        <SectionHeader>
+          <SectionBadge>
+            <ChatBubbleLeftRightIcon />
+            {t('spa.faq.badge', 'SPA Вопросы')}
+          </SectionBadge>
+          
+          <SectionTitle>
+            {t('spa.faq.title', 'Часто задаваемые вопросы')}
+          </SectionTitle>
+          
+          <SectionSubtitle>
+            {t('spa.faq.subtitle', 'Всё, что нужно знать о наших SPA услугах и процедурах')}
+          </SectionSubtitle>
+        </SectionHeader>
 
-      <SectionContainer>
-        <FaqTitle
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          Часто задаваемые вопросы
-        </FaqTitle>
-        
-        <FaqList>
-          {faqData.map((item, index) => (
-            <FaqItemWrapper
-              key={item.key}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ scale: 1.01 }}
+        <FAQList>
+          {faqs.map((faq, index) => (
+            <motion.div
+              key={index}
+              variants={faqVariants}
+              custom={index}
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
             >
-              <FaqQuestion 
-                onClick={() => toggleItem(index)} 
-                $isOpen={openIndex === index}
-              >
-                {item.question}
-                <IconWrapper $isOpen={openIndex === index}>
-                  {openIndex === index ? <FaMinus /> : <FaPlus />}
-                </IconWrapper>
-              </FaqQuestion>
-              
-              <AnimatePresence>
-                {openIndex === index && (
-                  <FaqAnswer
-                    variants={answerVariants}
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit"
+              <FAQItem $isOpen={openFAQ === index}>
+                <QuestionButton onClick={() => toggleFAQ(index)}>
+                  <QuestionContent>
+                    <QuestionIcon>
+                      {faq.icon}
+                    </QuestionIcon>
+                    <QuestionText>{faq.question}</QuestionText>
+                  </QuestionContent>
+                  
+                  <ToggleIcon
+                    $isOpen={openFAQ === index}
+                    animate={{ 
+                      rotate: openFAQ === index ? 180 : 0
+                    }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
-                    {item.answer}
-                  </FaqAnswer>
-                )}
-              </AnimatePresence>
-            </FaqItemWrapper>
+                    {openFAQ === index ? <MinusIcon /> : <PlusIcon />}
+                  </ToggleIcon>
+                </QuestionButton>
+
+                <AnimatePresence>
+                  {openFAQ === index && (
+                    <AnswerWrapper
+                      variants={answerVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="hidden"
+                    >
+                      <AnswerContent>
+                        <AnswerText>{faq.answer}</AnswerText>
+                      </AnswerContent>
+                    </AnswerWrapper>
+                  )}
+                </AnimatePresence>
+              </FAQItem>
+            </motion.div>
           ))}
-        </FaqList>
-      </SectionContainer>
-    </FaqSectionContainer>
+        </FAQList>
+      </ContentWrapper>
+    </FAQContainer>
   );
 };
 
 export default SpaFAQSection;
-
-// Example i18n keys to add to your translation files (e.g., en.json):
-// "spaFaq": {
-//   "title": "Frequently Asked Questions",
-//   "question1": "What services are offered at the SPA?",
-//   "answer1": "We offer a wide range of services including massages, facials, body treatments, and nail care. Please visit our services page for a full list.",
-//   "question2": "How do I book an appointment?",
-//   "answer2": "You can book an appointment online through our website, by calling us directly, or by visiting our reception desk.",
-//   "question3": "What is your cancellation policy?",
-//   "answer3": "We require at least 24 hours notice for cancellations or rescheduling. Cancellations made with less than 24 hours notice may incur a fee.",
-//   "question4": "Are gift cards available?",
-//   "answer4": "Yes, we offer gift cards of various denominations. They can be purchased online or at our SPA."
-// }

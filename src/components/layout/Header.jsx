@@ -14,7 +14,7 @@ const HeaderComponent = () => {
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const [hoveredNav, setHoveredNav] = useState(null);
   const [debounceTimeout, setDebounceTimeout] = useState(null);
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -47,9 +47,10 @@ const HeaderComponent = () => {
     { code: 'th', name: 'ไทย' }
   ], []);
 
-  const currentLanguage = useMemo(() => 
-    languages.find(lang => lang.code === i18n.language) || languages[0]
-  , [languages, i18n.language]);
+  const currentLanguage = useMemo(() => {
+    const found = languages.find(lang => lang.code === i18n.language);
+    return found || languages[0];
+  }, [languages, i18n.language]);
 
 
 
@@ -64,31 +65,6 @@ const HeaderComponent = () => {
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
-  // Отладка скролла
-  useEffect(() => {
-    const handleScroll = () => {
-      const header = document.querySelector('.kaif-header');
-      if (header) {
-        const rect = header.getBoundingClientRect();
-        const computedStyle = window.getComputedStyle(header);
-        console.log('Header debug:', {
-          scrollY: window.scrollY,
-          position: computedStyle.position,
-          top: computedStyle.top,
-          visibility: computedStyle.visibility,
-          opacity: computedStyle.opacity,
-          display: computedStyle.display,
-          transform: computedStyle.transform,
-          zIndex: computedStyle.zIndex,
-          rect: rect
-        });
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   useEffect(() => {
     return () => {
       if (debounceTimeout) {
@@ -98,19 +74,20 @@ const HeaderComponent = () => {
   }, [debounceTimeout]);
 
   const navItems = useMemo(() => [
-    { path: '/', label: 'Главная' },
-    { path: '/restaurant', label: 'Ресторан' },
-    { path: '/spa', label: 'СПА' },
-    { path: '/sports', label: 'Спорт' },
-    { path: '/banya', label: 'Баня' },
-    { path: '/contacts', label: 'Контакты' }
-  ], []);
+    { path: '/', label: t('navigation.home') },
+    { path: '/restaurant', label: t('navigation.restaurant') },
+    { path: '/spa', label: t('navigation.spa') },
+    { path: '/sports', label: t('navigation.sports') },
+    { path: '/banya', label: t('navigation.banya') },
+    { path: '/contacts', label: t('navigation.contacts') }
+  ], [t, i18n.language]);
 
   const getNavLinkStyle = useCallback((path) => ({
     color: isActive(path) ? '#90B3A7' : (hoveredNav === path ? '#333333' : '#666666'),
     textDecoration: 'none',
     fontSize: '14px',
     fontWeight: '500',
+    fontFamily: '"KAIF", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
     textTransform: 'uppercase',
     letterSpacing: '1px',
     position: 'relative',
@@ -157,60 +134,22 @@ const HeaderComponent = () => {
 
   return (
     <>
-      {/* Тестовый индикатор для проверки fixed позиционирования */}
-      <div style={{
-        position: 'fixed',
-        top: '70px',
-        right: '10px',
-        background: 'red',
-        color: 'white',
-        padding: '5px 10px',
-        fontSize: '12px',
-        zIndex: 9999,
-        borderRadius: '4px'
-      }}>
-        Fixed Test
-      </div>
-      
-      <header className="kaif-header" style={{
+      <header style={{
         position: 'fixed',
         top: 0,
         left: 0,
-        right: 0,
         width: '100%',
         height: '65px',
         backgroundColor: '#ffffff',
-        zIndex: 99999,
+        zIndex: 1000,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         margin: 0,
         padding: 0,
         boxSizing: 'border-box',
-        boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
-        // Принудительные стили для фиксации
-        transform: 'none',
-        willChange: 'auto',
-        // ОТЛАДКА - делаем хедер очень заметным
-        border: '3px solid red',
-        opacity: 1,
-        visibility: 'visible'
+        boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)'
       }}>
-        {/* ОТЛАДКА - индикатор внутри хедера */}
-        <div style={{
-          position: 'absolute',
-          left: '50%',
-          top: '50%',
-          transform: 'translate(-50%, -50%)',
-          background: 'blue',
-          color: 'white',
-          padding: '2px 8px',
-          fontSize: '10px',
-          zIndex: 10001
-        }}>
-          HEADER CONTENT
-        </div>
-        
         <div style={{
           width: '100%',
           maxWidth: '1200px',
@@ -381,23 +320,24 @@ const HeaderComponent = () => {
             }}>
               <button
                 onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
-                style={{
-                  background: '#f8f9fa',
-                  border: '1px solid #e2e8f0',
-                  borderRadius: '6px',
-                  color: '#666666',
-                  fontSize: '13px',
-                  fontWeight: '600',
-                  cursor: 'pointer',
-                  padding: '8px 12px',
-                  transition: 'all 0.3s ease',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  height: '36px',
-                  minWidth: '50px',
-                  margin: 0
-                }}
+                                 style={{
+                   background: '#f8f9fa',
+                   border: '1px solid #e2e8f0',
+                   borderRadius: '6px',
+                   color: '#666666',
+                   fontSize: '13px',
+                   fontWeight: '600',
+                   fontFamily: '"KAIF", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+                   cursor: 'pointer',
+                   padding: '8px 12px',
+                   transition: 'all 0.3s ease',
+                   display: 'flex',
+                   alignItems: 'center',
+                   justifyContent: 'center',
+                   height: '36px',
+                   minWidth: '50px',
+                   margin: 0
+                 }}
                 onMouseEnter={(e) => {
                   e.target.style.borderColor = '#90B3A7';
                   e.target.style.color = '#90B3A7';
@@ -436,18 +376,19 @@ const HeaderComponent = () => {
                       <button
                         key={lang.code}
                         onClick={() => changeLanguage(lang.code)}
-                        style={{
-                          width: '100%',
-                          padding: '6px 12px',
-                          textAlign: 'left',
-                          background: 'none',
-                          border: 'none',
-                          color: i18n.language === lang.code ? '#90B3A7' : '#666666',
-                          fontWeight: i18n.language === lang.code ? '600' : '500',
-                          fontSize: '13px',
-                          cursor: 'pointer',
-                          transition: 'all 0.3s ease'
-                        }}
+                                                 style={{
+                           width: '100%',
+                           padding: '6px 12px',
+                           textAlign: 'left',
+                           background: 'none',
+                           border: 'none',
+                           color: i18n.language === lang.code ? '#90B3A7' : '#666666',
+                           fontWeight: i18n.language === lang.code ? '600' : '500',
+                           fontSize: '13px',
+                           fontFamily: '"KAIF", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+                           cursor: 'pointer',
+                           transition: 'all 0.3s ease'
+                         }}
                         onMouseEnter={(e) => {
                           e.target.style.background = '#f8fffe';
                           e.target.style.color = '#90B3A7';
@@ -546,21 +487,21 @@ const HeaderComponent = () => {
                             }
                             setIsMobileMenuOpen(false);
                           }}
-                          style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            padding: '1rem',
-                            fontFamily: "'Inter', sans-serif",
-                            fontSize: '1.125rem',
-                            textDecoration: 'none',
-                            borderRadius: '12px',
-                            transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                            cursor: 'pointer',
-                            background: isActive(item.path) ? 'rgba(144, 179, 167, 0.1)' : 'transparent',
-                            transform: isActive(item.path) ? 'translateX(0.25rem)' : 'translateX(0)',
-                            fontWeight: isActive(item.path) ? '600' : '500',
-                            color: isActive(item.path) ? '#90B3A7' : '#2C3E2D'
-                          }}
+                                                     style={{
+                             display: 'flex',
+                             alignItems: 'center',
+                             padding: '1rem',
+                             fontFamily: '"KAIF", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+                             fontSize: '1.125rem',
+                             textDecoration: 'none',
+                             borderRadius: '12px',
+                             transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                             cursor: 'pointer',
+                             background: isActive(item.path) ? 'rgba(144, 179, 167, 0.1)' : 'transparent',
+                             transform: isActive(item.path) ? 'translateX(0.25rem)' : 'translateX(0)',
+                             fontWeight: isActive(item.path) ? '600' : '500',
+                             color: isActive(item.path) ? '#90B3A7' : '#2C3E2D'
+                           }}
                         >
                           {item.label}
                         </div>
@@ -575,16 +516,16 @@ const HeaderComponent = () => {
                   paddingTop: '2rem',
                   borderTop: '1px solid rgba(144, 179, 167, 0.1)'
                 }}>
-                  <h3 style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: '0.875rem',
-                    fontWeight: '600',
-                    color: '#8B9A8E',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
-                    marginBottom: '1rem'
-                  }}>
-                    SELECT LANGUAGE
+                                     <h3 style={{
+                     fontFamily: '"KAIF", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+                     fontSize: '0.875rem',
+                     fontWeight: '600',
+                     color: '#8B9A8E',
+                     textTransform: 'uppercase',
+                     letterSpacing: '0.1em',
+                     marginBottom: '1rem'
+                   }}>
+                    {t('common.select_language')}
                   </h3>
                   
                   <div style={{
@@ -601,18 +542,18 @@ const HeaderComponent = () => {
                           changeLanguage(lang.code);
                           setIsMobileMenuOpen(false);
                         }}
-                        style={{
-                          padding: '0.75rem',
-                          background: i18n.language === lang.code ? 'rgba(144, 179, 167, 0.15)' : 'rgba(144, 179, 167, 0.05)',
-                          border: `1px solid ${i18n.language === lang.code ? 'rgba(144, 179, 167, 0.3)' : 'rgba(144, 179, 167, 0.1)'}`,
-                          borderRadius: '8px',
-                          color: i18n.language === lang.code ? '#90B3A7' : '#2C3E2D',
-                          fontFamily: "'Inter', sans-serif",
-                          fontSize: '0.875rem',
-                          fontWeight: i18n.language === lang.code ? '600' : '500',
-                          cursor: 'pointer',
-                          transition: 'all 0.3s ease'
-                        }}
+                                                 style={{
+                           padding: '0.75rem',
+                           background: i18n.language === lang.code ? 'rgba(144, 179, 167, 0.15)' : 'rgba(144, 179, 167, 0.05)',
+                           border: `1px solid ${i18n.language === lang.code ? 'rgba(144, 179, 167, 0.3)' : 'rgba(144, 179, 167, 0.1)'}`,
+                           borderRadius: '8px',
+                           color: i18n.language === lang.code ? '#90B3A7' : '#2C3E2D',
+                           fontFamily: '"KAIF", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+                           fontSize: '0.875rem',
+                           fontWeight: i18n.language === lang.code ? '600' : '500',
+                           cursor: 'pointer',
+                           transition: 'all 0.3s ease'
+                         }}
                       >
                         {lang.code.toUpperCase()}
                       </motion.button>

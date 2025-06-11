@@ -124,6 +124,11 @@ export const BookButton = styled(motion.button)`
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(210, 155, 132, 0.25);
   
+  @media (max-width: 768px) {
+    margin: 0 auto;
+    display: flex;
+  }
+  
   &::before {
     content: '';
     position: absolute;

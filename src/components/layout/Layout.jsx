@@ -27,11 +27,15 @@ const MainContainer = styled.main`
   background: transparent;
   margin: 0;
   padding-bottom: 0;
+  padding-top: ${props => props.$isHomePage ? '0' : '65px'};
 `;
 
 const Layout = ({ children }) => {
   const location = useLocation();
   const [isPageLoaded, setIsPageLoaded] = useState(false);
+
+  // Определяем главную страницу
+  const isHomePage = location.pathname === '/';
 
   // Scroll to top on route change and handle page loading
   useEffect(() => {
@@ -49,8 +53,9 @@ const Layout = ({ children }) => {
   return (
     <PageContainer>
       <PageHead />
+      {/* Хедер теперь рендерится через портал */}
       <Header />
-      <MainContainer>
+      <MainContainer $isHomePage={isHomePage}>
         {children}
       </MainContainer>
       {isPageLoaded && <Footer />}

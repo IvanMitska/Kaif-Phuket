@@ -18,7 +18,6 @@ import './utils/suppressCSSWarnings';
 
 // Оптимизированные импорты CSS
 import './styles/global-theme.css';
-import './styles/header-fix.css';
 import './index.css';
 
 import { theme } from './theme.fixed';

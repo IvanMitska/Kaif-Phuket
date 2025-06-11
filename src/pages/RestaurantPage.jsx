@@ -8,8 +8,7 @@ import { ArrowRightIcon as ArrowRightOutline } from '@heroicons/react/24/outline
 // Импортируем функцию получения данных ресторана
 import { getRestaurantData } from '../components/Restaurant/data/restaurantData';
 
-// Импортируем стили для скрытия полосы прокрутки
-import '../styles/hide-scrollbar.css';
+// Стили для скрытия полосы прокрутки добавлены в компонент ниже
 
 // Стилизованные компоненты для страницы ресторана
 const RestaurantContainer = styled(motion.div)`
@@ -627,7 +626,7 @@ const MenuCategoriesTabs = ({ activeCategory, setActiveCategory }) => {
         {/* Скроллящиеся табы */}
         <div 
           ref={scrollContainerRef}
-          className="flex overflow-x-auto pb-2 hide-scrollbar"
+          className="flex overflow-x-auto pb-2"
           style={{
             scrollbarWidth: 'none',
             msOverflowStyle: 'none',

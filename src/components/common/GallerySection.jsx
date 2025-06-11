@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { 
   XMarkIcon, 
   ChevronLeftIcon, 
@@ -676,6 +677,7 @@ const CloseButton = styled(motion.button)`
 `;
 
 const GallerySection = () => {
+  const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState('all');
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -724,10 +726,10 @@ const GallerySection = () => {
 
   // Упрощенные фильтры
   const filters = useMemo(() => [
-    { id: 'all', label: 'ВСЕ' },
-    { id: 'spa', label: 'СПА' },
-    { id: 'fitness', label: 'ФИТНЕС' }
-  ], []);
+    { id: 'all', label: t('gallery.filters.all') },
+    { id: 'spa', label: t('gallery.filters.spa') },
+    { id: 'fitness', label: t('gallery.filters.fitness') }
+  ], [t]);
 
   // Фильтрация данных
   const filteredGallery = useMemo(() => {
@@ -855,7 +857,7 @@ const GallerySection = () => {
             transition={getOptimizedAnimation({ duration: 0.8, ease: "easeOut" })}
             viewport={{ once: true }}
           >
-            ГАЛЕРЕЯ
+            {t('gallery.overline')}
           </Overline>
           <SectionTitle
             initial={{ opacity: 0, y: 40 }}
@@ -863,7 +865,7 @@ const GallerySection = () => {
             transition={getOptimizedAnimation({ duration: 0.8, delay: 0.2, ease: "easeOut" })}
             viewport={{ once: true }}
           >
-            Впечатления KAIF
+            {t('gallery.title')}
           </SectionTitle>
           <SectionSubtitle
             initial={{ opacity: 0, y: 30 }}
@@ -871,7 +873,7 @@ const GallerySection = () => {
             transition={getOptimizedAnimation({ duration: 0.8, delay: 0.4, ease: "easeOut" })}
             viewport={{ once: true }}
           >
-            Погрузитесь в атмосферу KAIF через нашу галерею фотографий. 
+            {t('gallery.subtitle')} 
             Познакомьтесь с нашими услугами и возможностями комплекса.
           </SectionSubtitle>
         </SectionHeader>

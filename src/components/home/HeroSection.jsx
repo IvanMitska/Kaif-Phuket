@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 // Основной контейнер
 const HeroContainer = styled.section`
@@ -409,46 +410,48 @@ const ArrowDownIcon = () => (
 );
 
 const HeroSection = () => {
+  const { t } = useTranslation();
+  
   // Услуги
-  const services = [
+  const services = useMemo(() => [
     {
-      title: 'Фитнес-центр',
-      description: '70+ тренажеров, кардио-зона, персональные тренировки',
+      title: t('home.hero.heroServices.gym.title'),
+      description: t('home.hero.heroServices.gym.description'),
       isActivity: true
     },
     {
-      title: 'Боевые искусства',
-      description: 'MMA, бокс, муай-тай с профессиональными тренерами',
+      title: t('home.hero.heroServices.martialArts.title'),
+      description: t('home.hero.heroServices.martialArts.description'),
       isActivity: true
     },
     {
-      title: 'Бассейн 25м',
-      description: 'Олимпийский стандарт с подогревом воды',
+      title: t('home.hero.heroServices.pool.title'),
+      description: t('home.hero.heroServices.pool.description'),
       isActivity: true
     },
     {
-      title: 'СПА-центр',
-      description: 'Тайский массаж, ароматерапия, релаксация',
+      title: t('home.hero.heroServices.spa.title'),
+      description: t('home.hero.heroServices.spa.description'),
       isActivity: false
     },
     {
-      title: 'Ресторан',
-      description: '5 кухонь мира с панорамной террасой',
+      title: t('home.hero.heroServices.restaurant.title'),
+      description: t('home.hero.heroServices.restaurant.description'),
       isActivity: false
     },
     {
-      title: 'Салон красоты',
-      description: 'Косметология, уходы, парикмахерские услуги',
+      title: t('home.hero.heroServices.beauty.title'),
+      description: t('home.hero.heroServices.beauty.description'),
       isActivity: false
     }
-  ];
+  ], [t]);
   
   // Статистика
-  const stats = [
-    { number: '7', label: 'ЗОН ОТДЫХА' },
-    { number: '50м²', label: 'САУНА' },
-    { number: '70+', label: 'ТРЕНАЖЕРОВ' }
-  ];
+  const stats = useMemo(() => [
+    { number: '7', label: t('home.hero.stats.zones') },
+    { number: '50м²', label: t('home.hero.stats.sauna') },
+    { number: '70+', label: t('home.hero.stats.equipment') }
+  ], [t]);
   
   // Анимация появления с задержкой
   const [visible, setVisible] = useState(false);
@@ -513,7 +516,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Премиальный комплекс на Пхукете
+            {t('home.hero.overline')}
           </Overline>
           
           <MainTitle
@@ -521,7 +524,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            KAIF
+            {t('home.hero.mainTitle')}
           </MainTitle>
           
           <Subtitle
@@ -529,7 +532,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            Премиальный оздоровительный комплекс
+            {t('home.hero.subtitle')}
           </Subtitle>
           
           <ButtonContainer
@@ -542,14 +545,14 @@ const HeroSection = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
             >
-              Записаться
+              {t('common.book')}
             </PrimaryButton>
             
             <SecondaryButton
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              Категории
+              {t('common.categories')}
             </SecondaryButton>
           </ButtonContainer>
         </HeroHeader>
@@ -561,7 +564,7 @@ const HeroSection = () => {
               animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 30 }}
               transition={{ duration: 0.6 }}
             >
-              Наши услуги
+              {t('home.hero.services')}
             </SectionTitle>
             
             <ServicesGrid>
@@ -574,7 +577,7 @@ const HeroSection = () => {
                   transition={{ duration: 0.6, delay: index * 0.1 + 0.3 }}
                 >
                   <ServiceBadge $isActivity={service.isActivity}>
-                    {service.isActivity ? 'АКТИВНОСТЬ' : 'РЕЛАКСАЦИЯ'}
+                    {service.isActivity ? t('common.activity') : t('common.relaxation')}
                   </ServiceBadge>
                   <ServiceTitle>{service.title}</ServiceTitle>
                   <ServiceDescription>
@@ -606,7 +609,7 @@ const HeroSection = () => {
           transition={{ duration: 0.6, delay: 1.5 }}
         >
           <ArrowDownIcon />
-          <span>Прокрутите вниз</span>
+          <span>{t('common.scroll_down')}</span>
         </ScrollIndicator>
       </ContentWrapper>
     </HeroContainer>

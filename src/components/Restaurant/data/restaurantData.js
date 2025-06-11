@@ -8,8 +8,8 @@ export const getRestaurantData = (t) => {
     // ЗАВТРАКИ (с 8:00 до 12:00)
     {
       id: 1,
-      name: 'Завтрак "KAIF"',
-      description: 'Фирменный завтрак нашего ресторана',
+      name: t('restaurant.menu.items.kaif_breakfast.name', 'Завтрак "KAIF"'),
+      description: t('restaurant.menu.items.kaif_breakfast.description', 'Фирменный завтрак нашего ресторана'),
       price: '320 THB',
       image: '/images/menu/breakfast/kaif-breakfast.jpg',
       tags: ['breakfast', 'popular'],
@@ -18,8 +18,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 2,
-      name: 'Шакшука со шпинатом и лососем',
-      description: 'Яичное блюдо с добавлением шпината и нежного лосося',
+      name: t('restaurant.menu.items.shakshuka_spinach_salmon.name', 'Шакшука со шпинатом и лососем'),
+      description: t('restaurant.menu.items.shakshuka_spinach_salmon.description', 'Яичное блюдо с добавлением шпината и нежного лосося'),
       price: '330 THB',
       image: '/images/menu/breakfast/kaif-breakfast.jpg',
       tags: ['breakfast', 'seafood'],
@@ -28,8 +28,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 3,
-      name: 'Шакшука с томатами и фетой',
-      description: 'Традиционная шакшука с сочными томатами и сыром фета',
+      name: t('restaurant.menu.items.shakshuka_tomato_feta.name', 'Шакшука с томатами и фетой'),
+      description: t('restaurant.menu.items.shakshuka_tomato_feta.description', 'Традиционная шакшука с сочными томатами и сыром фета'),
       price: '300 THB',
       image: '/images/menu/breakfast/kaif-breakfast.jpg',
       tags: ['breakfast', 'vegetarian'],
@@ -38,8 +38,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 4,
-      name: 'Сырники со сметаной и соусом из маракуйи',
-      description: 'Нежные домашние сырники с оригинальным соусом из маракуйи',
+      name: t('restaurant.menu.items.syrniki_passion_fruit.name', 'Сырники со сметаной и соусом из маракуйи'),
+      description: t('restaurant.menu.items.syrniki_passion_fruit.description', 'Нежные домашние сырники с оригинальным соусом из маракуйи'),
       price: '250 THB',
       image: '/images/menu/breakfast/kaif-breakfast.jpg',
       tags: ['breakfast', 'sweet'],
@@ -48,8 +48,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 5,
-      name: 'Тост со сливочным сыром и ветчиной',
-      description: 'Хрустящий тост с нежным сливочным сыром и качественной ветчиной',
+      name: t('restaurant.menu.items.toast_cream_cheese_ham.name', 'Тост со сливочным сыром и ветчиной'),
+      description: t('restaurant.menu.items.toast_cream_cheese_ham.description', 'Хрустящий тост с нежным сливочным сыром и качественной ветчиной'),
       price: '250 THB',
       image: '/images/menu/breakfast/kaif-breakfast.jpg',
       tags: ['breakfast', 'meat'],
@@ -58,8 +58,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 6,
-      name: 'Тост с соленым лососем и авокадо',
-      description: 'Изысканное сочетание хрустящего тоста, нежного лосося и спелого авокадо',
+      name: t('restaurant.menu.items.toast_salmon_avocado.name', 'Тост с соленым лососем и авокадо'),
+      description: t('restaurant.menu.items.toast_salmon_avocado.description', 'Изысканное сочетание хрустящего тоста, нежного лосося и спелого авокадо'),
       price: '330 THB',
       image: '/images/menu/breakfast/kaif-breakfast.jpg',
       tags: ['breakfast', 'seafood'],
@@ -68,8 +68,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 7,
-      name: 'Тост с авокадо и томатами',
-      description: 'Легкий и полезный завтрак из хрустящего тоста с авокадо и сочными томатами',
+      name: t('restaurant.menu.items.toast_avocado_tomato.name', 'Тост с авокадо и томатами'),
+      description: t('restaurant.menu.items.toast_avocado_tomato.description', 'Легкий и полезный завтрак из хрустящего тоста с авокадо и сочными томатами'),
       price: '270 THB',
       image: '/images/menu/breakfast/kaif-breakfast.jpg',
       tags: ['breakfast', 'vegetarian', 'healthy'],
@@ -78,8 +78,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 8,
-      name: 'Мацони с абрикосовым вареньем',
-      description: 'Традиционный кавказский йогурт с натуральным абрикосовым вареньем',
+      name: t('restaurant.menu.items.matsoni_apricot.name', 'Мацони с абрикосовым вареньем'),
+      description: t('restaurant.menu.items.matsoni_apricot.description', 'Традиционный кавказский йогурт с натуральным абрикосовым вареньем'),
       price: '120 THB',
       image: '/images/menu/breakfast/kaif-breakfast.jpg',
       tags: ['breakfast', 'vegetarian'],
@@ -88,8 +88,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 9,
-      name: 'Гречневая каша с цыпленком, грибами и соусом Пармезан',
-      description: 'Питательная гречневая каша с нежным цыпленком, ароматными грибами и сливочным соусом',
+      name: t('restaurant.menu.items.buckwheat_chicken_mushrooms.name', 'Гречневая каша с цыпленком, грибами и соусом Пармезан'),
+      description: t('restaurant.menu.items.buckwheat_chicken_mushrooms.description', 'Питательная гречневая каша с нежным цыпленком, ароматными грибами и сливочным соусом'),
       price: '250 THB',
       image: '/images/menu/breakfast/kaif-breakfast.jpg',
       tags: ['breakfast', 'healthy'],
@@ -100,8 +100,8 @@ export const getRestaurantData = (t) => {
     // СУПЫ
     {
       id: 10,
-      name: 'Окрошка на айране',
-      description: 'Освежающий холодный суп на кисломолочной основе с овощами и зеленью',
+      name: t('restaurant.menu.items.okroshka_ayran.name', 'Окрошка на айране'),
+      description: t('restaurant.menu.items.okroshka_ayran.description', 'Освежающий холодный суп на кисломолочной основе с овощами и зеленью'),
       price: '270 THB',
       image: '/images/menu/soup/soup-mushroom.jpg',
       tags: ['soup', 'cold'],
@@ -110,8 +110,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 11,
-      name: 'Окрошка на квасе',
-      description: 'Классическая окрошка на квасе с отборными овощами, яйцом и свежей зеленью',
+      name: t('restaurant.menu.items.okroshka_kvass.name', 'Окрошка на квасе'),
+      description: t('restaurant.menu.items.okroshka_kvass.description', 'Классическая окрошка на квасе с отборными овощами, яйцом и свежей зеленью'),
       price: '270 THB',
       image: '/images/menu/soup/soup-mushroom.jpg',
       tags: ['soup', 'cold'],
@@ -120,8 +120,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 12,
-      name: 'Чихиртма с кукурузой',
-      description: 'Традиционный грузинский суп с насыщенным вкусом, дополненный сладкой кукурузой',
+      name: t('restaurant.menu.items.chikhirtma_corn.name', 'Чихиртма с кукурузой'),
+      description: t('restaurant.menu.items.chikhirtma_corn.description', 'Традиционный грузинский суп с насыщенным вкусом, дополненный сладкой кукурузой'),
       price: '190 THB',
       image: '/images/menu/soup/soup-mushroom.jpg',
       tags: ['soup', 'hot'],
@@ -130,8 +130,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 13,
-      name: 'Борщ классический',
-      description: 'Традиционный славянский суп насыщенного рубинового цвета с говядиной и овощами',
+      name: t('restaurant.menu.items.borsch_classic.name', 'Борщ классический'),
+      description: t('restaurant.menu.items.borsch_classic.description', 'Традиционный славянский суп насыщенного рубинового цвета с говядиной и овощами'),
       price: '270 THB',
       image: '/images/menu/soup/soup-mushroom.jpg',
       tags: ['soup', 'hot'],
@@ -142,8 +142,8 @@ export const getRestaurantData = (t) => {
     // САЛАТЫ И ЗАКУСКИ
     {
       id: 14,
-      name: 'Листья салата с молодым картофелем и соленым лососем',
-      description: 'Свежий микс салатов с молодым картофелем и нежным соленым лососем',
+      name: t('restaurant.menu.items.salad_potato_salmon.name', 'Листья салата с молодым картофелем и соленым лососем'),
+      description: t('restaurant.menu.items.salad_potato_salmon.description', 'Свежий микс салатов с молодым картофелем и нежным соленым лососем'),
       price: '360 THB',
       image: '/images/menu/salad/caesar-salad.jpg',
       tags: ['salad', 'seafood'],
@@ -152,8 +152,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 15,
-      name: 'Салат из свежих овощей с брынзой',
-      description: 'Традиционный салат из свежих овощей с добавлением нежной брынзы',
+      name: t('restaurant.menu.items.vegetable_salad_cheese.name', 'Салат из свежих овощей с брынзой'),
+      description: t('restaurant.menu.items.vegetable_salad_cheese.description', 'Традиционный салат из свежих овощей с добавлением нежной брынзы'),
       price: '320 THB',
       image: '/images/menu/salad/caesar-salad.jpg',
       tags: ['salad', 'vegetarian'],
@@ -162,8 +162,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 16,
-      name: 'Помидоры, огурцы, зелень',
-      description: 'Свежие сочные помидоры и хрустящие огурцы с ароматной зеленью, заправленные по выбору сметаной или оливковым маслом',
+      name: t('restaurant.menu.items.tomato_cucumber_greens.name', 'Помидоры, огурцы, зелень'),
+      description: t('restaurant.menu.items.tomato_cucumber_greens.description', 'Свежие сочные помидоры и хрустящие огурцы с ароматной зеленью, заправленные по выбору сметаной или оливковым маслом'),
       price: '190 THB',
       image: '/images/menu/salad/caesar-salad.jpg',
       tags: ['salad', 'vegetarian', 'healthy'],
@@ -172,8 +172,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 17,
-      name: 'Хумус с печеным нутом',
-      description: 'Нежный хумус с дополнительным печеным нутом для текстуры',
+      name: t('restaurant.menu.items.hummus_chickpeas.name', 'Хумус с печеным нутом'),
+      description: t('restaurant.menu.items.hummus_chickpeas.description', 'Нежный хумус с дополнительным печеным нутом для текстуры'),
       price: '170 THB',
       image: '/images/menu/salad/caesar-salad.jpg',
       tags: ['appetizer', 'vegetarian'],
@@ -182,8 +182,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 18,
-      name: 'Хумус с авокадо и томатами',
-      description: 'Оригинальный хумус с добавлением спелого авокадо и свежих томатов',
+      name: t('restaurant.menu.items.hummus_avocado_tomato.name', 'Хумус с авокадо и томатами'),
+      description: t('restaurant.menu.items.hummus_avocado_tomato.description', 'Оригинальный хумус с добавлением спелого авокадо и свежих томатов'),
       price: '250 THB',
       image: '/images/menu/salad/caesar-salad.jpg',
       tags: ['appetizer', 'vegetarian', 'healthy'],
@@ -192,8 +192,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 19,
-      name: 'Хумус с креветками гриль',
-      description: 'Классический хумус, дополненный сочными креветками с гриля',
+      name: t('restaurant.menu.items.hummus_grilled_shrimp.name', 'Хумус с креветками гриль'),
+      description: t('restaurant.menu.items.hummus_grilled_shrimp.description', 'Классический хумус, дополненный сочными креветками с гриля'),
       price: '390 THB',
       image: '/images/menu/salad/caesar-salad.jpg',
       tags: ['appetizer', 'seafood'],
@@ -202,8 +202,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 20,
-      name: 'Хумус с куриным кебабом',
-      description: 'Хумус, поданный с ароматными кусочками куриного кебаба',
+      name: t('restaurant.menu.items.hummus_chicken_kebab.name', 'Хумус с куриным кебабом'),
+      description: t('restaurant.menu.items.hummus_chicken_kebab.description', 'Хумус, поданный с ароматными кусочками куриного кебаба'),
       price: '250 THB',
       image: '/images/menu/salad/caesar-salad.jpg',
       tags: ['appetizer', 'meat'],
@@ -212,8 +212,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 21,
-      name: 'Дзадзыки с оливками и маринованным перцем',
-      description: 'Освежающий йогуртовый соус с огурцами, чесноком и зеленью, дополненный оливками и маринованным перцем',
+      name: t('restaurant.menu.items.tzatziki_olives_pepper.name', 'Дзадзыки с оливками и маринованным перцем'),
+      description: t('restaurant.menu.items.tzatziki_olives_pepper.description', 'Освежающий йогуртовый соус с огурцами, чесноком и зеленью, дополненный оливками и маринованным перцем'),
       price: '220 THB',
       image: '/images/menu/salad/caesar-salad.jpg',
       tags: ['appetizer', 'vegetarian'],
@@ -224,8 +224,8 @@ export const getRestaurantData = (t) => {
     // БЛЮДА НА МАНГАЛЕ
     {
       id: 22,
-      name: 'Кебаб из курицы (в йогурте)',
-      description: 'Сочный кебаб из куриного филе, маринованного в йогурте с восточными специями',
+      name: t('restaurant.menu.items.chicken_kebab_yogurt.name', 'Кебаб из курицы (в йогурте)'),
+      description: t('restaurant.menu.items.chicken_kebab_yogurt.description', 'Сочный кебаб из куриного филе, маринованного в йогурте с восточными специями'),
       price: '250 THB',
       image: '/images/menu/grill/beef-steak-grill.jpg',
       tags: ['grill', 'meat'],
@@ -234,8 +234,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 23,
-      name: 'Кебаб из говядины',
-      description: 'Сочный кебаб из отборной говядины, приготовленный на открытом огне',
+      name: t('restaurant.menu.items.beef_kebab.name', 'Кебаб из говядины'),
+      description: t('restaurant.menu.items.beef_kebab.description', 'Сочный кебаб из отборной говядины, приготовленный на открытом огне'),
       price: '490 THB',
       image: '/images/menu/grill/beef-steak-grill.jpg',
       tags: ['grill', 'meat'],
@@ -244,8 +244,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 24,
-      name: 'Кебаб из свиной шеи',
-      description: 'Кебаб из маринованной свиной шеи с ароматными специями',
+      name: t('restaurant.menu.items.pork_neck_kebab.name', 'Кебаб из свиной шеи'),
+      description: t('restaurant.menu.items.pork_neck_kebab.description', 'Кебаб из маринованной свиной шеи с ароматными специями'),
       price: '290 THB',
       image: '/images/menu/grill/beef-steak-grill.jpg',
       tags: ['grill', 'meat'],
@@ -1090,36 +1090,26 @@ export const getRestaurantData = (t) => {
     }
   ];
   
-  // Карта цветов для тегов
+  // Стили для тегов
   const tagStyles = {
-    vegetarian: 'bg-green-50 text-green-600',
-    healthy: 'bg-primary bg-opacity-10 text-primary',
-    seafood: 'bg-blue-50 text-blue-600',
-    meat: 'bg-red-50 text-red-600',
-    grill: 'bg-orange-50 text-orange-600',
-    sweet: 'bg-pink-50 text-pink-600',
-    breakfast: 'bg-indigo-50 text-indigo-600',
-    dessert: 'bg-purple-50 text-purple-600',
-    drink: 'bg-cyan-50 text-cyan-600',
-    fruit: 'bg-lime-50 text-lime-600',
-    soup: 'bg-amber-50 text-amber-600',
-    cold: 'bg-sky-50 text-sky-600',
-    hot: 'bg-orange-50 text-orange-600',
-    salad: 'bg-emerald-50 text-emerald-600',
-    appetizer: 'bg-violet-50 text-violet-600',
-    grill: 'bg-orange-50 text-orange-600',
-    bbq: 'bg-rose-50 text-rose-600',
-    side: 'bg-gray-50 text-gray-600',
-    sauce: 'bg-yellow-50 text-yellow-600',
-    burger: 'bg-red-50 text-red-600',
-    shawarma: 'bg-amber-50 text-amber-600',
-    tea: 'bg-green-50 text-green-600',
-    coffee: 'bg-brown-50 text-amber-800',
-    cocktail: 'bg-purple-50 text-purple-600',
-    alcohol: 'bg-rose-50 text-rose-600',
-    wine: 'bg-purple-50 text-purple-600',
-    beer: 'bg-yellow-50 text-yellow-600',
-    popular: 'bg-primary text-white'
+    breakfast: 'bg-orange-50 text-orange-600',
+    soup: 'bg-blue-50 text-blue-600',
+    salad: 'bg-green-50 text-green-600',
+    appetizer: 'bg-purple-50 text-purple-600',
+    grill: 'bg-red-50 text-red-600',
+    main: 'bg-indigo-50 text-indigo-600',
+    dessert: 'bg-pink-50 text-pink-600',
+    drinks: 'bg-cyan-50 text-cyan-600',
+    popular: 'bg-yellow-50 text-yellow-600',
+    vegetarian: 'bg-emerald-50 text-emerald-600',
+    vegan: 'bg-lime-50 text-lime-600',
+    healthy: 'bg-teal-50 text-teal-600',
+    spicy: 'bg-red-100 text-red-700',
+    seafood: 'bg-blue-100 text-blue-700',
+    meat: 'bg-amber-50 text-amber-600',
+    sweet: 'bg-rose-50 text-rose-600',
+    cold: 'bg-slate-50 text-slate-600',
+    hot: 'bg-orange-100 text-orange-700'
   };
 
   return { menuItems, slides, tagStyles };

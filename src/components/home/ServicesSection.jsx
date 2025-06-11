@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -521,44 +521,44 @@ const ServicesSection = () => {
   };
 
   // Зоны
-  const zones = [
+  const zones = useMemo(() => [
     {
       id: 'energy',
-      name: 'Активность',
+      name: t('home.services.zones.activity'),
       icon: <BoltIcon />,
     },
     {
       id: 'relax',
-      name: 'Релаксация',
+      name: t('home.services.zones.relax'),
       icon: <HeartIcon />,
     }
-  ];
+  ], [t]);
 
   // Услуги по зонам
-  const services = {
+  const services = useMemo(() => ({
     energy: [
       {
         zone: 'fitness',
         icon: '💪',
-        title: 'Фитнес-центр',
-        description: 'Современный тренажерный зал с профессиональным оборудованием для всех видов тренировок.',
-        features: ['70+ современных тренажеров', 'Кардио-зона', 'Функциональный тренинг', 'Персональные тренировки'],
+        title: t('home.services.fitness.title'),
+        description: t('home.services.fitness.description'),
+        features: t('home.services.fitness.features'),
         link: '/sports'
       },
       {
         zone: 'combat',
         icon: '🥊',
-        title: 'Боевые искусства',
-        description: 'Профессиональные тренировки по MMA, боксу и муай-тай под руководством опытных тренеров.',
-        features: ['MMA и бокс', 'Муай-тай', 'Профессиональный ринг', 'Групповые и индивидуальные занятия'],
+        title: t('home.services.combat.title'),
+        description: t('home.services.combat.description'),
+        features: t('home.services.combat.features'),
         link: '/sports'
       },
       {
         zone: 'pool',
         icon: '🏊‍♀️',
-        title: 'Бассейн',
-        description: '25-метровый бассейн олимпийского стандарта для плавания и водных тренировок.',
-        features: ['25м олимпийский стандарт', 'Подогрев воды', 'Aqua-фитнес', 'Детская зона'],
+        title: t('home.services.pool.title'),
+        description: t('home.services.pool.description'),
+        features: t('home.services.pool.features'),
         link: '/sports'
       }
     ],
@@ -566,37 +566,29 @@ const ServicesSection = () => {
       {
         zone: 'spa',
         icon: '🧘‍♀️',
-        title: 'СПА-центр',
-        description: 'Оазис спокойствия с широким спектром расслабляющих и восстанавливающих процедур.',
-        features: ['Тайский массаж', 'Aromatherapy', 'Горячие камни', 'Релакс-зоны'],
+        title: t('home.services.spa.title'),
+        description: t('home.services.spa.description'),
+        features: t('home.services.spa.features'),
         link: '/spa'
-      },
-      {
-        zone: 'sauna',
-        icon: '🔥',
-        title: 'Русская баня',
-        description: 'Самая большая русская баня на Пхукете с традиционными процедурами.',
-        features: ['50m2 русская баня', 'Веники и ароматы', 'Парные процедуры', 'Чайная церемония'],
-        link: '/banya'
       },
       {
         zone: 'banya',
         icon: '🔥',
-        title: 'Русская баня',
-        description: 'Традиционные банные процедуры и парные ритуалы.',
-        features: ['Настоящая русская баня', 'Парные процедуры', 'Веники и ароматы', 'Чайная церемония'],
+        title: t('home.services.banya.title'),
+        description: t('home.services.banya.description'),
+        features: t('home.services.banya.features'),
         link: '/banya'
       },
       {
         zone: 'restaurant',
         icon: '🍽️',
-        title: 'Ресторан',
-        description: 'Изысканная авторская кухня с 50+ уникальными блюдами от шеф-повара.',
-        features: ['50+ авторских блюд', 'Фирменные рецепты', 'Винная карта', 'Панорамная терраса'],
+        title: t('home.services.restaurant.title'),
+        description: t('home.services.restaurant.description'),
+        features: t('home.services.restaurant.features'),
         link: '/restaurant'
       }
     ]
-  };
+  }), [t]);
 
   const currentServices = services[activeZone] || [];
 
@@ -611,10 +603,10 @@ const ServicesSection = () => {
         >
           <SectionHeader>
             <SectionTitle variants={itemVariants}>
-              Наши услуги
+              {t('home.services.title')}
             </SectionTitle>
             <SectionSubtitle variants={itemVariants}>
-              Выберите свой путь: динамичная активность или расслабляющая релаксация
+              {t('home.services.subtitle')}
             </SectionSubtitle>
           </SectionHeader>
 
@@ -680,7 +672,7 @@ const ServicesSection = () => {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      Подробнее
+                      {t('home.services.learn_more')}
                       <ArrowRightIcon />
                     </ServiceButton>
                   </Link>

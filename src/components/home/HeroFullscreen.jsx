@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
-// Импорт изображений для слайдера
+// Импорт изображений для слайдера (оптимизированные версии)
 import heroSpaImage from '../../assets/images/hero/hero-spa.jpg';
 import heroPoolImage from '../../assets/images/hero/hero-pool.jpg';
 import heroRestaurantImage from '../../assets/images/hero/hero-restaurant.jpg';
 import heroFitnessImage from '../../assets/images/hero/hero-fitness.jpg';
-import heroLuxuryImage from '../../assets/images/hero/hero-luxury.png';
+// Убираем тяжелое изображение hero-luxury.png (3.7MB)
 
 // Импорт логотипа для главной страницы
 import homepageLogo from '../../assets/images/logos/logo-homepage.png';
 
-// Массив изображений для слайдера
+// Массив изображений для слайдера (только легкие изображения)
 const slideImages = [
   heroSpaImage,
   heroPoolImage,
@@ -26,7 +26,8 @@ const slideImages = [
 const HeroContainer = styled.section`
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,6 +38,14 @@ const HeroContainer = styled.section`
   /* Отключаем scroll-snap */
   scroll-snap-align: none !important;
   scroll-snap-type: none !important;
+  /* Убираем sticky behavior */
+  contain: none;
+  isolation: auto;
+  
+  @media (max-width: 768px) {
+    min-height: 100svh; /* Используем dvh для мобильных */
+    height: auto;
+  }
 `;
 
 // Слайдер с современным затемнением
@@ -366,17 +375,29 @@ const animations = {
   }
 };
 
-const HeroFullscreen = () => {
+const HeroFullscreen = memo(() => {
   const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
   
-  // Автоматическое переключение слайдов
+  // Оптимизированное автоматическое переключение слайдов
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % slideImages.length);
-    }, 8000);
+    }, 6000); // Уменьшаем интервал для более быстрой анимации
     
     return () => clearInterval(interval);
+  }, []);
+
+  // Мемоизированный обработчик скролла
+  const handleScrollToZones = useCallback(() => {
+    const element = document.getElementById('exclusive-zones');
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start',
+        inline: 'nearest' 
+      });
+    }
   }, []);
 
   return (
@@ -391,13 +412,14 @@ const HeroFullscreen = () => {
             <img 
               src={image} 
               alt={`KAIF - Слайд ${index + 1}`} 
-              loading="lazy"
+              loading={index === 0 ? "eager" : "lazy"}
+              decoding="async"
               onError={(e) => {
                 const fallbackImages = [
-                  "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=85",
-                  "https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
+                  "https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
+                  "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
+                  "https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75"
                 ];
                 e.target.src = fallbackImages[index % fallbackImages.length];
               }}
@@ -440,21 +462,12 @@ const HeroFullscreen = () => {
               }}
               whileTap={{ scale: 0.98 }}
             >
-              Записаться
+              {t('common.book')}
             </PrimaryButton>
             
             <SecondaryButton 
               as="button"
-              onClick={() => {
-                const element = document.getElementById('exclusive-zones');
-                if (element) {
-                  element.scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'start',
-                    inline: 'nearest' 
-                  });
-                }
-              }}
+              onClick={handleScrollToZones}
               whileHover={{ 
                 scale: 1.01,
                 transition: {
@@ -464,13 +477,15 @@ const HeroFullscreen = () => {
               }}
               whileTap={{ scale: 0.99 }}
             >
-              Узнать больше
+              {t('common.learn_more')}
             </SecondaryButton>
           </ButtonContainer>
         </ContentWrapper>
       </ContentContainer>
     </HeroContainer>
   );
-};
+});
+
+HeroFullscreen.displayName = 'HeroFullscreen';
 
 export default HeroFullscreen;

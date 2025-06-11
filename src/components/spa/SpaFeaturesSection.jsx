@@ -122,26 +122,26 @@ const SpaFeaturesSection = () => {
     {
       id: 1,
       icon: <SparklesIcon />,
-      title: 'Премиум качество',
-      description: 'Используем только лучшие продукты и оборудование для всех процедур'
+      title: t('spa.features.premium_quality.title', 'Премиум качество'),
+      description: t('spa.features.premium_quality.description', 'Используем только лучшие продукты и оборудование для всех процедур')
     },
     {
       id: 2,
       icon: <HeartIcon />,
-      title: 'Полное расслабление',
-      description: 'Создаем атмосферу комфорта для вашего расслабления и отдыха'
+      title: t('spa.features.full_relaxation.title', 'Полное расслабление'),
+      description: t('spa.features.full_relaxation.description', 'Создаем атмосферу комфорта для вашего расслабления и отдыха')
     },
     {
       id: 3,
       icon: <UserGroupIcon />,
-      title: 'Опытные мастера',
-      description: 'Специалисты с многолетним опытом и постоянным развитием навыков'
+      title: t('spa.features.experienced_masters.title', 'Опытные мастера'),
+      description: t('spa.features.experienced_masters.description', 'Специалисты с многолетним опытом и постоянным развитием навыков')
     },
     {
       id: 4,
       icon: <StarIcon />,
-      title: 'Индивидуальный подход',
-      description: 'Учитываем ваши пожелания и особенности для максимального результата'
+      title: t('spa.features.individual_approach.title', 'Индивидуальный подход'),
+      description: t('spa.features.individual_approach.description', 'Учитываем ваши пожелания и особенности для максимального результата')
     }
   ];
 

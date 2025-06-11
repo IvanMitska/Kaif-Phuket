@@ -54,6 +54,18 @@ export default defineConfig({
     sourcemap: false
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'framer-motion']
+    include: [
+      'react', 
+      'react-dom', 
+      'framer-motion',
+      'react-router-dom',
+      'react-i18next',
+      'i18next',
+      'styled-components'
+    ]
+  },
+  esbuild: {
+    // Оптимизация для продакшена
+    drop: ['console', 'debugger']
   }
 })
