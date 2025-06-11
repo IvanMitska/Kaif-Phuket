@@ -36,9 +36,10 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            {t('sports.hero.title', 'Превосходи себя в <span>спорте</span> с KAIF')}
-          </HeroTitle>
+            dangerouslySetInnerHTML={{
+              __html: t('sports.hero.title', 'Превосходи себя в <span>спорте</span> с KAIF')
+            }}
+          />
 
           <HeroSubtitle
             initial={{ opacity: 0, y: 20 }}

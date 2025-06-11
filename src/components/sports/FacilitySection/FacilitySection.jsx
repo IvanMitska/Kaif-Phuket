@@ -135,9 +135,10 @@ const FacilitySection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7 }}
-          >
-            {t('sports.facilities.title', 'Современные <span>спортивные</span> пространства')}
-          </SectionTitle>
+            dangerouslySetInnerHTML={{
+              __html: t('sports.facilities.title', 'Современные <span>спортивные</span> пространства')
+            }}
+          />
           
           <SectionSubtitle
             initial={{ opacity: 0, y: 30 }}
