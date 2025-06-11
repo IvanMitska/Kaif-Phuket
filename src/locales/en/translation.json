@@ -814,6 +814,48 @@
       "description": "Saturday workouts with professional athletes, all proceeds go to Child Watch Phuket Foundation"
     }
   },
+  "banya": {
+    "title": "Russian Banya",
+    "description": "Panoramic Russian bathhouse overlooking the jungle",
+    "hero": {
+      "badge": "Best Banya in Phuket",
+      "title": "Panoramic <span className=\"highlight\">Russian Banya</span>",
+      "area": "150 square meters",
+      "subtitle": "Tradition meets modernity with Woodson stoves",
+      "book_button": "Book Now",
+      "contacts_button": "Contacts",
+      "scroll": "Scroll"
+    },
+    "features": {
+      "badge": "Our Advantages",
+      "title": "Why Choose Us",
+      "subtitle": "The only panoramic Russian banya in Phuket with authentic traditions and modern technology",
+      "woodson": {
+        "title": "Woodson Stoves",
+        "description": "Premium Finnish stoves for perfect steam"
+      },
+      "materials": {
+        "title": "Natural Materials",
+        "description": "100% natural finishing from Siberian wood species"
+      },
+      "panoramic": {
+        "title": "Panoramic Design",
+        "description": "Unique architecture with tropical jungle views"
+      },
+      "safety": {
+        "title": "Safety",
+        "description": "Compliance with all international safety standards"
+      },
+      "wellness": {
+        "title": "Wellness Programs",
+        "description": "Signature wellness programs by master attendants"
+      },
+      "service": {
+        "title": "Professionalism",
+        "description": "Team of experienced banya masters and steam specialists"
+      }
+    }
+  },
 
   "about": {
     "title": "About Us",

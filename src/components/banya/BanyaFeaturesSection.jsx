@@ -163,8 +163,8 @@ const BanyaFeaturesSection = () => {
     {
       id: 'woodson',
       icon: FireIcon,
-      title: 'Печи Woodson',
-      description: 'Финские печи премиум-класса для идеального пара',
+      title: t('banya.features.woodson.title', 'Печи Woodson'),
+      description: t('banya.features.woodson.description', 'Финские печи премиум-класса для идеального пара'),
       items: [
         'Производство Финляндия',
         'Равномерное распределение тепла',
@@ -176,8 +176,8 @@ const BanyaFeaturesSection = () => {
     {
       id: 'materials',
       icon: SparklesIcon,
-      title: 'Натуральные материалы',
-      description: '100% натуральная отделка из сибирских пород дерева',
+      title: t('banya.features.materials.title', 'Натуральные материалы'),
+      description: t('banya.features.materials.description', '100% натуральная отделка из сибирских пород дерева'),
       items: [
         'Сибирский кедр',
         'Алтайская липа',
@@ -189,8 +189,8 @@ const BanyaFeaturesSection = () => {
     {
       id: 'panoramic',
       icon: StarIcon,
-      title: 'Панорамный дизайн',
-      description: 'Уникальная архитектура с видом на тропические джунгли',
+      title: t('banya.features.panoramic.title', 'Панорамный дизайн'),
+      description: t('banya.features.panoramic.description', 'Уникальная архитектура с видом на тропические джунгли'),
       items: [
         '150 квадратных метров',
         'Панорамные окна',
@@ -202,8 +202,8 @@ const BanyaFeaturesSection = () => {
     {
       id: 'safety',
       icon: ShieldCheckIcon,
-      title: 'Безопасность',
-      description: 'Соблюдение всех международных стандартов безопасности',
+      title: t('banya.features.safety.title', 'Безопасность'),
+      description: t('banya.features.safety.description', 'Соблюдение всех международных стандартов безопасности'),
       items: [
         'Пожарная безопасность',
         'Система вентиляции',
@@ -215,8 +215,8 @@ const BanyaFeaturesSection = () => {
     {
       id: 'wellness',
       icon: HeartIcon,
-      title: 'Wellness-программы',
-      description: 'Авторские оздоровительные программы от мастеров',
+      title: t('banya.features.wellness.title', 'Wellness-программы'),
+      description: t('banya.features.wellness.description', 'Авторские оздоровительные программы от мастеров'),
       items: [
         'Русский банный ритуал',
         'Финская сауна',
@@ -228,8 +228,8 @@ const BanyaFeaturesSection = () => {
     {
       id: 'service',
       icon: AcademicCapIcon,
-      title: 'Профессионализм',
-      description: 'Команда опытных банщиков и мастеров парения',
+      title: t('banya.features.service.title', 'Профессионализм'),
+      description: t('banya.features.service.description', 'Команда опытных банщиков и мастеров парения'),
       items: [
         'Сертифицированные банщики',
         'Русские традиции',
@@ -273,7 +273,7 @@ const BanyaFeaturesSection = () => {
             transition={{ duration: 0.6 }}
           >
             <StarIcon />
-            Наши преимущества
+            {t('banya.features.badge', 'Наши преимущества')}
           </Badge>
           
           <SectionTitle
@@ -282,7 +282,7 @@ const BanyaFeaturesSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            Почему выбирают нас
+            {t('banya.features.title', 'Почему выбирают нас')}
           </SectionTitle>
           
           <SectionDescription
@@ -291,7 +291,7 @@ const BanyaFeaturesSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Единственная панорамная русская баня на Пхукете с аутентичными традициями и современными технологиями
+            {t('banya.features.subtitle', 'Единственная панорамная русская баня на Пхукете с аутентичными традициями и современными технологиями')}
           </SectionDescription>
         </SectionHeader>
 

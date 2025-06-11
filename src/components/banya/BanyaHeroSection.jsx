@@ -309,19 +309,22 @@ const BanyaHeroSection = () => {
         >
           <Badge variants={itemVariants}>
             <FireIcon />
-            Лучшая баня Пхукета
+            {t('banya.hero.badge', 'Лучшая баня Пхукета')}
           </Badge>
           
-          <MainTitle variants={itemVariants}>
-            Панорамная <span className="highlight">русская баня</span>
-          </MainTitle>
+          <MainTitle 
+            variants={itemVariants}
+            dangerouslySetInnerHTML={{
+              __html: t('banya.hero.title', 'Панорамная <span className="highlight">русская баня</span>')
+            }}
+          />
           
           <Area variants={itemVariants}>
-            150 квадратных метров
+            {t('banya.hero.area', '150 квадратных метров')}
           </Area>
           
           <Subtitle variants={itemVariants}>
-            Традиции встречают современность с печами Woodson
+            {t('banya.hero.subtitle', 'Традиции встречают современность с печами Woodson')}
           </Subtitle>
           
           <CTAContainer variants={itemVariants}>
@@ -330,7 +333,7 @@ const BanyaHeroSection = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Забронировать
+                {t('banya.hero.book_button', 'Забронировать')}
                 <ArrowRightIcon />
               </PrimaryButton>
             </Link>
@@ -340,7 +343,7 @@ const BanyaHeroSection = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Контакты
+                {t('banya.hero.contacts_button', 'Контакты')}
                 <PhoneIcon />
               </SecondaryButton>
             </Link>
@@ -353,7 +356,7 @@ const BanyaHeroSection = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
       >
-        <div className="scroll-text">Scroll</div>
+        <div className="scroll-text">{t('banya.hero.scroll', 'Scroll')}</div>
         <div className="scroll-line"></div>
       </ScrollIndicator>
     </HeroContainer>
