@@ -309,9 +309,9 @@
     },
     "support": {
       "title": "Support Service",
-      "description": "Our team is ready to help you 24/7. Contact us in any convenient way.",
+      "description": "Our team is ready to help you during business hours. Contact us in any convenient way.",
       "location": "Phuket, Thailand",
-      "hours": "24/7 support"
+              "hours": "Support during business hours"
     },
     "whatsapp": {
       "title": "WhatsApp Chat",
@@ -687,7 +687,7 @@
       "whatsapp": {
         "title": "WhatsApp Chat",
         "description": "Message us on WhatsApp for convenient booking. We will respond quickly and help you choose the best time.",
-        "hours": "Online support: 24/7",
+        "hours": "Online support: quick response",
         "feature": "Quick responses",
         "button": "Message on WhatsApp"
       }
@@ -711,7 +711,7 @@
       "stats": {
         "facilities": "Sports Facilities",
         "trainers": "Professional Trainers",
-        "access": "Access for Residents"
+        "access": "Modern Equipment"
       }
     },
     "gym": {
