@@ -955,17 +955,42 @@
   },
   "contacts": {
     "title": "Contact Us",
+    "hero": {
+      "title": "Contacts",
+      "subtitle": "We are always ready to help you and answer all your questions"
+    },
     "form": {
       "title": "Get in Touch",
       "success": "Your message has been sent successfully!",
       "error": "An error occurred. Please try again."
     },
     "info": {
-      "title": "Contact Information",
-      "hours": "Opening Hours: 7:00 - 22:00 daily"
+      "title": "Contact Us",
+      "subtitle": "Choose a convenient way to contact us"
+    },
+    "phone": {
+      "title": "Phone",
+      "whatsapp": "WhatsApp available"
+    },
+    "email": {
+      "title": "Email",
+      "response": "Response within 24 hours"
+    },
+    "address": {
+      "title": "Address"
     },
     "hours": {
-      "booking": "Online booking available"
+      "title": "Working Hours",
+      "daily": "Daily: 7:00 - 22:00",
+      "booking": "Booking 24/7"
+    },
+    "social": {
+      "title": "Follow us on social media",
+      "subtitle": "Stay up to date with the latest KAIF news and promotions"
+    },
+    "map": {
+      "title": "How to find us",
+      "subtitle": "Convenient location in the center of Kathu, Phuket"
     },
     "feedback": {
       "title": "Feedback",

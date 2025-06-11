@@ -620,7 +620,7 @@ const ContactsPage = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            Следите за нами в соцсетях
+            {t('contacts.social.title', 'Следите за нами в соцсетях')}
           </SectionTitle>
           <SectionSubtitle
             initial={{ opacity: 0, y: 20 }}
@@ -628,7 +628,7 @@ const ContactsPage = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            Будьте в курсе последних новостей и акций KAIF
+            {t('contacts.social.subtitle', 'Будьте в курсе последних новостей и акций KAIF')}
           </SectionSubtitle>
 
           <motion.div
