@@ -48,24 +48,23 @@ export const HeroContainer = styled.div`
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   z-index: 2;
-  
-  @media (min-width: 1024px) {
-    grid-template-columns: 7fr 5fr;
-    gap: 5rem;
-  }
+  min-height: 90vh;
 `;
 
 export const HeroContent = styled(motion.div)`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   color: #FFFFFF;
-  text-align: left;
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
 `;
 
 export const HeroTag = styled(motion.span)`
@@ -114,8 +113,8 @@ export const HeroSubtitle = styled(motion.p)`
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.8);
   margin-bottom: 2.5rem;
-  max-width: 580px;
   font-weight: 300;
+  text-align: center;
 `;
 
 // Кнопки для героической секции
@@ -123,7 +122,14 @@ export const HeroCTAContainer = styled(motion.div)`
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
+  justify-content: center;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
 `;
 
 export const PrimaryButton = styled(motion.button)`
@@ -222,17 +228,22 @@ export const SecondaryButton = styled(motion.button)`
 
 export const HeroStatsContainer = styled(motion.div)`
   display: flex;
-  gap: 2rem;
+  gap: 3rem;
   flex-wrap: wrap;
+  justify-content: center;
   
   @media (max-width: 768px) {
-    gap: 1.5rem;
+    gap: 2rem;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
 export const HeroStat = styled(motion.div)`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   
   &::before {
     content: '';

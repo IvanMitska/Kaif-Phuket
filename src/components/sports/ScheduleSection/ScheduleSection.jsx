@@ -94,40 +94,19 @@ const DayButton = styled.button`
   padding: 0.75rem 1rem;
   border-radius: 12px;
   border: none;
-  background: ${props => props.isSelected ? 'var(--color-primary)' : 'var(--color-surface)'};
-  color: ${props => props.isSelected ? 'var(--color-text-white)' : 'var(--color-text-primary)'};
+  background: var(--color-surface);
+  color: var(--color-text-primary);
   font-weight: 600;
   cursor: pointer;
-  box-shadow: ${props => props.isSelected ? 'var(--shadow-glow)' : 'var(--shadow-wellness)'};
+  box-shadow: var(--shadow-wellness);
   min-width: 80px;
   transition: var(--transition-natural);
-  transform: ${props => props.isSelected ? 'translateY(-3px) scale(1.05)' : 'none'};
-  position: relative;
-  overflow: hidden;
-  z-index: ${props => props.isSelected ? '2' : '1'};
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: ${props => props.isSelected ? '-10%' : '100%'};
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: var(--color-tertiary);
-    transition: var(--transition-natural);
-    opacity: ${props => props.isSelected ? '1' : '0'};
-  }
   
   &:hover {
-    transform: ${props => props.isSelected ? 'translateY(-3px) scale(1.05)' : 'translateY(-2px)'};
+    transform: translateY(-2px);
     box-shadow: var(--shadow-wellness-lg);
-    background: ${props => props.isSelected ? 'var(--color-primary)' : 'var(--color-secondary)'};
-    color: var(--color-text-white);
-    
-    &::before {
-      top: ${props => props.isSelected ? '-10%' : '0'};
-      opacity: 1;
-    }
+    background: var(--color-surface);
+    color: var(--color-text-primary);
   }
   
   @media (max-width: 768px) {
@@ -142,7 +121,6 @@ const DayButton = styled.button`
     padding: 0.4rem 0.3rem;
     font-size: 0.8rem;
     border-radius: 8px;
-    transform: ${props => props.isSelected ? 'translateY(-2px) scale(1.02)' : 'none'};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -170,64 +148,34 @@ const ScheduleTable = styled.table`
 `;
 
 const TableHeader = styled.th`
-  padding: 1rem 0.5rem;
+  padding: 0.75rem 0.5rem;
   text-align: center;
   font-weight: 700;
-  color: ${props => props.isSelected ? 'var(--color-primary)' : 'var(--color-text-primary)'};
-  background: ${props => props.isSelected ? 'rgba(144, 179, 167, 0.15)' : 'transparent'};
+  color: var(--color-text-primary);
+  background: transparent;
   border-radius: 12px 12px 0 0;
   transition: var(--transition-natural);
   position: relative;
-  border-bottom: ${props => props.isSelected ? '3px solid var(--color-primary)' : 'none'};
-  transform: ${props => props.isSelected ? 'translateY(-4px)' : 'none'};
-  box-shadow: ${props => props.isSelected ? 'var(--shadow-wellness)' : 'none'};
   
   .day-name {
     display: block;
-    font-size: ${props => props.isSelected ? '1.1rem' : '1rem'};
-    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
     font-family: var(--font-primary);
-    font-weight: ${props => props.isSelected ? '800' : '700'};
-    letter-spacing: ${props => props.isSelected ? '0.5px' : 'normal'};
+    font-weight: 700;
   }
   
   .day-number {
-    display: block;
-    font-size: 0.9rem;
-    opacity: ${props => props.isSelected ? '1' : '0.7'};
-    font-family: var(--font-primary);
-  }
-  
-  &::after {
-    content: ${props => props.isSelected ? '"▾"' : '""'};
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 16px;
-    color: var(--color-primary);
-    opacity: ${props => props.isSelected ? '1' : '0'};
-    transition: var(--transition-natural);
+    display: none;
   }
   
   @media (max-width: 480px) {
-    padding: 0.7rem 0.3rem;
+    padding: 0.5rem 0.3rem;
     border-radius: 8px 8px 0 0;
     display: ${props => props.hiddenOnMobile ? 'none' : 'table-cell'};
     width: ${props => props.isSelected ? '100%' : '0'};
     
     .day-name {
-      font-size: ${props => props.isSelected ? '0.95rem' : '0.85rem'};
-      margin-bottom: 0.1rem;
-    }
-    
-    .day-number {
-      font-size: 0.75rem;
-    }
-    
-    &::after {
-      bottom: -8px;
-      font-size: 12px;
+      font-size: 0.8rem;
     }
   }
 `;
@@ -235,21 +183,24 @@ const TableHeader = styled.th`
 const TimeCell = styled.td`
   padding: 0.5rem;
   text-align: right;
-  font-weight: 600;
+  font-weight: 700;
   font-family: var(--font-primary);
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   width: 80px;
+  font-size: 1rem;
   
   @media (max-width: 768px) {
-    width: 60px;
+    width: 70px;
     padding: 0.4rem;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+    font-weight: 800;
   }
   
   @media (max-width: 480px) {
-    width: 40px;
-    padding: 0.3rem 0.1rem 0.3rem 0;
-    font-size: 0.75rem;
+    width: 50px;
+    padding: 0.4rem 0.2rem 0.4rem 0;
+    font-size: 1.2rem;
+    font-weight: 800;
     position: sticky;
     left: 0;
     background: var(--color-surface);
@@ -258,58 +209,40 @@ const TimeCell = styled.td`
 `;
 
 const ClassCell = styled.td`
-  padding: 0.75rem 0.5rem;
+  padding: 0.4rem 0.6rem;
   background-color: ${props => props.bgColor || 'transparent'};
   text-align: center;
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: ${props => props.bgColor ? 'var(--shadow-wellness)' : 'none'};
   transition: var(--transition-natural);
   position: relative;
-  height: 80px;
+  height: 24px;
+  max-height: 24px;
   width: ${props => props.isCurrentDay ? '14%' : '13%'};
   overflow: hidden;
   cursor: ${props => props.hasClass ? 'pointer' : 'default'};
-  border: ${props => (props.hasClass && props.isCurrentDay) ? '2px solid var(--color-primary)' : 'none'};
-  transform: ${props => (props.hasClass && props.isCurrentDay) ? 'scale(1.02)' : 'none'};
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(144, 179, 167, 0.3), rgba(144, 179, 167, 0.1));
-    opacity: 0;
-    transition: var(--transition-natural);
-    border-radius: 12px;
-    z-index: 1;
-  }
+  vertical-align: middle;
   
   &:hover {
-    transform: ${props => props.hasClass ? 'translateY(-3px) scale(1.03)' : 'none'};
-    box-shadow: ${props => props.hasClass ? '0 5px 15px rgba(144, 179, 167, 0.4)' : 'none'};
-    z-index: 2;
-    border: ${props => props.hasClass ? '2px solid var(--color-primary)' : 'none'};
-    
-    &::before {
-      opacity: ${props => props.hasClass ? '1' : '0'};
-    }
+    transform: ${props => props.hasClass ? 'translateY(-1px)' : 'none'};
+    box-shadow: ${props => props.hasClass ? '0 3px 10px rgba(144, 179, 167, 0.4)' : 'none'};
   }
   
   @media (max-width: 768px) {
-    height: 70px;
-    padding: 0.5rem 0.3rem;
-    border-radius: 8px;
+    height: 26px;
+    max-height: 26px;
+    padding: 0.45rem 0.5rem;
+    border-radius: 7px;
   }
   
   @media (max-width: 480px) {
-    height: auto;
-    min-height: 60px;
-    padding: 0.3rem 0.2rem;
+    height: 28px;
+    max-height: 28px;
+    min-height: 28px;
+    padding: 0.5rem 0.4rem;
     width: auto;
     display: ${props => props.hiddenOnMobile ? 'none' : 'table-cell'};
-    border-radius: 8px;
+    border-radius: 7px;
   }
 `;
 
@@ -322,56 +255,93 @@ const ClassContent = styled.div`
   position: relative;
   z-index: 2;
   display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
+  flex-direction: row;
+  gap: 0.4rem;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  white-space: nowrap;
+  
+  @media (max-width: 768px) {
+    gap: 0.35rem;
+  }
+  
+  @media (max-width: 480px) {
+    gap: 0.3rem;
+    flex-direction: column;
+  }
 `;
 
 const ClassTitle = styled.div`
   font-weight: 800;
   text-transform: uppercase;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-family: var(--font-primary);
   color: var(--color-text-primary);
+  line-height: 1.1;
+  
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+`;
+
+const ClassDetails = styled.div`
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  line-height: 1.1;
+  
+  &::before {
+    content: '•';
+    margin-right: 3px;
+    
+    @media (max-width: 480px) {
+      display: none;
+    }
+  }
   
   @media (max-width: 768px) {
     font-size: 0.8rem;
   }
   
   @media (max-width: 480px) {
-    font-size: 0.75rem;
-  }
-`;
-
-const ClassDetails = styled.div`
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--color-text-secondary);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  
-  @media (max-width: 768px) {
-    font-size: 0.7rem;
-  }
-  
-  @media (max-width: 480px) {
-    font-size: 0.65rem;
+    font-size: 0.85rem;
+    line-height: 1.2;
   }
 `;
 
 const TrainerName = styled.div`
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 500;
   font-style: italic;
   color: var(--color-text-secondary);
+  line-height: 1;
+  
+  &::before {
+    content: '•';
+    margin-right: 2px;
+    font-style: normal;
+    
+    @media (max-width: 480px) {
+      display: none;
+    }
+  }
   
   @media (max-width: 768px) {
     font-size: 0.7rem;
   }
   
   @media (max-width: 480px) {
-    font-size: 0.65rem;
+    display: none;
   }
 `;
 
@@ -495,11 +465,11 @@ const ScheduleSection = () => {
           </SectionTag>
           
           <ScheduleHeading>
-            SCHEDULE
+            {t('sports.schedule.title', 'SCHEDULE')}
           </ScheduleHeading>
           
           <ScheduleSubheading>
-            ВЫБЕРИТЕ ДЕНЬ НЕДЕЛИ
+            {t('sports.schedule.subtitle', 'ВЫБЕРИТЕ ДЕНЬ НЕДЕЛИ')}
           </ScheduleSubheading>
         </div>
         
@@ -579,7 +549,7 @@ const ScheduleSection = () => {
                             <ClassContent>
                               <ClassTitle>{classForCell.classType}</ClassTitle>
                               <ClassDetails>
-                                {classForCell.duration} мин
+                                {classForCell.duration} {t('sports.schedule.minutes', 'мин')}
                               </ClassDetails>
                               <TrainerName>{classForCell.trainer}</TrainerName>
                             </ClassContent>

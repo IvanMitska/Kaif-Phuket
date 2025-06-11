@@ -1,4 +1,7 @@
 {
+  "common": {
+    "phone_number": "+66 62 480 5877"
+  },
   "navigation": {
     "home": "Home",
     "restaurant": "Restaurant",
@@ -28,17 +31,57 @@
     "address": "73, Baan Chalekiri Village, 6 Pra Phuket Keaw Road, Kathu",
     "phone_number": "+66 62 480 5877",
     "select_language": "Select Language",
-    "photo_placeholder": "Photo will be added"
+    "photo_placeholder": "Photo will be added",
+    "contact_us": "Contact Us",
+    "exploreMore": "Learn More",
+    "from": "from",
+    "categories": "Categories",
+    "activity": "ACTIVITY",
+    "relaxation": "RELAXATION"
   },
   "home": {
     "hero": {
       "title": "KAIF - Jungle Club & Spa",
       "subtitle": "Unique relaxation and wellness experience in Phuket",
       "cta": "Our Services",
-      "overline": "Premium Wellness Complex",
+      "overline": "Premium Complex in Phuket",
+      "mainTitle": "KAIF",
+      "subtitle": "Premium Wellness Complex",
+      "services": "Our Services",
       "bookNow": "Book Now",
       "virtualTour": "Virtual Tour",
-      "slideAlt": "KAIF - Jungle Club & Spa"
+      "slideAlt": "KAIF - Jungle Club & Spa",
+      "stats": {
+        "zones": "RELAXATION ZONES",
+        "sauna": "SAUNA",
+        "equipment": "EQUIPMENT"
+      },
+      "heroServices": {
+        "gym": {
+          "title": "Gym",
+          "description": "70+ modern equipment in spacious hall"
+        },
+        "martialArts": {
+          "title": "Martial Arts",
+          "description": "MMA, boxing, muay thai with professional trainers"
+        },
+        "pool": {
+          "title": "25m Pool",
+          "description": "Olympic standard with heated water"
+        },
+        "spa": {
+          "title": "SPA Center",
+          "description": "Thai massage, aromatherapy, relaxation"
+        },
+        "restaurant": {
+          "title": "Restaurant",
+          "description": "5 world cuisines with panoramic terrace"
+        },
+        "beauty": {
+          "title": "Beauty Salon",
+          "description": "Cosmetology, treatments, hairdressing services"
+        }
+      }
     },
     "philosophy": {
       "overline": "OUR PHILOSOPHY",
@@ -46,26 +89,58 @@
       "paragraph1": "We create a space where life becomes brighter. Our mission is to make rest and self-care not an obligation, but a pleasure. KAIF is a place where you restore your strength, recharge your batteries and enjoy every moment.",
       "paragraph2": "Everything here is designed so that you want to come back: workouts that inspire, relaxation that fills you up, and an atmosphere that gives you a real buzz. We believe that harmony is not a luxury, but a necessity, and we make it available to you.",
       "quote": "Health is not just the absence of disease, but a state of complete physical, mental and social well-being",
-      "imageAlt": "KAIF - a space for harmony and self-development"
+      "imageAlt": "KAIF - a space for harmony and self-development",
+      "principle1": {
+        "title": "Comfort and Inspiration",
+        "text": "Creating an atmosphere where every workout brings pleasure"
+      },
+      "principle2": {
+        "title": "Balance and Harmony",
+        "text": "Premium service for body and spirit balance"
+      },
+      "principle3": {
+        "title": "Holistic Approach",
+        "text": "All KAIF zones work together for your well-being"
+      }
     },
     "services": {
       "title": "Our Services",
-      "restaurant": {
-        "title": "Restaurant",
-        "description": "Experience 5 different cuisines in our exceptional restaurant"
+      "subtitle": "Choose your path: dynamic activity or relaxing relaxation",
+      "zones": {
+        "activity": "Activity",
+        "relax": "Relaxation"
+      },
+      "fitness": {
+        "title": "Fitness Center",
+        "description": "Modern gym with professional equipment for all types of workouts.",
+        "features": ["70+ modern equipment", "Cardio zone", "Functional training", "Personal training"]
+      },
+      "combat": {
+        "title": "Martial Arts",
+        "description": "Professional MMA, boxing and muay thai training under experienced trainers.",
+        "features": ["MMA and boxing", "Muay Thai", "Professional ring", "Group and individual classes"]
+      },
+      "pool": {
+        "title": "Swimming Pool",
+        "description": "25-meter Olympic standard pool for swimming and water workouts.",
+        "features": ["25m Olympic standard", "Heated water", "Aqua fitness", "Kids zone"]
       },
       "spa": {
-        "title": "SPA",
-        "description": "Rejuvenate yourself in Thailand's largest sauna"
-      },
-      "sports": {
-        "title": "Sports Facilities",
-        "description": "Stay fit with our 70+ equipment gym and specialized areas"
+        "title": "SPA Center",
+        "description": "Oasis of tranquility with a wide range of relaxing and restorative treatments.",
+        "features": ["Thai massage", "Aromatherapy", "Hot stones", "Relaxation zones"]
       },
       "banya": {
-        "title": "Panoramic Russian Banya",
-        "description": "The largest panoramic Russian sauna in Phuket — 150 m²"
-      }
+        "title": "Russian Banya",
+        "description": "The largest Russian banya in Phuket with traditional procedures.",
+        "features": ["50m2 Russian banya", "Birch brooms and aromas", "Steam procedures", "Tea ceremony"]
+      },
+      "restaurant": {
+        "title": "Restaurant",
+        "description": "Exquisite signature cuisine with 50+ unique dishes from the chef.",
+        "features": ["50+ signature dishes", "Signature recipes", "Wine list", "Panoramic terrace"]
+      },
+      "learn_more": "Learn More"
     },
     "promotions": {
       "title": "Special Offers",
@@ -78,6 +153,44 @@
         "title": "Charity Workout",
         "price": "200 THB",
         "description": "Saturday training with professional athletes, proceeds go to Child Watch Phuket Foundation"
+      }
+    },
+    "about": {
+      "badge": "About Complex",
+      "title": "Multifunctional<br />KAIF Complex",
+      "description1": "KAIF PHUKET is a premium complex where you restore your strength, recharge your energy and enjoy every moment. Everything here is created so that you want to return: workouts that inspire, relaxation that fills, and an atmosphere that gives real pleasure.",
+      "description2": "We have created a unique space in Phuket where premium service meets Thai hospitality. KAIF is not just a spa complex, it's a philosophy of healthy lifestyle and harmony.",
+      "stats": {
+        "banya": "Russian Banya",
+        "equipment": "Equipment",
+        "dishes": "Signature Dishes",
+        "pool": "Olympic Pool"
+      },
+      "features": {
+        "spa": {
+          "title": "SPA Complex",
+          "description": "Thailand's largest sauna, hammam and massage rooms"
+        },
+        "gym": {
+          "title": "Gym",
+          "description": "70+ modern equipment and professional trainers"
+        },
+        "martial": {
+          "title": "Martial Arts",
+          "description": "MMA, boxing, muay thai with professional trainers"
+        },
+        "pool": {
+          "title": "Olympic Pool",
+          "description": "25-meter heated pool with aqua fitness"
+        },
+        "restaurant": {
+          "title": "Restaurant",
+          "description": "50+ signature dishes from chef and panoramic terrace"
+        },
+        "beauty": {
+          "title": "Beauty Salon",
+          "description": "Cosmetology, treatments, hairdressing services"
+        }
       }
     },
     "about_preview": {
@@ -97,6 +210,121 @@
       "description": "Conveniently located in Kathu, just minutes away from Patong"
     }
   },
+  "facilities": {
+    "overline": "OUR FACILITIES",
+    "title": "Space for harmony and self-development",
+    "subtitle": "We create a space where life becomes brighter. Our mission is to make rest and self-care not a duty, but a pleasure",
+    "gym": {
+      "name": "Equipment",
+      "description": "Modern equipment for effective workouts"
+    },
+    "banya": {
+      "name": "Russian Banya",
+      "description": "The largest panoramic Russian steam room in Phuket"
+    },
+    "restaurant": {
+      "name": "Restaurant Seats",
+      "description": "Outdoor restaurant"
+    },
+    "pool": {
+      "name": "Swimming Pool",
+      "description": "Olympic standard for swimming",
+      "unit": "m"
+    }
+  },
+  "zones": {
+    "overline": "KAIF Spaces",
+    "title": "Everything you need for active recreation and relaxation",
+    "all": "All zones",
+    "activity_label": "Activity",
+    "relax_label": "Relax",
+    "activity": {
+      "fitness": {
+        "name": "Gym",
+        "description": "Modern space with premium equipment"
+      },
+      "combat": {
+        "name": "Martial Arts",
+        "description": "MMA, boxing and muay thai with professional trainers"
+      },
+      "pool": {
+        "name": "Swimming Pool",
+        "description": "Swimming in 25-meter pool"
+      }
+    },
+    "relax": {
+      "spa": {
+        "name": "SPA Complex",
+        "description": "Relaxing treatments and premium massages"
+      },
+      "banya": {
+        "name": "Russian Banya",
+        "description": "Traditional banya procedures and wellness"
+      },
+      "restaurant": {
+        "name": "Restaurant",
+        "description": "Exquisite cuisine and signature menu"
+      }
+    }
+  },
+  "popular_services": {
+    "title": "Popular Services",
+    "subtitle": "Most requested SPA and Beauty treatments in our center",
+    "hit": "Hit",
+    "view_all": "View All Services"
+  },
+  "faq": {
+    "badge": "Questions & Answers",
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about our multifunctional complex",
+    "questions": {
+      "what_includes": {
+        "question": "What does the KAIF complex include?",
+        "answer": "KAIF is a unique complex in Phuket where you can combine activity, relaxation and self-care in one place. The territory includes: modern gym, Olympic pool with relaxation zones, dance and functional training studio, martial arts hall, beauty studio, SPA with Russian sauna, Thai hammam and massage services, restaurant with Eastern cuisine, Russian classics and barbecue dishes."
+      },
+      "working_hours": {
+        "question": "What are the complex's operating hours?",
+        "answer": "We operate daily from 6:00 AM to 11:00 PM. Some zones (SPA, restaurant) may have separate schedules. We recommend checking the operating hours of specific services when booking."
+      },
+      "how_to_book": {
+        "question": "How to book services?",
+        "answer": "Booking is available through our website, mobile app, by phone +66 76 123 456 or WhatsApp. We recommend booking in advance, especially for SPA treatments and restaurant tables."
+      },
+      "memberships": {
+        "question": "Can I purchase memberships?",
+        "answer": "Yes! We have various memberships: daily, weekly, monthly and annual. Combined packages including multiple services with up to 30% discount are also available."
+      },
+      "experience_needed": {
+        "question": "Is experience required for classes?",
+        "answer": "No! We have programs for all fitness levels. Beginners get introductory briefings, personal consultations and \"first steps\" programs for safe workout start."
+      },
+      "payment_methods": {
+        "question": "What payment methods are accepted?",
+        "answer": "We accept cash (THB, USD, EUR), all system bank cards, mobile payments, cryptocurrencies and bank transfers. Installment plans are available for large service packages."
+      },
+      "loyalty_program": {
+        "question": "Is there a loyalty program?",
+        "answer": "Yes! KAIF Rewards program offers cumulative discounts, friend referral bonuses, exclusive events and priority booking. Earned points can be spent on any services."
+      }
+    },
+    "support": {
+      "title": "Support Service",
+      "description": "Our team is ready to help you 24/7. Contact us in any convenient way.",
+      "location": "Phuket, Thailand",
+      "hours": "24/7 support"
+    },
+    "whatsapp": {
+      "title": "WhatsApp Chat",
+      "description": "Quick responses in messenger. Booking, questions, support - all in one chat.",
+      "instant_replies": "Instant replies",
+      "personal_manager": "Personal manager"
+    },
+    "consultation": {
+      "title": "Personal Consultations",
+      "description": "Individual approach to each guest. We'll help create a program for your goals.",
+      "free": "Free consultation"
+    }
+  },
   "restaurant": {
     "title": "Restaurant",
     "description": "Experience the exceptional flavors from five different cuisines in our restaurant",
@@ -112,9 +340,13 @@
       }
     },
     "booking": {
+      "label": "Booking",
       "title": "Book a Table",
       "description": "Reserve your table to guarantee your spot",
-      "coming_soon": "Online booking will be available soon. For now, please call us for reservations."
+      "coming_soon": "Online booking will be available soon. For now, please call us for reservations.",
+      "open_hours": "Open Hours",
+      "reservation": "Reservations",
+      "call_now": "Call Now"
     },
     "cuisines": {
       "title": "Our Cuisines",
@@ -139,23 +371,326 @@
     "dish_details": {
       "ingredients": "Ingredients",
       "nutritional_info": "Nutritional Information"
+    },
+    "hero": {
+      "label": "Our Restaurant",
+      "title": "Exquisite Cuisine",
+      "highlight": "with Modern Twist",
+      "subtitle": "Our chefs create unique dishes by combining traditional recipes with new culinary techniques.",
+      "button": "Our Menu",
+      "reviews": "Excellent Reviews"
+    },
+    "menu": {
+      "title": "Our Menu",
+      "description": "Discover a variety of flavors in our menu created by talented chefs",
+      "tag": "Exquisite Dishes",
+      "sort_by": "Sort by:",
+      "popular": "Popular",
+      "add": "Add",
+      "add_to_order": "Add to Order",
+      "show_more": "Show More",
+      "view_all": "View Full Menu",
+      "categories": {
+        "all": "All Dishes",
+        "breakfast": "Breakfast",
+        "soup": "Soups",
+        "salad": "Salads & Appetizers",
+        "grill": "Grilled Dishes",
+        "main": "Main Courses",
+        "dessert": "Desserts",
+        "drinks": "Beverages"
+      },
+      "tags": {
+        "breakfast": "Breakfast",
+        "soup": "Soup",
+        "salad": "Salad",
+        "appetizer": "Appetizer",
+        "grill": "Grilled",
+        "main": "Main Course",
+        "dessert": "Dessert",
+        "drinks": "Beverages",
+        "popular": "Popular",
+        "vegetarian": "Vegetarian",
+        "vegan": "Vegan",
+        "healthy": "Healthy",
+        "spicy": "Spicy",
+        "seafood": "Seafood",
+        "meat": "Meat",
+        "sweet": "Sweet",
+        "cold": "Cold",
+        "hot": "Hot"
+      },
+      "sort": {
+        "default": "Default",
+        "popular": "Popular First",
+        "price_low": "Price: Low to High",
+        "price_high": "Price: High to Low",
+        "name": "Alphabetical"
+      },
+      "items": {
+        "kaif_breakfast": {
+          "name": "KAIF Breakfast",
+          "description": "Our restaurant's signature breakfast"
+        },
+        "shakshuka_spinach_salmon": {
+          "name": "Shakshuka with Spinach and Salmon",
+          "description": "Egg dish with spinach and tender salmon"
+        },
+        "shakshuka_tomato_feta": {
+          "name": "Shakshuka with Tomatoes and Feta",
+          "description": "Traditional shakshuka with juicy tomatoes and feta cheese"
+        },
+        "syrniki_passion_fruit": {
+          "name": "Syrniki with Sour Cream and Passion Fruit Sauce",
+          "description": "Tender homemade cottage cheese pancakes with original passion fruit sauce"
+        },
+        "toast_cream_cheese_ham": {
+          "name": "Toast with Cream Cheese and Ham",
+          "description": "Crispy toast with tender cream cheese and quality ham"
+        },
+        "toast_salmon_avocado": {
+          "name": "Toast with Salted Salmon and Avocado",
+          "description": "Exquisite combination of crispy toast, tender salmon and ripe avocado"
+        },
+        "toast_avocado_tomato": {
+          "name": "Toast with Avocado and Tomatoes",
+          "description": "Light and healthy breakfast of crispy toast with avocado and juicy tomatoes"
+        },
+        "matsoni_apricot": {
+          "name": "Matsoni with Apricot Jam",
+          "description": "Traditional Caucasian yogurt with natural apricot jam"
+        },
+        "buckwheat_chicken_mushrooms": {
+          "name": "Buckwheat Porridge with Chicken, Mushrooms and Parmesan Sauce",
+          "description": "Nutritious buckwheat porridge with tender chicken, aromatic mushrooms and creamy sauce"
+        },
+        "okroshka_ayran": {
+          "name": "Okroshka with Ayran",
+          "description": "Refreshing cold soup with fermented milk base, vegetables and herbs"
+        },
+        "okroshka_kvass": {
+          "name": "Okroshka with Kvass",
+          "description": "Classic okroshka with kvass, selected vegetables, egg and fresh herbs"
+        },
+        "chikhirtma_corn": {
+          "name": "Chikhirtma with Corn",
+          "description": "Traditional Georgian soup with rich flavor, complemented by sweet corn"
+        },
+        "borsch_classic": {
+          "name": "Classic Borsch",
+          "description": "Traditional Slavic soup of rich ruby color with beef and vegetables"
+        },
+        "salad_potato_salmon": {
+          "name": "Lettuce with Young Potato and Salted Salmon",
+          "description": "Fresh salad mix with young potato and tender salted salmon"
+        },
+        "vegetable_salad_cheese": {
+          "name": "Fresh Vegetable Salad with Brynza",
+          "description": "Traditional fresh vegetable salad with tender brynza cheese"
+        },
+        "tomato_cucumber_greens": {
+          "name": "Tomatoes, Cucumbers, Herbs",
+          "description": "Fresh juicy tomatoes and crispy cucumbers with aromatic herbs, dressed with sour cream or olive oil"
+        },
+        "hummus_chickpeas": {
+          "name": "Hummus with Roasted Chickpeas",
+          "description": "Tender hummus with additional roasted chickpeas for texture"
+        },
+        "hummus_avocado_tomato": {
+          "name": "Hummus with Avocado and Tomatoes",
+          "description": "Original hummus with ripe avocado and fresh tomatoes"
+        },
+        "hummus_grilled_shrimp": {
+          "name": "Hummus with Grilled Shrimp",
+          "description": "Classic hummus complemented by juicy grilled shrimp"
+        },
+        "hummus_chicken_kebab": {
+          "name": "Hummus with Chicken Kebab",
+          "description": "Hummus served with aromatic pieces of chicken kebab"
+        },
+        "tzatziki_olives_pepper": {
+          "name": "Tzatziki with Olives and Pickled Pepper",
+          "description": "Refreshing yogurt sauce with cucumbers, garlic and herbs, complemented by olives and pickled pepper"
+        },
+        "chicken_kebab_yogurt": {
+          "name": "Chicken Kebab (in Yogurt)",
+          "description": "Juicy kebab of chicken fillet marinated in yogurt with Eastern spices"
+        },
+        "beef_kebab": {
+          "name": "Beef Kebab",
+          "description": "Juicy kebab of select beef, cooked over open fire"
+        },
+        "pork_neck_kebab": {
+          "name": "Pork Neck Kebab",
+          "description": "Kebab of marinated pork neck with aromatic spices"
+        }
+      }
     }
   },
   "spa": {
     "title": "SPA",
     "description": "Rejuvenate your mind and body in Thailand's largest sauna",
+    "hero": {
+      "badge": "Premium SPA",
+      "title": "Immerse yourself in the world of relaxation and beauty",
+      "subtitle": "Professional SPA treatments in the luxurious atmosphere of KAIF",
+      "book_now": "Book a Treatment",
+      "learn_more": "Learn More"
+    },
     "services": {
       "title": "Our Services",
+      "subtitle": "Complete range of SPA and Beauty services for your comfort and beauty",
       "categories": {
+        "massage": "Massage",
+        "cosmetology": "Cosmetology",
+        "laser-hair-removal": "Laser Hair Removal",
+        "laser-men": "Laser Hair Removal for Men",
+        "laser-complex": "Laser Complexes",
+        "endosphere": "Endosphere Therapy",
+        "manicure": "Manicure",
+        "pedicure": "Pedicure",
+        "hair-care": "Hair Care",
         "sauna": "Sauna",
         "hammam": "Hammam",
-        "massage": "Massage",
         "treatments": "SPA Treatments"
+      },
+      "popular": "Popular",
+      "learn_more": "Learn More",
+      "show_more": "Show {{count}} more services",
+      "show_less": "Show Less",
+      "price_from": "from {{price}} ฿",
+      "duration_price": "{{duration}} min - {{price}} ฿",
+      "items": {
+        "oil_massage": {
+          "name": "Oil Massage",
+          "description": "Relaxing massage with natural oils for deep recovery"
+        },
+        "foot_massage": {
+          "name": "Foot Massage",
+          "description": "Traditional Thai foot massage for fatigue relief"
+        },
+        "sport_massage": {
+          "name": "Sports Massage",
+          "description": "Intensive massage for post-workout recovery"
+        },
+        "anti_cellulite_massage": {
+          "name": "Anti-Cellulite Massage",
+          "description": "Specialized massage for body contouring"
+        },
+        "stone_massage": {
+          "name": "Stone Massage",
+          "description": "Hot stone massage for deep relaxation"
+        },
+        "thai_massage": {
+          "name": "Traditional Thai Massage",
+          "description": "Classic Thai massage on mat"
+        },
+        "head_shoulders": {
+          "name": "Head and Shoulders Massage",
+          "description": "Relaxing massage for tension relief"
+        },
+        "oil_scrub": {
+          "name": "Oil Massage + Scrub",
+          "description": "Complex procedure with peeling and massage"
+        },
+        "body_scrub": {
+          "name": "Full Body Scrub",
+          "description": "Exfoliating treatment for entire body"
+        },
+        "wrap_anti_cell": {
+          "name": "Body Wrap + Anti-Cellulite Massage",
+          "description": "Complex procedure for body contouring"
+        },
+        "vacuum_peeling": {
+          "name": "Vacuum Facial with Peeling",
+          "description": "Deep pore cleansing with mechanical peeling"
+        },
+        "vacuum_standard": {
+          "name": "Standard Vacuum Facial",
+          "description": "Classic facial cleansing procedure"
+        },
+        "hollywood_vacuum": {
+          "name": "Hollywood Vacuum Facial",
+          "description": "Premium treatment for perfect skin condition"
+        },
+        "whitening_program": {
+          "name": "Whitening Program (Pigmentation)",
+          "description": "Special program against pigmentation spots"
+        },
+        "rejuvenation_program": {
+          "name": "Rejuvenation Program",
+          "description": "Complex anti-aging program"
+        }
+      }
+    },
+    "features": {
+      "title": "Why Choose Us",
+      "subtitle": "We strive to provide you with an exceptional relaxation and care experience",
+      "premium_quality": {
+        "title": "Premium Quality",
+        "description": "We use only the best products and equipment for all treatments"
+      },
+      "full_relaxation": {
+        "title": "Complete Relaxation",
+        "description": "We create a comfortable atmosphere for your relaxation and rest"
+      },
+      "experienced_masters": {
+        "title": "Experienced Masters",
+        "description": "Specialists with years of experience and continuous skill development"
+      },
+      "individual_approach": {
+        "title": "Individual Approach",
+        "description": "We consider your wishes and features for maximum results"
+      }
+    },
+    "faq": {
+      "badge": "SPA Questions",
+      "title": "Frequently Asked Questions",
+      "subtitle": "Everything you need to know about our SPA services and treatments",
+      "questions": {
+        "services": {
+          "question": "What SPA services do you offer?",
+          "answer": "We offer a full range of SPA services: massage (Thai, oil, sports), cosmetology treatments, laser hair removal, manicure, pedicure, hair care, as well as sauna and hammam."
+        },
+        "booking": {
+          "question": "How to book a SPA treatment?",
+          "answer": "You can book by phone +66 62 480 5877, via WhatsApp or in person at our center. We recommend booking in advance, especially for popular treatments."
+        },
+        "policy": {
+          "question": "What are the cancellation rules?",
+          "answer": "Please notify us of cancellation at least 24 hours before the scheduled time. Cancellation less than 24 hours in advance may incur a 50% cancellation fee."
+        },
+        "payment": {
+          "question": "What payment methods are accepted?",
+          "answer": "We accept cash (THB, USD, EUR), bank cards of all systems, as well as mobile payments. Payment is made after the treatment."
+        },
+        "preparation": {
+          "question": "Do I need to bring anything with me?",
+          "answer": "We provide everything you need: towels, robes, slippers and cosmetic products. You just need to come and relax."
+        },
+        "gifts": {
+          "question": "Are there gift certificates?",
+          "answer": "Yes! We offer gift certificates of various denominations for any SPA services. They can be purchased at our center or ordered by phone."
+        }
       }
     },
     "booking": {
+      "badge": "Booking",
       "title": "Book a Treatment",
-      "description": "Reserve your SPA experience"
+      "description": "Book a SPA treatment or beauty service for complete relaxation",
+      "phone": {
+        "title": "Call to Book",
+        "description": "Contact us by phone for quick booking. Our consultants will help you choose the right treatment and time.",
+        "hours": "Call reception: 9:00 - 21:00",
+        "location": "Phuket, Thailand"
+      },
+      "whatsapp": {
+        "title": "WhatsApp Chat",
+        "description": "Message us on WhatsApp for convenient booking. We will respond quickly and help you choose the best time.",
+        "hours": "Online support: 24/7",
+        "feature": "Quick responses",
+        "button": "Message on WhatsApp"
+      }
     },
     "facility": {
       "title": "Our Facilities",
@@ -208,15 +743,17 @@
     },
     "schedule": {
       "tag": "Planning",
-      "title": "Class Schedule",
+      "title": "SCHEDULE",
+      "subtitle": "SELECT DAY OF WEEK",
+      "minutes": "min",
       "description": "Weekly class schedule with professional instructors",
       "coming_soon": "Training schedule will be available soon. For current information, please contact us.",
       "contact_button": "Contact Us"
     },
     "facilities": {
       "tag": "Our facilities",
+      "title": "Modern <span>sports</span> spaces",
       "subtitle": "KAIF offers a wide selection of premium sports spaces with cutting-edge equipment and professional trainers to help you achieve your fitness goals.",
-      "title": "Our Facilities",
       "gym": {
         "title": "Gym",
         "description": "Over 70 pieces of professional equipment",
@@ -345,6 +882,39 @@
     "feedback": {
       "title": "Feedback",
       "description": "We value your opinion"
+    }
+  },
+  "gallery": {
+    "overline": "Gallery",
+    "title": "KAIF Experiences",
+    "subtitle": "Immerse yourself in the KAIF atmosphere through our photo gallery. Get acquainted with our services and complex facilities.",
+    "filters": {
+      "all": "All",
+      "spa": "SPA",
+      "fitness": "Fitness",
+      "pool": "Pool",
+      "relax": "Relaxation"
+    }
+  },
+  "footer": {
+    "navigation": "Navigation",
+    "brand": {
+      "description": "Premium wellness complex in Phuket. We create a unique wellness experience to restore harmony of body and soul."
+    },
+    "services": {
+      "title": "Services",
+      "sauna": "Sauna & Hammam",
+      "fitness": "Fitness Center",
+      "fight_club": "Fight Club"
+    },
+    "schedule": {
+      "daily": "Daily",
+      "hours": "7:00 - 22:00"
+    },
+    "copyright": "All rights reserved.",
+    "legal": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
     }
   }
 }

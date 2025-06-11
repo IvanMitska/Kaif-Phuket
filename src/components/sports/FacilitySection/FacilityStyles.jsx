@@ -63,6 +63,17 @@ export const FacilityTitle = styled.h3`
     background-color: ${props => props.theme.colors.primary};
     border-radius: 2px;
   }
+  
+  @media (max-width: 768px) {
+    text-align: center;
+    display: block;
+    width: 100%;
+    
+    &::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
 `;
 
 export const FacilityDescription = styled.div`
@@ -83,6 +94,10 @@ export const FacilityDescription = styled.div`
   li {
     margin-bottom: 0.5rem;
   }
+  
+  @media (max-width: 768px) {
+    text-align: center;
+  }
 `;
 
 export const FacilityGallery = styled.div`
@@ -98,37 +113,21 @@ export const FacilityGallery = styled.div`
   }
 `;
 
-export const GalleryImage = styled(motion.div)`
+export const GalleryImage = styled(motion.img)`
+  width: 100%;
   height: 100%;
-  background-color: ${props => props.theme.colors.secondary};
-  background-image: url(${props => props.src});
-  background-size: cover;
-  background-position: center;
+  object-fit: cover;
+  object-position: center;
   border-radius: 20px;
-  overflow: hidden;
   transition: all 0.4s ease;
   box-shadow: ${props => props.theme.shadows.md};
   position: relative;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 60%);
-    opacity: 0.7;
-    transition: opacity 0.4s ease;
-  }
+  filter: none;
+  opacity: 1;
   
   &:hover {
     transform: scale(1.03);
     box-shadow: ${props => props.theme.shadows.xl};
-    
-    &::after {
-      opacity: 1;
-    }
   }
   
   &:first-child {
@@ -161,6 +160,10 @@ export const FacilityMeta = styled.div`
   flex-wrap: wrap;
   gap: 1.5rem;
   margin-bottom: 2rem;
+  
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 export const FacilityMetaItem = styled.div`
@@ -177,6 +180,14 @@ export const FacilityMetaItem = styled.div`
   span {
     font-size: 0.95rem;
     color: ${props => props.theme.colors.text.secondary};
+  }
+`;
+
+export const FacilityButtonContainer = styled.div`
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 `;
 

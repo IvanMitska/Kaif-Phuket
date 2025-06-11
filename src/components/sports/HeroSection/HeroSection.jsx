@@ -16,9 +16,7 @@ import {
   HeroStatsContainer,
   HeroStat,
   HeroStatNumber,
-  HeroStatLabel,
-  HeroImageContainer,
-  HeroImage
+  HeroStatLabel
 } from './HeroStyles';
 
 const HeroSection = () => {
@@ -33,14 +31,13 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          style={{ paddingTop: '2rem' }}
         >
           <HeroTitle
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            {t('sports.hero.title', 'Достигайте новых <span>спортивных высот</span> с KAIF')}
+            {t('sports.hero.title', 'Превосходи себя в <span>спорте</span> с KAIF')}
           </HeroTitle>
 
           <HeroSubtitle
@@ -48,7 +45,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
           >
-            {t('sports.hero.subtitle', 'В KAIF Jungle Club & SPA вы найдете все необходимое для активного образа жизни, тренировок и спортивного развлечения в атмосфере роскоши и комфорта.')}
+            {t('sports.hero.subtitle', 'Современные тренажеры, профессиональные тренеры и атмосфера для достижения ваших спортивных целей')}
           </HeroSubtitle>
 
           <HeroCTAContainer
@@ -106,31 +103,6 @@ const HeroSection = () => {
             </HeroStat>
           </HeroStatsContainer>
         </HeroContent>
-
-        <HeroImageContainer
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          style={{ marginTop: '2rem' }}
-        >
-          <div style={{
-            width: '100%',
-            maxWidth: '500px',
-            height: '400px',
-            background: 'linear-gradient(135deg, rgba(210, 155, 132, 0.1) 0%, rgba(139, 69, 19, 0.15) 50%, rgba(210, 155, 132, 0.08) 100%)',
-            borderRadius: '30px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 20px 40px rgba(210, 155, 132, 0.15)',
-            border: '1px solid rgba(210, 155, 132, 0.2)',
-            fontSize: '4rem',
-            color: 'rgba(210, 155, 132, 0.8)',
-            fontWeight: 'bold'
-          }}>
-            🏋️‍♂️
-          </div>
-        </HeroImageContainer>
       </HeroContainer>
     </HeroSectionContainer>
   );

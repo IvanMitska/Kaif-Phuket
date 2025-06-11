@@ -112,7 +112,7 @@ export const ScheduleGridContainer = styled.div`
 export const ScheduleGrid = styled.div`
   display: grid;
   grid-template-columns: 80px repeat(7, minmax(180px, 1fr));
-  grid-auto-rows: minmax(70px, auto);
+  grid-auto-rows: minmax(45px, auto);
   gap: 1px;
   background-color: rgba(229, 231, 235, 0.5);
   border-radius: 16px;
@@ -137,7 +137,7 @@ export const TimeSlot = styled.div`
   color: #4B5563;
   background: rgba(249, 250, 251, 0.7);
   border-bottom: 1px solid rgba(229, 231, 235, 0.8);
-  height: 70px;
+  height: 45px;
   
   &:last-child {
     border-bottom: none;
@@ -145,23 +145,23 @@ export const TimeSlot = styled.div`
 `;
 
 export const DayHeader = styled.div`
-  padding: 15px 10px;
+  padding: 10px 10px;
   text-align: center;
   font-weight: 700;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(249, 250, 251, 0.8));
   border-bottom: 1px solid rgba(229, 231, 235, 0.8);
   
   .day-name {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: #111827;
   }
   
   .day-number {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: #6B7280;
-    margin-top: 3px;
+    margin-top: 2px;
   }
   
   ${props => props.isToday && `
@@ -175,9 +175,9 @@ export const DayHeader = styled.div`
       content: '•';
       display: block;
       color: #6366F1;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       line-height: 0.5;
-      margin-bottom: 5px;
+      margin-bottom: 3px;
     }
   `}
 `;
@@ -202,7 +202,7 @@ export const ClassCard = styled(motion.div)`
   right: 3px;
   top: ${props => props.start}%;
   height: ${props => props.duration}%;
-  min-height: 50px;
+  min-height: 35px;
   background: ${props => {
     switch(props.classType) {
       case 'YOGA': return 'linear-gradient(135deg, #DDD6FE, #EDE9FE)';
@@ -218,7 +218,7 @@ export const ClassCard = styled(motion.div)`
     }
   }};
   border-radius: 8px;
-  padding: 8px 10px;
+  padding: 6px 8px;
   cursor: pointer;
   overflow: hidden;
   display: flex;
@@ -501,7 +501,7 @@ export const MobileScheduleGrid = styled.div`
 export const MobileTimeSlot = styled.div`
   background: white;
   border-radius: 12px;
-  padding: 1rem;
+  padding: 0.75rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
   border: 1px solid rgba(229, 231, 235, 0.5);
   
@@ -509,8 +509,8 @@ export const MobileTimeSlot = styled.div`
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 0.75rem;
-    padding-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
     border-bottom: 1px solid #F3F4F6;
     
     svg {
@@ -521,7 +521,7 @@ export const MobileTimeSlot = styled.div`
     
     span {
       font-weight: 700;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: #111827;
     }
   }
@@ -529,7 +529,7 @@ export const MobileTimeSlot = styled.div`
   .classes-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
 `;
 
@@ -570,7 +570,7 @@ export const SkeletonCard = styled.div`
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: 8px;
-  height: 50px;
+  height: 35px;
   width: 100%;
   
   @keyframes shimmer {

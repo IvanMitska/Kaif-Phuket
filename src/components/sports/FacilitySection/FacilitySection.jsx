@@ -1,5 +1,6 @@
 import React, { useState, lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   CalendarIcon, 
@@ -22,6 +23,7 @@ import {
   FacilityFeature,
   FacilityMeta,
   FacilityMetaItem,
+  FacilityButtonContainer,
   ScheduleContainer,
   ScheduleHeader,
   BookScheduleButton,
@@ -49,20 +51,21 @@ import { Section, SectionTag, SectionTitle, SectionSubtitle, ContentContainer, T
 
 // Используем ленивую загрузку изображений
 const gymImages = [
-  '/src/assets/images/sports/gym/gym-1.jpg',
-  '/src/assets/images/sports/gym/gym-2.jpg', 
-  '/src/assets/images/sports/gym/gym-3.jpg'
+  '/images/sports/gym/gym-1.jpg',
+  '/images/sports/gym/gym-2.jpg', 
+  '/images/sports/gym/gym-3.jpg'
 ];
 
 const fightImages = [
-  '/src/assets/images/sports/fight-club/fight-1.jpg',
-  '/src/assets/images/sports/fight-club/fight-2.jpg',
-  '/src/assets/images/sports/fight-club/fight-3.jpg'
+  '/images/sports/fight-club/fight-1.jpg',
+  '/images/sports/fight-club/fight-2.jpg',
+  '/images/sports/fight-club/fight-3.jpg'
 ];
+
+const danceImage = '/images/hero/hero-fitness.jpg';
 
 // Компонент для ленивой загрузки изображений
 const LazyImage = ({ src, alt, ...props }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
   return (
@@ -70,12 +73,7 @@ const LazyImage = ({ src, alt, ...props }) => {
       src={hasError ? '/placeholder-image.jpg' : src}
       alt={alt}
       loading="lazy"
-      onLoad={() => setIsLoaded(true)}
       onError={() => setHasError(true)}
-      style={{ 
-        opacity: isLoaded ? 1 : 0.7,
-        transition: 'opacity 0.3s ease'
-      }}
       {...props}
     />
   );
@@ -84,6 +82,7 @@ const LazyImage = ({ src, alt, ...props }) => {
 const FacilitySection = () => {
   const { t } = useTranslation();
   const [filter, setFilter] = useState('all');
+  const navigate = useNavigate();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -199,21 +198,24 @@ const FacilitySection = () => {
               </FacilityFeature>
             </motion.div>
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              style={{ marginTop: '2rem' }}
-            >
-              <BookButton
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            <FacilityButtonContainer>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                style={{ marginTop: '2rem' }}
               >
-                {t('sports.facilities.book_button', 'Забронировать тренировку')}
-                <CalendarIcon style={{ width: '18px', height: '18px' }} />
-              </BookButton>
-            </motion.div>
+                <BookButton
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => navigate('/contacts')}
+                >
+                  {t('sports.facilities.book_button', 'Забронировать тренировку')}
+                  <CalendarIcon style={{ width: '18px', height: '18px' }} />
+                </BookButton>
+              </motion.div>
+            </FacilityButtonContainer>
           </div>
           
           <div className="facility-gallery">
@@ -289,21 +291,24 @@ const FacilitySection = () => {
               </FacilityFeature>
             </motion.div>
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              style={{ marginTop: '2rem' }}
-            >
-              <BookButton
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            <FacilityButtonContainer>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                style={{ marginTop: '2rem' }}
               >
-                {t('sports.facilities.book_button', 'Забронировать тренировку')}
-                <CalendarIcon style={{ width: '18px', height: '18px' }} />
-              </BookButton>
-            </motion.div>
+                <BookButton
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => navigate('/contacts')}
+                >
+                  {t('sports.facilities.book_button', 'Забронировать тренировку')}
+                  <CalendarIcon style={{ width: '18px', height: '18px' }} />
+                </BookButton>
+              </motion.div>
+            </FacilityButtonContainer>
           </div>
           
           <div className="facility-gallery">
@@ -365,36 +370,6 @@ const FacilitySection = () => {
             >
               <FacilityFeature variants={itemVariants}>
                 <SparklesIcon />
-                <span>{t('sports.facilities.dance.feature4', 'Гибкое расписание групповых и индивидуальных занятий')}</span>
-              </FacilityFeature>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              style={{ margin: '2rem 0' }}
-            >
-              <BookButton
-                whileHover={{ scale: 1.05, boxShadow: '0 15px 30px rgba(0, 0, 0, 0.1)' }}
-                whileTap={{ scale: 0.95 }}
-                style={{ display: 'flex', margin: '0 auto' }}
-                onClick={() => window.location.href = '#schedule'}
-              >
-                {t('sports.facilities.dance.view_schedule', 'Посмотреть расписание')}
-                <CalendarIcon style={{ width: '18px', height: '18px', marginLeft: '8px' }} />
-              </BookButton>
-            </motion.div>
-            
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              <FacilityFeature variants={itemVariants}>
-                <SparklesIcon />
                 <span>{t('sports.facilities.dance.feature1', 'Профессиональное танцевальное покрытие')}</span>
               </FacilityFeature>
               
@@ -407,39 +382,45 @@ const FacilitySection = () => {
                 <SparklesIcon />
                 <span>{t('sports.facilities.dance.feature3', 'Групповые и индивидуальные занятия')}</span>
               </FacilityFeature>
+              
+              <FacilityFeature variants={itemVariants}>
+                <SparklesIcon />
+                <span>{t('sports.facilities.dance.feature4', 'Гибкое расписание групповых и индивидуальных занятий')}</span>
+              </FacilityFeature>
             </motion.div>
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              style={{ marginTop: '2rem' }}
-            >
-              <BookButton
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            <FacilityButtonContainer>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                style={{ marginTop: '2rem' }}
               >
-                {t('sports.facilities.book_button', 'Забронировать занятие')}
-                <CalendarIcon style={{ width: '18px', height: '18px' }} />
-              </BookButton>
-            </motion.div>
+                <BookButton
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => navigate('/contacts')}
+                >
+                  {t('sports.facilities.book_button', 'Забронировать тренировку')}
+                  <CalendarIcon style={{ width: '18px', height: '18px' }} />
+                </BookButton>
+              </motion.div>
+            </FacilityButtonContainer>
           </div>
           
           <div className="facility-gallery">
             <FacilityGallery>
-              <div style={{
-                background: 'linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(210, 155, 132, 0.15) 100%)',
-                borderRadius: '20px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '3rem',
-                gridColumn: '1 / -1',
-                gridRow: '1 / -1'
-              }}>
-                💃🕺
-              </div>
+              <LazyImage 
+                src={danceImage}
+                alt="Танцевальная студия"
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.4 }}
+                style={{
+                  gridColumn: '1 / -1',
+                  gridRow: '1 / -1'
+                }}
+              />
             </FacilityGallery>
           </div>
         </SportFacility>
