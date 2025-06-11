@@ -6,9 +6,9 @@ import { motion } from 'framer-motion';
 import { 
   ArrowRightIcon,
   SparklesIcon,
-  StarIcon,
-  HeartIcon
+  StarIcon
 } from '@heroicons/react/24/solid';
+import heroRestaurantImg from '../../assets/images/hero/hero-restaurant.jpg';
 
 // =============================================================================
 // ОПТИМИЗИРОВАННЫЙ SPA HERO (БЕЗ ТЯЖЕЛЫХ ИЗОБРАЖЕНИЙ)
@@ -17,20 +17,47 @@ import {
 const HeroContainer = styled.section`
   position: relative;
   min-height: 100vh;
-  background: linear-gradient(135deg, 
-    #fcfaf8 0%,
-    #f7f4f0 60%,
-    #f4f0eb 100%
-  );
+  background: url(${heroRestaurantImg});
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   overflow: hidden;
   display: flex;
   align-items: center;
   padding: 6rem 0;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg, 
+      rgba(0, 0, 0, 0.5) 0%, 
+      rgba(0, 0, 0, 0.3) 60%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  @media (max-width: 768px) {
+    background-attachment: scroll;
+    min-height: 100vh; /* Оставляем полную высоту чтобы скрыть "Наши услуги" */
+    padding: 4rem 0;
+  }
+  
+  @media (max-width: 480px) {
+    min-height: 100vh; /* Полная высота экрана на мобильных */
+    padding: 3rem 0;
+  }
 `;
 
 const ContentWrapper = styled.div`
   position: relative;
-  z-index: 10;
+  z-index: 2;
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
@@ -43,31 +70,38 @@ const ContentWrapper = styled.div`
   @media (min-width: 1280px) {
     padding: 0 3rem;
   }
+  
+  @media (max-width: 480px) {
+    padding: 0 2rem;
+  }
 `;
 
 const HeroGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 4rem;
+  display: flex;
   align-items: center;
+  justify-content: center;
   position: relative;
   z-index: 2;
-  
-  @media (min-width: 1024px) {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
+  width: 100%;
 `;
 
 const MainContent = styled(motion.div)`
   position: relative;
-  text-align: left;
-  max-width: 600px;
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
   z-index: 10;
+  margin: 0 auto;
+  padding: 0 1rem;
   
-  @media (max-width: 1023px) {
-    text-align: center;
-    margin: 0 auto;
+  @media (max-width: 768px) {
+    max-width: 95%;
+    padding: 0 0.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    max-width: 100%;
+    padding: 0;
   }
 `;
 
@@ -76,157 +110,254 @@ const Badge = styled(motion.div)`
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  background: rgba(212, 165, 116, 0.1);
-  border: 1px solid rgba(212, 165, 116, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 30px;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #8A6C55;
+  color: white;
   margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
   
   svg {
     width: 1rem;
     height: 1rem;
     color: #D4A574;
   }
+  
+  @media (max-width: 768px) {
+    margin-bottom: 2.5rem;
+    padding: 0.9rem 1.8rem;
+    font-size: 1rem;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    
+    svg {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+  }
 `;
 
 const Title = styled(motion.h1)`
-  font-size: clamp(2.75rem, 7vw, 4.5rem);
+  font-size: clamp(2.2rem, 6vw, 3.8rem);
   font-weight: 600;
-  line-height: 1.1;
+  line-height: 1.2;
   margin-bottom: 1.5rem;
-  color: #5A6B5D;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 100%;
+  word-wrap: break-word;
+  hyphens: auto;
+  
+  @media (max-width: 768px) {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    margin-bottom: 2rem;
+    line-height: 1.3;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: clamp(1.6rem, 6vw, 2rem);
+    margin-bottom: 2.5rem;
+    line-height: 1.4;
+  }
 `;
 
 const Subtitle = styled(motion.h2)`
-  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-size: clamp(1.125rem, 2.2vw, 1.4rem);
   font-weight: 400;
-  line-height: 1.4;
-  margin-bottom: 2rem;
-  color: #7A8A7D;
+  line-height: 1.5;
+  margin-bottom: 3rem;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  word-wrap: break-word;
+  
+  @media (max-width: 768px) {
+    margin-bottom: 3.5rem;
+    font-size: clamp(1.1rem, 3vw, 1.25rem);
+    line-height: 1.6;
+    max-width: 95%;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    margin-bottom: 4rem;
+    line-height: 1.6;
+    max-width: 100%;
+  }
 `;
 
-const Description = styled(motion.p)`
-  font-size: 1.125rem;
-  line-height: 1.7;
-  color: #6B7B6E;
-  margin-bottom: 3rem;
-  max-width: 480px;
-`;
+
 
 const CTAContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
   
   @media (min-width: 640px) {
     flex-direction: row;
     gap: 1.5rem;
+    max-width: 600px;
+  }
+  
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+    max-width: 90%;
+    flex-direction: column;
+  }
+  
+  @media (max-width: 480px) {
+    gap: 1.2rem;
+    max-width: 95%;
+    flex-direction: column;
   }
 `;
 
 const PrimaryButton = styled(motion.button)`
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, #90B3A7 0%, #7A8A7D 100%);
+  gap: 0.75rem;
+  padding: 1.2rem 2rem;
+  background: transparent;
   color: white;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 50px;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
+  min-height: 54px;
+  min-width: 200px;
+  backdrop-filter: blur(20px);
   transition: all 0.3s ease;
+  text-align: center;
+  white-space: nowrap;
+  flex: 1;
   
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
+  @media (max-width: 640px) {
+    white-space: normal;
+    line-height: 1.3;
   }
   
   &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(144, 179, 167, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  }
+  
+  svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    flex-shrink: 0;
+  }
+  
+  @media (min-width: 640px) {
+    max-width: 280px;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 1.2rem 2rem;
+    font-size: 1rem;
+    min-height: 54px;
+    min-width: 240px;
+    max-width: 100%;
+    flex: none;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 1.2rem 1.5rem;
+    font-size: 0.95rem;
+    min-height: 52px;
+    min-width: 200px;
+    max-width: 100%;
+    
+    svg {
+      width: 1.1rem;
+      height: 1.1rem;
+    }
   }
 `;
 
 const SecondaryButton = styled(motion.button)`
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 1rem 2rem;
-  background: transparent;
-  color: #5A6B5D;
-  border: 2px solid #90B3A7;
+  gap: 0.75rem;
+  padding: 1.2rem 2rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50px;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
+  min-height: 54px;
+  min-width: 200px;
+  backdrop-filter: blur(20px);
   transition: all 0.3s ease;
+  text-align: center;
+  white-space: nowrap;
+  flex: 1;
   
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
+  @media (max-width: 640px) {
+    white-space: normal;
+    line-height: 1.3;
   }
   
   &:hover {
-    background: #90B3A7;
-    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
   }
-`;
-
-// Простой декоративный элемент вместо изображений
-const DecorativeSection = styled(motion.div)`
-  position: relative;
-  min-height: 400px;
-  background: linear-gradient(135deg, 
-    rgba(144, 179, 167, 0.1) 0%, 
-    rgba(212, 165, 116, 0.1) 100%
-  );
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 3rem 2rem;
-  
-  @media (max-width: 1023px) {
-    min-height: 300px;
-    padding: 2rem 1rem;
-  }
-`;
-
-const DecorativeIcon = styled(motion.div)`
-  width: 6rem;
-  height: 6rem;
-  background: linear-gradient(135deg, #90B3A7 0%, #D4A574 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
   
   svg {
-    width: 3rem;
-    height: 3rem;
-    color: white;
+    width: 1.2rem;
+    height: 1.2rem;
+    flex-shrink: 0;
+  }
+  
+  @media (min-width: 640px) {
+    max-width: 280px;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 1.2rem 2rem;
+    font-size: 1rem;
+    min-height: 54px;
+    min-width: 240px;
+    max-width: 100%;
+    flex: none;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 1.2rem 1.5rem;
+    font-size: 0.95rem;
+    min-height: 52px;
+    min-width: 200px;
+    max-width: 100%;
+    
+    svg {
+      width: 1.1rem;
+      height: 1.1rem;
+    }
   }
 `;
 
-const DecorativeText = styled.h3`
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #5A6B5D;
-  margin-bottom: 1rem;
-`;
 
-const DecorativeSubtext = styled.p`
-  font-size: 1rem;
-  color: #7A8A7D;
-  max-width: 300px;
-`;
 
 const SpaHeroSection = memo(() => {
   const { t } = useTranslation();
@@ -265,18 +396,12 @@ const SpaHeroSection = memo(() => {
               {t('spa.hero.subtitle', 'Профессиональные СПА процедуры в роскошной атмосфере KAIF')}
             </Subtitle>
 
-            <Description
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              {t('spa.hero.description', 'Откройте для себя широкий спектр релаксирующих процедур, массажей и beauty-услуг, созданных для вашего полного комфорта и восстановления.')}
-            </Description>
+
 
             <CTAContainer
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
             >
               <PrimaryButton
                 whileHover={{ scale: 1.02 }}
@@ -295,27 +420,7 @@ const SpaHeroSection = memo(() => {
             </CTAContainer>
           </MainContent>
 
-          <DecorativeSection
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <DecorativeIcon
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-            >
-              <HeartIcon />
-            </DecorativeIcon>
-            
-            <DecorativeText>
-              {t('spa.hero.experience_title', 'Уникальный опыт')}
-            </DecorativeText>
-            
-            <DecorativeSubtext>
-              {t('spa.hero.experience_text', 'Профессиональные мастера, премиальная косметика и индивидуальный подход к каждому гостю')}
-            </DecorativeSubtext>
-          </DecorativeSection>
+
         </HeroGrid>
       </ContentWrapper>
     </HeroContainer>
