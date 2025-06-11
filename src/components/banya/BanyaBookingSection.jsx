@@ -408,7 +408,7 @@ const BanyaBookingSection = () => {
             transition={{ duration: 0.6 }}
           >
             <CalendarIcon />
-            Бронирование
+            {t('banya.booking.badge', 'Бронирование')}
           </Badge>
           
           <SectionTitle
@@ -417,7 +417,7 @@ const BanyaBookingSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            Забронировать баню
+            {t('banya.booking.title', 'Забронировать баню')}
           </SectionTitle>
           
           <SectionDescription
@@ -426,7 +426,7 @@ const BanyaBookingSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Для бронирования свяжитесь с нами удобным способом
+            {t('banya.booking.description', 'Для бронирования свяжитесь с нами удобным способом')}
           </SectionDescription>
         </SectionHeader>
 
@@ -443,7 +443,7 @@ const BanyaBookingSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              Готовы окунуться в мир русской бани?
+              {t('banya.booking.cta.title', 'Готовы окунуться в мир русской бани?')}
             </motion.h3>
             
             <motion.p
@@ -452,8 +452,7 @@ const BanyaBookingSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Свяжитесь с нами для получения подробной информации о ценах, 
-              доступности и особенностях наших банных программ
+              {t('banya.booking.cta.description', 'Свяжитесь с нами для получения подробной информации о ценах, доступности и особенностях наших банных программ')}
             </motion.p>
             
             <ContactButton
@@ -465,7 +464,7 @@ const BanyaBookingSection = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Перейти к контактам
+              {t('banya.booking.cta.button', 'Перейти к контактам')}
               <ArrowRightIcon />
             </ContactButton>
           </ContactCTA>

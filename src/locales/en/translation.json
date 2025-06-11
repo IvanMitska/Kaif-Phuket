@@ -854,6 +854,49 @@
         "title": "Professionalism",
         "description": "Team of experienced banya masters and steam specialists"
       }
+    },
+    "services": {
+      "badge": "Banya Programs",
+      "title": "Choose Your Banya Ritual",
+      "description": "From panoramic banya with jungle views to private VIP rituals with master attendants",
+      "coming_soon": {
+        "title": "Coming Soon",
+        "description": "We are preparing unique banya programs with traditional Russian rituals and modern wellness procedures",
+        "subtext": "Stay tuned — we will update this section soon!"
+      }
+    },
+    "faq": {
+      "badge": "Questions & Answers",
+      "title": "Frequently Asked Questions",
+      "subtitle": "Answers to the most popular questions about our banya",
+      "questions": {
+        "panoramic": {
+          "question": "What's special about the panoramic banya?",
+          "answer": "Our banya is unique with several features: 150 square meters with panoramic jungle windows, premium Woodson Finnish stoves, natural materials from Siberian wood species. It's the only panoramic Russian banya in Phuket where you can enjoy traditional banya rituals with tropical nature views."
+        },
+        "procedures": {
+          "question": "What procedures are included in the banya ritual?",
+          "answer": "Depending on your chosen program you'll receive: classic banya ritual with birch brooms, aromatherapy with essential oils, herbal infusions and teas, option to order massage in the steam room, and personal accompaniment by a master attendant for VIP programs."
+        },
+        "materials": {
+          "question": "What materials is the banya built from?",
+          "answer": "The banya is built exclusively from natural eco-friendly materials: Siberian cedar, Altai linden, Karelian birch. All finishes are natural, without chemical additives. Such materials create a special microclimate and provide natural aromatherapy."
+        },
+        "woodson": {
+          "question": "What is Woodson technology?",
+          "answer": "Woodson are premium Finnish stoves that ensure even heat distribution and create perfect banya steam. The stoves quickly heat the room to optimal temperature of 85°C, are environmentally clean in use and distinguished by durability. This is the same technology used in Finland's best saunas."
+        }
+      }
+    },
+    "booking": {
+      "badge": "Booking",
+      "title": "Book the Banya",
+      "description": "Contact us through convenient channels for booking",
+      "cta": {
+        "title": "Ready to immerse in the world of Russian banya?",
+        "description": "Contact us for detailed information about prices, availability and features of our banya programs",
+        "button": "Go to Contacts"
+      }
     }
   },
 

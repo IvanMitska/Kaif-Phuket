@@ -322,7 +322,7 @@ const BanyaServicesSection = () => {
             transition={{ duration: 0.6 }}
           >
             <FireIcon />
-            Банные программы
+            {t('banya.services.badge', 'Банные программы')}
           </Badge>
           
           <SectionTitle
@@ -331,7 +331,7 @@ const BanyaServicesSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            Выберите свой банный ритуал
+            {t('banya.services.title', 'Выберите свой банный ритуал')}
           </SectionTitle>
           
           <SectionDescription
@@ -340,7 +340,7 @@ const BanyaServicesSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            От панорамной бани с видом на джунгли до приватных VIP-ритуалов с мастером парения
+            {t('banya.services.description', 'От панорамной бани с видом на джунгли до приватных VIP-ритуалов с мастером парения')}
           </SectionDescription>
         </SectionHeader>
 
@@ -355,14 +355,14 @@ const BanyaServicesSection = () => {
               <ClockIcon />
             </ComingSoonIcon>
             
-            <ComingSoonTitle>Скоро открытие</ComingSoonTitle>
+            <ComingSoonTitle>{t('banya.services.coming_soon.title', 'Скоро открытие')}</ComingSoonTitle>
             
             <ComingSoonText>
-              Мы готовим для вас уникальные банные программы с традиционными русскими ритуалами и современными wellness-процедурами
+              {t('banya.services.coming_soon.description', 'Мы готовим для вас уникальные банные программы с традиционными русскими ритуалами и современными wellness-процедурами')}
             </ComingSoonText>
             
             <ComingSoonSubtext>
-              Следите за новостями — скоро мы обновим этот раздел!
+              {t('banya.services.coming_soon.subtext', 'Следите за новостями — скоро мы обновим этот раздел!')}
             </ComingSoonSubtext>
           </ComingSoonCard>
         </motion.div>
