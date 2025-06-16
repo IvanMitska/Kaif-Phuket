@@ -71,7 +71,7 @@ const GlobalStyles = createGlobalStyle`
   /* Базовые стили для всего сайта, основанные на теме */
   body {
     font-family: ${({ theme }) => theme.fonts.primary || '"Inter", sans-serif'};
-    background-color: ${({ theme }) => theme.colors.background || '#FFFFFF'};
+    background-color: #FFFFFF;
     color: ${({ theme }) => theme.colors.text.primary || '#2C3E2D'};
     margin: 0;
     padding: 0;
@@ -89,12 +89,19 @@ const GlobalStyles = createGlobalStyle`
       /* Отключение эластичной прокрутки для предотвращения зеленого цвета */
       overscroll-behavior: none;
       -webkit-overscroll-behavior: none;
+      background-color: #FFFFFF !important;
     }
     
     html {
       /* Улучшение прокрутки на мобильных */
       -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
+      background-color: #FFFFFF !important;
+    }
+    
+    /* Исправление зеленого фона при перетягивании на iOS */
+    #root {
+      background-color: #FFFFFF !important;
     }
   }
   

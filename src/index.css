@@ -74,11 +74,12 @@ html {
   /* Отключаем все scroll-snap свойства */
   scroll-snap-type: none !important;
   scroll-snap-align: none !important;
+  background-color: #ffffff;
 }
 
 body {
   font-family: var(--font-primary);
-  background-color: var(--color-background);
+  background-color: #ffffff;
   color: var(--color-text-primary);
   line-height: 1.6;
   font-weight: 400;
@@ -106,6 +107,7 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: #ffffff;
 }
 
 /* Typography */
