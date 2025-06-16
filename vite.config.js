@@ -17,42 +17,110 @@ export default defineConfig({
   publicDir: 'public', // Публичная директория
   build: {
     outDir: 'dist', // Директория для билда
-    assetsInlineLimit: 4096, // Встраиваем мелкие файлы до 4KB
+    assetsInlineLimit: 0, // Отключаем для изображений, чтобы не переводить в base64
+    cssCodeSplit: true, // Разделение CSS по чанкам
+    sourcemap: false, // Отключаем в продакшене
+    reportCompressedSize: false, // Экономия времени сборки
+    
+    // Оптимизация Rollup
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'animation-vendor': ['framer-motion'],
-          'router-vendor': ['react-router-dom'],
-          'i18n-vendor': ['react-i18next', 'i18next'],
-          'ui-vendor': ['styled-components', '@heroicons/react']
+        // Улучшенное разделение чанков
+        manualChunks: (id) => {
+          // Основные реакт-библиотеки
+          if (id.includes('react') || id.includes('react-dom')) {
+            return 'vendor-react';
+          }
+          
+          // Роутер
+          if (id.includes('react-router')) {
+            return 'vendor-router';
+          }
+          
+          // Анимации
+          if (id.includes('framer-motion')) {
+            return 'vendor-animations';
+          }
+          
+          // i18n
+          if (id.includes('i18next') || id.includes('react-i18next')) {
+            return 'vendor-i18n';
+          }
+          
+          // Стили
+          if (id.includes('styled-components')) {
+            return 'vendor-styles';
+          }
+          
+          // UI элементы
+          if (id.includes('heroicons')) {
+            return 'vendor-icons';
+          }
+          
+          // Формы
+          if (id.includes('formik') || id.includes('yup')) {
+            return 'vendor-forms';
+          }
+          
+          // Остальные node_modules
+          if (id.includes('node_modules')) {
+            return 'vendor-other';
+          }
         },
+        
+        // Оптимизация имен файлов для лучшего кэширования
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        chunkFileNames: 'assets/js/[name]-[hash].js',
         assetFileNames: (assetInfo) => {
           const info = assetInfo.name.split('.');
           const ext = info[info.length - 1];
-          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
+          
+          if (/png|jpe?g|svg|gif|webp|ico/i.test(ext)) {
             return `assets/images/[name]-[hash][extname]`;
           }
+          
           if (/woff2?|eot|ttf|otf/i.test(ext)) {
             return `assets/fonts/[name]-[hash][extname]`;
           }
+          
+          if (/css/i.test(ext)) {
+            return `assets/css/[name]-[hash][extname]`;
+          }
+          
           return `assets/[name]-[hash][extname]`;
-        },
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js'
+        }
+      },
+      
+      // Оптимизация импортов
+      input: {
+        main: resolve(__dirname, 'index.html')
       }
     },
+    
+    // Минификация с Terser
     minify: 'terser',
     terserOptions: {
       compress: {
         drop_console: true,
-        drop_debugger: true
-      }
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.debug', 'console.info'], // Удаляем вызовы к консоли
+        passes: 3, // Увеличиваем количество проходов минификации
+      },
+      format: {
+        comments: false, // Удаляем комментарии из кода
+        ecma: 2020, // Используем современный стандарт
+      },
+      mangle: {
+        properties: false, // Не изменяем имена свойств объектов
+      },
+      toplevel: true, // Включаем максимальную оптимизацию для топ-уровня
     },
-    chunkSizeWarningLimit: 1000,
-    cssCodeSplit: true,
-    sourcemap: false
+    
+    // Размеры для предупреждения
+    chunkSizeWarningLimit: 1000
   },
+  
+  // Предварительная оптимизация зависимостей
   optimizeDeps: {
     include: [
       'react', 
@@ -61,11 +129,35 @@ export default defineConfig({
       'react-router-dom',
       'react-i18next',
       'i18next',
-      'styled-components'
-    ]
+      'styled-components',
+      '@heroicons/react/24/outline',
+      '@heroicons/react/24/solid',
+      'formik',
+      'yup'
+    ],
+    // Игнорируем неиспользуемый код
+    exclude: ['@heroicons/react/24/solid', 'react-icons'] 
   },
+  
+  // Оптимизации для esbuild
   esbuild: {
     // Оптимизация для продакшена
-    drop: ['console', 'debugger']
-  }
+    drop: ['console', 'debugger'],
+    minifyIdentifiers: true,
+    minifySyntax: true,
+    minifyWhitespace: true,
+    treeShaking: true,
+    ignoreAnnotations: false,
+    target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
+    legalComments: 'none',
+  },
+  
+  // Предварительный рендеринг для SEO
+  prerender: {
+    disabled: false, // Включаем для повышения скорости загрузки
+    concurrency: 4, // Оптимизируем количество параллельных процессов
+    renderOptions: {
+      injectWebP: true, // Автоматическая поддержка WebP
+    },
+  },
 })

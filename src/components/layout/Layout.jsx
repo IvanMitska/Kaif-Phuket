@@ -1,48 +1,21 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import styled from 'styled-components';
+
 import Header from './Header';
 import Footer from './Footer';
-import PageHead from './PageHead';
-
-// Основной контейнер страницы
-const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  height: 100%;
-  background: transparent;
-  margin: 0;
-  padding: 0;
-  flex: 1;
-`;
-
-// Стилизованный контейнер для сохранения стилей при переходах между страницами
-const MainContainer = styled.main`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  will-change: opacity, transform;
-  background: transparent;
-  margin: 0;
-  padding-bottom: 0;
-  padding-top: ${props => props.$isHomePage ? '0' : '65px'};
-`;
+import GlobalStyles from '../global/GlobalStyles';
+import LoadingScreen from '../global/LoadingScreen';
 
 const Layout = ({ children }) => {
   const location = useLocation();
   const [isPageLoaded, setIsPageLoaded] = useState(false);
-
-  // Определяем главную страницу
-  const isHomePage = location.pathname === '/';
 
   // Scroll to top on route change and handle page loading
   useEffect(() => {
     setIsPageLoaded(false);
     window.scrollTo(0, 0);
     
-    // Даем время страnice загрузиться
+    // Даем время странице загрузиться
     const timer = setTimeout(() => {
       setIsPageLoaded(true);
     }, 100);
@@ -51,15 +24,34 @@ const Layout = ({ children }) => {
   }, [location.pathname]);
 
   return (
-    <PageContainer>
-      <PageHead />
-      {/* Хедер теперь рендерится через портал */}
+    <>
+      <GlobalStyles />
+      <LoadingScreen />
       <Header />
-      <MainContainer $isHomePage={isHomePage}>
-        {children}
-      </MainContainer>
-      {isPageLoaded && <Footer />}
-    </PageContainer>
+      <div style={{ 
+        minHeight: '100vh',
+        paddingTop: '65px', // Точный отступ для хедера без лишней полосы
+        width: '100%',
+        position: 'relative',
+        zIndex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        overflowX: 'hidden',
+        margin: 0,
+        padding: '65px 0 0 0'
+      }}>
+        <main style={{ 
+          width: '100%',
+          minHeight: 'calc(100vh - 65px)',
+          position: 'relative',
+          flex: '1 0 auto',
+          margin: 0
+        }}>
+          {children}
+        </main>
+        {isPageLoaded && <Footer style={{ marginBottom: '-2px' }} />}
+      </div>
+    </>
   );
 };
 

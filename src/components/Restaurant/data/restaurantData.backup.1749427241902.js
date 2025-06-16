@@ -11,7 +11,7 @@ export const getRestaurantData = (t) => {
       name: 'Завтрак "KAIF"',
       description: 'Фирменный завтрак нашего ресторана',
       price: '320 THB',
-      image: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+      image: '/images/menu/breakfast/kaif-breakfast.jpg',
       tags: ['breakfast', 'popular'],
       popular: true,
       category: 'breakfast'
@@ -21,7 +21,7 @@ export const getRestaurantData = (t) => {
       name: 'Шакшука со шпинатом и лососем',
       description: 'Яичное блюдо с добавлением шпината и нежного лосося',
       price: '330 THB',
-      image: '/images/menu/breakfast/breakfast-dish.jpg',
+      image: '/images/menu/breakfast/Shakshuka-salmon.jpg',
       tags: ['breakfast', 'seafood'],
       popular: false,
       category: 'breakfast'

@@ -53,7 +53,7 @@ const GlobalStyles = createGlobalStyle`
   
   /* Улучшения для анимаций */
   @media (prefers-reduced-motion: no-preference) {
-    * {
+    *:not(header):not(header *) {
       backface-visibility: hidden;
       perspective: 1000px;
     }
@@ -76,17 +76,16 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    /* Оптимизация для плавной прокрутки БЕЗ snap behavior */
-    -webkit-overflow-scrolling: touch;
+    /* Убираем -webkit-overflow-scrolling для предотвращения проблем с fixed позиционированием */
     scroll-behavior: auto;
   }
   
   /* Дополнительные оптимизации для мобильных устройств */
   @media (max-width: 768px) {
     body {
-      /* Устранение рывков при скролле */
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
+      /* Убираем transform, который может создавать stacking context и конфликтовать с хедером */
+      -webkit-transform: none;
+      transform: none;
       /* Отключение эластичной прокрутки для предотвращения зеленого цвета */
       overscroll-behavior: none;
       -webkit-overscroll-behavior: none;
@@ -104,6 +103,14 @@ const GlobalStyles = createGlobalStyle`
     scroll-snap-type: none !important;
     scroll-snap-align: none !important;
     scroll-snap-stop: normal !important;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    min-height: 100%;
+  }
+  
+  html {
+    height: 100%;
   }
   
   /* Предотвращение рывков в секциях */

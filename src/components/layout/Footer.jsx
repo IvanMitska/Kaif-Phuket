@@ -28,6 +28,7 @@ const FooterWrapper = styled.footer`
   overflow: hidden;
   margin: -5px 0 0 0;
   min-height: auto;
+  border-bottom: 0;
   
   &::before {
     content: '';
@@ -40,15 +41,16 @@ const FooterWrapper = styled.footer`
     z-index: -1;
   }
   
+  /* Добавляем псевдоэлемент для закрытия белой полосы внизу */
   &::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -2px; /* Небольшой отрицательный отступ, чтобы убрать белую полосу */
     left: 0;
     width: 100%;
-    height: 10px;
-    background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
-    z-index: 1;
+    height: 2px;
+    background: inherit;
+    z-index: 20;
   }
   
   @media (max-width: 768px) {
@@ -299,7 +301,7 @@ const ContactLink = styled.a`
 
 // Footer Bottom
 const FooterBottom = styled.div`
-  padding: 1.5rem 0 1rem 0;
+  padding: 1.5rem 0 1.5rem 0;
   display: flex;
   flex-direction: column;
   gap: 1rem;

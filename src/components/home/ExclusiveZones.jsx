@@ -50,7 +50,7 @@ const Overline = styled(motion.div)`
   font-weight: 400;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #FF6347;
+  color: #90B3A7;
   margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
@@ -60,7 +60,7 @@ const Overline = styled(motion.div)`
     display: inline-block;
     width: 30px;
     height: 2px;
-    background: ${({ theme }) => theme?.colors?.gradients?.logo || 'linear-gradient(135deg, #FF6347 0%, #00B4D8 33%, #FF69B4 66%, #5CB848 100%)'};
+    background: ${({ theme }) => theme?.colors?.gradients?.logo || 'linear-gradient(135deg, #90B3A7 0%, #00B4D8 33%, #90B3A7 66%, #5CB848 100%)'};
     margin-right: 1rem;
   }
 `;

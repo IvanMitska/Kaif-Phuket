@@ -339,6 +339,24 @@
         "main": "Main Courses"
       }
     },
+    "bar": {
+      "label": "Bar",
+      "title": "Our Bar",
+      "description": "We have everything to quench your thirst — from sports protein shakes to relaxing cocktails.",
+      "menu_button": "View Drinks Menu",
+      "feature1": {
+        "title": "Signature Drinks",
+        "description": "Unique cocktails created by our mixologists"
+      },
+      "feature2": {
+        "title": "Refreshing Mixes",
+        "description": "Freshly squeezed juices and fruit combinations"
+      },
+      "feature3": {
+        "title": "Post-Workout Recovery Drinks",
+        "description": "Protein shakes and sports nutrition"
+      }
+    },
     "booking": {
       "label": "Booking",
       "title": "Book a Table",

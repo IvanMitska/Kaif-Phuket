@@ -86,3 +86,99 @@ This project is proprietary and confidential.
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Оптимизация производительности и загрузки изображений
+
+### Проведенная оптимизация
+
+1. **Оптимизация изображений**
+
+   - Преобразование всех изображений в формат WebP для лучшего сжатия
+   - Создание нескольких размеров для каждого изображения (responsive images)
+   - Оптимизация JPEG/PNG изображений с адаптивным качеством
+   - Использование LQIP (Low Quality Image Placeholder) для улучшения UX
+
+2. **Настройка кеширования на Netlify**
+
+   - Установлены HTTP-заголовки кеширования для статических ресурсов
+   - Настроены browser hints (preconnect, preload, dns-prefetch) для критических ресурсов
+   - Включена сжатие и минификация на стороне Netlify
+
+3. **Улучшения в коде**
+   - Добавлен компонент OptimizedImage с ленивой загрузкой и автоматическим выбором оптимального формата
+   - Улучшена работа с IntersectionObserver для отложенной загрузки изображений
+   - Добавлены анимации загрузки для улучшения восприятия
+
+### Как использовать систему оптимизации
+
+1. **Оптимизация новых изображений**
+
+   ```bash
+   # Оптимизирует все изображения и создает WebP версии
+   npm run optimize-all
+
+   # Только оптимизация JPEG/PNG
+   npm run optimize-images
+
+   # Только конвертация в WebP
+   npm run convert-webp
+   ```
+
+2. **Использование оптимизированных изображений в коде**
+
+   ```jsx
+   import OptimizedImage from "../components/common/OptimizedImage";
+
+   // Использование компонента
+   <OptimizedImage
+     src="/images/your-image.jpg"
+     alt="Описание изображения"
+     loading="lazy"
+     objectFit="cover"
+   />;
+   ```
+
+3. **Параметры компонента OptimizedImage**
+
+   | Параметр             | Тип     | По умолчанию | Описание                                            |
+   | -------------------- | ------- | ------------ | --------------------------------------------------- |
+   | src                  | string  |              | Путь к изображению (из /public/images/)             |
+   | alt                  | string  | ''           | Альтернативный текст                                |
+   | fallbackSrc          | string  | null         | Запасной путь, если основное изображение недоступно |
+   | loading              | string  | 'lazy'       | Режим загрузки ('eager', 'lazy')                    |
+   | objectFit            | string  | 'cover'      | Режим масштабирования изображения                   |
+   | withPlaceholder      | boolean | true         | Отображать ли плейсхолдер при загрузке              |
+   | withLoadingIndicator | boolean | true         | Отображать ли индикатор загрузки                    |
+
+### Устранение проблем с загрузкой
+
+**Изображения долго грузятся на Netlify:**
+
+1. Убедитесь, что все изображения оптимизированы:
+
+   ```bash
+   npm run optimize-all
+   ```
+
+2. Проверьте, используется ли компонент OptimizedImage для всех изображений
+3. Убедитесь, что настройки кеширования на Netlify корректны (проверьте netlify.toml)
+4. Для критически важных изображений используйте `loading="eager"` и `fetchpriority="high"`
+5. Проверьте размер изображений, при необходимости уменьшите их размеры
+
+**Ошибки при конвертации WebP:**
+
+Некоторые изображения могут быть повреждены или иметь неподдерживаемый формат. Проверьте эти файлы и при необходимости пересохраните их в корректном формате.
+
+## Развертывание
+
+Проект настроен для автоматического развертывания на Netlify при коммитах в основную ветку.
+
+При ручном деплое:
+
+1. Оптимизируйте изображения: `npm run optimize-all`
+2. Соберите проект: `npm run build`
+3. Загрузите папку `dist` на хостинг
+
+## Дополнительная информация
+
+Полный отчет о проведенных оптимизациях находится в файле `OPTIMIZATION_REPORT.md`.

@@ -303,33 +303,41 @@ const SuccessMessage = styled(motion.div)`
 const ContactButton = styled(motion.button)`
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
-  padding: 1.5rem 3rem;
+  padding: 0.875rem 2rem;
+  width: auto;
+  min-width: 220px;
   background: #90B3A7;
   color: white;
   border: none;
   border-radius: 50px;
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(144, 179, 167, 0.15);
   
   &:hover {
     background: #7DA399;
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(144, 179, 167, 0.25);
   }
   
   svg {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1.125rem;
+    height: 1.125rem;
     transition: transform 0.3s ease;
   }
   
   &:hover svg {
     transform: translateX(3px);
+  }
+  
+  @media (max-width: 480px) {
+    width: 100%;
+    max-width: 280px;
   }
 `;
 
@@ -337,7 +345,7 @@ const ContactCTA = styled.div`
   text-align: center;
   max-width: 600px;
   margin: 0 auto;
-  padding: 3rem 2rem;
+  padding: 2.5rem 2rem;
   
   h3 {
     font-size: clamp(1.5rem, 3vw, 2rem);
@@ -350,7 +358,7 @@ const ContactCTA = styled.div`
     font-size: 1.125rem;
     line-height: 1.6;
     color: #666;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
 `;
 

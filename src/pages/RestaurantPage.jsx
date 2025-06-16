@@ -7,6 +7,12 @@ import { ArrowRightIcon as ArrowRightOutline } from '@heroicons/react/24/outline
 
 // Импортируем функцию получения данных ресторана
 import { getRestaurantData } from '../components/Restaurant/data/restaurantData';
+// Импортируем секцию бара
+import BarSection from '../components/Restaurant/sections/BarSection';
+// Импортируем секцию героя
+import HeroSection from '../components/Restaurant/sections/HeroSection';
+// Импортируем изображение для секции бронирования
+import bookingImage from '../assets/images/restaurant/booking.jpg';
 
 // Стили для скрытия полосы прокрутки добавлены в компонент ниже
 
@@ -271,98 +277,6 @@ const DishModalCloseButton = styled(motion.button)`
   }
 `;
 
-// Компонент слайдера для верхней части страницы
-const HeroSection = styled.section`
-  height: 100vh;
-  min-height: 700px;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  background-color: ${props => props.theme.colors.background};
-  padding: 0;
-  margin: 0;
-`;
-
-const HeroContainer = styled.div`
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 4rem;
-  position: relative;
-  z-index: 5;
-  
-  @media (min-width: 1024px) {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-`;
-
-const Slide = styled(motion.div)`
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-`;
-
-const SlideContent = styled(motion.div)`
-  position: relative;
-  z-index: 10;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0 20px;
-  color: white;
-`;
-
-const HeroButton = styled(motion.button)`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  background-color: ${props => props.theme.colors.primary};
-  color: white;
-  font-weight: 600;
-  padding: 1rem 2rem;
-  border-radius: 50px;
-  border: none;
-  cursor: pointer;
-  font-size: 1.1rem;
-  box-shadow: 0 10px 25px rgba(210, 155, 132, 0.3);
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background-color: ${props => props.theme.colors.accent || '#B08D57'};
-    transform: translateY(-3px);
-  }
-  
-  svg {
-    width: 20px;
-    height: 20px;
-    transition: transform 0.3s ease;
-  }
-  
-  &:hover svg {
-    transform: translateX(5px);
-  }
-`;
-
 // Основной компонент страницы ресторана
 // Компонент с вкладками категорий меню
 // Кастомный компонент для сортировки без конфликтов
@@ -387,7 +301,7 @@ const SortDropdown = ({ sortType, setSortType, t }) => {
     { value: 'popular', label: t('restaurant.menu.sort.popular', 'Популярные') },
     { value: 'price_low', label: t('restaurant.menu.sort.price_low', 'Сначала дешёвые') },
     { value: 'price_high', label: t('restaurant.menu.sort.price_high', 'Сначала дорогие') },
-    { value: 'name', label: t('restaurant.menu.sort.name', 'По алфавиту') }
+    { value: 'name', label: t('restaurant.menu.sort.name', 'По названию') }
   ];
 
   const currentOption = sortOptions.find(option => option.value === sortType);
@@ -410,15 +324,15 @@ const SortDropdown = ({ sortType, setSortType, t }) => {
         style={{
           display: 'flex',
           alignItems: 'center',
-          justifyContent: isMobile ? 'center' : 'space-between',
+          justifyContent: isMobile ? 'space-between' : 'space-between',
           gap: '8px',
           textAlign: 'center',
-          lineHeight: '1',
+          lineHeight: '1.2',
           background: 'rgba(255, 255, 255, 0.95)',
           border: 'none',
           borderRadius: '50px',
-          padding: isMobile ? '10px 16px' : '8px 14px',
-          fontSize: isMobile ? '14px' : '13px',
+          padding: isMobile ? '12px 20px' : '8px 14px',
+          fontSize: isMobile ? '16px' : '13px',
           fontWeight: '500',
           color: '#5A6B5D',
           cursor: 'pointer',
@@ -429,7 +343,7 @@ const SortDropdown = ({ sortType, setSortType, t }) => {
           boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
           backdropFilter: 'blur(10px)',
           WebkitBackdropFilter: 'blur(10px)',
-          minHeight: isMobile ? '42px' : '38px',
+          minHeight: isMobile ? '48px' : '38px',
           zIndex: 9999,
           position: 'relative'
         }}
@@ -446,17 +360,18 @@ const SortDropdown = ({ sortType, setSortType, t }) => {
           textOverflow: 'ellipsis', 
           whiteSpace: 'nowrap',
           flex: 1,
-          textAlign: isMobile ? 'center' : 'left',
+          textAlign: 'left',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: isMobile ? 'center' : 'flex-start',
-          lineHeight: '1'
+          justifyContent: 'flex-start',
+          lineHeight: '1.2',
+          paddingLeft: isMobile ? '4px' : '0'
         }}>
           {currentOption?.label}
         </span>
         <motion.svg
-          width={isMobile ? "16" : "14"}
-          height={isMobile ? "16" : "14"}
+          width={isMobile ? "18" : "14"}
+          height={isMobile ? "18" : "14"}
           viewBox="0 0 24 24"
           fill="none"
           stroke="#90B3A7"
@@ -508,10 +423,10 @@ const SortDropdown = ({ sortType, setSortType, t }) => {
                 transition={{ duration: 0.2, delay: index * 0.05 }}
                 style={{
                   width: '100%',
-                  padding: isMobile ? '12px 16px' : '10px 14px',
-                  fontSize: isMobile ? '14px' : '13px',
+                  padding: isMobile ? '14px 20px' : '10px 14px',
+                  fontSize: isMobile ? '16px' : '13px',
                   fontWeight: sortType === option.value ? '600' : '500',
-                  textAlign: isMobile ? 'center' : 'left',
+                  textAlign: 'left',
                   background: sortType === option.value ? 'rgba(144, 179, 167, 0.12)' : 'transparent',
                   color: sortType === option.value ? '#90B3A7' : '#5A6B5D',
                   border: 'none',
@@ -520,9 +435,9 @@ const SortDropdown = ({ sortType, setSortType, t }) => {
                   position: 'relative',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: isMobile ? 'center' : 'space-between',
-                  minHeight: isMobile ? '44px' : 'auto',
-                  lineHeight: '1.2'
+                  justifyContent: 'space-between',
+                  minHeight: isMobile ? '48px' : 'auto',
+                  lineHeight: '1.4'
                 }}
                 whileHover={{
                   background: sortType === option.value ? 'rgba(144, 179, 167, 0.18)' : 'rgba(144, 179, 167, 0.08)',
@@ -535,18 +450,18 @@ const SortDropdown = ({ sortType, setSortType, t }) => {
                 }}
               >
                 <span style={{ 
-                  flex: isMobile ? 'none' : '1',
+                  flex: '1',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: isMobile ? 'center' : 'flex-start',
-                  lineHeight: '1.2'
+                  justifyContent: 'flex-start',
+                  lineHeight: '1.4'
                 }}>{option.label}</span>
-                {sortType === option.value && !isMobile && (
+                {sortType === option.value && (
                   <motion.svg
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    width="16"
-                    height="16"
+                    width={isMobile ? "18" : "16"}
+                    height={isMobile ? "18" : "16"}
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="#90B3A7"
@@ -556,20 +471,6 @@ const SortDropdown = ({ sortType, setSortType, t }) => {
                   >
                     <polyline points="20,6 9,17 4,12"></polyline>
                   </motion.svg>
-                )}
-                {sortType === option.value && isMobile && (
-                  <motion.div
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    style={{
-                      position: 'absolute',
-                      right: '16px',
-                      width: '5px',
-                      height: '5px',
-                      borderRadius: '50%',
-                      background: '#90B3A7'
-                    }}
-                  />
                 )}
               </motion.button>
             ))}
@@ -768,114 +669,8 @@ const RestaurantPage = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Modern Hero Section */}
-      <section style={{
-        position: 'relative',
-        height: '100vh',
-        width: '100vw',
-        margin: 0,
-        padding: 0,
-        overflow: 'hidden',
-        left: '50%',
-        right: '50%',
-        marginLeft: '-50vw',
-        marginRight: '-50vw'
-      }}>
-        {/* Background image */}
-        <div 
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            backgroundImage: `url('https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            filter: 'blur(2px) brightness(0.7)',
-            transform: 'scale(1.01)'
-          }}
-        ></div>
-        
-        {/* Dark overlay */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          background: 'linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.5))'
-        }}></div>
-
-        <div className="relative z-10 h-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center py-24 px-4 md:px-8">
-          {/* Hero content */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            className="bg-black bg-opacity-40 p-8 rounded-xl backdrop-blur-sm"
-          >
-            <span className="inline-block py-1 px-3 rounded-full bg-white bg-opacity-20 text-white text-sm font-medium mb-4 backdrop-blur-sm">
-              {t('restaurant.hero.label', 'Our Restaurant')}
-            </span>
-            
-            <h1 className="text-4xl md:text-5xl font-bold font-playfair mb-6 leading-tight relative text-white">
-              {t('restaurant.hero.title', 'Exquisite Cuisine')} <span className="text-primary">{t('restaurant.hero.highlight', 'with a Modern Twist')}</span>
-              <div className="w-24 h-1.5 bg-primary mt-6 rounded-full"></div>
-            </h1>
-            
-            <p className="text-lg text-white mb-8 max-w-lg">
-              {t('restaurant.hero.subtitle', 'Our chefs create unique dishes by combining traditional recipes with new culinary techniques.')}
-            </p>
-            
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white font-bold rounded-full shadow-lg hover:bg-opacity-90 transition-all duration-300 text-lg border-none"
-              onClick={() => {
-                // Плавный скролл к секции меню при нажатии на кнопку
-                menuSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              <span className="text-xl">{t('restaurant.hero.button', 'Наше меню')}</span>
-              <ArrowRightIcon className="w-6 h-6" />
-            </motion.button>
-          </motion.div>
-          
-          {/* Hero image */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            className="relative"
-          >
-            <div className="relative">
-              <div className="w-[400px] h-[400px] mx-auto rounded-full overflow-hidden border-none shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-                  alt="Elegant dish" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              
-              {/* Rating badge */}
-              <motion.div 
-                className="absolute -bottom-6 -left-6 bg-white rounded-xl p-4 shadow-lg"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-              >
-                <div className="flex items-center gap-2">
-                  <StarIcon className="w-5 h-5 text-primary" />
-                  <p className="font-medium">4.9 (1.2k+)</p>
-                </div>
-                <p className="text-sm text-gray-500">{t('restaurant.hero.reviews', 'Excellent Reviews')}</p>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* Hero Section */}
+      <HeroSection menuSectionRef={menuSectionRef} />
       
       {/* Секция меню */}
       <section ref={menuSectionRef} className="py-20 px-4 md:px-8 max-w-7xl mx-auto bg-white" id="menu-section" style={{
@@ -886,7 +681,7 @@ const RestaurantPage = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
@@ -979,7 +774,7 @@ const RestaurantPage = () => {
           </motion.div>
 
           {/* Menu Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 mt-8">
             {/* Отображаем ограниченное количество блюд по категории */}
             {
               sortItems(menuItems.filter(item => activeCategory === 'all' || item.category === activeCategory))
@@ -991,18 +786,29 @@ const RestaurantPage = () => {
                   style={{ 
                     position: 'relative', 
                     zIndex: 1,
-                    border: '1px solid #e5e5e5'
+                    border: '2px solid #e0e0e0',
+                    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.08)',
+                    backgroundColor: '#ffffff',
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease'
+                  }}
+                  whileHover={{
+                    y: -5,
+                    boxShadow: '0 8px 20px rgba(0, 0, 0, 0.12)',
+                    borderColor: '#d0d0d0'
                   }}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.1 * (index % 6) }}
                 >
-                  <div className="h-64 overflow-hidden relative">
+                  <div className="h-72 overflow-hidden relative p-0">
                     <img 
                       src={item.image} 
                       alt={item.name} 
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                      style={{
+                        objectPosition: 'center center'
+                      }}
                     />
                     {item.popular && (
                       <div className="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-2 py-1 rounded-full">
@@ -1147,6 +953,9 @@ const RestaurantPage = () => {
         </div>
       </section>
 
+      {/* Секция бара */}
+      <BarSection />
+
       {/* Секция бронирования */}
       <section className="py-24 bg-white relative overflow-hidden">
         {/* Decorative elements */}
@@ -1184,6 +993,7 @@ const RestaurantPage = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
+              className="text-center"
             >
               <span className="inline-block py-1 px-3 rounded-full bg-opacity-10 bg-primary text-primary text-sm font-medium mb-4">
                 {t('restaurant.booking.label', 'Бронирование')}
@@ -1195,30 +1005,31 @@ const RestaurantPage = () => {
                 {t('restaurant.booking.description', 'Заранее зарезервируйте столик для особого события или просто для гарантированного места в нашем ресторане.')}
               </p>
               
-              <div className="flex flex-col md:flex-row gap-6 mb-8">
-                <div className="flex items-center gap-3">
+              <div className="flex flex-col md:flex-row gap-6 mb-8 justify-center">
+                <div className="flex items-center gap-3 mx-auto">
                   <div className="w-10 h-10 rounded-full bg-primary bg-opacity-10 flex items-center justify-center">
                     <ClockIcon className="w-5 h-5 text-primary" />
                   </div>
-                  <div>
+                  <div className="text-center">
                     <p className="font-medium">{t('restaurant.booking.open_hours', 'Часы работы')}</p>
-                    <p className="text-gray-500 text-sm">10:00 - 22:00</p>
+                    <p className="text-gray-500 text-sm">08:00 - 22:00</p>
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 mx-auto">
                   <div className="w-10 h-10 rounded-full bg-primary bg-opacity-10 flex items-center justify-center">
                     <PhoneIcon className="w-5 h-5 text-primary" />
                   </div>
-                  <div>
+                  <div className="text-center">
                     <p className="font-medium">{t('restaurant.booking.reservation', 'Резервация')}</p>
                     <p className="text-gray-500 text-sm">{t('common.phone_number')}</p>
                   </div>
                 </div>
               </div>
               
-              <a 
-                href="tel:+66624805877"
+              <div className="flex justify-center">
+                <a 
+                  href="tel:+66624805877"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -1257,6 +1068,7 @@ const RestaurantPage = () => {
                 {t('restaurant.booking.call_now', 'Позвонить сейчас')}
                 <PhoneIcon style={{ width: '16px', height: '16px', transition: 'transform 0.2s ease' }} />
               </a>
+              </div>
             </motion.div>
             
             {/* Image */}
@@ -1265,11 +1077,11 @@ const RestaurantPage = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="relative"
+              className="relative mx-auto lg:mx-0 max-w-lg w-full"
             >
               <div className="relative rounded-3xl overflow-hidden aspect-[4/3] shadow-xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                  src={bookingImage} 
                   alt="Restaurant interior" 
                   className="w-full h-full object-cover"
                 />

@@ -33,16 +33,29 @@ async function optimizeImages() {
       }
 
       const originalSize = fs.statSync(inputPath).size;
+      const metadata = await sharp(inputPath).metadata();
       
-      await sharp(inputPath)
-        .jpeg({ 
-          quality: 85, 
-          progressive: true,
-          mozjpeg: true 
-        })
-        .resize(1920, null, { 
+      // Определяем размер для изображения (уменьшаем очень большие)
+      const maxWidth = 1600; // Уменьшаем максимальную ширину для лучшей производительности
+      let resizeOptions = {};
+      
+      if (metadata.width > maxWidth) {
+        resizeOptions = {
+          width: maxWidth, 
           withoutEnlargement: true,
           fit: 'inside'
+        };
+      }
+      
+      await sharp(inputPath)
+        .resize(resizeOptions)
+        .jpeg({ 
+          quality: 75, // Уменьшаем качество для лучшего сжатия
+          progressive: true,
+          mozjpeg: true,
+          trellisQuantisation: true,
+          overshootDeringing: true,
+          optimizeScans: true
         })
         .toFile(outputPath);
 
@@ -68,18 +81,41 @@ async function optimizeImages() {
       }
 
       const originalSize = fs.statSync(inputPath).size;
+      const metadata = await sharp(inputPath).metadata();
       
-      await sharp(inputPath)
-        .png({ 
-          quality: 90,
-          compressionLevel: 8,
-          palette: true
-        })
-        .resize(1920, null, { 
+      // Определяем размер для изображения (уменьшаем очень большие)
+      const maxWidth = 1600; // Уменьшаем максимальную ширину
+      let resizeOptions = {};
+      
+      if (metadata.width > maxWidth) {
+        resizeOptions = {
+          width: maxWidth, 
           withoutEnlargement: true,
           fit: 'inside'
-        })
-        .toFile(outputPath);
+        };
+      }
+      
+      try {
+        await sharp(inputPath)
+          .resize(resizeOptions)
+          .png({ 
+            quality: 80,
+            compressionLevel: 9, // Максимальное сжатие
+            palette: true,
+            colors: 256, // Оптимизация палитры
+            dither: 1.0
+          })
+          .toFile(outputPath);
+      } catch (err) {
+        // Если не удалось оптимизировать с палитрой, пробуем без нее
+        await sharp(inputPath)
+          .resize(resizeOptions)
+          .png({ 
+            quality: 80,
+            compressionLevel: 9
+          })
+          .toFile(outputPath);
+      }
 
       const optimizedSize = fs.statSync(outputPath).size;
       const savings = ((originalSize - optimizedSize) / originalSize * 100).toFixed(1);
@@ -95,6 +131,22 @@ async function optimizeImages() {
     console.log(`\n🎯 Processed ${processedCount} images`);
     console.log(`📊 Total: ${(totalOriginal/1024/1024).toFixed(1)}MB → ${(totalOptimized/1024/1024).toFixed(1)}MB (-${totalSavings}%)`);
     console.log('✨ Optimization complete! Check public/images-optimized/');
+    
+    // Копируем оптимизированные изображения обратно в public/images
+    console.log('🔄 Replacing original images with optimized versions...');
+    
+    // Копируем все оптимизированные изображения в исходную директорию
+    const copyFiles = async (directory) => {
+      const files = await glob(`${directory}/**/*.{jpg,jpeg,png}`);
+      for (const file of files) {
+        const relativePath = path.relative(outputDir, file);
+        const destPath = path.join('public/images', relativePath);
+        fs.copyFileSync(file, destPath);
+      }
+    };
+    
+    await copyFiles(outputDir);
+    console.log('✅ Original images replaced with optimized versions!');
     
   } catch (error) {
     console.error('❌ Error optimizing images:', error);

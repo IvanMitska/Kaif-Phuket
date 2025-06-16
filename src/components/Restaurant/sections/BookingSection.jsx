@@ -73,8 +73,8 @@ const BookingSection = () => {
                   <ClockIcon className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium">{t('restaurant.booking.open_hours', 'Часы работы')}</p>
-                  <p className="text-gray-500 text-sm">10:00 - 22:00</p>
+                  <p className="font-medium text-base md:text-base text-lg">{t('restaurant.booking.open_hours', 'Часы работы')}</p>
+                  <p className="text-gray-500 text-base md:text-sm">08:00 - 22:00</p>
                 </div>
               </div>
               
@@ -83,8 +83,8 @@ const BookingSection = () => {
                   <PhoneIcon className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium">{t('restaurant.booking.reservation', 'Резервация')}</p>
-                  <p className="text-gray-500 text-sm">{t('common.phone_number')}</p>
+                  <p className="font-medium text-base md:text-base text-lg">{t('restaurant.booking.reservation', 'Резервация')}</p>
+                  <p className="text-gray-500 text-base md:text-sm">+66 62 480 5877</p>
                 </div>
               </div>
             </div>
@@ -97,7 +97,7 @@ const BookingSection = () => {
                 justifyContent: 'center',
                 gap: '8px',
                 padding: '14px 35px',
-                fontSize: '14px',
+                fontSize: '16px',
                 fontWeight: '600',
                 letterSpacing: '1px',
                 textTransform: 'uppercase',
@@ -126,7 +126,7 @@ const BookingSection = () => {
                 e.target.style.background = 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)';
               }}
             >
-              {t('restaurant.booking.call_now', 'Позвонить сейчас')}
+              {t('restaurant.booking.call_now', 'ПОЗВОНИТЬ СЕЙЧАС')}
               <PhoneIcon style={{ width: '16px', height: '16px', transition: 'transform 0.2s ease' }} />
             </a>
           </motion.div>

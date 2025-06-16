@@ -44,7 +44,7 @@
     width: 100% !important;
     max-width: 100% !important;
     min-width: auto !important;
-    z-index: 9999 !important;
+    z-index: 5000 !important;
     position: relative !important;
   }
   
@@ -52,7 +52,7 @@
     width: 100% !important;
     justify-content: center !important;
     text-align: center !important;
-    z-index: 9999 !important;
+    z-index: 5000 !important;
     position: relative !important;
     align-items: center !important;
     line-height: 1 !important;
@@ -135,13 +135,13 @@
   
   /* Выпадающий список всегда поверх всех элементов */
   .sort-dropdown-list {
-    z-index: 999999 !important;
+    z-index: 5500 !important;
     position: absolute !important;
   }
   
   /* Контейнер сортировки должен быть выше карточек */
   .sort-container {
-    z-index: 100000 !important;
+    z-index: 5100 !important;
     position: relative !important;
   }
   

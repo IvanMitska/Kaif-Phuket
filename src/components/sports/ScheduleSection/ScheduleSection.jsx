@@ -11,6 +11,7 @@ const ScheduleContainer = styled.div`
   background: var(--color-surface);
   border-radius: 16px;
   box-shadow: var(--shadow-wellness-lg);
+  overflow-x: auto; /* Добавляем горизонтальную прокрутку */
   
   @media (max-width: 768px) {
     padding: 1rem;
@@ -134,6 +135,7 @@ const DayButton = styled.button`
 
 const ScheduleTable = styled.table`
   width: 100%;
+  min-width: 900px; /* Минимальная ширина для корректного отображения */
   border-collapse: separate;
   border-spacing: 4px;
   
@@ -144,6 +146,7 @@ const ScheduleTable = styled.table`
   @media (max-width: 480px) {
     border-spacing: 3px 4px;
     margin-top: 0.5rem;
+    min-width: auto; /* Отключаем минимальную ширину на мобильных */
   }
 `;
 
@@ -218,6 +221,7 @@ const ClassCell = styled.td`
   position: relative;
   height: 24px;
   max-height: 24px;
+  min-width: ${props => props.isCurrentDay ? '120px' : '110px'}; /* Добавили минимальную ширину */
   width: ${props => props.isCurrentDay ? '14%' : '13%'};
   overflow: hidden;
   cursor: ${props => props.hasClass ? 'pointer' : 'default'};
@@ -241,6 +245,7 @@ const ClassCell = styled.td`
     min-height: 28px;
     padding: 0.5rem 0.4rem;
     width: auto;
+    min-width: auto; /* Сбрасываем минимальную ширину на мобильных */
     display: ${props => props.hiddenOnMobile ? 'none' : 'table-cell'};
     border-radius: 7px;
   }

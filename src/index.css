@@ -517,35 +517,6 @@ body.mobile-menu-open {
   transition: all 0.3s ease;
 }
 
-/* Улучшенная тень для хедера */
-header,
-.kaif-header {
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08) !important;
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  width: 100% !important;
-  z-index: 1000 !important;
-  transform: none !important;
-  background: #ffffff !important;
-  height: 65px !important;
-}
-
-/* Принудительное позиционирование хедера */
-.kaif-header {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  width: 100vw !important;
-  z-index: 1000 !important;
-  transform: translateY(0) !important;
-  -webkit-transform: translateY(0) !important;
-  animation: none !important;
-  transition: none !important;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -567,18 +538,53 @@ KAIF - Header Styles
 =============================================================================
 */
 
-/* Чистые стили для хедера без конфликтов */
-header {
-  position: relative;
-  display: block;
-}
-
-header * {
-  box-sizing: border-box;
+/* Стили для мобильного меню */
+.mobile-menu-open {
+  overflow: hidden;
 }
 
 /* Разрешаем псевдоэлементы для подчеркивания навигации */
 header a::after {
   display: block !important;
   content: "" !important;
+}
+
+/* Убираем конфликты с мобильным меню */
+@media screen and (max-width: 768px) {
+  .mobile-burger {
+    display: flex !important;
+  }
+
+  .desktop-nav {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .mobile-burger {
+    display: none !important;
+  }
+
+  .desktop-nav {
+    display: flex !important;
+  }
+}
+
+/* Упрощенная защита хедера для мобильных */
+@media screen and (max-width: 768px) {
+  header,
+  header.kaif-header,
+  .kaif-header {
+    position: fixed !important;
+    top: 0px !important;
+    left: 0px !important;
+    right: 0px !important;
+    width: 100% !important;
+    height: 65px !important;
+    z-index: 1000 !important;
+    background-color: #ffffff !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
 }

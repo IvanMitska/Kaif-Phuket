@@ -1,90 +1,124 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <!-- Настройки favicon -->
-    <link rel="shortcut icon" type="image/png" href="/favicon.png">
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <meta name="theme-color" content="#ffffff">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Kaif: престижный курорт и оздоровительный комплекс с рестораном, спа, баней и спортивным залом" />
+    <meta name="theme-color" content="#90B3A7" />
     
-    <!-- Preconnect для внешних ресурсов -->
+    <!-- Предзагрузка критических ресурсов -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Preload только критических ресурсов -->
-    <link rel="preload" href="/src/assets/images/logos/logo-header.png" as="image" type="image/png">
+    <!-- Preload key assets -->
+    <link rel="preload" href="/assets/fonts/main-font.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.netlify.com">
     
-    <!-- Google Fonts с оптимизацией -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    </noscript>
+    <!-- Определение поддержки WebP -->
+    <script>
+      // Проверяем поддержку WebP для использования оптимизированных изображений
+      (function() {
+        var WebP = new Image();
+        WebP.onload = WebP.onerror = function() {
+          document.documentElement.classList.add(WebP.height === 1 ? 'webp' : 'no-webp');
+        };
+        WebP.src = 'data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=';
+      })();
+    </script>
     
-    <!-- Критические стили -->
+    <!-- Первоначальные стили для предотвращения мерцания -->
     <style>
-      /* Минимальные критические стили */
       body {
         margin: 0;
         padding: 0;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        background-color: #ffffff;
-        color: #2C3E2D;
-        overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        scroll-behavior: auto;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        opacity: 1;
+        transition: opacity 0.2s;
+        background: #f5f5f5;
       }
       
-      #root {
-        min-height: 100vh;
-        width: 100%;
+      .app-loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        z-index: 1000;
+        opacity: 1;
+        transition: opacity 0.3s ease;
       }
       
-      * {
-        box-sizing: border-box;
+      .app-loading.hidden {
+        opacity: 0;
+        pointer-events: none;
       }
       
-      /* Убираем проблемы с рывками при скролле */
-      html {
-        scroll-behavior: auto;
+      .loader {
+        width: 60px;
+        height: 60px;
+        border: 3px solid #f0f0f0;
+        border-top: 3px solid #90B3A7;
+        border-radius: 50%;
+        animation: spinner 1s linear infinite;
       }
       
-      /* Оптимизация для мобильных устройств */
-      @media (max-width: 768px) {
-        body {
-          /* Убираем transform, который может создавать stacking context */
-        }
+      @keyframes spinner {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
       }
       
-      /* Оптимизация для изображений */
-      img {
-        height: auto;
-        max-width: 100%;
+      .no-js .app-loading {
+        display: none;
       }
       
-      /* Предотвращение CLS */
-      .loading-placeholder {
-        background-color: #f5f5f5;
-        animation: pulse 1.5s ease-in-out infinite;
+      /* Предотвращаем мерцание при загрузке изображений */
+      img[loading="lazy"] {
+        opacity: 0;
+        transition: opacity 0.3s;
       }
       
-      @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
+      img.loaded {
+        opacity: 1;
       }
-
-
     </style>
     
-    <title>KAIF - Jungle Club & Spa | Phuket</title>
+    <title>Kaif: премиальный курорт, спа и ресторан</title>
   </head>
   <body>
-
-
+    <noscript>
+      <div style="padding: 20px; text-align: center; background: #f5f5f5; color: #333;">
+        Для работы сайта необходимо включить JavaScript
+      </div>
+    </noscript>
+    
+    <div class="app-loading">
+      <div class="loader"></div>
+    </div>
+    
     <div id="root"></div>
+    
+    <script>
+      // Удаляем прелоадер после загрузки приложения
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+          const loader = document.querySelector('.app-loading');
+          if (loader) loader.classList.add('hidden');
+        }, 800);
+      });
+      
+      // Маркируем загруженные изображения для плавных переходов
+      document.addEventListener('load', function(e) {
+        if (e.target.tagName === 'IMG') {
+          e.target.classList.add('loaded');
+        }
+      }, true);
+    </script>
+    
     <script type="module" src="/src/main.jsx"></script>
-
-
   </body>
 </html>

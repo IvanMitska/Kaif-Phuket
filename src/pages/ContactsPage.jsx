@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   PhoneIcon, 
   EnvelopeIcon, 
@@ -10,72 +10,114 @@ import {
   ChevronDownIcon,
   ChatBubbleLeftEllipsisIcon,
   CalendarDaysIcon,
-  UserIcon
+  UserIcon,
+  ArrowRightIcon,
+  PaperAirplaneIcon,
+  GlobeAltIcon,
+  ArrowLongRightIcon,
+  StarIcon
 } from '@heroicons/react/24/outline';
 
+import ContactForm from '../components/contacts/ContactForm';
 
-// Социальные сети
+
+// Социальные сети - стильная версия с визуальными акцентами
 const SocialSection = styled(motion.section)`
-  padding: 4rem 0;
-  background: linear-gradient(135deg, 
-    rgba(144, 179, 167, 0.03) 0%, 
-    rgba(168, 197, 184, 0.02) 50%, 
-    rgba(212, 165, 116, 0.03) 100%
+  padding: 8rem 0;
+  background-color: #f9fafb;
+  background-image: linear-gradient(
+    135deg,
+    rgba(144, 179, 167, 0.08) 0%,
+    rgba(255, 255, 255, 0.95) 40%,
+    rgba(255, 255, 255, 1) 60%,
+    rgba(212, 165, 116, 0.08) 100%
   );
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(144, 179, 167, 0.08) 0%, rgba(144, 179, 167, 0) 70%);
+    top: -150px;
+    right: -100px;
+    z-index: 0;
+    opacity: 0.7;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212, 165, 116, 0.08) 0%, rgba(212, 165, 116, 0) 70%);
+    bottom: -100px;
+    left: -80px;
+    z-index: 0;
+    opacity: 0.7;
+  }
 `;
 
 const SocialGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.5rem;
-  margin-top: 3rem;
-  max-width: 800px;
+  gap: 2.5rem;
+  margin-top: 3.5rem;
+  max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+  z-index: 1;
   
   /* Делаем каждую карточку одинакового размера */
   & > * {
     flex: 0 0 auto;
-    width: 140px;
+    width: 160px;
+    transform-origin: center bottom;
   }
   
   @media (max-width: 768px) {
-    gap: 1rem;
-    margin-top: 2rem;
-    max-width: 600px;
+    gap: 1.8rem;
+    margin-top: 2.5rem;
+    max-width: 650px;
     
     & > * {
-      width: 120px;
+      width: 130px;
     }
   }
   
   @media (max-width: 480px) {
-    gap: 0.8rem;
-    margin-top: 1.5rem;
-    max-width: 350px;
+    gap: 1.2rem;
+    margin-top: 2rem;
+    max-width: 380px;
     
     & > * {
-      width: 100px;
+      width: 110px;
     }
   }
 `;
 
 const SocialCard = styled(motion.a)`
   background: white;
-  border-radius: 16px;
-  padding: 1.5rem 1rem;
+  border-radius: 18px;
+  padding: 1.8rem 1.4rem;
   text-decoration: none;
   color: inherit;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(144, 179, 167, 0.1);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  gap: 1.2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(144, 179, 167, 0.15);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
   overflow: hidden;
+  transform-origin: center bottom;
   
   &::before {
     content: '';
@@ -85,50 +127,55 @@ const SocialCard = styled(motion.a)`
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.6s ease;
+    transition: left 0.8s ease;
   }
   
   &:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
     border-color: rgba(144, 179, 167, 0.3);
     
     &::before {
       left: 100%;
     }
-  }
-  
-  &:active {
-    transform: translateY(-2px) scale(1.01);
-  }
-  
-  @media (max-width: 768px) {
-    padding: 1.2rem 0.8rem;
-    border-radius: 12px;
-    gap: 0.8rem;
     
-    &:hover {
-      transform: translateY(-2px) scale(1.01);
+    ${props => props.bgColor && `
+      background-color: rgba(${props.bgColor}, 0.04);
+    `}
+    
+    svg {
+      transform: scale(1.15);
     }
   }
   
+  &:active {
+    transform: translateY(-5px);
+  }
+  
+  @media (max-width: 768px) {
+    padding: 1.5rem 1.2rem;
+    border-radius: 16px;
+    gap: 1rem;
+  }
+  
   @media (max-width: 480px) {
-    padding: 1rem 0.6rem;
-    gap: 0.6rem;
+    padding: 1.2rem 1rem;
+    gap: 0.8rem;
+    border-radius: 14px;
   }
 `;
 
 const SocialIcon = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   background: ${props => props.bgColor || 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)'};
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   
   &::after {
     content: '';
@@ -139,36 +186,38 @@ const SocialIcon = styled.div`
     bottom: 0;
     border-radius: 50%;
     background: inherit;
-    opacity: 0;
+    opacity: 0.4;
+    filter: blur(10px);
+    z-index: -1;
     transform: scale(0.8);
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
   }
   
   svg {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     color: white;
-    z-index: 1;
     transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1));
   }
   
   @media (max-width: 768px) {
-    width: 45px;
-    height: 45px;
+    width: 54px;
+    height: 54px;
     
     svg {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
     }
   }
   
   @media (max-width: 480px) {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     
     svg {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
     }
   }
 `;
@@ -176,16 +225,17 @@ const SocialIcon = styled.div`
 const SocialName = styled.span`
   font-weight: 600;
   color: #2C3E2D;
-  font-size: 0.95rem;
+  font-size: 1rem;
   text-align: center;
   transition: all 0.3s ease;
+  letter-spacing: 0.5px;
   
   @media (max-width: 768px) {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
   
   @media (max-width: 480px) {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
 `;
 
@@ -196,73 +246,228 @@ const ContactsContainer = styled.div`
   min-height: 100vh;
   font-family: ${props => props.theme.fonts.primary};
   overflow-x: hidden;
+  position: relative;
+  scroll-behavior: smooth;
 `;
 
-// Упрощенная Hero секция без фонового изображения
+// Стильная Hero секция с визуальными акцентами
 const HeroSection = styled(motion.section)`
   position: relative;
-  padding: 8rem 0 4rem;
-  background: linear-gradient(135deg, 
-    rgba(144, 179, 167, 0.08) 0%, 
-    rgba(168, 197, 184, 0.05) 50%, 
-    rgba(212, 165, 116, 0.08) 100%
+  padding: 9rem 0 7rem;
+  background: linear-gradient(125deg, 
+    rgba(144, 179, 167, 0.15) 0%, 
+    rgba(240, 245, 242, 0.95) 40%,
+    rgba(255, 255, 255, 1) 60%,
+    rgba(212, 165, 116, 0.1) 100%
   );
   text-align: center;
+  overflow: hidden;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%2390b3a7' fill-opacity='0.07'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.3;
+    z-index: 0;
+  }
+  
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(144, 179, 167, 0.1) 0%, rgba(144, 179, 167, 0) 70%);
+    z-index: 0;
+    opacity: 0.6;
+  }
   
   @media (max-width: 768px) {
-    padding: 6rem 0 3rem;
+    padding: 7rem 0 5rem;
   }
+`;
+
+// Стильный макет для Hero секции с визуальными элементами
+const HeroContentWrapper = styled(motion.div)`
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 `;
 
 const HeroContent = styled(motion.div)`
   max-width: 800px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+`;
+
+const HeroDecoration = styled(motion.div)`
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(144, 179, 167, 0.08) 0%, rgba(144, 179, 167, 0) 70%);
+  z-index: 1;
+  
+  &.top-left {
+    top: -5%;
+    left: 5%;
+    width: 220px;
+    height: 220px;
+    opacity: 0.6;
+  }
+  
+  &.bottom-right {
+    bottom: 10%;
+    right: 5%;
+    width: 200px;
+    height: 200px;
+    opacity: 0.5;
+    background: radial-gradient(circle, rgba(212, 165, 116, 0.1) 0%, rgba(212, 165, 116, 0) 70%);
+  }
+  
+  @media (max-width: 768px) {
+    &.top-left, &.bottom-right {
+      width: 150px;
+      height: 150px;
+    }
+  }
 `;
 
 const HeroTitle = styled(motion.h1)`
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-  color: #2C3E2D;
+  font-size: clamp(2.75rem, 5.5vw, 3.75rem);
+  font-weight: 700;
+  margin-bottom: 1.8rem;
+  line-height: 1.15;
+  position: relative;
+  display: inline-block;
+  
+  span {
+    background: linear-gradient(to right, #2C3E2D, #90B3A7);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  &:after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(144, 179, 167, 0.8), rgba(144, 179, 167, 0));
+    bottom: -0.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 3px;
+  }
 `;
 
 const HeroSubtitle = styled(motion.p)`
-  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-  margin-bottom: 3rem;
-  line-height: 1.6;
+  font-size: clamp(1.1rem, 2.1vw, 1.35rem);
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
   color: #5A6B5D;
   font-weight: 400;
-  max-width: 600px;
+  max-width: 650px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+  
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(144, 179, 167, 0.6), rgba(144, 179, 167, 0));
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  &:before {
+    left: -60px;
+    
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+  
+  &:after {
+    right: -60px;
+    transform: translateY(-50%) rotate(180deg);
+    
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
 `;
 
-const ScrollButton = styled(motion.button)`
-  background: rgba(144, 179, 167, 0.1);
-  border: 2px solid rgba(144, 179, 167, 0.3);
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
+const CallToActions = styled(motion.div)`
   display: flex;
-  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
   justify-content: center;
-  color: #90B3A7;
+  
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+const ActionButton = styled(motion.button)`
+  background: ${props => props.primary ? 
+    'linear-gradient(to right, #90B3A7, #A8C5B8)' : 
+    'rgba(144, 179, 167, 0.08)'
+  };
+  color: ${props => props.primary ? 'white' : '#2C3E2D'};
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.95rem 2rem;
+  border-radius: 100px;
+  border: ${props => props.primary ? 'none' : '1px solid rgba(144, 179, 167, 0.3)'};
   cursor: pointer;
-  margin: 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: ${props => props.primary ? 
+    '0 10px 25px rgba(144, 179, 167, 0.3)' : 
+    '0 4px 15px rgba(0, 0, 0, 0.04)'
+  };
   transition: all 0.3s ease;
   
   &:hover {
-    background: rgba(144, 179, 167, 0.2);
-    border-color: rgba(144, 179, 167, 0.5);
     transform: translateY(-2px);
+    box-shadow: ${props => props.primary ? 
+      '0 15px 30px rgba(144, 179, 167, 0.4)' : 
+      '0 8px 20px rgba(0, 0, 0, 0.08)'
+    };
+    background: ${props => props.primary ? 
+      'linear-gradient(to right, #90B3A7, #A8C5B8)' : 
+      'rgba(144, 179, 167, 0.15)'
+    };
+    border-color: ${props => props.primary ? 'none' : 'rgba(144, 179, 167, 0.5)'};
   }
   
   svg {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover svg {
+    transform: ${props => props.primary ? 'translateX(3px)' : 'translateY(-2px)'};
   }
 `;
 
@@ -270,31 +475,94 @@ const ScrollButton = styled(motion.button)`
 const ContentSection = styled(motion.section)`
   padding: 6rem 0;
   background: #ffffff;
+  position: relative;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z' fill='%2390b3a7' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
 `;
 
 const ContentContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+  position: relative;
+  z-index: 1;
 `;
 
 const SectionTitle = styled(motion.h2)`
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-size: clamp(2.2rem, 4vw, 2.8rem);
   font-weight: 600;
   text-align: center;
   margin-bottom: 1rem;
-  color: #2C3E2D;
+  position: relative;
+  display: inline-block;
+  
+  span {
+    background: linear-gradient(to right, #2C3E2D, #90B3A7);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(144, 179, 167, 0.7), rgba(144, 179, 167, 0));
+    bottom: -0.7rem;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 3px;
+  }
 `;
 
 const SectionSubtitle = styled(motion.p)`
-  font-size: 1.1rem;
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 4.5rem;
   color: #5A6B5D;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+  
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(144, 179, 167, 0.5), rgba(144, 179, 167, 0));
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  &:before {
+    left: -45px;
+    
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+  
+  &:after {
+    right: -45px;
+    transform: translateY(-50%) rotate(180deg);
+    
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
 `;
 
 // Контактная информация
@@ -313,48 +581,105 @@ const ContactGrid = styled.div`
 const ContactCard = styled(motion.div)`
   background: white;
   border-radius: 16px;
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
   border: 1px solid rgba(144, 179, 167, 0.1);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #90B3A7, #A8C5B8);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+    opacity: 0;
+  }
   
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-    border-color: rgba(144, 179, 167, 0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-color: rgba(144, 179, 167, 0.3);
+    
+    &::after {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    &:hover {
+      transform: translateY(-5px);
+    }
   }
 `;
 
 const ContactIcon = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 1.5rem;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(144, 179, 167, 0.25);
+  transition: all 0.3s ease;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: inherit;
+    filter: blur(8px);
+    opacity: 0.4;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+  }
   
   svg {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     color: white;
+    transition: transform 0.3s ease;
   }
 `;
 
 const ContactTitle = styled.h3`
   font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   color: #2C3E2D;
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    width: 40%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(144, 179, 167, 0.5), transparent);
+    bottom: -8px;
+    left: 30%;
+    border-radius: 2px;
+  }
 `;
 
 const ContactDetails = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 1rem;
 `;
 
 const ContactDetail = styled.div`
@@ -364,13 +689,57 @@ const ContactDetail = styled.div`
   gap: 0.8rem;
   color: #5A6B5D;
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: #2C3E2D;
+    
+    svg {
+      transform: scale(1.1);
+      color: #90B3A7;
+    }
+  }
   
   svg {
     width: 18px;
     height: 18px;
     color: #90B3A7;
     flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+`;
+
+const ContactAction = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #2C3E2D;
+  background: rgba(144, 179, 167, 0.1);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover {
+    background: rgba(144, 179, 167, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+    
+    svg {
+      transform: translateX(3px);
+    }
   }
 `;
 
@@ -378,9 +747,23 @@ const ContactDetail = styled.div`
 const MapSection = styled(motion.section)`
   padding: 6rem 0;
   background: linear-gradient(135deg, 
-    rgba(144, 179, 167, 0.03) 0%, 
-    rgba(168, 197, 184, 0.02) 100%
+    rgba(144, 179, 167, 0.04) 0%, 
+    rgba(168, 197, 184, 0.03) 100%
   );
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%2390b3a7' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    position: absolute;
+  }
 `;
 
 const MapContainer = styled.div`
@@ -388,19 +771,43 @@ const MapContainer = styled.div`
   margin: 0 auto;
   padding: 0 2rem;
   text-align: center;
+  position: relative;
+  z-index: 1;
 `;
 
 const MapFrame = styled.div`
-  border-radius: 20px;
+  border-radius: 24px;
   overflow: hidden;
-  height: 350px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  height: 450px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
   margin-top: 3rem;
+  position: relative;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 0 1px rgba(144, 179, 167, 0.2);
+    border-radius: 24px;
+    pointer-events: none;
+  }
   
   iframe {
     width: 100%;
     height: 100%;
     border: none;
+  }
+  
+  @media (max-width: 768px) {
+    height: 350px;
+    border-radius: 16px;
+    
+    &:after {
+      border-radius: 16px;
+    }
   }
 `;
 
@@ -411,24 +818,45 @@ const ContactsPage = () => {
 
 
   useEffect(() => {
+    // Добавляем класс к body и отключаем скролл-поведение по умолчанию
     document.body.classList.add('contacts-page');
+    
+    // Сначала скроллим в начало страницы
     window.scrollTo(0, 0);
     
+    // Устанавливаем готовность компонента с небольшой задержкой
     const timer = setTimeout(() => {
       setIsReady(true);
-    }, 50);
+    }, 150);
     
+    // Очистка при размонтировании
     return () => {
       document.body.classList.remove('contacts-page');
       clearTimeout(timer);
     };
   }, []);
+  
+  // Предотвращаем проблемы со скроллом при анимациях
+  useEffect(() => {
+    if (isReady) {
+      // Устанавливаем плавный скролл после рендеринга компонента
+      document.documentElement.style.scrollBehavior = 'smooth';
+      
+      return () => {
+        document.documentElement.style.scrollBehavior = '';
+      };
+    }
+  }, [isReady]);
 
   const scrollToContent = () => {
     if (contentRef.current) {
-      contentRef.current.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
+      // Используем более надежный метод скролла с учетом смещения
+      const yOffset = -80; // Смещение для учета фиксированного хедера, если есть
+      const y = contentRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth'
       });
     }
   };
@@ -454,61 +882,96 @@ const ContactsPage = () => {
       variants={pageVariants}
       transition={{ duration: 0.3 }}
     >
-      {/* Упрощенная Hero Section */}
+      {/* Стильная Hero Section с визуальными элементами */}
       <HeroSection
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
       >
-        <HeroContent>
-          <HeroTitle
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            {t('contacts.hero.title', 'Контакты')}
-          </HeroTitle>
-          <HeroSubtitle
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            {t('contacts.hero.subtitle', 'Мы всегда готовы помочь вам и ответить на все ваши вопросы')}
-          </HeroSubtitle>
-          <ScrollButton
-            onClick={scrollToContent}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: 0.4 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <ChevronDownIcon />
-          </ScrollButton>
-        </HeroContent>
+        <HeroDecoration 
+          className="top-left"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.6, scale: 1 }}
+          transition={{ delay: 0.3, duration: 1.2 }}
+        />
+        <HeroDecoration 
+          className="bottom-right"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.5, scale: 1 }}
+          transition={{ delay: 0.5, duration: 1.2 }}
+        />
+        
+        <HeroContentWrapper>
+          <HeroContent>
+            <HeroTitle
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                delay: 0.2, 
+                duration: 0.8
+              }}
+            >
+              <span>{t('contacts.hero.title', 'Контакты')}</span>
+            </HeroTitle>
+            <HeroSubtitle
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                delay: 0.3, 
+                duration: 0.8
+              }}
+            >
+              {t('contacts.hero.subtitle', 'Мы всегда готовы помочь вам и ответить на все ваши вопросы')}
+            </HeroSubtitle>
+            
+            <CallToActions
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            >
+              <ActionButton 
+                primary 
+                onClick={scrollToContent}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                {t('contacts.cta.primary', 'Связаться')}
+                <ArrowLongRightIcon />
+              </ActionButton>
+              <ActionButton 
+                onClick={scrollToContent}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                {t('contacts.cta.secondary', 'Наш адрес')}
+                <MapPinIcon />
+              </ActionButton>
+            </CallToActions>
+          </HeroContent>
+        </HeroContentWrapper>
       </HeroSection>
 
       {/* Contact Information */}
       <ContentSection
         ref={contentRef}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         <ContentContainer>
-          <SectionTitle
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            {t('contacts.info.title', 'Свяжитесь с нами')}
-          </SectionTitle>
+                        <SectionTitle
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <span>{t('contacts.info.title', 'Свяжитесь с нами')}</span>
+              </SectionTitle>
           <SectionSubtitle
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
             {t('contacts.info.subtitle', 'Выберите удобный способ связи')}
@@ -516,11 +979,11 @@ const ContactsPage = () => {
 
           <ContactGrid>
             <ContactCard
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ y: -3 }}
+              whileHover={{ scale: 1.02 }}
             >
               <ContactIcon>
                 <PhoneIcon />
@@ -535,15 +998,25 @@ const ContactsPage = () => {
                   <ChatBubbleLeftEllipsisIcon />
                   <span>{t('contacts.phone.whatsapp', 'WhatsApp доступен')}</span>
                 </ContactDetail>
+                <ContactAction 
+                  href="https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20записаться%20в%20KAIF"
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  {t('contacts.phone.call_now', 'Связаться')}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+                    <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
+                  </svg>
+                </ContactAction>
               </ContactDetails>
             </ContactCard>
 
             <ContactCard
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
               viewport={{ once: true }}
-              whileHover={{ y: -3 }}
+              whileHover={{ scale: 1.02 }}
             >
               <ContactIcon>
                 <EnvelopeIcon />
@@ -558,15 +1031,23 @@ const ContactsPage = () => {
                   <CalendarDaysIcon />
                   <span>{t('contacts.email.response', 'Ответ в течение 24 часов')}</span>
                 </ContactDetail>
+                <ContactAction 
+                  href="mailto:info@kaif-phuket.com"
+                >
+                  {t('contacts.email.write', 'Написать')}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+                    <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
+                  </svg>
+                </ContactAction>
               </ContactDetails>
             </ContactCard>
 
             <ContactCard
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
-              whileHover={{ y: -3 }}
+              whileHover={{ scale: 1.02 }}
             >
               <ContactIcon>
                 <MapPinIcon />
@@ -577,15 +1058,25 @@ const ContactsPage = () => {
                   <MapPinIcon />
                   <span>73, Baan Chalekiri Village, 6 Pra Phuket Keaw Road, Kathu</span>
                 </ContactDetail>
+                <ContactAction 
+                  href="https://maps.google.com/?q=73+Baan+Chalekiri+Village+Kathu+Phuket" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  {t('contacts.address.directions', 'Проложить маршрут')}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+                    <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
+                  </svg>
+                </ContactAction>
               </ContactDetails>
             </ContactCard>
 
             <ContactCard
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.25 }}
               viewport={{ once: true }}
-              whileHover={{ y: -3 }}
+              whileHover={{ scale: 1.02 }}
             >
               <ContactIcon>
                 <ClockIcon />
@@ -600,6 +1091,16 @@ const ContactsPage = () => {
                   <UserIcon />
                   <span>{t('contacts.hours.booking', 'Бронирование 24/7')}</span>
                 </ContactDetail>
+                <ContactAction 
+                  href="https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20забронировать%20услуги%20KAIF"
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  {t('contacts.hours.book', 'Забронировать')}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+                    <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
+                  </svg>
+                </ContactAction>
               </ContactDetails>
             </ContactCard>
           </ContactGrid>
@@ -608,24 +1109,24 @@ const ContactsPage = () => {
 
       {/* Social Media Section */}
       <SocialSection
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         <ContentContainer>
           <SectionTitle
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            {t('contacts.social.title', 'Следите за нами в соцсетях')}
+            <span>{t('contacts.social.title', 'Следите за нами в соцсетях')}</span>
           </SectionTitle>
           <SectionSubtitle
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
             {t('contacts.social.subtitle', 'Будьте в курсе последних новостей и акций KAIF')}
@@ -635,21 +1136,22 @@ const ContactsPage = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <SocialGrid>
               <SocialCard
                 href="https://www.instagram.com/kaif.phuket/"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.1, type: "spring", bounce: 0.3 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -6 }}
+                whileHover={{ y: -10 }}
                 whileTap={{ scale: 0.98 }}
+                bgColor="225, 48, 108" // Instagram brand color in RGB
               >
-                <SocialIcon bgColor="linear-gradient(135deg, #E4405F 0%, #C13584 100%)">
+                <SocialIcon bgColor="linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)">
                   <svg fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                   </svg>
@@ -661,14 +1163,15 @@ const ContactsPage = () => {
                 href="https://t.me/kaifphuketchat"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2, type: "spring", bounce: 0.3 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.15 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -6 }}
+                whileHover={{ y: -10 }}
                 whileTap={{ scale: 0.98 }}
+                bgColor="0, 136, 204" // Telegram brand color in RGB
               >
-                <SocialIcon bgColor="linear-gradient(135deg, #0088cc 0%, #229ED9 100%)">
+                <SocialIcon bgColor="linear-gradient(135deg, #0088cc 0%, #33A3DC 100%)">
                   <svg fill="currentColor" viewBox="0 0 24 24">
                     <path d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.789l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"/>
                   </svg>
@@ -680,12 +1183,13 @@ const ContactsPage = () => {
                 href="https://api.whatsapp.com/send/?phone=66624805877&text&type=phone_number&app_absent=0"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.3, type: "spring", bounce: 0.3 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -6 }}
+                whileHover={{ y: -10 }}
                 whileTap={{ scale: 0.98 }}
+                bgColor="37, 211, 102" // WhatsApp brand color in RGB
               >
                 <SocialIcon bgColor="linear-gradient(135deg, #25D366 0%, #128C7E 100%)">
                   <svg fill="currentColor" viewBox="0 0 24 24">
@@ -699,12 +1203,13 @@ const ContactsPage = () => {
                 href="https://web.facebook.com/kaifphuketfb?mibextid=LQQJ4d&_rdc=1&_rdr#"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.4, type: "spring", bounce: 0.3 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.25 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -6 }}
+                whileHover={{ y: -10 }}
                 whileTap={{ scale: 0.98 }}
+                bgColor="24, 119, 242" // Facebook brand color in RGB
               >
                 <SocialIcon bgColor="linear-gradient(135deg, #1877F2 0%, #42A5F5 100%)">
                   <svg fill="currentColor" viewBox="0 0 24 24">
@@ -718,12 +1223,13 @@ const ContactsPage = () => {
                 href="https://www.youtube.com/@KaifPhuket"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.5, type: "spring", bounce: 0.3 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -6 }}
+                whileHover={{ y: -10 }}
                 whileTap={{ scale: 0.98 }}
+                bgColor="255, 0, 0" // YouTube brand color in RGB
               >
                 <SocialIcon bgColor="linear-gradient(135deg, #FF0000 0%, #FF4500 100%)">
                   <svg fill="currentColor" viewBox="0 0 24 24">
@@ -740,25 +1246,28 @@ const ContactsPage = () => {
 
 
       {/* Map Section */}
+      {/* Форма обратной связи */}
+      <ContactForm />
+      
       <MapSection
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         <MapContainer>
           <SectionTitle
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            {t('contacts.map.title', 'Как нас найти')}
+            <span>{t('contacts.map.title', 'Как нас найти')}</span>
           </SectionTitle>
           <SectionSubtitle
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
             {t('contacts.map.subtitle', 'Удобное расположение в центре Катху, Пхукет')}
