@@ -53,10 +53,12 @@ const GlobalStyles = createGlobalStyle`
   
   /* Улучшения для анимаций */
   @media (prefers-reduced-motion: no-preference) {
+    /* ВРЕМЕННО ОТКЛЮЧЕНО - может мешать хедеру
     *:not(header):not(header *) {
       backface-visibility: hidden;
       perspective: 1000px;
     }
+    */
   }
   
   /* Отключение анимаций для пользователей с настройкой reduced-motion */
@@ -83,9 +85,6 @@ const GlobalStyles = createGlobalStyle`
   /* Дополнительные оптимизации для мобильных устройств */
   @media (max-width: 768px) {
     body {
-      /* Убираем transform, который может создавать stacking context и конфликтовать с хедером */
-      -webkit-transform: none;
-      transform: none;
       /* Отключение эластичной прокрутки для предотвращения зеленого цвета */
       overscroll-behavior: none;
       -webkit-overscroll-behavior: none;
@@ -247,6 +246,8 @@ const GlobalStyles = createGlobalStyle`
       box-shadow: 0 4px 12px rgba(144, 179, 167, 0.3);
     }
   }
+  
+
 `;
 
 export default GlobalStyles;

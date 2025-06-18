@@ -5,11 +5,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import headerLogo from '../../assets/images/logos/new-hero-logo.png';
 
+console.log('🔥 HEADER.JSX FILE LOADED!');
+
+
+
 // =============================================================================
 // МАКСИМАЛЬНО АГРЕССИВНЫЙ ИЗОЛИРОВАННЫЙ ХЕДЕР
 // =============================================================================
 
-const HeaderComponent = () => {
+const Header = () => {
+  console.log('🚀 HEADER COMPONENT LOADED!');
+  
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const [hoveredNav, setHoveredNav] = useState(null);
@@ -17,6 +23,10 @@ const HeaderComponent = () => {
   const { i18n, t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
+  
+
+  
+
 
   const isActive = useCallback((path) => {
     if (path === '/' && location.pathname === '/') return true;
@@ -83,11 +93,11 @@ const HeaderComponent = () => {
   const getNavLinkStyle = useCallback((path) => ({
     color: isActive(path) ? '#90B3A7' : (hoveredNav === path ? '#333333' : '#666666'),
     textDecoration: 'none',
-    fontSize: '14px',
+    fontSize: '13px',
     fontWeight: '500',
     fontFamily: '"KAIF", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
     textTransform: 'uppercase',
-    letterSpacing: '1px',
+    letterSpacing: '0.5px',
     position: 'relative',
     transition: 'all 0.3s ease',
     whiteSpace: 'nowrap',
@@ -95,7 +105,7 @@ const HeaderComponent = () => {
     display: 'flex',
     alignItems: 'center',
     margin: 0,
-    padding: 0,
+    padding: '0 0.5rem',
     cursor: 'pointer'
   }), [isActive, hoveredNav]);
 
@@ -130,10 +140,93 @@ const HeaderComponent = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [isMobileMenuOpen]);
 
+  // Детальная диагностика хедера
+  useEffect(() => {
+    const checkHeaderVisibility = () => {
+      const header = document.querySelector('.kaif-header');
+      console.log('🔍 Проверяю хедер...', {
+        headerExists: !!header,
+        timestamp: new Date().toLocaleTimeString()
+      });
+      
+      if (header) {
+        const rect = header.getBoundingClientRect();
+        const computedStyle = window.getComputedStyle(header);
+        
+        console.log('📊 Состояние хедера:', {
+          position: computedStyle.position,
+          top: computedStyle.top,
+          zIndex: computedStyle.zIndex,
+          display: computedStyle.display,
+          visibility: computedStyle.visibility,
+          opacity: computedStyle.opacity,
+          rect: {
+            top: rect.top,
+            left: rect.left,
+            width: rect.width,
+            height: rect.height
+          }
+        });
+        
+        // Исправляем если что-то не так
+        if (rect.top !== 0 || rect.height === 0 || computedStyle.position !== 'fixed') {
+          console.log('🚨 Хедер НЕ НА МЕСТЕ! Исправляю...', rect);
+          
+          // АГРЕССИВНОЕ исправление
+          header.style.cssText = `
+            position: fixed !important;
+            top: 0px !important;
+            left: 0px !important;
+            right: 0px !important;
+            width: 100% !important;
+            height: 65px !important;
+            z-index: 9999 !important;
+            background-color: #ffffff !important;
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+            animation: none !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+            align-items: center !important;
+            justify-content: center !important;
+          `;
+          
+          console.log('✅ Хедер агрессивно исправлен!');
+        } else {
+          console.log('✅ Хедер в порядке');
+        }
+      } else {
+        console.log('❌ Хедер не найден!');
+      }
+    };
+
+    // Проверяем сразу
+    console.log('🚀 Запускаю диагностику хедера...');
+    checkHeaderVisibility();
+    
+    // Проверяем каждые 500ms
+    const interval = setInterval(checkHeaderVisibility, 500);
+    
+    // Проверяем при скролле
+    const handleScroll = () => {
+      console.log('📜 Скролл detected, проверяю хедер...');
+      checkHeaderVisibility();
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <>
       <header 
-        className="kaif-header"
+        className="kaif-header fixed top-0 left-0 right-0 w-full h-16 z-50 bg-white"
         style={{
           position: 'fixed',
           top: '0',
@@ -141,28 +234,33 @@ const HeaderComponent = () => {
           right: '0',
           width: '100%',
           height: '65px',
-          zIndex: '1000',
+          zIndex: '9999',
           backgroundColor: '#ffffff',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
-          pointerEvents: 'auto'
+          pointerEvents: 'auto',
+          visibility: 'visible',
+          opacity: '1',
+          transform: 'none',
+          transition: 'none',
+          animation: 'none'
         }}
       >
         <div style={{
           width: '100%',
-          maxWidth: '1200px',
+          maxWidth: '1400px',
           height: '65px',
           display: 'flex',
           alignItems: 'center',
-          padding: '0 3rem',
+          padding: '0 2rem',
           margin: 0,
           boxSizing: 'border-box'
         }}>
           {/* Левая секция - Логотип */}
           <div style={{
-            flex: '1',
+            flex: '0 0 200px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'flex-start',
@@ -204,12 +302,12 @@ const HeaderComponent = () => {
             justifyContent: 'center',
             height: '65px',
             margin: 0,
-            padding: 0
+            padding: '0 1rem'
           }}>
             <nav style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '2.5rem',
+              gap: '1.5rem',
               height: '65px',
               margin: 0,
               padding: 0
@@ -263,14 +361,14 @@ const HeaderComponent = () => {
 
           {/* Правая секция - Языки и Бургер */}
           <div style={{
-            flex: '1',
+            flex: '0 0 200px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'flex-end',
             gap: '1rem',
             height: '65px',
             margin: 0,
-            padding: 0
+            padding: '0 1rem 0 0'
           }}>
             {/* Бургер-меню для мобильных */}
             <motion.button
@@ -282,8 +380,8 @@ const HeaderComponent = () => {
                 display: 'none',
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: '2.5rem',
-                height: '2.5rem',
+                width: '2.25rem',
+                height: '2.25rem',
                 padding: 0,
                 background: 'rgba(144, 179, 167, 0.1)',
                 border: '1px solid rgba(144, 179, 167, 0.2)',
@@ -291,21 +389,69 @@ const HeaderComponent = () => {
                 color: '#2C3E2D',
                 cursor: 'pointer',
                 transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                marginRight: '-2rem'
+                marginRight: '0'
               }}
             >
-              <svg 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-                style={{
-                  width: '1.25rem',
-                  height: '1.25rem',
-                  transition: 'transform 0.3s ease'
-                }}
+              <motion.svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                animate={{ rotate: isMobileMenuOpen ? 180 : 0 }}
+                transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+                {/* Верхняя линия */}
+                <motion.line
+                  x1="3"
+                  y1="6"
+                  x2="17"
+                  y2="6"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  animate={{
+                    rotate: isMobileMenuOpen ? 45 : 0,
+                    y: isMobileMenuOpen ? 4 : 0,
+                  }}
+                  transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+                  style={{ transformOrigin: '10px 6px' }}
+                />
+                
+                {/* Средняя линия */}
+                <motion.line
+                  x1="3"
+                  y1="10"
+                  x2="17"
+                  y2="10"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  animate={{
+                    opacity: isMobileMenuOpen ? 0 : 1,
+                    scaleX: isMobileMenuOpen ? 0.3 : 1,
+                  }}
+                  transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
+                  style={{ transformOrigin: '10px 10px' }}
+                />
+                
+                {/* Нижняя линия */}
+                <motion.line
+                  x1="3"
+                  y1="14"
+                  x2="17"
+                  y2="14"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  animate={{
+                    rotate: isMobileMenuOpen ? -45 : 0,
+                    y: isMobileMenuOpen ? -4 : 0,
+                  }}
+                  transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+                  style={{ transformOrigin: '10px 14px' }}
+                />
+              </motion.svg>
             </motion.button>
             
             <div className="language-selector" style={{ 
@@ -568,4 +714,4 @@ const HeaderComponent = () => {
   );
 };
 
-export default HeaderComponent; 
+export default Header; 

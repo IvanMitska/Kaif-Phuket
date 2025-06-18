@@ -26,19 +26,18 @@ const Layout = ({ children }) => {
   return (
     <>
       <GlobalStyles />
-      <LoadingScreen />
+      <LoadingScreen isVisible={!isPageLoaded} />
       <Header />
       <div style={{ 
         minHeight: '100vh',
-        paddingTop: '65px', // Точный отступ для хедера без лишней полосы
+        paddingTop: '65px', // Точный отступ для хедера
         width: '100%',
         position: 'relative',
         zIndex: 1,
         display: 'flex',
         flexDirection: 'column',
         overflowX: 'hidden',
-        margin: 0,
-        padding: '65px 0 0 0'
+        margin: 0
       }}>
         <main style={{ 
           width: '100%',

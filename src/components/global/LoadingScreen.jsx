@@ -36,7 +36,7 @@ const LoadingContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 500;
+  z-index: 999;
   
   /* Оптимизированные анимации */
   animation: ${fadeIn} 0.2s ease-out forwards;
