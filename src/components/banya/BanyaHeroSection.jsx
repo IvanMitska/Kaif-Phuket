@@ -333,25 +333,29 @@ const BanyaHeroSection = () => {
           </Subtitle>
           
           <CTAContainer variants={itemVariants}>
-            <Link to="/contacts">
-              <PrimaryButton
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {t('banya.hero.book_button', 'Забронировать')}
-                <ArrowRightIcon />
-              </PrimaryButton>
-            </Link>
+            <PrimaryButton
+              as="a"
+              href="https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20забронировать%20русскую%20баню%20в%20KAIF"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {t('banya.hero.book_button', 'Забронировать')}
+              <ArrowRightIcon />
+            </PrimaryButton>
             
-            <Link to="/contacts">
-              <SecondaryButton
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {t('banya.hero.contacts_button', 'Контакты')}
-                <PhoneIcon />
-              </SecondaryButton>
-            </Link>
+            <SecondaryButton
+              as="a"
+              href="https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20узнать%20подробнее%20о%20русской%20бане%20KAIF"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {t('banya.hero.contacts_button', 'Контакты')}
+              <PhoneIcon />
+            </SecondaryButton>
           </CTAContainer>
         </motion.div>
       </ContentWrapper>

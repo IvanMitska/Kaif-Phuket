@@ -12,8 +12,8 @@ import {
   SparklesIcon
 } from '@heroicons/react/24/solid';
 
-// Импортируем логотип для футера
-import footerLogo from '../../assets/images/logos/logo-footer.png';
+// Оптимизированный логотип для футера
+const footerLogoPath = '/images/logos/logo-footer-1x.png';
 
 // =============================================================================
 // WELLNESS SANCTUARY FOOTER COMPONENTS
@@ -101,12 +101,10 @@ const BrandSection = styled(motion.div)`
   }
 `;
 
-const FooterLogo = styled(motion.img)`
+const FooterLogoContainer = styled(motion.div)`
   height: auto;
   width: 360px;
-  object-fit: contain;
   margin-bottom: 1.5rem;
-  filter: brightness(1.2) contrast(1.1);
   display: block;
   
   /* Десктопная версия и iPad Pro с отрицательным отступом */
@@ -476,11 +474,32 @@ const Footer = () => {
           <FooterMain>
             {/* Brand Section */}
             <BrandSection variants={itemVariants}>
-              <FooterLogo
-                src={footerLogo}
-                alt="KAIF"
+              <FooterLogoContainer
                 whileHover={{ scale: 1.05, transition: { duration: 0.3, ease: "easeOut" } }}
-              />
+              >
+                <picture>
+                  <source 
+                    srcSet="/images/logos/logo-footer-2x.webp 2x, /images/logos/logo-footer-1x.webp 1x"
+                    type="image/webp"
+                  />
+                  <source 
+                    srcSet="/images/logos/logo-footer-2x.png 2x, /images/logos/logo-footer-1x.png 1x"
+                    type="image/png"
+                  />
+                  <img
+                    src={footerLogoPath}
+                    alt="KAIF"
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                      maxWidth: '360px',
+                      filter: 'brightness(1.2) contrast(1.1)',
+                      imageRendering: 'crisp-edges'
+                    }}
+                    loading="lazy"
+                  />
+                </picture>
+              </FooterLogoContainer>
               <BrandDescription>
                 {t('footer.brand.description')}
               </BrandDescription>

@@ -61,6 +61,10 @@ const HeroSection = () => {
             transition={{ duration: 0.5, delay: 0.6 }}
           >
             <PrimaryButton
+              as="a"
+              href="https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20записаться%20на%20тренировку%20в%20KAIF"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
@@ -69,6 +73,8 @@ const HeroSection = () => {
             </PrimaryButton>
 
             <SecondaryButton
+              as="a"
+              href="#facilities"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >

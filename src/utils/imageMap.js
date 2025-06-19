@@ -31,6 +31,39 @@ export const imageMap = {
 
   // Карта соответствия изображений
   images: {
+    // Логотипы (критический контент)
+    'logos/logo-header': {
+      "original": {
+        webp: "/images/logos/logo-header-2x.webp",
+        fallback: "/images/logos/logo-header-2x.png",
+      },
+      "2x": {
+        webp: "/images/logos/logo-header-2x.webp",
+        fallback: "/images/logos/logo-header-2x.png",
+        width: 358, // 358px width
+      },
+      "1x": {
+        webp: "/images/logos/logo-header-1x.webp",
+        fallback: "/images/logos/logo-header-1x.png",
+        width: 179,
+      }
+    },
+    'logos/logo-footer': {
+      "original": {
+        webp: "/images/logos/logo-footer-2x.webp",
+        fallback: "/images/logos/logo-footer-2x.png",
+      },
+      "2x": {
+        webp: "/images/logos/logo-footer-2x.webp",
+        fallback: "/images/logos/logo-footer-2x.png",
+        width: 720,
+      },
+      "1x": {
+        webp: "/images/logos/logo-footer-1x.webp",
+        fallback: "/images/logos/logo-footer-1x.png",
+        width: 360,
+      }
+    },
     'thai-massage.jpg': {
       "original": {
         webp: "/images-webp/./thai-massage.webp",

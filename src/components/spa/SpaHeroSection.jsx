@@ -404,6 +404,10 @@ const SpaHeroSection = memo(() => {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <PrimaryButton
+                as="a"
+                href="https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20записаться%20на%20СПА%20процедуру%20в%20KAIF"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -412,6 +416,8 @@ const SpaHeroSection = memo(() => {
               </PrimaryButton>
 
               <SecondaryButton
+                as="a"
+                href="#services"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >

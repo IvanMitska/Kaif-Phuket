@@ -450,9 +450,10 @@ const SpaServiceModal = ({ isOpen, onClose, service, categoryData }) => {
   };
 
   const handleBooking = () => {
-    // Здесь можно добавить логику бронирования
-    console.log('Booking service:', service.name);
-    // Например, открыть форму бронирования или перенаправить на страницу бронирования
+    // Открываем WhatsApp с предварительно заполненным сообщением
+    const message = `Здравствуйте! Хочу записаться на ${service.name} в СПА KAIF`;
+    const whatsappUrl = `https://wa.me/66624805877?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
     onClose();
   };
 

@@ -4,7 +4,15 @@ const IMAGE_CACHE_NAME = 'kaif-images-cache-v1';
 
 // Список критических изображений для предкэширования
 const CRITICAL_IMAGES = [
-  '/images-webp/logos/logo-header.webp',
+  // Логотипы (высший приоритет)
+  '/images/logos/logo-header-1x.webp',
+  '/images/logos/logo-header-2x.webp',
+  '/images/logos/logo-header-1x.png',
+  '/images/logos/logo-header-2x.png',
+  '/images/logos/logo-footer-1x.webp',
+  '/images/logos/logo-footer-2x.webp',
+  
+  // Остальные критические изображения
   '/images-webp/small/banya/panoramic.webp',
   '/images-webp/medium/banya/panoramic.webp',
   '/images-webp/large/banya/panoramic.webp',

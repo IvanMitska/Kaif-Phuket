@@ -3,7 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import headerLogo from '../../assets/images/logos/new-hero-logo.png';
+// Оптимизированный логотип для хедера
+const headerLogoPath = '/images/logos/logo-header-1x.png';
 
 console.log('🔥 HEADER.JSX FILE LOADED!');
 
@@ -326,17 +327,30 @@ const Header = () => {
                 cursor: 'pointer'
               }}
             >
-              <img 
-                src={headerLogo} 
-                alt="KAIF" 
-                style={{
-                  height: '38px',
-                  width: 'auto',
-                  display: 'block',
-                  margin: 0,
-                  padding: 0
-                }} 
-              />
+              <picture>
+                <source 
+                  srcSet="/images/logos/logo-header-2x.webp 2x, /images/logos/logo-header-1x.webp 1x"
+                  type="image/webp"
+                  sizes="38px"
+                />
+                <source 
+                  srcSet="/images/logos/logo-header-2x.png 2x, /images/logos/logo-header-1x.png 1x"
+                  type="image/png"
+                  sizes="38px"
+                />
+                <img 
+                  src={headerLogoPath} 
+                  alt="KAIF" 
+                  style={{
+                    height: '38px',
+                    width: 'auto',
+                    display: 'block',
+                    margin: 0,
+                    padding: 0
+                  }} 
+                  loading="eager"
+                />
+              </picture>
             </div>
           </div>
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { 
@@ -507,15 +506,17 @@ const PromotionsSection = () => {
                     ))}
                   </PromoFeatures>
                   
-                  <Link to={promo.link}>
-                    <PromoButton
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      Забронировать
-                      <ArrowRightIcon />
-                    </PromoButton>
-                  </Link>
+                  <PromoButton
+                    as="a"
+                    href="https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20забронировать%20акцию%20KAIF"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Забронировать
+                    <ArrowRightIcon />
+                  </PromoButton>
                 </PromotionCard>
               </motion.div>
             ))}

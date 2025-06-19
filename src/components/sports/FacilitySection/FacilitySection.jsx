@@ -208,9 +208,12 @@ const FacilitySection = () => {
                 style={{ marginTop: '2rem' }}
               >
                 <BookButton
+                  as="a"
+                  href="https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20записаться%20на%20тренировку%20в%20тренажерном%20зале%20KAIF"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => navigate('/contacts')}
                 >
                   {t('sports.facilities.book_button', 'Забронировать тренировку')}
                   <CalendarIcon style={{ width: '18px', height: '18px' }} />
@@ -301,9 +304,12 @@ const FacilitySection = () => {
                 style={{ marginTop: '2rem' }}
               >
                 <BookButton
+                  as="a"
+                  href="https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20записаться%20на%20тренировку%20в%20бойцовском%20клубе%20KAIF"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => navigate('/contacts')}
                 >
                   {t('sports.facilities.book_button', 'Забронировать тренировку')}
                   <CalendarIcon style={{ width: '18px', height: '18px' }} />
@@ -399,9 +405,12 @@ const FacilitySection = () => {
                 style={{ marginTop: '2rem' }}
               >
                 <BookButton
+                  as="a"
+                  href="https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20записаться%20на%20танцевальные%20занятия%20в%20KAIF"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => navigate('/contacts')}
                 >
                   {t('sports.facilities.book_button', 'Забронировать тренировку')}
                   <CalendarIcon style={{ width: '18px', height: '18px' }} />
