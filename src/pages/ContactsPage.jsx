@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   PhoneIcon, 
-  EnvelopeIcon, 
   MapPinIcon, 
   ClockIcon,
   ChevronDownIcon,
@@ -18,7 +17,7 @@ import {
   StarIcon
 } from '@heroicons/react/24/outline';
 
-import ContactForm from '../components/contacts/ContactForm';
+
 import { SafeAnimatedCard, SafeAnimatedTitle, useSafeMobileDetection } from '../components/ui/SafeMobileOptimizations';
 import PageScrollReset from '../components/common/PageScrollReset';
 
@@ -866,6 +865,82 @@ const ContactsPage = () => {
     }
   };
 
+  const scrollToMap = () => {
+    console.log('Попытка скролла к карте...');
+    
+    // Добавляем небольшую задержку для надёжности
+    setTimeout(() => {
+      // Ищем все возможные варианты
+      const selectors = [
+        '#map-section',
+        '[data-section="map"]',
+        'iframe[src*="google.com/maps"]'
+      ];
+      
+      let targetElement = null;
+      
+      for (const selector of selectors) {
+        const element = document.querySelector(selector);
+        if (element) {
+          // Если это iframe, берём его родительскую секцию
+          if (element.tagName === 'IFRAME') {
+            targetElement = element.closest('section') || element;
+          } else {
+            targetElement = element;
+          }
+          console.log(`Найден элемент по селектору: ${selector}`, targetElement);
+          break;
+        }
+      }
+      
+      if (targetElement) {
+        console.log('Скроллим к элементу:', targetElement);
+        
+        // Пробуем несколько методов скролла
+        try {
+          // Метод 1: scrollIntoView
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest'
+          });
+        } catch (e) {
+          console.log('scrollIntoView failed, trying manual scroll');
+          // Метод 2: ручной расчёт
+          const rect = targetElement.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const targetY = rect.top + scrollTop - 100;
+          
+          window.scrollTo({
+            top: targetY,
+            behavior: 'smooth'
+          });
+        }
+        
+        console.log('Скролл выполнен');
+      } else {
+        console.warn('Элемент не найден, скроллим в конец страницы');
+        // Последний резерв - скролл в конец
+        const pageHeight = Math.max(
+          document.body.scrollHeight,
+          document.body.offsetHeight,
+          document.documentElement.clientHeight,
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight
+        );
+        
+        window.scrollTo({
+          top: pageHeight - window.innerHeight,
+          behavior: 'smooth'
+        });
+      }
+    }, 150); // Увеличиваем задержку до 150ms
+  };
+
+  const openWhatsApp = () => {
+    window.open('https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20связаться%20с%20KAIF', '_blank');
+  };
+
 
 
   const pageVariants = {
@@ -937,7 +1012,7 @@ const ContactsPage = () => {
             >
               <ActionButton 
                 primary 
-                onClick={scrollToContent}
+                onClick={openWhatsApp}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -945,7 +1020,10 @@ const ContactsPage = () => {
                 <ArrowLongRightIcon />
               </ActionButton>
               <ActionButton 
-                onClick={scrollToContent}
+                onClick={() => {
+                  console.log('Кнопка "Наш адрес" нажата');
+                  scrollToMap();
+                }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -1012,35 +1090,6 @@ const ContactsPage = () => {
               whileHover={!isMobileDevice ? { scale: 1.02, transition: { duration: 0.2 } } : undefined}
             >
               <ContactIcon>
-                <EnvelopeIcon />
-              </ContactIcon>
-              <ContactTitle>{t('contacts.email.title', 'Email')}</ContactTitle>
-              <ContactDetails>
-                <ContactDetail>
-                  <EnvelopeIcon />
-                  <span>info@kaif-phuket.com</span>
-                </ContactDetail>
-                <ContactDetail>
-                  <CalendarDaysIcon />
-                  <span>{t('contacts.email.response', 'Ответ в течение 24 часов')}</span>
-                </ContactDetail>
-                <ContactAction 
-                  href="mailto:info@kaif-phuket.com"
-                >
-                  {t('contacts.email.write', 'Написать')}
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
-                    <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
-                  </svg>
-                </ContactAction>
-              </ContactDetails>
-            </SafeAnimatedCard>
-
-            <SafeAnimatedCard
-              as={ContactCard}
-              delay={0.2}
-              whileHover={!isMobileDevice ? { scale: 1.02, transition: { duration: 0.2 } } : undefined}
-            >
-              <ContactIcon>
                 <MapPinIcon />
               </ContactIcon>
               <ContactTitle>{t('contacts.address.title', 'Адрес')}</ContactTitle>
@@ -1064,7 +1113,7 @@ const ContactsPage = () => {
 
             <SafeAnimatedCard
               as={ContactCard}
-              delay={0.25}
+              delay={0.2}
               whileHover={!isMobileDevice ? { scale: 1.02, transition: { duration: 0.2 } } : undefined}
             >
               <ContactIcon>
@@ -1225,11 +1274,10 @@ const ContactsPage = () => {
 
 
 
-      {/* Map Section */}
-      {/* Форма обратной связи */}
-      <ContactForm />
-      
+            {/* Map Section */}
       <MapSection
+        id="map-section"
+        data-section="map"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}

@@ -977,6 +977,10 @@
       "title": "Contacts",
       "subtitle": "We are always ready to help you and answer all your questions"
     },
+    "cta": {
+      "primary": "Contact Us",
+      "secondary": "Our Address"
+    },
     "form": {
       "title": "Get in Touch",
       "success": "Your message has been sent successfully!",
