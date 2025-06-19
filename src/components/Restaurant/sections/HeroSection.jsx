@@ -3,8 +3,6 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
-import bookingImage from '../../../assets/images/restaurant/booking.jpg';
-
 // =============================================================================
 // ОПТИМИЗИРОВАННЫЙ RESTAURANT HERO (МИНИМАЛИСТИЧНЫЙ СТИЛЬ)
 // =============================================================================
@@ -12,14 +10,30 @@ import bookingImage from '../../../assets/images/restaurant/booking.jpg';
 const HeroContainer = styled.section`
   position: relative;
   min-height: 100vh;
-  background: url(${bookingImage});
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
   overflow: hidden;
   display: flex;
   align-items: center;
   padding: 6rem 0;
+  
+  @media (max-width: 768px) {
+    min-height: 100vh;
+    padding: 4rem 0;
+  }
+`;
+
+const HeroBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  
+  picture, img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
   
   &::after {
     content: '';
@@ -34,20 +48,14 @@ const HeroContainer = styled.section`
       rgba(0, 0, 0, 0.4) 50%,
       rgba(0, 0, 0, 0.7) 100%
     );
-    z-index: 1;
+    z-index: 2;
     pointer-events: none;
-  }
-  
-  @media (max-width: 768px) {
-    background-attachment: scroll;
-    min-height: 100vh;
-    padding: 4rem 0;
   }
 `;
 
 const ContentWrapper = styled.div`
   position: relative;
-  z-index: 2;
+  z-index: 3;
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
@@ -197,6 +205,31 @@ const HeroSection = memo(({ menuSectionRef }) => {
 
   return (
     <HeroContainer>
+      <HeroBackground>
+        <picture>
+          <source 
+            media="(max-width: 767px)" 
+            srcSet="/images-webp/thumbnail/restaurant.webp"
+            type="image/webp"
+          />
+          <source 
+            media="(min-width: 768px) and (max-width: 1023px)" 
+            srcSet="/images-webp/medium/restaurant.webp"
+            type="image/webp"
+          />
+          <source 
+            media="(min-width: 1024px)" 
+            srcSet="/images-webp/large/restaurant.webp"
+            type="image/webp"
+          />
+          <img 
+            src="/images/restaurant.jpg"
+            alt="Restaurant interior"
+            loading="eager"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </picture>
+      </HeroBackground>
       <ContentWrapper>
         <DecorativeElement 
           className="top-right"

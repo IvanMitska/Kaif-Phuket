@@ -232,29 +232,35 @@ const BanyaHeroSection = () => {
 
   const banyaImages = [
     {
-      webp: '/images-webp/banya/panoramic.webp',
+      // Используем оптимизированные размеры для первого изображения (критическое)
+      small: '/images-webp/small/banya/panoramic.webp',
+      medium: '/images-webp/medium/banya/panoramic.webp', 
+      large: '/images-webp/large/banya/panoramic.webp',
       fallback: '/images/banya/panoramic.png',
       title: 'Панорамная парная 150 м²'
     },
     {
-      webp: '/images-webp/banya/private.webp', 
+      small: '/images-webp/small/banya/private.webp',
+      medium: '/images-webp/medium/banya/private.webp',
+      large: '/images-webp/large/banya/private.webp',
       fallback: '/images/banya/private.jpg',
       title: 'Приватная сауна'
     },
     {
-      webp: '/images-webp/banya/public.webp',
+      small: '/images-webp/small/banya/public.webp',
+      medium: '/images-webp/medium/banya/public.webp',
+      large: '/images-webp/large/banya/public.webp',
       fallback: '/images/banya/public.jpg', 
       title: 'Общественная парная'
     }
   ];
 
-  const getImageSrc = (image) => {
-    const supportsWebP = () => {
-      const elem = document.createElement('canvas');
-      return elem.toDataURL('image/webp').indexOf('data:image/webp') === 0;
-    };
-    
-    return supportsWebP() ? image.webp : image.fallback;
+  const getResponsiveImageSrc = (image) => {
+    // Определяем размер экрана и возвращаем соответствующее изображение
+    const width = window.innerWidth;
+    if (width < 768) return image.small;
+    if (width < 1024) return image.medium;
+    return image.large;
   };
 
   useEffect(() => {
@@ -291,16 +297,33 @@ const BanyaHeroSection = () => {
         <BackgroundSlider>
           {banyaImages.map((image, index) => (
             <SlideImage key={index} $active={index === currentSlide}>
-              <OptimizedImage
-                src={image.fallback}
-                alt={image.title}
-                loading={index === 0 ? "eager" : "lazy"}
-                priority={index === 0}
-                objectFit="cover"
-                className="w-full h-full"
-                withPlaceholder={true}
-                withLoadingIndicator={true}
-              />
+              <picture>
+                <source 
+                  media="(max-width: 767px)" 
+                  srcSet={image.small}
+                  type="image/webp"
+                />
+                <source 
+                  media="(min-width: 768px) and (max-width: 1023px)" 
+                  srcSet={image.medium}
+                  type="image/webp"
+                />
+                <source 
+                  media="(min-width: 1024px)" 
+                  srcSet={image.large}
+                  type="image/webp"
+                />
+                <OptimizedImage
+                  src={image.fallback}
+                  alt={image.title}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  priority={index === 0}
+                  objectFit="cover"
+                  className="w-full h-full"
+                  withPlaceholder={true}
+                  withLoadingIndicator={index === 0}
+                />
+              </picture>
             </SlideImage>
           ))}
         </BackgroundSlider>
