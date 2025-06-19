@@ -8,6 +8,7 @@ import {
   PhoneIcon,
   FireIcon
 } from '@heroicons/react/24/solid';
+import OptimizedImage from '../common/OptimizedImage';
 
 // =============================================================================
 // МИНИМАЛИСТИЧНАЯ HERO СЕКЦИЯ БАНИ
@@ -43,9 +44,6 @@ const SlideImage = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url(${props => props.$image});
-  background-size: cover;
-  background-position: center;
   opacity: ${props => props.$active ? 1 : 0};
   transition: opacity 2s ease-in-out;
   
@@ -292,11 +290,18 @@ const BanyaHeroSection = () => {
       <BackgroundContainer>
         <BackgroundSlider>
           {banyaImages.map((image, index) => (
-            <SlideImage
-              key={index}
-              $image={getImageSrc(image)}
-              $active={currentSlide === index}
-            />
+            <SlideImage key={index} $active={index === currentSlide}>
+              <OptimizedImage
+                src={image.fallback}
+                alt={image.title}
+                loading={index === 0 ? "eager" : "lazy"}
+                priority={index === 0}
+                objectFit="cover"
+                className="w-full h-full"
+                withPlaceholder={true}
+                withLoadingIndicator={true}
+              />
+            </SlideImage>
           ))}
         </BackgroundSlider>
       </BackgroundContainer>

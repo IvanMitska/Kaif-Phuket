@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeftIcon, ChevronRightIcon, XMarkIcon, StarIcon, ArrowRightIcon, ClockIcon, ShoppingBagIcon, PhoneIcon } from '@heroicons/react/24/solid';
 import { ArrowRightIcon as ArrowRightOutline } from '@heroicons/react/24/outline';
+import PageScrollReset from '../components/common/PageScrollReset';
 
 // Импортируем функцию получения данных ресторана
 import { getRestaurantData } from '../components/Restaurant/data/restaurantData';
@@ -669,6 +670,7 @@ const RestaurantPage = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
+      <PageScrollReset />
       {/* Hero Section */}
       <HeroSection menuSectionRef={menuSectionRef} />
       

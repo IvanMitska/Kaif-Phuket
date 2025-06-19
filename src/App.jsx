@@ -6,9 +6,13 @@ import { HelmetProvider } from 'react-helmet-async';
 import GlobalFontStyle from './components/global/GlobalFontStyle';
 import GlobalStyles from './components/global/GlobalStyles';
 
+
 // Импортируем контекст загрузки и экран загрузки
 import { LoadingProvider, useLoading } from './components/global/LoadingContext';
 import LoadingScreen from './components/global/LoadingScreen';
+// import ScrollDiagnostic from './components/ui/ScrollDiagnostic';
+// import useScrollFix from './components/common/hooks/useScrollFix';
+import ScrollToTop from './components/common/ScrollToTop';
 
 // Import i18n configuration
 import './i18n';
@@ -19,6 +23,8 @@ import './utils/suppressCSSWarnings';
 // Оптимизированные импорты CSS
 import './styles/global-theme.css';
 import './index.css';
+import './styles/mobile-optimizations.css';
+import './styles/simple-header-fix.css';
 
 import { theme } from './theme.fixed';
 import Layout from './components/layout/Layout';
@@ -63,10 +69,12 @@ const AnimatedRoutes = () => {
 // Основной компонент приложения с экраном загрузки
 const AppContent = () => {
   const { isLoading, isContentReady } = useLoading();
+  // useScrollFix(); // Автоматическое исправление проблем с исчезновением
   
   return (
     <>
       <LoadingScreen isVisible={isLoading} />
+      <ScrollToTop />
       {isContentReady && (
         <div className="App">
           <Layout>

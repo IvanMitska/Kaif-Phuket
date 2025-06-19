@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import PageScrollReset from '../components/common/PageScrollReset';
 
 // Обычные импорты компонентов Бани
 import BanyaHeroSection from '../components/banya/BanyaHeroSection';
@@ -71,6 +72,7 @@ const BanyaPage = () => {
       variants={pageVariants}
       transition={{ duration: 0.2 }}
     >
+      <PageScrollReset />
       <BanyaHeroSection />
       <BanyaServicesSection />
       <BanyaFeaturesSection />

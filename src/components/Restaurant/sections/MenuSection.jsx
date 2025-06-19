@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { ShoppingBagIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
 import { getRestaurantData } from '../data/restaurantData';
+import OptimizedImage from '../../common/OptimizedImage';
 
 const MenuSection = ({ menuSectionRef }) => {
   const { t } = useTranslation();
@@ -100,10 +101,15 @@ const MenuSection = ({ menuSectionRef }) => {
                 whileHover={{ y: -10 }}
               >
                 <div className="h-64 overflow-hidden relative">
-                  <img 
+                  <OptimizedImage 
                     src={item.image} 
                     alt={item.name} 
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    loading="lazy"
+                    priority={index < 3}
+                    className="w-full h-full transition-transform duration-500 hover:scale-105"
+                    objectFit="cover"
+                    withPlaceholder={true}
+                    withLoadingIndicator={true}
                   />
                   {item.popular && (
                     <div className="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-2 py-1 rounded-full">

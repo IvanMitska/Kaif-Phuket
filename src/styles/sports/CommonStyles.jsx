@@ -52,9 +52,9 @@ export const SectionTitle = styled(motion.h2)`
       left: 0;
       bottom: 0;
       width: 100%;
-      height: 0.15em;
+      height: 0.08em;
       background-color: ${props => props.theme.colors.primary};
-      opacity: 0.3;
+      opacity: 0.15;
       border-radius: 2px;
     }
   }

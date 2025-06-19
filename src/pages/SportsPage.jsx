@@ -6,6 +6,7 @@ const HeroSection = React.lazy(() => import('../components/sports/HeroSection/He
 const FacilitySection = React.lazy(() => import('../components/sports/FacilitySection/FacilitySection'));
 const ScheduleSection = React.lazy(() => import('../components/sports/ScheduleSection/ScheduleSection'));
 import { PageContainer } from '../styles/sports/CommonStyles';
+import PageScrollReset from '../components/common/PageScrollReset';
 
 // Невидимый компонент загрузки
 const InvisibleLoader = () => null;
@@ -33,6 +34,7 @@ const SportsPage = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.2 }}
     >
+      <PageScrollReset />
       <Suspense fallback={<InvisibleLoader />}>
         <HeroSection />
         <FacilitySection />

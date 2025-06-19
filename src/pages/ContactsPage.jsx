@@ -19,6 +19,8 @@ import {
 } from '@heroicons/react/24/outline';
 
 import ContactForm from '../components/contacts/ContactForm';
+import { SafeAnimatedCard, SafeAnimatedTitle, useSafeMobileDetection } from '../components/ui/SafeMobileOptimizations';
+import PageScrollReset from '../components/common/PageScrollReset';
 
 
 // Социальные сети - стильная версия с визуальными акцентами
@@ -270,7 +272,7 @@ const HeroSection = styled(motion.section)`
     right: 0;
     width: 100%;
     height: 100%;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%2390b3a7' fill-opacity='0.07'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%2390b3a7' fill-opacity='0.07'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     opacity: 0.3;
     z-index: 0;
   }
@@ -815,6 +817,7 @@ const ContactsPage = () => {
   const { t } = useTranslation();
   const contentRef = useRef(null);
   const [isReady, setIsReady] = useState(false);
+  const isMobileDevice = useSafeMobileDetection();
 
 
   useEffect(() => {
@@ -824,29 +827,31 @@ const ContactsPage = () => {
     // Сначала скроллим в начало страницы
     window.scrollTo(0, 0);
     
-    // Устанавливаем готовность компонента с небольшой задержкой
+    // Устанавливаем готовность компонента с оптимизацией для мобильных
     const timer = setTimeout(() => {
       setIsReady(true);
-    }, 150);
+    }, isMobileDevice ? 50 : 150);
     
     // Очистка при размонтировании
     return () => {
       document.body.classList.remove('contacts-page');
       clearTimeout(timer);
     };
-  }, []);
+  }, [isMobileDevice]);
   
   // Предотвращаем проблемы со скроллом при анимациях
   useEffect(() => {
     if (isReady) {
-      // Устанавливаем плавный скролл после рендеринга компонента
-      document.documentElement.style.scrollBehavior = 'smooth';
+      // Отключаем плавный скролл на мобильных для лучшей производительности
+      if (!isMobileDevice) {
+        document.documentElement.style.scrollBehavior = 'smooth';
+      }
       
       return () => {
         document.documentElement.style.scrollBehavior = '';
       };
     }
-  }, [isReady]);
+  }, [isReady, isMobileDevice]);
 
   const scrollToContent = () => {
     if (contentRef.current) {
@@ -882,6 +887,7 @@ const ContactsPage = () => {
       variants={pageVariants}
       transition={{ duration: 0.3 }}
     >
+      <PageScrollReset />
       {/* Стильная Hero Section с визуальными элементами */}
       <HeroSection
         initial={{ opacity: 0 }}
@@ -960,30 +966,19 @@ const ContactsPage = () => {
         viewport={{ once: true, amount: 0.2 }}
       >
         <ContentContainer>
-                        <SectionTitle
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <span>{t('contacts.info.title', 'Свяжитесь с нами')}</span>
-              </SectionTitle>
-          <SectionSubtitle
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
+          <SafeAnimatedTitle delay={0} as={SectionTitle}>
+            {t('contacts.info.title', 'Свяжитесь с нами')}
+          </SafeAnimatedTitle>
+          
+          <SafeAnimatedTitle delay={0.1} as={SectionSubtitle}>
             {t('contacts.info.subtitle', 'Выберите удобный способ связи')}
-          </SectionSubtitle>
+          </SafeAnimatedTitle>
 
           <ContactGrid>
-            <ContactCard
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
+            <SafeAnimatedCard
+              as={ContactCard}
+              delay={0.1}
+              whileHover={!isMobileDevice ? { scale: 1.02, transition: { duration: 0.2 } } : undefined}
             >
               <ContactIcon>
                 <PhoneIcon />
@@ -1009,14 +1004,12 @@ const ContactsPage = () => {
                   </svg>
                 </ContactAction>
               </ContactDetails>
-            </ContactCard>
+            </SafeAnimatedCard>
 
-            <ContactCard
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
+            <SafeAnimatedCard
+              as={ContactCard}
+              delay={0.15}
+              whileHover={!isMobileDevice ? { scale: 1.02, transition: { duration: 0.2 } } : undefined}
             >
               <ContactIcon>
                 <EnvelopeIcon />
@@ -1040,14 +1033,12 @@ const ContactsPage = () => {
                   </svg>
                 </ContactAction>
               </ContactDetails>
-            </ContactCard>
+            </SafeAnimatedCard>
 
-            <ContactCard
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
+            <SafeAnimatedCard
+              as={ContactCard}
+              delay={0.2}
+              whileHover={!isMobileDevice ? { scale: 1.02, transition: { duration: 0.2 } } : undefined}
             >
               <ContactIcon>
                 <MapPinIcon />
@@ -1069,14 +1060,12 @@ const ContactsPage = () => {
                   </svg>
                 </ContactAction>
               </ContactDetails>
-            </ContactCard>
+            </SafeAnimatedCard>
 
-            <ContactCard
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.25 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
+            <SafeAnimatedCard
+              as={ContactCard}
+              delay={0.25}
+              whileHover={!isMobileDevice ? { scale: 1.02, transition: { duration: 0.2 } } : undefined}
             >
               <ContactIcon>
                 <ClockIcon />
@@ -1102,7 +1091,7 @@ const ContactsPage = () => {
                   </svg>
                 </ContactAction>
               </ContactDetails>
-            </ContactCard>
+            </SafeAnimatedCard>
           </ContactGrid>
         </ContentContainer>
       </ContentSection>
@@ -1115,22 +1104,13 @@ const ContactsPage = () => {
         viewport={{ once: true, amount: 0.2 }}
       >
         <ContentContainer>
-          <SectionTitle
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <span>{t('contacts.social.title', 'Следите за нами в соцсетях')}</span>
-          </SectionTitle>
-          <SectionSubtitle
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
+          <SafeAnimatedTitle delay={0} as={SectionTitle}>
+            {t('contacts.social.title', 'Следите за нами в соцсетях')}
+          </SafeAnimatedTitle>
+          
+          <SafeAnimatedTitle delay={0.1} as={SectionSubtitle}>
             {t('contacts.social.subtitle', 'Будьте в курсе последних новостей и акций KAIF')}
-          </SectionSubtitle>
+          </SafeAnimatedTitle>
 
           <motion.div
             initial={{ opacity: 0 }}

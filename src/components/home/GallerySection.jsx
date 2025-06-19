@@ -827,11 +827,11 @@ const GallerySection = () => {
         </FilterBar>
         
         {filteredGallery.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 50, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
+                      <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
           >
             <SliderContainer>
               <SliderTrack

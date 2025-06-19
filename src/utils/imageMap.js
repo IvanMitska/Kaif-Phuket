@@ -507,7 +507,7 @@ export const imageMap = {
       "large": {
         webp: "/images-webp/large/banya/public.webp",
         fallback: "/images/banya/public.jpg",
-        width: 1067,
+        width: 1600,
       },
       "medium": {
         webp: "/images-webp/medium/banya/public.webp",
@@ -533,7 +533,7 @@ export const imageMap = {
       "large": {
         webp: "/images-webp/large/banya/private.webp",
         fallback: "/images/banya/private.jpg",
-        width: 1073,
+        width: 1600,
       },
       "medium": {
         webp: "/images-webp/medium/banya/private.webp",
@@ -655,58 +655,6 @@ export const imageMap = {
         width: 320,
       },
     },
-    'spa/services/thai-massage.jpg': {
-      "original": {
-        webp: "/images-webp/spa/services/thai-massage.webp",
-        fallback: "/images/spa/services/thai-massage.jpg",
-      },
-      "large": {
-        webp: "/images-webp/large/spa/services/thai-massage.webp",
-        fallback: "/images/spa/services/thai-massage.jpg",
-        width: 1600,
-      },
-      "medium": {
-        webp: "/images-webp/medium/spa/services/thai-massage.webp",
-        fallback: "/images/spa/services/thai-massage.jpg",
-        width: 1024,
-      },
-      "small": {
-        webp: "/images-webp/small/spa/services/thai-massage.webp",
-        fallback: "/images/spa/services/thai-massage.jpg",
-        width: 768,
-      },
-      "thumbnail": {
-        webp: "/images-webp/thumbnail/spa/services/thai-massage.webp",
-        fallback: "/images/spa/services/thai-massage.jpg",
-        width: 320,
-      },
-    },
-    'spa/services/aromatherapy.jpg': {
-      "original": {
-        webp: "/images-webp/spa/services/aromatherapy.webp",
-        fallback: "/images/spa/services/aromatherapy.jpg",
-      },
-      "large": {
-        webp: "/images-webp/large/spa/services/aromatherapy.webp",
-        fallback: "/images/spa/services/aromatherapy.jpg",
-        width: 1600,
-      },
-      "medium": {
-        webp: "/images-webp/medium/spa/services/aromatherapy.webp",
-        fallback: "/images/spa/services/aromatherapy.jpg",
-        width: 1024,
-      },
-      "small": {
-        webp: "/images-webp/small/spa/services/aromatherapy.webp",
-        fallback: "/images/spa/services/aromatherapy.jpg",
-        width: 768,
-      },
-      "thumbnail": {
-        webp: "/images-webp/thumbnail/spa/services/aromatherapy.webp",
-        fallback: "/images/spa/services/aromatherapy.jpg",
-        width: 320,
-      },
-    },
     'sports/fight-club/fight-3.jpg': {
       "original": {
         webp: "/images-webp/sports/fight-club/fight-3.webp",
@@ -782,6 +730,58 @@ export const imageMap = {
       "thumbnail": {
         webp: "/images-webp/thumbnail/sports/fight-club/fight-1.webp",
         fallback: "/images/sports/fight-club/fight-1.jpg",
+        width: 320,
+      },
+    },
+    'spa/services/thai-massage.jpg': {
+      "original": {
+        webp: "/images-webp/spa/services/thai-massage.webp",
+        fallback: "/images/spa/services/thai-massage.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/spa/services/thai-massage.webp",
+        fallback: "/images/spa/services/thai-massage.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/spa/services/thai-massage.webp",
+        fallback: "/images/spa/services/thai-massage.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/spa/services/thai-massage.webp",
+        fallback: "/images/spa/services/thai-massage.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/spa/services/thai-massage.webp",
+        fallback: "/images/spa/services/thai-massage.jpg",
+        width: 320,
+      },
+    },
+    'spa/services/aromatherapy.jpg': {
+      "original": {
+        webp: "/images-webp/spa/services/aromatherapy.webp",
+        fallback: "/images/spa/services/aromatherapy.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/spa/services/aromatherapy.webp",
+        fallback: "/images/spa/services/aromatherapy.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/spa/services/aromatherapy.webp",
+        fallback: "/images/spa/services/aromatherapy.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/spa/services/aromatherapy.webp",
+        fallback: "/images/spa/services/aromatherapy.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/spa/services/aromatherapy.webp",
+        fallback: "/images/spa/services/aromatherapy.jpg",
         width: 320,
       },
     },
@@ -1071,136 +1071,6 @@ export const imageMap = {
         width: 320,
       },
     },
-    'menu/sauce/tzatzikii.jpg': {
-      "original": {
-        webp: "/images-webp/menu/sauce/tzatzikii.webp",
-        fallback: "/images/menu/sauce/tzatzikii.jpg",
-      },
-      "large": {
-        webp: "/images-webp/large/menu/sauce/tzatzikii.webp",
-        fallback: "/images/menu/sauce/tzatzikii.jpg",
-        width: 1600,
-      },
-      "medium": {
-        webp: "/images-webp/medium/menu/sauce/tzatzikii.webp",
-        fallback: "/images/menu/sauce/tzatzikii.jpg",
-        width: 1024,
-      },
-      "small": {
-        webp: "/images-webp/small/menu/sauce/tzatzikii.webp",
-        fallback: "/images/menu/sauce/tzatzikii.jpg",
-        width: 768,
-      },
-      "thumbnail": {
-        webp: "/images-webp/thumbnail/menu/sauce/tzatzikii.webp",
-        fallback: "/images/menu/sauce/tzatzikii.jpg",
-        width: 320,
-      },
-    },
-    'menu/sauce/satsebeli.jpg': {
-      "original": {
-        webp: "/images-webp/menu/sauce/satsebeli.webp",
-        fallback: "/images/menu/sauce/satsebeli.jpg",
-      },
-      "large": {
-        webp: "/images-webp/large/menu/sauce/satsebeli.webp",
-        fallback: "/images/menu/sauce/satsebeli.jpg",
-        width: 1600,
-      },
-      "medium": {
-        webp: "/images-webp/medium/menu/sauce/satsebeli.webp",
-        fallback: "/images/menu/sauce/satsebeli.jpg",
-        width: 1024,
-      },
-      "small": {
-        webp: "/images-webp/small/menu/sauce/satsebeli.webp",
-        fallback: "/images/menu/sauce/satsebeli.jpg",
-        width: 768,
-      },
-      "thumbnail": {
-        webp: "/images-webp/thumbnail/menu/sauce/satsebeli.webp",
-        fallback: "/images/menu/sauce/satsebeli.jpg",
-        width: 320,
-      },
-    },
-    'menu/sauce/pesto.jpg': {
-      "original": {
-        webp: "/images-webp/menu/sauce/pesto.webp",
-        fallback: "/images/menu/sauce/pesto.jpg",
-      },
-      "large": {
-        webp: "/images-webp/large/menu/sauce/pesto.webp",
-        fallback: "/images/menu/sauce/pesto.jpg",
-        width: 1600,
-      },
-      "medium": {
-        webp: "/images-webp/medium/menu/sauce/pesto.webp",
-        fallback: "/images/menu/sauce/pesto.jpg",
-        width: 1024,
-      },
-      "small": {
-        webp: "/images-webp/small/menu/sauce/pesto.webp",
-        fallback: "/images/menu/sauce/pesto.jpg",
-        width: 768,
-      },
-      "thumbnail": {
-        webp: "/images-webp/thumbnail/menu/sauce/pesto.webp",
-        fallback: "/images/menu/sauce/pesto.jpg",
-        width: 320,
-      },
-    },
-    'menu/sauce/mustard.jpg': {
-      "original": {
-        webp: "/images-webp/menu/sauce/mustard.webp",
-        fallback: "/images/menu/sauce/mustard.jpg",
-      },
-      "large": {
-        webp: "/images-webp/large/menu/sauce/mustard.webp",
-        fallback: "/images/menu/sauce/mustard.jpg",
-        width: 1600,
-      },
-      "medium": {
-        webp: "/images-webp/medium/menu/sauce/mustard.webp",
-        fallback: "/images/menu/sauce/mustard.jpg",
-        width: 1024,
-      },
-      "small": {
-        webp: "/images-webp/small/menu/sauce/mustard.webp",
-        fallback: "/images/menu/sauce/mustard.jpg",
-        width: 768,
-      },
-      "thumbnail": {
-        webp: "/images-webp/thumbnail/menu/sauce/mustard.webp",
-        fallback: "/images/menu/sauce/mustard.jpg",
-        width: 320,
-      },
-    },
-    'menu/sauce/aioli.jpg': {
-      "original": {
-        webp: "/images-webp/menu/sauce/aioli.webp",
-        fallback: "/images/menu/sauce/aioli.jpg",
-      },
-      "large": {
-        webp: "/images-webp/large/menu/sauce/aioli.webp",
-        fallback: "/images/menu/sauce/aioli.jpg",
-        width: 1600,
-      },
-      "medium": {
-        webp: "/images-webp/medium/menu/sauce/aioli.webp",
-        fallback: "/images/menu/sauce/aioli.jpg",
-        width: 1024,
-      },
-      "small": {
-        webp: "/images-webp/small/menu/sauce/aioli.webp",
-        fallback: "/images/menu/sauce/aioli.jpg",
-        width: 768,
-      },
-      "thumbnail": {
-        webp: "/images-webp/thumbnail/menu/sauce/aioli.webp",
-        fallback: "/images/menu/sauce/aioli.jpg",
-        width: 320,
-      },
-    },
     'menu/salad/xymusavokado.jpg': {
       "original": {
         webp: "/images-webp/menu/salad/xymusavokado.webp",
@@ -1328,6 +1198,136 @@ export const imageMap = {
       "thumbnail": {
         webp: "/images-webp/thumbnail/menu/salad/salad-baza.webp",
         fallback: "/images/menu/salad/salad-baza.jpg",
+        width: 320,
+      },
+    },
+    'menu/sauce/tzatzikii.jpg': {
+      "original": {
+        webp: "/images-webp/menu/sauce/tzatzikii.webp",
+        fallback: "/images/menu/sauce/tzatzikii.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/menu/sauce/tzatzikii.webp",
+        fallback: "/images/menu/sauce/tzatzikii.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/menu/sauce/tzatzikii.webp",
+        fallback: "/images/menu/sauce/tzatzikii.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/menu/sauce/tzatzikii.webp",
+        fallback: "/images/menu/sauce/tzatzikii.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/menu/sauce/tzatzikii.webp",
+        fallback: "/images/menu/sauce/tzatzikii.jpg",
+        width: 320,
+      },
+    },
+    'menu/sauce/satsebeli.jpg': {
+      "original": {
+        webp: "/images-webp/menu/sauce/satsebeli.webp",
+        fallback: "/images/menu/sauce/satsebeli.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/menu/sauce/satsebeli.webp",
+        fallback: "/images/menu/sauce/satsebeli.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/menu/sauce/satsebeli.webp",
+        fallback: "/images/menu/sauce/satsebeli.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/menu/sauce/satsebeli.webp",
+        fallback: "/images/menu/sauce/satsebeli.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/menu/sauce/satsebeli.webp",
+        fallback: "/images/menu/sauce/satsebeli.jpg",
+        width: 320,
+      },
+    },
+    'menu/sauce/pesto.jpg': {
+      "original": {
+        webp: "/images-webp/menu/sauce/pesto.webp",
+        fallback: "/images/menu/sauce/pesto.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/menu/sauce/pesto.webp",
+        fallback: "/images/menu/sauce/pesto.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/menu/sauce/pesto.webp",
+        fallback: "/images/menu/sauce/pesto.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/menu/sauce/pesto.webp",
+        fallback: "/images/menu/sauce/pesto.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/menu/sauce/pesto.webp",
+        fallback: "/images/menu/sauce/pesto.jpg",
+        width: 320,
+      },
+    },
+    'menu/sauce/mustard.jpg': {
+      "original": {
+        webp: "/images-webp/menu/sauce/mustard.webp",
+        fallback: "/images/menu/sauce/mustard.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/menu/sauce/mustard.webp",
+        fallback: "/images/menu/sauce/mustard.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/menu/sauce/mustard.webp",
+        fallback: "/images/menu/sauce/mustard.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/menu/sauce/mustard.webp",
+        fallback: "/images/menu/sauce/mustard.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/menu/sauce/mustard.webp",
+        fallback: "/images/menu/sauce/mustard.jpg",
+        width: 320,
+      },
+    },
+    'menu/sauce/aioli.jpg': {
+      "original": {
+        webp: "/images-webp/menu/sauce/aioli.webp",
+        fallback: "/images/menu/sauce/aioli.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/menu/sauce/aioli.webp",
+        fallback: "/images/menu/sauce/aioli.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/menu/sauce/aioli.webp",
+        fallback: "/images/menu/sauce/aioli.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/menu/sauce/aioli.webp",
+        fallback: "/images/menu/sauce/aioli.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/menu/sauce/aioli.webp",
+        fallback: "/images/menu/sauce/aioli.jpg",
         width: 320,
       },
     },

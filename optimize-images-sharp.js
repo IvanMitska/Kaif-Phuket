@@ -3,6 +3,20 @@ import fs from 'fs';
 import path from 'path';
 import { glob } from 'glob';
 
+// Функция для проверки валидности изображения
+async function isValidImage(imagePath) {
+  try {
+    const stats = fs.statSync(imagePath);
+    if (stats.size < 100) return false; // Слишком маленький файл
+    
+    await sharp(imagePath).metadata();
+    return true;
+  } catch (error) {
+    console.log(`⚠️  Skipping invalid image: ${path.basename(imagePath)}`);
+    return false;
+  }
+}
+
 async function optimizeImages() {
   console.log('🖼️  Starting image optimization with Sharp...');
   
@@ -23,6 +37,11 @@ async function optimizeImages() {
 
     // Обрабатываем JPG файлы
     for (const inputPath of jpgFiles) {
+      // Проверяем валидность изображения
+      if (!(await isValidImage(inputPath))) {
+        continue;
+      }
+
       const relativePath = path.relative('public/images', inputPath);
       const outputPath = path.join(outputDir, relativePath);
       
@@ -71,6 +90,11 @@ async function optimizeImages() {
 
     // Обрабатываем PNG файлы
     for (const inputPath of pngFiles) {
+      // Проверяем валидность изображения
+      if (!(await isValidImage(inputPath))) {
+        continue;
+      }
+
       const relativePath = path.relative('public/images', inputPath);
       const outputPath = path.join(outputDir, relativePath);
       

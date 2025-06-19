@@ -24,6 +24,12 @@ const HeroSection = () => {
 
   return (
     <HeroSectionContainer>
+      {/* 
+        Фоновое изображение можно легко поменять в HeroStyles.jsx:
+        - Спортзал: '/images/sports/gym/gym-1.jpg'
+        - Боевые искусства: '/images/sports/fight-club/fight-1.jpg'
+        - Другие варианты: '/images/sports/fight-club/fight-2.jpg', '/images/sports/fight-club/fight-3.jpg'
+      */}
       <HeroBackground />
 
       <HeroContainer>

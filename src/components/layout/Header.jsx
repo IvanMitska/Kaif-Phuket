@@ -46,6 +46,23 @@ const Header = () => {
     
     const timeout = setTimeout(() => {
       navigate(path);
+      // Принудительно скроллим к началу после навигации несколькими способами
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'instant'
+        });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 0);
+      
+      // Дополнительная проверка
+      setTimeout(() => {
+        if (window.scrollY > 0) {
+          window.scrollTo(0, 0);
+        }
+      }, 50);
     }, 100);
     
     setDebounceTimeout(timeout);
@@ -109,22 +126,51 @@ const Header = () => {
     cursor: 'pointer'
   }), [isActive, hoveredNav]);
 
-  const toggleMobileMenu = () => {
+  const toggleMobileMenu = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   useEffect(() => {
     if (isMobileMenuOpen) {
+      // Сохраняем текущую позицию скролла только при открытии меню
+      const scrollY = window.scrollY;
+      
       document.body.classList.add('mobile-menu-open');
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      
+      // Сохраняем позицию в data-атрибуте для восстановления
+      document.body.setAttribute('data-scroll-lock-position', scrollY.toString());
     } else {
+      // Восстанавливаем позицию скролла только если она была сохранена при открытии меню
+      const savedScrollY = document.body.getAttribute('data-scroll-lock-position');
+      
       document.body.classList.remove('mobile-menu-open');
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.removeAttribute('data-scroll-lock-position');
+      
+      // Восстанавливаем позицию только если она была сохранена
+      if (savedScrollY) {
+        window.scrollTo(0, parseInt(savedScrollY));
+      }
     }
     
     return () => {
       document.body.classList.remove('mobile-menu-open');
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.removeAttribute('data-scroll-lock-position');
     };
   }, [isMobileMenuOpen]);
 
@@ -572,7 +618,11 @@ const Header = () => {
                 backdropFilter: 'blur(4px)',
                 zIndex: 999996
               }}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setIsMobileMenuOpen(false);
+              }}
             />
             
             {/* Slide-in контейнер */}
@@ -626,7 +676,9 @@ const Header = () => {
                         }}
                       >
                         <div
-                          onClick={() => {
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
                             if (item.path !== location.pathname) {
                               debouncedNavigate(item.path);
                             }
@@ -683,7 +735,9 @@ const Header = () => {
                         key={lang.code}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
                           changeLanguage(lang.code);
                           setIsMobileMenuOpen(false);
                         }}

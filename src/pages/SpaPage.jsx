@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import PageScrollReset from '../components/common/PageScrollReset';
 
 // Ленивая загрузка компонентов СПА для оптимизации
 const SpaHeroSection = React.lazy(() => import('../components/spa/SpaHeroSection'));
@@ -63,6 +64,7 @@ const SpaPage = () => {
       variants={pageVariants}
       transition={{ duration: 0.2 }}
     >
+      <PageScrollReset />
       <Suspense fallback={<InvisibleLoader />}>
         <SpaHeroSection />
         <SpaServicesSection />

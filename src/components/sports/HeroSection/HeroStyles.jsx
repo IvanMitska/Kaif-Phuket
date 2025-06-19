@@ -17,6 +17,10 @@ export const HeroBackground = styled.div`
   width: 100%;
   height: 100%;
   z-index: 1;
+  background-image: url('/images/sports/fight-club/fight-1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   
   &::before {
     content: '';
@@ -26,9 +30,9 @@ export const HeroBackground = styled.div`
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, 
-      #1a1a1a 0%, 
-      #2d2d2d 50%, 
-      #1a1a1a 100%
+      rgba(0, 0, 0, 0.75) 0%, 
+      rgba(0, 0, 0, 0.5) 50%, 
+      rgba(0, 0, 0, 0.7) 100%
     );
   }
   
@@ -39,7 +43,7 @@ export const HeroBackground = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 100%);
+    background: linear-gradient(90deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.3) 100%);
   }
 `;
 
@@ -82,7 +86,7 @@ export const HeroTag = styled(motion.span)`
 
 export const HeroTitle = styled(motion.h1)`
   font-family: ${props => props.theme.fonts.heading};
-  font-size: clamp(3rem, 5vw, 5rem);
+  font-size: clamp(3rem, 5vw, 4.5rem);
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 1.5rem;
@@ -90,26 +94,14 @@ export const HeroTitle = styled(motion.h1)`
   position: relative;
   
   span {
-    color: ${props => props.theme.colors.primary};
+    color: #FFFFFF;
     position: relative;
     display: inline-block;
-    
-    &::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 0.2em;
-      background-color: ${props => props.theme.colors.primary};
-      opacity: 0.3;
-      border-radius: 2px;
-    }
   }
 `;
 
 export const HeroSubtitle = styled(motion.p)`
-  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.8);
   margin-bottom: 2.5rem;
@@ -278,21 +270,28 @@ export const HeroStatLabel = styled.span`
 export const HeroImageContainer = styled(motion.div)`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   height: 100%;
   
-  @media (max-width: 1023px) {
-    justify-content: center;
+  @media (max-width: 1024px) {
+    order: -1;
   }
 `;
 
 export const HeroImage = styled(motion.img)`
   max-width: 100%;
-  height: auto;
-  border-radius: 30px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  
+  @media (max-width: 1024px) {
+    height: 400px;
+    max-width: 90%;
+  }
   
   @media (max-width: 768px) {
-    max-width: 90%;
+    height: 300px;
   }
 `;

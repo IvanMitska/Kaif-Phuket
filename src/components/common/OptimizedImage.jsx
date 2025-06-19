@@ -107,6 +107,7 @@ const OptimizedImage = ({
   withPlaceholder = true,
   withLoadingIndicator = true,
   disableWebP = false,
+  priority = false, // Новый параметр для приоритетных изображений
   ...props
 }) => {
   const [loaded, setLoaded] = useState(false);
@@ -170,10 +171,24 @@ const OptimizedImage = ({
     setError(true);
     if (onError) onError();
   };
+
+  // Определяем подходящий размер на основе viewport
+  const getResponsiveSize = () => {
+    if (typeof window === 'undefined') return 'medium';
+    
+    const width = window.innerWidth;
+    if (width <= 480) return 'small';
+    if (width <= 768) return 'medium';
+    if (width <= 1200) return 'large';
+    return 'original';
+  };
+  
+  const responsiveSize = getResponsiveSize();
+  const currentImageSource = imageSources[responsiveSize] || imageSources.original;
   
   // IntersectionObserver для ленивой загрузки
   useEffect(() => {
-    if (!imageRef.current || loading !== 'lazy') return;
+    if (!imageRef.current || loading !== 'lazy' || priority) return;
     
     const observer = new IntersectionObserver(
       (entries) => {
@@ -193,48 +208,17 @@ const OptimizedImage = ({
     return () => {
       if (imageRef.current) observer.unobserve(imageRef.current);
     };
-  }, [loading]);
+  }, [loading, priority]);
   
   // Предзагрузка более крупного изображения при наведении
   const handleMouseEnter = () => {
-    if (imageSources.large) {
-      const preloadLink = document.createElement('link');
-      preloadLink.rel = 'preload';
-      preloadLink.as = 'image';
-      preloadLink.href = imageMap.detectWebP() && !disableWebP ? 
+    if (imageSources.large && responsiveSize !== 'large') {
+      const preloadImg = new Image();
+      preloadImg.src = imageMap.detectWebP() && !disableWebP ? 
         imageSources.large.webp : 
         imageSources.large.fallback;
-      document.head.appendChild(preloadLink);
-      
-      setTimeout(() => {
-        document.head.removeChild(preloadLink);
-      }, 5000);
     }
   };
-  
-  // Если произошла ошибка загрузки
-  if (error) {
-    return (
-      <ImageContainer 
-        className={className} 
-        style={style}
-        $placeholderColor={placeholderColor}
-      >
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '100%',
-          background: placeholderColor,
-          color: '#999',
-          fontSize: '0.875rem',
-          padding: '1rem'
-        }}>
-          {alt || 'Изображение недоступно'}
-        </div>
-      </ImageContainer>
-    );
-  }
   
   return (
     <ImageContainer 
@@ -242,67 +226,89 @@ const OptimizedImage = ({
       style={style}
       $placeholderColor={placeholderColor}
       onMouseEnter={handleMouseEnter}
+      {...props}
     >
-      {withPlaceholder && !loaded && (
-        <>
-          {thumbnailPath ? (
-            <BlurredPlaceholder 
-              $loaded={loaded} 
-              $thumbnail={thumbnailPath} 
-            />
-          ) : (
-            <Placeholder 
-              $loaded={loaded} 
-              $placeholderColor={placeholderColor} 
-            />
-          )}
-        </>
+      {/* LQIP - размытая миниатюра */}
+      {withPlaceholder && thumbnailPath && (
+        <BlurredPlaceholder 
+          $thumbnail={thumbnailPath}
+          $loaded={loaded}
+        />
       )}
       
-      {withLoadingIndicator && !loaded && <LoadingIndicator $loaded={loaded} />}
+      {/* Индикатор загрузки */}
+      {withLoadingIndicator && (
+        <LoadingIndicator $loaded={loaded} />
+      )}
       
+      {/* Основное изображение с адаптивными источниками */}
       <StyledPicture>
-        {/* Генерируем источники для разных размеров с WebP поддержкой */}
-        {Object.entries(sizes).map(([size, mediaQuery]) => 
-          imageSources[size] && imageMap.detectWebP() && !disableWebP && (
-            <source 
-              key={`${size}-webp`}
-              type="image/webp"
-              media={mediaQuery}
-              srcSet={imageSources[size].webp}
-              fetchpriority={size === 'small' ? 'high' : 'auto'}
-            />
-          )
+        {/* WebP источники для разных размеров экрана */}
+        {!disableWebP && imageSources.small && (
+          <source
+            media="(max-width: 480px)"
+            srcSet={imageSources.small.webp}
+            type="image/webp"
+          />
+        )}
+        {!disableWebP && imageSources.medium && (
+          <source
+            media="(max-width: 768px)"
+            srcSet={imageSources.medium.webp}
+            type="image/webp"
+          />
+        )}
+        {!disableWebP && imageSources.large && (
+          <source
+            media="(max-width: 1200px)"
+            srcSet={imageSources.large.webp}
+            type="image/webp"
+          />
+        )}
+        {!disableWebP && imageSources.original && (
+          <source
+            srcSet={imageSources.original.webp}
+            type="image/webp"
+          />
         )}
         
-        {/* Генерируем источники для разных размеров с обычными форматами */}
-        {Object.entries(sizes).map(([size, mediaQuery]) => 
-          imageSources[size] && (
-            <source 
-              key={size}
-              media={mediaQuery}
-              srcSet={imageSources[size].fallback}
-              fetchpriority={size === 'small' ? 'high' : 'auto'}
-            />
-          )
+        {/* Fallback источники */}
+        {imageSources.small && (
+          <source
+            media="(max-width: 480px)"
+            srcSet={imageSources.small.fallback}
+          />
+        )}
+        {imageSources.medium && (
+          <source
+            media="(max-width: 768px)"
+            srcSet={imageSources.medium.fallback}
+          />
+        )}
+        {imageSources.large && (
+          <source
+            media="(max-width: 1200px)"
+            srcSet={imageSources.large.fallback}
+          />
         )}
         
-        {/* Базовое изображение в качестве фоллбэка */}
         <StyledImage
           ref={imageRef}
-          src={imageSources.original?.fallback || src}
+          src={error ? (fallbackSrc || src) : currentImageSource.fallback}
           alt={alt}
-          loading={loading}
+          loading={priority ? 'eager' : loading}
           onLoad={handleLoad}
           onError={handleError}
           $loaded={loaded}
           $objectFit={objectFit}
           $objectPosition={objectPosition}
-          decoding="async"
-          fetchpriority={loading === 'eager' ? 'high' : 'auto'}
-          {...props}
         />
       </StyledPicture>
+      
+      {/* Плейсхолдер */}
+      {withPlaceholder && !thumbnailPath && (
+        <Placeholder $loaded={loaded} $placeholderColor={placeholderColor} />
+      )}
     </ImageContainer>
   );
 };

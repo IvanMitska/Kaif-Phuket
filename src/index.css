@@ -43,7 +43,7 @@
   --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Base Styles */
+/* Base Styles - Оптимизированы для предотвращения мерцания анимаций */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -75,6 +75,9 @@ html {
   scroll-snap-type: none !important;
   scroll-snap-align: none !important;
   background-color: #ffffff;
+  /* Оптимизация прокрутки */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: auto !important;
 }
 
 body {
@@ -548,6 +551,15 @@ body.mobile-menu-open {
 .mobile-burger:active {
   transform: translateY(0px);
   box-shadow: 0 2px 6px rgba(144, 179, 167, 0.15);
+}
+
+/* Простая оптимизация для мобильных устройств */
+@media screen and (max-width: 768px) {
+  /* Отключаем тяжелые анимации на мобильных */
+  .animate-wellness-breathe,
+  .animate-wellness-float {
+    animation: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
