@@ -431,7 +431,7 @@
         "beer": "Пиво",
         "strong": "Крепкий алкоголь",
         "liqueur": "Ликеры",
-        "protein": "Протеин",
+        "fitness": "Фитнес-напитки",
         "water": "Вода",
         "milk": "Молочные продукты",
         "soft_drink": "Безалкогольные напитки"
@@ -454,7 +454,14 @@
         "meat": "Мясо",
         "sweet": "Сладкое",
         "cold": "Холодное",
-        "hot": "Горячее"
+        "hot": "Горячее",
+        "fitness": "Фитнес",
+        "pre-workout": "Предтренировочный",
+        "mass-gainer": "Для набора массы",
+        "bcaa": "BCAA",
+        "recovery": "Восстановление",
+        "electrolyte": "Электролиты",
+        "fat-burner": "Жиросжигатель"
       },
       "sort": {
         "default": "По умолчанию",
@@ -919,6 +926,26 @@
         "coconut_water": {
           "name": "Кокосовая вода",
           "description": "Натуральная кокосовая вода"
+        },
+        "c4_original_shot": {
+          "name": "ПРЕДТРЕНИРОВОЧНЫЙ",
+          "description": "C4 Original Shot - заряд энергии перед тренировкой"
+        },
+        "serious_mass_shake": {
+          "name": "ГЕЙНЕР",
+          "description": "Serious Mass Shake - высококалорийный коктейль для роста мышц"
+        },
+        "xtend_eaa_recovery": {
+          "name": "BCAA / EAA",
+          "description": "Xtend EAA Recovery - антикатаболическая поддержка после тренировки"
+        },
+        "electrolyte_boost": {
+          "name": "ЭЛЕКТРОЛИТЫ",
+          "description": "Восполнение минералов после потери пота - гидратационный шот"
+        },
+        "l_carnitine_shot": {
+          "name": "ЖИРОСЖИГАТЕЛЬ",
+          "description": "L-Carnitine Shot - поддержка жирового метаболизма"
         }
       }
     }

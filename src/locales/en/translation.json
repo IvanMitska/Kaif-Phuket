@@ -432,7 +432,7 @@
         "beer": "Beer",
         "strong": "Hard Drinks",
         "liqueur": "Liqueurs",
-        "protein": "Protein",
+        "fitness": "Fitness Drinks",
         "water": "Water",
         "milk": "Milk Products",
         "soft_drink": "Soft Drinks"
@@ -455,7 +455,14 @@
         "meat": "Meat",
         "sweet": "Sweet",
         "cold": "Cold",
-        "hot": "Hot"
+        "hot": "Hot",
+        "fitness": "Fitness",
+        "pre-workout": "Pre-Workout",
+        "mass-gainer": "Mass Gainer",
+        "bcaa": "BCAA",
+        "recovery": "Recovery",
+        "electrolyte": "Electrolyte",
+        "fat-burner": "Fat Burner"
       },
       "sort": {
         "default": "Default",
@@ -920,6 +927,26 @@
         "coconut_water": {
           "name": "Coconut Water",
           "description": "Natural coconut water"
+        },
+        "c4_original_shot": {
+          "name": "PRE-WORKOUT",
+          "description": "C4 Original Shot - energy boost before training"
+        },
+        "serious_mass_shake": {
+          "name": "MASS GAINER",
+          "description": "Serious Mass Shake - high-calorie shake for muscle growth"
+        },
+        "xtend_eaa_recovery": {
+          "name": "BCAA / EAA",
+          "description": "Xtend EAA Recovery - anti-catabolic post-workout support"
+        },
+        "electrolyte_boost": {
+          "name": "ELECTROLYTE BOOST",
+          "description": "Replenish Minerals After Sweat Loss - hydration shot"
+        },
+        "l_carnitine_shot": {
+          "name": "FAT BURNING",
+          "description": "L-Carnitine Shot - fat metabolism support"
         }
       }
     }

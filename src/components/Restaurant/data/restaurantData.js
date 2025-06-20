@@ -1306,6 +1306,58 @@ export const getRestaurantData = (t) => {
       tags: ['beer', 'alcohol'],
       popular: true,
       category: 'beer'
+    },
+    
+    // FITNESS DRINK MENU - Фитнес-напитки
+    {
+      id: 133,
+      name: t('restaurant.menu.items.c4_original_shot.name', 'PRE-WORKOUT'),
+      description: t('restaurant.menu.items.c4_original_shot.description', 'C4 Original Shot - energy boost before training'),
+      price: '110 THB',
+      image: null, // Используем иконку
+      tags: ['fitness', 'pre-workout'],
+      popular: true,
+      category: 'fitness'
+    },
+    {
+      id: 134,
+      name: t('restaurant.menu.items.serious_mass_shake.name', 'MASS GAINER'),
+      description: t('restaurant.menu.items.serious_mass_shake.description', 'Serious Mass Shake - high-calorie shake for muscle growth'),
+      price: '190 THB',
+      image: null, // Используем иконку
+      tags: ['fitness', 'mass-gainer'],
+      popular: true,
+      category: 'fitness'
+    },
+    {
+      id: 135,
+      name: t('restaurant.menu.items.xtend_eaa_recovery.name', 'BCAA / EAA'),
+      description: t('restaurant.menu.items.xtend_eaa_recovery.description', 'Xtend EAA Recovery - anti-catabolic post-workout support'),
+      price: '90 THB',
+      image: null, // Используем иконку
+      tags: ['fitness', 'bcaa', 'recovery'],
+      popular: false,
+      category: 'fitness'
+    },
+    {
+      id: 136,
+      name: t('restaurant.menu.items.electrolyte_boost.name', 'ELECTROLYTE BOOST'),
+      description: t('restaurant.menu.items.electrolyte_boost.description', 'Replenish Minerals After Sweat Loss - hydration shot'),
+      price: '110 THB',
+      image: null, // Используем иконку
+      tags: ['fitness', 'electrolyte', 'recovery'],
+      popular: false,
+      category: 'fitness'
+    },
+    {
+      id: 137,
+      name: t('restaurant.menu.items.l_carnitine_shot.name', 'FAT BURNING'),
+      description: t('restaurant.menu.items.l_carnitine_shot.description', 'L-Carnitine Shot - fat metabolism support'),
+      price: '110 THB',
+      image: null, // Используем иконку
+      tags: ['fitness', 'fat-burner'],
+      popular: false,
+      category: 'fitness'
     }
   ];
   
@@ -1356,7 +1408,7 @@ export const getRestaurantData = (t) => {
     mocktail: 'bg-purple-50 text-purple-600',
     juice: 'bg-orange-50 text-orange-600',
     wine: 'bg-red-50 text-red-600',
-    protein: 'bg-blue-50 text-blue-600',
+    fitness: 'bg-blue-50 text-blue-600',
     water: 'bg-cyan-50 text-cyan-600',
     milk: 'bg-indigo-50 text-indigo-600',
     coffee: 'bg-amber-50 text-amber-600',
@@ -1367,7 +1419,15 @@ export const getRestaurantData = (t) => {
     strong: 'bg-red-100 text-red-700',
     liqueur: 'bg-purple-100 text-purple-700',
     beer: 'bg-yellow-50 text-yellow-600',
-    alcohol: 'bg-red-50 text-red-600'
+    alcohol: 'bg-red-50 text-red-600',
+    // Фитнес-напитки
+    fitness: 'bg-blue-100 text-blue-700',
+    'pre-workout': 'bg-orange-100 text-orange-700',
+    'mass-gainer': 'bg-green-100 text-green-700',
+    bcaa: 'bg-purple-100 text-purple-700',
+    recovery: 'bg-emerald-100 text-emerald-700',
+    electrolyte: 'bg-cyan-100 text-cyan-700',
+    'fat-burner': 'bg-red-100 text-red-700'
   };
 
   return { menuItems, slides, tagStyles };

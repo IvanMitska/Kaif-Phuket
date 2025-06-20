@@ -8,6 +8,9 @@ export default defineConfig({
   base: '/', // Изменяем базовый путь для локальной разработки
   server: {
     historyApiFallback: true, // Перенаправляем все запросы на index.html для SPA
+    headers: {
+      'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' ws: wss:;"
+    }
   },
   resolve: {
     alias: {

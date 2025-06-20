@@ -34,7 +34,7 @@ const getDrinkIcon = (category) => {
     strong: BoltIcon, // Молния для крепкого алкоголя (сила)
     liqueur: StarIcon, // Звезда для ликеров (премиум)
     beer: HeartIcon, // Сердце для пива (дружелюбие)
-    protein: BoltIcon, // Молния для протеина (энергия)
+    fitness: BoltIcon, // Молния для фитнес-напитков (энергия)
     water: SunIcon, // Солнце для воды (чистота)
     milk: HeartIcon, // Сердце для молока (забота)
     soft_drink: SparklesIcon // Блестки для безалкогольных напитков
@@ -55,7 +55,7 @@ const getDrinkColor = (category) => {
     strong: { bg: 'bg-slate-50', border: 'border-slate-200', text: 'text-slate-800', icon: 'text-slate-600' }, // Серый для крепкого алкоголя
     liqueur: { bg: 'bg-indigo-50', border: 'border-indigo-200', text: 'text-indigo-800', icon: 'text-indigo-600' }, // Индиго для ликеров
     beer: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-800', icon: 'text-amber-600' }, // Янтарный для пива
-    protein: { bg: 'bg-blue-50', border: 'border-blue-200', text: 'text-blue-800', icon: 'text-blue-600' }, // Синий для протеина
+    fitness: { bg: 'bg-blue-50', border: 'border-blue-200', text: 'text-blue-800', icon: 'text-blue-600' }, // Синий для фитнес-напитков
     water: { bg: 'bg-sky-50', border: 'border-sky-200', text: 'text-sky-800', icon: 'text-sky-600' }, // Небесно-голубой для воды
     milk: { bg: 'bg-stone-50', border: 'border-stone-200', text: 'text-stone-800', icon: 'text-stone-600' }, // Каменный для молока
     soft_drink: { bg: 'bg-lime-50', border: 'border-lime-200', text: 'text-lime-800', icon: 'text-lime-600' } // Лайм для безалкогольных напитков
@@ -66,7 +66,7 @@ const getDrinkColor = (category) => {
 const isDrinkCategory = (category) => {
   return [
     'tea', 'coffee', 'coffee_signature', 'smoothie', 'mocktail', 'juice', 
-    'wine', 'cocktail', 'strong', 'liqueur', 'beer', 'protein', 
+    'wine', 'cocktail', 'strong', 'liqueur', 'beer', 'fitness', 
     'water', 'milk', 'soft_drink'
   ].includes(category);
 };
@@ -566,7 +566,8 @@ const MenuCategoriesTabs = ({ activeCategory, setActiveCategory }) => {
     { id: 'cocktail', name: t('restaurant.menu.categories.cocktail', 'Коктейли'), priority: 14 },
     { id: 'wine', name: t('restaurant.menu.categories.wine', 'Вино'), priority: 15 },
     { id: 'beer', name: t('restaurant.menu.categories.beer', 'Пиво'), priority: 16 },
-    { id: 'strong', name: t('restaurant.menu.categories.strong', 'Крепкий алкоголь'), priority: 17 }
+    { id: 'strong', name: t('restaurant.menu.categories.strong', 'Крепкий алкоголь'), priority: 17 },
+    { id: 'fitness', name: t('restaurant.menu.categories.fitness', 'Фитнес-напитки'), priority: 18 }
   ];
 
   // Автоскролл к активной категории

@@ -430,7 +430,7 @@
         "beer": "เบียร์",
         "strong": "เหล้าแรง",
         "liqueur": "ลิเคียว",
-        "protein": "โปรตีน",
+        "fitness": "เครื่องดื่มฟิตเนส",
         "water": "น้ำ",
         "milk": "ผลิตภัณฑ์นม",
         "soft_drink": "เครื่องดื่มอ่อน"
@@ -453,7 +453,14 @@
         "meat": "เนื้อสัตว์",
         "sweet": "หวาน",
         "cold": "เย็น",
-        "hot": "ร้อน"
+        "hot": "ร้อน",
+        "fitness": "ฟิตเนส",
+        "pre-workout": "ก่อนออกกำลังกาย",
+        "mass-gainer": "เพิ่มน้ำหนัก",
+        "bcaa": "บีซีเอเอ",
+        "recovery": "ฟื้นฟู",
+        "electrolyte": "อิเล็กโทรไลต์",
+        "fat-burner": "เผาผลาญไขมัน"
       },
       "sort": {
         "default": "ค่าเริ่มต้น",
@@ -918,6 +925,26 @@
         "coconut_water": {
           "name": "น้ำมะพร้าว",
           "description": "น้ำมะพร้าวธรรมชาติ"
+        },
+        "c4_original_shot": {
+          "name": "ก่อนออกกำลังกาย",
+          "description": "C4 Original Shot - เพิ่มพลังงานก่อนออกกำลังกาย"
+        },
+        "serious_mass_shake": {
+          "name": "เพิ่มน้ำหนัก",
+          "description": "Serious Mass Shake - เชคแคลอรี่สูงสำหรับเพิ่มกล้ามเนื้อ"
+        },
+        "xtend_eaa_recovery": {
+          "name": "BCAA / EAA",
+          "description": "Xtend EAA Recovery - สนับสนุนต้านการสลายกล้ามเนื้อหลังออกกำลังกาย"
+        },
+        "electrolyte_boost": {
+          "name": "อิเล็กโทรไลต์",
+          "description": "เติมเกลือแร่หลังเหงื่อออก - ช็อตไฮเดรชั่น"
+        },
+        "l_carnitine_shot": {
+          "name": "เผาผลาญไขมัน",
+          "description": "L-Carnitine Shot - สนับสนุนการเผาผลาญไขมัน"
         }
       }
     }
