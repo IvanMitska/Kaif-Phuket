@@ -401,37 +401,37 @@ export const getSpaData = (t) => {
   const laserComplexServices = [
     {
       id: 'complex-1',
-      name: 'Икры + подмышки + глубокий бикини',
+      name: t('spa.services.items.complex_1.name', 'Икры + подмышки + глубокий бикини'),
       category: 'laser-complex',
       price: 3500,
-      description: 'Популярный комплекс для женщин',
+      description: t('spa.services.items.complex_1.description', 'Популярный комплекс для женщин'),
       popular: true,
       image: '/images/beauty/services/laser-complex-1.jpg'
     },
     {
       id: 'complex-2',
-      name: 'Подмышки + глубокий бикини/икры',
+      name: t('spa.services.items.complex_2.name', 'Подмышки + глубокий бикини/икры'),
       category: 'laser-complex',
       price: 2500,
-      description: 'Базовый комплекс эпиляции',
+      description: t('spa.services.items.complex_2.description', 'Базовый комплекс эпиляции'),
       popular: true,
       image: '/images/beauty/services/laser-complex-2.jpg'
     },
     {
       id: 'complex-3',
-      name: 'Ноги полностью + подмышки + глубокий бикини',
+      name: t('spa.services.items.complex_3.name', 'Ноги полностью + подмышки + глубокий бикини'),
       category: 'laser-complex',
       price: 4000,
-      description: 'Расширенный комплекс для ног',
+      description: t('spa.services.items.complex_3.description', 'Расширенный комплекс для ног'),
       popular: true,
       image: '/images/beauty/services/laser-complex-3.jpg'
     },
     {
       id: 'complex-4',
-      name: 'Руки полностью + ноги полностью + подмышки + глубокий бикини',
+      name: t('spa.services.items.complex_4.name', 'Руки полностью + ноги полностью + подмышки + глубокий бикини'),
       category: 'laser-complex',
       price: 5000,
-      description: 'Максимальный комплекс эпиляции',
+      description: t('spa.services.items.complex_4.description', 'Максимальный комплекс эпиляции'),
       popular: false,
       image: '/images/beauty/services/laser-complex-4.jpg'
     }
@@ -441,37 +441,37 @@ export const getSpaData = (t) => {
   const endosphereServices = [
     {
       id: 'endosphere-full-body',
-      name: 'Все тело',
+      name: t('spa.services.items.endosphere_full_body.name', 'Все тело'),
       category: 'endosphere',
       price: 2200,
-      description: 'Эндосфера-терапия всего тела для коррекции фигуры',
+      description: t('spa.services.items.endosphere_full_body.description', 'Эндосфера-терапия всего тела для коррекции фигуры'),
       popular: true,
       image: '/images/beauty/services/endosphere-body.jpg'
     },
     {
       id: 'endosphere-face',
-      name: 'Аппаратный массаж лица (Эндосфера, RF лифтинг)',
+      name: t('spa.services.items.endosphere_face.name', 'Аппаратный массаж лица (Эндосфера, RF лифтинг)'),
       category: 'endosphere',
       price: 1700,
-      description: 'Омолаживающий аппаратный массаж лица',
+      description: t('spa.services.items.endosphere_face.description', 'Омолаживающий аппаратный массаж лица'),
       popular: true,
       image: '/images/beauty/services/endosphere-face.jpg'
     },
     {
       id: 'endosphere-subscription-6',
-      name: 'Абонемент Эндосфера (6 сеансов)',
+      name: t('spa.services.items.endosphere_subscription_6.name', 'Абонемент Эндосфера (6 сеансов)'),
       category: 'endosphere',
       price: 11000,
-      description: 'Выгодный пакет из 6 процедур',
+      description: t('spa.services.items.endosphere_subscription_6.description', 'Выгодный пакет из 6 процедур'),
       popular: true,
       image: '/images/beauty/services/endosphere-subscription.jpg'
     },
     {
       id: 'endosphere-subscription-12',
-      name: 'Абонемент Эндосфера (12 сеансов)',
+      name: t('spa.services.items.endosphere_subscription_12.name', 'Абонемент Эндосфера (12 сеансов)'),
       category: 'endosphere',
       price: 18000,
-      description: 'Максимальный пакет из 12 процедур',
+      description: t('spa.services.items.endosphere_subscription_12.description', 'Максимальный пакет из 12 процедур'),
       popular: true,
       image: '/images/beauty/services/endosphere-subscription-max.jpg'
     }
@@ -508,55 +508,55 @@ export const getSpaData = (t) => {
     },
     {
       id: 'gel-strengthening',
-      name: 'Укрепление гелем без гель-лака',
+      name: t('spa.services.items.gel_strengthening.name', 'Укрепление гелем без гель-лака'),
       category: 'manicure',
       price: 1400,
-      description: 'Укрепление натуральных ногтей гелем',
+      description: t('spa.services.items.gel_strengthening.description', 'Укрепление натуральных ногтей гелем'),
       popular: false,
       image: '/images/beauty/services/gel-strengthening.jpg'
     },
     {
       id: 'gel-strengthening-polish',
-      name: 'Укрепление гелем с гель-лаком',
+      name: t('spa.services.items.gel_strengthening_polish.name', 'Укрепление гелем с гель-лаком'),
       category: 'manicure',
       price: 1600,
-      description: 'Укрепление ногтей с цветным покрытием',
+      description: t('spa.services.items.gel_strengthening_polish.description', 'Укрепление ногтей с цветным покрытием'),
       popular: true,
       image: '/images/beauty/services/gel-polish.jpg'
     },
     {
       id: 'gel-french',
-      name: 'Гель-лак френч коррекция',
+      name: t('spa.services.items.gel_french.name', 'Гель-лак френч коррекция'),
       category: 'manicure',
       price: 1800,
-      description: 'Классический французский маникюр гель-лаком',
+      description: t('spa.services.items.gel_french.description', 'Классический французский маникюр гель-лаком'),
       popular: true,
       image: '/images/beauty/services/french-manicure.jpg'
     },
     {
       id: 'nail-extension-short',
-      name: 'Наращивание ногтей классика короткие (до 2мм)',
+      name: t('spa.services.items.nail_extension_short.name', 'Наращивание ногтей классика короткие (до 2мм)'),
       category: 'manicure',
       price: 2300,
-      description: 'Наращивание коротких ногтей',
+      description: t('spa.services.items.nail_extension_short.description', 'Наращивание коротких ногтей'),
       popular: false,
       image: '/images/beauty/services/nail-extension.jpg'
     },
     {
       id: 'nail-extension-long',
-      name: 'Наращивание ногтей (свыше 2мм)',
+      name: t('spa.services.items.nail_extension_long.name', 'Наращивание ногтей (свыше 2мм)'),
       category: 'manicure',
       price: 2600,
-      description: 'Наращивание длинных ногтей',
+      description: t('spa.services.items.nail_extension_long.description', 'Наращивание длинных ногтей'),
       popular: false,
       image: '/images/beauty/services/nail-extension-long.jpg'
     },
     {
       id: 'nail-repair',
-      name: 'Ремонт ногтя',
+      name: t('spa.services.items.nail_repair.name', 'Ремонт ногтя'),
       category: 'manicure',
       priceFrom: 200,
-      description: 'Восстановление поврежденного ногтя',
+      description: t('spa.services.items.nail_repair.description', 'Восстановление поврежденного ногтя'),
       popular: false,
       image: '/images/beauty/services/nail-repair.jpg'
     }
@@ -584,37 +584,37 @@ export const getSpaData = (t) => {
     },
     {
       id: 'pedicure-toes-no-coating',
-      name: 'Педикюр пальчики без покрытия',
+      name: t('spa.services.items.pedicure_toes_no_coating.name', 'Педикюр пальчики без покрытия'),
       category: 'pedicure',
       price: 600,
-      description: 'Обработка только ногтей на пальцах',
+      description: t('spa.services.items.pedicure_toes_no_coating.description', 'Обработка только ногтей на пальцах'),
       popular: false,
       image: '/images/beauty/services/pedicure-toes.jpg'
     },
     {
       id: 'pedicure-toes-coating',
-      name: 'Педикюр пальчики с покрытием гель-лак',
+      name: t('spa.services.items.pedicure_toes_coating.name', 'Педикюр пальчики с покрытием гель-лак'),
       category: 'pedicure',
       price: 900,
-      description: 'Обработка ногтей с цветным покрытием',
+      description: t('spa.services.items.pedicure_toes_coating.description', 'Обработка ногтей с цветным покрытием'),
       popular: true,
       image: '/images/beauty/services/pedicure-toes-gel.jpg'
     },
     {
       id: 'callus-removal',
-      name: 'Удаление мозолей',
+      name: t('spa.services.items.callus_removal.name', 'Удаление мозолей'),
       category: 'pedicure',
       price: 300,
-      description: 'Профессиональное удаление мозолей',
+      description: t('spa.services.items.callus_removal.description', 'Профессиональное удаление мозолей'),
       popular: false,
       image: '/images/beauty/services/callus-removal.jpg'
     },
     {
       id: 'onycholysis-cleaning',
-      name: 'Чистка онихолизиса (топ мастер)',
+      name: t('spa.services.items.onycholysis_cleaning.name', 'Чистка онихолизиса (топ мастер)'),
       category: 'pedicure',
       priceFrom: 1000,
-      description: 'Лечение отслоения ногтевых пластин',
+      description: t('spa.services.items.onycholysis_cleaning.description', 'Лечение отслоения ногтевых пластин'),
       popular: false,
       image: '/images/beauty/services/onycholysis.jpg'
     }
@@ -633,19 +633,19 @@ export const getSpaData = (t) => {
     },
     {
       id: 'hair-wash-brushing',
-      name: 'Мытье с брашингом',
+      name: t('spa.services.items.hair_wash_brushing.name', 'Мытье с брашингом'),
       category: 'hair-care',
       price: 500,
-      description: 'Мытье головы с укладкой брашингом',
+      description: t('spa.services.items.hair_wash_brushing.description', 'Мытье головы с укладкой брашингом'),
       popular: false,
       image: '/images/beauty/services/hair-wash.jpg'
     },
     {
       id: 'bangs-haircut',
-      name: 'Стрижка челки',
+      name: t('spa.services.items.bangs_haircut.name', 'Стрижка челки'),
       category: 'hair-care',
       price: 500,
-      description: 'Коррекция и стрижка челки',
+      description: t('spa.services.items.bangs_haircut.description', 'Коррекция и стрижка челки'),
       popular: false,
       image: '/images/beauty/services/bangs-cut.jpg'
     },
@@ -660,138 +660,138 @@ export const getSpaData = (t) => {
     },
     {
       id: 'hair-styling',
-      name: 'Укладка с брашингом со стайлинг-средствами',
+      name: t('spa.services.items.hair_styling.name', 'Укладка с брашингом со стайлинг-средствами'),
       category: 'hair-care',
       priceFrom: 600,
       priceTo: 800,
-      description: 'Профессиональная укладка волос',
+      description: t('spa.services.items.hair_styling.description', 'Профессиональная укладка волос'),
       popular: true,
       image: '/images/beauty/services/hair-styling.jpg'
     },
     {
       id: 'evening-styling',
-      name: 'Вечерняя укладка',
+      name: t('spa.services.items.evening_styling.name', 'Вечерняя укладка'),
       category: 'hair-care',
       priceFrom: 600,
       priceTo: 800,
-      description: 'Праздничная укладка для особых случаев',
+      description: t('spa.services.items.evening_styling.description', 'Праздничная укладка для особых случаев'),
       popular: true,
       image: '/images/beauty/services/evening-styling.jpg'
     },
     {
       id: 'coloring-roots',
-      name: 'Окрашивание в 1 тон корни',
+      name: t('spa.services.items.coloring_roots.name', 'Окрашивание в 1 тон корни'),
       category: 'hair-care',
       price: 2000,
-      description: 'Окрашивание отросших корней',
+      description: t('spa.services.items.coloring_roots.description', 'Окрашивание отросших корней'),
       popular: true,
       image: '/images/beauty/services/hair-coloring.jpg'
     },
     {
       id: 'coloring-stretching',
-      name: 'Окрашивание корни + растяжка цвета по всей длине',
+      name: t('spa.services.items.coloring_stretching.name', 'Окрашивание корни + растяжка цвета по всей длине'),
       category: 'hair-care',
       priceFrom: 3500,
-      description: 'Сложное окрашивание с растяжкой цвета',
+      description: t('spa.services.items.coloring_stretching.description', 'Сложное окрашивание с растяжкой цвета'),
       popular: true,
       image: '/images/beauty/services/hair-stretching.jpg'
     },
     {
       id: 'coloring-short',
-      name: 'Окрашивание в 1 тон короткие',
+      name: t('spa.services.items.coloring_short.name', 'Окрашивание в 1 тон короткие'),
       category: 'hair-care',
       price: 2500,
-      description: 'Полное окрашивание коротких волос',
+      description: t('spa.services.items.coloring_short.description', 'Полное окрашивание коротких волос'),
       popular: false,
       image: '/images/beauty/services/coloring-short.jpg'
     },
     {
       id: 'coloring-medium',
-      name: 'Окрашивание в 1 тон средние',
+      name: t('spa.services.items.coloring_medium.name', 'Окрашивание в 1 тон средние'),
       category: 'hair-care',
       priceFrom: 3000,
-      description: 'Полное окрашивание волос средней длины',
+      description: t('spa.services.items.coloring_medium.description', 'Полное окрашивание волос средней длины'),
       popular: true,
       image: '/images/beauty/services/coloring-medium.jpg'
     },
     {
       id: 'coloring-long',
-      name: 'Окрашивание в 1 тон длинные',
+      name: t('spa.services.items.coloring_long.name', 'Окрашивание в 1 тон длинные'),
       category: 'hair-care',
       priceFrom: 4000,
-      description: 'Полное окрашивание длинных волос',
+      description: t('spa.services.items.coloring_long.description', 'Полное окрашивание длинных волос'),
       popular: true,
       image: '/images/beauty/services/coloring-long.jpg'
     },
     {
       id: 'total-blond-short',
-      name: 'Тотальный блонд короткие',
+      name: t('spa.services.items.total_blond_short.name', 'Тотальный блонд короткие'),
       category: 'hair-care',
       price: 5000,
-      description: 'Осветление коротких волос до блонда',
+      description: t('spa.services.items.total_blond_short.description', 'Осветление коротких волос до блонда'),
       popular: false,
       image: '/images/beauty/services/blond-short.jpg'
     },
     {
       id: 'total-blond-medium',
-      name: 'Тотальный блонд средние',
+      name: t('spa.services.items.total_blond_medium.name', 'Тотальный блонд средние'),
       category: 'hair-care',
       price: 6000,
-      description: 'Осветление волос средней длины до блонда',
+      description: t('spa.services.items.total_blond_medium.description', 'Осветление волос средней длины до блонда'),
       popular: true,
       image: '/images/beauty/services/blond-medium.jpg'
     },
     {
       id: 'total-blond-long',
-      name: 'Тотальный блонд длинные',
+      name: t('spa.services.items.total_blond_long.name', 'Тотальный блонд длинные'),
       category: 'hair-care',
       price: 6500,
-      description: 'Осветление длинных волос до блонда',
+      description: t('spa.services.items.total_blond_long.description', 'Осветление длинных волос до блонда'),
       popular: true,
       image: '/images/beauty/services/blond-long.jpg'
     },
     {
       id: 'happiness-short',
-      name: 'Счастье для волос уровень короткие',
+      name: t('spa.services.items.happiness_short.name', 'Счастье для волос уровень короткие'),
       category: 'hair-care',
       price: 2000,
-      description: 'Восстанавливающая процедура для коротких волос',
+      description: t('spa.services.items.happiness_short.description', 'Восстанавливающая процедура для коротких волос'),
       popular: false,
       image: '/images/beauty/services/happiness-short.jpg'
     },
     {
       id: 'happiness-medium',
-      name: 'Счастье для волос уровень средние',
+      name: t('spa.services.items.happiness_medium.name', 'Счастье для волос уровень средние'),
       category: 'hair-care',
       price: 3000,
-      description: 'Восстанавливающая процедура для волос средней длины',
+      description: t('spa.services.items.happiness_medium.description', 'Восстанавливающая процедура для волос средней длины'),
       popular: true,
       image: '/images/beauty/services/happiness-medium.jpg'
     },
     {
       id: 'happiness-long',
-      name: 'Счастье для волос уровень длинные',
+      name: t('spa.services.items.happiness_long.name', 'Счастье для волос уровень длинные'),
       category: 'hair-care',
       price: 3500,
-      description: 'Восстанавливающая процедура для длинных волос',
+      description: t('spa.services.items.happiness_long.description', 'Восстанавливающая процедура для длинных волос'),
       popular: true,
       image: '/images/beauty/services/happiness-long.jpg'
     },
     {
       id: 'indian-head-massage',
-      name: 'Индийский массаж головы',
+      name: t('spa.services.items.indian_head_massage.name', 'Индийский массаж головы'),
       category: 'hair-care',
       price: 1590,
-      description: 'Традиционный индийский массаж для роста волос',
+      description: t('spa.services.items.indian_head_massage.description', 'Традиционный индийский массаж для роста волос'),
       popular: false,
       image: '/images/beauty/services/indian-massage.jpg'
     },
     {
       id: 'hair-express-care',
-      name: 'Экспресс-уход',
+      name: t('spa.services.items.hair_express_care.name', 'Экспресс-уход'),
       category: 'hair-care',
       price: 500,
-      description: 'Быстрая восстанавливающая процедура',
+      description: t('spa.services.items.hair_express_care.description', 'Быстрая восстанавливающая процедура'),
       popular: false,
       image: '/images/beauty/services/hair-express.jpg'
     }

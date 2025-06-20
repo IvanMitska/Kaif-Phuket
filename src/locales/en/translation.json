@@ -1592,6 +1592,150 @@
         "hair_express_care": {
           "name": "Express care",
           "description": "Quick restorative procedure"
+        },
+        "endosphere_spa_program": {
+          "name": "Endosphere therapy SPA program",
+          "description": "Comprehensive SPA program with endosphere"
+        },
+        "gel_strengthening": {
+          "name": "Gel strengthening without gel polish",
+          "description": "Strengthening natural nails with gel"
+        },
+        "gel_strengthening_polish": {
+          "name": "Gel strengthening with gel polish",
+          "description": "Nail strengthening with colored coating"
+        },
+        "gel_french": {
+          "name": "Gel polish French correction",
+          "description": "Classic French manicure with gel polish"
+        },
+        "nail_extension_short": {
+          "name": "Classic nail extension short (up to 2mm)",
+          "description": "Short nail extension"
+        },
+        "nail_extension_long": {
+          "name": "Nail extension (over 2mm)",
+          "description": "Long nail extension"
+        },
+        "nail_repair": {
+          "name": "Nail repair",
+          "description": "Damaged nail restoration"
+        },
+        "pedicure_toes_no_coating": {
+          "name": "Toe pedicure without coating",
+          "description": "Treatment of toenails only"
+        },
+        "pedicure_toes_coating": {
+          "name": "Toe pedicure with gel polish coating",
+          "description": "Nail treatment with colored coating"
+        },
+        "callus_removal": {
+          "name": "Callus removal",
+          "description": "Professional callus removal"
+        },
+        "onycholysis_cleaning": {
+          "name": "Onycholysis cleaning (top master)",
+          "description": "Treatment of nail plate detachment"
+        },
+        "hair_wash_brushing": {
+          "name": "Hair wash with brushing",
+          "description": "Hair washing with brush styling"
+        },
+        "bangs_haircut": {
+          "name": "Bangs haircut",
+          "description": "Bangs correction and cutting"
+        },
+        "hair_styling": {
+          "name": "Brushing with styling products",
+          "description": "Professional hair styling"
+        },
+        "evening_styling": {
+          "name": "Evening styling",
+          "description": "Festive styling for special occasions"
+        },
+        "coloring_roots": {
+          "name": "Single tone root coloring",
+          "description": "Coloring regrown roots"
+        },
+        "coloring_stretching": {
+          "name": "Root coloring + color stretching along length",
+          "description": "Complex coloring with color stretching"
+        },
+        "coloring_short": {
+          "name": "Single tone coloring short",
+          "description": "Full coloring of short hair"
+        },
+        "coloring_medium": {
+          "name": "Single tone coloring medium",
+          "description": "Full coloring of medium length hair"
+        },
+        "coloring_long": {
+          "name": "Single tone coloring long",
+          "description": "Full coloring of long hair"
+        },
+        "total_blond_short": {
+          "name": "Total blond short",
+          "description": "Lightening short hair to blond"
+        },
+        "total_blond_medium": {
+          "name": "Total blond medium",
+          "description": "Lightening medium length hair to blond"
+        },
+        "total_blond_long": {
+          "name": "Total blond long",
+          "description": "Lightening long hair to blond"
+        },
+        "happiness_short": {
+          "name": "Hair happiness treatment short",
+          "description": "Restorative treatment for short hair"
+        },
+        "happiness_medium": {
+          "name": "Hair happiness treatment medium",
+          "description": "Restorative treatment for medium length hair"
+        },
+        "happiness_long": {
+          "name": "Hair happiness treatment long",
+          "description": "Restorative treatment for long hair"
+        },
+        "indian_head_massage": {
+          "name": "Indian head massage",
+          "description": "Traditional Indian massage for hair growth"
+        },
+        "hair_express_care": {
+          "name": "Express care",
+          "description": "Quick restorative treatment"
+        },
+        "complex_1": {
+          "name": "Calves + Armpits + Deep Bikini",
+          "description": "Popular women's complex"
+        },
+        "complex_2": {
+          "name": "Armpits + Deep Bikini/Calves",
+          "description": "Basic hair removal complex"
+        },
+        "complex_3": {
+          "name": "Full Legs + Armpits + Deep Bikini",
+          "description": "Extended leg complex"
+        },
+        "complex_4": {
+          "name": "Full Arms + Full Legs + Armpits + Deep Bikini",
+          "description": "Maximum hair removal complex"
+        },
+        "endosphere_full_body": {
+          "name": "Full Body",
+          "description": "Full body endosphere therapy for figure correction"
+        },
+        "endosphere_face": {
+          "name": "Face apparatus massage (Endosphere, RF lifting)",
+          "description": "Rejuvenating apparatus face massage"
+        },
+        "endosphere_subscription_6": {
+          "name": "Endosphere subscription (6 sessions)",
+          "description": "Advantageous package of 6 treatments"
+        },
+        "endosphere_subscription_12": {
+          "name": "Endosphere subscription (12 sessions)",
+          "description": "Maximum package of 12 treatments"
         }
       }
     },
