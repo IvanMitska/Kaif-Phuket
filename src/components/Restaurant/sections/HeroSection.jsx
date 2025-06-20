@@ -207,7 +207,7 @@ const HeroSection = memo(({ menuSectionRef }) => {
     <HeroContainer>
       <HeroBackground>
         <img 
-          src="/src/assets/images/restaurant/booking.jpg"
+          src="/images/restaurant/booking.jpg"
           alt="Restaurant interior"
           loading="eager"
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}

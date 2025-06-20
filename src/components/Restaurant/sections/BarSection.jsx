@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { CakeIcon, FireIcon, BeakerIcon } from '@heroicons/react/24/outline';
 // Импортируем изображение
-import barImage from '../../../assets/images/restaurant/bar.jpg';
+// import barImage from '../../../assets/images/restaurant/bar.jpg';
 
 const BarSection = () => {
   const { t } = useTranslation();
@@ -209,7 +209,7 @@ const BarSection = () => {
                 boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)'
               }}>
                 <img 
-                  src={barImage} 
+                  src="/images/restaurant/bar.jpg" 
                   alt="Our Bar" 
                   style={{
                     width: '100%',
