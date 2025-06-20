@@ -947,6 +947,282 @@
         "l_carnitine_shot": {
           "name": "FAT BURNING",
           "description": "L-Carnitine Shot - fat metabolism support"
+        },
+        "rejuvenation_program": {
+          "name": "Rejuvenation Program",
+          "description": "Comprehensive anti-aging program"
+        },
+        "vacuum_oil": {
+          "name": "Oil Vacuum Facial Cleansing",
+          "description": "Cleansing with nourishing oils"
+        },
+        "hydration_program": {
+          "name": "Hydration and Radiance Program",
+          "description": "Intensive hydration for skin radiance"
+        },
+        "vacuum_men": {
+          "name": "Men's Vacuum Facial Cleansing",
+          "description": "Specialized care for men's skin"
+        },
+        "express_care": {
+          "name": "Express Care",
+          "description": "Quick procedure for fresh skin"
+        },
+        "facial_massage_care": {
+          "name": "Facial Massage with Care",
+          "description": "Relaxing massage with care products"
+        },
+        "facial_massage": {
+          "name": "Facial Massage",
+          "description": "Classic facial massage for relaxation"
+        },
+        "vacuum_subscription_5": {
+          "name": "Vacuum Cleansing Subscription (5 standard procedures)",
+          "description": "Advantageous package of 5 standard procedures"
+        },
+        "vacuum_subscription_5_special": {
+          "name": "Vacuum Cleansing Subscription (5 specialized procedures)",
+          "description": "Premium package of 5 specialized procedures"
+        },
+        "deep_bikini": {
+          "name": "Deep Bikini",
+          "description": "Laser hair removal of intimate area"
+        },
+        "lower_back": {
+          "name": "Lower back/Shoulder blades/Abdomen",
+          "description": "Hair removal of medium body areas"
+        },
+        "areola_line": {
+          "name": "Areola/Abdominal line",
+          "description": "Hair removal of delicate areas"
+        },
+        "back_completely": {
+          "name": "Full Back",
+          "description": "Complete back hair removal"
+        },
+        "buttocks_calves": {
+          "name": "Buttocks/Calves/Thighs",
+          "description": "Hair removal of leg areas"
+        },
+        "legs_completely": {
+          "name": "Full Legs",
+          "description": "Complete leg hair removal"
+        },
+        "arms_completely": {
+          "name": "Full Arms",
+          "description": "Complete arm hair removal"
+        },
+        "face_lower": {
+          "name": "Lower Third of Face",
+          "description": "Hair removal of chin area"
+        },
+        "armpits": {
+          "name": "Armpits",
+          "description": "Armpit hair removal"
+        },
+        "men_2_zones": {
+          "name": "Any 2 zones",
+          "description": "Hair removal of any two zones of choice"
+        },
+        "men_3_zones": {
+          "name": "Any 3 zones",
+          "description": "Hair removal of any three zones of choice"
+        },
+        "men_4_zones": {
+          "name": "Any 4 zones",
+          "description": "Hair removal of any four zones of choice"
+        },
+        "men_full_body": {
+          "name": "Full Body",
+          "description": "Complete full body hair removal"
+        },
+        "men_face": {
+          "name": "Upper lip/Chin/Cheeks/Neck",
+          "description": "Facial area hair removal"
+        },
+        "men_full_face": {
+          "name": "Full Face",
+          "description": "Complete facial hair removal"
+        },
+        "men_armpits": {
+          "name": "Armpits",
+          "description": "Armpit hair removal"
+        },
+        "men_chest_abdomen": {
+          "name": "Chest/Abdomen completely",
+          "description": "Torso hair removal"
+        },
+        "men_subscription": {
+          "name": "Full Body Subscription (5 sessions)",
+          "description": "Advantageous full hair removal package"
+        },
+        "complex_1": {
+          "name": "Calves + Armpits + Deep Bikini",
+          "description": "Popular package for women"
+        },
+        "complex_2": {
+          "name": "Armpits + Deep Bikini/Calves",
+          "description": "Basic hair removal package"
+        },
+        "complex_3": {
+          "name": "Full Legs + Armpits + Deep Bikini",
+          "description": "Extended leg package"
+        },
+        "complex_4": {
+          "name": "Full Arms + Full Legs + Armpits + Deep Bikini",
+          "description": "Maximum hair removal package"
+        },
+        "endosphere_full_body": {
+          "name": "Full Body",
+          "description": "Endosphere therapy for full body figure correction"
+        },
+        "endosphere_face": {
+          "name": "Hardware Facial Massage (Endosphere, RF lifting)",
+          "description": "Rejuvenating hardware facial massage"
+        },
+        "endosphere_subscription_6": {
+          "name": "Endosphere Subscription (6 sessions)",
+          "description": "Advantageous package of 6 procedures"
+        },
+        "endosphere_subscription_12": {
+          "name": "Endosphere Subscription (12 sessions)",
+          "description": "Maximum package of 12 procedures"
+        },
+        "manicure_no_coating": {
+          "name": "Manicure without coating",
+          "description": "Classic manicure with nail plate treatment"
+        },
+        "manicure_base": {
+          "name": "Manicure with base coating",
+          "description": "Manicure with protective base coating"
+        },
+        "manicure_gel": {
+          "name": "Manicure with gel polish coating",
+          "description": "Manicure with long-lasting gel polish coating"
+        },
+        "gel_strengthening": {
+          "name": "Gel strengthening without gel polish",
+          "description": "Natural nail strengthening with gel"
+        },
+        "gel_strengthening_polish": {
+          "name": "Gel strengthening with gel polish",
+          "description": "Nail strengthening with colored coating"
+        },
+        "gel_french": {
+          "name": "Gel polish French correction",
+          "description": "Classic French manicure with gel polish"
+        },
+        "nail_extension_short": {
+          "name": "Classic nail extension short (up to 2mm)",
+          "description": "Short nail extension"
+        },
+        "nail_extension_long": {
+          "name": "Nail extension (over 2mm)",
+          "description": "Long nail extension"
+        },
+        "nail_repair": {
+          "name": "Nail repair",
+          "description": "Damaged nail restoration"
+        },
+        "pedicure_full_no_coating": {
+          "name": "Full pedicure without coating",
+          "description": "Complete foot and nail treatment"
+        },
+        "pedicure_full_coating": {
+          "name": "Full pedicure with coating",
+          "description": "Full pedicure with gel polish coating"
+        },
+        "pedicure_toes_no_coating": {
+          "name": "Toe pedicure without coating",
+          "description": "Treatment of toe nails only"
+        },
+        "pedicure_toes_coating": {
+          "name": "Toe pedicure with gel polish coating",
+          "description": "Nail treatment with colored coating"
+        },
+        "callus_removal": {
+          "name": "Callus removal",
+          "description": "Professional callus removal"
+        },
+        "onycholysis_cleaning": {
+          "name": "Onycholysis cleaning (top master)",
+          "description": "Treatment of nail plate detachment"
+        },
+        "womens_haircut": {
+          "name": "Women's haircut",
+          "description": "Professional women's haircut"
+        },
+        "hair_wash_brushing": {
+          "name": "Hair wash with brushing",
+          "description": "Hair washing with brush styling"
+        },
+        "bangs_haircut": {
+          "name": "Bangs haircut",
+          "description": "Bangs correction and cutting"
+        },
+        "mens_haircut": {
+          "name": "Men's haircut",
+          "description": "Stylish men's haircut"
+        },
+        "hair_styling": {
+          "name": "Styling with brushing and styling products",
+          "description": "Professional hair styling"
+        },
+        "evening_styling": {
+          "name": "Evening styling",
+          "description": "Festive styling for special occasions"
+        },
+        "coloring_roots": {
+          "name": "Single-tone root coloring",
+          "description": "Regrowth root coloring"
+        },
+        "coloring_stretching": {
+          "name": "Root coloring + color stretching along full length",
+          "description": "Complex coloring with color stretching"
+        },
+        "coloring_short": {
+          "name": "Single-tone coloring short",
+          "description": "Full coloring of short hair"
+        },
+        "coloring_medium": {
+          "name": "Single-tone coloring medium",
+          "description": "Full coloring of medium-length hair"
+        },
+        "coloring_long": {
+          "name": "Single-tone coloring long",
+          "description": "Full coloring of long hair"
+        },
+        "total_blond_short": {
+          "name": "Total blond short",
+          "description": "Short hair lightening to blond"
+        },
+        "total_blond_medium": {
+          "name": "Total blond medium",
+          "description": "Medium-length hair lightening to blond"
+        },
+        "total_blond_long": {
+          "name": "Total blond long",
+          "description": "Long hair lightening to blond"
+        },
+        "happiness_short": {
+          "name": "Hair happiness treatment short",
+          "description": "Restorative procedure for short hair"
+        },
+        "happiness_medium": {
+          "name": "Hair happiness treatment medium",
+          "description": "Restorative procedure for medium-length hair"
+        },
+        "happiness_long": {
+          "name": "Hair happiness treatment long",
+          "description": "Restorative procedure for long hair"
+        },
+        "indian_head_massage": {
+          "name": "Indian head massage",
+          "description": "Traditional Indian massage for hair growth"
+        },
+        "hair_express_care": {
+          "name": "Express care",
+          "description": "Quick restorative procedure"
         }
       }
     }
@@ -1043,7 +1319,279 @@
         },
         "rejuvenation_program": {
           "name": "Rejuvenation Program",
-          "description": "Complex anti-aging program"
+          "description": "Comprehensive anti-aging program"
+        },
+        "vacuum_oil": {
+          "name": "Oil Vacuum Facial Cleansing",
+          "description": "Cleansing with nourishing oils"
+        },
+        "hydration_program": {
+          "name": "Hydration and Radiance Program",
+          "description": "Intensive hydration for skin radiance"
+        },
+        "vacuum_men": {
+          "name": "Men's Vacuum Facial Cleansing",
+          "description": "Specialized care for men's skin"
+        },
+        "express_care": {
+          "name": "Express Care",
+          "description": "Quick procedure for fresh skin"
+        },
+        "facial_massage_care": {
+          "name": "Facial Massage with Care",
+          "description": "Relaxing massage with care products"
+        },
+        "facial_massage": {
+          "name": "Facial Massage",
+          "description": "Classic facial massage for relaxation"
+        },
+        "vacuum_subscription_5": {
+          "name": "Vacuum Cleansing Subscription (5 standard procedures)",
+          "description": "Advantageous package of 5 standard procedures"
+        },
+        "vacuum_subscription_5_special": {
+          "name": "Vacuum Cleansing Subscription (5 specialized procedures)",
+          "description": "Premium package of 5 specialized procedures"
+        },
+        "deep_bikini": {
+          "name": "Deep Bikini",
+          "description": "Laser hair removal of intimate area"
+        },
+        "lower_back": {
+          "name": "Lower back/Shoulder blades/Abdomen",
+          "description": "Hair removal of medium body areas"
+        },
+        "areola_line": {
+          "name": "Areola/Abdominal line",
+          "description": "Hair removal of delicate areas"
+        },
+        "back_completely": {
+          "name": "Full Back",
+          "description": "Complete back hair removal"
+        },
+        "buttocks_calves": {
+          "name": "Buttocks/Calves/Thighs",
+          "description": "Hair removal of leg areas"
+        },
+        "legs_completely": {
+          "name": "Full Legs",
+          "description": "Complete leg hair removal"
+        },
+        "arms_completely": {
+          "name": "Full Arms",
+          "description": "Complete arm hair removal"
+        },
+        "face_lower": {
+          "name": "Lower Third of Face",
+          "description": "Hair removal of chin area"
+        },
+        "armpits": {
+          "name": "Armpits",
+          "description": "Armpit hair removal"
+        },
+        "men_2_zones": {
+          "name": "Any 2 zones",
+          "description": "Hair removal of any two zones of choice"
+        },
+        "men_3_zones": {
+          "name": "Any 3 zones",
+          "description": "Hair removal of any three zones of choice"
+        },
+        "men_4_zones": {
+          "name": "Any 4 zones",
+          "description": "Hair removal of any four zones of choice"
+        },
+        "men_full_body": {
+          "name": "Full Body",
+          "description": "Complete full body hair removal"
+        },
+        "men_face": {
+          "name": "Upper lip/Chin/Cheeks/Neck",
+          "description": "Facial area hair removal"
+        },
+        "men_full_face": {
+          "name": "Full Face",
+          "description": "Complete facial hair removal"
+        },
+        "men_armpits": {
+          "name": "Armpits",
+          "description": "Armpit hair removal"
+        },
+        "men_chest_abdomen": {
+          "name": "Chest/Abdomen completely",
+          "description": "Torso hair removal"
+        },
+        "men_subscription": {
+          "name": "Full Body Subscription (5 sessions)",
+          "description": "Advantageous full hair removal package"
+        },
+        "complex_1": {
+          "name": "Calves + Armpits + Deep Bikini",
+          "description": "Popular package for women"
+        },
+        "complex_2": {
+          "name": "Armpits + Deep Bikini/Calves",
+          "description": "Basic hair removal package"
+        },
+        "complex_3": {
+          "name": "Full Legs + Armpits + Deep Bikini",
+          "description": "Extended leg package"
+        },
+        "complex_4": {
+          "name": "Full Arms + Full Legs + Armpits + Deep Bikini",
+          "description": "Maximum hair removal package"
+        },
+        "endosphere_full_body": {
+          "name": "Full Body",
+          "description": "Endosphere therapy for full body figure correction"
+        },
+        "endosphere_face": {
+          "name": "Hardware Facial Massage (Endosphere, RF lifting)",
+          "description": "Rejuvenating hardware facial massage"
+        },
+        "endosphere_subscription_6": {
+          "name": "Endosphere Subscription (6 sessions)",
+          "description": "Advantageous package of 6 procedures"
+        },
+        "endosphere_subscription_12": {
+          "name": "Endosphere Subscription (12 sessions)",
+          "description": "Maximum package of 12 procedures"
+        },
+        "manicure_no_coating": {
+          "name": "Manicure without coating",
+          "description": "Classic manicure with nail plate treatment"
+        },
+        "manicure_base": {
+          "name": "Manicure with base coating",
+          "description": "Manicure with protective base coating"
+        },
+        "manicure_gel": {
+          "name": "Manicure with gel polish coating",
+          "description": "Manicure with long-lasting gel polish coating"
+        },
+        "gel_strengthening": {
+          "name": "Gel strengthening without gel polish",
+          "description": "Natural nail strengthening with gel"
+        },
+        "gel_strengthening_polish": {
+          "name": "Gel strengthening with gel polish",
+          "description": "Nail strengthening with colored coating"
+        },
+        "gel_french": {
+          "name": "Gel polish French correction",
+          "description": "Classic French manicure with gel polish"
+        },
+        "nail_extension_short": {
+          "name": "Classic nail extension short (up to 2mm)",
+          "description": "Short nail extension"
+        },
+        "nail_extension_long": {
+          "name": "Nail extension (over 2mm)",
+          "description": "Long nail extension"
+        },
+        "nail_repair": {
+          "name": "Nail repair",
+          "description": "Damaged nail restoration"
+        },
+        "pedicure_full_no_coating": {
+          "name": "Full pedicure without coating",
+          "description": "Complete foot and nail treatment"
+        },
+        "pedicure_full_coating": {
+          "name": "Full pedicure with coating",
+          "description": "Full pedicure with gel polish coating"
+        },
+        "pedicure_toes_no_coating": {
+          "name": "Toe pedicure without coating",
+          "description": "Treatment of toe nails only"
+        },
+        "pedicure_toes_coating": {
+          "name": "Toe pedicure with gel polish coating",
+          "description": "Nail treatment with colored coating"
+        },
+        "callus_removal": {
+          "name": "Callus removal",
+          "description": "Professional callus removal"
+        },
+        "onycholysis_cleaning": {
+          "name": "Onycholysis cleaning (top master)",
+          "description": "Treatment of nail plate detachment"
+        },
+        "womens_haircut": {
+          "name": "Women's haircut",
+          "description": "Professional women's haircut"
+        },
+        "hair_wash_brushing": {
+          "name": "Hair wash with brushing",
+          "description": "Hair washing with brush styling"
+        },
+        "bangs_haircut": {
+          "name": "Bangs haircut",
+          "description": "Bangs correction and cutting"
+        },
+        "mens_haircut": {
+          "name": "Men's haircut",
+          "description": "Stylish men's haircut"
+        },
+        "hair_styling": {
+          "name": "Styling with brushing and styling products",
+          "description": "Professional hair styling"
+        },
+        "evening_styling": {
+          "name": "Evening styling",
+          "description": "Festive styling for special occasions"
+        },
+        "coloring_roots": {
+          "name": "Single-tone root coloring",
+          "description": "Regrowth root coloring"
+        },
+        "coloring_stretching": {
+          "name": "Root coloring + color stretching along full length",
+          "description": "Complex coloring with color stretching"
+        },
+        "coloring_short": {
+          "name": "Single-tone coloring short",
+          "description": "Full coloring of short hair"
+        },
+        "coloring_medium": {
+          "name": "Single-tone coloring medium",
+          "description": "Full coloring of medium-length hair"
+        },
+        "coloring_long": {
+          "name": "Single-tone coloring long",
+          "description": "Full coloring of long hair"
+        },
+        "total_blond_short": {
+          "name": "Total blond short",
+          "description": "Short hair lightening to blond"
+        },
+        "total_blond_medium": {
+          "name": "Total blond medium",
+          "description": "Medium-length hair lightening to blond"
+        },
+        "total_blond_long": {
+          "name": "Total blond long",
+          "description": "Long hair lightening to blond"
+        },
+        "happiness_short": {
+          "name": "Hair happiness treatment short",
+          "description": "Restorative procedure for short hair"
+        },
+        "happiness_medium": {
+          "name": "Hair happiness treatment medium",
+          "description": "Restorative procedure for medium-length hair"
+        },
+        "happiness_long": {
+          "name": "Hair happiness treatment long",
+          "description": "Restorative procedure for long hair"
+        },
+        "indian_head_massage": {
+          "name": "Indian head massage",
+          "description": "Traditional Indian massage for hair growth"
+        },
+        "hair_express_care": {
+          "name": "Express care",
+          "description": "Quick restorative procedure"
         }
       }
     },
@@ -1181,7 +1729,7 @@
       "gym": {
         "title": "Gym",
         "description": "Over 70 pieces of professional equipment",
-        "hours": "06:00 - 23:00",
+        "hours": "07:00 - 22:00",
         "capacity": "Up to 40 people",
         "description1": "Our gym is equipped with modern premium equipment from leading manufacturers. Here you will find everything you need for effective workouts - from free weights to the latest generation of cardio machines.",
         "description2": "The spacious room with panoramic windows creates the perfect atmosphere for training, and professional trainers are always ready to help create an individual program.",

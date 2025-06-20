@@ -36,71 +36,71 @@ export const getSpaData = (t) => {
     },
     {
       id: 'anti-cellulite-massage',
-      name: 'Антицеллюлитный массаж',
+      name: t('spa.services.items.anti_cellulite_massage.name', 'Антицеллюлитный массаж'),
       category: 'massage',
       durations: [60, 90, 120],
       prices: [790, 1200, 1600],
-      description: 'Специализированный массаж для коррекции фигуры',
+      description: t('spa.services.items.anti_cellulite_massage.description', 'Специализированный массаж для коррекции фигуры'),
       popular: true,
       image: '/images/spa/services/massage-anti-cellulite.jpg'
     },
     {
       id: 'stone-massage',
-      name: 'Стоун-массаж',
+      name: t('spa.services.items.stone_massage.name', 'Стоун-массаж'),
       category: 'massage',
       durations: [90, 120],
       prices: [1050, 1300],
-      description: 'Массаж горячими камнями для глубокой релаксации',
+      description: t('spa.services.items.stone_massage.description', 'Массаж горячими камнями для глубокой релаксации'),
       popular: false,
       image: '/images/spa/services/massage-stone.jpg'
     },
     {
       id: 'thai-massage',
-      name: 'Традиционный тайский массаж',
+      name: t('spa.services.items.thai_massage.name', 'Традиционный тайский массаж'),
       category: 'massage',
       durations: [60, 90, 120],
       prices: [590, 750, 900],
-      description: 'Классический тайский массаж на коврике',
+      description: t('spa.services.items.thai_massage.description', 'Классический тайский массаж на коврике'),
       popular: true,
       image: '/images/spa/services/massage-thai.jpg'
     },
     {
       id: 'head-shoulders',
-      name: 'Массаж головы и плеч',
+      name: t('spa.services.items.head_shoulders.name', 'Массаж головы и плеч'),
       category: 'massage',
       durations: [90],
       prices: [900],
-      description: 'Расслабляющий массаж для снятия напряжения',
+      description: t('spa.services.items.head_shoulders.description', 'Расслабляющий массаж для снятия напряжения'),
       popular: false,
       image: '/images/spa/services/massage-head.jpg'
     },
     {
       id: 'oil-scrub',
-      name: 'Масляный массаж + скраб',
+      name: t('spa.services.items.oil_scrub.name', 'Масляный массаж + скраб'),
       category: 'massage',
       durations: [90, 120],
       prices: [980, 1300],
-      description: 'Комплексная процедура с пилингом и массажем',
+      description: t('spa.services.items.oil_scrub.description', 'Комплексная процедура с пилингом и массажем'),
       popular: true,
       image: '/images/spa/services/massage-scrub.jpg'
     },
     {
       id: 'body-scrub',
-      name: 'Скрабирование всего тела',
+      name: t('spa.services.items.body_scrub.name', 'Скрабирование всего тела'),
       category: 'massage',
       durations: [30],
       prices: [600],
-      description: 'Отшелушивающая процедура для всего тела',
+      description: t('spa.services.items.body_scrub.description', 'Отшелушивающая процедура для всего тела'),
       popular: false,
       image: '/images/spa/services/scrub-body.jpg'
     },
     {
       id: 'wrap-anti-cell',
-      name: 'Обертывание + антицеллюлитный массаж',
+      name: t('spa.services.items.wrap_anti_cell.name', 'Обертывание + антицеллюлитный массаж'),
       category: 'massage',
       durations: [90],
       prices: [1800],
-      description: 'Комплексная процедура для коррекции фигуры',
+      description: t('spa.services.items.wrap_anti_cell.description', 'Комплексная процедура для коррекции фигуры'),
       popular: true,
       image: '/images/spa/services/wrap-massage.jpg'
     }
@@ -110,118 +110,118 @@ export const getSpaData = (t) => {
   const cosmetologyServices = [
     {
       id: 'vacuum-peeling',
-      name: 'Вакуумная чистка лица с пилингом',
+      name: t('spa.services.items.vacuum_peeling.name', 'Вакуумная чистка лица с пилингом'),
       category: 'cosmetology',
       price: 2500,
-      description: 'Глубокая очистка пор с механическим пилингом',
+      description: t('spa.services.items.vacuum_peeling.description', 'Глубокая очистка пор с механическим пилингом'),
       popular: true,
       image: '/images/beauty/services/facial-vacuum.jpg'
     },
     {
       id: 'vacuum-standard',
-      name: 'Стандартная вакуумная чистка лица',
+      name: t('spa.services.items.vacuum_standard.name', 'Стандартная вакуумная чистка лица'),
       category: 'cosmetology',
       price: 2500,
-      description: 'Классическая процедура очищения кожи лица',
+      description: t('spa.services.items.vacuum_standard.description', 'Классическая процедура очищения кожи лица'),
       popular: false,
       image: '/images/beauty/services/facial-standard.jpg'
     },
     {
       id: 'hollywood-vacuum',
-      name: 'Голливудская вакуумная чистка лица',
+      name: t('spa.services.items.hollywood_vacuum.name', 'Голливудская вакуумная чистка лица'),
       category: 'cosmetology',
       price: 3000,
-      description: 'Премиальная процедура для идеального состояния кожи',
+      description: t('spa.services.items.hollywood_vacuum.description', 'Премиальная процедура для идеального состояния кожи'),
       popular: true,
       image: '/images/beauty/services/facial-hollywood.jpg'
     },
     {
       id: 'vacuum-oil',
-      name: 'Вакуумная чистка с маслом',
+      name: t('spa.services.items.vacuum_oil.name', 'Вакуумная чистка с маслом'),
       category: 'cosmetology',
       price: 3000,
-      description: 'Очищение с питательными маслами',
+      description: t('spa.services.items.vacuum_oil.description', 'Очищение с питательными маслами'),
       popular: false,
       image: '/images/beauty/services/facial-oil.jpg'
     },
     {
       id: 'whitening-program',
-      name: 'Программа отбеливания (пигментация)',
+      name: t('spa.services.items.whitening_program.name', 'Программа отбеливания (пигментация)'),
       category: 'cosmetology',
       price: 3000,
-      description: 'Специальная программа против пигментных пятен',
+      description: t('spa.services.items.whitening_program.description', 'Специальная программа против пигментных пятен'),
       popular: true,
       image: '/images/beauty/services/facial-whitening.jpg'
     },
     {
       id: 'rejuvenation-program',
-      name: 'Программа омоложения',
+      name: t('spa.services.items.rejuvenation_program.name', 'Программа омоложения'),
       category: 'cosmetology',
       price: 3500,
-      description: 'Комплексная антивозрастная программа',
+      description: t('spa.services.items.rejuvenation_program.description', 'Комплексная антивозрастная программа'),
       popular: true,
       image: '/images/beauty/services/facial-rejuvenation.jpg'
     },
     {
       id: 'hydration-program',
-      name: 'Программа увлажнения и сияния',
+      name: t('spa.services.items.hydration_program.name', 'Программа увлажнения и сияния'),
       category: 'cosmetology',
       price: 3500,
-      description: 'Интенсивное увлажнение для сияния кожи',
+      description: t('spa.services.items.hydration_program.description', 'Интенсивное увлажнение для сияния кожи'),
       popular: true,
       image: '/images/beauty/services/facial-hydration.jpg'
     },
     {
       id: 'vacuum-men',
-      name: 'Вакуумная чистка лица для мужчин',
+      name: t('spa.services.items.vacuum_men.name', 'Вакуумная чистка лица для мужчин'),
       category: 'cosmetology',
       price: 3300,
-      description: 'Специализированный уход для мужской кожи',
+      description: t('spa.services.items.vacuum_men.description', 'Специализированный уход для мужской кожи'),
       popular: false,
       image: '/images/beauty/services/facial-men.jpg'
     },
     {
       id: 'express-care',
-      name: 'Экспресс-уход',
+      name: t('spa.services.items.express_care.name', 'Экспресс-уход'),
       category: 'cosmetology',
       price: 1700,
-      description: 'Быстрая процедура для свежести кожи',
+      description: t('spa.services.items.express_care.description', 'Быстрая процедура для свежести кожи'),
       popular: false,
       image: '/images/beauty/services/facial-express.jpg'
     },
     {
       id: 'facial-massage-care',
-      name: 'Массаж лица с уходом',
+      name: t('spa.services.items.facial_massage_care.name', 'Массаж лица с уходом'),
       category: 'cosmetology',
       price: 1500,
-      description: 'Расслабляющий массаж с уходовыми средствами',
+      description: t('spa.services.items.facial_massage_care.description', 'Расслабляющий массаж с уходовыми средствами'),
       popular: false,
       image: '/images/beauty/services/facial-massage.jpg'
     },
     {
       id: 'facial-massage',
-      name: 'Массаж лица',
+      name: t('spa.services.items.facial_massage.name', 'Массаж лица'),
       category: 'cosmetology',
       price: 600,
-      description: 'Классический массаж лица для релаксации',
+      description: t('spa.services.items.facial_massage.description', 'Классический массаж лица для релаксации'),
       popular: false,
       image: '/images/beauty/services/massage-face.jpg'
     },
     {
       id: 'vacuum-subscription-5',
-      name: 'Абонемент вакуумная чистка (5 стандартных процедур)',
+      name: t('spa.services.items.vacuum_subscription_5.name', 'Абонемент вакуумная чистка (5 стандартных процедур)'),
       category: 'cosmetology',
       price: 10000,
-      description: 'Выгодный пакет из 5 стандартных процедур',
+      description: t('spa.services.items.vacuum_subscription_5.description', 'Выгодный пакет из 5 стандартных процедур'),
       popular: true,
       image: '/images/beauty/services/subscription-standard.jpg'
     },
     {
       id: 'vacuum-subscription-5-special',
-      name: 'Абонемент вакуумная чистка (5 специализированных процедур)',
+      name: t('spa.services.items.vacuum_subscription_5_special.name', 'Абонемент вакуумная чистка (5 специализированных процедур)'),
       category: 'cosmetology',
       price: 14500,
-      description: 'Премиальный пакет из 5 специализированных процедур',
+      description: t('spa.services.items.vacuum_subscription_5_special.description', 'Премиальный пакет из 5 специализированных процедур'),
       popular: true,
       image: '/images/beauty/services/subscription-premium.jpg'
     }
@@ -231,82 +231,82 @@ export const getSpaData = (t) => {
   const laserHairRemovalServices = [
     {
       id: 'deep-bikini',
-      name: 'Глубокий бикини',
+      name: t('spa.services.items.deep_bikini.name', 'Глубокий бикини'),
       category: 'laser-hair-removal',
       price: 2000,
-      description: 'Лазерная эпиляция интимной зоны',
+      description: t('spa.services.items.deep_bikini.description', 'Лазерная эпиляция интимной зоны'),
       popular: true,
       image: '/images/beauty/services/laser-bikini.jpg'
     },
     {
       id: 'lower-back',
-      name: 'Поясница/лопатки/живот',
+      name: t('spa.services.items.lower_back.name', 'Поясница/лопатки/живот'),
       category: 'laser-hair-removal',
       price: 1500,
-      description: 'Эпиляция средних зон тела',
+      description: t('spa.services.items.lower_back.description', 'Эпиляция средних зон тела'),
       popular: false,
       image: '/images/beauty/services/laser-body.jpg'
     },
     {
       id: 'areola-line',
-      name: 'Ареола/линия живота',
+      name: t('spa.services.items.areola_line.name', 'Ареола/линия живота'),
       category: 'laser-hair-removal',
       price: 500,
-      description: 'Эпиляция деликатных зон',
+      description: t('spa.services.items.areola_line.description', 'Эпиляция деликатных зон'),
       popular: false,
       image: '/images/beauty/services/laser-small.jpg'
     },
     {
       id: 'back-completely',
-      name: 'Спина полностью',
+      name: t('spa.services.items.back_completely.name', 'Спина полностью'),
       category: 'laser-hair-removal',
       price: 2500,
-      description: 'Полная эпиляция спины',
+      description: t('spa.services.items.back_completely.description', 'Полная эпиляция спины'),
       popular: false,
       image: '/images/beauty/services/laser-back.jpg'
     },
     {
       id: 'buttocks-calves',
-      name: 'Ягодицы/икры/бедра',
+      name: t('spa.services.items.buttocks_calves.name', 'Ягодицы/икры/бедра'),
       category: 'laser-hair-removal',
       price: 2000,
-      description: 'Эпиляция зон ног',
+      description: t('spa.services.items.buttocks_calves.description', 'Эпиляция зон ног'),
       popular: true,
       image: '/images/beauty/services/laser-legs.jpg'
     },
     {
       id: 'legs-completely',
-      name: 'Ноги полностью',
+      name: t('spa.services.items.legs_completely.name', 'Ноги полностью'),
       category: 'laser-hair-removal',
       price: 2500,
-      description: 'Полная эпиляция ног',
+      description: t('spa.services.items.legs_completely.description', 'Полная эпиляция ног'),
       popular: true,
       image: '/images/beauty/services/laser-legs-full.jpg'
     },
     {
       id: 'arms-completely',
-      name: 'Руки полностью',
+      name: t('spa.services.items.arms_completely.name', 'Руки полностью'),
       category: 'laser-hair-removal',
       price: 1500,
-      description: 'Полная эпиляция рук',
+      description: t('spa.services.items.arms_completely.description', 'Полная эпиляция рук'),
       popular: false,
       image: '/images/beauty/services/laser-arms.jpg'
     },
     {
       id: 'face-lower',
-      name: 'Нижняя треть лица',
+      name: t('spa.services.items.face_lower.name', 'Нижняя треть лица'),
       category: 'laser-hair-removal',
       price: 500,
-      description: 'Эпиляция области подбородка',
+      description: t('spa.services.items.face_lower.description', 'Эпиляция области подбородка'),
       popular: false,
       image: '/images/beauty/services/laser-face.jpg'
     },
     {
       id: 'armpits',
-      name: 'Подмышки',
+      name: t('spa.services.items.armpits.name', 'Подмышки'),
       category: 'laser-hair-removal',
       price: 500,
-      description: 'Эпиляция подмышечных впадин',
+      description: t('spa.services.items.armpits.description', 'Эпиляция подмышечных впадин'),
       popular: true,
       image: '/images/beauty/services/laser-armpits.jpg'
     }
@@ -316,82 +316,82 @@ export const getSpaData = (t) => {
   const laserMenServices = [
     {
       id: 'men-2-zones',
-      name: '2 любые зоны',
+      name: t('spa.services.items.men_2_zones.name', '2 любые зоны'),
       category: 'laser-men',
       price: 3500,
-      description: 'Эпиляция любых двух зон на выбор',
+      description: t('spa.services.items.men_2_zones.description', 'Эпиляция любых двух зон на выбор'),
       popular: true,
       image: '/images/beauty/services/laser-men.jpg'
     },
     {
       id: 'men-3-zones',
-      name: '3 любые зоны',
+      name: t('spa.services.items.men_3_zones.name', '3 любые зоны'),
       category: 'laser-men',
       price: 4500,
-      description: 'Эпиляция любых трех зон на выбор',
+      description: t('spa.services.items.men_3_zones.description', 'Эпиляция любых трех зон на выбор'),
       popular: true,
       image: '/images/beauty/services/laser-men.jpg'
     },
     {
       id: 'men-4-zones',
-      name: '4 любые зоны',
+      name: t('spa.services.items.men_4_zones.name', '4 любые зоны'),
       category: 'laser-men',
       price: 5000,
-      description: 'Эпиляция любых четырех зон на выбор',
+      description: t('spa.services.items.men_4_zones.description', 'Эпиляция любых четырех зон на выбор'),
       popular: false,
       image: '/images/beauty/services/laser-men.jpg'
     },
     {
       id: 'men-full-body',
-      name: 'Все тело',
+      name: t('spa.services.items.men_full_body.name', 'Все тело'),
       category: 'laser-men',
       price: 9000,
-      description: 'Полная эпиляция всего тела',
+      description: t('spa.services.items.men_full_body.description', 'Полная эпиляция всего тела'),
       popular: true,
       image: '/images/beauty/services/laser-men-full.jpg'
     },
     {
       id: 'men-face',
-      name: 'Верхняя губа/подбородок/щеки/шея',
+      name: t('spa.services.items.men_face.name', 'Верхняя губа/подбородок/щеки/шея'),
       category: 'laser-men',
       price: 650,
-      description: 'Эпиляция лицевой зоны',
+      description: t('spa.services.items.men_face.description', 'Эпиляция лицевой зоны'),
       popular: false,
       image: '/images/beauty/services/laser-men-face.jpg'
     },
     {
       id: 'men-full-face',
-      name: 'Лицо полностью',
+      name: t('spa.services.items.men_full_face.name', 'Лицо полностью'),
       category: 'laser-men',
       price: 1500,
-      description: 'Полная эпиляция лица',
+      description: t('spa.services.items.men_full_face.description', 'Полная эпиляция лица'),
       popular: false,
       image: '/images/beauty/services/laser-men-face-full.jpg'
     },
     {
       id: 'men-armpits',
-      name: 'Подмышки',
+      name: t('spa.services.items.men_armpits.name', 'Подмышки'),
       category: 'laser-men',
       price: 1500,
-      description: 'Эпиляция подмышечных впадин',
+      description: t('spa.services.items.men_armpits.description', 'Эпиляция подмышечных впадин'),
       popular: true,
       image: '/images/beauty/services/laser-men-armpits.jpg'
     },
     {
       id: 'men-chest-abdomen',
-      name: 'Грудь/живот полностью',
+      name: t('spa.services.items.men_chest_abdomen.name', 'Грудь/живот полностью'),
       category: 'laser-men',
       price: 2000,
-      description: 'Эпиляция торса',
+      description: t('spa.services.items.men_chest_abdomen.description', 'Эпиляция торса'),
       popular: true,
       image: '/images/beauty/services/laser-men-chest.jpg'
     },
     {
       id: 'men-subscription',
-      name: 'Абонемент все тело (5 сеансов)',
+      name: t('spa.services.items.men_subscription.name', 'Абонемент все тело (5 сеансов)'),
       category: 'laser-men',
       price: 36000,
-      description: 'Выгодный пакет полной эпиляции',
+      description: t('spa.services.items.men_subscription.description', 'Выгодный пакет полной эпиляции'),
       popular: true,
       image: '/images/beauty/services/laser-men-subscription.jpg'
     }
@@ -481,28 +481,28 @@ export const getSpaData = (t) => {
   const manicureServices = [
     {
       id: 'manicure-no-coating',
-      name: 'Маникюр без покрытия',
+      name: t('spa.services.items.manicure_no_coating.name', 'Маникюр без покрытия'),
       category: 'manicure',
       price: 600,
-      description: 'Классический маникюр с обработкой ногтевых пластин',
+      description: t('spa.services.items.manicure_no_coating.description', 'Классический маникюр с обработкой ногтевых пластин'),
       popular: false,
       image: '/images/beauty/services/manicure-classic.jpg'
     },
     {
       id: 'manicure-base',
-      name: 'Маникюр с базовым покрытием',
+      name: t('spa.services.items.manicure_base.name', 'Маникюр с базовым покрытием'),
       category: 'manicure',
       price: 750,
-      description: 'Маникюр с защитным базовым покрытием',
+      description: t('spa.services.items.manicure_base.description', 'Маникюр с защитным базовым покрытием'),
       popular: false,
       image: '/images/beauty/services/manicure-base.jpg'
     },
     {
       id: 'manicure-gel',
-      name: 'Маникюр с покрытием гель-лак',
+      name: t('spa.services.items.manicure_gel.name', 'Маникюр с покрытием гель-лак'),
       category: 'manicure',
       price: 900,
-      description: 'Маникюр с долговечным гель-лаковым покрытием',
+      description: t('spa.services.items.manicure_gel.description', 'Маникюр с долговечным гель-лаковым покрытием'),
       popular: true,
       image: '/images/beauty/services/manicure-gel.jpg'
     },
@@ -566,19 +566,19 @@ export const getSpaData = (t) => {
   const pedicureServices = [
     {
       id: 'pedicure-full-no-coating',
-      name: 'Педикюр полный без покрытия',
+      name: t('spa.services.items.pedicure_full_no_coating.name', 'Педикюр полный без покрытия'),
       category: 'pedicure',
       price: 1200,
-      description: 'Полная обработка стоп и ногтей',
+      description: t('spa.services.items.pedicure_full_no_coating.description', 'Полная обработка стоп и ногтей'),
       popular: true,
       image: '/images/beauty/services/pedicure-full.jpg'
     },
     {
       id: 'pedicure-full-coating',
-      name: 'Педикюр полный с покрытием',
+      name: t('spa.services.items.pedicure_full_coating.name', 'Педикюр полный с покрытием'),
       category: 'pedicure',
       price: 1400,
-      description: 'Полный педикюр с гель-лаковым покрытием',
+      description: t('spa.services.items.pedicure_full_coating.description', 'Полный педикюр с гель-лаковым покрытием'),
       popular: true,
       image: '/images/beauty/services/pedicure-gel.jpg'
     },
@@ -624,10 +624,10 @@ export const getSpaData = (t) => {
   const hairCareServices = [
     {
       id: 'womens-haircut',
-      name: 'Женская стрижка',
+      name: t('spa.services.items.womens_haircut.name', 'Женская стрижка'),
       category: 'hair-care',
       price: 800,
-      description: 'Профессиональная женская стрижка',
+      description: t('spa.services.items.womens_haircut.description', 'Профессиональная женская стрижка'),
       popular: true,
       image: '/images/beauty/services/haircut-women.jpg'
     },
@@ -651,10 +651,10 @@ export const getSpaData = (t) => {
     },
     {
       id: 'mens-haircut',
-      name: 'Мужская стрижка',
+      name: t('spa.services.items.mens_haircut.name', 'Мужская стрижка'),
       category: 'hair-care',
       price: 800,
-      description: 'Стильная мужская стрижка',
+      description: t('spa.services.items.mens_haircut.description', 'Стильная мужская стрижка'),
       popular: true,
       image: '/images/beauty/services/haircut-men.jpg'
     },
@@ -835,42 +835,42 @@ export const getSpaData = (t) => {
     },
     {
       id: 'laser-men',
-      name: 'Лазерная эпиляция для мужчин',
+      name: t('spa.services.categories.laser-men', 'Лазерная эпиляция для мужчин'),
       description: 'Эпиляция для мужчин',
       icon: '🧔',
       color: 'linear-gradient(135deg, #2D5B69 0%, #3D6B79 100%)'
     },
     {
       id: 'laser-complex',
-      name: 'Лазерные комплексы',
+      name: t('spa.services.categories.laser-complex', 'Лазерные комплексы'),
       description: 'Выгодные пакеты эпиляции',
       icon: '🎯',
       color: 'linear-gradient(135deg, #4A90B8 0%, #5AA0C8 100%)'
     },
     {
       id: 'endosphere',
-      name: 'Эндосфера-терапия',
+      name: t('spa.services.categories.endosphere', 'Эндосфера-терапия'),
       description: 'Аппаратная коррекция фигуры',
       icon: '🌟',
       color: 'linear-gradient(135deg, #B8A8C8 0%, #C8B8D8 100%)'
     },
     {
       id: 'manicure',
-      name: 'Маникюр',
+      name: t('spa.services.categories.manicure', 'Маникюр'),
       description: 'Профессиональный уход за ногтями',
       icon: '💅',
       color: 'linear-gradient(135deg, #F0A0B0 0%, #FFB0C0 100%)'
     },
     {
       id: 'pedicure',
-      name: 'Педикюр',
+      name: t('spa.services.categories.pedicure', 'Педикюр'),
       description: 'Уход за стопами и ногтями ног',
       icon: '🦶',
       color: 'linear-gradient(135deg, #A0C8F0 0%, #B0D8FF 100%)'
     },
     {
       id: 'hair-care',
-      name: 'Уход за волосами',
+      name: t('spa.services.categories.hair-care', 'Уход за волосами'),
       description: 'Стрижки, укладки и окрашивание',
       icon: '💇‍♀️',
       color: 'linear-gradient(135deg, #C8D8A8 0%, #D8E8B8 100%)'
