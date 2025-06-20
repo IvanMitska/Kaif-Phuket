@@ -206,29 +206,12 @@ const HeroSection = memo(({ menuSectionRef }) => {
   return (
     <HeroContainer>
       <HeroBackground>
-        <picture>
-          <source 
-            media="(max-width: 767px)" 
-            srcSet="/images-webp/thumbnail/restaurant.webp"
-            type="image/webp"
-          />
-          <source 
-            media="(min-width: 768px) and (max-width: 1023px)" 
-            srcSet="/images-webp/medium/restaurant.webp"
-            type="image/webp"
-          />
-          <source 
-            media="(min-width: 1024px)" 
-            srcSet="/images-webp/large/restaurant.webp"
-            type="image/webp"
-          />
-          <img 
-            src="/images/restaurant.jpg"
-            alt="Restaurant interior"
-            loading="eager"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          />
-        </picture>
+        <img 
+          src="/src/assets/images/restaurant/booking.jpg"
+          alt="Restaurant interior"
+          loading="eager"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
       </HeroBackground>
       <ContentWrapper>
         <DecorativeElement 

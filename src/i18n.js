@@ -23,8 +23,8 @@ i18n
         translation: thTranslation,
       },
     },
-    lng: 'ru', // Устанавливаем русский по умолчанию
-    fallbackLng: 'ru',
+    lng: 'en', // Устанавливаем английский по умолчанию
+    fallbackLng: 'en',
     debug: process.env.NODE_ENV === 'development',
     
     detection: {

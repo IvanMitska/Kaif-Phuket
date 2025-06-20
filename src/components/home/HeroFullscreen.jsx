@@ -173,7 +173,7 @@ const LogoImage = styled(motion.img)`
 
 
 // Белая кнопка с чёрным текстом - премиальный вид
-const PrimaryButton = styled(motion.create(Link))`
+const PrimaryButton = styled(Link)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -246,7 +246,7 @@ const PrimaryButton = styled(motion.create(Link))`
 `;
 
 // Вторичная кнопка - улучшенная видимость
-const SecondaryButton = styled(motion.button)`
+const SecondaryButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -451,8 +451,7 @@ const HeroFullscreen = memo(() => {
             initial={animations.buttons.initial}
             animate={animations.buttons.animate}
           >
-            <PrimaryButton 
-              to="/contacts"
+            <motion.div
               whileHover={{ 
                 scale: 1.02,
                 transition: {
@@ -462,12 +461,12 @@ const HeroFullscreen = memo(() => {
               }}
               whileTap={{ scale: 0.98 }}
             >
-              {t('common.book')}
-            </PrimaryButton>
+              <PrimaryButton to="/contacts">
+                {t('common.book')}
+              </PrimaryButton>
+            </motion.div>
             
-            <SecondaryButton 
-              as="button"
-              onClick={handleScrollToZones}
+            <motion.div
               whileHover={{ 
                 scale: 1.01,
                 transition: {
@@ -477,8 +476,10 @@ const HeroFullscreen = memo(() => {
               }}
               whileTap={{ scale: 0.99 }}
             >
-              {t('common.learn_more')}
-            </SecondaryButton>
+              <SecondaryButton onClick={handleScrollToZones}>
+                {t('common.learn_more')}
+              </SecondaryButton>
+            </motion.div>
           </ButtonContainer>
         </ContentWrapper>
       </ContentContainer>

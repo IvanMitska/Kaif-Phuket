@@ -2,12 +2,74 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeftIcon, ChevronRightIcon, XMarkIcon, StarIcon, ArrowRightIcon, ClockIcon, ShoppingBagIcon, PhoneIcon } from '@heroicons/react/24/solid';
-import { ArrowRightIcon as ArrowRightOutline } from '@heroicons/react/24/outline';
+import { ChevronLeftIcon, ChevronRightIcon, XMarkIcon, ArrowRightIcon, ClockIcon, ShoppingBagIcon, PhoneIcon } from '@heroicons/react/24/solid';
+import { 
+  ArrowRightIcon as ArrowRightOutline,
+  BeakerIcon, 
+  FireIcon,
+  SparklesIcon,
+  HeartIcon,
+  BoltIcon,
+  InformationCircleIcon,
+  SunIcon,
+  CubeIcon,
+  StarIcon
+} from '@heroicons/react/24/outline';
 import PageScrollReset from '../components/common/PageScrollReset';
 
 // Импортируем функцию получения данных ресторана
 import { getRestaurantData } from '../components/Restaurant/data/restaurantData';
+
+// Функции для работы с иконками напитков
+const getDrinkIcon = (category) => {
+  const iconMap = {
+    tea: SunIcon, // Солнце для чая (природный, теплый напиток)
+    coffee: FireIcon, // Огонь для кофе (горячий, энергия)
+    coffee_signature: SparklesIcon, // Блестки для авторского кофе
+    smoothie: HeartIcon, // Сердце для смузи (полезно, здорово)
+    mocktail: BeakerIcon, // Колба для мокктейлов (миксы)
+    juice: SunIcon, // Солнце для соков (свежесть, витамины)
+    wine: StarIcon, // Звезда для вина (премиум)
+    cocktail: BeakerIcon, // Колба для коктейлей (миксы)
+    strong: BoltIcon, // Молния для крепкого алкоголя (сила)
+    liqueur: StarIcon, // Звезда для ликеров (премиум)
+    beer: HeartIcon, // Сердце для пива (дружелюбие)
+    protein: BoltIcon, // Молния для протеина (энергия)
+    water: SunIcon, // Солнце для воды (чистота)
+    milk: HeartIcon, // Сердце для молока (забота)
+    soft_drink: SparklesIcon // Блестки для безалкогольных напитков
+  };
+  return iconMap[category] || BeakerIcon;
+};
+
+const getDrinkColor = (category) => {
+  const colorMap = {
+    tea: { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-800', icon: 'text-emerald-600' }, // Зеленый для чая
+    coffee: { bg: 'bg-orange-50', border: 'border-orange-200', text: 'text-orange-800', icon: 'text-orange-600' }, // Оранжевый для кофе (огонь)
+    coffee_signature: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-800', icon: 'text-amber-600' }, // Янтарный для авторского кофе
+    smoothie: { bg: 'bg-pink-50', border: 'border-pink-200', text: 'text-pink-800', icon: 'text-pink-600' }, // Розовый для смузи
+    mocktail: { bg: 'bg-purple-50', border: 'border-purple-200', text: 'text-purple-800', icon: 'text-purple-600' }, // Фиолетовый для мокктейлов
+    juice: { bg: 'bg-yellow-50', border: 'border-yellow-200', text: 'text-yellow-800', icon: 'text-yellow-600' }, // Желтый для соков (солнце)
+    wine: { bg: 'bg-red-50', border: 'border-red-200', text: 'text-red-800', icon: 'text-red-600' }, // Красный для вина
+    cocktail: { bg: 'bg-cyan-50', border: 'border-cyan-200', text: 'text-cyan-800', icon: 'text-cyan-600' }, // Голубой для коктейлей
+    strong: { bg: 'bg-slate-50', border: 'border-slate-200', text: 'text-slate-800', icon: 'text-slate-600' }, // Серый для крепкого алкоголя
+    liqueur: { bg: 'bg-indigo-50', border: 'border-indigo-200', text: 'text-indigo-800', icon: 'text-indigo-600' }, // Индиго для ликеров
+    beer: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-800', icon: 'text-amber-600' }, // Янтарный для пива
+    protein: { bg: 'bg-blue-50', border: 'border-blue-200', text: 'text-blue-800', icon: 'text-blue-600' }, // Синий для протеина
+    water: { bg: 'bg-sky-50', border: 'border-sky-200', text: 'text-sky-800', icon: 'text-sky-600' }, // Небесно-голубой для воды
+    milk: { bg: 'bg-stone-50', border: 'border-stone-200', text: 'text-stone-800', icon: 'text-stone-600' }, // Каменный для молока
+    soft_drink: { bg: 'bg-lime-50', border: 'border-lime-200', text: 'text-lime-800', icon: 'text-lime-600' } // Лайм для безалкогольных напитков
+  };
+  return colorMap[category] || { bg: 'bg-gray-50', border: 'border-gray-200', text: 'text-gray-800', icon: 'text-gray-600' };
+};
+
+const isDrinkCategory = (category) => {
+  return [
+    'tea', 'coffee', 'coffee_signature', 'smoothie', 'mocktail', 'juice', 
+    'wine', 'cocktail', 'strong', 'liqueur', 'beer', 'protein', 
+    'water', 'milk', 'soft_drink'
+  ].includes(category);
+};
 // Импортируем секцию бара
 import BarSection from '../components/Restaurant/sections/BarSection';
 // Импортируем секцию героя
@@ -497,8 +559,14 @@ const MenuCategoriesTabs = ({ activeCategory, setActiveCategory }) => {
     { id: 'dessert', name: t('restaurant.menu.categories.dessert', 'Десерты'), priority: 7 },
     { id: 'tea', name: t('restaurant.menu.categories.tea', 'Чай'), priority: 8 },
     { id: 'coffee', name: t('restaurant.menu.categories.coffee', 'Кофе'), priority: 9 },
-    { id: 'cocktail', name: t('restaurant.menu.categories.cocktail', 'Коктейли'), priority: 10 },
-    { id: 'wine', name: t('restaurant.menu.categories.wine', 'Вино'), priority: 11 }
+    { id: 'coffee_signature', name: t('restaurant.menu.categories.coffee_signature', 'Авторский кофе'), priority: 10 },
+    { id: 'smoothie', name: t('restaurant.menu.categories.smoothie', 'Смузи'), priority: 11 },
+    { id: 'mocktail', name: t('restaurant.menu.categories.mocktail', 'Мокктейлы'), priority: 12 },
+    { id: 'juice', name: t('restaurant.menu.categories.juice', 'Соки'), priority: 13 },
+    { id: 'cocktail', name: t('restaurant.menu.categories.cocktail', 'Коктейли'), priority: 14 },
+    { id: 'wine', name: t('restaurant.menu.categories.wine', 'Вино'), priority: 15 },
+    { id: 'beer', name: t('restaurant.menu.categories.beer', 'Пиво'), priority: 16 },
+    { id: 'strong', name: t('restaurant.menu.categories.strong', 'Крепкий алкоголь'), priority: 17 }
   ];
 
   // Автоскролл к активной категории
@@ -738,6 +806,8 @@ const RestaurantPage = () => {
           >
             {t('restaurant.menu.description', 'Откройте для себя разнообразие вкусов в нашем меню, созданном талантливыми шеф-поварами')}
           </motion.p>
+          
+
         </motion.div>
 
         <div className="mb-16">
@@ -779,12 +849,29 @@ const RestaurantPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 mt-8">
             {/* Отображаем ограниченное количество блюд по категории */}
             {
-              sortItems(menuItems.filter(item => activeCategory === 'all' || item.category === activeCategory))
+              sortItems(menuItems.filter(item => {
+                const matches = activeCategory === 'all' || item.category === activeCategory;
+                if (item.name.includes('яблоко') || item.name.includes('apple') || item.id === 58) {
+                  console.log(`Apple item debug: ${item.name}, category: ${item.category}, activeCategory: ${activeCategory}, matches: ${matches}, image: ${item.image}`);
+                }
+                return matches;
+              }))
                 .slice(0, visibleItems)
-                .map((item, index) => (
+                .map((item, index) => {
+                  const isDrink = isDrinkCategory(item.category);
+                  const drinkColors = isDrink ? getDrinkColor(item.category) : null;
+                  const DrinkIcon = isDrink ? getDrinkIcon(item.category) : null;
+                  
+                  // Дополнительная диагностика для элемента с яблоком
+                  if (item.id === 58) {
+                    console.log(`Rendering apple item: isDrink=${isDrink}, image=${item.image}, category=${item.category}`);
+                    console.log(`Full image URL will be: ${window.location.origin}${item.image}`);
+                  }
+
+                  return (
                 <motion.div 
                   key={item.id} 
-                  className="bg-white rounded-2xl overflow-hidden menu-item-card"
+                  className={`bg-white rounded-2xl overflow-hidden menu-item-card ${isDrink ? 'hover:shadow-2xl' : ''}`}
                   style={{ 
                     position: 'relative', 
                     zIndex: 1,
@@ -794,30 +881,65 @@ const RestaurantPage = () => {
                     transition: 'transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease'
                   }}
                   whileHover={{
-                    y: -5,
+                    y: -8,
+                    scale: isDrink ? 1.02 : 1.01,
                     boxShadow: '0 8px 20px rgba(0, 0, 0, 0.12)',
-                    borderColor: '#d0d0d0'
+                    borderColor: '#d0d0d0',
+                    transition: { duration: 0.3 }
                   }}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.1 * (index % 6) }}
                 >
-                  <div className="h-72 overflow-hidden relative p-0">
-                    <img 
-                      src={item.image} 
-                      alt={item.name} 
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                      style={{
-                        objectPosition: 'center center'
-                      }}
-                    />
-                    {item.popular && (
-                      <div className="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-2 py-1 rounded-full">
-                        {t('restaurant.menu.popular', 'Popular')}
-                      </div>
-                    )}
-                  </div>
+                  {/* Для напитков или блюд без изображения - только популярный значок без фото */}
+                  {isDrink || !item.image || item.image === null ? (
+                    <div className="relative">
+                      {/* Популярный значок */}
+                      {item.popular && (
+                        <motion.div 
+                          className="absolute top-4 right-4 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10"
+                          whileHover={{ scale: 1.1 }}
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.3, type: "spring", stiffness: 500 }}
+                        >
+                          ⭐ {t('restaurant.menu.popular', 'Popular')}
+                        </motion.div>
+                      )}
+                    </div>
+                  ) : (
+                    /* Для еды - обычное фото */
+                    <div className="h-72 overflow-hidden relative p-0">
+                      <img 
+                        src={item.image && item.image.startsWith('/') ? `${window.location.origin}${item.image}` : `${window.location.origin}/${item.image || ''}`} 
+                        alt={item.name} 
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                        style={{
+                          objectPosition: 'center center'
+                        }}
+                        onError={(e) => {
+                          console.error(`Failed to load image: ${item.image} for item: ${item.name}`);
+                          console.error(`Full URL attempted: ${e.target.src}`);
+                          console.error(`Error details:`, e);
+                          // Временно убираем fallback чтобы увидеть проблему
+                          e.target.style.backgroundColor = '#f0f0f0';
+                          e.target.style.display = 'flex';
+                          e.target.style.alignItems = 'center';
+                          e.target.style.justifyContent = 'center';
+                          e.target.alt = `ОШИБКА ЗАГРУЗКИ: ${item.image}`;
+                        }}
+                        onLoad={() => {
+                          console.log(`Successfully loaded image: ${item.image} for item: ${item.name}`);
+                        }}
+                      />
+                      {item.popular && (
+                        <div className="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-2 py-1 rounded-full">
+                          {t('restaurant.menu.popular', 'Popular')}
+                        </div>
+                      )}
+                    </div>
+                  )}
                   <div className="p-6">
                     <div className="flex flex-wrap gap-2 mb-3">
                       {item.tags.map(tag => {
@@ -848,7 +970,8 @@ const RestaurantPage = () => {
                     </div>
                   </div>
                 </motion.div>
-              ))
+                  );
+                })
             }
           </div>
 

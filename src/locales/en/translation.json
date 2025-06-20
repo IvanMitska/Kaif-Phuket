@@ -401,6 +401,7 @@
     "menu": {
       "title": "Our Menu",
       "description": "Discover a variety of flavors in our menu created by talented chefs",
+      "drinks_info": "Beverages are presented with beautiful icons instead of photos",
       "tag": "Exquisite Dishes",
       "sort_by": "Sort by:",
       "popular": "Popular",
@@ -414,9 +415,27 @@
         "soup": "Soups",
         "salad": "Salads & Appetizers",
         "grill": "Grilled Dishes",
-        "main": "Main Courses",
+        "side": "Side Dishes",
+        "sauce": "Sauces",
+        "bread": "Bread",
+        "burger": "Burgers",
+        "shawarma": "Shawarma",
         "dessert": "Desserts",
-        "drinks": "Beverages"
+        "tea": "Tea",
+        "coffee": "Coffee",
+        "coffee_signature": "Signature Coffee",
+        "smoothie": "Smoothies",
+        "mocktail": "Mocktails",
+        "juice": "Fresh Juices",
+        "cocktail": "Cocktails",
+        "wine": "Wine",
+        "beer": "Beer",
+        "strong": "Hard Drinks",
+        "liqueur": "Liqueurs",
+        "protein": "Protein",
+        "water": "Water",
+        "milk": "Milk Products",
+        "soft_drink": "Soft Drinks"
       },
       "tags": {
         "breakfast": "Breakfast",
@@ -541,6 +560,366 @@
         "pork_neck_kebab": {
           "name": "Pork Neck Kebab",
           "description": "Kebab of marinated pork neck with aromatic spices"
+        },
+        "caesar_grilled_shrimp": {
+          "name": "Caesar with Grilled Shrimp",
+          "description": "Classic Caesar salad with juicy grilled shrimp"
+        },
+        "caesar_chicken_kebab": {
+          "name": "Caesar with Chicken Kebab",
+          "description": "Traditional Caesar salad with tender chicken kebab"
+        },
+        "chicken_adjika_potato": {
+          "name": "Chicken in Adjika with Potato",
+          "description": "Juicy chicken marinated in spicy adjika sauce with young potato garnish"
+        },
+        "lyulya_kebab_chicken": {
+          "name": "Lyulya Kebab (Chicken)",
+          "description": "Minced kebab of chicken fillet with aromatic spices"
+        },
+        "lyulya_kebab_lamb": {
+          "name": "Lyulya Kebab (Lamb)",
+          "description": "Traditional lyulya kebab of minced lamb with Eastern spices"
+        },
+        "lyulya_kebab_beef_pork": {
+          "name": "Lyulya Kebab (Beef and Pork)",
+          "description": "Juicy lyulya kebab of mixed minced beef and pork"
+        },
+        "grilled_salmon": {
+          "name": "Grilled Salmon",
+          "description": "Tender salmon fillet cooked over open fire"
+        },
+        "white_perch_fillet": {
+          "name": "White Perch Fillet",
+          "description": "Tender white perch fillet grilled to perfection"
+        },
+        "grilled_shrimp": {
+          "name": "Grilled Shrimp",
+          "description": "Juicy tiger shrimp grilled with herbs and garlic oil"
+        },
+        "italian_ice_cream": {
+          "name": "Italian Ice Cream",
+          "description": "Authentic Italian gelato with various flavors"
+        },
+        "green_tea": {
+          "name": "Green Tea",
+          "description": "Premium green tea with delicate aroma"
+        },
+        "black_tea": {
+          "name": "Black Tea",
+          "description": "Classic black tea with rich flavor"
+        },
+        "ginger_honey_tea": {
+          "name": "Ginger and Honey Tea",
+          "description": "Warming tea with fresh ginger and natural honey"
+        },
+        "mint_tea": {
+          "name": "Mint Tea",
+          "description": "Refreshing herbal tea with fresh mint"
+        },
+        "jasmine_tea": {
+          "name": "Jasmine Tea",
+          "description": "Aromatic tea with jasmine flowers"
+        },
+        "fruit_tea": {
+          "name": "Fruit Tea",
+          "description": "Herbal tea blend with dried fruits and berries"
+        },
+        "thai_iced_tea": {
+          "name": "Thai Iced Tea with Milk",
+          "description": "Traditional Thai tea served cold with condensed milk"
+        },
+        "espresso": {
+          "name": "Espresso",
+          "description": "Classic Italian espresso with rich crema"
+        },
+        "americano": {
+          "name": "Americano",
+          "description": "Espresso diluted with hot water"
+        },
+        "cappuccino": {
+          "name": "Cappuccino",
+          "description": "Espresso with steamed milk and foam"
+        },
+        "latte": {
+          "name": "Latte",
+          "description": "Smooth coffee with steamed milk"
+        },
+        "mocha": {
+          "name": "Mocha",
+          "description": "Coffee drink with chocolate and steamed milk"
+        },
+        "iced_latte": {
+          "name": "Iced Latte",
+          "description": "Cold latte with ice and milk foam"
+        },
+        "frappe": {
+          "name": "Frappe",
+          "description": "Iced coffee drink blended with ice"
+        },
+        "smoothie_lime": {
+          "name": "Lime-Lime",
+          "description": "Refreshing smoothie with double lime portion"
+        },
+        "smoothie_mango_passion": {
+          "name": "Mango-Passion Fruit",
+          "description": "Fresh smoothie from ripe mango and passion fruit"
+        },
+        "banana_shake": {
+          "name": "Banana Shake",
+          "description": "Tender banana shake with milk and vanilla"
+        },
+        "matcha_latte": {
+          "name": "Matcha Latte",
+          "description": "Aromatic drink with Japanese green tea matcha"
+        },
+        "butterfly_tea": {
+          "name": "Butterfly Pea Flower Tea",
+          "description": "Exotic blue tea that changes color"
+        },
+        "passion_fruit_mocktail": {
+          "name": "Passion Fruit",
+          "description": "Refreshing drink from fresh passion fruit"
+        },
+        "pink_lemonade": {
+          "name": "Pink Lemonade",
+          "description": "Gentle pink lemonade with berries"
+        },
+        "honey_lemon": {
+          "name": "Honey and Lemon",
+          "description": "Healthy drink with natural honey and lemon"
+        },
+        "electrolyte": {
+          "name": "Electrolyte",
+          "description": "Isotonic drink for restoring electrolyte balance"
+        },
+        "hibiscus_iced_tea": {
+          "name": "Iced Hibiscus Tea",
+          "description": "Refreshing tea from hibiscus flowers"
+        },
+        "lemonade_classic": {
+          "name": "Lemonade",
+          "description": "Classic lemonade from fresh lemons"
+        },
+        "mojito_virgin": {
+          "name": "Mojito",
+          "description": "Non-alcoholic mojito with mint, lime and soda"
+        },
+        "orange_juice": {
+          "name": "Orange Juice",
+          "description": "Fresh-squeezed orange juice"
+        },
+        "pineapple_juice": {
+          "name": "Pineapple Juice",
+          "description": "Fresh-squeezed juice from ripe pineapple"
+        },
+        "apple_juice": {
+          "name": "Apple Juice",
+          "description": "Fresh-squeezed apple juice"
+        },
+        "carrot_juice": {
+          "name": "Carrot Juice",
+          "description": "Fresh-squeezed carrot juice"
+        },
+        "mango_juice": {
+          "name": "Mango Juice",
+          "description": "Fresh-squeezed juice from ripe mango"
+        },
+        "prosecco": {
+          "name": "Prosecco Sparkling Wine",
+          "description": "Italian sparkling wine"
+        },
+        "sauvignon_blanc": {
+          "name": "Sauvignon Blanc White Wine",
+          "description": "French dry white wine"
+        },
+        "oatmeal_apple_almonds": {
+          "name": "Oatmeal with Baked Apple and Caramelized Almonds",
+          "description": "Tender oatmeal with aromatic baked apple and crispy caramelized almonds"
+        },
+        "grilled_vegetables": {
+          "name": "Grilled Vegetables",
+          "description": "Assortment of seasonal vegetables grilled to perfection"
+        },
+        "potatoes_herbs": {
+          "name": "Potatoes with Fresh Herbs",
+          "description": "Boiled potatoes with aromatic fresh herbs and butter"
+        },
+        "buckwheat_mushrooms": {
+          "name": "Buckwheat with Mushrooms",
+          "description": "Aromatic buckwheat porridge with sautéed mushrooms"
+        },
+        "rice_quail_eggs": {
+          "name": "Rice with Quail Eggs and Spices",
+          "description": "Aromatic rice with tender quail eggs and eastern spices"
+        },
+        "sauce_tzatziki_mint": {
+          "name": "Tzatziki with Mint",
+          "description": "Refreshing yogurt sauce with cucumbers, garlic, herbs and fresh mint"
+        },
+        "sauce_satsebeli": {
+          "name": "Satsebeli",
+          "description": "Spicy Georgian sauce made from tomatoes, garlic, peppers and herbs"
+        },
+        "sauce_mustard": {
+          "name": "Mustard Sauce",
+          "description": "Piquant sauce based on Dijon mustard with honey and spices"
+        },
+        "sauce_pesto": {
+          "name": "Pesto",
+          "description": "Aromatic sauce made from basil and cilantro with nuts and spices"
+        },
+        "bread_butter_adjika": {
+          "name": "Bread with Butter and Adjika",
+          "description": "Fresh bread with homemade butter and spicy adjika"
+        },
+        "shawarma_kaif": {
+          "name": "KAIF Shawarma",
+          "description": "Signature KAIF shawarma with special spice blend and fresh vegetables"
+        },
+        "classic_cheeseburger": {
+          "name": "Classic Cheeseburger",
+          "description": "Juicy beef patty with melted cheese, lettuce and special sauce"
+        },
+        "kaif_burger_lamb": {
+          "name": "KAIF Burger with Lamb Patty and Bacon",
+          "description": "Premium burger with lamb patty, crispy bacon and signature sauce"
+        },
+        "burger_lamb_soy": {
+          "name": "Burger with Lamb and Soy Sauce",
+          "description": "Tender lamb patty with Asian soy sauce and fresh vegetables"
+        },
+        "french_fries_burger": {
+          "name": "French Fries for Burger",
+          "description": "Crispy french fries, perfect complement to any burger"
+        },
+        "french_fries_parmesan": {
+          "name": "French Fries with Parmesan",
+          "description": "French fries with grated parmesan and aromatic herbs"
+        },
+        "homemade_yogurt": {
+          "name": "Homemade Yogurt with Apricot Jam",
+          "description": "Tender homemade yogurt with natural apricot jam"
+        },
+        "napoleon": {
+          "name": "Napoleon",
+          "description": "Classic layered Napoleon cake with tender cream"
+        },
+        "lava_cake_cherry": {
+          "name": "Lava Cake with Cherry Jam",
+          "description": "Warm chocolate cake with liquid center and cherry jam"
+        },
+        "matcha_bomba": {
+          "name": "Matcha Bomb",
+          "description": "Signature coffee drink with matcha"
+        },
+        "espresso_chocolate": {
+          "name": "Espresso Chocolate",
+          "description": "Espresso with chocolate"
+        },
+        "espresso_negroni": {
+          "name": "Espresso Negroni",
+          "description": "Coffee interpretation of the classic cocktail"
+        },
+        "pineapple_express": {
+          "name": "Pineapple Express",
+          "description": "Coffee with pineapple notes"
+        },
+        "matcha_coco": {
+          "name": "Matcha Coco",
+          "description": "Matcha with coconut milk"
+        },
+        "honey_lemon_espresso": {
+          "name": "Honey Lemon Espresso",
+          "description": "Espresso with honey and lemon"
+        },
+        "kvass": {
+          "name": "Kvass",
+          "description": "Traditional Russian kvass 0.5L"
+        },
+        "cranberry_juice": {
+          "name": "Cranberry Juice",
+          "description": "Cranberry juice 0.3L"
+        },
+        "pina_colada": {
+          "name": "Pina Colada",
+          "description": "Exotic cocktail with rum and coconut"
+        },
+        "aperol_spritz": {
+          "name": "Aperol Spritz",
+          "description": "Italian aperitif with Aperol"
+        },
+        "bloody_mary": {
+          "name": "Bloody Mary",
+          "description": "Classic cocktail with vodka and tomato juice"
+        },
+        "negroni": {
+          "name": "Negroni",
+          "description": "Classic Italian cocktail"
+        },
+        "mojito_alcohol": {
+          "name": "Alcoholic Mojito",
+          "description": "Classic Cuban cocktail with rum"
+        },
+        "pure_vodka": {
+          "name": "Pure Vodka",
+          "description": "Vodka (50 ml)"
+        },
+        "whiskey_jack": {
+          "name": "Jack Daniel's Whiskey",
+          "description": "Tennessee whiskey (50 ml)"
+        },
+        "rum_bacardi": {
+          "name": "Bacardi Rum",
+          "description": "White rum (50 ml)"
+        },
+        "tequila_jose": {
+          "name": "Jose Cuervo Tequila",
+          "description": "Mexican tequila (50 ml)"
+        },
+        "gin_bombay": {
+          "name": "Bombay Gin",
+          "description": "London dry gin (50 ml)"
+        },
+        "cognac_hennessy": {
+          "name": "Hennessy Cognac",
+          "description": "French cognac (50 ml)"
+        },
+        "martini_extra_dry": {
+          "name": "Martini Extra Dry",
+          "description": "Dry vermouth (50 ml)"
+        },
+        "vermouth_chinzano": {
+          "name": "Vermouth Chinzano",
+          "description": "Italian vermouth (50 ml)"
+        },
+        "martini_rose": {
+          "name": "Martini Vermouth Rose",
+          "description": "Rose vermouth (50 ml)"
+        },
+        "singha_beer": {
+          "name": "Singha Beer",
+          "description": "Thai light beer 0.33L"
+        },
+        "chang_beer": {
+          "name": "Chang Beer",
+          "description": "Thai light beer 0.33L"
+        },
+        "leo_beer": {
+          "name": "Leo Beer",
+          "description": "Thai light beer 0.33L"
+        },
+        "heineken_beer": {
+          "name": "Heineken Beer",
+          "description": "Imported light beer 0.33L"
+        },
+        "alt_milk": {
+          "name": "Alternative Milk",
+          "description": "Plant-based milk (oat, almond)"
+        },
+        "coconut_water": {
+          "name": "Coconut Water",
+          "description": "Natural coconut water"
         }
       }
     }
@@ -839,7 +1218,7 @@
       "badge": "Best Banya in Phuket",
       "title": "Panoramic <span className=\"highlight\">Russian Banya</span>",
       "area": "150 square meters",
-      "subtitle": "Tradition meets modernity with Woodson stoves",
+      "subtitle": "Banya made from Siberian cedar and Altai linden",
       "book_button": "Book Now",
       "contacts_button": "Contacts",
       "scroll": "Scroll"
@@ -847,14 +1226,14 @@
     "features": {
       "badge": "Our Advantages",
       "title": "Why Choose Us",
-      "subtitle": "The only panoramic Russian banya in Phuket with authentic traditions and modern technology",
-      "woodson": {
-        "title": "Woodson Stoves",
-        "description": "Premium Finnish stoves for perfect steam"
-      },
+      "subtitle": "The only panoramic Russian banya in Phuket made from natural Siberian cedar and Altai linden materials",
       "materials": {
-        "title": "Natural Materials",
-        "description": "100% natural finishing from Siberian wood species"
+        "title": "Siberian Cedar",
+        "description": "Premium wood for health and longevity"
+      },
+      "linden": {
+        "title": "Altai Linden",
+        "description": "Natural linden for perfect banya climate"
       },
       "panoramic": {
         "title": "Panoramic Design",
@@ -890,7 +1269,7 @@
       "questions": {
         "panoramic": {
           "question": "What's special about the panoramic banya?",
-          "answer": "Our banya is unique with several features: 150 square meters with panoramic jungle windows, premium Woodson Finnish stoves, natural materials from Siberian wood species. It's the only panoramic Russian banya in Phuket where you can enjoy traditional banya rituals with tropical nature views."
+          "answer": "Our banya is unique with several features: 150 square meters with panoramic jungle windows, built from Siberian cedar and Altai linden - premium natural materials. It's the only panoramic Russian banya in Phuket where you can enjoy traditional banya rituals with tropical nature views."
         },
         "procedures": {
           "question": "What procedures are included in the banya ritual?",
