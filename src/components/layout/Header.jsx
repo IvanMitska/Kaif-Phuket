@@ -520,90 +520,144 @@ const Header = () => {
               alignItems: 'center', 
               height: '65px',
               margin: 0,
-              padding: 0
+              padding: 0,
+              width: '50px', // Меньший размер для минималистичного дизайна
+              flexShrink: 0 // Предотвращаем сжатие
             }}>
-              <button
+              <motion.button
                 onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 style={{
-                  background: '#f8f9fa',
-                  border: '1px solid #e2e8f0',
+                  background: 'transparent',
+                  border: `1px solid ${isLanguageDropdownOpen ? '#90B3A7' : 'transparent'}`,
                   borderRadius: '6px',
-                  color: '#666666',
-                  fontSize: '13px',
+                  color: isLanguageDropdownOpen ? '#90B3A7' : '#666666',
+                  fontSize: '12px',
                   fontWeight: '600',
                   fontFamily: '"KAIF", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
                   cursor: 'pointer',
-                  padding: '8px 12px',
-                  transition: 'all 0.3s ease',
+                  padding: '6px 8px',
+                  transition: 'all 0.2s ease',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  height: '36px',
-                  minWidth: '50px',
-                  margin: 0
+                  height: '32px',
+                  width: '44px',
+                  margin: 0,
+                  position: 'relative',
+                  boxShadow: 'none'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.borderColor = '#90B3A7';
-                  e.target.style.color = '#90B3A7';
-                  e.target.style.background = '#f0fffe';
+                  if (!isLanguageDropdownOpen) {
+                    e.target.style.borderColor = '#90B3A7';
+                    e.target.style.color = '#90B3A7';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.borderColor = '#e2e8f0';
-                  e.target.style.color = '#666666';
-                  e.target.style.background = '#f8f9fa';
+                  if (!isLanguageDropdownOpen) {
+                    e.target.style.borderColor = 'transparent';
+                    e.target.style.color = '#666666';
+                  }
                 }}
               >
                 {currentLanguage.code.toUpperCase()}
-              </button>
+                
+                {/* Минималистичная стрелочка */}
+                <motion.svg
+                  width="10"
+                  height="10"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  style={{
+                    marginLeft: '2px',
+                    flexShrink: 0
+                  }}
+                  animate={{ 
+                    rotate: isLanguageDropdownOpen ? 180 : 0 
+                  }}
+                  transition={{ 
+                    duration: 0.2, 
+                    ease: "easeInOut"
+                  }}
+                >
+                  <path 
+                    d="M6 9l6 6 6-6" 
+                    stroke="currentColor" 
+                    strokeWidth="1.5" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                  />
+                </motion.svg>
+              </motion.button>
 
               <AnimatePresence>
                 {isLanguageDropdownOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: -8, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -8, scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
+                    initial={{ 
+                      opacity: 0, 
+                      y: -5, 
+                      scale: 0.98
+                    }}
+                    animate={{ 
+                      opacity: 1, 
+                      y: 0, 
+                      scale: 1
+                    }}
+                    exit={{ 
+                      opacity: 0, 
+                      y: -5, 
+                      scale: 0.98
+                    }}
+                    transition={{ 
+                      duration: 0.15,
+                      ease: "easeOut"
+                    }}
                     style={{
                       position: 'absolute',
-                      top: 'calc(100% + 6px)',
+                      top: 'calc(100% + 4px)',
                       right: 0,
                       background: '#ffffff',
-                      border: '1px solid #e2e8f0',
-                      borderRadius: '6px',
-                      boxShadow: '0 6px 20px rgba(0, 0, 0, 0.15)',
-                      padding: '6px 0',
-                      minWidth: '120px',
-                      zIndex: 999998
+                      border: '1px solid #e5e7eb',
+                      borderRadius: '8px',
+                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                      padding: '4px',
+                      minWidth: '110px',
+                      zIndex: 999998,
+                      transformOrigin: 'top right'
                     }}
                   >
                     {languages.map((lang) => (
-                      <button
+                      <motion.button
                         key={lang.code}
                         onClick={() => changeLanguage(lang.code)}
                         style={{
                           width: '100%',
-                          padding: '6px 12px',
+                          padding: '8px 12px',
                           textAlign: 'left',
-                          background: 'none',
+                          background: i18n.language === lang.code ? 'rgba(144, 179, 167, 0.08)' : 'transparent',
                           border: 'none',
-                          color: i18n.language === lang.code ? '#90B3A7' : '#666666',
+                          color: i18n.language === lang.code ? '#90B3A7' : '#374151',
                           fontWeight: i18n.language === lang.code ? '600' : '500',
                           fontSize: '13px',
                           fontFamily: '"KAIF", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
                           cursor: 'pointer',
-                          transition: 'all 0.3s ease'
+                          transition: 'all 0.15s ease',
+                          borderRadius: '4px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '6px'
                         }}
-                        onMouseEnter={(e) => {
-                          e.target.style.background = '#f8fffe';
-                          e.target.style.color = '#90B3A7';
+                        whileHover={{ 
+                          backgroundColor: i18n.language === lang.code ? 'rgba(144, 179, 167, 0.12)' : 'rgba(144, 179, 167, 0.06)'
                         }}
-                        onMouseLeave={(e) => {
-                          e.target.style.background = 'none';
-                          e.target.style.color = i18n.language === lang.code ? '#90B3A7' : '#666666';
-                        }}
+                        whileTap={{ scale: 0.98 }}
                       >
+                        <span style={{ fontSize: '12px', opacity: 0.8 }}>
+                          {lang.code === 'ru' ? '🇷🇺' : lang.code === 'en' ? '🇺🇸' : '🇹🇭'}
+                        </span>
                         {lang.name}
-                      </button>
+                      </motion.button>
                     ))}
                   </motion.div>
                 )}
@@ -781,5 +835,62 @@ const Header = () => {
     </>
   );
 };
+
+// CSS стили для респонсивности
+const headerStyles = `
+  .kaif-header .desktop-nav {
+    display: flex;
+  }
+  
+  .kaif-header .mobile-burger {
+    display: none;
+  }
+  
+  .kaif-header .language-selector {
+    display: flex;
+  }
+  
+  @media (max-width: 768px) {
+    .kaif-header .desktop-nav {
+      display: none !important;
+    }
+    
+    .kaif-header .mobile-burger {
+      display: flex !important;
+    }
+    
+    .kaif-header .language-selector {
+      display: none !important;
+    }
+    
+    .kaif-header > div {
+      padding: 0 1rem !important;
+    }
+    
+    .kaif-header > div > div:first-child {
+      flex: 0 0 auto !important;
+    }
+    
+    .kaif-header > div > div:last-child {
+      flex: 0 0 auto !important;
+      gap: 0 !important;
+      width: auto !important;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .kaif-header > div {
+      padding: 0 0.5rem !important;
+    }
+  }
+`;
+
+// Добавляем стили в head если их еще нет
+if (typeof document !== 'undefined' && !document.getElementById('header-responsive-styles')) {
+  const style = document.createElement('style');
+  style.id = 'header-responsive-styles';
+  style.textContent = headerStyles;
+  document.head.appendChild(style);
+}
 
 export default Header; 
