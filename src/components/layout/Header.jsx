@@ -521,63 +521,74 @@ const Header = () => {
               height: '65px',
               margin: 0,
               padding: 0,
-              width: '50px', // Меньший размер для минималистичного дизайна
+              width: '64px', // Размер под новую кнопку
               flexShrink: 0 // Предотвращаем сжатие
             }}>
               <motion.button
                 onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { duration: 0.2 }
+                }}
+                whileTap={{ scale: 0.95 }}
                 style={{
-                  background: 'transparent',
-                  border: `1px solid ${isLanguageDropdownOpen ? '#90B3A7' : 'transparent'}`,
-                  borderRadius: '6px',
-                  color: isLanguageDropdownOpen ? '#90B3A7' : '#666666',
-                  fontSize: '12px',
+                  background: isLanguageDropdownOpen ? 'rgba(144, 179, 167, 0.08)' : 'rgba(255, 255, 255, 0.9)',
+                  border: `1px solid ${isLanguageDropdownOpen ? '#90B3A7' : 'rgba(144, 179, 167, 0.2)'}`,
+                  borderRadius: '8px',
+                  color: isLanguageDropdownOpen ? '#90B3A7' : '#374151',
+                  fontSize: '13px',
                   fontWeight: '600',
                   fontFamily: '"KAIF", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
                   cursor: 'pointer',
-                  padding: '6px 8px',
-                  transition: 'all 0.2s ease',
+                  padding: '8px 12px',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  height: '32px',
-                  width: '44px',
+                  height: '36px',
+                  minWidth: '56px',
                   margin: 0,
                   position: 'relative',
-                  boxShadow: 'none'
+                  boxShadow: isLanguageDropdownOpen 
+                    ? '0 4px 12px rgba(144, 179, 167, 0.25)' 
+                    : '0 2px 4px rgba(0, 0, 0, 0.05)',
+                  backdropFilter: 'blur(8px)'
                 }}
                 onMouseEnter={(e) => {
                   if (!isLanguageDropdownOpen) {
                     e.target.style.borderColor = '#90B3A7';
                     e.target.style.color = '#90B3A7';
+                    e.target.style.background = 'rgba(144, 179, 167, 0.06)';
+                    e.target.style.boxShadow = '0 4px 8px rgba(144, 179, 167, 0.15)';
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (!isLanguageDropdownOpen) {
-                    e.target.style.borderColor = 'transparent';
-                    e.target.style.color = '#666666';
+                    e.target.style.borderColor = 'rgba(144, 179, 167, 0.2)';
+                    e.target.style.color = '#374151';
+                    e.target.style.background = 'rgba(255, 255, 255, 0.9)';
+                    e.target.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.05)';
                   }
                 }}
               >
                 {currentLanguage.code.toUpperCase()}
                 
-                {/* Минималистичная стрелочка */}
+                {/* Элегантная стрелочка */}
                 <motion.svg
-                  width="10"
-                  height="10"
+                  width="12"
+                  height="12"
                   viewBox="0 0 24 24"
                   fill="none"
                   style={{
-                    marginLeft: '2px',
-                    flexShrink: 0
+                    marginLeft: '4px',
+                    flexShrink: 0,
+                    opacity: 0.7
                   }}
                   animate={{ 
                     rotate: isLanguageDropdownOpen ? 180 : 0 
                   }}
                   transition={{ 
-                    duration: 0.2, 
+                    duration: 0.3, 
                     ease: "easeInOut"
                   }}
                 >
@@ -596,8 +607,8 @@ const Header = () => {
                   <motion.div
                     initial={{ 
                       opacity: 0, 
-                      y: -5, 
-                      scale: 0.98
+                      y: -8, 
+                      scale: 0.95
                     }}
                     animate={{ 
                       opacity: 1, 
@@ -606,57 +617,79 @@ const Header = () => {
                     }}
                     exit={{ 
                       opacity: 0, 
-                      y: -5, 
-                      scale: 0.98
+                      y: -8, 
+                      scale: 0.95
                     }}
                     transition={{ 
-                      duration: 0.15,
-                      ease: "easeOut"
+                      duration: 0.2,
+                      ease: [0.4, 0, 0.2, 1]
                     }}
                     style={{
                       position: 'absolute',
-                      top: 'calc(100% + 4px)',
+                      top: 'calc(100% + 8px)',
                       right: 0,
-                      background: '#ffffff',
-                      border: '1px solid #e5e7eb',
-                      borderRadius: '8px',
-                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-                      padding: '4px',
-                      minWidth: '110px',
+                      background: 'rgba(255, 255, 255, 0.95)',
+                      border: '1px solid rgba(144, 179, 167, 0.15)',
+                      borderRadius: '12px',
+                      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(144, 179, 167, 0.08)',
+                      padding: '8px',
+                      minWidth: '140px',
                       zIndex: 999998,
-                      transformOrigin: 'top right'
+                      transformOrigin: 'top right',
+                      backdropFilter: 'blur(12px)'
                     }}
                   >
-                    {languages.map((lang) => (
+                    {languages.map((lang, index) => (
                       <motion.button
                         key={lang.code}
+                        initial={{ opacity: 0, x: 8 }}
+                        animate={{ 
+                          opacity: 1, 
+                          x: 0,
+                          transition: { delay: index * 0.05 }
+                        }}
                         onClick={() => changeLanguage(lang.code)}
                         style={{
                           width: '100%',
-                          padding: '8px 12px',
+                          padding: '10px 14px',
                           textAlign: 'left',
-                          background: i18n.language === lang.code ? 'rgba(144, 179, 167, 0.08)' : 'transparent',
+                          background: i18n.language === lang.code ? 'rgba(144, 179, 167, 0.1)' : 'transparent',
                           border: 'none',
                           color: i18n.language === lang.code ? '#90B3A7' : '#374151',
                           fontWeight: i18n.language === lang.code ? '600' : '500',
-                          fontSize: '13px',
+                          fontSize: '14px',
                           fontFamily: '"KAIF", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
                           cursor: 'pointer',
-                          transition: 'all 0.15s ease',
-                          borderRadius: '4px',
+                          transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                          borderRadius: '8px',
                           display: 'flex',
                           alignItems: 'center',
-                          gap: '6px'
+                          gap: '10px'
                         }}
                         whileHover={{ 
-                          backgroundColor: i18n.language === lang.code ? 'rgba(144, 179, 167, 0.12)' : 'rgba(144, 179, 167, 0.06)'
+                          backgroundColor: i18n.language === lang.code ? 'rgba(144, 179, 167, 0.15)' : 'rgba(144, 179, 167, 0.08)',
+                          x: 2
                         }}
-                        whileTap={{ scale: 0.98 }}
+                        whileTap={{ scale: 0.97 }}
                       >
-                        <span style={{ fontSize: '12px', opacity: 0.8 }}>
+                        <span style={{ fontSize: '16px' }}>
                           {lang.code === 'ru' ? '🇷🇺' : lang.code === 'en' ? '🇺🇸' : '🇹🇭'}
                         </span>
-                        {lang.name}
+                        <span style={{ flex: 1 }}>
+                          {lang.name}
+                        </span>
+                        {i18n.language === lang.code && (
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            style={{
+                              width: '6px',
+                              height: '6px',
+                              borderRadius: '50%',
+                              background: '#90B3A7'
+                            }}
+                          />
+                        )}
                       </motion.button>
                     ))}
                   </motion.div>
