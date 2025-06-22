@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -6,9 +6,11 @@ import { motion } from 'framer-motion';
 import { 
   ArrowRightIcon,
   SparklesIcon,
-  StarIcon
+  StarIcon,
+  CalendarDaysIcon
 } from '@heroicons/react/24/solid';
 import heroRestaurantImg from '../../assets/images/hero/hero-restaurant.jpg';
+// import YclientsModal from '../booking/YclientsModal'; // Временно отключено
 
 // =============================================================================
 // ОПТИМИЗИРОВАННЫЙ SPA HERO (БЕЗ ТЯЖЕЛЫХ ИЗОБРАЖЕНИЙ)
@@ -205,23 +207,24 @@ const CTAContainer = styled(motion.div)`
   justify-content: center;
   gap: 1rem;
   width: 100%;
-  max-width: 500px;
   margin: 0 auto;
   
-  @media (min-width: 640px) {
+  @media (min-width: 768px) {
     flex-direction: row;
-    gap: 1.5rem;
-    max-width: 600px;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+    width: auto;
   }
   
   @media (max-width: 768px) {
-    gap: 1.5rem;
+    gap: 1rem;
     max-width: 90%;
     flex-direction: column;
   }
   
   @media (max-width: 480px) {
-    gap: 1.2rem;
+    gap: 0.75rem;
     max-width: 95%;
     flex-direction: column;
   }
@@ -231,27 +234,23 @@ const PrimaryButton = styled(motion.button)`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
-  padding: 1.2rem 2rem;
+  gap: 0.5rem;
+  padding: 0;
   background: transparent;
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 50px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
-  min-height: 54px;
-  min-width: 200px;
+  height: 46px;
+  width: 220px;
   backdrop-filter: blur(20px);
   transition: all 0.3s ease;
   text-align: center;
   white-space: nowrap;
-  flex: 1;
-  
-  @media (max-width: 640px) {
-    white-space: normal;
-    line-height: 1.3;
-  }
+  text-decoration: none;
+  box-sizing: border-box;
   
   &:hover {
     background: rgba(255, 255, 255, 0.1);
@@ -261,106 +260,36 @@ const PrimaryButton = styled(motion.button)`
   }
   
   svg {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1rem;
+    height: 1rem;
     flex-shrink: 0;
   }
   
-  @media (min-width: 640px) {
-    max-width: 280px;
-  }
-  
   @media (max-width: 768px) {
-    padding: 1.2rem 2rem;
-    font-size: 1rem;
-    min-height: 54px;
-    min-width: 240px;
-    max-width: 100%;
-    flex: none;
+    width: 100%;
+    max-width: 280px;
+    height: 48px;
+    font-size: 0.95rem;
   }
   
   @media (max-width: 480px) {
-    padding: 1.2rem 1.5rem;
-    font-size: 0.95rem;
-    min-height: 52px;
-    min-width: 200px;
-    max-width: 100%;
+    height: 46px;
+    font-size: 0.9rem;
+    max-width: 240px;
     
     svg {
-      width: 1.1rem;
-      height: 1.1rem;
+      width: 0.95rem;
+      height: 0.95rem;
     }
   }
 `;
 
-const SecondaryButton = styled(motion.button)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 1.2rem 2rem;
-  background: rgba(255, 255, 255, 0.08);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  min-height: 54px;
-  min-width: 200px;
-  backdrop-filter: blur(20px);
-  transition: all 0.3s ease;
-  text-align: center;
-  white-space: nowrap;
-  flex: 1;
-  
-  @media (max-width: 640px) {
-    white-space: normal;
-    line-height: 1.3;
-  }
-  
-  &:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.5);
-  }
-  
-  svg {
-    width: 1.2rem;
-    height: 1.2rem;
-    flex-shrink: 0;
-  }
-  
-  @media (min-width: 640px) {
-    max-width: 280px;
-  }
-  
-  @media (max-width: 768px) {
-    padding: 1.2rem 2rem;
-    font-size: 1rem;
-    min-height: 54px;
-    min-width: 240px;
-    max-width: 100%;
-    flex: none;
-  }
-  
-  @media (max-width: 480px) {
-    padding: 1.2rem 1.5rem;
-    font-size: 0.95rem;
-    min-height: 52px;
-    min-width: 200px;
-    max-width: 100%;
-    
-    svg {
-      width: 1.1rem;
-      height: 1.1rem;
-    }
-  }
-`;
 
 
 
 const SpaHeroSection = memo(() => {
   const { t } = useTranslation();
+  // const [isYclientsModalOpen, setIsYclientsModalOpen] = useState(false); // Временно отключено
 
   return (
     <HeroContainer>
@@ -403,6 +332,17 @@ const SpaHeroSection = memo(() => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
+              {/* Временно отключено - онлайн-запись через Yclients
+              <PrimaryButton
+                onClick={() => setIsYclientsModalOpen(true)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <CalendarDaysIcon />
+                {t('spa.hero.book_online', 'Онлайн-запись')}
+              </PrimaryButton>
+              */}
+
               <PrimaryButton
                 as="a"
                 href="https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20записаться%20на%20СПА%20процедуру%20в%20KAIF"
@@ -411,24 +351,23 @@ const SpaHeroSection = memo(() => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {t('spa.hero.book_now', 'Записаться на процедуру')}
+                {t('spa.hero.book_whatsapp', 'WhatsApp')}
                 <ArrowRightIcon />
               </PrimaryButton>
-
-              <SecondaryButton
-                as="a"
-                href="#services"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {t('spa.hero.learn_more', 'Узнать больше')}
-              </SecondaryButton>
             </CTAContainer>
           </MainContent>
 
 
         </HeroGrid>
       </ContentWrapper>
+      
+      {/* Временно отключено - модальное окно Yclients
+      <YclientsModal
+        isOpen={isYclientsModalOpen}
+        onClose={() => setIsYclientsModalOpen(false)}
+        customUrl="https://n1329009.alteg.io"
+      />
+      */}
     </HeroContainer>
   );
 });

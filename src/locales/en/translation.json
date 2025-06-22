@@ -1234,6 +1234,8 @@
       "badge": "Premium SPA",
       "title": "Immerse yourself in the world of relaxation and beauty",
       "subtitle": "Professional SPA treatments in the luxurious atmosphere of KAIF",
+      "book_online": "Book Online",
+      "book_whatsapp": "WhatsApp",
       "book_now": "Book a Treatment",
       "learn_more": "Learn More"
     },
@@ -1794,6 +1796,13 @@
       "badge": "Booking",
       "title": "Book a Treatment",
       "description": "Book a SPA treatment or beauty service for complete relaxation",
+      "online": {
+        "title": "Online Booking",
+        "description": "Convenient online booking for any treatment. Choose your specialist, time and service in just a few clicks. Instant booking confirmation.",
+        "hours": "24/7 online booking",
+        "feature": "Choose specialist and time",
+        "button": "Book Online"
+      },
       "phone": {
         "title": "Call to Book",
         "description": "Contact us by phone for quick booking. Our consultants will help you choose the right treatment and time.",

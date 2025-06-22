@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeftIcon, ChevronRightIcon, XMarkIcon, ArrowRightIcon, ClockIcon, ShoppingBagIcon, PhoneIcon } from '@heroicons/react/24/solid';
@@ -739,6 +740,56 @@ const RestaurantPage = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
+      <Helmet>
+        {/* Основные мета-теги для страницы ресторана */}
+        <title>Ресторан KAIF | Авторская кухня и изысканные блюда</title>
+        <meta name="description" content="Ресторан KAIF — авторская кухня с изысканными блюдами, свежими ингредиентами и уютной атмосферой. Завтраки, обеды, ужины и напитки. Забронируйте столик прямо сейчас!" />
+        <meta name="keywords" content="ресторан KAIF, авторская кухня, изысканные блюда, завтраки, обеды, ужины, бронирование столика, кафе, ресторан Пхукет" />
+        
+        {/* Английские мета-теги */}
+        <meta name="description" lang="en" content="KAIF Restaurant — gourmet cuisine with exquisite dishes, fresh ingredients and cozy atmosphere. Breakfast, lunch, dinner and beverages. Book your table now!" />
+        <meta name="keywords" lang="en" content="KAIF restaurant, gourmet cuisine, exquisite dishes, breakfast, lunch, dinner, table booking, cafe, restaurant Phuket" />
+        
+        {/* Open Graph для социальных сетей */}
+        <meta property="og:title" content="Ресторан KAIF — Авторская кухня и изысканные блюда" />
+        <meta property="og:title" lang="en" content="KAIF Restaurant — Gourmet Cuisine and Exquisite Dishes" />
+        <meta property="og:description" content="Авторская кухня с изысканными блюдами, свежими ингредиентами и уютной атмосферой. Завтраки, обеды, ужины и напитки в ресторане KAIF" />
+        <meta property="og:description" lang="en" content="Gourmet cuisine with exquisite dishes, fresh ingredients and cozy atmosphere. Breakfast, lunch, dinner and beverages at KAIF Restaurant" />
+        <meta property="og:type" content="restaurant" />
+        <meta property="og:image" content="/images/menu/breakfast/kaif-breakfast.jpg" />
+        <meta property="og:url" content="https://kaif-spa.com/restaurant" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Ресторан KAIF — Авторская кухня и изысканные блюда" />
+        <meta name="twitter:title" lang="en" content="KAIF Restaurant — Gourmet Cuisine and Exquisite Dishes" />
+        <meta name="twitter:description" content="Авторская кухня с изысканными блюдами, свежими ингредиентами и уютной атмосферой. Завтраки, обеды, ужины и напитки" />
+        <meta name="twitter:description" lang="en" content="Gourmet cuisine with exquisite dishes, fresh ingredients and cozy atmosphere. Breakfast, lunch, dinner and beverages" />
+        <meta name="twitter:image" content="/images/menu/breakfast/kaif-breakfast.jpg" />
+        
+        {/* Структурированные данные для ресторана */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Restaurant",
+            "name": "KAIF Restaurant",
+            "description": "Авторская кухня с изысканными блюдами, свежими ингредиентами и уютной атмосферой",
+            "url": "https://kaif-spa.com/restaurant",
+            "telephone": "+66-XX-XXX-XXXX",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Kathu, Phuket",
+              "addressLocality": "Kathu",
+              "addressRegion": "Phuket",
+              "addressCountry": "TH"
+            },
+            "servesCuisine": ["Авторская кухня", "Gourmet", "International"],
+            "priceRange": "$$-$$$",
+            "image": "/images/menu/breakfast/kaif-breakfast.jpg",
+            "hasMenu": "https://kaif-spa.com/restaurant#menu-section"
+          })}
+        </script>
+      </Helmet>
       <PageScrollReset />
       {/* Hero Section */}
       <HeroSection menuSectionRef={menuSectionRef} />

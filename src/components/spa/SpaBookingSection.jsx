@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -9,6 +9,7 @@ import {
   ClockIcon,
   MapPinIcon
 } from '@heroicons/react/24/solid';
+// import YclientsModal from '../booking/YclientsModal'; // Временно отключено
 
 // =============================================================================
 // СОВРЕМЕННАЯ СЕКЦИЯ БРОНИРОВАНИЯ SPA
@@ -108,15 +109,22 @@ const BookingGrid = styled.div`
   
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    gap: 2rem;
   }
+  
+  /* Временно отключено - было для 3 карточек
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+  */
 `;
 
 const BookingCard = styled(motion.div)`
   background: white;
   border: 1px solid #f1f5f9;
   border-radius: 16px;
-  padding: 2rem;
+  padding: 1.5rem;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -139,46 +147,46 @@ const BookingCard = styled(motion.div)`
 `;
 
 const CardIcon = styled.div`
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
   background: rgba(144, 179, 167, 0.08);
   border: 1px solid rgba(144, 179, 167, 0.15);
-  border-radius: 12px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #90B3A7;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   transition: all 0.3s ease;
   
   svg {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.25rem;
+    height: 1.25rem;
   }
   
   ${BookingCard}:hover & {
     background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
     color: white;
     border-color: transparent;
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 `;
 
 const CardTitle = styled.h3`
   font-family: ${({ theme }) => theme?.fonts?.heading || '"Poppins", sans-serif'};
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: #0f172a;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   line-height: 1.3;
 `;
 
 const CardDescription = styled.p`
   font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 0.9rem;
+  line-height: 1.5;
   color: #64748b;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 `;
 
 const ContactList = styled.div`
@@ -218,30 +226,30 @@ const ActionButton = styled(motion.a)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   width: 100%;
-  padding: 1rem 1.5rem;
+  padding: 0.75rem 1.25rem;
   background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
   color: white;
   font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(144, 179, 167, 0.3);
+  box-shadow: 0 3px 10px rgba(144, 179, 167, 0.3);
   
   &:hover {
-    box-shadow: 0 6px 20px rgba(144, 179, 167, 0.4);
+    box-shadow: 0 5px 16px rgba(144, 179, 167, 0.4);
     transform: translateY(-1px);
     color: white;
   }
   
   svg {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1rem;
+    height: 1rem;
   }
 `;
 
@@ -249,16 +257,16 @@ const SecondaryButton = styled(motion.a)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   width: 100%;
-  padding: 1rem 1.5rem;
+  padding: 0.75rem 1.25rem;
   background: rgba(144, 179, 167, 0.08);
   color: #90B3A7;
   font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   border: 1px solid rgba(144, 179, 167, 0.15);
-  border-radius: 12px;
+  border-radius: 10px;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -268,12 +276,12 @@ const SecondaryButton = styled(motion.a)`
     color: white;
     border-color: transparent;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(144, 179, 167, 0.3);
+    box-shadow: 0 3px 10px rgba(144, 179, 167, 0.3);
   }
   
   svg {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1rem;
+    height: 1rem;
   }
 `;
 
@@ -283,6 +291,7 @@ const SecondaryButton = styled(motion.a)`
 
 const SpaBookingSection = () => {
   const { t } = useTranslation();
+  // const [isYclientsModalOpen, setIsYclientsModalOpen] = useState(false); // Временно отключено
 
   // Animation variants
   const cardVariants = {
@@ -331,12 +340,55 @@ const SpaBookingSection = () => {
         </SectionHeader>
 
         <BookingGrid>
+          {/* Временно отключено - онлайн-запись через Yclients
+          <motion.div
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <BookingCard>
+              <CardIcon>
+                <CalendarDaysIcon />
+              </CardIcon>
+              <CardTitle>{t('spa.booking.online.title', 'Онлайн-запись')}</CardTitle>
+              <CardDescription>
+                {t('spa.booking.online.description', 'Удобная онлайн-запись на любую процедуру. Выберите мастера, время и услугу в несколько кликов. Моментальное подтверждение записи.')}
+              </CardDescription>
+              
+              <ContactList>
+                <ContactItem>
+                  <ClockIcon />
+                  <span>{t('spa.booking.online.hours', 'Запись 24/7 онлайн')}</span>
+                </ContactItem>
+                <ContactItem>
+                  <CalendarDaysIcon />
+                  <span>{t('spa.booking.online.feature', 'Выбор мастера и времени')}</span>
+                </ContactItem>
+              </ContactList>
+              
+              <div style={{ marginTop: '1.5rem' }}>
+                <ActionButton 
+                  as="button"
+                  onClick={() => setIsYclientsModalOpen(true)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <CalendarDaysIcon />
+                  {t('spa.booking.online.button', 'Записаться онлайн')}
+                </ActionButton>
+              </div>
+            </BookingCard>
+          </motion.div>
+          */}
+
           {/* Телефонное бронирование */}
           <motion.div
             variants={cardVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
+            transition={{ delay: 0.1 }}
           >
             <BookingCard>
               <CardIcon>
@@ -377,7 +429,7 @@ const SpaBookingSection = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ delay: 0.1 }}
+            transition={{ delay: 0.2 }}
           >
             <BookingCard>
               <CardIcon>
@@ -415,6 +467,14 @@ const SpaBookingSection = () => {
           </motion.div>
         </BookingGrid>
       </ContentWrapper>
+      
+      {/* Временно отключено - модальное окно Yclients
+      <YclientsModal
+        isOpen={isYclientsModalOpen}
+        onClose={() => setIsYclientsModalOpen(false)}
+        customUrl="https://n1329009.alteg.io"
+      />
+      */}
     </BookingContainer>
   );
 };

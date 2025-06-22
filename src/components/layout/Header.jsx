@@ -384,33 +384,51 @@ const Header = () => {
                   
                   {/* Активная линия */}
                   {isActive(item.path) && (
-                    <div style={{
-                      position: 'absolute',
-                      bottom: '-2px',
-                      left: 0,
-                      right: 0,
-                      height: '2px',
-                      background: '#90B3A7',
-                      borderRadius: '1px'
-                    }} />
+                    <motion.div
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ 
+                        duration: 0.4, 
+                        ease: [0.25, 0.46, 0.45, 0.94],
+                        type: 'tween'
+                      }}
+                      style={{
+                        position: 'absolute',
+                        bottom: '-2px',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        width: '100%',
+                        height: '3px',
+                        background: 'linear-gradient(90deg, transparent 0%, #90B3A7 10%, #90B3A7 90%, transparent 100%)',
+                        borderRadius: '2px',
+                        transformOrigin: 'center',
+                        boxShadow: '0 0 12px rgba(144, 179, 167, 0.6)'
+                      }}
+                    />
                   )}
                   
-                  {/* Hover линия с анимацией */}
+                  {/* Hover линия с плавной анимацией */}
                   {!isActive(item.path) && hoveredNav === item.path && (
                     <motion.div
                       initial={{ scaleX: 0, opacity: 0 }}
                       animate={{ scaleX: 1, opacity: 1 }}
                       exit={{ scaleX: 0, opacity: 0 }}
-                      transition={{ duration: 0.2, ease: 'easeOut' }}
+                      transition={{ 
+                        duration: 0.3, 
+                        ease: [0.25, 0.46, 0.45, 0.94],
+                        type: 'tween'
+                      }}
                       style={{
                         position: 'absolute',
                         bottom: '-2px',
-                        left: 0,
-                        right: 0,
-                        height: '2px',
-                        background: '#90B3A7',
-                        borderRadius: '1px',
-                        transformOrigin: 'left'
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        width: '80%',
+                        height: '4px',
+                        background: 'linear-gradient(90deg, transparent 0%, #ff6b6b 20%, #ff6b6b 80%, transparent 100%)',
+                        borderRadius: '2px',
+                        transformOrigin: 'center',
+                        boxShadow: '0 0 12px rgba(255, 107, 107, 0.6)'
                       }}
                     />
                   )}
