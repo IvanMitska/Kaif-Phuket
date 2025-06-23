@@ -816,63 +816,63 @@ export const getSpaData = (t) => {
       id: 'massage',
       name: t('spa.services.categories.massage', 'Массаж'),
       description: 'Расслабляющие и лечебные массажи',
-      icon: '💆‍♀️',
+      icon: '',
       color: 'linear-gradient(135deg, #90B3A7 0%, #B8C4A8 100%)'
     },
     {
       id: 'cosmetology',
       name: t('spa.services.categories.cosmetology', 'Косметология'),
       description: 'Профессиональный уход за лицом',
-      icon: '✨',
+      icon: '',
       color: 'linear-gradient(135deg, #D4A574 0%, #E6B885 100%)'
     },
     {
       id: 'laser-hair-removal',
       name: t('spa.services.categories.laser-hair-removal', 'Лазерная эпиляция'),
       description: 'Современные технологии эпиляции',
-      icon: '💫',
+      icon: '',
       color: 'linear-gradient(135deg, #E8A87C 0%, #F8B88C 100%)'
     },
     {
       id: 'laser-men',
       name: t('spa.services.categories.laser-men', 'Лазерная эпиляция для мужчин'),
       description: 'Эпиляция для мужчин',
-      icon: '🧔',
+      icon: '',
       color: 'linear-gradient(135deg, #2D5B69 0%, #3D6B79 100%)'
     },
     {
       id: 'laser-complex',
       name: t('spa.services.categories.laser-complex', 'Лазерные комплексы'),
       description: 'Выгодные пакеты эпиляции',
-      icon: '🎯',
+      icon: '',
       color: 'linear-gradient(135deg, #4A90B8 0%, #5AA0C8 100%)'
     },
     {
       id: 'endosphere',
       name: t('spa.services.categories.endosphere', 'Эндосфера-терапия'),
       description: 'Аппаратная коррекция фигуры',
-      icon: '🌟',
+      icon: '',
       color: 'linear-gradient(135deg, #B8A8C8 0%, #C8B8D8 100%)'
     },
     {
       id: 'manicure',
       name: t('spa.services.categories.manicure', 'Маникюр'),
       description: 'Профессиональный уход за ногтями',
-      icon: '💅',
+      icon: '',
       color: 'linear-gradient(135deg, #F0A0B0 0%, #FFB0C0 100%)'
     },
     {
       id: 'pedicure',
       name: t('spa.services.categories.pedicure', 'Педикюр'),
       description: 'Уход за стопами и ногтями ног',
-      icon: '🦶',
+      icon: '',
       color: 'linear-gradient(135deg, #A0C8F0 0%, #B0D8FF 100%)'
     },
     {
       id: 'hair-care',
       name: t('spa.services.categories.hair-care', 'Уход за волосами'),
       description: 'Стрижки, укладки и окрашивание',
-      icon: '💇‍♀️',
+      icon: '',
       color: 'linear-gradient(135deg, #C8D8A8 0%, #D8E8B8 100%)'
     }
   ];
