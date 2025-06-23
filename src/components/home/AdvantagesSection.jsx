@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import styled from 'styled-components';
 import { motion, useInView } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { useRef } from 'react';
 
 // Основной контейнер
 const SectionContainer = styled.section`
@@ -226,15 +225,15 @@ const FacilityDescription = styled.p`
   z-index: 2;
 `;
 
-// Данные с фирменными цветами KAIF
-const facilitiesData = [
+// Данные с фирменными цветами KAIF - теперь используют переводы
+const getFacilitiesData = (t) => [
   {
     id: 'gym',
     emoji: '💪',
     number: '70',
     unit: '+',
-    name: 'Тренажеров',
-    description: 'Современное оборудование для эффективных тренировок',
+    name: t('facilities.gym.name', 'Тренажеров'),
+    description: t('facilities.gym.description', 'Современное оборудование для эффективных тренировок'),
     accent: 'linear-gradient(135deg, #E8734A 0%, #F28A5F 100%)',
     color: '#E8734A',
     borderColor: 'rgba(232, 115, 74, 0.15)'
@@ -244,8 +243,8 @@ const facilitiesData = [
     emoji: '🔥',
     number: '150',
     unit: 'm2',
-    name: 'Русская баня',
-    description: 'Самая большая панорамная русская парная на Пхукете',
+    name: t('facilities.banya.name', 'Русская баня'),
+    description: t('facilities.banya.description', 'Самая большая панорамная русская парная на Пхукете'),
     accent: 'linear-gradient(135deg, #8B4513 0%, #CD853F 100%)',
     color: '#8B4513',
     borderColor: 'rgba(139, 69, 19, 0.15)'
@@ -255,8 +254,8 @@ const facilitiesData = [
     emoji: '🍽️',
     number: '200',
     unit: '',
-    name: 'Мест в ресторане',
-    description: 'Ресторан на открытом воздухе',
+    name: t('facilities.restaurant.name', 'Мест в ресторане'),
+    description: t('facilities.restaurant.description', 'Ресторан на открытом воздухе'),
     accent: 'linear-gradient(135deg, #D4A574 0%, #E6B885 100%)',
     color: '#D4A574',
     borderColor: 'rgba(212, 165, 116, 0.15)'
@@ -265,9 +264,9 @@ const facilitiesData = [
     id: 'pool',
     emoji: '🏊‍♂️',
     number: '25',
-    unit: 'м',
-    name: 'Бассейн',
-    // description: '',
+    unit: t('facilities.pool.unit', 'м'),
+    name: t('facilities.pool.name', 'Бассейн'),
+    description: t('facilities.pool.description', 'Олимпийский стандарт для плавания'),
     accent: 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)',
     color: '#90B3A7',
     borderColor: 'rgba(144, 179, 167, 0.15)'
@@ -318,6 +317,9 @@ const AnimatedCounter = ({ value, delay = 0 }) => {
 
 const AdvantagesSection = () => {
   const { t } = useTranslation();
+  
+  // Получаем переведенные данные
+  const facilitiesData = useMemo(() => getFacilitiesData(t), [t]);
   
   // Анимации
   const fadeInUp = {
