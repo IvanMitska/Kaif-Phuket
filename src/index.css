@@ -64,7 +64,7 @@ article {
 }
 
 html {
-  scroll-behavior: auto;
+  /* ИСПРАВЛЕНО: Убираем все scroll-behavior для предотвращения конфликтов */
   font-size: 16px;
   line-height: 1.5;
   margin: 0;
@@ -74,10 +74,11 @@ html {
   /* Отключаем все scroll-snap свойства */
   scroll-snap-type: none !important;
   scroll-snap-align: none !important;
+  scroll-snap-stop: normal !important;
   background-color: #ffffff;
-  /* Оптимизация прокрутки */
+  /* Оптимизация прокрутки без блокировки */
   -webkit-overflow-scrolling: touch;
-  scroll-behavior: auto !important;
+  /* Важно: не устанавливаем scroll-behavior - позволяем браузеру управлять */
 }
 
 body {
@@ -98,9 +99,12 @@ body {
   /* Отключаем все scroll-snap свойства */
   scroll-snap-type: none !important;
   scroll-snap-align: none !important;
-  /* Отключаем эластичный скролл для iOS */
-  overscroll-behavior: none;
-  -webkit-overscroll-behavior: none;
+  scroll-snap-stop: normal !important;
+  /* ИСПРАВЛЕНО: Оптимизация скролла без блокировки */
+  overscroll-behavior: auto;
+  -webkit-overscroll-behavior: auto;
+  /* Разрешаем все типы touch действий */
+  touch-action: manipulation;
 }
 
 #root {

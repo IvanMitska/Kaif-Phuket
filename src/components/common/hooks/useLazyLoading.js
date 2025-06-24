@@ -114,36 +114,63 @@ export const usePerformanceOptimization = () => {
   return { isReducedMotion, isSlowDevice, getOptimizedAnimation };
 };
 
-// Хук для управления touch событиями
+// Хук для управления touch событиями - ИСПРАВЛЕН для предотвращения интерференции со скроллом
 export const useTouchGestures = (onSwipeLeft, onSwipeRight) => {
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
+  const [touchStartY, setTouchStartY] = useState(null);
+  const [touchEndY, setTouchEndY] = useState(null);
 
   const minSwipeDistance = 50;
+  const maxVerticalDistance = 30; // Максимальное вертикальное отклонение для горизонтального свайпа
 
   const onTouchStart = useCallback((e) => {
+    // Не блокируем естественный скролл
+    const touch = e.targetTouches[0];
     setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
+    setTouchEndY(null);
+    setTouchStart(touch.clientX);
+    setTouchStartY(touch.clientY);
   }, []);
 
   const onTouchMove = useCallback((e) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+    // Passive listener - не блокируем скролл
+    const touch = e.targetTouches[0];
+    setTouchEnd(touch.clientX);
+    setTouchEndY(touch.clientY);
   }, []);
 
-  const onTouchEnd = useCallback(() => {
-    if (!touchStart || !touchEnd) return;
+  const onTouchEnd = useCallback((e) => {
+    if (!touchStart || !touchEnd || !touchStartY || !touchEndY) return;
     
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
+    const horizontalDistance = touchStart - touchEnd;
+    const verticalDistance = touchStartY - touchEndY;
+    
+    // Проверяем, является ли жест горизонтальным свайпом
+    const isHorizontalSwipe = Math.abs(horizontalDistance) > minSwipeDistance;
+    const isVerticalScroll = Math.abs(verticalDistance) > Math.abs(horizontalDistance);
+    
+    // Если это скорее вертикальный скролл - игнорируем
+    if (isVerticalScroll || Math.abs(verticalDistance) > maxVerticalDistance) {
+      return;
+    }
+    
+    // Обрабатываем только четко горизонтальные свайпы
+    if (isHorizontalSwipe) {
+      const isLeftSwipe = horizontalDistance > 0;
+      const isRightSwipe = horizontalDistance < 0;
 
-    if (isLeftSwipe && onSwipeLeft) {
-      onSwipeLeft();
+      if (isLeftSwipe && onSwipeLeft) {
+        // Предотвращаем возможные дополнительные события только для обработанного свайпа
+        e.preventDefault?.();
+        onSwipeLeft();
+      }
+      if (isRightSwipe && onSwipeRight) {
+        e.preventDefault?.();
+        onSwipeRight();
+      }
     }
-    if (isRightSwipe && onSwipeRight) {
-      onSwipeRight();
-    }
-  }, [touchStart, touchEnd, onSwipeLeft, onSwipeRight]);
+  }, [touchStart, touchEnd, touchStartY, touchEndY, onSwipeLeft, onSwipeRight]);
 
   return {
     onTouchStart,

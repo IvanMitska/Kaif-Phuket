@@ -137,18 +137,20 @@ const GridContainer = styled.div`
   }
 `;
 
-// Карточка зоны
+// Карточка зоны - ИСПРАВЛЕНА для оптимизации скролла
 const ZoneCard = styled(motion.div)`
   position: relative;
   height: 280px;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
   cursor: pointer;
-  /* Оптимизация производительности */
-  will-change: transform, box-shadow;
+  /* ИСПРАВЛЕНИЕ: Убираем will-change для предотвращения избыточных композитных слоев */
+  will-change: auto;
+  /* Минимальные трансформации для оптимизации */
   transform: translateZ(0);
+  /* Оптимизированные переходы */
+  transition: box-shadow 0.2s ease-out;
   
   @media (min-width: 480px) {
     height: 320px;
@@ -165,18 +167,17 @@ const ZoneCard = styled(motion.div)`
     height: 380px;
   }
   
-  /* Hover только для устройств с курсором */
+  /* ИСПРАВЛЕНИЕ: Упрощенный hover для desktop без влияния на скролл */
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      transform: translateY(-8px) scale(1.01) translateZ(0);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      /* Убираем transform для предотвращения compositor thrashing */
     }
   }
   
-  /* Убираем hover для touch устройств */
+  /* Для touch устройств убираем все эффекты */
   @media (hover: none) or (pointer: coarse) {
     &:hover {
-      transform: none;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
   }
@@ -220,30 +221,31 @@ const ZoneCard = styled(motion.div)`
   }
 `;
 
-// Изображение зоны
+// Изображение зоны - ИСПРАВЛЕНО для оптимизации скролла
 const ZoneImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  /* ИСПРАВЛЕНИЕ: Убираем трансформации изображений для оптимизации скролла */
+  /* Не используем transform hover эффекты, чтобы не создавать дополнительные слои */
+  will-change: auto;
   
-  /* Hover только для устройств с курсором */
+  /* Убираем все hover эффекты для предотвращения compositor thrashing */
   @media (hover: hover) and (pointer: fine) {
     ${ZoneCard}:hover & {
-      transform: scale(1.1);
+      /* Убираем scale transform */
     }
   }
   
-  /* Отключаем hover для touch устройств */
   @media (hover: none) or (pointer: coarse) {
     ${ZoneCard}:hover & {
-      transform: scale(1);
+      /* Ничего не делаем */
     }
   }
 `;
 
-// Контент карточки
+// Контент карточки - ИСПРАВЛЕН для оптимизации скролла
 const CardContent = styled.div`
   position: absolute;
   bottom: 0;
@@ -252,25 +254,24 @@ const CardContent = styled.div`
   padding: 2rem;
   z-index: 2;
   color: #fff;
-  transform: translateY(0);
-  transition: transform 0.4s ease;
+  /* ИСПРАВЛЕНИЕ: Убираем трансформации для оптимизации скролла */
+  will-change: auto;
   
-  /* Hover только для устройств с курсором */
+  /* Убираем все hover эффекты с трансформациями */
   @media (hover: hover) and (pointer: fine) {
     ${ZoneCard}:hover & {
-      transform: translateY(-5px);
+      /* Убираем transform */
     }
   }
   
-  /* Отключаем hover для touch устройств */
   @media (hover: none) or (pointer: coarse) {
     ${ZoneCard}:hover & {
-      transform: translateY(0);
+      /* Ничего не делаем */
     }
   }
 `;
 
-// Название зоны
+// Название зоны - ИСПРАВЛЕНО для оптимизации скролла
 const ZoneName = styled.h3`
   font-family: 'Montserrat', sans-serif;
   font-size: 1.75rem;
@@ -279,26 +280,24 @@ const ZoneName = styled.h3`
   letter-spacing: 0.5px;
   color: #fff;
   text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.8);
-  transition: all 0.3s ease;
+  /* ИСПРАВЛЕНИЕ: Убираем трансформации */
+  will-change: auto;
   
-  /* Hover только для устройств с курсором */
+  /* Упрощенный hover без трансформаций */
   @media (hover: hover) and (pointer: fine) {
     ${ZoneCard}:hover & {
-      transform: translateY(-2px);
       text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.9);
     }
   }
   
-  /* Отключаем hover для touch устройств */
   @media (hover: none) or (pointer: coarse) {
     ${ZoneCard}:hover & {
-      transform: translateY(0);
       text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.8);
     }
   }
 `;
 
-// Описание зоны
+// Описание зоны - ИСПРАВЛЕНО для оптимизации скролла
 const ZoneDescription = styled.p`
   font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
@@ -308,23 +307,21 @@ const ZoneDescription = styled.p`
   color: #fff;
   font-weight: 500;
   letter-spacing: 0.2px;
-  transition: all 0.3s ease;
   text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.8);
+  /* ИСПРАВЛЕНИЕ: Убираем трансформации */
+  will-change: auto;
   
-  /* Hover только для устройств с курсором */
+  /* Упрощенный hover без трансформаций */
   @media (hover: hover) and (pointer: fine) {
     ${ZoneCard}:hover & {
       opacity: 1;
-      transform: translateY(-2px);
       text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.9);
     }
   }
   
-  /* Отключаем hover для touch устройств */
   @media (hover: none) or (pointer: coarse) {
     ${ZoneCard}:hover & {
       opacity: 0.95;
-      transform: translateY(0);
       text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.8);
     }
   }
@@ -476,8 +473,8 @@ const TabButton = styled.button`
   backdrop-filter: blur(10px);
   min-width: 180px;
   justify-content: center;
-  /* Оптимизация производительности */
-  will-change: transform, background-color, box-shadow;
+  /* ИСПРАВЛЕНИЕ: Оптимизация без избыточных слоев */
+  will-change: auto;
   transform: translateZ(0);
   
   svg {
@@ -500,7 +497,7 @@ const TabButton = styled.button`
   }
   
   &:hover {
-    transform: translateY(-1px) translateZ(0);
+    /* ИСПРАВЛЕНИЕ: Упрощенный hover без трансформаций */
     box-shadow: ${props => props.$active 
       ? '0 10px 30px rgba(144, 179, 167, 0.5)' 
       : '0 6px 20px rgba(144, 179, 167, 0.25)'
@@ -513,7 +510,6 @@ const TabButton = styled.button`
     color: ${props => props.$active ? 'white' : '#90B3A7'};
     
     svg {
-      transform: scale(1.05) translateZ(0);
       color: ${props => props.$active ? 'white' : '#90B3A7'};
     }
   }

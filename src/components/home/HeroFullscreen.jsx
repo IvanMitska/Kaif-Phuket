@@ -35,20 +35,30 @@ const HeroContainer = styled.section`
   color: white;
   overflow: hidden;
   background: #000;
-  /* Отключаем scroll-snap */
+  /* ИСПРАВЛЕНИЕ: Полное отключение scroll-snap и оптимизация для скролла */
   scroll-snap-align: none !important;
   scroll-snap-type: none !important;
+  scroll-snap-stop: normal !important;
   /* Убираем sticky behavior */
   contain: none;
   isolation: auto;
+  /* Оптимизация производительности скролла */
+  will-change: auto;
+  /* Предотвращаем блокировку скролла */
+  touch-action: pan-y pinch-zoom;
+  /* Отключаем overscroll behavior для этой секции */
+  overscroll-behavior: auto;
+  -webkit-overscroll-behavior: auto;
   
   @media (max-width: 768px) {
     min-height: 100svh; /* Используем dvh для мобильных */
     height: auto;
+    /* Важно для мобильных - не блокируем вертикальный скролл */
+    touch-action: pan-y;
   }
 `;
 
-// Слайдер с современным затемнением
+// Слайдер с современным затемнением - ИСПРАВЛЕН
 const SliderContainer = styled.div`
   position: absolute;
   top: 0;
@@ -56,9 +66,18 @@ const SliderContainer = styled.div`
   width: 100%;
   height: 100%;
   z-index: 1;
+  /* ИСПРАВЛЕНИЕ: Убираем will-change для предотвращения compositor issues */
+  will-change: auto;
+  /* Не блокируем события указателя для скролла */
+  pointer-events: none;
+  
+  /* Разрешаем события только для дочерних элементов слайдера */
+  > * {
+    pointer-events: auto;
+  }
 `;
 
-// Слайд с оптимальным затемнением для читаемости
+// Слайд с оптимальным затемнением для читаемости - ИСПРАВЛЕН
 const Slide = styled.div`
   position: absolute;
   top: 0;
@@ -67,6 +86,11 @@ const Slide = styled.div`
   height: 100%;
   opacity: ${props => props.$active ? 1 : 0};
   transition: opacity 2s ease-in-out;
+  /* ИСПРАВЛЕНИЕ: Оптимизация для GPU без блокировки скролла */
+  transform: translateZ(0);
+  will-change: opacity;
+  /* Не блокируем события указателя */
+  pointer-events: none;
   
   &::after {
     content: '';
@@ -82,6 +106,7 @@ const Slide = styled.div`
       rgba(0,0,0,0.55) 100%
     );
     z-index: 2;
+    pointer-events: none;
   }
   
   img {
@@ -90,10 +115,14 @@ const Slide = styled.div`
     object-fit: cover;
     object-position: center;
     filter: brightness(0.8) contrast(1.1) saturate(0.9);
+    /* Не блокируем события указателя */
+    pointer-events: none;
+    /* Оптимизация без создания новых слоев */
+    will-change: auto;
   }
 `;
 
-// Контейнер контента - минималистичный и элегантный
+// Контейнер контента - минималистичный и элегантный - ИСПРАВЛЕН
 const ContentContainer = styled.div`
   position: relative;
   z-index: 10;
@@ -104,6 +133,10 @@ const ContentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* ИСПРАВЛЕНИЕ: Разрешаем события для интерактивных элементов */
+  pointer-events: auto;
+  /* Не создаем дополнительные композитные слои */
+  will-change: auto;
   
   @media (max-width: 768px) {
     padding: 2rem 0;
@@ -169,8 +202,6 @@ const LogoImage = styled(motion.img)`
     max-width: 380px;
   }
 `;
-
-
 
 // Белая кнопка с чёрным текстом - премиальный вид
 const PrimaryButton = styled(Link)`
@@ -388,15 +419,36 @@ const HeroFullscreen = memo(() => {
     return () => clearInterval(interval);
   }, []);
 
-  // Мемоизированный обработчик скролла
+  // ИСПРАВЛЕН: Обработчик скролла без конфликтов
   const handleScrollToZones = useCallback(() => {
     const element = document.getElementById('exclusive-zones');
     if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start',
-        inline: 'nearest' 
-      });
+      // Используем requestAnimationFrame для плавного скролла без блокировки
+      const targetPosition = element.offsetTop - 80; // Отступ для хедера
+      
+      // Плавный скролл с использованием requestAnimationFrame
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      const duration = 800; // 800ms для плавного скролла
+      let start = null;
+      
+      function animation(currentTime) {
+        if (start === null) start = currentTime;
+        const timeElapsed = currentTime - start;
+        const run = ease(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+      }
+      
+      // Easing function для плавности
+      function ease(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+      }
+      
+      requestAnimationFrame(animation);
     }
   }, []);
 
