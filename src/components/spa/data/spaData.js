@@ -108,29 +108,29 @@ export const getSpaData = (t) => {
       image: '/images/beauty/services/endosphere-body.jpg'
     },
     {
-      id: 'endosphere-face',
-      name: t('spa.services.items.endosphere_face.name', 'Эндосфера RF лифтинг'),
+      id: 'endosphere-rf-lifting',
+      name: t('spa.services.items.endosphere_rf_lifting.name', 'Эндосфера RF лифтинг'),
       category: 'endosphere',
       price: 1500,
-      description: t('spa.services.items.endosphere_face.description', 'Омолаживающий аппаратный массаж лица'),
+      description: t('spa.services.items.endosphere_rf_lifting.description', 'Омолаживающий аппаратный массаж лица'),
       popular: true,
       image: '/images/beauty/services/endosphere-face.jpg'
     },
     {
-      id: 'endosphere-subscription-6',
-      name: t('spa.services.items.endosphere_subscription_6.name', 'Эндосфера-терапия (6 процедур)'),
+      id: 'endosphere-6-procedures',
+      name: t('spa.services.items.endosphere_6_procedures.name', 'Эндосфера-терапия (6 процедур)'),
       category: 'endosphere',
       price: 10000,
-      description: t('spa.services.items.endosphere_subscription_6.description', 'Выгодный пакет из 6 процедур'),
+      description: t('spa.services.items.endosphere_6_procedures.description', 'Выгодный пакет из 6 процедур'),
       popular: true,
       image: '/images/beauty/services/endosphere-subscription.jpg'
     },
     {
-      id: 'endosphere-subscription-12',
-      name: t('spa.services.items.endosphere_subscription_12.name', 'Эндосфера-терапия (12 процедур)'),
+      id: 'endosphere-12-procedures',
+      name: t('spa.services.items.endosphere_12_procedures.name', 'Эндосфера-терапия (12 процедур)'),
       category: 'endosphere',
       price: 18000,
-      description: t('spa.services.items.endosphere_subscription_12.description', 'Максимальный пакет из 12 процедур'),
+      description: t('spa.services.items.endosphere_12_procedures.description', 'Максимальный пакет из 12 процедур'),
       popular: true,
       image: '/images/beauty/services/endosphere-subscription-max.jpg'
     }
@@ -440,6 +440,332 @@ export const getSpaData = (t) => {
     }
   ];
 
+  // МАНИКЮР
+  const manicureServices = [
+    {
+      id: 'manicure-no-coating',
+      name: t('spa.services.items.manicure_no_coating.name', 'Маникюр без покрытия'),
+      category: 'manicure',
+      price: 600,
+      description: t('spa.services.items.manicure_no_coating.description', 'Классический маникюр без покрытия'),
+      popular: true,
+      image: '/images/beauty/services/manicure-classic.jpg'
+    },
+    {
+      id: 'manicure-base-coating',
+      name: t('spa.services.items.manicure_base_coating.name', 'Маникюр с базовым покрытием'),
+      category: 'manicure',
+      price: 800,
+      description: t('spa.services.items.manicure_base_coating.description', 'Маникюр с защитным базовым покрытием'),
+      popular: true,
+      image: '/images/beauty/services/manicure-base.jpg'
+    },
+    {
+      id: 'manicure-gel-strengthening',
+      name: t('spa.services.items.manicure_gel_strengthening.name', 'Маникюр с гелевым укреплением'),
+      category: 'manicure',
+      price: 1500,
+      description: t('spa.services.items.manicure_gel_strengthening.description', 'Маникюр с укрепляющим гелевым покрытием'),
+      popular: true,
+      image: '/images/beauty/services/manicure-gel.jpg'
+    },
+    {
+      id: 'nail-removal',
+      name: t('spa.services.items.nail_removal.name', 'Снятие покрытия'),
+      category: 'manicure',
+      price: 200,
+      description: t('spa.services.items.nail_removal.description', 'Безопасное снятие гелевого покрытия'),
+      popular: false,
+      image: '/images/beauty/services/nail-removal.jpg'
+    },
+    {
+      id: 'nail-repair',
+      name: t('spa.services.items.nail_repair.name', 'Ремонт ногтя'),
+      category: 'manicure',
+      price: 200,
+      description: t('spa.services.items.nail_repair.description', 'Восстановление поврежденного ногтя'),
+      popular: false,
+      image: '/images/beauty/services/nail-repair.jpg'
+    },
+    {
+      id: 'nail-design',
+      name: t('spa.services.items.nail_design.name', 'Дизайн ногтей'),
+      category: 'manicure',
+      priceFrom: 50,
+      description: t('spa.services.items.nail_design.description', 'Художественный дизайн ногтей'),
+      popular: true,
+      image: '/images/beauty/services/nail-design.jpg'
+    },
+    {
+      id: 'french-manicure',
+      name: t('spa.services.items.french_manicure.name', 'Французский маникюр'),
+      category: 'manicure',
+      price: 300,
+      description: t('spa.services.items.french_manicure.description', 'Классический французский маникюр (доплата)'),
+      popular: true,
+      image: '/images/beauty/services/french-manicure.jpg'
+    }
+  ];
+
+  // ПЕДИКЮР
+  const pedicureServices = [
+    {
+      id: 'pedicure-no-coating',
+      name: t('spa.services.items.pedicure_no_coating.name', 'Педикюр без покрытия'),
+      category: 'pedicure',
+      price: 600,
+      description: t('spa.services.items.pedicure_no_coating.description', 'Классический педикюр без покрытия'),
+      popular: true,
+      image: '/images/beauty/services/pedicure-classic.jpg'
+    },
+    {
+      id: 'pedicure-base-coating',
+      name: t('spa.services.items.pedicure_base_coating.name', 'Педикюр с базовым покрытием'),
+      category: 'pedicure',
+      price: 800,
+      description: t('spa.services.items.pedicure_base_coating.description', 'Педикюр с защитным покрытием'),
+      popular: true,
+      image: '/images/beauty/services/pedicure-base.jpg'
+    },
+    {
+      id: 'pedicure-gel-strengthening',
+      name: t('spa.services.items.pedicure_gel_strengthening.name', 'Педикюр с гелевым укреплением'),
+      category: 'pedicure',
+      price: 1000,
+      description: t('spa.services.items.pedicure_gel_strengthening.description', 'Педикюр с укрепляющим покрытием'),
+      popular: true,
+      image: '/images/beauty/services/pedicure-gel.jpg'
+    },
+    {
+      id: 'full-pedicure-no-coating',
+      name: t('spa.services.items.full_pedicure_no_coating.name', 'Полный педикюр без покрытия'),
+      category: 'pedicure',
+      price: 1200,
+      description: t('spa.services.items.full_pedicure_no_coating.description', 'Комплексный уход за стопами'),
+      popular: true,
+      image: '/images/beauty/services/pedicure-full.jpg'
+    },
+    {
+      id: 'full-pedicure-coating',
+      name: t('spa.services.items.full_pedicure_coating.name', 'Полный педикюр с покрытием'),
+      category: 'pedicure',
+      price: 1500,
+      description: t('spa.services.items.full_pedicure_coating.description', 'Комплексный уход с покрытием'),
+      popular: true,
+      image: '/images/beauty/services/pedicure-full-coating.jpg'
+    },
+    {
+      id: 'callus-removal',
+      name: t('spa.services.items.callus_removal.name', 'Удаление мозолей'),
+      category: 'pedicure',
+      price: 300,
+      description: t('spa.services.items.callus_removal.description', 'Профессиональное удаление мозолей'),
+      popular: false,
+      image: '/images/beauty/services/callus-removal.jpg'
+    },
+    {
+      id: 'pedicure-coating-removal',
+      name: t('spa.services.items.pedicure_coating_removal.name', 'Снятие покрытия'),
+      category: 'pedicure',
+      price: 200,
+      description: t('spa.services.items.pedicure_coating_removal.description', 'Снятие старого покрытия'),
+      popular: false,
+      image: '/images/beauty/services/pedicure-removal.jpg'
+    }
+  ];
+
+  // PRO МАСТЕР ПЕДИКЮР
+  const proMasterPedicureServices = [
+    {
+      id: 'pro-pedicure-no-coating',
+      name: t('spa.services.items.pro_pedicure_no_coating.name', 'PRO мастер педикюр без покрытия'),
+      category: 'pro-pedicure',
+      price: 1000,
+      description: t('spa.services.items.pro_pedicure_no_coating.description', 'Профессиональный педикюр от мастера высокого класса'),
+      popular: true,
+      image: '/images/beauty/services/pro-pedicure-classic.jpg'
+    },
+    {
+      id: 'pro-pedicure-base-coating',
+      name: t('spa.services.items.pro_pedicure_base_coating.name', 'PRO мастер педикюр с базовым покрытием'),
+      category: 'pro-pedicure',
+      price: 1200,
+      description: t('spa.services.items.pro_pedicure_base_coating.description', 'Профессиональный педикюр с покрытием'),
+      popular: true,
+      image: '/images/beauty/services/pro-pedicure-base.jpg'
+    },
+    {
+      id: 'pro-pedicure-gel-strengthening',
+      name: t('spa.services.items.pro_pedicure_gel_strengthening.name', 'PRO мастер педикюр с гелевым укреплением'),
+      category: 'pro-pedicure',
+      price: 1400,
+      description: t('spa.services.items.pro_pedicure_gel_strengthening.description', 'Профессиональный педикюр с укреплением'),
+      popular: true,
+      image: '/images/beauty/services/pro-pedicure-gel.jpg'
+    },
+    {
+      id: 'pro-full-pedicure-no-coating',
+      name: t('spa.services.items.pro_full_pedicure_no_coating.name', 'PRO мастер полный педикюр без покрытия'),
+      category: 'pro-pedicure',
+      price: 1500,
+      description: t('spa.services.items.pro_full_pedicure_no_coating.description', 'Комплексный профессиональный уход'),
+      popular: true,
+      image: '/images/beauty/services/pro-pedicure-full.jpg'
+    },
+    {
+      id: 'pro-full-pedicure-coating',
+      name: t('spa.services.items.pro_full_pedicure_coating.name', 'PRO мастер полный педикюр с покрытием'),
+      category: 'pro-pedicure',
+      price: 1800,
+      description: t('spa.services.items.pro_full_pedicure_coating.description', 'Максимальный уход от профессионала'),
+      popular: true,
+      image: '/images/beauty/services/pro-pedicure-full-coating.jpg'
+    },
+    {
+      id: 'pro-callus-removal',
+      name: t('spa.services.items.pro_callus_removal.name', 'PRO мастер удаление мозолей'),
+      category: 'pro-pedicure',
+      price: 300,
+      description: t('spa.services.items.pro_callus_removal.description', 'Профессиональное удаление мозолей'),
+      popular: false,
+      image: '/images/beauty/services/pro-callus-removal.jpg'
+    },
+    {
+      id: 'pro-coating-removal',
+      name: t('spa.services.items.pro_coating_removal.name', 'PRO мастер снятие покрытия'),
+      category: 'pro-pedicure',
+      price: 300,
+      description: t('spa.services.items.pro_coating_removal.description', 'Профессиональное снятие покрытия'),
+      popular: false,
+      image: '/images/beauty/services/pro-coating-removal.jpg'
+    },
+    {
+      id: 'pro-medical-pedicure',
+      name: t('spa.services.items.pro_medical_pedicure.name', 'PRO мастер медицинский педикюр'),
+      category: 'pro-pedicure',
+      price: 2000,
+      description: t('spa.services.items.pro_medical_pedicure.description', 'Медицинский педикюр для проблемных стоп'),
+      popular: true,
+      image: '/images/beauty/services/pro-medical-pedicure.jpg'
+    }
+  ];
+
+  // РЕСНИЦЫ
+  const eyelashServices = [
+    {
+      id: 'classic-eyelashes',
+      name: t('spa.services.items.classic_eyelashes.name', 'Классическое наращивание ресниц'),
+      category: 'eyelashes',
+      price: 2200,
+      description: t('spa.services.items.classic_eyelashes.description', 'Классическое наращивание ресниц 1:1'),
+      popular: true,
+      image: '/images/beauty/services/eyelashes-classic.jpg'
+    },
+    {
+      id: 'volume-1-5d',
+      name: t('spa.services.items.volume_1_5d.name', '1.5D объем'),
+      category: 'eyelashes',
+      price: 2300,
+      description: t('spa.services.items.volume_1_5d.description', 'Легкий объем для натурального эффекта'),
+      popular: true,
+      image: '/images/beauty/services/eyelashes-1-5d.jpg'
+    },
+    {
+      id: 'volume-2d',
+      name: t('spa.services.items.volume_2d.name', '2D объем'),
+      category: 'eyelashes',
+      price: 2400,
+      description: t('spa.services.items.volume_2d.description', 'Средний объем для выразительного взгляда'),
+      popular: true,
+      image: '/images/beauty/services/eyelashes-2d.jpg'
+    },
+    {
+      id: 'volume-3d',
+      name: t('spa.services.items.volume_3d.name', '3D объем'),
+      category: 'eyelashes',
+      price: 2600,
+      description: t('spa.services.items.volume_3d.description', 'Насыщенный объем для яркого образа'),
+      popular: true,
+      image: '/images/beauty/services/eyelashes-3d.jpg'
+    },
+    {
+      id: 'hollywood-volume',
+      name: t('spa.services.items.hollywood_volume.name', 'Голливудский объем'),
+      category: 'eyelashes',
+      price: 2900,
+      description: t('spa.services.items.hollywood_volume.description', 'Максимальный объем для драматического эффекта'),
+      popular: true,
+      image: '/images/beauty/services/eyelashes-hollywood.jpg'
+    },
+    {
+      id: 'eyelash-removal',
+      name: t('spa.services.items.eyelash_removal.name', 'Снятие ресниц'),
+      category: 'eyelashes',
+      price: 300,
+      description: t('spa.services.items.eyelash_removal.description', 'Безопасное снятие наращенных ресниц'),
+      popular: false,
+      image: '/images/beauty/services/eyelash-removal.jpg'
+    }
+  ];
+
+  // БРОВИ
+  const browServices = [
+    {
+      id: 'brow-correction',
+      name: t('spa.services.items.brow_correction.name', 'Коррекция бровей'),
+      category: 'brows',
+      price: 600,
+      description: t('spa.services.items.brow_correction.description', 'Профессиональная коррекция формы бровей'),
+      popular: true,
+      image: '/images/beauty/services/brow-correction.jpg'
+    },
+    {
+      id: 'brow-tinting',
+      name: t('spa.services.items.brow_tinting.name', 'Окрашивание бровей'),
+      category: 'brows',
+      price: 600,
+      description: t('spa.services.items.brow_tinting.description', 'Окрашивание бровей стойкой краской'),
+      popular: true,
+      image: '/images/beauty/services/brow-tinting.jpg'
+    },
+    {
+      id: 'brow-correction-tinting',
+      name: t('spa.services.items.brow_correction_tinting.name', 'Коррекция и окрашивание бровей'),
+      category: 'brows',
+      price: 1000,
+      description: t('spa.services.items.brow_correction_tinting.description', 'Комплексный уход за бровями'),
+      popular: true,
+      image: '/images/beauty/services/brow-correction-tinting.jpg'
+    },
+    {
+      id: 'brow-lamination-complex',
+      name: t('spa.services.items.brow_lamination_complex.name', 'Ламинирование + коррекция + окрашивание бровей'),
+      category: 'brows',
+      price: 1600,
+      description: t('spa.services.items.brow_lamination_complex.description', 'Полный комплекс для идеальных бровей'),
+      popular: true,
+      image: '/images/beauty/services/brow-lamination.jpg'
+    },
+    {
+      id: 'eyelash-lamination-tinting',
+      name: t('spa.services.items.eyelash_lamination_tinting.name', 'Ламинирование + окрашивание ресниц'),
+      category: 'brows',
+      price: 1800,
+      description: t('spa.services.items.eyelash_lamination_tinting.description', 'Ламинирование и окрашивание ресниц'),
+      popular: true,
+      image: '/images/beauty/services/eyelash-lamination.jpg'
+    },
+    {
+      id: 'full-lamination-complex',
+      name: t('spa.services.items.full_lamination_complex.name', 'Полный комплекс ламинирования'),
+      category: 'brows',
+      price: 3000,
+      description: t('spa.services.items.full_lamination_complex.description', 'Коррекция + окрашивание бровей + ламинирование + окрашивание ресниц'),
+      popular: true,
+      image: '/images/beauty/services/full-lamination-complex.jpg'
+    }
+  ];
+
   // Объединяем все услуги
   const allServices = [
     ...massageServices,
@@ -447,7 +773,12 @@ export const getSpaData = (t) => {
     ...laserServices,
     ...laserComplex3Services,
     ...laserComplex5Services,
-    ...hairServices
+    ...hairServices,
+    ...manicureServices,
+    ...pedicureServices,
+    ...proMasterPedicureServices,
+    ...eyelashServices,
+    ...browServices
   ];
 
   // Категории услуг
@@ -493,6 +824,41 @@ export const getSpaData = (t) => {
       description: 'Стрижки, окрашивание и уход',
       icon: '',
       color: 'linear-gradient(135deg, #A8B8A8 0%, #B8C8B8 100%)'
+    },
+    {
+      id: 'manicure',
+      name: t('spa.services.categories.manicure', 'Маникюр'),
+      description: 'Профессиональный уход за руками и ногтями',
+      icon: '',
+      color: 'linear-gradient(135deg, #F8A8C8 0%, #F8B8D8 100%)'
+    },
+    {
+      id: 'pedicure',
+      name: t('spa.services.categories.pedicure', 'Педикюр'),
+      description: 'Классический уход за стопами и ногтями',
+      icon: '',
+      color: 'linear-gradient(135deg, #A8D8F8 0%, #B8E8FF 100%)'
+    },
+    {
+      id: 'pro-pedicure',
+      name: t('spa.services.categories.pro-pedicure', 'PRO мастер педикюр'),
+      description: 'Профессиональный и медицинский педикюр',
+      icon: '',
+      color: 'linear-gradient(135deg, #88C8E8 0%, #98D8F8 100%)'
+    },
+    {
+      id: 'eyelashes',
+      name: t('spa.services.categories.eyelashes', 'Ресницы'),
+      description: 'Наращивание и уход за ресницами',
+      icon: '',
+      color: 'linear-gradient(135deg, #D8A8F8 0%, #E8B8FF 100%)'
+    },
+    {
+      id: 'brows',
+      name: t('spa.services.categories.brows', 'Брови и ресницы'),
+      description: 'Коррекция, окрашивание и ламинирование',
+      icon: '',
+      color: 'linear-gradient(135deg, #C8D8A8 0%, #D8E8B8 100%)'
     }
   ];
 

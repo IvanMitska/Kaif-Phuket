@@ -347,7 +347,7 @@ const SpaServicesSection = () => {
   const { allServices, serviceCategories } = spaData;
   
   // Основные категории для мобильного (самые популярные)
-  const mainCategories = ['massage', 'endosphere', 'laser', 'hair-care'];
+  const mainCategories = ['massage', 'manicure', 'pedicure', 'eyelashes', 'brows', 'hair-care', 'laser', 'endosphere'];
   const visibleCategories = serviceCategories.filter(cat => mainCategories.includes(cat.id));
   
   // Функция для получения услуг по категории
