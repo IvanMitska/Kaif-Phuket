@@ -20,33 +20,33 @@ import {
 } from '../../../styles/sports/CommonStyles';
 
 // Данные слайдера - оптимизированные
-const sliderData = [
+const getSliderData = (t) => [
   {
     id: 1,
     emoji: "🏋️‍♂️",
-    title: "Тренажерный зал",
-    subtitle: "Современное оборудование",
+    title: t('sports.gallery.slides.gym.title', 'Тренажерный зал'),
+    subtitle: t('sports.gallery.slides.gym.subtitle', 'Современное оборудование'),
     gradient: "linear-gradient(135deg, rgba(210, 155, 132, 0.15) 0%, rgba(139, 69, 19, 0.1) 100%)"
   },
   {
     id: 2,
     emoji: "🥊",
-    title: "Бойцовский клуб",
-    subtitle: "Профессиональный ринг",
+    title: t('sports.gallery.slides.fight_club.title', 'Бойцовский клуб'),
+    subtitle: t('sports.gallery.slides.fight_club.subtitle', 'Профессиональный ринг'),
     gradient: "linear-gradient(135deg, rgba(220, 38, 127, 0.15) 0%, rgba(139, 69, 19, 0.1) 100%)"
   },
   {
     id: 3,
     emoji: "👨‍🏫",
-    title: "Персональный тренинг",
-    subtitle: "Индивидуальный подход",
+    title: t('sports.gallery.slides.personal_training.title', 'Персональный тренинг'),
+    subtitle: t('sports.gallery.slides.personal_training.subtitle', 'Индивидуальный подход'),
     gradient: "linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 69, 19, 0.1) 100%)"
   },
   {
     id: 4,
     emoji: "🏊‍♂️",
-    title: "Бассейн",
-    subtitle: "Релаксация и восстановление",
+    title: t('sports.gallery.slides.pool.title', 'Бассейн'),
+    subtitle: t('sports.gallery.slides.pool.subtitle', 'Релаксация и восстановление'),
     gradient: "linear-gradient(135deg, rgba(14, 165, 233, 0.15) 0%, rgba(139, 69, 19, 0.1) 100%)"
   }
 ];
