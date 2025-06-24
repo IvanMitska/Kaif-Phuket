@@ -305,37 +305,37 @@ export const getSpaData = (t) => {
   const hairServices = [
     {
       id: 'haircut',
-      name: t('spa.services.items.haircut.name', 'Стрижка'),
+      name: t('spa.services.items.womens_haircut.name', 'Стрижка'),
       category: 'hair-care',
       price: 1000,
-      description: t('spa.services.items.haircut.description', 'Профессиональная стрижка'),
+      description: t('spa.services.items.womens_haircut.description', 'Профессиональная стрижка'),
       popular: true,
       image: '/images/beauty/services/haircut.jpg'
     },
     {
       id: 'bang-trim',
-      name: t('spa.services.items.bang_trim.name', 'Стрижка челки'),
+      name: t('spa.services.items.bangs_haircut.name', 'Стрижка челки'),
       category: 'hair-care',
       price: 500,
-      description: t('spa.services.items.bang_trim.description', 'Коррекция и стрижка челки'),
+      description: t('spa.services.items.bangs_haircut.description', 'Коррекция и стрижка челки'),
       popular: false,
       image: '/images/beauty/services/bangs-cut.jpg'
     },
     {
       id: 'root-coloring',
-      name: t('spa.services.items.root_coloring.name', 'Окрашивание корней (1 тон)'),
+      name: t('spa.services.items.coloring_roots.name', 'Окрашивание корней (1 тон)'),
       category: 'hair-care',
       price: 2000,
-      description: t('spa.services.items.root_coloring.description', 'Окрашивание отросших корней'),
+      description: t('spa.services.items.coloring_roots.description', 'Окрашивание отросших корней'),
       popular: true,
       image: '/images/beauty/services/hair-roots.jpg'
     },
     {
       id: 'root-coloring-stretch',
-      name: t('spa.services.items.root_coloring_stretch.name', 'Окрашивание корней + растяжка цвета по длине'),
+      name: t('spa.services.items.coloring_stretching.name', 'Окрашивание корней + растяжка цвета по длине'),
       category: 'hair-care',
       priceFrom: 3500,
-      description: t('spa.services.items.root_coloring_stretch.description', 'Сложное окрашивание с растяжкой цвета'),
+      description: t('spa.services.items.coloring_stretching.description', 'Сложное окрашивание с растяжкой цвета'),
       popular: true,
       image: '/images/beauty/services/hair-stretching.jpg'
     },
@@ -421,23 +421,23 @@ export const getSpaData = (t) => {
       image: '/images/beauty/services/happiness-long.jpg'
     },
     {
-      id: 'express-hair-care',
-      name: t('spa.services.items.express_hair_care.name', 'Экспресс-уход за волосами'),
-      category: 'hair-care',
-      price: 500,
-      description: t('spa.services.items.express_hair_care.description', 'Быстрая восстанавливающая процедура'),
-      popular: false,
-      image: '/images/beauty/services/hair-express.jpg'
-    },
-    {
-      id: 'vietnamese-head-massage',
-      name: t('spa.services.items.vietnamese_head_massage.name', 'Вьетнамский массаж головы'),
-      category: 'hair-care',
-      price: 1600,
-      description: t('spa.services.items.vietnamese_head_massage.description', 'Традиционный вьетнамский массаж для роста волос'),
-      popular: true,
-      image: '/images/beauty/services/vietnamese-massage.jpg'
-    }
+       id: 'express-hair-care',
+       name: t('spa.services.items.hair_express_care.name', 'Экспресс-уход за волосами'),
+       category: 'hair-care',
+       price: 500,
+       description: t('spa.services.items.hair_express_care.description', 'Быстрая восстанавливающая процедура'),
+       popular: false,
+       image: '/images/beauty/services/hair-express.jpg'
+     },
+     {
+       id: 'vietnamese-head-massage',
+       name: t('spa.services.items.indian_head_massage.name', 'Вьетнамский массаж головы'),
+       category: 'hair-care',
+       price: 1600,
+       description: t('spa.services.items.indian_head_massage.description', 'Традиционный вьетнамский массаж для роста волос'),
+       popular: true,
+       image: '/images/beauty/services/vietnamese-massage.jpg'
+     }
   ];
 
   // МАНИКЮР
@@ -462,10 +462,10 @@ export const getSpaData = (t) => {
     },
     {
       id: 'manicure-gel-strengthening',
-      name: t('spa.services.items.manicure_gel_strengthening.name', 'Маникюр с гелевым укреплением'),
+      name: t('spa.services.items.gel_strengthening_polish.name', 'Маникюр с гелевым укреплением'),
       category: 'manicure',
       price: 1500,
-      description: t('spa.services.items.manicure_gel_strengthening.description', 'Маникюр с укрепляющим гелевым покрытием'),
+      description: t('spa.services.items.gel_strengthening_polish.description', 'Маникюр с укрепляющим гелевым покрытием'),
       popular: true,
       image: '/images/beauty/services/manicure-gel.jpg'
     },
@@ -529,28 +529,28 @@ export const getSpaData = (t) => {
     },
     {
       id: 'pedicure-gel-strengthening',
-      name: t('spa.services.items.pedicure_gel_strengthening.name', 'Педикюр с гелевым укреплением'),
+      name: t('spa.services.items.gel_strengthening.name', 'Педикюр с гелевым укреплением'),
       category: 'pedicure',
       price: 1000,
-      description: t('spa.services.items.pedicure_gel_strengthening.description', 'Педикюр с укрепляющим покрытием'),
+      description: t('spa.services.items.gel_strengthening.description', 'Педикюр с укрепляющим покрытием'),
       popular: true,
       image: '/images/beauty/services/pedicure-gel.jpg'
     },
     {
       id: 'full-pedicure-no-coating',
-      name: t('spa.services.items.full_pedicure_no_coating.name', 'Полный педикюр без покрытия'),
+      name: t('spa.services.items.pedicure_full_no_coating.name', 'Полный педикюр без покрытия'),
       category: 'pedicure',
       price: 1200,
-      description: t('spa.services.items.full_pedicure_no_coating.description', 'Комплексный уход за стопами'),
+      description: t('spa.services.items.pedicure_full_no_coating.description', 'Комплексный уход за стопами'),
       popular: true,
       image: '/images/beauty/services/pedicure-full.jpg'
     },
     {
       id: 'full-pedicure-coating',
-      name: t('spa.services.items.full_pedicure_coating.name', 'Полный педикюр с покрытием'),
+      name: t('spa.services.items.pedicure_full_coating.name', 'Полный педикюр с покрытием'),
       category: 'pedicure',
       price: 1500,
-      description: t('spa.services.items.full_pedicure_coating.description', 'Комплексный уход с покрытием'),
+      description: t('spa.services.items.pedicure_full_coating.description', 'Комплексный уход с покрытием'),
       popular: true,
       image: '/images/beauty/services/pedicure-full-coating.jpg'
     },
