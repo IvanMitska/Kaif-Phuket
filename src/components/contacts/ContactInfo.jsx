@@ -141,11 +141,11 @@ const ContactInfo = () => {
             {t('contacts.info.phone.hours')}
           </div>
           <ContactLink 
-            href="https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20записаться%20в%20KAIF"
+            href={`https://wa.me/66624805877?text=${encodeURIComponent(t('contacts.info.whatsapp.greeting'))}`}
             target="_blank"
             rel="noopener noreferrer"
           >
-            Написать в WhatsApp
+            {t('contacts.info.whatsapp.text')}
             <ArrowTopRightOnSquareIcon />
           </ContactLink>
         </div>

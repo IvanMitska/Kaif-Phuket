@@ -56,39 +56,35 @@ const PrivacyPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <Title>Политика конфиденциальности</Title>
+          <Title>{t('privacy.title')}</Title>
           
           <Content>
             <p>
-              Настоящая Политика конфиденциальности определяет порядок обработки и защиты 
-              персональных данных пользователей оздоровительного комплекса KAIF.
+              {t('privacy.intro')}
             </p>
             
-            <h2>1. Сбор информации</h2>
+            <h2>{t('privacy.collection.title')}</h2>
             <p>
-              Мы собираем только ту информацию, которая необходима для предоставления 
-              качественных услуг: имя, контактные данные, предпочтения по услугам.
+              {t('privacy.collection.content')}
             </p>
             
-            <h2>2. Использование информации</h2>
+            <h2>{t('privacy.usage.title')}</h2>
             <p>
-              Ваши данные используются исключительно для записи на процедуры, 
-              информирования о новых услугах и улучшения качества обслуживания.
+              {t('privacy.usage.content')}
             </p>
             
-            <h2>3. Защита данных</h2>
+            <h2>{t('privacy.protection.title')}</h2>
             <p>
-              Мы применяем современные методы защиты информации и не передаем 
-              персональные данные третьим лицам без вашего согласия.
+              {t('privacy.protection.content')}
             </p>
             
-            <h2>4. Контакты</h2>
+            <h2>{t('privacy.contacts.title')}</h2>
             <p>
-              По вопросам обработки персональных данных обращайтесь: 
+              {t('privacy.contacts.content')} 
               <br />
-              Email: info@kaif-phuket.com
+              {t('privacy.contacts.email')}
               <br />
-              Телефон: +66 62 480 5877
+              {t('privacy.contacts.phone')}
             </p>
           </Content>
         </motion.div>

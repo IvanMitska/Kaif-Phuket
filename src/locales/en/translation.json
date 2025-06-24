@@ -300,11 +300,7 @@
       },
       "payment_methods": {
         "question": "What payment methods are accepted?",
-        "answer": "We accept cash (THB, USD, EUR), all system bank cards, mobile payments, cryptocurrencies and bank transfers. Installment plans are available for large service packages."
-      },
-      "loyalty_program": {
-        "question": "Is there a loyalty program?",
-        "answer": "Yes! KAIF Rewards program offers cumulative discounts, friend referral bonuses, exclusive events and priority booking. Earned points can be spent on any services."
+        "answer": "We accept Thai Baht payments: cash, card, or QR code."
       }
     },
     "support": {
@@ -2255,27 +2251,31 @@
     },
     "info": {
       "title": "Contact Us",
-      "subtitle": "Choose a convenient way to contact us"
-    },
-    "phone": {
-      "title": "Phone",
-      "whatsapp": "WhatsApp available"
-    },
-    "email": {
-      "title": "Email",
-      "response": "Response within 24 hours"
-    },
-    "address": {
-      "title": "Address"
-    },
-    "hours": {
-      "title": "Working Hours",
-      "daily": "Daily: 7:00 - 22:00",
-      "booking": "Booking 24/7"
-    },
-    "social": {
-      "title": "Follow us on social media",
-      "subtitle": "Stay up to date with the latest KAIF news and promotions"
+      "subtitle": "Choose a convenient way to contact us",
+      "address": {
+        "title": "Address",
+        "directions": "Get Directions"
+      },
+      "phone": {
+        "title": "Phone",
+        "hours": "Daily: 9:00 - 21:00"
+      },
+      "email": {
+        "title": "Email",
+        "response": "Response within 24 hours"
+      },
+      "hours": {
+        "title": "Working Hours",
+        "weekdays": "Daily: 7:00 - 22:00",
+        "weekends": "Booking 24/7"
+      },
+      "social": {
+        "title": "Social Media"
+      },
+      "whatsapp": {
+        "text": "Message on WhatsApp",
+        "greeting": "Hello! I want to book at KAIF"
+      }
     },
     "map": {
       "title": "How to find us",
@@ -2317,6 +2317,55 @@
     "legal": {
       "privacy": "Privacy Policy",
       "terms": "Terms of Service"
+    }
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "intro": "These Terms of Service govern the provision of services by the KAIF wellness complex on Phuket Island, Thailand.",
+    "general": {
+      "title": "1. General Provisions",
+      "content": "By using our services, you agree to these terms. KAIF provides SPA, fitness, restaurant and Russian banya services."
+    },
+    "booking": {
+      "title": "2. Booking and Cancellation",
+      "content": "Service booking is done by phone or via WhatsApp. Cancellation is possible no later than 24 hours before the scheduled time."
+    },
+    "rules": {
+      "title": "3. Visiting Rules",
+      "content": "Visitors must observe hygiene and safety rules. The administration reserves the right to refuse service for violations of established rules."
+    },
+    "liability": {
+      "title": "4. Liability",
+      "content": "KAIF is not responsible for visitors' personal belongings. All procedures are performed by qualified specialists in compliance with international safety standards."
+    },
+    "contacts": {
+      "title": "5. Contacts",
+      "content": "For all questions contact us:",
+      "email": "Email: info@kaif-phuket.com",
+      "phone": "Phone: +66 62 480 5877",
+      "address": "Address: Phuket, Thailand"
+    }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "intro": "This Privacy Policy defines the procedure for processing and protecting personal data of users of the KAIF wellness complex.",
+    "collection": {
+      "title": "1. Information Collection",
+      "content": "We collect only the information necessary to provide quality services: name, contact information, service preferences."
+    },
+    "usage": {
+      "title": "2. Information Usage",
+      "content": "Your data is used exclusively for procedure booking, informing about new services and improving service quality."
+    },
+    "protection": {
+      "title": "3. Data Protection",
+      "content": "We apply modern information protection methods and do not transfer personal data to third parties without your consent."
+    },
+    "contacts": {
+      "title": "4. Contacts",
+      "content": "For questions about personal data processing contact:",
+      "email": "Email: info@kaif-phuket.com",
+      "phone": "Phone: +66 62 480 5877"
     }
   }
 }

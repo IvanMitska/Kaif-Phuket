@@ -460,12 +460,6 @@ const FAQSection = () => {
       icon: <CreditCardIcon />,
       question: t('faq.questions.payment_methods.question'),
       answer: t('faq.questions.payment_methods.answer')
-    },
-    {
-      category: 'payment',
-      icon: <QuestionMarkCircleIcon />,
-      question: t('faq.questions.loyalty_program.question'),
-      answer: t('faq.questions.loyalty_program.answer')
     }
   ], [t]);
 
