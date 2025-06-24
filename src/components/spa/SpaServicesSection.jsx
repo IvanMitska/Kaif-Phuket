@@ -100,27 +100,13 @@ const CategoryTabs = styled.div`
   gap: 1rem;
   
   @media (max-width: 768px) {
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    gap: 0.75rem;
-    padding: 0 1rem;
-    margin: 0 -1rem;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    
-    /* Добавляем отступы по бокам для лучшего скролла */
-    &::before,
-    &::after {
-      content: '';
-      flex-shrink: 0;
-      width: 0.5rem;
-    }
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    gap: 0.4rem;
   }
 `;
 
@@ -142,8 +128,8 @@ const CategoryTab = styled(motion.button)`
   }
   
   @media (max-width: 768px) {
-    padding: 1rem 1.8rem;
-    font-size: 1rem;
+    padding: 0.8rem 1.4rem;
+    font-size: 0.9rem;
     border-radius: 25px;
     box-shadow: ${props => props.active ? '0 4px 12px rgba(144, 179, 167, 0.3)' : '0 2px 8px rgba(0, 0, 0, 0.1)'};
     
@@ -154,16 +140,16 @@ const CategoryTab = styled(motion.button)`
   }
   
   @media (max-width: 480px) {
-    padding: 1rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 22px;
+    padding: 0.7rem 1.2rem;
+    font-size: 0.85rem;
+    border-radius: 20px;
   }
 `;
 
 // Сетка услуг - упрощенная для мобильных
 const ServicesGrid = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   
   @media (max-width: 1024px) {
@@ -183,62 +169,25 @@ const ServicesGrid = styled(motion.div)`
 `;
 
 const ServiceCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.95);
+  background: white;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(144, 179, 167, 0.08);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  border: 1px solid rgba(144, 179, 167, 0.1);
-  min-height: 500px;
+  cursor: pointer;
+  height: auto;
   
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(144, 179, 167, 0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   }
   
   @media (max-width: 768px) {
-    border-radius: 20px;
-    box-shadow: 0 6px 20px rgba(144, 179, 167, 0.12);
-    min-height: 520px;
-    
-    &:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(144, 179, 167, 0.18);
-    }
-  }
-  
-  @media (max-width: 480px) {
-    border-radius: 18px;
-    box-shadow: 0 4px 16px rgba(144, 179, 167, 0.1);
-    min-height: 500px;
-    
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(144, 179, 167, 0.15);
-    }
+    border-radius: 16px;
   }
 `;
 
-const ServiceIcon = styled.div`
-  height: 180px;
-  background: ${props => props.bgColor || 'linear-gradient(135deg, #90B3A7 0%, #B8C4A8 100%)'};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4rem;
-  
-  @media (max-width: 768px) {
-    height: 150px;
-    font-size: 3rem;
-  }
-  
-  @media (max-width: 480px) {
-    height: 120px;
-    font-size: 2.5rem;
-  }
-`;
-
-const ServiceContent = styled.div`
+const ServiceDetails = styled.div`
   padding: 1.5rem;
   
   @media (max-width: 768px) {
@@ -287,18 +236,6 @@ const ServiceDescription = styled.p`
   }
 `;
 
-const ServicePricing = styled.div`
-  margin-bottom: 1.5rem;
-  
-  @media (max-width: 768px) {
-    margin-bottom: 1.2rem;
-  }
-  
-  @media (max-width: 480px) {
-    margin-bottom: 1rem;
-  }
-`;
-
 const ServicePrice = styled.div`
   font-size: 1.2rem;
   font-weight: 600;
@@ -316,7 +253,7 @@ const ServicePrice = styled.div`
   }
 `;
 
-const ServiceDurations = styled.div`
+const ServiceDuration = styled.div`
   font-size: 0.9rem;
   color: #7A8A7D;
   
@@ -326,80 +263,6 @@ const ServiceDurations = styled.div`
   
   @media (max-width: 480px) {
     font-size: 0.95rem;
-  }
-`;
-
-const ServiceButton = styled(motion.button)`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: transparent;
-  color: #90B3A7;
-  border: 2px solid #90B3A7;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  width: 100%;
-  justify-content: center;
-  
-  svg {
-    width: 1rem;
-    height: 1rem;
-  }
-  
-  @media (max-width: 768px) {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    border-radius: 30px;
-    min-height: 56px;
-    
-    svg {
-      width: 1.2rem;
-      height: 1.2rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    padding: 1rem 1.8rem;
-    font-size: 1rem;
-    border-radius: 28px;
-    min-height: 52px;
-    
-    svg {
-      width: 1.1rem;
-      height: 1.1rem;
-    }
-  }
-  
-  &:hover {
-    background: #90B3A7;
-    color: white;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(144, 179, 167, 0.3);
-  }
-  
-  @media (max-width: 768px) {
-    padding: 1rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 20px;
-    
-    svg {
-      width: 1rem;
-      height: 1rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    padding: 0.875rem 1.25rem;
-    font-size: 0.95rem;
-    border-radius: 18px;
-    
-    svg {
-      width: 0.9rem;
-      height: 0.9rem;
-    }
   }
 `;
 
@@ -488,7 +351,7 @@ const SpaServicesSection = () => {
   const visibleCategories = categories.filter(cat => mainCategories.includes(cat.id));
   
   const allServices = getServicesByCategory(activeCategory);
-  const SERVICES_TO_SHOW = 4; // Показываем только 4 услуги изначально для мобильных
+  const SERVICES_TO_SHOW = 6; // Показываем 6 услуг изначально (2 полных ряда по 3 карточки)
   const currentServices = showAllServices ? allServices : allServices.slice(0, SERVICES_TO_SHOW);
   
   // Сброс состояния "показать все" при смене категории
@@ -594,40 +457,22 @@ const SpaServicesSection = () => {
             return (
               <ServiceCard
                 key={service.id}
+                layout
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -30 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ scale: 1.02 }}
-                style={{ position: 'relative' }}
+                                  onClick={() => openServiceModal(service)}
               >
-                {service.popular && (
-                  <PopularBadge>{t('spa.services.popular', 'Популярно')}</PopularBadge>
-                )}
-                
-                <ServiceIcon bgColor={categoryData?.color}>
-                  {categoryData?.icon}
-                </ServiceIcon>
-                
-                <ServiceContent>
-                  <ServiceName>{service.name}</ServiceName>
-                  <ServiceDescription>{service.description}</ServiceDescription>
-                  
-                  <ServicePricing>
+                                  <ServiceDetails>
+                    <ServiceName>{service.name}</ServiceName>
+                    <ServiceDescription>{service.description}</ServiceDescription>
                     <ServicePrice>{formatPrice(service)}</ServicePrice>
                     {formatDurations(service) && (
-                      <ServiceDurations>{formatDurations(service)}</ServiceDurations>
+                      <ServiceDuration>⏱ {formatDurations(service)}</ServiceDuration>
                     )}
-                  </ServicePricing>
-                  
-                  <ServiceButton
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => handleServiceClick(service)}
-                  >
-                    {t('spa.services.learn_more', 'Подробнее')}
-                    <ArrowLongRightIcon />
-                  </ServiceButton>
-                </ServiceContent>
+                  </ServiceDetails>
               </ServiceCard>
             );
           })}
