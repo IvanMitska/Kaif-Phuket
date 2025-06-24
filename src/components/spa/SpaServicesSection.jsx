@@ -344,15 +344,20 @@ const SpaServicesSection = () => {
   const [showAllServices, setShowAllServices] = useState(false);
   
   const spaData = getSpaData(t);
-  const { categories, getServicesByCategory } = spaData;
+  const { allServices, serviceCategories } = spaData;
   
   // Основные категории для мобильного (самые популярные)
-  const mainCategories = ['massage', 'cosmetology', 'laser', 'manicure'];
-  const visibleCategories = categories.filter(cat => mainCategories.includes(cat.id));
+  const mainCategories = ['massage', 'endosphere', 'laser', 'hair-care'];
+  const visibleCategories = serviceCategories.filter(cat => mainCategories.includes(cat.id));
   
-  const allServices = getServicesByCategory(activeCategory);
+  // Функция для получения услуг по категории
+  const getServicesByCategory = (categoryId) => {
+    return allServices.filter(service => service.category === categoryId);
+  };
+  
+  const currentCategoryServices = getServicesByCategory(activeCategory);
   const SERVICES_TO_SHOW = 6; // Показываем 6 услуг изначально (2 полных ряда по 3 карточки)
-  const currentServices = showAllServices ? allServices : allServices.slice(0, SERVICES_TO_SHOW);
+  const currentServices = showAllServices ? currentCategoryServices : currentCategoryServices.slice(0, SERVICES_TO_SHOW);
   
   // Сброс состояния "показать все" при смене категории
   useEffect(() => {
@@ -452,7 +457,7 @@ const SpaServicesSection = () => {
           transition={{ duration: 0.3 }}
         >
           {currentServices.map((service, index) => {
-            const categoryData = categories.find(cat => cat.id === service.category);
+            const categoryData = serviceCategories.find(cat => cat.id === service.category);
             
             return (
               <ServiceCard
@@ -463,29 +468,29 @@ const SpaServicesSection = () => {
                 exit={{ opacity: 0, y: -30 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ scale: 1.02 }}
-                                  onClick={() => openServiceModal(service)}
+                onClick={() => handleServiceClick(service)}
               >
-                                  <ServiceDetails>
-                    <ServiceName>{service.name}</ServiceName>
-                    <ServiceDescription>{service.description}</ServiceDescription>
-                    <ServicePrice>{formatPrice(service)}</ServicePrice>
-                    {formatDurations(service) && (
-                      <ServiceDuration>⏱ {formatDurations(service)}</ServiceDuration>
-                    )}
-                  </ServiceDetails>
+                <ServiceDetails>
+                  <ServiceName>{service.name}</ServiceName>
+                  <ServiceDescription>{service.description}</ServiceDescription>
+                  <ServicePrice>{formatPrice(service)}</ServicePrice>
+                  {formatDurations(service) && (
+                    <ServiceDuration>⏱ {formatDurations(service)}</ServiceDuration>
+                  )}
+                </ServiceDetails>
               </ServiceCard>
             );
           })}
         </ServicesGrid>
 
-        {allServices.length > SERVICES_TO_SHOW && (
+        {currentCategoryServices.length > SERVICES_TO_SHOW && (
           <ShowMoreContainer>
             <ShowMoreButton
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setShowAllServices(!showAllServices)}
             >
-              {showAllServices ? t('spa.services.show_less', 'Показать меньше') : t('spa.services.show_more', `Показать ещё ${allServices.length - SERVICES_TO_SHOW} услуг`, { count: allServices.length - SERVICES_TO_SHOW })}
+              {showAllServices ? t('spa.services.show_less', 'Показать меньше') : t('spa.services.show_more', `Показать ещё ${currentCategoryServices.length - SERVICES_TO_SHOW} услуг`, { count: currentCategoryServices.length - SERVICES_TO_SHOW })}
               {showAllServices ? <ChevronUpIcon /> : <ChevronDownIcon />}
             </ShowMoreButton>
           </ShowMoreContainer>
@@ -497,7 +502,7 @@ const SpaServicesSection = () => {
         isOpen={isModalOpen}
         onClose={closeModal}
         service={selectedService}
-        categoryData={selectedService ? categories.find(cat => cat.id === selectedService.category) : null}
+        categoryData={selectedService ? serviceCategories.find(cat => cat.id === selectedService.category) : null}
       />
       */}
     </ServicesSection>
