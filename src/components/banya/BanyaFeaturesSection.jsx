@@ -161,19 +161,6 @@ const BanyaFeaturesSection = () => {
 
   const features = [
     {
-      id: 'woodson',
-      icon: FireIcon,
-      title: t('banya.features.woodson.title', 'Печи Woodson'),
-      description: t('banya.features.woodson.description', 'Финские печи премиум-класса для идеального пара'),
-      items: [
-        'Производство Финляндия',
-        'Равномерное распределение тепла',
-        'Экологически чистое топление',
-        'Быстрый прогрев до 85°C',
-        'Долговечность и надежность'
-      ]
-    },
-    {
       id: 'materials',
       icon: SparklesIcon,
       title: t('banya.features.materials.title', 'Натуральные материалы'),

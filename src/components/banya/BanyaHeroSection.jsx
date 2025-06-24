@@ -352,7 +352,7 @@ const BanyaHeroSection = () => {
           </Area>
           
           <Subtitle variants={itemVariants}>
-            {t('banya.hero.subtitle', 'Традиции встречают современность с печами Woodson')}
+            {t('banya.hero.subtitle', 'Традиции встречают современность')}
           </Subtitle>
           
           <CTAContainer variants={itemVariants}>
