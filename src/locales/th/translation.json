@@ -1115,9 +1115,15 @@
         "laser-men": "เลเซอร์กำจัดขนสำหรับผู้ชาย",
         "laser-complex": "แพ็คเกจเลเซอร์",
         "endosphere": "เอนโดสเฟียร์เทอราปี",
+        "laser": "เลเซอร์กำจัดขน",
+        "laser-complex-3": "แพ็คเกจเลเซอร์ (3 ครั้ง)",
+        "laser-complex-5": "แพ็คเกจเลเซอร์ (5 ครั้ง)",
+        "hair-care": "ดูแลเส้นผม",
         "manicure": "ทำเล็บมือ",
         "pedicure": "ทำเล็บเท้า",
-        "hair-care": "ดูแลเส้นผม",
+        "pro-pedicure": "ทำเล็บเท้า PRO มาสเตอร์",
+        "eyelashes": "ขนตา",
+        "brows": "คิ้วและขนตา",
         "sauna": "ซาวน่า",
         "hammam": "หอบไอน้ำ",
         "treatments": "ทรีทเมนต์สปา"
@@ -1461,6 +1467,106 @@
         "hair_express_care": {
           "name": "ดูแลด่วน",
           "description": "ขั้นตอนฟื้นฟูอย่างรวดเร็ว"
+        },
+        "shoulders_legs": {
+          "name": "นวดไหล่และขา",
+          "description": "นวดเฉพาะทางเพื่อบรรเทาความตึงเครียด"
+        },
+        "face_massage": {
+          "name": "นวดหน้า",
+          "description": "นวดหน้าผ่อนคลายเพื่อเพิ่มการไหลเวียนเลือด"
+        },
+        "deep_thai": {
+          "name": "นวดไทยแรงลึก",
+          "description": "นวดไทยเข้มข้นพร้อมการกดจุดลึก"
+        },
+        "endosphere_6_procedures": {
+          "name": "เอนโดสเฟียร์เทอราปี (6 ครั้ง)",
+          "description": "แพ็คเกจคุ้มค่า 6 ครั้ง"
+        },
+        "endosphere_12_procedures": {
+          "name": "เอนโดสเฟียร์เทอราปี (12 ครั้ง)",
+          "description": "แพ็คเกจสูงสุด 12 ครั้ง"
+        },
+        "endosphere_rf_lifting": {
+          "name": "เอนโดสเฟียร์ RF ลิฟติ้ง",
+          "description": "นวดหน้าด้วยเครื่องมือเพื่อความอ่อนเยาว์"
+        },
+        "laser_armpits": {
+          "name": "เลเซอร์กำจัดขนรักแร้",
+          "description": "กำจัดขนรักแร้"
+        },
+        "laser_bikini": {
+          "name": "เลเซอร์กำจัดขนบิกินี",
+          "description": "กำจัดขนบริเวณบิกินี"
+        },
+        "laser_deep_bikini": {
+          "name": "เลเซอร์กำจัดขนบิกินีลึก",
+          "description": "กำจัดขนบริเวณส่วนตัว"
+        },
+        "laser_shins": {
+          "name": "เลเซอร์กำจัดขนน่อง",
+          "description": "กำจัดขนน่อง"
+        },
+        "laser_legs_full": {
+          "name": "เลเซอร์กำจัดขนขาเต็ม",
+          "description": "กำจัดขนขาทั้งหมด"
+        },
+        "laser_small_area": {
+          "name": "เลเซอร์กำจัดขนพื้นที่เล็ก",
+          "description": "กำจัดขนพื้นที่เล็ก (เส้นท้อง เอรีโอลา นิ้ว)"
+        },
+        "laser_arms_full": {
+          "name": "เลเซอร์กำจัดขนแขนเต็ม",
+          "description": "กำจัดขนแขนทั้งหมด"
+        },
+        "classic_extension": {
+          "name": "ต่อขนตาคลาสสิก",
+          "description": "ต่อขนตาทีละเส้นเพื่อความเป็นธรรมชาติ"
+        },
+        "volume_1_5d": {
+          "name": "โวลูม 1.5D",
+          "description": "โวลูมเบาเพื่อความเป็นธรรมชาติ"
+        },
+        "volume_2d": {
+          "name": "โวลูม 2D",
+          "description": "โวลูมกลางเพื่อดวงตาที่สวยงาม"
+        },
+        "volume_3d": {
+          "name": "โวลูม 3D",
+          "description": "โวลูมเต็มเพื่อลุคที่โดดเด่น"
+        },
+        "hollywood_volume": {
+          "name": "โวลูมฮอลลีวูด",
+          "description": "โวลูมสูงสุดเพื่อเอฟเฟกต์ที่ดราม่า"
+        },
+        "eyelash_removal": {
+          "name": "ถอดขนตา",
+          "description": "การถอดขนตาต่อที่ปลอดภัย"
+        },
+        "brow_correction": {
+          "name": "แต่งคิ้ว",
+          "description": "แต่งรูปทรงคิ้วแบบมืออาชีพ"
+        },
+        "brow_tinting": {
+          "name": "ย้อมคิ้ว",
+          "description": "ย้อมคิ้วด้วยสีที่ติดทน"
+        },
+        "brow_correction_tinting": {
+          "name": "แต่งคิ้วและย้อมคิ้ว",
+          "description": "การดูแลคิ้วแบบครบวงจร"
+        },
+        "brow_lamination_complex": {
+          "name": "ลามิเนชั่น + แต่งคิ้ว + ย้อมคิ้ว",
+          "description": "คอมเพล็กซ์เต็มรูปแบบเพื่อคิ้วที่สมบูรณ์แบบ"
+        },
+        "eyelash_lamination_tinting": {
+          "name": "ลามิเนชั่น + ย้อมขนตา",
+          "description": "ลามิเนชั่นและย้อมขนตา"
+        },
+        "full_lamination_complex": {
+          "name": "คอมเพล็กซ์ลามิเนชั่นเต็มรูปแบบ",
+          "description": "แต่งคิ้ว + ย้อมคิ้ว + ลามิเนชั่น + ย้อมขนตา"
         }
       }
     },

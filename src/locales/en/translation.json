@@ -1249,9 +1249,15 @@
         "laser-men": "Laser Hair Removal for Men",
         "laser-complex": "Laser Complexes",
         "endosphere": "Endosphere Therapy",
+        "laser": "Laser Hair Removal",
+        "laser-complex-3": "Laser Complexes (3 procedures)",
+        "laser-complex-5": "Laser Complexes (5 procedures)",
+        "hair-care": "Hair Care",
         "manicure": "Manicure",
         "pedicure": "Pedicure",
-        "hair-care": "Hair Care",
+        "pro-pedicure": "PRO Master Pedicure",
+        "eyelashes": "Eyelashes",
+        "brows": "Brows and Eyelashes",
         "sauna": "Sauna",
         "hammam": "Hammam",
         "treatments": "SPA Treatments"
@@ -1738,6 +1744,106 @@
         "endosphere_subscription_12": {
           "name": "Endosphere subscription (12 sessions)",
           "description": "Maximum package of 12 treatments"
+        },
+        "shoulders_legs": {
+          "name": "Shoulders and legs massage",
+          "description": "Specialized massage for tension relief"
+        },
+        "face_massage": {
+          "name": "Face massage",
+          "description": "Relaxing facial massage for improved circulation"
+        },
+        "deep_thai": {
+          "name": "Deep Thai massage",
+          "description": "Intensive Thai massage with deep muscle work"
+        },
+        "endosphere_6_procedures": {
+          "name": "Endosphere therapy (6 procedures)",
+          "description": "Advantageous package of 6 procedures"
+        },
+        "endosphere_12_procedures": {
+          "name": "Endosphere therapy (12 procedures)",
+          "description": "Maximum package of 12 procedures"
+        },
+        "endosphere_rf_lifting": {
+          "name": "Endosphere RF lifting",
+          "description": "Rejuvenating apparatus facial massage"
+        },
+        "laser_armpits": {
+          "name": "Laser armpit hair removal",
+          "description": "Armpit hair removal"
+        },
+        "laser_bikini": {
+          "name": "Laser bikini hair removal",
+          "description": "Bikini area hair removal"
+        },
+        "laser_deep_bikini": {
+          "name": "Laser deep bikini hair removal",
+          "description": "Intimate area hair removal"
+        },
+        "laser_shins": {
+          "name": "Laser shin hair removal",
+          "description": "Shin hair removal"
+        },
+        "laser_legs_full": {
+          "name": "Full leg laser hair removal",
+          "description": "Complete leg hair removal"
+        },
+        "laser_small_area": {
+          "name": "Small area laser hair removal",
+          "description": "Small area hair removal (abdomen line, areola, fingers)"
+        },
+        "laser_arms_full": {
+          "name": "Full arm laser hair removal",
+          "description": "Complete arm hair removal"
+        },
+        "classic_extension": {
+          "name": "Classic extension",
+          "description": "Individual lash extension for natural effect"
+        },
+        "volume_1_5d": {
+          "name": "1.5D volume",
+          "description": "Light volume for natural effect"
+        },
+        "volume_2d": {
+          "name": "2D volume",
+          "description": "Medium volume for expressive look"
+        },
+        "volume_3d": {
+          "name": "3D volume",
+          "description": "Rich volume for bright appearance"
+        },
+        "hollywood_volume": {
+          "name": "Hollywood volume",
+          "description": "Maximum volume for dramatic effect"
+        },
+        "eyelash_removal": {
+          "name": "Eyelash removal",
+          "description": "Safe removal of extended eyelashes"
+        },
+        "brow_correction": {
+          "name": "Brow correction",
+          "description": "Professional brow shape correction"
+        },
+        "brow_tinting": {
+          "name": "Brow tinting",
+          "description": "Brow tinting with permanent color"
+        },
+        "brow_correction_tinting": {
+          "name": "Brow correction and tinting",
+          "description": "Comprehensive brow care"
+        },
+        "brow_lamination_complex": {
+          "name": "Lamination + correction + brow tinting",
+          "description": "Complete complex for perfect brows"
+        },
+        "eyelash_lamination_tinting": {
+          "name": "Lamination + eyelash tinting",
+          "description": "Eyelash lamination and tinting"
+        },
+        "full_lamination_complex": {
+          "name": "Full lamination complex",
+          "description": "Correction + brow tinting + lamination + eyelash tinting"
         }
       }
     },
