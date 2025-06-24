@@ -166,11 +166,11 @@ const BanyaFeaturesSection = () => {
       title: t('banya.features.materials.title', 'Натуральные материалы'),
       description: t('banya.features.materials.description', '100% натуральная отделка из сибирских пород дерева'),
       items: [
-        'Сибирский кедр',
-        'Алтайская липа',
-        'Карельская береза',
-        'Экологически чистые покрытия',
-        'Природная ароматерапия'
+        t('banya.features.materials.items.cedar', 'Сибирский кедр'),
+        t('banya.features.materials.items.linden', 'Алтайская липа'),
+        t('banya.features.materials.items.birch', 'Карельская береза'),
+        t('banya.features.materials.items.coating', 'Экологически чистые покрытия'),
+        t('banya.features.materials.items.aromatherapy', 'Природная ароматерапия')
       ]
     },
     {
@@ -179,11 +179,11 @@ const BanyaFeaturesSection = () => {
       title: t('banya.features.panoramic.title', 'Панорамный дизайн'),
       description: t('banya.features.panoramic.description', 'Уникальная архитектура с видом на тропические джунгли'),
       items: [
-        '150 квадратных метров',
-        'Панорамные окна',
-        'Вид на джунгли',
-        'Естественное освещение',
-        'Гармония с природой'
+        t('banya.features.panoramic.items.area', '150 квадратных метров'),
+        t('banya.features.panoramic.items.windows', 'Панорамные окна'),
+        t('banya.features.panoramic.items.view', 'Вид на джунгли'),
+        t('banya.features.panoramic.items.lighting', 'Естественное освещение'),
+        t('banya.features.panoramic.items.harmony', 'Гармония с природой')
       ]
     },
     {
@@ -192,11 +192,11 @@ const BanyaFeaturesSection = () => {
       title: t('banya.features.safety.title', 'Безопасность'),
       description: t('banya.features.safety.description', 'Соблюдение всех международных стандартов безопасности'),
       items: [
-        'Пожарная безопасность',
-        'Система вентиляции',
-        'Аварийное освещение',
-        'Медицинская помощь',
-        'Круглосуточное дежурство'
+        t('banya.features.safety.items.fire', 'Пожарная безопасность'),
+        t('banya.features.safety.items.ventilation', 'Система вентиляции'),
+        t('banya.features.safety.items.emergency', 'Аварийное освещение'),
+        t('banya.features.safety.items.medical', 'Медицинская помощь'),
+        t('banya.features.safety.items.security', 'Круглосуточное дежурство')
       ]
     },
     {
@@ -205,11 +205,11 @@ const BanyaFeaturesSection = () => {
       title: t('banya.features.wellness.title', 'Wellness-программы'),
       description: t('banya.features.wellness.description', 'Авторские оздоровительные программы от мастеров'),
       items: [
-        'Русский банный ритуал',
-        'Финская сауна',
-        'Ароматерапия',
-        'Массаж в парной',
-        'Травяные настои'
+        t('banya.features.wellness.items.russian', 'Русский банный ритуал'),
+        t('banya.features.wellness.items.finnish', 'Финская сауна'),
+        t('banya.features.wellness.items.aromatherapy', 'Ароматерапия'),
+        t('banya.features.wellness.items.massage', 'Массаж в парной'),
+        t('banya.features.wellness.items.herbs', 'Травяные настои')
       ]
     },
     {
@@ -218,11 +218,11 @@ const BanyaFeaturesSection = () => {
       title: t('banya.features.service.title', 'Профессионализм'),
       description: t('banya.features.service.description', 'Команда опытных банщиков и мастеров парения'),
       items: [
-        'Сертифицированные банщики',
-        'Русские традиции',
-        'Индивидуальный подход',
-        'Консультации по здоровью',
-        'Качественное обслуживание'
+        t('banya.features.service.items.certified', 'Сертифицированные банщики'),
+        t('banya.features.service.items.traditions', 'Русские традиции'),
+        t('banya.features.service.items.individual', 'Индивидуальный подход'),
+        t('banya.features.service.items.consultation', 'Консультации по здоровью'),
+        t('banya.features.service.items.quality', 'Качественное обслуживание')
       ]
     }
   ];

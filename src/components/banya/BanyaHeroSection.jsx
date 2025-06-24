@@ -237,21 +237,21 @@ const BanyaHeroSection = () => {
       medium: '/images-webp/medium/banya/panoramic.webp', 
       large: '/images-webp/large/banya/panoramic.webp',
       fallback: '/images/banya/panoramic.png',
-      title: 'Панорамная парная 150 м²'
+      title: t('banya.hero.images.panoramic', 'Панорамная парная 150 м²')
     },
     {
       small: '/images-webp/small/banya/private.webp',
       medium: '/images-webp/medium/banya/private.webp',
       large: '/images-webp/large/banya/private.webp',
       fallback: '/images/banya/private.jpg',
-      title: 'Приватная сауна'
+      title: t('banya.hero.images.private', 'Приватная сауна')
     },
     {
       small: '/images-webp/small/banya/public.webp',
       medium: '/images-webp/medium/banya/public.webp',
       large: '/images-webp/large/banya/public.webp',
       fallback: '/images/banya/public.jpg', 
-      title: 'Общественная парная'
+      title: t('banya.hero.images.public', 'Общественная парная')
     }
   ];
 

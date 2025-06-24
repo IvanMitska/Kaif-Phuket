@@ -95,7 +95,7 @@ const ServiceCard = styled(motion.div)`
     box-shadow: 0 4px 20px rgba(144, 179, 167, 0.08);
     
     &::before {
-      content: 'Популярно';
+      content: 'Popular';
       position: absolute;
       top: 1rem;
       right: 1rem;

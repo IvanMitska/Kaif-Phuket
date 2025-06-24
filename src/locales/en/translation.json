@@ -1949,35 +1949,71 @@
       "subtitle": "Banya made from Siberian cedar and Altai linden",
       "book_button": "Book Now",
       "contacts_button": "Contacts",
-      "scroll": "Scroll"
+      "scroll": "Scroll",
+      "images": {
+        "panoramic": "Panoramic sauna 150 m²",
+        "private": "Private sauna",
+        "public": "Public sauna"
+      }
     },
     "features": {
       "badge": "Our Advantages",
       "title": "Why Choose Us",
       "subtitle": "The only panoramic Russian banya in Phuket made from natural Siberian cedar and Altai linden materials",
       "materials": {
-        "title": "Siberian Cedar",
-        "description": "Premium wood for health and longevity"
-      },
-      "linden": {
-        "title": "Altai Linden",
-        "description": "Natural linden for perfect banya climate"
+        "title": "Natural Materials",
+        "description": "100% natural finish from Siberian wood species",
+        "items": {
+          "cedar": "Siberian Cedar",
+          "linden": "Altai Linden",
+          "birch": "Karelian Birch",
+          "coating": "Eco-friendly finishes",
+          "aromatherapy": "Natural aromatherapy"
+        }
       },
       "panoramic": {
         "title": "Panoramic Design",
-        "description": "Unique architecture with tropical jungle views"
+        "description": "Unique architecture with tropical jungle views",
+        "items": {
+          "area": "150 square meters",
+          "windows": "Panoramic windows",
+          "view": "Jungle views",
+          "lighting": "Natural lighting",
+          "harmony": "Harmony with nature"
+        }
       },
       "safety": {
         "title": "Safety",
-        "description": "Compliance with all international safety standards"
+        "description": "Compliance with all international safety standards",
+        "items": {
+          "fire": "Fire safety",
+          "ventilation": "Ventilation system",
+          "emergency": "Emergency lighting",
+          "medical": "Medical assistance",
+          "security": "24/7 security"
+        }
       },
       "wellness": {
         "title": "Wellness Programs",
-        "description": "Signature wellness programs by master attendants"
+        "description": "Signature wellness programs by master attendants",
+        "items": {
+          "russian": "Russian banya ritual",
+          "finnish": "Finnish sauna",
+          "aromatherapy": "Aromatherapy",
+          "massage": "Steam room massage",
+          "herbs": "Herbal infusions"
+        }
       },
       "service": {
         "title": "Professionalism",
-        "description": "Team of experienced banya masters and steam specialists"
+        "description": "Team of experienced banya masters and steam specialists",
+        "items": {
+          "certified": "Certified attendants",
+          "traditions": "Russian traditions",
+          "individual": "Individual approach",
+          "consultation": "Health consultations",
+          "quality": "Quality service"
+        }
       }
     },
     "services": {
@@ -1988,7 +2024,8 @@
         "title": "Coming Soon",
         "description": "We are preparing unique banya programs with traditional Russian rituals and modern wellness procedures",
         "subtext": "Stay tuned — we will update this section soon!"
-      }
+      },
+      "popular": "Popular"
     },
     "faq": {
       "badge": "Questions & Answers",
