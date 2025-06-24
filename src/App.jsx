@@ -87,13 +87,21 @@ const AppContent = () => {
 };
 
 function App() {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
-  // Set document direction based on language
+  // Set document direction and language based on current language
   useEffect(() => {
     document.documentElement.dir = i18n.dir();
     document.documentElement.lang = i18n.language;
-  }, [i18n.language]);
+    
+    // Обновляем заголовок страницы при смене языка
+    // Если на странице нет специального заголовка, используем базовый
+    if (document.title === 'KAIF | Jungle Club & Spa' || 
+        document.title.includes('KAIF') || 
+        !document.title.includes('|')) {
+      document.title = t('page_titles.home', 'KAIF | Premium Wellness Complex in Phuket');
+    }
+  }, [i18n.language, t]);
 
   // Основное приложение
   return (

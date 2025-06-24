@@ -1,4 +1,12 @@
 {
+  "page_titles": {
+    "home": "KAIF | Premium Wellness Complex in Phuket",
+    "restaurant": "KAIF Restaurant | Gourmet Cuisine and Exquisite Dishes",
+    "spa": "KAIF SPA | Luxury Spa Treatments and Relaxation",
+    "sports": "KAIF Sports | Modern Fitness and Martial Arts",
+    "banya": "KAIF Banya | Traditional Russian Sauna Experience",
+    "contacts": "KAIF Contacts | Get in Touch with Us"
+  },
   "common": {
     "phone_number": "+66 62 480 5877"
   },
@@ -2276,6 +2284,10 @@
         "text": "Message on WhatsApp",
         "greeting": "Hello! I want to book at KAIF"
       }
+    },
+    "social": {
+      "title": "Follow us on social media",
+      "subtitle": "Stay up to date with the latest KAIF news and promotions"
     },
     "map": {
       "title": "How to find us",

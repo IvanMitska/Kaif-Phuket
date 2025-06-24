@@ -5,6 +5,7 @@ import { useLoading } from '../components/global/LoadingContext';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import PageHead from '../components/layout/PageHead';
 
 // Импортируем только критические компоненты
 import HeroFullscreen from '../components/home/HeroFullscreen';
@@ -137,6 +138,13 @@ const HomePage = memo(() => {
 
   return (
     <main>
+      <PageHead 
+        titleKey="page_titles.home"
+        description={t('home.hero.subtitle', 'Unique relaxation and wellness experience in Phuket')}
+        keywords="KAIF, spa, wellness, Phuket, gym, restaurant, banya, massage"
+        ogImage="/images/logos/logo-og.png"
+      />
+      
       {/* Полноэкранная секция героя */}
       <HeroFullscreen />
       

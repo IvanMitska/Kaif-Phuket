@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
+import PageHead from '../components/layout/PageHead';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeftIcon, ChevronRightIcon, XMarkIcon, ArrowRightIcon, ClockIcon, ShoppingBagIcon, PhoneIcon } from '@heroicons/react/24/solid';
@@ -740,9 +741,14 @@ const RestaurantPage = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
+      <PageHead 
+        titleKey="page_titles.restaurant"
+        description={t('restaurant.hero.subtitle', 'Gourmet cuisine with exquisite dishes, fresh ingredients and cozy atmosphere')}
+        keywords="KAIF restaurant, gourmet cuisine, exquisite dishes, Phuket, breakfast, lunch, dinner"
+        ogImage="/images/menu/breakfast/kaif-breakfast.jpg"
+        pageType="restaurant"
+      />
       <Helmet>
-        {/* Основные мета-теги для страницы ресторана */}
-        <title>Ресторан KAIF | Авторская кухня и изысканные блюда</title>
         <meta name="description" content="Ресторан KAIF — авторская кухня с изысканными блюдами, свежими ингредиентами и уютной атмосферой. Завтраки, обеды, ужины и напитки. Забронируйте столик прямо сейчас!" />
         <meta name="keywords" content="ресторан KAIF, авторская кухня, изысканные блюда, завтраки, обеды, ужины, бронирование столика, кафе, ресторан Пхукет" />
         

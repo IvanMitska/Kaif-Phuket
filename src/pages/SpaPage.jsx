@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import PageScrollReset from '../components/common/PageScrollReset';
+import PageHead from '../components/layout/PageHead';
 
 // Ленивая загрузка компонентов СПА для оптимизации
 const SpaHeroSection = React.lazy(() => import('../components/spa/SpaHeroSection'));
@@ -64,6 +65,12 @@ const SpaPage = () => {
       variants={pageVariants}
       transition={{ duration: 0.2 }}
     >
+      <PageHead 
+        titleKey="page_titles.spa"
+        description={t('spa.hero.subtitle', 'Professional SPA treatments in the luxurious atmosphere of KAIF')}
+        keywords="KAIF spa, massage, beauty treatments, relaxation, wellness, Phuket"
+        ogImage="/images/spa/spa-hero.jpg"
+      />
       <PageScrollReset />
       <Suspense fallback={<InvisibleLoader />}>
         <SpaHeroSection />

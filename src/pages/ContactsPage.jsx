@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import PageHead from '../components/layout/PageHead';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -19,6 +20,7 @@ import {
 
 
 import { SafeAnimatedCard, SafeAnimatedTitle, useSafeMobileDetection } from '../components/ui/SafeMobileOptimizations';
+import { SectionTitle, SectionSubtitle, ContentContainer } from '../components/ui/CommonComponents';
 import PageScrollReset from '../components/common/PageScrollReset';
 
 
@@ -65,11 +67,12 @@ const SocialSection = styled(motion.section)`
 
 const SocialGrid = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
-  gap: 2.5rem;
+  align-items: flex-start;
+  gap: 2rem;
   margin-top: 3.5rem;
-  max-width: 900px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -82,37 +85,47 @@ const SocialGrid = styled.div`
     transform-origin: center bottom;
   }
   
-  @media (max-width: 768px) {
-    gap: 1.8rem;
-    margin-top: 2.5rem;
-    max-width: 650px;
+  @media (max-width: 1024px) {
+    gap: 1.5rem;
+    max-width: 800px;
     
     & > * {
-      width: 130px;
+      width: 140px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    gap: 1.2rem;
+    margin-top: 2.5rem;
+    max-width: 600px;
+    
+    & > * {
+      width: 110px;
     }
   }
   
   @media (max-width: 480px) {
-    gap: 1.2rem;
+    gap: 0.8rem;
     margin-top: 2rem;
-    max-width: 380px;
+    flex-wrap: wrap;
+    max-width: 280px;
     
     & > * {
-      width: 110px;
+      width: 120px;
     }
   }
 `;
 
 const SocialCard = styled(motion.a)`
   background: white;
-  border-radius: 18px;
-  padding: 1.8rem 1.4rem;
+  border-radius: 16px;
+  padding: 1.5rem 1.2rem;
   text-decoration: none;
   color: inherit;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(144, 179, 167, 0.15);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -167,8 +180,8 @@ const SocialCard = styled(motion.a)`
 `;
 
 const SocialIcon = styled.div`
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background: ${props => props.bgColor || 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)'};
   display: flex;
@@ -195,8 +208,8 @@ const SocialIcon = styled.div`
   }
   
   svg {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     color: white;
     transition: all 0.3s ease;
     filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1));
@@ -491,80 +504,7 @@ const ContentSection = styled(motion.section)`
   }
 `;
 
-const ContentContainer = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  position: relative;
-  z-index: 1;
-`;
 
-const SectionTitle = styled(motion.h2)`
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.2rem, 4vw, 2.8rem);
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 1rem;
-  position: relative;
-  display: inline-block;
-  
-  span {
-    background: linear-gradient(to right, #2C3E2D, #90B3A7);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    width: 80px;
-    height: 3px;
-    background: linear-gradient(90deg, rgba(144, 179, 167, 0.7), rgba(144, 179, 167, 0));
-    bottom: -0.7rem;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 3px;
-  }
-`;
-
-const SectionSubtitle = styled(motion.p)`
-  font-size: clamp(1.05rem, 2vw, 1.2rem);
-  text-align: center;
-  margin-bottom: 4.5rem;
-  color: #5A6B5D;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  
-  &:before, &:after {
-    content: '';
-    position: absolute;
-    width: 30px;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(144, 179, 167, 0.5), rgba(144, 179, 167, 0));
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  &:before {
-    left: -45px;
-    
-    @media (max-width: 768px) {
-      display: none;
-    }
-  }
-  
-  &:after {
-    right: -45px;
-    transform: translateY(-50%) rotate(180deg);
-    
-    @media (max-width: 768px) {
-      display: none;
-    }
-  }
-`;
 
 // Контактная информация
 const ContactGrid = styled.div`
@@ -962,6 +902,12 @@ const ContactsPage = () => {
       variants={pageVariants}
       transition={{ duration: 0.3 }}
     >
+      <PageHead 
+        titleKey="page_titles.contacts"
+        description={t('contacts.hero.subtitle', 'We are always ready to help you and answer all your questions')}
+        keywords="KAIF contacts, contact information, Phuket, address, phone, booking"
+        ogImage="/images/logos/logo-og.png"
+      />
       <PageScrollReset />
       {/* Стильная Hero Section с визуальными элементами */}
       <HeroSection
@@ -1153,13 +1099,23 @@ const ContactsPage = () => {
         viewport={{ once: true, amount: 0.2 }}
       >
         <ContentContainer>
-          <SafeAnimatedTitle delay={0} as={SectionTitle}>
-            {t('contacts.social.title', 'Следите за нами в соцсетях')}
-          </SafeAnimatedTitle>
+          <SectionTitle
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            {t('contacts.social.title')}
+          </SectionTitle>
           
-          <SafeAnimatedTitle delay={0.1} as={SectionSubtitle}>
-            {t('contacts.social.subtitle', 'Будьте в курсе последних новостей и акций KAIF')}
-          </SafeAnimatedTitle>
+          <SectionSubtitle
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            {t('contacts.social.subtitle')}
+          </SectionSubtitle>
 
           <motion.div
             initial={{ opacity: 0 }}
@@ -1290,7 +1246,7 @@ const ContactsPage = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <span>{t('contacts.map.title', 'Как нас найти')}</span>
+            {t('contacts.map.title')}
           </SectionTitle>
           <SectionSubtitle
             initial={{ opacity: 0 }}
@@ -1298,7 +1254,7 @@ const ContactsPage = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            {t('contacts.map.subtitle', 'Удобное расположение в центре Катху, Пхукет')}
+            {t('contacts.map.subtitle')}
           </SectionSubtitle>
           
           <MapFrame
@@ -1309,7 +1265,10 @@ const ContactsPage = () => {
             viewport={{ once: true }}
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.8203398876644!2d98.35104997604789!3d7.913827992109515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x305031603c054903%3A0x818d8108ef4f8a55!2sKAIF%20%E2%80%93%20Jungle%20club%20%26%20SPA!5e0!3m2!1sru!2sth!4v1749550261501!5m2!1sru!2sth"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.8203398876644!2d98.3510499760479!3d7.9138279921095105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x305031603c054903%3A0x818d8108ef4f8a55!2sKAIF%20%E2%80%93%20Jungle%20club%20%26%20SPA!5e0!3m2!1sru!2sth!4v1750756305368!5m2!1sru!2sth"
+              width="600"
+              height="450"
+              style={{ border: 0 }}
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

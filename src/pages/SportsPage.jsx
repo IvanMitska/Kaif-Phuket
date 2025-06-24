@@ -1,5 +1,7 @@
 import React, { useEffect, Suspense } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import PageHead from '../components/layout/PageHead';
 
 // Ленивая загрузка компонентов спорта для оптимизации
 const HeroSection = React.lazy(() => import('../components/sports/HeroSection/HeroSection'));
@@ -12,6 +14,8 @@ import PageScrollReset from '../components/common/PageScrollReset';
 const InvisibleLoader = () => null;
 
 const SportsPage = () => {
+  const { t } = useTranslation();
+  
   // Добавлено сохранение стилей при рендеринге страницы
   useEffect(() => {
     console.log('SportsPage загружается...');
@@ -34,6 +38,12 @@ const SportsPage = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.2 }}
     >
+      <PageHead 
+        titleKey="page_titles.sports"
+        description={t('sports.hero.subtitle', 'Modern equipment, professional trainers and atmosphere to achieve your sporting goals')}
+        keywords="KAIF sports, gym, fitness, martial arts, MMA, boxing, training, Phuket"
+        ogImage="/images/sports/gym/gym-main.jpg"
+      />
       <PageScrollReset />
       <Suspense fallback={<InvisibleLoader />}>
         <HeroSection />
