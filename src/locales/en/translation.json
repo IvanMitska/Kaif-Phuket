@@ -1848,6 +1848,66 @@
         "full_lamination_complex": {
           "name": "Full lamination complex",
           "description": "Correction + brow tinting + lamination + eyelash tinting"
+        },
+        "manicure_base_coating": {
+          "name": "Manicure with base coating",
+          "description": "Manicure with protective base coating"
+        },
+        "nail_removal": {
+          "name": "Coating removal",
+          "description": "Safe gel coating removal"
+        },
+        "nail_design": {
+          "name": "Nail design",
+          "description": "Artistic nail design"
+        },
+        "french_manicure": {
+          "name": "French manicure",
+          "description": "Classic French manicure (additional charge)"
+        },
+        "pedicure_no_coating": {
+          "name": "Pedicure without coating",
+          "description": "Classic pedicure without coating"
+        },
+        "pedicure_base_coating": {
+          "name": "Pedicure with base coating",
+          "description": "Pedicure with protective coating"
+        },
+        "pedicure_coating_removal": {
+          "name": "Coating removal",
+          "description": "Old coating removal"
+        },
+        "pro_pedicure_no_coating": {
+          "name": "PRO master pedicure without coating",
+          "description": "Professional pedicure by high-class master"
+        },
+        "pro_pedicure_base_coating": {
+          "name": "PRO master pedicure with base coating",
+          "description": "Professional pedicure with coating"
+        },
+        "pro_pedicure_gel_strengthening": {
+          "name": "PRO master pedicure with gel strengthening",
+          "description": "Professional pedicure with strengthening"
+        },
+        "pro_full_pedicure_no_coating": {
+          "name": "PRO master full pedicure without coating",
+          "description": "Comprehensive professional care"
+        },
+        "pro_full_pedicure_coating": {
+          "name": "PRO master full pedicure with coating",
+          "description": "Maximum care from professional"
+        },
+        "pro_callus_removal": {
+          "name": "PRO master callus removal",
+          "description": "Professional callus removal"
+        },
+        "pro_coating_removal": {
+          "name": "PRO master coating removal",
+          "description": "Professional coating removal"
+        },
+        "pro_medical_pedicure": {
+          "name": "PRO master medical pedicure",
+          "description": "Medical pedicure for problem feet"
         }
       }
     },

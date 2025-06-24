@@ -1571,6 +1571,66 @@
         "full_lamination_complex": {
           "name": "คอมเพล็กซ์ลามิเนชั่นเต็มรูปแบบ",
           "description": "แต่งคิ้ว + ย้อมคิ้ว + ลามิเนชั่น + ย้อมขนตา"
+        },
+        "manicure_base_coating": {
+          "name": "มานิเคียร์พร้อมเบสโค้ท",
+          "description": "มานิเคียร์พร้อมเบสโค้ทป้องกัน"
+        },
+        "nail_removal": {
+          "name": "ลบเคลือบ",
+          "description": "ลบเคลือบเจลอย่างปลอดภัย"
+        },
+        "nail_design": {
+          "name": "ดีไซน์เล็บ",
+          "description": "ดีไซน์เล็บศิลปะ"
+        },
+        "french_manicure": {
+          "name": "เฟรนช์มานิเคียร์",
+          "description": "เฟรนช์มานิเคียร์คลาสสิก (ค่าบริการเพิ่มเติม)"
+        },
+        "pedicure_no_coating": {
+          "name": "เพดิเคียร์ไม่มีเคลือบ",
+          "description": "เพดิเคียร์คลาสสิกไม่มีเคลือบ"
+        },
+        "pedicure_base_coating": {
+          "name": "เพดิเคียร์พร้อมเบสโค้ท",
+          "description": "เพดิเคียร์พร้อมเคลือบป้องกัน"
+        },
+        "pedicure_coating_removal": {
+          "name": "ลบเคลือบ",
+          "description": "ลบเคลือบเก่า"
+        },
+        "pro_pedicure_no_coating": {
+          "name": "เพดิเคียร์ PRO มาสเตอร์ไม่มีเคลือบ",
+          "description": "เพดิเคียร์มืออาชีพโดยมาสเตอร์ระดับสูง"
+        },
+        "pro_pedicure_base_coating": {
+          "name": "เพดิเคียร์ PRO มาสเตอร์พร้อมเบสโค้ท",
+          "description": "เพดิเคียร์มืออาชีพพร้อมเคลือบ"
+        },
+        "pro_pedicure_gel_strengthening": {
+          "name": "เพดิเคียร์ PRO มาสเตอร์พร้อมเสริมแรงด้วยเจล",
+          "description": "เพดิเคียร์มืออาชีพพร้อมเสริมแรง"
+        },
+        "pro_full_pedicure_no_coating": {
+          "name": "เพดิเคียร์ PRO มาสเตอร์แบบเต็มไม่มีเคลือบ",
+          "description": "การดูแลมืออาชีพแบบครอบคลุม"
+        },
+        "pro_full_pedicure_coating": {
+          "name": "เพดิเคียร์ PRO มาสเตอร์แบบเต็มพร้อมเคลือบ",
+          "description": "การดูแลสูงสุดจากมืออาชีพ"
+        },
+        "pro_callus_removal": {
+          "name": "PRO มาสเตอร์กำจัดตาปลา",
+          "description": "กำจัดตาปลามืออาชีพ"
+        },
+        "pro_coating_removal": {
+          "name": "PRO มาสเตอร์ลบเคลือบ",
+          "description": "ลบเคลือบมืออาชีพ"
+        },
+        "pro_medical_pedicure": {
+          "name": "เพดิเคียร์ PRO มาสเตอร์เพื่อการแพทย์",
+          "description": "เพดิเคียร์เพื่อการแพทย์สำหรับเท้าที่มีปัญหา"
         }
       }
     },
