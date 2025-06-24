@@ -1923,6 +1923,27 @@
         "button": "Message on WhatsApp"
       }
     },
+    "testimonials": {
+      "title": "Guest Reviews",
+      "subtitle": "Discover what our satisfied clients say about us",
+      "reviews": {
+        "1": {
+          "text": "Amazing experience! The Thai massage was incredibly relaxing, and the atmosphere was simply magical. I will definitely come back again.",
+          "author": "Anna Petrova",
+          "title": "Regular Client"
+        },
+        "2": {
+          "text": "Professional masters, quality treatments and attention to detail. This is the best SPA center I've visited in Phuket.",
+          "author": "Ekaterina Sidorova",
+          "title": "Guest from Moscow"
+        },
+        "3": {
+          "text": "Wonderful place for rest and recovery. I especially loved the Finnish sauna and jacuzzi. Highly recommend to everyone!",
+          "author": "Mikhail Volkov",
+          "title": "KAIF Resident"
+        }
+      }
+    },
     "facility": {
       "title": "Our Facilities",
       "largest_sauna": "Largest sauna in Thailand (50m²)",
