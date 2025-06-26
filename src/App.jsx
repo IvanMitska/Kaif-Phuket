@@ -101,7 +101,7 @@ function App() {
     if (document.title === 'KAIF | Jungle Club & Spa' || 
         document.title.includes('KAIF') || 
         !document.title.includes('|')) {
-      document.title = t('page_titles.home', 'KAIF | Premium Wellness Complex in Phuket');
+      document.title = t('page_titles.home', 'KAIF | Jungle Club & Spa');
     }
   }, [i18n.language, t]);
 
