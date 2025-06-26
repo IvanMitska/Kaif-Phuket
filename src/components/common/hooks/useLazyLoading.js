@@ -120,62 +120,82 @@ export const useTouchGestures = (onSwipeLeft, onSwipeRight) => {
   const [touchEnd, setTouchEnd] = useState(null);
   const [touchStartY, setTouchStartY] = useState(null);
   const [touchEndY, setTouchEndY] = useState(null);
+  const [isScrolling, setIsScrolling] = useState(false);
 
-  const minSwipeDistance = 50;
-  const maxVerticalDistance = 30; // Максимальное вертикальное отклонение для горизонтального свайпа
+  const minSwipeDistance = 60; // Увеличиваем минимальное расстояние для свайпа
+  const maxVerticalDistance = 20; // Уменьшаем максимальное вертикальное отклонение
 
   const onTouchStart = useCallback((e) => {
-    // Не блокируем естественный скролл
+    // НЕ БЛОКИРУЕМ естественный скролл - убираем preventDefault полностью
     const touch = e.targetTouches[0];
     setTouchEnd(null);
     setTouchEndY(null);
     setTouchStart(touch.clientX);
     setTouchStartY(touch.clientY);
+    setIsScrolling(false);
   }, []);
 
   const onTouchMove = useCallback((e) => {
-    // Passive listener - не блокируем скролл
+    // КРИТИЧЕСКИ ВАЖНО: НЕ БЛОКИРУЕМ скролл страницы
     const touch = e.targetTouches[0];
     setTouchEnd(touch.clientX);
     setTouchEndY(touch.clientY);
-  }, []);
+    
+    // Определяем, скроллит ли пользователь
+    if (touchStartY !== null) {
+      const verticalDistance = Math.abs(touch.clientY - touchStartY);
+      const horizontalDistance = Math.abs(touch.clientX - touchStart);
+      
+      // Если больше вертикального движения - это скролл
+      if (verticalDistance > horizontalDistance && verticalDistance > 10) {
+        setIsScrolling(true);
+      }
+    }
+  }, [touchStart, touchStartY]);
 
   const onTouchEnd = useCallback((e) => {
-    if (!touchStart || !touchEnd || !touchStartY || !touchEndY) return;
-    
-    const horizontalDistance = touchStart - touchEnd;
-    const verticalDistance = touchStartY - touchEndY;
-    
-    // Проверяем, является ли жест горизонтальным свайпом
-    const isHorizontalSwipe = Math.abs(horizontalDistance) > minSwipeDistance;
-    const isVerticalScroll = Math.abs(verticalDistance) > Math.abs(horizontalDistance);
-    
-    // Если это скорее вертикальный скролл - игнорируем
-    if (isVerticalScroll || Math.abs(verticalDistance) > maxVerticalDistance) {
+    // Если пользователь скроллил - полностью игнорируем жест
+    if (isScrolling || !touchStart || !touchEnd || !touchStartY || !touchEndY) {
       return;
     }
     
-    // Обрабатываем только четко горизонтальные свайпы
-    if (isHorizontalSwipe) {
+    const horizontalDistance = touchStart - touchEnd;
+    const verticalDistance = Math.abs(touchStartY - touchEndY);
+    
+    // Очень строгие условия для горизонтального свайпа
+    const isHorizontalSwipe = Math.abs(horizontalDistance) > minSwipeDistance;
+    const isVerticalMovement = verticalDistance > maxVerticalDistance;
+    
+    // Если есть вертикальное движение - НЕ обрабатываем как свайп
+    if (isVerticalMovement) {
+      return;
+    }
+    
+    // Обрабатываем только четко горизонтальные свайпы без вертикального движения
+    if (isHorizontalSwipe && !isVerticalMovement) {
       const isLeftSwipe = horizontalDistance > 0;
       const isRightSwipe = horizontalDistance < 0;
 
+      // КРИТИЧЕСКИ ВАЖНО: НЕ ВЫЗЫВАЕМ preventDefault
+      // Это позволяет браузеру обрабатывать скролл естественно
       if (isLeftSwipe && onSwipeLeft) {
-        // Предотвращаем возможные дополнительные события только для обработанного свайпа
-        e.preventDefault?.();
         onSwipeLeft();
       }
       if (isRightSwipe && onSwipeRight) {
-        e.preventDefault?.();
         onSwipeRight();
       }
     }
-  }, [touchStart, touchEnd, touchStartY, touchEndY, onSwipeLeft, onSwipeRight]);
+  }, [touchStart, touchEnd, touchStartY, touchEndY, isScrolling, onSwipeLeft, onSwipeRight]);
 
+  // Возвращаем пассивные обработчики событий
   return {
     onTouchStart,
     onTouchMove,
-    onTouchEnd
+    onTouchEnd,
+    // Добавляем флаг для пассивных обработчиков
+    style: {
+      touchAction: 'pan-y' // Разрешаем только вертикальный скролл
+    }
   };
 };
 

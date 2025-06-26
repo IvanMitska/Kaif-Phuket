@@ -277,6 +277,9 @@ const SliderContainer = styled(motion.div)`
   border-radius: 20px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
   background: transparent;
+  touch-action: pan-y;
+  will-change: auto;
+  pointer-events: auto;
   
   @media (max-width: 768px) {
     margin: 2rem auto;
@@ -297,9 +300,9 @@ const SliderTrack = styled(motion.div)`
   background: transparent;
   margin: 0;
   padding: 0;
-  /* GPU ускорение для плавности */
   transform: translateZ(0);
   backface-visibility: hidden;
+  touch-action: pan-y;
 `;
 
 const Slide = styled(motion.div)`
@@ -312,6 +315,8 @@ const Slide = styled(motion.div)`
   margin: 0;
   padding: 0;
   border: none;
+  pointer-events: auto;
+  will-change: auto;
   
   @media (max-width: 768px) {
     height: 500px;
@@ -327,7 +332,7 @@ const SlideImage = styled(motion.img)`
   height: 100%;
   object-fit: cover;
   cursor: pointer;
-  will-change: transform;
+  will-change: auto;
   backface-visibility: hidden;
   transform: translateZ(0);
   display: block;
@@ -337,12 +342,12 @@ const SlideImage = styled(motion.img)`
   outline: none;
   vertical-align: top;
   object-position: ${props => props.$customPosition || 'center'};
-  /* Оптимизация загрузки изображений */
   loading: lazy;
+  pointer-events: auto;
   
   &:hover {
-    transform: scale(1.01) translateZ(0);
-    transition: transform 0.3s ease-out;
+    transition: opacity 0.3s ease-out;
+    opacity: 0.95;
   }
 `;
 
@@ -782,7 +787,7 @@ const GallerySection = () => {
     setIsAutoplay(true);
   }, []);
 
-  // Touch gestures для слайдера
+  // Touch gestures для слайдера - ИСПРАВЛЕНО для предотвращения блокировки скролла
   const sliderTouchGestures = useTouchGestures(
     goToNextSlide,
     goToPrevSlide
@@ -815,7 +820,7 @@ const GallerySection = () => {
     openModal(filteredGallery[newIndex]);
   }, [selectedImageIndex, filteredGallery, openModal]);
 
-  // Touch gestures для модального окна
+  // Touch gestures для модального окна - ИСПРАВЛЕНО для предотвращения блокировки скролла
   const touchGestures = useTouchGestures(
     () => navigateModal('next'),
     () => navigateModal('prev')
@@ -912,6 +917,12 @@ const GallerySection = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
               {...sliderTouchGestures}
+              style={{
+                ...sliderTouchGestures.style,
+                // Дополнительная защита от блокировки скролла
+                overscrollBehavior: 'auto',
+                WebkitOverscrollBehavior: 'auto'
+              }}
             >
               <SliderTrack
                 animate={{ x: `-${currentSlide * 100}%` }}
@@ -976,6 +987,11 @@ const GallerySection = () => {
             transition={getOptimizedAnimation({ duration: 0.3 })}
             onClick={closeModal}
             {...touchGestures}
+            style={{
+              ...touchGestures.style,
+              // Обеспечиваем, что модальное окно не блокирует скролл под собой
+              overscrollBehavior: 'contain'
+            }}
           >
             <ModalContainer
               onClick={(e) => e.stopPropagation()}

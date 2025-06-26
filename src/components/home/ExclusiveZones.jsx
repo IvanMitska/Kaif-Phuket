@@ -15,12 +15,16 @@ import {
 // Импорт локального изображения для карточки "Русская баня"
 import heroLuxuryImage from '../../assets/images/hero/hero-luxury.png';
 
-// Основной контейнер
+// Основной контейнер - ИСПРАВЛЕН для предотвращения блокировки скролла
 const SectionContainer = styled.section`
   position: relative;
   padding: 6rem 0;
   background-color: #ffffff;
   overflow: hidden;
+  /* ИСПРАВЛЕНИЕ: Не блокируем скролл */
+  touch-action: pan-y;
+  overscroll-behavior: auto;
+  -webkit-overscroll-behavior: auto;
   
   @media (min-width: 768px) {
     padding: 8rem 0;

@@ -292,7 +292,7 @@
       },
       "working_hours": {
         "question": "What are the complex's operating hours?",
-        "answer": "We operate daily from 6:00 AM to 11:00 PM. Some zones (SPA, restaurant) may have separate schedules. We recommend checking the operating hours of specific services when booking."
+        "answer": ". Some zones (SPA, restaurant) may have separate schedules. We recommend checking the operating hours of specific services when booking."
       },
       "how_to_book": {
         "question": "How to book services?",

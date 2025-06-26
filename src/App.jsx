@@ -25,6 +25,8 @@ import './styles/global-theme.css';
 import './index.css';
 import './styles/mobile-optimizations.css';
 import './styles/simple-header-fix.css';
+// ИСПРАВЛЕНИЕ: Импортируем CSS для исправления интерференции скролла
+import './styles/scroll-fix.css';
 
 import { theme } from './theme.fixed';
 import Layout from './components/layout/Layout';

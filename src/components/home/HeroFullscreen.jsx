@@ -410,11 +410,14 @@ const HeroFullscreen = memo(() => {
   const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
   
-  // Оптимизированное автоматическое переключение слайдов
+  // ИСПРАВЛЕНИЕ: Оптимизированное автоматическое переключение слайдов без блокировки скролла
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide(prev => (prev + 1) % slideImages.length);
-    }, 6000); // Уменьшаем интервал для более быстрой анимации
+      // Используем requestAnimationFrame для синхронизации с браузером
+      requestAnimationFrame(() => {
+        setCurrentSlide(prev => (prev + 1) % slideImages.length);
+      });
+    }, 6000);
     
     return () => clearInterval(interval);
   }, []);
