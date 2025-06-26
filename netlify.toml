@@ -6,14 +6,68 @@
   NODE_VERSION = "22"
   CI = "false"
 
-# Настройки кеширования для разных типов файлов
+# БЕЗОПАСНОСТЬ: Исключаем служебные файлы из публикации
+[build.ignore]
+  # Не публикуем .git, node_modules, src и прочие служебные папки в dist
+  # Это дополнительная защита на уровне билда
+
+# БЕЗОПАСНОСТЬ: Расширенные Security Headers для всех файлов
 [[headers]]
   for = "/*"
   [headers.values]
+    # Базовые заголовки безопасности
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
-    Referrer-Policy = "no-referrer-when-downgrade"
     X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Дополнительные заголовки безопасности
+    Cross-Origin-Embedder-Policy = "require-corp"
+    Cross-Origin-Opener-Policy = "same-origin"
+    X-Permitted-Cross-Domain-Policies = "none"
+    
+    # Content Security Policy (строгая политика)
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://apis.google.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';"
+    
+    # HSTS для принудительного HTTPS
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+# БЕЗОПАСНОСТЬ: Блокировка доступа к служебным файлам  
+[[headers]]
+  for = "/.git/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive, nosnippet"
+  [[redirects]]
+    from = "/.git/*"
+    to = "/404"
+    status = 404
+
+[[headers]]
+  for = "/node_modules/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive, nosnippet"
+  [[redirects]]
+    from = "/node_modules/*"
+    to = "/404"
+    status = 404
+
+[[headers]]
+  for = "/src/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive, nosnippet"
+  [[redirects]]
+    from = "/src/*"
+    to = "/404"
+    status = 404
+
+[[headers]]
+  for = "/*.md"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive, nosnippet"
+  [[redirects]]
+    from = "/*.md"
+    to = "/404"
+    status = 404
 
 # Кэширование изображений на длительный срок
 [[headers]]

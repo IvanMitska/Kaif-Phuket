@@ -242,14 +242,36 @@ const MapContainer = styled(motion.div)`
   overflow: hidden;
 `;
 
-// Упрощенная карта-плейсхолдер
+// ИСПРАВЛЕНИЕ БЕЗОПАСНОСТИ: Убираем хардкодный API токен
+const mapboxToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
+
+// Упрощенная карта-плейсхолдер с безопасным токеном
 const Map = styled.div`
   width: 100%;
   height: 100%;
-  background: url('https://api.mapbox.com/styles/v1/mapbox/light-v10/static/98.3,7.9,12,0/800x600?access_token=pk.eyJ1IjoiZGVtby1hY2NvdW50IiwiYSI6ImNsYjJrdWh6NzA2Zm8zcm84bHN1YzJyankifQ.lW3oKUb41yh");
+  background: ${mapboxToken ? 
+    `url('https://api.mapbox.com/styles/v1/mapbox/light-v10/static/98.3,7.9,12,0/800x600?access_token=${mapboxToken}')` :
+    'linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%)'
+  };
   background-size: cover;
   background-position: center;
   filter: saturate(0.7);
+  position: relative;
+  
+  ${!mapboxToken && `
+    &::after {
+      content: '🗺️ Карта недоступна\\AНеобходим API токен Mapbox';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: pre-line;
+      text-align: center;
+      color: #64748b;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+  `}
 `;
 
 // Анимации для элементов
