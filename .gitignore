@@ -32,8 +32,11 @@ config/secrets.*
 # БЕЗОПАСНОСТЬ: Документация (содержит информацию о проекте)
 *.md
 !README.md
-*.txt
-*.log
+!SECURITY.md
+docs/*.txt
+docs/*.log
+# Разрешаем robots.txt в public
+!public/robots.txt
 
 # Editor directories and files
 .vscode/*
