@@ -37,37 +37,21 @@
   for = "/.git/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow, noarchive, nosnippet"
-  [[redirects]]
-    from = "/.git/*"
-    to = "/404"
-    status = 404
 
 [[headers]]
   for = "/node_modules/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow, noarchive, nosnippet"
-  [[redirects]]
-    from = "/node_modules/*"
-    to = "/404"
-    status = 404
 
 [[headers]]
   for = "/src/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow, noarchive, nosnippet"
-  [[redirects]]
-    from = "/src/*"
-    to = "/404"
-    status = 404
 
 [[headers]]
   for = "/*.md"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow, noarchive, nosnippet"
-  [[redirects]]
-    from = "/*.md"
-    to = "/404"
-    status = 404
 
 # Кэширование изображений на длительный срок
 [[headers]]
@@ -98,7 +82,28 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Устанавливаем правила перенаправления
+# БЕЗОПАСНОСТЬ: Редиректы для блокировки служебных файлов
+[[redirects]]
+  from = "/.git/*"
+  to = "/404"
+  status = 404
+
+[[redirects]]
+  from = "/node_modules/*"
+  to = "/404"
+  status = 404
+
+[[redirects]]
+  from = "/src/*"
+  to = "/404"
+  status = 404
+
+[[redirects]]
+  from = "/*.md"
+  to = "/404"
+  status = 404
+
+# Устанавливаем правила перенаправления для SPA
 [[redirects]]
   from = "/*"
   to = "/index.html"
