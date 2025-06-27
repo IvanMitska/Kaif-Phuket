@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Favicon для разных устройств и браузеров -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2024" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2024" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2024" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2024" />
+    <link rel="shortcut icon" href="/favicon.ico?v=2024" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Мета-теги на русском (по умолчанию) -->
+    <meta name="description" content="KAIF Club & Spa — эксклюзивный комплекс с авторской кухней, роскошным спа-центром, традиционной русской баней и современным фитнес-клубом. Премиальный отдых и расслабление в сердце города. Забронируйте незабываемый отдых прямо сейчас!" />
+    <meta name="keywords" content="спа центр, русская баня, ресторан, фитнес клуб, массаж, отдых, релакс, эксклюзивный клуб, авторская кухня, премиум" />
+    
+    <!-- Мета-теги на английском -->
+    <meta name="description" lang="en" content="KAIF Club & Spa — exclusive complex with gourmet cuisine, luxury spa center, traditional Russian banya and modern fitness club. Premium relaxation and wellness in the heart of the city. Book your unforgettable experience now!" />
+    <meta name="keywords" lang="en" content="spa center, russian banya, restaurant, fitness club, massage, relaxation, exclusive club, gourmet cuisine, premium" />
+    
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="KAIF Club & Spa" />
+    <meta name="theme-color" content="#FFFFFF" />
+    
+    <!-- Open Graph для социальных сетей -->
+    <meta property="og:title" content="KAIF | Jungle Club & Spa" />
+    <meta property="og:title" lang="en" content="KAIF | Jungle Club & Spa" />
+    <meta property="og:description" content="Роскошный спа-центр, русская баня, авторская кухня и фитнес-клуб. Премиальный отдых в сердце города. Забронируйте незабываемый отдых!" />
+    <meta property="og:description" lang="en" content="Luxury spa center, Russian banya, gourmet cuisine and fitness club. Premium relaxation in the heart of the city. Book your unforgettable experience!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/images/logos/logo-og.png" />
+    <meta property="og:url" content="https://kaif-spa.com" />
+    <meta property="og:site_name" content="KAIF | Jungle Club & Spa" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="KAIF | Jungle Club & Spa" />
+    <meta name="twitter:title" lang="en" content="KAIF | Jungle Club & Spa" />
+    <meta name="twitter:description" content="Роскошный спа-центр, русская баня, авторская кухня и фитнес-клуб. Премиальный отдых в сердце города" />
+    <meta name="twitter:description" lang="en" content="Luxury spa center, Russian banya, gourmet cuisine and fitness club. Premium relaxation in the heart of the city" />
+    <meta name="twitter:image" content="/images/logos/logo-og.png" />
+    
+    <!-- Принудительное обновление favicon -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    
+    <!-- Предзагрузка критических ресурсов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload key assets -->
+    <link rel="preload" href="/assets/fonts/main-font.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.netlify.com">
+    
+    <!-- Определение поддержки WebP -->
+    <script>
+      // Проверяем поддержку WebP для использования оптимизированных изображений
+      (function() {
+        var WebP = new Image();
+        WebP.onload = WebP.onerror = function() {
+          document.documentElement.classList.add(WebP.height === 1 ? 'webp' : 'no-webp');
+        };
+        WebP.src = 'data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=';
+      })();
+    </script>
+    
+    <!-- Первоначальные стили для предотвращения мерцания -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        opacity: 1;
+        transition: opacity 0.2s;
+        background: #f5f5f5;
+      }
+      
+      .app-loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        z-index: 1000;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+      }
+      
+      .app-loading.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      
+      .loader {
+        width: 60px;
+        height: 60px;
+        border: 3px solid #f0f0f0;
+        border-top: 3px solid #90B3A7;
+        border-radius: 50%;
+        animation: spinner 1s linear infinite;
+      }
+      
+      @keyframes spinner {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      .no-js .app-loading {
+        display: none;
+      }
+      
+      /* Предотвращаем мерцание при загрузке изображений */
+      img[loading="lazy"] {
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      
+      img.loaded {
+        opacity: 1;
+      }
+    </style>
+    
+    <!-- Preload critical logos first (highest priority) -->
+    <link rel="preload" as="image" href="/images/logos/logo-header-1x.webp">
+    <link rel="preload" as="image" href="/images/logos/logo-header-1x.png">
+    
+    <!-- Preload critical images for Banya -->
+    <link rel="preload" as="image" href="/images-webp/small/banya/panoramic.webp" media="(max-width: 767px)">
+    <link rel="preload" as="image" href="/images-webp/medium/banya/panoramic.webp" media="(min-width: 768px) and (max-width: 1023px)">
+    <link rel="preload" as="image" href="/images-webp/large/banya/panoramic.webp" media="(min-width: 1024px)">
+    
+
+    
+    <!-- Preload hero images for restaurant -->
+    <link rel="preload" as="image" href="/images-webp/small/menu/breakfast/kaif-breakfast.webp" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images-webp/medium/menu/breakfast/kaif-breakfast.webp" media="(min-width: 769px)">
+    
+    <!-- Preload logos -->
+    <link rel="preload" as="image" href="/images-webp/logos/logo-header.webp">
+    
+    <!-- Google Fonts with display=swap for better performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <title>KAIF | Jungle Club & Spa</title>
+    
+    <!-- Google Tag Manager -->
+    <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id=GTM-5WP6GKBQ';f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5WP6GKBQ');
+    </script>
+    <!-- End Google Tag Manager -->
+    <script type="module" crossorigin src="/assets/js/main-dUgoW0OF.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-other-CZupzcPt.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-react-CLtL0QWO.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-styles-CCTfl_7F.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-i18n-C4kh69yx.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-animations-CEvQOT_g.js">
+    <link rel="stylesheet" crossorigin href="/assets/css/main-BzFkNgcV.css">
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5WP6GKBQ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <noscript>
+      <div style="padding: 20px; text-align: center; background: #f5f5f5; color: #333;">
+        Для работы сайта необходимо включить JavaScript
+      </div>
+    </noscript>
+    
+    <div class="app-loading">
+      <div class="loader"></div>
+    </div>
+    
+    <div id="root"></div>
+    
+    <script>
+      // Удаляем прелоадер после загрузки приложения
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+          const loader = document.querySelector('.app-loading');
+          if (loader) loader.classList.add('hidden');
+        }, 800);
+      });
+      
+      // Маркируем загруженные изображения для плавных переходов
+      document.addEventListener('load', function(e) {
+        if (e.target.tagName === 'IMG') {
+          e.target.classList.add('loaded');
+        }
+      }, true);
+    </script>
+    
+  </body>
+</html>
