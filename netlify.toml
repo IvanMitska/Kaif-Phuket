@@ -1,10 +1,25 @@
 [build]
-  command = "npm run build"
+  command = "npm ci && npm run build"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "22"
   CI = "false"
+  NPM_FLAGS = "--legacy-peer-deps"
+
+# Очистка кэша и принудительная установка зависимостей
+[build.processing]
+  skip_processing = false
+[build.processing.css]
+  bundle = true
+  minify = true
+[build.processing.js]
+  bundle = true
+  minify = true
+[build.processing.images]
+  compress = true
+[build.processing.html]
+  pretty_urls = true
 
 # БЕЗОПАСНОСТЬ: Исключаем служебные файлы из публикации
 [build.ignore]
@@ -107,18 +122,4 @@
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
-
-# Правила сжатия
-[build.processing]
-  skip_processing = false
-[build.processing.css]
-  bundle = true
-  minify = true
-[build.processing.js]
-  bundle = true
-  minify = true
-[build.processing.images]
-  compress = true
-[build.processing.html]
-  pretty_urls = true 
+  status = 200 

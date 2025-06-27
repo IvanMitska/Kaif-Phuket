@@ -17,6 +17,16 @@ export default defineConfig({
       '@': resolve(__dirname, './src') // Алиас для импорта из src
     }
   },
+  
+  // CSS конфигурация - только обычный CSS, без SCSS
+  css: {
+    preprocessorOptions: {
+      // Отключаем все препроцессоры CSS
+    },
+    modules: false,
+    devSourcemap: false
+  },
+  
   publicDir: 'public', // Публичная директория
   build: {
     outDir: 'dist', // Директория для билда
@@ -97,6 +107,15 @@ export default defineConfig({
       // Оптимизация импортов
       input: {
         main: resolve(__dirname, 'index.html')
+      },
+      
+      // Исключаем проблемные модули
+      external: (id) => {
+        // Исключаем любые SCSS файлы
+        if (id.includes('.scss') || id.includes('scss')) {
+          return true;
+        }
+        return false;
       }
     },
     
@@ -138,8 +157,8 @@ export default defineConfig({
       'formik',
       'yup'
     ],
-    // Игнорируем неиспользуемый код
-    exclude: ['@heroicons/react/24/solid', 'react-icons'] 
+    // Игнорируем неиспользуемый код и SCSS
+    exclude: ['@heroicons/react/24/solid', 'react-icons', '**/*.scss', '**/*.sass'] 
   },
   
   // Оптимизации для esbuild
