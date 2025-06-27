@@ -31,39 +31,6 @@ export const imageMap = {
 
   // Карта соответствия изображений
   images: {
-    // Логотипы (критический контент)
-    'logos/logo-header': {
-      "original": {
-        webp: "/images/logos/logo-header-2x.webp",
-        fallback: "/images/logos/logo-header-2x.png",
-      },
-      "2x": {
-        webp: "/images/logos/logo-header-2x.webp",
-        fallback: "/images/logos/logo-header-2x.png",
-        width: 358, // 358px width
-      },
-      "1x": {
-        webp: "/images/logos/logo-header-1x.webp",
-        fallback: "/images/logos/logo-header-1x.png",
-        width: 179,
-      }
-    },
-    'logos/logo-footer': {
-      "original": {
-        webp: "/images/logos/logo-footer-2x.webp",
-        fallback: "/images/logos/logo-footer-2x.png",
-      },
-      "2x": {
-        webp: "/images/logos/logo-footer-2x.webp",
-        fallback: "/images/logos/logo-footer-2x.png",
-        width: 720,
-      },
-      "1x": {
-        webp: "/images/logos/logo-footer-1x.webp",
-        fallback: "/images/logos/logo-footer-1x.png",
-        width: 360,
-      }
-    },
     'thai-massage.jpg': {
       "original": {
         webp: "/images-webp/./thai-massage.webp",
@@ -454,6 +421,58 @@ export const imageMap = {
         width: 320,
       },
     },
+    'restaurant/booking.jpg': {
+      "original": {
+        webp: "/images-webp/restaurant/booking.webp",
+        fallback: "/images/restaurant/booking.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/restaurant/booking.webp",
+        fallback: "/images/restaurant/booking.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/restaurant/booking.webp",
+        fallback: "/images/restaurant/booking.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/restaurant/booking.webp",
+        fallback: "/images/restaurant/booking.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/restaurant/booking.webp",
+        fallback: "/images/restaurant/booking.jpg",
+        width: 320,
+      },
+    },
+    'restaurant/bar.jpg': {
+      "original": {
+        webp: "/images-webp/restaurant/bar.webp",
+        fallback: "/images/restaurant/bar.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/restaurant/bar.webp",
+        fallback: "/images/restaurant/bar.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/restaurant/bar.webp",
+        fallback: "/images/restaurant/bar.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/restaurant/bar.webp",
+        fallback: "/images/restaurant/bar.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/restaurant/bar.webp",
+        fallback: "/images/restaurant/bar.jpg",
+        width: 320,
+      },
+    },
     'logos/logo-header.png': {
       "original": {
         webp: "/images-webp/logos/logo-header.webp",
@@ -477,6 +496,110 @@ export const imageMap = {
       "thumbnail": {
         webp: "/images-webp/thumbnail/logos/logo-header.webp",
         fallback: "/images/logos/logo-header.png",
+        width: 320,
+      },
+    },
+    'logos/logo-header-2x.png': {
+      "original": {
+        webp: "/images-webp/logos/logo-header-2x.webp",
+        fallback: "/images/logos/logo-header-2x.png",
+      },
+      "large": {
+        webp: "/images-webp/large/logos/logo-header-2x.webp",
+        fallback: "/images/logos/logo-header-2x.png",
+        width: 227,
+      },
+      "medium": {
+        webp: "/images-webp/medium/logos/logo-header-2x.webp",
+        fallback: "/images/logos/logo-header-2x.png",
+        width: 227,
+      },
+      "small": {
+        webp: "/images-webp/small/logos/logo-header-2x.webp",
+        fallback: "/images/logos/logo-header-2x.png",
+        width: 227,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/logos/logo-header-2x.webp",
+        fallback: "/images/logos/logo-header-2x.png",
+        width: 227,
+      },
+    },
+    'logos/logo-header-1x.png': {
+      "original": {
+        webp: "/images-webp/logos/logo-header-1x.webp",
+        fallback: "/images/logos/logo-header-1x.png",
+      },
+      "large": {
+        webp: "/images-webp/large/logos/logo-header-1x.webp",
+        fallback: "/images/logos/logo-header-1x.png",
+        width: 113,
+      },
+      "medium": {
+        webp: "/images-webp/medium/logos/logo-header-1x.webp",
+        fallback: "/images/logos/logo-header-1x.png",
+        width: 113,
+      },
+      "small": {
+        webp: "/images-webp/small/logos/logo-header-1x.webp",
+        fallback: "/images/logos/logo-header-1x.png",
+        width: 113,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/logos/logo-header-1x.webp",
+        fallback: "/images/logos/logo-header-1x.png",
+        width: 113,
+      },
+    },
+    'logos/logo-footer-2x.png': {
+      "original": {
+        webp: "/images-webp/logos/logo-footer-2x.webp",
+        fallback: "/images/logos/logo-footer-2x.png",
+      },
+      "large": {
+        webp: "/images-webp/large/logos/logo-footer-2x.webp",
+        fallback: "/images/logos/logo-footer-2x.png",
+        width: 720,
+      },
+      "medium": {
+        webp: "/images-webp/medium/logos/logo-footer-2x.webp",
+        fallback: "/images/logos/logo-footer-2x.png",
+        width: 720,
+      },
+      "small": {
+        webp: "/images-webp/small/logos/logo-footer-2x.webp",
+        fallback: "/images/logos/logo-footer-2x.png",
+        width: 720,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/logos/logo-footer-2x.webp",
+        fallback: "/images/logos/logo-footer-2x.png",
+        width: 320,
+      },
+    },
+    'logos/logo-footer-1x.png': {
+      "original": {
+        webp: "/images-webp/logos/logo-footer-1x.webp",
+        fallback: "/images/logos/logo-footer-1x.png",
+      },
+      "large": {
+        webp: "/images-webp/large/logos/logo-footer-1x.webp",
+        fallback: "/images/logos/logo-footer-1x.png",
+        width: 360,
+      },
+      "medium": {
+        webp: "/images-webp/medium/logos/logo-footer-1x.webp",
+        fallback: "/images/logos/logo-footer-1x.png",
+        width: 360,
+      },
+      "small": {
+        webp: "/images-webp/small/logos/logo-footer-1x.webp",
+        fallback: "/images/logos/logo-footer-1x.png",
+        width: 360,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/logos/logo-footer-1x.webp",
+        fallback: "/images/logos/logo-footer-1x.png",
         width: 320,
       },
     },
@@ -540,7 +663,7 @@ export const imageMap = {
       "large": {
         webp: "/images-webp/large/banya/public.webp",
         fallback: "/images/banya/public.jpg",
-        width: 1600,
+        width: 1067,
       },
       "medium": {
         webp: "/images-webp/medium/banya/public.webp",
@@ -566,7 +689,7 @@ export const imageMap = {
       "large": {
         webp: "/images-webp/large/banya/private.webp",
         fallback: "/images/banya/private.jpg",
-        width: 1600,
+        width: 1073,
       },
       "medium": {
         webp: "/images-webp/medium/banya/private.webp",
@@ -1104,6 +1227,136 @@ export const imageMap = {
         width: 320,
       },
     },
+    'menu/sauce/tzatzikii.jpg': {
+      "original": {
+        webp: "/images-webp/menu/sauce/tzatzikii.webp",
+        fallback: "/images/menu/sauce/tzatzikii.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/menu/sauce/tzatzikii.webp",
+        fallback: "/images/menu/sauce/tzatzikii.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/menu/sauce/tzatzikii.webp",
+        fallback: "/images/menu/sauce/tzatzikii.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/menu/sauce/tzatzikii.webp",
+        fallback: "/images/menu/sauce/tzatzikii.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/menu/sauce/tzatzikii.webp",
+        fallback: "/images/menu/sauce/tzatzikii.jpg",
+        width: 320,
+      },
+    },
+    'menu/sauce/satsebeli.jpg': {
+      "original": {
+        webp: "/images-webp/menu/sauce/satsebeli.webp",
+        fallback: "/images/menu/sauce/satsebeli.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/menu/sauce/satsebeli.webp",
+        fallback: "/images/menu/sauce/satsebeli.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/menu/sauce/satsebeli.webp",
+        fallback: "/images/menu/sauce/satsebeli.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/menu/sauce/satsebeli.webp",
+        fallback: "/images/menu/sauce/satsebeli.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/menu/sauce/satsebeli.webp",
+        fallback: "/images/menu/sauce/satsebeli.jpg",
+        width: 320,
+      },
+    },
+    'menu/sauce/pesto.jpg': {
+      "original": {
+        webp: "/images-webp/menu/sauce/pesto.webp",
+        fallback: "/images/menu/sauce/pesto.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/menu/sauce/pesto.webp",
+        fallback: "/images/menu/sauce/pesto.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/menu/sauce/pesto.webp",
+        fallback: "/images/menu/sauce/pesto.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/menu/sauce/pesto.webp",
+        fallback: "/images/menu/sauce/pesto.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/menu/sauce/pesto.webp",
+        fallback: "/images/menu/sauce/pesto.jpg",
+        width: 320,
+      },
+    },
+    'menu/sauce/mustard.jpg': {
+      "original": {
+        webp: "/images-webp/menu/sauce/mustard.webp",
+        fallback: "/images/menu/sauce/mustard.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/menu/sauce/mustard.webp",
+        fallback: "/images/menu/sauce/mustard.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/menu/sauce/mustard.webp",
+        fallback: "/images/menu/sauce/mustard.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/menu/sauce/mustard.webp",
+        fallback: "/images/menu/sauce/mustard.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/menu/sauce/mustard.webp",
+        fallback: "/images/menu/sauce/mustard.jpg",
+        width: 320,
+      },
+    },
+    'menu/sauce/aioli.jpg': {
+      "original": {
+        webp: "/images-webp/menu/sauce/aioli.webp",
+        fallback: "/images/menu/sauce/aioli.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/menu/sauce/aioli.webp",
+        fallback: "/images/menu/sauce/aioli.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/menu/sauce/aioli.webp",
+        fallback: "/images/menu/sauce/aioli.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/menu/sauce/aioli.webp",
+        fallback: "/images/menu/sauce/aioli.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/menu/sauce/aioli.webp",
+        fallback: "/images/menu/sauce/aioli.jpg",
+        width: 320,
+      },
+    },
     'menu/salad/xymusavokado.jpg': {
       "original": {
         webp: "/images-webp/menu/salad/xymusavokado.webp",
@@ -1234,133 +1487,55 @@ export const imageMap = {
         width: 320,
       },
     },
-    'menu/sauce/tzatzikii.jpg': {
+    'menu/salad/cesar-seafood.jpg': {
       "original": {
-        webp: "/images-webp/menu/sauce/tzatzikii.webp",
-        fallback: "/images/menu/sauce/tzatzikii.jpg",
+        webp: "/images-webp/menu/salad/cesar-seafood.webp",
+        fallback: "/images/menu/salad/cesar-seafood.jpg",
       },
       "large": {
-        webp: "/images-webp/large/menu/sauce/tzatzikii.webp",
-        fallback: "/images/menu/sauce/tzatzikii.jpg",
+        webp: "/images-webp/large/menu/salad/cesar-seafood.webp",
+        fallback: "/images/menu/salad/cesar-seafood.jpg",
         width: 1600,
       },
       "medium": {
-        webp: "/images-webp/medium/menu/sauce/tzatzikii.webp",
-        fallback: "/images/menu/sauce/tzatzikii.jpg",
+        webp: "/images-webp/medium/menu/salad/cesar-seafood.webp",
+        fallback: "/images/menu/salad/cesar-seafood.jpg",
         width: 1024,
       },
       "small": {
-        webp: "/images-webp/small/menu/sauce/tzatzikii.webp",
-        fallback: "/images/menu/sauce/tzatzikii.jpg",
+        webp: "/images-webp/small/menu/salad/cesar-seafood.webp",
+        fallback: "/images/menu/salad/cesar-seafood.jpg",
         width: 768,
       },
       "thumbnail": {
-        webp: "/images-webp/thumbnail/menu/sauce/tzatzikii.webp",
-        fallback: "/images/menu/sauce/tzatzikii.jpg",
+        webp: "/images-webp/thumbnail/menu/salad/cesar-seafood.webp",
+        fallback: "/images/menu/salad/cesar-seafood.jpg",
         width: 320,
       },
     },
-    'menu/sauce/satsebeli.jpg': {
+    'menu/salad/caesar-salad.jpg': {
       "original": {
-        webp: "/images-webp/menu/sauce/satsebeli.webp",
-        fallback: "/images/menu/sauce/satsebeli.jpg",
+        webp: "/images-webp/menu/salad/caesar-salad.webp",
+        fallback: "/images/menu/salad/caesar-salad.jpg",
       },
       "large": {
-        webp: "/images-webp/large/menu/sauce/satsebeli.webp",
-        fallback: "/images/menu/sauce/satsebeli.jpg",
+        webp: "/images-webp/large/menu/salad/caesar-salad.webp",
+        fallback: "/images/menu/salad/caesar-salad.jpg",
         width: 1600,
       },
       "medium": {
-        webp: "/images-webp/medium/menu/sauce/satsebeli.webp",
-        fallback: "/images/menu/sauce/satsebeli.jpg",
+        webp: "/images-webp/medium/menu/salad/caesar-salad.webp",
+        fallback: "/images/menu/salad/caesar-salad.jpg",
         width: 1024,
       },
       "small": {
-        webp: "/images-webp/small/menu/sauce/satsebeli.webp",
-        fallback: "/images/menu/sauce/satsebeli.jpg",
+        webp: "/images-webp/small/menu/salad/caesar-salad.webp",
+        fallback: "/images/menu/salad/caesar-salad.jpg",
         width: 768,
       },
       "thumbnail": {
-        webp: "/images-webp/thumbnail/menu/sauce/satsebeli.webp",
-        fallback: "/images/menu/sauce/satsebeli.jpg",
-        width: 320,
-      },
-    },
-    'menu/sauce/pesto.jpg': {
-      "original": {
-        webp: "/images-webp/menu/sauce/pesto.webp",
-        fallback: "/images/menu/sauce/pesto.jpg",
-      },
-      "large": {
-        webp: "/images-webp/large/menu/sauce/pesto.webp",
-        fallback: "/images/menu/sauce/pesto.jpg",
-        width: 1600,
-      },
-      "medium": {
-        webp: "/images-webp/medium/menu/sauce/pesto.webp",
-        fallback: "/images/menu/sauce/pesto.jpg",
-        width: 1024,
-      },
-      "small": {
-        webp: "/images-webp/small/menu/sauce/pesto.webp",
-        fallback: "/images/menu/sauce/pesto.jpg",
-        width: 768,
-      },
-      "thumbnail": {
-        webp: "/images-webp/thumbnail/menu/sauce/pesto.webp",
-        fallback: "/images/menu/sauce/pesto.jpg",
-        width: 320,
-      },
-    },
-    'menu/sauce/mustard.jpg': {
-      "original": {
-        webp: "/images-webp/menu/sauce/mustard.webp",
-        fallback: "/images/menu/sauce/mustard.jpg",
-      },
-      "large": {
-        webp: "/images-webp/large/menu/sauce/mustard.webp",
-        fallback: "/images/menu/sauce/mustard.jpg",
-        width: 1600,
-      },
-      "medium": {
-        webp: "/images-webp/medium/menu/sauce/mustard.webp",
-        fallback: "/images/menu/sauce/mustard.jpg",
-        width: 1024,
-      },
-      "small": {
-        webp: "/images-webp/small/menu/sauce/mustard.webp",
-        fallback: "/images/menu/sauce/mustard.jpg",
-        width: 768,
-      },
-      "thumbnail": {
-        webp: "/images-webp/thumbnail/menu/sauce/mustard.webp",
-        fallback: "/images/menu/sauce/mustard.jpg",
-        width: 320,
-      },
-    },
-    'menu/sauce/aioli.jpg': {
-      "original": {
-        webp: "/images-webp/menu/sauce/aioli.webp",
-        fallback: "/images/menu/sauce/aioli.jpg",
-      },
-      "large": {
-        webp: "/images-webp/large/menu/sauce/aioli.webp",
-        fallback: "/images/menu/sauce/aioli.jpg",
-        width: 1600,
-      },
-      "medium": {
-        webp: "/images-webp/medium/menu/sauce/aioli.webp",
-        fallback: "/images/menu/sauce/aioli.jpg",
-        width: 1024,
-      },
-      "small": {
-        webp: "/images-webp/small/menu/sauce/aioli.webp",
-        fallback: "/images/menu/sauce/aioli.jpg",
-        width: 768,
-      },
-      "thumbnail": {
-        webp: "/images-webp/thumbnail/menu/sauce/aioli.webp",
-        fallback: "/images/menu/sauce/aioli.jpg",
+        webp: "/images-webp/thumbnail/menu/salad/caesar-salad.webp",
+        fallback: "/images/menu/salad/caesar-salad.jpg",
         width: 320,
       },
     },
@@ -1806,6 +1981,58 @@ export const imageMap = {
         width: 320,
       },
     },
+    'menu/dessert/oreo.jpg': {
+      "original": {
+        webp: "/images-webp/menu/dessert/oreo.webp",
+        fallback: "/images/menu/dessert/oreo.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/menu/dessert/oreo.webp",
+        fallback: "/images/menu/dessert/oreo.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/menu/dessert/oreo.webp",
+        fallback: "/images/menu/dessert/oreo.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/menu/dessert/oreo.webp",
+        fallback: "/images/menu/dessert/oreo.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/menu/dessert/oreo.webp",
+        fallback: "/images/menu/dessert/oreo.jpg",
+        width: 320,
+      },
+    },
+    'menu/dessert/java.jpg': {
+      "original": {
+        webp: "/images-webp/menu/dessert/java.webp",
+        fallback: "/images/menu/dessert/java.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/menu/dessert/java.webp",
+        fallback: "/images/menu/dessert/java.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/menu/dessert/java.webp",
+        fallback: "/images/menu/dessert/java.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/menu/dessert/java.webp",
+        fallback: "/images/menu/dessert/java.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/menu/dessert/java.webp",
+        fallback: "/images/menu/dessert/java.jpg",
+        width: 320,
+      },
+    },
     'menu/dessert/dessert-002.jpg': {
       "original": {
         webp: "/images-webp/menu/dessert/dessert-002.webp",
@@ -1858,6 +2085,32 @@ export const imageMap = {
         width: 320,
       },
     },
+    'menu/dessert/baked-apple.jpg': {
+      "original": {
+        webp: "/images-webp/menu/dessert/baked-apple.webp",
+        fallback: "/images/menu/dessert/baked-apple.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/menu/dessert/baked-apple.webp",
+        fallback: "/images/menu/dessert/baked-apple.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/menu/dessert/baked-apple.webp",
+        fallback: "/images/menu/dessert/baked-apple.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/menu/dessert/baked-apple.webp",
+        fallback: "/images/menu/dessert/baked-apple.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/menu/dessert/baked-apple.webp",
+        fallback: "/images/menu/dessert/baked-apple.jpg",
+        width: 320,
+      },
+    },
     'menu/dessert/apple.jpg': {
       "original": {
         webp: "/images-webp/menu/dessert/apple.webp",
@@ -1881,6 +2134,84 @@ export const imageMap = {
       "thumbnail": {
         webp: "/images-webp/thumbnail/menu/dessert/apple.webp",
         fallback: "/images/menu/dessert/apple.jpg",
+        width: 320,
+      },
+    },
+    'menu/burger/cheeseburger-deluxe.jpg': {
+      "original": {
+        webp: "/images-webp/menu/burger/cheeseburger-deluxe.webp",
+        fallback: "/images/menu/burger/cheeseburger-deluxe.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/menu/burger/cheeseburger-deluxe.webp",
+        fallback: "/images/menu/burger/cheeseburger-deluxe.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/menu/burger/cheeseburger-deluxe.webp",
+        fallback: "/images/menu/burger/cheeseburger-deluxe.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/menu/burger/cheeseburger-deluxe.webp",
+        fallback: "/images/menu/burger/cheeseburger-deluxe.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/menu/burger/cheeseburger-deluxe.webp",
+        fallback: "/images/menu/burger/cheeseburger-deluxe.jpg",
+        width: 320,
+      },
+    },
+    'menu/burger/burgerlamb.jpg': {
+      "original": {
+        webp: "/images-webp/menu/burger/burgerlamb.webp",
+        fallback: "/images/menu/burger/burgerlamb.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/menu/burger/burgerlamb.webp",
+        fallback: "/images/menu/burger/burgerlamb.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/menu/burger/burgerlamb.webp",
+        fallback: "/images/menu/burger/burgerlamb.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/menu/burger/burgerlamb.webp",
+        fallback: "/images/menu/burger/burgerlamb.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/menu/burger/burgerlamb.webp",
+        fallback: "/images/menu/burger/burgerlamb.jpg",
+        width: 320,
+      },
+    },
+    'menu/burger/burgerkaif.jpg': {
+      "original": {
+        webp: "/images-webp/menu/burger/burgerkaif.webp",
+        fallback: "/images/menu/burger/burgerkaif.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/menu/burger/burgerkaif.webp",
+        fallback: "/images/menu/burger/burgerkaif.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/menu/burger/burgerkaif.webp",
+        fallback: "/images/menu/burger/burgerkaif.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/menu/burger/burgerkaif.webp",
+        fallback: "/images/menu/burger/burgerkaif.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/menu/burger/burgerkaif.webp",
+        fallback: "/images/menu/burger/burgerkaif.jpg",
         width: 320,
       },
     },
@@ -2092,6 +2423,58 @@ export const imageMap = {
         width: 320,
       },
     },
+    'menu/breakfast/ovsanka.jpg': {
+      "original": {
+        webp: "/images-webp/menu/breakfast/ovsanka.webp",
+        fallback: "/images/menu/breakfast/ovsanka.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/menu/breakfast/ovsanka.webp",
+        fallback: "/images/menu/breakfast/ovsanka.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/menu/breakfast/ovsanka.webp",
+        fallback: "/images/menu/breakfast/ovsanka.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/menu/breakfast/ovsanka.webp",
+        fallback: "/images/menu/breakfast/ovsanka.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/menu/breakfast/ovsanka.webp",
+        fallback: "/images/menu/breakfast/ovsanka.jpg",
+        width: 320,
+      },
+    },
+    'menu/breakfast/oatmeal-breakfast.jpg': {
+      "original": {
+        webp: "/images-webp/menu/breakfast/oatmeal-breakfast.webp",
+        fallback: "/images/menu/breakfast/oatmeal-breakfast.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/menu/breakfast/oatmeal-breakfast.webp",
+        fallback: "/images/menu/breakfast/oatmeal-breakfast.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/menu/breakfast/oatmeal-breakfast.webp",
+        fallback: "/images/menu/breakfast/oatmeal-breakfast.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/menu/breakfast/oatmeal-breakfast.webp",
+        fallback: "/images/menu/breakfast/oatmeal-breakfast.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/menu/breakfast/oatmeal-breakfast.webp",
+        fallback: "/images/menu/breakfast/oatmeal-breakfast.jpg",
+        width: 320,
+      },
+    },
     'menu/breakfast/kartoshka.jpg': {
       "original": {
         webp: "/images-webp/menu/breakfast/kartoshka.webp",
@@ -2170,29 +2553,55 @@ export const imageMap = {
         width: 320,
       },
     },
-    'menu/breakfast/apple-dessert.jpg': {
+    'menu/breakfast/french_fries.jpg': {
       "original": {
-        webp: "/images-webp/menu/breakfast/apple-dessert.webp",
-        fallback: "/images/menu/breakfast/apple-dessert.jpg",
+        webp: "/images-webp/menu/breakfast/french_fries.webp",
+        fallback: "/images/menu/breakfast/french_fries.jpg",
       },
       "large": {
-        webp: "/images-webp/large/menu/breakfast/apple-dessert.webp",
-        fallback: "/images/menu/breakfast/apple-dessert.jpg",
+        webp: "/images-webp/large/menu/breakfast/french_fries.webp",
+        fallback: "/images/menu/breakfast/french_fries.jpg",
         width: 1600,
       },
       "medium": {
-        webp: "/images-webp/medium/menu/breakfast/apple-dessert.webp",
-        fallback: "/images/menu/breakfast/apple-dessert.jpg",
+        webp: "/images-webp/medium/menu/breakfast/french_fries.webp",
+        fallback: "/images/menu/breakfast/french_fries.jpg",
         width: 1024,
       },
       "small": {
-        webp: "/images-webp/small/menu/breakfast/apple-dessert.webp",
-        fallback: "/images/menu/breakfast/apple-dessert.jpg",
+        webp: "/images-webp/small/menu/breakfast/french_fries.webp",
+        fallback: "/images/menu/breakfast/french_fries.jpg",
         width: 768,
       },
       "thumbnail": {
-        webp: "/images-webp/thumbnail/menu/breakfast/apple-dessert.webp",
-        fallback: "/images/menu/breakfast/apple-dessert.jpg",
+        webp: "/images-webp/thumbnail/menu/breakfast/french_fries.webp",
+        fallback: "/images/menu/breakfast/french_fries.jpg",
+        width: 320,
+      },
+    },
+    'menu/breakfast/cheeseburger-deluxe.jpg': {
+      "original": {
+        webp: "/images-webp/menu/breakfast/cheeseburger-deluxe.webp",
+        fallback: "/images/menu/breakfast/cheeseburger-deluxe.jpg",
+      },
+      "large": {
+        webp: "/images-webp/large/menu/breakfast/cheeseburger-deluxe.webp",
+        fallback: "/images/menu/breakfast/cheeseburger-deluxe.jpg",
+        width: 1600,
+      },
+      "medium": {
+        webp: "/images-webp/medium/menu/breakfast/cheeseburger-deluxe.webp",
+        fallback: "/images/menu/breakfast/cheeseburger-deluxe.jpg",
+        width: 1024,
+      },
+      "small": {
+        webp: "/images-webp/small/menu/breakfast/cheeseburger-deluxe.webp",
+        fallback: "/images/menu/breakfast/cheeseburger-deluxe.jpg",
+        width: 768,
+      },
+      "thumbnail": {
+        webp: "/images-webp/thumbnail/menu/breakfast/cheeseburger-deluxe.webp",
+        fallback: "/images/menu/breakfast/cheeseburger-deluxe.jpg",
         width: 320,
       },
     },
@@ -2222,81 +2631,29 @@ export const imageMap = {
         width: 320,
       },
     },
-    'menu/breakfast/ovsanka.jpg': {
+    'menu/breakfast/apple-dessert.jpg': {
       "original": {
-        webp: "/images-webp/menu/breakfast/ovsanka.webp",
-        fallback: "/images/menu/breakfast/ovsanka.jpg",
+        webp: "/images-webp/menu/breakfast/apple-dessert.webp",
+        fallback: "/images/menu/breakfast/apple-dessert.jpg",
       },
       "large": {
-        webp: "/images-webp/large/menu/breakfast/ovsanka.webp",
-        fallback: "/images/menu/breakfast/ovsanka.jpg",
+        webp: "/images-webp/large/menu/breakfast/apple-dessert.webp",
+        fallback: "/images/menu/breakfast/apple-dessert.jpg",
         width: 1600,
       },
       "medium": {
-        webp: "/images-webp/medium/menu/breakfast/ovsanka.webp",
-        fallback: "/images/menu/breakfast/ovsanka.jpg",
+        webp: "/images-webp/medium/menu/breakfast/apple-dessert.webp",
+        fallback: "/images/menu/breakfast/apple-dessert.jpg",
         width: 1024,
       },
       "small": {
-        webp: "/images-webp/small/menu/breakfast/ovsanka.webp",
-        fallback: "/images/menu/breakfast/ovsanka.jpg",
+        webp: "/images-webp/small/menu/breakfast/apple-dessert.webp",
+        fallback: "/images/menu/breakfast/apple-dessert.jpg",
         width: 768,
       },
       "thumbnail": {
-        webp: "/images-webp/thumbnail/menu/breakfast/ovsanka.webp",
-        fallback: "/images/menu/breakfast/ovsanka.jpg",
-        width: 320,
-      },
-    },
-    'menu/breakfast/oatmeal-breakfast.jpg': {
-      "original": {
-        webp: "/images-webp/menu/breakfast/oatmeal-breakfast.webp",
-        fallback: "/images/menu/breakfast/oatmeal-breakfast.jpg",
-      },
-      "large": {
-        webp: "/images-webp/large/menu/breakfast/oatmeal-breakfast.webp",
-        fallback: "/images/menu/breakfast/oatmeal-breakfast.jpg",
-        width: 1600,
-      },
-      "medium": {
-        webp: "/images-webp/medium/menu/breakfast/oatmeal-breakfast.webp",
-        fallback: "/images/menu/breakfast/oatmeal-breakfast.jpg",
-        width: 1024,
-      },
-      "small": {
-        webp: "/images-webp/small/menu/breakfast/oatmeal-breakfast.webp",
-        fallback: "/images/menu/breakfast/oatmeal-breakfast.jpg",
-        width: 768,
-      },
-      "thumbnail": {
-        webp: "/images-webp/thumbnail/menu/breakfast/oatmeal-breakfast.webp",
-        fallback: "/images/menu/breakfast/oatmeal-breakfast.jpg",
-        width: 320,
-      },
-    },
-    'menu/breakfast/french_fries.jpg': {
-      "original": {
-        webp: "/images-webp/menu/breakfast/french_fries.webp",
-        fallback: "/images/menu/breakfast/french_fries.jpg",
-      },
-      "large": {
-        webp: "/images-webp/large/menu/breakfast/french_fries.webp",
-        fallback: "/images/menu/breakfast/french_fries.jpg",
-        width: 1600,
-      },
-      "medium": {
-        webp: "/images-webp/medium/menu/breakfast/french_fries.webp",
-        fallback: "/images/menu/breakfast/french_fries.jpg",
-        width: 1024,
-      },
-      "small": {
-        webp: "/images-webp/small/menu/breakfast/french_fries.webp",
-        fallback: "/images/menu/breakfast/french_fries.jpg",
-        width: 768,
-      },
-      "thumbnail": {
-        webp: "/images-webp/thumbnail/menu/breakfast/french_fries.webp",
-        fallback: "/images/menu/breakfast/french_fries.jpg",
+        webp: "/images-webp/thumbnail/menu/breakfast/apple-dessert.webp",
+        fallback: "/images/menu/breakfast/apple-dessert.jpg",
         width: 320,
       },
     },
@@ -2349,45 +2706,6 @@ export const imageMap = {
       "thumbnail": {
         webp: "/images-webp/thumbnail/beauty/services/facial.webp",
         fallback: "/images/beauty/services/facial.jpg",
-        width: 320,
-      },
-    },
-    // Бургеры
-    'menu/burger/burgerkaif.jpg': {
-      "original": {
-        webp: "/images-webp/menu/burger/burgerkaif.webp",
-        fallback: "/images/menu/burger/burgerkaif.jpg",
-      },
-    },
-    'menu/burger/burgerlamb.jpg': {
-      "original": {
-        webp: "/images-webp/menu/burger/burgerlamb.webp",
-        fallback: "/images/menu/burger/burgerlamb.jpg",
-      },
-    },
-    'menu/breakfast/cheeseburger-deluxe.jpg': {
-      "original": {
-        webp: "/images-webp/menu/breakfast/cheeseburger-deluxe.webp",
-        fallback: "/images/menu/breakfast/cheeseburger-deluxe.jpg",
-      },
-      "large": {
-        webp: "/images-webp/large/menu/breakfast/cheeseburger-deluxe.webp",
-        fallback: "/images/menu/breakfast/cheeseburger-deluxe.jpg",
-        width: 1600,
-      },
-      "medium": {
-        webp: "/images-webp/medium/menu/breakfast/cheeseburger-deluxe.webp",
-        fallback: "/images/menu/breakfast/cheeseburger-deluxe.jpg",
-        width: 1024,
-      },
-      "small": {
-        webp: "/images-webp/small/menu/breakfast/cheeseburger-deluxe.webp",
-        fallback: "/images/menu/breakfast/cheeseburger-deluxe.jpg",
-        width: 768,
-      },
-      "thumbnail": {
-        webp: "/images-webp/thumbnail/menu/breakfast/cheeseburger-deluxe.webp",
-        fallback: "/images/menu/breakfast/cheeseburger-deluxe.jpg",
         width: 320,
       },
     },
