@@ -5,121 +5,23 @@
 [build.environment]
   NODE_VERSION = "22"
   CI = "false"
-  NPM_FLAGS = "--legacy-peer-deps"
-
-# Очистка кэша и принудительная установка зависимостей
-[build.processing]
-  skip_processing = false
-[build.processing.css]
-  bundle = true
-  minify = true
-[build.processing.js]
-  bundle = true
-  minify = true
-[build.processing.images]
-  compress = true
-[build.processing.html]
-  pretty_urls = true
-
-# БЕЗОПАСНОСТЬ: Исключаем служебные файлы из публикации
-[build.ignore]
-  # Не публикуем .git, node_modules, src и прочие служебные папки в dist
-  # Это дополнительная защита на уровне билда
-
-# БЕЗОПАСНОСТЬ: Расширенные Security Headers для всех файлов
-[[headers]]
-  for = "/*"
-  [headers.values]
-    # Базовые заголовки безопасности
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    
-    # Дополнительные заголовки безопасности
-    Cross-Origin-Embedder-Policy = "require-corp"
-    Cross-Origin-Opener-Policy = "same-origin"
-    X-Permitted-Cross-Domain-Policies = "none"
-    
-    # Content Security Policy (строгая политика)
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://apis.google.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';"
-    
-    # HSTS для принудительного HTTPS
-    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
-
-# БЕЗОПАСНОСТЬ: Блокировка доступа к служебным файлам  
-[[headers]]
-  for = "/.git/*"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow, noarchive, nosnippet"
-
-[[headers]]
-  for = "/node_modules/*"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow, noarchive, nosnippet"
-
-[[headers]]
-  for = "/src/*"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow, noarchive, nosnippet"
-
-[[headers]]
-  for = "/*.md"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow, noarchive, nosnippet"
-
-# Кэширование изображений на длительный срок
-[[headers]]
-  for = "/assets/images/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Кэширование WebP изображений
-[[headers]]
-  for = "/images-webp/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Кэширование шрифтов
-[[headers]]
-  for = "/assets/fonts/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Кэширование JS и CSS
-[[headers]]
-  for = "/assets/js/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/assets/css/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# БЕЗОПАСНОСТЬ: Редиректы для блокировки служебных файлов
-[[redirects]]
-  from = "/.git/*"
-  to = "/404"
-  status = 404
-
-[[redirects]]
-  from = "/node_modules/*"
-  to = "/404"
-  status = 404
-
-[[redirects]]
-  from = "/src/*"
-  to = "/404"
-  status = 404
-
-[[redirects]]
-  from = "/*.md"
-  to = "/404"
-  status = 404
 
 # Устанавливаем правила перенаправления для SPA
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200 
+  status = 200
+
+# Базовые заголовки безопасности
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+
+# Кэширование статических ресурсов
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable" 

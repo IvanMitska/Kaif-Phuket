@@ -157,8 +157,8 @@ export default defineConfig({
       'formik',
       'yup'
     ],
-    // Игнорируем неиспользуемый код и SCSS
-    exclude: ['@heroicons/react/24/solid', 'react-icons', '**/*.scss', '**/*.sass'] 
+    // Игнорируем неиспользуемый код
+    exclude: ['@heroicons/react/24/solid', 'react-icons'] 
   },
   
   // Оптимизации для esbuild
