@@ -355,7 +355,7 @@ const FacilitySection = () => {
             <FacilityMeta>
               <FacilityMetaItem>
                 <ClockIcon />
-                <span>{t('sports.facilities.dance.hours', '09:00 - 21:00')}</span>
+                <span>{t('sports.facilities.dance.hours', '07:00 - 22:00')}</span>
               </FacilityMetaItem>
               
               <FacilityMetaItem>
