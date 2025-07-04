@@ -90,6 +90,20 @@ const AppContent = () => {
 
 function App() {
   const { i18n, t } = useTranslation();
+  const [forceUpdate, setForceUpdate] = React.useState(0);
+
+  // Принудительное обновление всего приложения при смене языка
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      setForceUpdate(prev => prev + 1);
+    };
+    
+    i18n.on('languageChanged', handleLanguageChange);
+    
+    return () => {
+      i18n.off('languageChanged', handleLanguageChange);
+    };
+  }, [i18n]);
 
   // Set document direction and language based on current language
   useEffect(() => {
@@ -103,11 +117,13 @@ function App() {
         !document.title.includes('|')) {
       document.title = t('page_titles.home', 'KAIF | Jungle Club & Spa');
     }
-  }, [i18n.language, t]);
+  }, [i18n.language, t, forceUpdate]);
+
+  console.log('App render - Language:', i18n.language, 'Update counter:', forceUpdate);
 
   // Основное приложение
   return (
-    <HelmetProvider>
+    <HelmetProvider key={`app-${i18n.language}-${forceUpdate}`}>
       <ThemeProvider theme={theme}>
         <GlobalFontStyle />
         <GlobalStyles />
