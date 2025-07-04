@@ -2305,8 +2305,8 @@
   "contacts": {
     "title": "Contact Us",
     "hero": {
-      "title": "Contacts",
-      "subtitle": "We are always ready to help you and answer all your questions"
+      "title": "Contact Us",
+      "subtitle": "Choose a convenient way to contact us"
     },
     "cta": {
       "primary": "Contact Us",
@@ -2322,27 +2322,35 @@
       "subtitle": "Choose a convenient way to contact us",
       "address": {
         "title": "Address",
+        "text": "73, Baan Chalekiri Village, 6 Pra Phuket Keaw Road, Kathu",
+        "country": "Phuket, Thailand",
         "directions": "Get Directions"
       },
       "phone": {
         "title": "Phone",
-        "hours": "Daily: 9:00 - 21:00"
+        "number": "+66 62 480 5877",
+        "hours": "WhatsApp Available"
       },
       "email": {
         "title": "Email",
         "response": "Response within 24 hours"
       },
       "hours": {
-        "title": "Working Hours",
-        "weekdays": "Daily: 7:00 - 22:00",
-        "weekends": "Booking 24/7"
+        "title": "Opening Hours",
+        "daily": "Daily: 7:00 AM - 10:00 PM",
+        "booking": "Booking 24/7"
       },
       "social": {
         "title": "Social Media"
       },
       "whatsapp": {
         "text": "Message on WhatsApp",
-        "greeting": "Hello! I want to book at KAIF"
+        "greeting": "Hello! I would like to make a booking at KAIF"
+      },
+      "buttons": {
+        "get_directions": "Get Directions",
+        "contact": "Contact",
+        "book": "Book Now"
       }
     },
     "social": {
@@ -2365,9 +2373,25 @@
     "filters": {
       "all": "All",
       "spa": "SPA",
-      "fitness": "Fitness",
-      "pool": "Pool",
-      "relax": "Relaxation"
+      "fitness": "Fitness"
+    },
+    "slides": {
+      "thai_massage": {
+        "title": "Thai Massage",
+        "description": "Traditional Thai massage performed by experienced masters. Energy restoration and body harmony."
+      },
+      "aromatherapy": {
+        "title": "Aromatherapy",
+        "description": "Relaxing treatments with premium natural essential oils."
+      },
+      "gym": {
+        "title": "Gym",
+        "description": "Over 70 modern premium equipment. Professional equipment for all types of workouts."
+      },
+      "facial": {
+        "title": "Cosmetology",
+        "description": "Professional facial treatments using premium cosmetics."
+      }
     }
   },
   "footer": {

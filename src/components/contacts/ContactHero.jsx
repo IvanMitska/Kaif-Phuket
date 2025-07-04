@@ -104,10 +104,10 @@ const ScrollIndicator = styled(motion.div)`
 `;
 
 const ContactHero = ({ onScrollToContent }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
-    <HeroSection>
+    <HeroSection key={i18n.language}>
       <HeroContent
         variants={heroTextAnimation}
         initial="hidden"
@@ -118,7 +118,7 @@ const ContactHero = ({ onScrollToContent }) => {
           initial="hidden"
           animate="visible"
         >
-          {t('contacts.hero.title')}
+          {t('contacts.hero.title', 'Контакты')}
         </HeroTitle>
         
         <HeroSubtitle
@@ -127,7 +127,7 @@ const ContactHero = ({ onScrollToContent }) => {
           animate="visible"
           transition={{ delay: 0.3 }}
         >
-          {t('contacts.hero.subtitle')}
+          {t('contacts.hero.subtitle', 'Выберите удобный способ связи')}
         </HeroSubtitle>
       </HeroContent>
 

@@ -108,149 +108,105 @@ const ContactLink = styled.a`
 `;
 
 const ContactInfo = () => {
-  const { t } = useTranslation();
-
-  const contactData = [
-    {
-      icon: MapPinIcon,
-      title: t('contacts.info.address.title'),
-      details: (
-        <div>
-          <div>{t('common.address')}</div>
-          <div>Phuket, Thailand</div>
-          <ContactLink 
-            href="https://maps.google.com/?q=73+Baan+Chalekiri+Village+Kathu+Phuket" 
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {t('contacts.info.address.directions')}
-            <ArrowTopRightOnSquareIcon />
-          </ContactLink>
-        </div>
-      )
-    },
-    {
-      icon: PhoneIcon,
-      title: t('contacts.info.phone.title'),
-      details: (
-        <div>
-          <div>
-            <a href="tel:+66624805877">{t('common.phone_number')}</a>
-          </div>
-          <div style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>
-            {t('contacts.info.phone.hours')}
-          </div>
-          <ContactLink 
-            href={`https://wa.me/66624805877?text=${encodeURIComponent(t('contacts.info.whatsapp.greeting'))}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {t('contacts.info.whatsapp.text')}
-            <ArrowTopRightOnSquareIcon />
-          </ContactLink>
-        </div>
-      )
-    },
-    {
-      icon: EnvelopeIcon,
-      title: t('contacts.info.email.title'),
-      details: (
-        <div>
-          <div>
-            <a href="mailto:info@kaif-phuket.com">info@kaif-phuket.com</a>
-          </div>
-          <div style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>
-            {t('contacts.info.email.response')}
-          </div>
-        </div>
-      )
-    },
-    {
-      icon: ClockIcon,
-      title: t('contacts.info.hours.title'),
-      details: (
-        <div>
-          <div>{t('contacts.info.hours.weekdays')}</div>
-          <div>{t('contacts.info.hours.weekends')}</div>
-        </div>
-      )
-    },
-    {
-      icon: GlobeAltIcon,
-      title: t('contacts.info.social.title'),
-      details: (
-        <div>
-          <ContactLink 
-            href="https://instagram.com/kaif_phuket" 
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Instagram
-            <ArrowTopRightOnSquareIcon />
-          </ContactLink>
-          <ContactLink 
-            href="https://facebook.com/kaif.phuket" 
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ marginLeft: '1rem' }}
-          >
-            Facebook
-            <ArrowTopRightOnSquareIcon />
-          </ContactLink>
-        </div>
-      )
-    }
-  ];
+  const { t, i18n } = useTranslation();
+  
+  // Принудительное обновление при смене языка
+  const [, forceUpdate] = React.useReducer(x => x + 1, 0);
+  
+  React.useEffect(() => {
+    const handleLanguageChange = () => {
+      forceUpdate();
+    };
+    
+    i18n.on('languageChanged', handleLanguageChange);
+    
+    return () => {
+      i18n.off('languageChanged', handleLanguageChange);
+    };
+  }, [i18n]);
 
   return (
-    <Section>
+    <Section key={i18n.language}>
       <ContentContainer>
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <SectionTitle
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {t('contacts.info.title')}
-          </SectionTitle>
-          
-          <SectionSubtitle
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            {t('contacts.info.subtitle')}
-          </SectionSubtitle>
+        <SectionTitle>
+          {t('contacts.info.title', 'Контактная информация')}
+        </SectionTitle>
+        
+        <SectionSubtitle>
+          {t('contacts.info.subtitle', 'Свяжитесь с нами удобным способом')}
+        </SectionSubtitle>
 
-          <Grid style={{ marginTop: '4rem' }}>
-            {contactData.map((item, index) => (
-              <ContactCard
-                key={index}
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <IconContainer>
-                  <item.icon />
-                </IconContainer>
-                <ContactTitle>{item.title}</ContactTitle>
-                <ContactDetails>{item.details}</ContactDetails>
-              </ContactCard>
-            ))}
-          </Grid>
-        </motion.div>
+        <Grid style={{ marginTop: '4rem' }}>
+          {/* Карточка адреса */}
+          <ContactCard key={`address-${i18n.language}`}>
+            <IconContainer>
+              <MapPinIcon />
+            </IconContainer>
+            <ContactTitle>{t('contacts.info.address.title', 'Адрес')}</ContactTitle>
+            <ContactDetails>
+              <div>
+                <div>{t('contacts.info.address.text', '73, Baan Chalekiri Village, 6 Pra Phuket Keaw Road, Kathu')}</div>
+                <div>{t('contacts.info.address.country', 'Пхукет, Таиланд')}</div>
+                <ContactLink 
+                  href="https://maps.google.com/?q=73+Baan+Chalekiri+Village+Kathu+Phuket" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t('contacts.info.buttons.get_directions', 'Проложить маршрут')}
+                  <ArrowTopRightOnSquareIcon />
+                </ContactLink>
+              </div>
+            </ContactDetails>
+          </ContactCard>
+
+          {/* Карточка телефона */}
+          <ContactCard key={`phone-${i18n.language}`}>
+            <IconContainer>
+              <PhoneIcon />
+            </IconContainer>
+            <ContactTitle>{t('contacts.info.phone.title', 'Телефон')}</ContactTitle>
+            <ContactDetails>
+              <div>
+                <div>
+                  <a href="tel:+66624805877">{t('contacts.info.phone.number', '+66 62 480 5877')}</a>
+                </div>
+                <div style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>
+                  {t('contacts.info.phone.hours', 'WhatsApp доступен')}
+                </div>
+                <ContactLink 
+                  href={`https://wa.me/66624805877?text=${encodeURIComponent(t('contacts.info.whatsapp.greeting', 'Здравствуйте! Хочу записаться в KAIF'))}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t('contacts.info.buttons.contact', 'Связаться')}
+                  <ArrowTopRightOnSquareIcon />
+                </ContactLink>
+              </div>
+            </ContactDetails>
+          </ContactCard>
+
+          {/* Карточка времени работы */}
+          <ContactCard key={`hours-${i18n.language}`}>
+            <IconContainer>
+              <ClockIcon />
+            </IconContainer>
+            <ContactTitle>{t('contacts.info.hours.title', 'Время работы')}</ContactTitle>
+            <ContactDetails>
+              <div>
+                <div>{t('contacts.info.hours.daily', 'Ежедневно: 7:00 - 22:00')}</div>
+                <div>{t('contacts.info.hours.booking', 'Бронирование 24/7')}</div>
+                <ContactLink 
+                  href="https://n807534.yclients.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t('contacts.info.buttons.book', 'Забронировать')}
+                  <ArrowTopRightOnSquareIcon />
+                </ContactLink>
+              </div>
+            </ContactDetails>
+          </ContactCard>
+        </Grid>
       </ContentContainer>
     </Section>
   );

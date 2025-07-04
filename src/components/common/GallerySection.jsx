@@ -699,35 +699,34 @@ const GallerySection = () => {
     {
       id: 1,
       image: '/images/spa/services/thai-massage.jpg',
-      title: 'Тайский массаж',
+      title: t('gallery.slides.thai_massage.title', 'Thai Massage'),
       category: 'spa',
-      description: 'Традиционный тайский массаж в исполнении опытных мастеров. Восстановление энергии и гармонии тела.'
+      description: t('gallery.slides.thai_massage.description', 'Traditional Thai massage performed by experienced masters. Energy restoration and body harmony.')
     },
     {
       id: 2,
       image: '/images/spa/services/aromatherapy.jpg',
-      title: 'Ароматерапия',
+      title: t('gallery.slides.aromatherapy.title', 'Aromatherapy'),
       category: 'spa',
-      description: 'Расслабляющие процедуры с натуральными эфирными маслами премиум-качества.'
+      description: t('gallery.slides.aromatherapy.description', 'Relaxing treatments with premium natural essential oils.')
     },
     // Фитнес
     {
       id: 3,
       image: '/images/sports/gym/gym-1.jpg',
-      title: 'Тренажерный зал',
+      title: t('gallery.slides.gym.title', 'Gym'),
       category: 'fitness',
-      description: 'Более 70 современных тренажеров премиум-класса. Профессиональное оборудование для всех видов тренировок.'
+      description: t('gallery.slides.gym.description', 'Over 70 modern premium equipment. Professional equipment for all types of workouts.')
     },
-
-      // Релаксация
-      {
-        id: 4,
-        image: '/images/beauty/services/facial.jpg',
-        title: 'Косметология',
-        category: 'relax',
-        description: 'Профессиональные процедуры для лица с использованием премиум косметики.'
-      }
-    ], []);
+    // Релаксация
+    {
+      id: 4,
+      image: '/images/beauty/services/facial.jpg',
+      title: t('gallery.slides.facial.title', 'Cosmetology'),
+      category: 'relax',
+      description: t('gallery.slides.facial.description', 'Professional facial treatments using premium cosmetics.')
+    }
+  ], [t]);
 
   // Упрощенные фильтры
   const filters = useMemo(() => [
