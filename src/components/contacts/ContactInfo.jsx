@@ -1,13 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { 
   MapPinIcon, 
   PhoneIcon, 
-  EnvelopeIcon, 
   ClockIcon,
-  GlobeAltIcon,
   ArrowTopRightOnSquareIcon
 } from '@heroicons/react/24/outline';
 import { 
@@ -17,7 +15,6 @@ import {
   SectionSubtitle,
   Grid
 } from '../ui/CommonComponents';
-import { fadeInUp, staggerContainer } from '../ui/animations';
 
 const ContactCard = styled(motion.div)`
   background: white;
@@ -109,13 +106,12 @@ const ContactLink = styled.a`
 
 const ContactInfo = () => {
   const { t, i18n } = useTranslation();
-  
+  const [forceUpdate, setForceUpdate] = useState(0);
+
   // Принудительное обновление при смене языка
-  const [, forceUpdate] = React.useReducer(x => x + 1, 0);
-  
-  React.useEffect(() => {
+  useEffect(() => {
     const handleLanguageChange = () => {
-      forceUpdate();
+      setForceUpdate(prev => prev + 1);
     };
     
     i18n.on('languageChanged', handleLanguageChange);
@@ -125,8 +121,11 @@ const ContactInfo = () => {
     };
   }, [i18n]);
 
+  // Отладочная информация
+  console.log('ContactInfo render - Language:', i18n.language, 'Update counter:', forceUpdate);
+
   return (
-    <Section key={i18n.language}>
+    <Section>
       <ContentContainer>
         <SectionTitle>
           {t('contacts.info.title', 'Контактная информация')}
@@ -138,7 +137,7 @@ const ContactInfo = () => {
 
         <Grid style={{ marginTop: '4rem' }}>
           {/* Карточка адреса */}
-          <ContactCard key={`address-${i18n.language}`}>
+          <ContactCard>
             <IconContainer>
               <MapPinIcon />
             </IconContainer>
@@ -160,7 +159,7 @@ const ContactInfo = () => {
           </ContactCard>
 
           {/* Карточка телефона */}
-          <ContactCard key={`phone-${i18n.language}`}>
+          <ContactCard>
             <IconContainer>
               <PhoneIcon />
             </IconContainer>
@@ -186,7 +185,7 @@ const ContactInfo = () => {
           </ContactCard>
 
           {/* Карточка времени работы */}
-          <ContactCard key={`hours-${i18n.language}`}>
+          <ContactCard>
             <IconContainer>
               <ClockIcon />
             </IconContainer>

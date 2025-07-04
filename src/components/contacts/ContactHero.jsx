@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -105,9 +105,25 @@ const ScrollIndicator = styled(motion.div)`
 
 const ContactHero = ({ onScrollToContent }) => {
   const { t, i18n } = useTranslation();
+  const [forceUpdate, setForceUpdate] = useState(0);
+
+  // Принудительное обновление при смене языка
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      setForceUpdate(prev => prev + 1);
+    };
+    
+    i18n.on('languageChanged', handleLanguageChange);
+    
+    return () => {
+      i18n.off('languageChanged', handleLanguageChange);
+    };
+  }, [i18n]);
+
+  console.log('ContactHero render - Language:', i18n.language, 'Update counter:', forceUpdate);
 
   return (
-    <HeroSection key={i18n.language}>
+    <HeroSection>
       <HeroContent
         variants={heroTextAnimation}
         initial="hidden"
