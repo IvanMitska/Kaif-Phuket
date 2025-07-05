@@ -3,6 +3,75 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
+
+const PrimaryButton = styled(motion.button)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: rgba(0, 0, 0, 0.25);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 46px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover svg {
+    transform: translateX(3px);
+  }
+`;
+
+const SecondaryButton = styled(motion.button)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: rgba(0, 0, 0, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 46px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.25);
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+  
+  svg {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover svg {
+    transform: translateX(3px);
+  }
+`;
+
 // =============================================================================
 // ОПТИМИЗИРОВАННЫЙ RESTAURANT HERO (МИНИМАЛИСТИЧНЫЙ СТИЛЬ)
 // =============================================================================
@@ -139,47 +208,9 @@ const Subtitle = styled(motion.p)`
 const ButtonWrapper = styled(motion.div)`
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
   width: 100%;
-`;
-
-const CTAButton = styled(motion.button)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 0.9rem 1.8rem;
-  background: rgba(255, 255, 255, 0.08);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  border-radius: 50px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  cursor: pointer;
-  min-height: 48px;
-  min-width: 180px;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  text-shadow: none;
-  letter-spacing: 0.5px;
-  
-  &:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.9);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  svg {
-    width: 1rem;
-    height: 1rem;
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
-    margin-top: 1px;
-  }
-  
-  &:hover svg {
-    transform: translateX(3px);
-  }
 `;
 
 const DecorativeElement = styled(motion.div)`
@@ -203,12 +234,17 @@ const DecorativeElement = styled(motion.div)`
 const HeroSection = memo(({ menuSectionRef }) => {
   const { t } = useTranslation();
 
+  const handleBookingClick = () => {
+    const message = t('common.whatsapp_messages.book_table', 'Здравствуйте! Хочу забронировать столик в ресторане KAIF');
+    window.open(`https://wa.me/66624805877?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
   return (
     <HeroContainer>
       <HeroBackground>
         <img 
           src="/images/restaurant/booking.jpg"
-          alt="Restaurant interior"
+          alt={t('restaurant.hero.image_alt', 'Restaurant interior')}
           loading="eager"
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
@@ -216,70 +252,64 @@ const HeroSection = memo(({ menuSectionRef }) => {
       <ContentWrapper>
         <DecorativeElement 
           className="top-right"
-          initial={{ opacity: 0, rotate: -20 }}
-          animate={{ opacity: 0.6, rotate: 0 }}
-          transition={{ duration: 1.2, delay: 0.8 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
         />
         <DecorativeElement 
           className="bottom-left"
-          initial={{ opacity: 0, rotate: 20 }}
-          animate={{ opacity: 0.6, rotate: 0 }}
-          transition={{ duration: 1.2, delay: 1 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
         />
-        
         <HeroGrid>
-          <MainContent
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          <MainContent>
             <Badge
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
             >
               {t('restaurant.hero.label', 'Наш ресторан')}
             </Badge>
-
             <Title
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
-              {t('restaurant.hero.title', 'Изысканная кухня')} 
-              <br />
-              {t('restaurant.hero.highlight', 'с современным подходом')}
+              {t('restaurant.hero.title', 'Изысканная кухня с современным подходом')}
             </Title>
-            
             <Divider
-              initial={{ opacity: 0, width: 0 }}
-              animate={{ opacity: 1, width: 120 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              initial={{ opacity: 0, scaleX: 0 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             />
-
             <Subtitle
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
             >
               {t('restaurant.hero.subtitle', 'Наши шеф-повара создают уникальные блюда, сочетая традиционные рецепты с новыми кулинарными техниками.')}
             </Subtitle>
-
             <ButtonWrapper
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
-              <CTAButton
+              <PrimaryButton
+                onClick={() => menuSectionRef.current?.scrollIntoView({ behavior: 'smooth' })}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => {
-                  menuSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-                }}
               >
-                <span>{t('restaurant.hero.button', 'Наше меню')}</span>
+                {t('restaurant.hero.button', 'Наше меню')}
                 <ArrowRightIcon />
-              </CTAButton>
+              </PrimaryButton>
+              <SecondaryButton
+                onClick={handleBookingClick}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {t('common.book', 'Забронировать')}
+              </SecondaryButton>
             </ButtonWrapper>
           </MainContent>
         </HeroGrid>

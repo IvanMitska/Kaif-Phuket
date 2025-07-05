@@ -8,7 +8,10 @@
     "contacts": "KAIF Contacts | Get in Touch with Us"
   },
   "common": {
-    "phone_number": "+66 62 480 5877"
+    "phone_number": "+66 62 480 5877",
+    "whatsapp_messages": {
+      "book_table": "Hello! I would like to book a table at KAIF restaurant"
+    }
   },
   "navigation": {
     "home": "Home",
@@ -331,7 +334,17 @@
   },
   "restaurant": {
     "title": "Restaurant",
-    "description": "Experience the exceptional flavors from five different cuisines in our restaurant",
+    "description": "Immerse yourself in exceptional flavors from five different cuisines in our restaurant",
+    "hero": {
+      "label": "Our Restaurant",
+      "badge": "Our Restaurant",
+      "title": "Exquisite Cuisine",
+      "highlight": "with Modern Twist",
+      "subtitle": "Our chefs create unique dishes by combining traditional recipes with new culinary techniques.",
+      "button": "Our Menu",
+      "menu_button": "Our Menu",
+      "reviews": "Excellent Reviews"
+    },
     "menu": {
       "title": "Our Menu",
       "description": "Discover a variety of flavors in our menu created by talented chefs",
@@ -341,7 +354,9 @@
         "soups": "Soups",
         "salads": "Salads & Appetizers",
         "main": "Main Courses"
-      }
+      },
+      "tag": "Exquisite Dishes",
+      "download_pdf": "Menu PDF"
     },
     "bar": {
       "label": "Bar",
@@ -393,14 +408,6 @@
     "dish_details": {
       "ingredients": "Ingredients",
       "nutritional_info": "Nutritional Information"
-    },
-    "hero": {
-      "label": "Our Restaurant",
-      "title": "Exquisite Cuisine",
-      "highlight": "with Modern Twist",
-      "subtitle": "Our chefs create unique dishes by combining traditional recipes with new culinary techniques.",
-      "button": "Our Menu",
-      "reviews": "Excellent Reviews"
     },
     "menu": {
       "title": "Our Menu",

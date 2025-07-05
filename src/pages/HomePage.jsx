@@ -132,7 +132,7 @@ const HomePage = memo(() => {
     // Запускаем загрузку только один раз при первом монтировании
     if (!hasInitializedRef.current) {
       hasInitializedRef.current = true;
-      showLoading(600); // Уменьшаем время загрузки
+      showLoading(1000); // Увеличиваем время загрузки
     }
   }, []); // Пустой массив зависимостей - эффект выполнится только один раз
 

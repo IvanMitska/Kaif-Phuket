@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { ShoppingBagIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
+import { ShoppingBagIcon, ArrowRightIcon, DocumentArrowDownIcon } from '@heroicons/react/24/solid';
 import { 
   BeakerIcon, 
   FireIcon,
@@ -72,6 +72,10 @@ const MenuSection = ({ menuSectionRef }) => {
   const [activeCategory, setActiveCategory] = React.useState('all');
   const { menuItems, tagStyles } = getRestaurantData(t);
 
+  const handleDownloadPDF = () => {
+    window.open('/documents/menu.pdf', '_blank');
+  };
+
   return (
     <section ref={menuSectionRef} className="py-20 px-4 md:px-8 max-w-7xl mx-auto" id="menu-section">
       <motion.div
@@ -87,10 +91,18 @@ const MenuSection = ({ menuSectionRef }) => {
         <h2 className="text-3xl md:text-4xl font-bold font-playfair mb-6">
           {t('restaurant.menu.title', 'Наше меню')}
         </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-4">
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
           {t('restaurant.menu.description', 'Откройте для себя разнообразие вкусов в нашем меню, созданном талантливыми шеф-поварами')}
         </p>
-
+        <motion.button
+          onClick={handleDownloadPDF}
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D29B84] text-white hover:bg-[#C08B74] transition-all duration-300 shadow-md hover:shadow-lg"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <DocumentArrowDownIcon className="w-6 h-6" />
+          <span className="text-base font-medium">{t('restaurant.menu.download_pdf', 'Скачать PDF')}</span>
+        </motion.button>
       </motion.div>
 
       {/* Menu Categories */}
@@ -102,6 +114,23 @@ const MenuSection = ({ menuSectionRef }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
+          <motion.button 
+            className="px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer"
+            style={{
+              backgroundColor: '#D29B84',
+              color: '#FFFFFF',
+              border: '2px solid #D29B84',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+            }}
+            whileHover={{ y: -3 }}
+            whileTap={{ y: 0 }}
+            onClick={handleDownloadPDF}
+          >
+            <div className="flex items-center gap-2">
+              <DocumentArrowDownIcon className="w-4 h-4" />
+              <span>{t('restaurant.menu.download_pdf', 'Download Menu')}</span>
+            </div>
+          </motion.button>
           {[
             'all', 
             'breakfast', 
@@ -149,6 +178,25 @@ const MenuSection = ({ menuSectionRef }) => {
             </motion.button>
           ))}
         </motion.div>
+
+        {/* Sort and PDF Download */}
+        <div className="flex justify-end items-center gap-4 mb-8">
+          <motion.button
+            onClick={handleDownloadPDF}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D29B84] text-white hover:bg-[#C08B74] transition-all duration-300"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <DocumentArrowDownIcon className="w-5 h-5" />
+            <span className="text-sm font-medium">{t('restaurant.menu.download_pdf', 'Скачать PDF')}</span>
+          </motion.button>
+          <div className="flex items-center gap-2">
+            <span className="text-gray-500">Sort by:</span>
+            <select className="border rounded-lg px-3 py-1.5 text-gray-700 bg-white">
+              <option>Default</option>
+            </select>
+          </div>
+        </div>
 
         {/* Menu Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

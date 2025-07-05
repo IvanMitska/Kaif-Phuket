@@ -2,6 +2,9 @@ import React, { createContext, useContext, useState, useRef } from 'react';
 
 const LoadingContext = createContext();
 
+// Флаг, сохраняющийся между повторными монтированиями при React.StrictMode
+let hasShownInitialLoading = false;
+
 export const useLoading = () => useContext(LoadingContext);
 
 export const LoadingProvider = ({ children }) => {
@@ -10,12 +13,14 @@ export const LoadingProvider = ({ children }) => {
   const loadingRef = useRef(false);
   const hasShownLoadingRef = useRef(false);
   
-  const showLoading = (duration = 800) => {
+  const showLoading = (duration = 1000) => {
     // Упрощенная версия для отладки
-    if (loadingRef.current || hasShownLoadingRef.current) {
+    if (loadingRef.current || hasShownLoadingRef.current || hasShownInitialLoading) {
       return Promise.resolve();
     }
     
+    // Помечаем, что анимация уже была показана
+    hasShownInitialLoading = true;
     loadingRef.current = true;
     hasShownLoadingRef.current = true;
     setIsContentReady(false);

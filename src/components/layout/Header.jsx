@@ -37,6 +37,8 @@ const Header = () => {
 
   const changeLanguage = useCallback((lng) => {
     i18n.changeLanguage(lng);
+    localStorage.setItem('i18nextLng', lng);
+    document.documentElement.lang = lng;
     setIsLanguageDropdownOpen(false);
   }, [i18n]);
 

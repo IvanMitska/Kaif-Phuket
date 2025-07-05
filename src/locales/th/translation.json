@@ -8,7 +8,32 @@
     "contacts": "ติดต่อ KAIF | ติดต่อเรา"
   },
   "common": {
-    "phone_number": "+66 62 480 5877"
+    "phone_number": "+66 62 480 5877",
+    "book": "จอง",
+    "learn_more": "เรียนรู้เพิ่มเติม",
+    "view_all": "ดูทั้งหมด",
+    "read_more": "อ่านเพิ่มเติม",
+    "submit": "ส่ง",
+    "scroll_down": "เลื่อนลง",
+    "name": "ชื่อ",
+    "email": "อีเมล",
+    "phone": "โทรศัพท์",
+    "message": "ข้อความ",
+    "date": "วันที่",
+    "time": "เวลา",
+    "people": "จำนวนคน",
+    "special_requests": "คำขอพิเศษ",
+    "address": "73, Baan Chalekiri Village, 6 Pra Phuket Keaw Road, Kathu",
+    "select_language": "เลือกภาษา",
+    "contact_us": "ติดต่อเรา",
+    "exploreMore": "เรียนรู้เพิ่มเติม",
+    "from": "จาก",
+    "categories": "หมวดหมู่",
+    "activity": "กิจกรรม",
+    "relaxation": "การพักผ่อน",
+    "whatsapp_messages": {
+      "book_table": "สวัสดีค่ะ/ครับ! ต้องการจองโต๊ะที่ร้านอาหาร KAIF"
+    }
   },
   "navigation": {
     "home": "หน้าแรก",
@@ -19,31 +44,6 @@
     "about": "เกี่ยวกับเรา",
     "promotions": "โปรโมชั่น",
     "contacts": "ติดต่อ"
-  },
-  "common": {
-    "book": "จองตอนนี้",
-    "learn_more": "เรียนรู้เพิ่มเติม",
-    "view_all": "ดูทั้งหมด",
-    "read_more": "อ่านเพิ่มเติม",
-    "submit": "ส่ง",
-    "scroll_down": "เลื่อน",
-    "name": "ชื่อ",
-    "email": "อีเมล",
-    "phone": "โทรศัพท์",
-    "message": "ข้อความ",
-    "date": "วันที่",
-    "time": "เวลา",
-    "people": "จำนวนคน",
-    "special_requests": "คำขอพิเศษ",
-    "address": "73, Baan Chalekiri Village, 6 Pra Phuket Keaw Road, Kathu",
-    "phone_number": "+66 62 480 5877",
-    "select_language": "เลือกภาษา",
-    "contact_us": "ติดต่อเรา",
-    "exploreMore": "เรียนรู้เพิ่มเติม",
-    "from": "จาก",
-    "categories": "หมวดหมู่",
-    "activity": "กิจกรรม",
-    "relaxation": "การผ่อนคลาย"
   },
   "home": {
     "hero": {
@@ -329,7 +329,16 @@
   },
   "restaurant": {
     "title": "ร้านอาหาร",
-    "description": "สัมผัสรสชาติที่พิเศษจากห้าสัญชาติอาหารในร้านอาหารของเรา",
+    "description": "สัมผัสรสชาติที่พิเศษจากห้าอาหารนานาชาติในร้านอาหารของเรา",
+    "hero": {
+      "badge": "ร้านอาหารของเรา",
+      "title": "อาหารชั้นเลิศพร้อมสไตล์ร่วมสมัย",
+      "subtitle": "เชฟของเราสร้างสรรค์อาหารที่ไม่เหมือนใครด้วยการผสมผสานสูตรดั้งเดิมกับเทคนิคการทำอาหารใหม่ๆ",
+      "menu_button": "เมนูของเรา",
+      "book_button": "จองโต๊ะ",
+      "whatsapp_message": "สวัสดีค่ะ/ครับ! ต้องการจองโต๊ะที่ร้านอาหาร KAIF",
+      "image_alt": "ภายในร้านอาหาร"
+    },
     "menu": {
       "title": "เมนูของเรา",
       "description": "ค้นพบความหลากหลายของรสชาติในเมนูของเราที่สร้างสรรค์โดยเชฟที่มีพรสวรรค์",
@@ -339,7 +348,8 @@
         "soups": "ซุป",
         "salads": "สลัดและอาหารเรียกน้ำย่อย",
         "main": "อาหารจานหลัก"
-      }
+      },
+      "download_pdf": "เมนู PDF"
     },
     "bar": {
       "label": "บาร์",

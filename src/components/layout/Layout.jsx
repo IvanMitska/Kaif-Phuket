@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useLoading } from '../global/LoadingContext';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -8,17 +9,25 @@ import LoadingScreen from '../global/LoadingScreen';
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  const [isPageLoaded, setIsPageLoaded] = useState(false);
+  const [isPageLoaded, setIsPageLoaded] = useState(true);
+  const isFirstRender = useRef(true);
+  const { isLoading: isGlobalLoading } = useLoading();
 
   // Scroll to top on route change and handle page loading
   useEffect(() => {
+    if (isFirstRender.current) {
+      // Skip showing Layout's loading screen on initial mount
+      isFirstRender.current = false;
+      setIsPageLoaded(true);
+      return;
+    }
     setIsPageLoaded(false);
     window.scrollTo(0, 0);
     
     // Даем время странице загрузиться
     const timer = setTimeout(() => {
       setIsPageLoaded(true);
-    }, 100);
+    }, 500);
     
     return () => clearTimeout(timer);
   }, [location.pathname]);
@@ -26,7 +35,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <GlobalStyles />
-      <LoadingScreen isVisible={!isPageLoaded} />
+      <LoadingScreen isVisible={!isPageLoaded && !isGlobalLoading} />
       <Header />
       <div style={{ 
         minHeight: '100vh',

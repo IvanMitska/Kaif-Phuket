@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import PageHead from '../components/layout/PageHead';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeftIcon, ChevronRightIcon, XMarkIcon, ArrowRightIcon, ClockIcon, ShoppingBagIcon, PhoneIcon } from '@heroicons/react/24/solid';
+import { ChevronLeftIcon, ChevronRightIcon, XMarkIcon, ArrowRightIcon, ClockIcon, ShoppingBagIcon, PhoneIcon, DocumentArrowDownIcon } from '@heroicons/react/24/solid';
 import { 
   ArrowRightIcon as ArrowRightOutline,
   BeakerIcon, 
@@ -865,7 +865,16 @@ const RestaurantPage = () => {
             {t('restaurant.menu.description', 'Откройте для себя разнообразие вкусов в нашем меню, созданном талантливыми шеф-поварами')}
           </motion.p>
           
-
+          {/* Кнопка скачивания PDF меню */}
+          <motion.button
+            onClick={() => window.open('/documents/menu.pdf', '_blank')}
+            className="mt-8 inline-flex items-center gap-2 px-6 py-1.5 rounded-full bg-gradient-to-r from-[#90B3A7] to-[#A8C5B8] text-white font-semibold shadow-md hover:shadow-lg transition-transform duration-200"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <DocumentArrowDownIcon className="w-5 h-5" />
+            <span className="leading-none">{t('restaurant.menu.download_pdf', 'Menu PDF')}</span>
+          </motion.button>
         </motion.div>
 
         <div className="mb-16">
