@@ -1,4 +1,4 @@
-import{a as t,j as e}from"./vendor-react-CLtL0QWO.js";import{d as r}from"./vendor-styles-CCTfl_7F.js";import{P as i}from"./CommonComponents-EiP6YwIs.js";import{m as n}from"./vendor-animations-CEvQOT_g.js";import"./vendor-other-CZupzcPt.js";const o=r.div`
+import{a as t,j as e}from"./vendor-react-CabZulOG.js";import{d as r}from"./vendor-styles-C61FzGo1.js";import{P as i}from"./CommonComponents-DT37I1fy.js";import{m as n}from"./vendor-animations-CYKlNb5G.js";import"./vendor-other-CZupzcPt.js";const o=r.div`
   max-width: 800px;
   margin: 0 auto;
   padding: 6rem 2rem 4rem;

@@ -1,4 +1,4 @@
-import{a as e,j as t,a1 as i,U as r}from"./vendor-react-CLtL0QWO.js";import{d as a}from"./vendor-styles-CCTfl_7F.js";import{m as o}from"./vendor-animations-CEvQOT_g.js";import"./vendor-other-CZupzcPt.js";const n=a.section`
+import{a as e,j as t,a2 as i,V as r}from"./vendor-react-CabZulOG.js";import{d as a}from"./vendor-styles-C61FzGo1.js";import{m as o}from"./vendor-animations-CYKlNb5G.js";import"./vendor-other-CZupzcPt.js";const n=a.section`
   min-height: 90vh;
   position: relative;
   display: flex;

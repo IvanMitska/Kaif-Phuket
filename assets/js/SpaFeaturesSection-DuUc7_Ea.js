@@ -1,4 +1,4 @@
-import{a as e,j as i,f as t,v as r,$ as a,x as o}from"./vendor-react-CLtL0QWO.js";import{d as n}from"./vendor-styles-CCTfl_7F.js";import{m as s}from"./vendor-animations-CEvQOT_g.js";import"./vendor-other-CZupzcPt.js";const l=n.section`
+import{a as e,j as i,f as t,w as r,a0 as a,y as o}from"./vendor-react-CabZulOG.js";import{d as n}from"./vendor-styles-C61FzGo1.js";import{m as s}from"./vendor-animations-CYKlNb5G.js";import"./vendor-other-CZupzcPt.js";const l=n.section`
   padding: 8rem 2rem;
   background: linear-gradient(135deg, 
     #f5f3f0 0%,

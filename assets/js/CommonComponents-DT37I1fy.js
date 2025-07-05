@@ -1,4 +1,4 @@
-import{d as e}from"./vendor-styles-CCTfl_7F.js";import{m as r}from"./vendor-animations-CEvQOT_g.js";const t=e(r.div)`
+import{d as e}from"./vendor-styles-C61FzGo1.js";import{m as r}from"./vendor-animations-CYKlNb5G.js";const t=e(r.div)`
   background-color: ${e=>e.theme.colors.background};
   color: ${e=>e.theme.colors.text.primary};
   min-height: 100vh;
