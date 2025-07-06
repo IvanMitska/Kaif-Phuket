@@ -86,16 +86,20 @@ const TextContent = styled.div`
 
 const Title = styled.span`
   display: block;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 17px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: #FFFFFF;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    0 0 1px rgba(0, 0, 0, 0.5);
   line-height: 1.1;
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
 
   @media (max-width: 768px) {
     font-size: 15px;
@@ -104,14 +108,18 @@ const Title = styled.span`
 
 const Subtitle = styled.span`
   display: block;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 17px;
   color: #FFFFFF;
   font-weight: 500;
   line-height: 1.1;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    0 0 1px rgba(0, 0, 0, 0.5);
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
 
   @media (max-width: 768px) {
     font-size: 15px;
