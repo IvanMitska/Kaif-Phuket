@@ -103,10 +103,10 @@ const Header = () => {
 
   const navItems = useMemo(() => [
     { path: '/', label: t('navigation.home') },
+    { path: '/banya', label: t('navigation.banya') },
     { path: '/restaurant', label: t('navigation.restaurant') },
     { path: '/spa', label: t('navigation.spa') },
     { path: '/sports', label: t('navigation.sports') },
-    { path: '/banya', label: t('navigation.banya') },
     { path: '/contacts', label: t('navigation.contacts') }
   ], [t, i18n.language]);
 

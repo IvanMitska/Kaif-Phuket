@@ -197,7 +197,7 @@ const LogoImage = styled(motion.img)`
 `;
 
 // Белая кнопка с чёрным текстом - премиальный вид
-const PrimaryButton = styled(Link)`
+const PrimaryButton = styled.a`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -416,37 +416,15 @@ const HeroFullscreen = memo(() => {
   }, []);
 
   // ИСПРАВЛЕН: Обработчик скролла без конфликтов
-  const handleScrollToZones = useCallback(() => {
-    const element = document.getElementById('exclusive-zones');
-    if (element) {
-      // Используем requestAnimationFrame для плавного скролла без блокировки
-      const targetPosition = element.offsetTop - 80; // Отступ для хедера
-      
-      // Плавный скролл с использованием requestAnimationFrame
-      const startPosition = window.pageYOffset;
-      const distance = targetPosition - startPosition;
-      const duration = 800; // 800ms для плавного скролла
-      let start = null;
-      
-      function animation(currentTime) {
-        if (start === null) start = currentTime;
-        const timeElapsed = currentTime - start;
-        const run = ease(timeElapsed, startPosition, distance, duration);
-        window.scrollTo(0, run);
-        if (timeElapsed < duration) requestAnimationFrame(animation);
-      }
-      
-      // Easing function для плавности
-      function ease(t, b, c, d) {
-        t /= d / 2;
-        if (t < 1) return c / 2 * t * t + b;
-        t--;
-        return -c / 2 * (t * (t - 2) - 1) + b;
-      }
-      
-      requestAnimationFrame(animation);
+  const handleScrollToZones = () => {
+    const zonesSection = document.querySelector('#exclusive-zones');
+    if (zonesSection) {
+      zonesSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
     }
-  }, []);
+  };
 
   return (
     <HeroContainer>
@@ -509,12 +487,17 @@ const HeroFullscreen = memo(() => {
               }}
               whileTap={{ scale: 0.98 }}
             >
-              <PrimaryButton to="/contacts">
+              <PrimaryButton 
+                href="https://wa.me/66624805877?text=Здравствуйте! Хочу записаться в KAIF"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {t('common.book')}
               </PrimaryButton>
             </motion.div>
             
             <motion.div
+              onClick={handleScrollToZones}
               whileHover={{ 
                 scale: 1.01,
                 transition: {
@@ -524,7 +507,7 @@ const HeroFullscreen = memo(() => {
               }}
               whileTap={{ scale: 0.99 }}
             >
-              <SecondaryButton onClick={handleScrollToZones}>
+              <SecondaryButton>
                 {t('common.learn_more')}
               </SecondaryButton>
             </motion.div>

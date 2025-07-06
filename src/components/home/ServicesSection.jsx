@@ -21,6 +21,7 @@ import {
 const ServicesContainer = styled.section`
   position: relative;
   padding: 8rem 0;
+  margin-top: 4rem;
   background: linear-gradient(135deg, 
     ${({ theme }) => theme?.colors?.background || '#F5F3F0'} 0%,
     rgba(245, 243, 240, 0.8) 100%
@@ -542,7 +543,7 @@ const ServicesSection = () => {
         icon: '💪',
         title: t('home.services.fitness.title'),
         description: t('home.services.fitness.description'),
-        features: t('home.services.fitness.features'),
+        features: t('home.services.fitness.features', { returnObjects: true }),
         link: '/sports'
       },
       {
@@ -550,7 +551,7 @@ const ServicesSection = () => {
         icon: '🥊',
         title: t('home.services.combat.title'),
         description: t('home.services.combat.description'),
-        features: t('home.services.combat.features'),
+        features: t('home.services.combat.features', { returnObjects: true }),
         link: '/sports'
       },
       {
@@ -558,7 +559,7 @@ const ServicesSection = () => {
         icon: '🏊‍♀️',
         title: t('home.services.pool.title'),
         description: t('home.services.pool.description'),
-        features: t('home.services.pool.features'),
+        features: t('home.services.pool.features', { returnObjects: true }),
         link: '/sports'
       }
     ],
@@ -568,7 +569,7 @@ const ServicesSection = () => {
         icon: '🧘‍♀️',
         title: t('home.services.spa.title'),
         description: t('home.services.spa.description'),
-        features: t('home.services.spa.features'),
+        features: t('home.services.spa.features', { returnObjects: true }),
         link: '/spa'
       },
       {
@@ -576,7 +577,7 @@ const ServicesSection = () => {
         icon: '🔥',
         title: t('home.services.banya.title'),
         description: t('home.services.banya.description'),
-        features: t('home.services.banya.features'),
+        features: t('home.services.banya.features', { returnObjects: true }),
         link: '/banya'
       },
       {
@@ -584,7 +585,7 @@ const ServicesSection = () => {
         icon: '🍽️',
         title: t('home.services.restaurant.title'),
         description: t('home.services.restaurant.description'),
-        features: t('home.services.restaurant.features'),
+        features: t('home.services.restaurant.features', { returnObjects: true }),
         link: '/restaurant'
       }
     ]
@@ -593,7 +594,7 @@ const ServicesSection = () => {
   const currentServices = services[activeZone] || [];
 
   return (
-    <ServicesContainer>
+    <ServicesContainer id="services">
       <ContentWrapper>
         <motion.div
           variants={containerVariants}

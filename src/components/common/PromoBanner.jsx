@@ -20,142 +20,139 @@ const pulse = keyframes`
 
 const BannerContainer = styled.div`
   position: fixed;
-  top: 75px;
-  left: 20px;
-  right: 20px;
+  top: 85px;
+  left: 50%;
+  transform: translateX(-50%) ${({ $isVisible }) => $isVisible ? 'translateY(0)' : 'translateY(-20px)'};
   z-index: 99;
-  max-width: 900px;
+  width: 100%;
+  max-width: 700px;
   margin: 0 auto;
+  padding: 0 20px;
   pointer-events: none;
-  opacity: ${props => props.isVisible ? 1 : 0};
+  opacity: ${({ $isVisible }) => $isVisible ? 1 : 0};
   transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
-  transform: ${props => props.isVisible ? 'translateY(0)' : 'translateY(-20px)'};
 `;
 
 const BannerContent = styled.div`
-  background: linear-gradient(135deg, #FF8C00 0%, #FF4500 100%);
-  border-radius: 12px;
-  padding: 12px 24px;
+  background: linear-gradient(135deg, #CC6600 0%, #B32D00 100%);
+  border-radius: 8px;
+  padding: 8px 50px;
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 32px;
   color: white;
-  box-shadow: 0 6px 20px rgba(255, 118, 77, 0.4);
+  box-shadow: 0 4px 15px rgba(255, 118, 77, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.2);
   animation: ${pulse} 2.5s infinite ease-in-out;
   backdrop-filter: blur(10px);
   pointer-events: auto;
+  position: relative;
   
   @media (max-width: 768px) {
-    padding: 12px 16px;
-    flex-direction: column;
-    text-align: center;
-    gap: 8px;
-    margin: 0 4px;
+    padding: 6px 40px;
+    min-height: 30px;
   }
 `;
 
 const IconWrapper = styled.div`
-  font-size: 22px;
-  margin-right: 12px;
-  color: #FFEBCD; /* Light Orange/Almond color */
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-
-  @media (max-width: 768px) {
-    margin-right: 0;
-    margin-bottom: 4px;
-    font-size: 20px;
-  }
-`;
-
-const ContentWrapper = styled.div`
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
   display: flex;
   align-items: center;
-  gap: 16px;
-  width: 100%;
-  position: relative;
+  color: #FFD700;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.7);
 
   @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 6px;
-    align-items: center;
+    font-size: 16px;
+    left: 12px;
   }
 `;
 
-const TextContainer = styled.div`
+const TextContent = styled.div`
+  text-align: center;
+  width: 100%;
   display: flex;
-  align-items: baseline;
-  gap: 12px;
-  flex: 1;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-  }
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  transform: translateY(0);
 `;
 
 const Title = styled.span`
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.5px;
   color: #FFFFFF;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  line-height: 1.1;
+  margin: 0;
+  padding: 0;
 
   @media (max-width: 768px) {
-    font-size: 14px;
+    font-size: 15px;
   }
 `;
 
 const Subtitle = styled.span`
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 400;
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 500;
+  line-height: 1.1;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  margin: 0;
+  padding: 0;
 
   @media (max-width: 768px) {
-    font-size: 12px;
-    text-align: center;
+    font-size: 15px;
   }
 `;
 
 const CloseButton = styled.button`
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
   padding: 0;
-  width: 26px;
-  height: 26px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease-in-out;
   line-height: 1;
-  margin-left: 20px;
-  flex-shrink: 0;
 
   &:hover {
     background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
+    transform: translateY(-50%) scale(1.1);
   }
 
   &:active {
-    transform: scale(0.95);
+    transform: translateY(-50%) scale(0.95);
   }
 
   @media (max-width: 768px) {
-    position: absolute;
-    top: -8px;
-    right: -12px;
-    width: 24px;
-    height: 24px;
-    font-size: 16px;
+    right: 12px;
+    width: 16px;
+    height: 16px;
+    font-size: 12px;
   }
 `;
 
@@ -163,40 +160,63 @@ const PromoBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
   const { t } = useTranslation();
 
+  // Функция для принудительного сброса
+  const resetBannerState = () => {
+    localStorage.removeItem('kaifPromoClosed');
+    setIsVisible(true);
+  };
+
   useEffect(() => {
-    const isClosed = localStorage.getItem('kaifPromoClosed_v3_temp') === 'true';
-    if (!isClosed) {
-      // Delay visibility for a subtle entrance animation
-      const timer = setTimeout(() => setIsVisible(true), 300);
-      return () => clearTimeout(timer);
+    // Проверяем, не истекла ли акция
+    const endDate = new Date('2025-08-01'); // 1 августа 2025
+    const now = new Date();
+    
+    if (now >= endDate) {
+      return; // Если акция закончилась, не показываем баннер
     }
+
+    // Проверяем, когда последний раз закрывали баннер
+    const lastClosedStr = localStorage.getItem('kaifPromoClosed');
+    if (lastClosedStr) {
+      const lastClosed = new Date(lastClosedStr);
+      const hoursSinceClose = (now - lastClosed) / (1000 * 60 * 60);
+      
+      // Если прошло меньше 1 часа с момента закрытия, не показываем
+      if (hoursSinceClose < 1) {
+        return;
+      }
+    }
+
+    // Показываем баннер с небольшой задержкой
+    const timer = setTimeout(() => setIsVisible(true), 300);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleClose = () => {
     setIsVisible(false);
-    localStorage.setItem('kaifPromoClosed_v3_temp', 'true');
+    // Сохраняем время закрытия
+    localStorage.setItem('kaifPromoClosed', new Date().toISOString());
+  };
+
+  // Добавляем обработчик для двойного клика по иконке (для разработки)
+  const handleIconDoubleClick = (e) => {
+    e.preventDefault();
+    resetBannerState();
   };
 
   if (!isVisible) return null;
 
   return (
-    <BannerContainer isVisible={isVisible}>
+    <BannerContainer $isVisible={isVisible}>
       <BannerContent>
-        <ContentWrapper>
-          <IconWrapper>
-            <FaFire />
-          </IconWrapper>
-          <TextContainer>
-            <Title>{t('promo.title')}</Title>
-            <Subtitle>{t('promo.subtitle')}</Subtitle>
-          </TextContainer>
-          <CloseButton 
-            onClick={handleClose} 
-            aria-label="Close promotion"
-          >
-            ×
-          </CloseButton>
-        </ContentWrapper>
+        <IconWrapper onDoubleClick={handleIconDoubleClick}>
+          <FaFire />
+        </IconWrapper>
+        <TextContent>
+          <Title>{t('promo.title')}</Title>
+          <Subtitle>{t('promo.subtitle')}</Subtitle>
+        </TextContent>
+        <CloseButton onClick={handleClose}>×</CloseButton>
       </BannerContent>
     </BannerContainer>
   );
