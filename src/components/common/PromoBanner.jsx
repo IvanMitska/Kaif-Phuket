@@ -88,18 +88,14 @@ const Title = styled.span`
   display: block;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 17px;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: #FFFFFF;
-  text-shadow: 0 0 2px #FFFFFF,
-               0 0 4px #FFFFFF,
-               0 2px 8px rgba(255, 255, 255, 0.4);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   line-height: 1.1;
   margin: 0;
   padding: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 
   @media (max-width: 768px) {
     font-size: 15px;
@@ -111,15 +107,11 @@ const Subtitle = styled.span`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 17px;
   color: #FFFFFF;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.1;
-  text-shadow: 0 0 2px #FFFFFF,
-               0 0 4px #FFFFFF,
-               0 2px 8px rgba(255, 255, 255, 0.4);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   margin: 0;
   padding: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 
   @media (max-width: 768px) {
     font-size: 15px;
