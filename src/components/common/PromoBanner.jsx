@@ -86,13 +86,13 @@ const TextContent = styled.div`
 
 const Title = styled.span`
   display: block;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
   font-size: 17px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: #FFFFFF;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 1px rgba(0, 0, 0, 0.5) !important;
   line-height: 1.1;
   margin: 0;
   padding: 0;
@@ -104,12 +104,12 @@ const Title = styled.span`
 
 const Subtitle = styled.span`
   display: block;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
   font-size: 17px;
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   font-weight: 500;
   line-height: 1.1;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 1px rgba(0, 0, 0, 0.5) !important;
   margin: 0;
   padding: 0;
 
