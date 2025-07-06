@@ -35,26 +35,21 @@ const HeroContainer = styled.section`
   color: white;
   overflow: hidden;
   background: #000;
-  /* ИСПРАВЛЕНИЕ: Полное отключение scroll-snap и оптимизация для скролла */
-  scroll-snap-align: none !important;
-  scroll-snap-type: none !important;
-  scroll-snap-stop: normal !important;
-  /* Убираем sticky behavior */
+  /* Убираем все свойства, влияющие на скролл */
+  scroll-snap-align: unset;
+  scroll-snap-type: unset;
+  scroll-snap-stop: unset;
   contain: none;
   isolation: auto;
-  /* Оптимизация производительности скролла */
   will-change: auto;
-  /* Предотвращаем блокировку скролла */
-  touch-action: pan-y pinch-zoom;
-  /* Отключаем overscroll behavior для этой секции */
+  touch-action: auto;
   overscroll-behavior: auto;
   -webkit-overscroll-behavior: auto;
   
   @media (max-width: 768px) {
-    min-height: 100svh; /* Используем dvh для мобильных */
+    min-height: 100svh;
     height: auto;
-    /* Важно для мобильных - не блокируем вертикальный скролл */
-    touch-action: pan-y;
+    touch-action: auto;
   }
 `;
 
@@ -66,9 +61,7 @@ const SliderContainer = styled.div`
   width: 100%;
   height: 100%;
   z-index: 1;
-  /* ИСПРАВЛЕНИЕ: Убираем will-change для предотвращения compositor issues */
   will-change: auto;
-  /* Не блокируем события указателя для скролла */
   pointer-events: none;
   
   /* Разрешаем события только для дочерних элементов слайдера */

@@ -23,10 +23,10 @@ const BannerContainer = styled.div`
   top: 75px;
   left: 20px;
   right: 20px;
-  z-index: 998;
+  z-index: 99;
   max-width: 900px;
   margin: 0 auto;
-  pointer-events: ${props => props.isVisible ? 'auto' : 'none'};
+  pointer-events: none;
   opacity: ${props => props.isVisible ? 1 : 0};
   transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
   transform: ${props => props.isVisible ? 'translateY(0)' : 'translateY(-20px)'};
@@ -44,6 +44,7 @@ const BannerContent = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.2);
   animation: ${pulse} 2.5s infinite ease-in-out;
   backdrop-filter: blur(10px);
+  pointer-events: auto;
   
   @media (max-width: 768px) {
     padding: 12px 16px;
