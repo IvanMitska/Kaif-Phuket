@@ -86,14 +86,14 @@ const TextContent = styled.div`
 
 const Title = styled.span`
   display: block;
-  font-family: 'KAIF', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 17px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: #FFFFFF;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
-  line-height: 1.1;
+  line-height: 1.2;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased !important;
@@ -106,11 +106,11 @@ const Title = styled.span`
 
 const Subtitle = styled.span`
   display: block;
-  font-family: 'KAIF', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 17px;
   color: #FFFFFF;
   font-weight: 500;
-  line-height: 1.1;
+  line-height: 1.2;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
   margin: 0;
   padding: 0;
