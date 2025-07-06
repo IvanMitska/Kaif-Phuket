@@ -1,11 +1,33 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useLoading } from '../global/LoadingContext';
+import styled from 'styled-components';
 
 import Header from './Header';
 import Footer from './Footer';
 import GlobalStyles from '../global/GlobalStyles';
 import LoadingScreen from '../global/LoadingScreen';
+import PromoBanner from '../common/PromoBanner';
+
+const MainContainer = styled.div`
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  margin: 0;
+  padding-top: 65px;
+`;
+
+const MainContent = styled.main`
+  width: 100%;
+  min-height: calc(100vh - 65px);
+  position: relative;
+  flex: 1 0 auto;
+  margin: 0;
+`;
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -37,28 +59,13 @@ const Layout = ({ children }) => {
       <GlobalStyles />
       <LoadingScreen isVisible={!isPageLoaded && !isGlobalLoading} />
       <Header />
-      <div style={{ 
-        minHeight: '100vh',
-        paddingTop: '65px', // Точный отступ для хедера
-        width: '100%',
-        position: 'relative',
-        zIndex: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        overflowX: 'hidden',
-        margin: 0
-      }}>
-        <main style={{ 
-          width: '100%',
-          minHeight: 'calc(100vh - 65px)',
-          position: 'relative',
-          flex: '1 0 auto',
-          margin: 0
-        }}>
+      <PromoBanner />
+      <MainContainer>
+        <MainContent>
           {children}
-        </main>
+        </MainContent>
         {isPageLoaded && <Footer style={{ marginBottom: '-2px' }} />}
-      </div>
+      </MainContainer>
     </>
   );
 };
