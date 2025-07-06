@@ -1,4 +1,4 @@
-import{a as e,r as i,j as t,R as r}from"./vendor-react-CabZulOG.js";import{d as n}from"./vendor-styles-C61FzGo1.js";import{m as a,u as o}from"./vendor-animations-CYKlNb5G.js";import"./vendor-other-CZupzcPt.js";const s=n.section`
+import{a as e,r as i,j as t,R as r}from"./vendor-react-jkclZeQG.js";import{d as n}from"./vendor-styles-Xp2kl99K.js";import{m as a,u as o}from"./vendor-animations-Bkvmj3bK.js";import"./vendor-other-CZupzcPt.js";const s=n.section`
   position: relative;
   padding: 8rem 0;
   background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
