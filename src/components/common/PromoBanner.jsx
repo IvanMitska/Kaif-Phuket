@@ -20,13 +20,12 @@ const pulse = keyframes`
 
 const BannerContainer = styled.div`
   position: fixed;
-  top: 80px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 75px;
+  left: 20px;
+  right: 20px;
   z-index: 998;
-  width: 100%;
   max-width: 900px;
-  padding: 0 20px;
+  margin: 0 auto;
   pointer-events: ${props => props.isVisible ? 'auto' : 'none'};
   opacity: ${props => props.isVisible ? 1 : 0};
   transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
@@ -35,8 +34,8 @@ const BannerContainer = styled.div`
 
 const BannerContent = styled.div`
   background: linear-gradient(135deg, #FF8C00 0%, #FF4500 100%);
-  border-radius: 16px;
-  padding: 16px 28px;
+  border-radius: 12px;
+  padding: 12px 24px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,7 +46,7 @@ const BannerContent = styled.div`
   backdrop-filter: blur(10px);
   
   @media (max-width: 768px) {
-    padding: 14px 18px;
+    padding: 12px 16px;
     flex-direction: column;
     text-align: center;
     gap: 8px;
@@ -56,15 +55,15 @@ const BannerContent = styled.div`
 `;
 
 const IconWrapper = styled.div`
-  font-size: 24px;
-  margin-right: 16px;
+  font-size: 22px;
+  margin-right: 12px;
   color: #FFEBCD; /* Light Orange/Almond color */
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
 
   @media (max-width: 768px) {
     margin-right: 0;
     margin-bottom: 4px;
-    font-size: 22px;
+    font-size: 20px;
   }
 `;
 
@@ -97,7 +96,7 @@ const TextContainer = styled.div`
 
 const Title = styled.span`
   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.8px;
@@ -105,18 +104,18 @@ const Title = styled.span`
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 
   @media (max-width: 768px) {
-    font-size: 16px;
+    font-size: 14px;
   }
 `;
 
 const Subtitle = styled.span`
   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   color: rgba(255, 255, 255, 0.9);
   font-weight: 400;
 
   @media (max-width: 768px) {
-    font-size: 13px;
+    font-size: 12px;
     text-align: center;
   }
 `;
@@ -125,12 +124,12 @@ const CloseButton = styled.button`
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   cursor: pointer;
   padding: 0;
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -164,7 +163,7 @@ const PromoBanner = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    const isClosed = localStorage.getItem('kaifPromoClosed_v2') === 'true';
+    const isClosed = localStorage.getItem('kaifPromoClosed_v3_temp') === 'true';
     if (!isClosed) {
       // Delay visibility for a subtle entrance animation
       const timer = setTimeout(() => setIsVisible(true), 300);
@@ -174,7 +173,7 @@ const PromoBanner = () => {
 
   const handleClose = () => {
     setIsVisible(false);
-    localStorage.setItem('kaifPromoClosed_v2', 'true');
+    localStorage.setItem('kaifPromoClosed_v3_temp', 'true');
   };
 
   if (!isVisible) return null;
