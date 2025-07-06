@@ -92,7 +92,7 @@ const Title = styled.span`
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: #FFFFFF;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   line-height: 1.1;
   margin: 0;
   padding: 0;
@@ -106,10 +106,10 @@ const Subtitle = styled.span`
   display: block;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 17px;
-  color: rgba(255, 255, 255, 0.95);
+  color: #FFFFFF;
   font-weight: 500;
   line-height: 1.1;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   margin: 0;
   padding: 0;
 
