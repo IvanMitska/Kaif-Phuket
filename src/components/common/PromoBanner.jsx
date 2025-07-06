@@ -92,15 +92,10 @@ const Title = styled.span`
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: #FFFFFF;
-  text-shadow: 
-    0 1px 2px rgba(0, 0, 0, 0.5),
-    0 2px 4px rgba(0, 0, 0, 0.3),
-    0 0 8px rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
   line-height: 1.1;
   margin: 0;
   padding: 0;
-  transform: translateZ(0);
-  backface-visibility: hidden;
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
 
@@ -116,14 +111,9 @@ const Subtitle = styled.span`
   color: #FFFFFF;
   font-weight: 500;
   line-height: 1.1;
-  text-shadow: 
-    0 1px 2px rgba(0, 0, 0, 0.5),
-    0 2px 4px rgba(0, 0, 0, 0.3),
-    0 0 8px rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
   margin: 0;
   padding: 0;
-  transform: translateZ(0);
-  backface-visibility: hidden;
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
 
