@@ -157,11 +157,15 @@ const FAQQuestion = styled.button`
 const QuestionText = styled.h3`
   font-size: clamp(1.125rem, 2.5vw, 1.5rem);
   font-weight: 600;
-  color: ${props => props.$isOpen ? '#f5f5f5' : '#cccccc'};
+  color: ${props => props.$isOpen ? '#ffffff' : '#cccccc'};
   margin: 0;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  text-shadow: ${props => props.$isOpen ? '0 0 10px rgba(255, 255, 255, 0.3)' : '1px 1px 2px rgba(0, 0, 0, 0.8)'};
   flex: 1;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: #ffffff;
+  }
 `;
 
 const QuestionIcon = styled.div`
@@ -187,13 +191,16 @@ const QuestionIcon = styled.div`
 
 const FAQAnswer = styled(motion.div)`
   padding: 0 2.5rem 2rem;
-  color: #f5f5f5;
-  font-size: 1rem;
-  line-height: 1.7;
+  color: #ffffff;
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  line-height: 1.8;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  letter-spacing: 0.01em;
   
   p {
     margin: 0 0 1rem 0;
+    color: #ffffff;
+    font-weight: 400;
     
     &:last-child {
       margin-bottom: 0;
