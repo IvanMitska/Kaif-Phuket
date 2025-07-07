@@ -111,22 +111,24 @@ const Header = () => {
   ], [t, i18n.language]);
 
   const getNavLinkStyle = useCallback((path) => ({
-    color: isActive(path) ? '#90B3A7' : (hoveredNav === path ? '#333333' : '#666666'),
+    color: isActive(path) ? '#90B3A7' : (hoveredNav === path ? '#2C3E2D' : '#5A6761'),
     textDecoration: 'none',
-    fontSize: '13px',
-    fontWeight: '500',
+    fontSize: '14px',
+    fontWeight: isActive(path) ? '600' : '500',
     fontFamily: '"KAIF", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
     textTransform: 'uppercase',
-    letterSpacing: '0.5px',
+    letterSpacing: '0.8px',
     position: 'relative',
-    transition: 'all 0.3s ease',
+    transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
     whiteSpace: 'nowrap',
     height: '65px',
     display: 'flex',
     alignItems: 'center',
     margin: 0,
-    padding: '0 0.5rem',
-    cursor: 'pointer'
+    padding: '0 1rem',
+    cursor: 'pointer',
+    transform: hoveredNav === path ? 'translateY(-1px)' : 'translateY(0)',
+    textShadow: isActive(path) ? '0 0 8px rgba(144, 179, 167, 0.3)' : 'none'
   }), [isActive, hoveredNav]);
 
   const toggleMobileMenu = (e) => {
@@ -369,10 +371,11 @@ const Header = () => {
             <nav style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '1.5rem',
+              gap: '2rem',
               height: '65px',
               margin: 0,
-              padding: 0
+              padding: 0,
+              position: 'relative'
             }} className="desktop-nav">
               {navItems.map((item) => (
                 <div
@@ -387,24 +390,24 @@ const Header = () => {
                   {/* Активная линия */}
                   {isActive(item.path) && (
                     <motion.div
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
+                      initial={{ scaleX: 0, opacity: 0 }}
+                      animate={{ scaleX: 1, opacity: 1 }}
                       transition={{ 
-                        duration: 0.4, 
+                        duration: 0.5, 
                         ease: [0.25, 0.46, 0.45, 0.94],
                         type: 'tween'
                       }}
                       style={{
                         position: 'absolute',
-                        bottom: '-2px',
+                        bottom: '-8px',
                         left: '50%',
                         transform: 'translateX(-50%)',
                         width: '100%',
-                        height: '3px',
-                        background: 'linear-gradient(90deg, transparent 0%, #90B3A7 10%, #90B3A7 90%, transparent 100%)',
+                        height: '4px',
+                        background: 'linear-gradient(90deg, transparent 0%, #90B3A7 20%, #90B3A7 80%, transparent 100%)',
                         borderRadius: '2px',
                         transformOrigin: 'center',
-                        boxShadow: '0 0 12px rgba(144, 179, 167, 0.6)'
+                        boxShadow: '0 0 20px rgba(144, 179, 167, 1), 0 4px 12px rgba(144, 179, 167, 0.6)'
                       }}
                     />
                   )}
@@ -412,9 +415,9 @@ const Header = () => {
                   {/* Hover линия с плавной анимацией */}
                   {!isActive(item.path) && hoveredNav === item.path && (
                     <motion.div
-                      initial={{ scaleX: 0, opacity: 0 }}
-                      animate={{ scaleX: 1, opacity: 1 }}
-                      exit={{ scaleX: 0, opacity: 0 }}
+                      initial={{ scaleX: 0, opacity: 0, y: 4 }}
+                      animate={{ scaleX: 1, opacity: 1, y: 0 }}
+                      exit={{ scaleX: 0, opacity: 0, y: 4 }}
                       transition={{ 
                         duration: 0.3, 
                         ease: [0.25, 0.46, 0.45, 0.94],
@@ -422,15 +425,15 @@ const Header = () => {
                       }}
                       style={{
                         position: 'absolute',
-                        bottom: '-2px',
+                        bottom: '-8px',
                         left: '50%',
                         transform: 'translateX(-50%)',
                         width: '80%',
-                        height: '4px',
-                        background: 'linear-gradient(90deg, transparent 0%, #ff6b6b 20%, #ff6b6b 80%, transparent 100%)',
+                        height: '3px',
+                        background: 'linear-gradient(90deg, transparent 0%, #2C3E2D 20%, #2C3E2D 80%, transparent 100%)',
                         borderRadius: '2px',
                         transformOrigin: 'center',
-                        boxShadow: '0 0 12px rgba(255, 107, 107, 0.6)'
+                        boxShadow: '0 0 12px rgba(44, 62, 45, 0.6)'
                       }}
                     />
                   )}
@@ -903,6 +906,16 @@ const headerStyles = `
     display: flex;
   }
   
+  @media (max-width: 1024px) {
+    .kaif-header .desktop-nav {
+      gap: 1.5rem !important;
+    }
+    
+    .kaif-header .desktop-nav > div {
+      padding: 0 0.75rem !important;
+    }
+  }
+  
   @media (max-width: 768px) {
     .kaif-header .desktop-nav {
       display: none !important;
@@ -934,6 +947,16 @@ const headerStyles = `
   @media (max-width: 480px) {
     .kaif-header > div {
       padding: 0 0.5rem !important;
+    }
+    
+    .kaif-header img {
+      height: 32px !important;
+    }
+  }
+  
+  @media (max-width: 320px) {
+    .kaif-header > div {
+      padding: 0 0.25rem !important;
     }
   }
 `;
