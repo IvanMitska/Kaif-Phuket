@@ -369,10 +369,9 @@ const BanyaBookingSection = () => {
     window.open(`https://wa.me/${phoneNumber.replace(/\D/g, '')}?text=${message}`, '_blank');
   };
 
-  const handleLocationClick = () => {
-    const address = encodeURIComponent(t('common.address', '73, Baan Chalekiri Village, 6 Pra Phuket Keaw Road, Kathu'));
-    window.open(`https://maps.google.com/?q=${address}`, '_blank');
-  };
+      const handleLocationClick = () => {
+      window.open('https://maps.app.goo.gl/h7PzpHpBeurg7eK18', '_blank');
+    };
 
   const contactInfo = [
     {
@@ -390,7 +389,7 @@ const BanyaBookingSection = () => {
     {
       icon: ClockIcon,
       title: 'Hours',
-      value: '09:00 - 22:00',
+      value: '17:00 - 22:00',
       action: null
     }
   ];
