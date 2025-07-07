@@ -1,4 +1,4 @@
-import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d as c,I as p,R as m}from"./vendor-react-DH92txf0.js";import{d as f,m as g}from"./vendor-styles-BdfYSv7I.js";import{P as h}from"./PageScrollReset-Cnr3na49.js";import{P as b}from"./main-C_dtOZ8R.js";import{m as x,A as u}from"./vendor-animations-CUcon76j.js";import"./vendor-other-CZupzcPt.js";import"./vendor-i18n-C4kh69yx.js";f.div`
+import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d as c,I as p,R as m}from"./vendor-react-DH92txf0.js";import{d as f,m as g}from"./vendor-styles-BdfYSv7I.js";import{P as h}from"./PageScrollReset-Cnr3na49.js";import{P as b}from"./main-DYe-WvCy.js";import{m as x,A as u}from"./vendor-animations-CUcon76j.js";import"./vendor-other-CZupzcPt.js";import"./vendor-i18n-C4kh69yx.js";f.div`
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -429,10 +429,10 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   padding: 4rem 1.5rem;
   position: relative;
   z-index: 2;
-`,K=f.div`
+`,O=f.div`
   text-align: center;
   margin-bottom: 3rem;
-`,O=f.div`
+`,K=f.div`
   display: inline-flex;
   align-items: center;
   padding: 0.75rem 1.5rem;
@@ -564,7 +564,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   @media (max-width: 768px) {
     display: none;
   }
-`,Z=()=>{const{t:e}=t();return a.jsxs(T,{children:[a.jsx(J,{className:"top-left",children:"᚛ᚃᚔᚏᚓ᚜"}),a.jsx(J,{className:"bottom-right",children:"᚛ᚔᚉᚓ᚜"}),a.jsx(R,{intensity:"low"}),a.jsxs(H,{children:[a.jsx(K,{children:a.jsx(O,{children:"Банные программы"})}),a.jsx(W,{children:[{id:"light",title:"Огненный старт",subtitle:"Лёгкий пар",duration:"10 мин",price:"1200 бат",description:"1 заход, взвар дубовый"},{id:"medium",title:"Путь воина",subtitle:"Средний пар",duration:"15-20 мин",price:"2000 бат",description:"1 заход, взвар квас"},{id:"hard",title:"Сила Тора",subtitle:"Сильный пар",duration:"30 мин",price:"2600 бат",description:"2 захода, взвар: чесночный и цитрусовый"},{id:"valhalla",title:"Вальхалла",subtitle:"Крепкий пар",duration:"1 час",price:"3500 бат",description:"3 захода, взвар: цитрусовые, имбирный, пивной"}].map((e,t)=>a.jsxs(D,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.2*t},children:[a.jsxs(F,{children:[a.jsx(L,{children:e.title}),a.jsx(U,{children:e.subtitle}),a.jsx(M,{children:e.description})]}),a.jsxs(Q,{children:[a.jsx(X,{children:e.duration}),a.jsx(G,{children:e.price})]})]},e.id))})]})]})},ee=g`
+`,Z=()=>{const{t:e}=t();return a.jsxs(T,{children:[a.jsx(J,{className:"top-left",children:"᚛ᚃᚔᚏᚓ᚜"}),a.jsx(J,{className:"bottom-right",children:"᚛ᚔᚉᚓ᚜"}),a.jsx(R,{intensity:"low"}),a.jsxs(H,{children:[a.jsx(O,{children:a.jsx(K,{children:"Банные программы"})}),a.jsx(W,{children:[{id:"light",title:"Огненный старт",subtitle:"Лёгкий пар",duration:"10 мин",price:"1200 бат",description:"1 заход, взвар дубовый"},{id:"medium",title:"Путь воина",subtitle:"Средний пар",duration:"15-20 мин",price:"2000 бат",description:"1 заход, взвар квас"},{id:"hard",title:"Сила Тора",subtitle:"Сильный пар",duration:"30 мин",price:"2600 бат",description:"2 захода, взвар: чесночный и цитрусовый"},{id:"valhalla",title:"Вальхалла",subtitle:"Крепкий пар",duration:"1 час",price:"3500 бат",description:"3 захода, взвар: цитрусовые, имбирный, пивной"}].map((e,t)=>a.jsxs(D,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.2*t},children:[a.jsxs(F,{children:[a.jsx(L,{children:e.title}),a.jsx(U,{children:e.subtitle}),a.jsx(M,{children:e.description})]}),a.jsxs(Q,{children:[a.jsx(X,{children:e.duration}),a.jsx(G,{children:e.price})]})]},e.id))})]})]})},ee=g`
   0%, 100% { text-shadow: 0 0 10px #ff6b35, 0 0 20px #ff6b35; }
   50% { text-shadow: 0 0 20px #ff6b35, 0 0 30px #ff6b35, 0 0 40px #ff6b35; }
 `,te=g`
@@ -1112,13 +1112,13 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
       radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.06) 0%, transparent 50%);
     z-index: 1;
   }
-`,Ke=f.div`
+`,Oe=f.div`
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 clamp(1rem, 4vw, 2rem);
   position: relative;
   z-index: 2;
-`,Oe=f.div`
+`,Ke=f.div`
   text-align: center;
   margin-bottom: clamp(4rem, 8vw, 6rem);
 `,We=f(x.div)`
@@ -1211,11 +1211,15 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
 `,Qe=f.h3`
   font-size: clamp(1.125rem, 2.5vw, 1.5rem);
   font-weight: 600;
-  color: ${e=>e.$isOpen?"#f5f5f5":"#cccccc"};
+  color: ${e=>e.$isOpen?"#ffffff":"#cccccc"};
   margin: 0;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  text-shadow: ${e=>e.$isOpen?"0 0 10px rgba(255, 255, 255, 0.3)":"1px 1px 2px rgba(0, 0, 0, 0.8)"};
   flex: 1;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: #ffffff;
+  }
 `,Xe=f.div`
   width: 40px;
   height: 40px;
@@ -1237,13 +1241,16 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   }
 `,Ge=f(x.div)`
   padding: 0 2.5rem 2rem;
-  color: #f5f5f5;
-  font-size: 1rem;
-  line-height: 1.7;
+  color: #ffffff;
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  line-height: 1.8;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  letter-spacing: 0.01em;
   
   p {
     margin: 0 0 1rem 0;
+    color: #ffffff;
+    font-weight: 400;
     
     &:last-child {
       margin-bottom: 0;
@@ -1270,7 +1277,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   @media (max-width: 768px) {
     display: none;
   }
-`,Ze=()=>{const{t:i}=t(),[r,o]=e.useState(null),n=[{question:i("banya.faq.questions.panoramic.question","What's special about the panoramic banya?"),answer:i("banya.faq.questions.panoramic.answer","Our banya is unique with several features: 150 square meters with panoramic jungle windows, built from Siberian cedar and Altai linden - premium natural materials. It's the only panoramic Russian banya in Phuket where you can enjoy traditional banya rituals with tropical nature views.")},{question:i("banya.faq.questions.procedures.question","What procedures are included in the banya ritual?"),answer:i("banya.faq.questions.procedures.answer","Depending on your chosen program you'll receive: classic banya ritual with birch brooms, aromatherapy with essential oils, herbal infusions and teas, option to order massage in the steam room, and personal accompaniment by a master attendant for VIP programs.")},{question:i("banya.faq.questions.materials.question","What materials is the banya built from?"),answer:i("banya.faq.questions.materials.answer","The banya is built exclusively from natural eco-friendly materials: Siberian cedar, Altai linden, Karelian birch. All finishes are natural, without chemical additives. Such materials create a special microclimate and provide natural aromatherapy.")}];return a.jsxs(He,{children:[a.jsxs(Ke,{children:[a.jsxs(Oe,{children:[a.jsx(We,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6},children:i("banya.faq.badge","Questions & Answers")}),a.jsxs(De,{initial:{opacity:0,y:30},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.8,delay:.2},children:["Frequently Asked ",a.jsx("span",{className:"highlight",children:"Questions"})]}),a.jsx(Fe,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.4},children:i("banya.faq.subtitle","Answers to the most popular questions about our banya")})]}),a.jsx(Le,{children:n.map((e,t)=>a.jsxs(Ue,{initial:{opacity:0,y:30},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.1*t},children:[a.jsxs(Me,{onClick:()=>(e=>{o(r===e?null:e)})(t),children:[a.jsx(Qe,{$isOpen:r===t,children:e.question}),a.jsx(Xe,{$isOpen:r===t,children:a.jsx(p,{})})]}),a.jsx(u,{children:r===t&&a.jsx(Ge,{initial:{height:0,opacity:0},animate:{height:"auto",opacity:1},exit:{height:0,opacity:0},transition:{duration:.3,ease:"easeInOut"},children:a.jsx("p",{children:e.answer})})})]},t))})]}),a.jsx(Je,{className:"left",children:"ᚠ"}),a.jsx(Je,{className:"right",children:"ᚢ"})]})},et=f.div`
+`,Ze=()=>{const{t:i}=t(),[r,o]=e.useState(null),n=[{question:i("banya.faq.questions.panoramic.question","What's special about the panoramic banya?"),answer:i("banya.faq.questions.panoramic.answer","Our banya is unique with several features: 150 square meters with panoramic jungle windows, built from Siberian cedar and Altai linden - premium natural materials. It's the only panoramic Russian banya in Phuket where you can enjoy traditional banya rituals with tropical nature views.")},{question:i("banya.faq.questions.procedures.question","What procedures are included in the banya ritual?"),answer:i("banya.faq.questions.procedures.answer","Depending on your chosen program you'll receive: classic banya ritual with birch brooms, aromatherapy with essential oils, herbal infusions and teas, option to order massage in the steam room, and personal accompaniment by a master attendant for VIP programs.")},{question:i("banya.faq.questions.materials.question","What materials is the banya built from?"),answer:i("banya.faq.questions.materials.answer","The banya is built exclusively from natural eco-friendly materials: Siberian cedar, Altai linden, Karelian birch. All finishes are natural, without chemical additives. Such materials create a special microclimate and provide natural aromatherapy.")}];return a.jsxs(He,{children:[a.jsxs(Oe,{children:[a.jsxs(Ke,{children:[a.jsx(We,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6},children:i("banya.faq.badge","Questions & Answers")}),a.jsxs(De,{initial:{opacity:0,y:30},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.8,delay:.2},children:["Frequently Asked ",a.jsx("span",{className:"highlight",children:"Questions"})]}),a.jsx(Fe,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.4},children:i("banya.faq.subtitle","Answers to the most popular questions about our banya")})]}),a.jsx(Le,{children:n.map((e,t)=>a.jsxs(Ue,{initial:{opacity:0,y:30},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.1*t},children:[a.jsxs(Me,{onClick:()=>(e=>{o(r===e?null:e)})(t),children:[a.jsx(Qe,{$isOpen:r===t,children:e.question}),a.jsx(Xe,{$isOpen:r===t,children:a.jsx(p,{})})]}),a.jsx(u,{children:r===t&&a.jsx(Ge,{initial:{height:0,opacity:0},animate:{height:"auto",opacity:1},exit:{height:0,opacity:0},transition:{duration:.3,ease:"easeInOut"},children:a.jsx("p",{children:e.answer})})})]},t))})]}),a.jsx(Je,{className:"left",children:"ᚠ"}),a.jsx(Je,{className:"right",children:"ᚢ"})]})},et=f.div`
   background: transparent;
   color: ${e=>e.theme.colors.text.primary};
   min-height: 100vh;
