@@ -214,35 +214,35 @@ const BanyaServicesSection = () => {
   const rituals = [
     {
       id: 'light',
-      title: 'Огненный старт',
-      subtitle: 'Лёгкий пар',
-      duration: '10 мин',
-      price: '1200 бат',
-      description: '1 заход, взвар дубовый'
+      title: t('banya.services.rituals.light.title'),
+      subtitle: t('banya.services.rituals.light.subtitle'),
+      duration: t('banya.services.rituals.light.duration'),
+      price: t('banya.services.rituals.light.price'),
+      description: t('banya.services.rituals.light.description')
     },
     {
       id: 'medium',
-      title: 'Путь воина',
-      subtitle: 'Средний пар',
-      duration: '15-20 мин',
-      price: '2000 бат',
-      description: '1 заход, взвар квас'
+      title: t('banya.services.rituals.medium.title'),
+      subtitle: t('banya.services.rituals.medium.subtitle'),
+      duration: t('banya.services.rituals.medium.duration'),
+      price: t('banya.services.rituals.medium.price'),
+      description: t('banya.services.rituals.medium.description')
     },
     {
       id: 'hard',
-      title: 'Сила Тора',
-      subtitle: 'Сильный пар',
-      duration: '30 мин',
-      price: '2600 бат',
-      description: '2 захода, взвар: чесночный и цитрусовый'
+      title: t('banya.services.rituals.hard.title'),
+      subtitle: t('banya.services.rituals.hard.subtitle'),
+      duration: t('banya.services.rituals.hard.duration'),
+      price: t('banya.services.rituals.hard.price'),
+      description: t('banya.services.rituals.hard.description')
     },
     {
       id: 'valhalla',
-      title: 'Вальхалла',
-      subtitle: 'Крепкий пар',
-      duration: '1 час',
-      price: '3500 бат',
-      description: '3 захода, взвар: цитрусовые, имбирный, пивной'
+      title: t('banya.services.rituals.valhalla.title'),
+      subtitle: t('banya.services.rituals.valhalla.subtitle'),
+      duration: t('banya.services.rituals.valhalla.duration'),
+      price: t('banya.services.rituals.valhalla.price'),
+      description: t('banya.services.rituals.valhalla.description')
     }
   ];
 
@@ -254,7 +254,7 @@ const BanyaServicesSection = () => {
       <ContentWrapper>
         <SectionHeader>
           <HeaderTitle>
-            Банные программы
+            {t('banya.services.badge')}
           </HeaderTitle>
         </SectionHeader>
 

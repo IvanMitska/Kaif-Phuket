@@ -2155,8 +2155,8 @@
       }
     },
     "features": {
-      "badge": "Our Advantages",
-      "title": "Why Choose Us",
+      "badge": "Best Banya in Phuket",
+      "title": "Why Choose <span className=\"highlight\">Us</span>",
       "subtitle": "The only panoramic Russian banya in Phuket made from natural Siberian cedar and Altai linden materials",
       "materials": {
         "title": "Natural Materials",
@@ -2218,6 +2218,36 @@
       "badge": "Banya Programs",
       "title": "Choose Your Banya Ritual",
       "description": "From panoramic banya with jungle views to private VIP rituals with master attendants",
+      "rituals": {
+        "light": {
+          "title": "Fire Start",
+          "subtitle": "Light steam",
+          "duration": "10 min",
+          "price": "1,200 THB",
+          "description": "1 session, oak infusion"
+        },
+        "medium": {
+          "title": "Warrior's Path",
+          "subtitle": "Medium steam",
+          "duration": "15-20 min",
+          "price": "2,000 THB",
+          "description": "1 session, kvass infusion"
+        },
+        "hard": {
+          "title": "Thor's Strength",
+          "subtitle": "Strong steam",
+          "duration": "30 min",
+          "price": "2,600 THB",
+          "description": "2 sessions, garlic and citrus infusions"
+        },
+        "valhalla": {
+          "title": "Valhalla",
+          "subtitle": "Intense steam",
+          "duration": "1 hour",
+          "price": "3,500 THB",
+          "description": "3 sessions, citrus, ginger, and beer infusions"
+        }
+      },
       "coming_soon": {
         "title": "Coming Soon",
         "description": "We are preparing unique banya programs with traditional Russian rituals and modern wellness procedures",
@@ -2227,7 +2257,7 @@
     },
     "faq": {
       "badge": "Questions & Answers",
-      "title": "Frequently Asked Questions",
+      "title": "Frequently Asked <span className=\"highlight\">Questions</span>",
       "subtitle": "Answers to the most popular questions about our banya",
       "questions": {
         "panoramic": {
@@ -2246,13 +2276,29 @@
     },
     "booking": {
       "badge": "Booking",
-      "title": "Book the Banya",
+      "title": "Book the <span className=\"highlight\">Banya</span>",
       "description": "Contact us through convenient channels for booking",
       "cta": {
-        "title": "Ready to immerse in the world of Russian banya?",
+        "title": "Ready to immerse in the world of <span className=\"highlight\">Russian Banya</span>?",
         "description": "Contact us for detailed information about prices, availability and features of our banya programs",
         "button": "Go to Contacts"
-      }
+      },
+      "contact": {
+        "whatsapp": {
+          "title": "WhatsApp",
+          "value": "Book via WhatsApp"
+        },
+        "location": {
+          "title": "Location",
+          "value": "Kathu, Phuket"
+        },
+        "hours": {
+          "title": "Hours",
+          "value": "17:00 - 22:00"
+        }
+      },
+      "book_whatsapp_button": "Book via WhatsApp",
+      "call_now_button": "Call Now"
     }
   },
 
@@ -2348,11 +2394,15 @@
         "booking": "Booking 24/7"
       },
       "social": {
-        "title": "Social Media"
+        "title": "Social Media",
+        "subtitle": "Follow us for the latest updates and promotions"
       },
       "whatsapp": {
         "text": "Message on WhatsApp",
         "greeting": "Hello! I would like to make a booking at KAIF"
+      },
+      "phone": {
+        "call_now": "Call Now"
       },
       "buttons": {
         "get_directions": "Get Directions",
@@ -2363,6 +2413,11 @@
     "social": {
       "title": "Follow us on social media",
       "subtitle": "Stay up to date with the latest KAIF news and promotions"
+    },
+    "whatsapp": {
+      "message_contact": "Hello! I would like to contact KAIF",
+      "message_book": "Hello! I would like to book a service at KAIF",
+      "message_general": "Hello! I have a question about KAIF"
     },
     "map": {
       "title": "How to find us",

@@ -376,20 +376,20 @@ const BanyaBookingSection = () => {
   const contactInfo = [
     {
       icon: ChatBubbleLeftRightIcon,
-      title: 'WhatsApp',
-      value: 'Book via WhatsApp',
+      title: t('banya.booking.contact.whatsapp.title', 'WhatsApp'),
+      value: t('banya.booking.contact.whatsapp.value', 'Book via WhatsApp'),
       action: handleWhatsAppClick
     },
     {
       icon: MapPinIcon,
-      title: 'Location',
-      value: 'Kathu, Phuket',
+      title: t('banya.booking.contact.location.title', 'Location'),
+      value: t('banya.booking.contact.location.value', 'Kathu, Phuket'),
       action: handleLocationClick
     },
     {
       icon: ClockIcon,
-      title: 'Hours',
-      value: '17:00 - 22:00',
+      title: t('banya.booking.contact.hours.title', 'Hours'),
+      value: t('banya.booking.contact.hours.value', '17:00 - 22:00'),
       action: null
     }
   ];
@@ -417,7 +417,7 @@ const BanyaBookingSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Book the <span className="highlight">Banya</span>
+            <span dangerouslySetInnerHTML={{ __html: t('banya.booking.title', 'Book the <span className="highlight">Banya</span>') }} />
           </SectionTitle>
           
           <SectionDescription
@@ -438,7 +438,7 @@ const BanyaBookingSection = () => {
         >
           <CTAContainer>
             <CTATitle>
-              Ready to immerse in the world of <span className="highlight">Russian Banya</span>?
+              <span dangerouslySetInnerHTML={{ __html: t('banya.booking.cta.title', 'Ready to immerse in the world of <span className="highlight">Russian Banya</span>?') }} />
             </CTATitle>
             
             <CTADescription>
@@ -472,7 +472,7 @@ const BanyaBookingSection = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <ChatBubbleLeftRightIcon />
-                Book via WhatsApp
+                {t('banya.booking.book_whatsapp_button', 'Book via WhatsApp')}
               </VikingButton>
             
               <SecondaryButton
@@ -481,7 +481,7 @@ const BanyaBookingSection = () => {
               whileTap={{ scale: 0.95 }}
             >
                 <PhoneIcon />
-                Call Now
+                {t('banya.booking.call_now_button', 'Call Now')}
               </SecondaryButton>
             </ButtonGroup>
           </CTAContainer>

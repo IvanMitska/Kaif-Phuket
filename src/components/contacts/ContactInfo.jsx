@@ -128,11 +128,11 @@ const ContactInfo = () => {
     <Section>
       <ContentContainer>
         <SectionTitle>
-          {t('contacts.info.title', 'Контактная информация')}
+          {t('contacts.info.title', 'Contact Information')}
         </SectionTitle>
         
         <SectionSubtitle>
-          {t('contacts.info.subtitle', 'Свяжитесь с нами удобным способом')}
+          {t('contacts.info.subtitle', 'Contact us in a convenient way')}
         </SectionSubtitle>
 
         <Grid style={{ marginTop: '4rem' }}>
@@ -141,17 +141,17 @@ const ContactInfo = () => {
             <IconContainer>
               <MapPinIcon />
             </IconContainer>
-            <ContactTitle>{t('contacts.info.address.title', 'Адрес')}</ContactTitle>
+            <ContactTitle>{t('contacts.info.address.title', 'Address')}</ContactTitle>
             <ContactDetails>
               <div>
                 <div>{t('contacts.info.address.text', '73, Baan Chalekiri Village, 6 Pra Phuket Keaw Road, Kathu')}</div>
-                <div>{t('contacts.info.address.country', 'Пхукет, Таиланд')}</div>
+                <div>{t('contacts.info.address.country', 'Phuket, Thailand')}</div>
                 <ContactLink 
                   href="https://maps.google.com/?q=73+Baan+Chalekiri+Village+Kathu+Phuket" 
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {t('contacts.info.buttons.get_directions', 'Проложить маршрут')}
+                  {t('contacts.info.buttons.get_directions', 'Get Directions')}
                   <ArrowTopRightOnSquareIcon />
                 </ContactLink>
               </div>
@@ -163,21 +163,21 @@ const ContactInfo = () => {
             <IconContainer>
               <PhoneIcon />
             </IconContainer>
-            <ContactTitle>{t('contacts.info.phone.title', 'Телефон')}</ContactTitle>
+            <ContactTitle>{t('contacts.info.phone.title', 'Phone')}</ContactTitle>
             <ContactDetails>
               <div>
                 <div>
                   <a href="tel:+66624805877">{t('contacts.info.phone.number', '+66 62 480 5877')}</a>
                 </div>
                 <div style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>
-                  {t('contacts.info.phone.hours', 'WhatsApp доступен')}
+                  {t('contacts.info.phone.hours', 'WhatsApp Available')}
                 </div>
                 <ContactLink 
-                  href={`https://wa.me/66624805877?text=${encodeURIComponent(t('contacts.info.whatsapp.greeting', 'Здравствуйте! Хочу записаться в KAIF'))}`}
+                  href={`https://wa.me/66624805877?text=${encodeURIComponent(t('contacts.info.whatsapp.greeting', 'Hello! I would like to book at KAIF'))}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {t('contacts.info.buttons.contact', 'Связаться')}
+                  {t('contacts.info.buttons.contact', 'Contact')}
                   <ArrowTopRightOnSquareIcon />
                 </ContactLink>
               </div>
@@ -189,17 +189,17 @@ const ContactInfo = () => {
             <IconContainer>
               <ClockIcon />
             </IconContainer>
-            <ContactTitle>{t('contacts.info.hours.title', 'Время работы')}</ContactTitle>
+            <ContactTitle>{t('contacts.info.hours.title', 'Opening Hours')}</ContactTitle>
             <ContactDetails>
               <div>
-                <div>{t('contacts.info.hours.daily', 'Ежедневно: 7:00 - 22:00')}</div>
-                <div>{t('contacts.info.hours.booking', 'Бронирование 24/7')}</div>
+                <div>{t('contacts.info.hours.daily', 'Daily: 7:00 AM - 10:00 PM')}</div>
+                <div>{t('contacts.info.hours.booking', 'Booking 24/7')}</div>
                 <ContactLink 
                   href="https://n807534.yclients.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {t('contacts.info.buttons.book', 'Забронировать')}
+                  {t('contacts.info.buttons.book', 'Book Now')}
                   <ArrowTopRightOnSquareIcon />
                 </ContactLink>
               </div>

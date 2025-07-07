@@ -509,9 +509,14 @@ const ContentSection = styled(motion.section)`
 // Контактная информация
 const ContactGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-bottom: 6rem;
+  align-items: stretch;
+  
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -529,6 +534,10 @@ const ContactCard = styled(motion.div)`
   text-align: center;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 360px;
   
   &::after {
     content: '';
@@ -617,10 +626,19 @@ const ContactTitle = styled.h3`
   }
 `;
 
+const ContactContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: flex-start;
+`;
+
 const ContactDetails = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  height: 120px;
+  justify-content: center;
 `;
 
 const ContactDetail = styled.div`
@@ -656,8 +674,9 @@ const ContactAction = styled.a`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  margin-top: 1.5rem;
+  margin-top: auto;
   padding: 0.7rem 1.5rem;
+  align-self: center;
   border-radius: 50px;
   font-weight: 600;
   font-size: 0.9rem;
@@ -893,7 +912,8 @@ const ContactsPage = () => {
   };
 
   const openWhatsApp = () => {
-    window.open('https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20связаться%20с%20KAIF', '_blank');
+    const message = encodeURIComponent(t('contacts.whatsapp.message_general'));
+    window.open(`https://wa.me/66624805877?text=${message}`, '_blank');
   };
 
 
@@ -945,7 +965,7 @@ const ContactsPage = () => {
                 duration: 0.8
               }}
             >
-              <span>{t('contacts.hero.title', 'Контакты')}</span>
+              <span>{t('contacts.hero.title', 'Contacts')}</span>
             </HeroTitle>
             <HeroSubtitle
               initial={{ opacity: 0, y: 30 }}
@@ -955,7 +975,7 @@ const ContactsPage = () => {
                 duration: 0.8
               }}
             >
-              {t('contacts.hero.subtitle', 'Мы всегда готовы помочь вам и ответить на все ваши вопросы')}
+              {t('contacts.hero.subtitle', 'We are always ready to help you and answer all your questions')}
             </HeroSubtitle>
             
             <CallToActions
@@ -969,7 +989,7 @@ const ContactsPage = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
               >
-                {t('contacts.cta.primary', 'Связаться')}
+                {t('contacts.cta.primary', 'Contact Us')}
                 <ArrowLongRightIcon />
               </ActionButton>
               <ActionButton 
@@ -980,7 +1000,7 @@ const ContactsPage = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
               >
-                {t('contacts.cta.secondary', 'Наш адрес')}
+                {t('contacts.cta.secondary', 'Our Address')}
                 <MapPinIcon />
               </ActionButton>
             </CallToActions>
@@ -998,11 +1018,11 @@ const ContactsPage = () => {
       >
         <ContentContainer>
           <SafeAnimatedTitle delay={0} as={SectionTitle}>
-            {t('contacts.info.title', 'Свяжитесь с нами')}
+            {t('contacts.info.title', 'Contact Us')}
           </SafeAnimatedTitle>
           
           <SafeAnimatedTitle delay={0.1} as={SectionSubtitle}>
-            {t('contacts.info.subtitle', 'Выберите удобный способ связи')}
+            {t('contacts.info.subtitle', 'Choose a convenient way to contact us')}
           </SafeAnimatedTitle>
 
           <ContactGrid>
@@ -1011,30 +1031,32 @@ const ContactsPage = () => {
               delay={0.1}
               whileHover={!isMobileDevice ? { scale: 1.02, transition: { duration: 0.2 } } : undefined}
             >
-              <ContactIcon>
-                <PhoneIcon />
-              </ContactIcon>
-              <ContactTitle>{t('contacts.phone.title', 'Телефон')}</ContactTitle>
-              <ContactDetails>
+              <ContactContent>
+                <ContactIcon>
+                  <PhoneIcon />
+                </ContactIcon>
+                <ContactTitle>{t('contacts.phone.title', 'Phone')}</ContactTitle>
+                <ContactDetails>
                 <ContactDetail>
                   <PhoneIcon />
                   <span>+66 62 480 5877</span>
                 </ContactDetail>
                 <ContactDetail>
                   <ChatBubbleLeftEllipsisIcon />
-                  <span>{t('contacts.phone.whatsapp', 'WhatsApp доступен')}</span>
+                  <span>{t('contacts.info.phone.hours', 'WhatsApp available')}</span>
                 </ContactDetail>
-                <ContactAction 
-                  href="https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20записаться%20в%20KAIF"
+                </ContactDetails>
+              </ContactContent>
+              <ContactAction 
+                  href={`https://wa.me/66624805877?text=${encodeURIComponent(t('contacts.whatsapp.message_contact'))}`}
                   target="_blank" 
                   rel="noopener noreferrer"
                 >
-                  {t('contacts.phone.call_now', 'Связаться')}
+                  {t('contacts.buttons.contact', 'Contact')}
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
                     <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
                   </svg>
                 </ContactAction>
-              </ContactDetails>
             </SafeAnimatedCard>
 
             <SafeAnimatedCard
@@ -1042,26 +1064,28 @@ const ContactsPage = () => {
               delay={0.15}
               whileHover={!isMobileDevice ? { scale: 1.02, transition: { duration: 0.2 } } : undefined}
             >
-              <ContactIcon>
-                <MapPinIcon />
-              </ContactIcon>
-              <ContactTitle>{t('contacts.address.title', 'Адрес')}</ContactTitle>
-              <ContactDetails>
+              <ContactContent>
+                <ContactIcon>
+                  <MapPinIcon />
+                </ContactIcon>
+                <ContactTitle>{t('contacts.info.address.title', 'Address')}</ContactTitle>
+                <ContactDetails>
                 <ContactDetail>
                   <MapPinIcon />
                   <span>73, Baan Chalekiri Village, 6 Pra Phuket Keaw Road, Kathu</span>
                 </ContactDetail>
-                <ContactAction 
+                </ContactDetails>
+              </ContactContent>
+              <ContactAction 
                   href="https://maps.google.com/?q=73+Baan+Chalekiri+Village+Kathu+Phuket" 
                   target="_blank" 
                   rel="noopener noreferrer"
                 >
-                  {t('contacts.address.directions', 'Проложить маршрут')}
+                  {t('contacts.buttons.get_directions', 'Get Directions')}
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
                     <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
                   </svg>
                 </ContactAction>
-              </ContactDetails>
             </SafeAnimatedCard>
 
             <SafeAnimatedCard
@@ -1069,30 +1093,32 @@ const ContactsPage = () => {
               delay={0.2}
               whileHover={!isMobileDevice ? { scale: 1.02, transition: { duration: 0.2 } } : undefined}
             >
-              <ContactIcon>
-                <ClockIcon />
-              </ContactIcon>
-              <ContactTitle>{t('contacts.hours.title', 'Время работы')}</ContactTitle>
-              <ContactDetails>
+              <ContactContent>
+                <ContactIcon>
+                  <ClockIcon />
+                </ContactIcon>
+                <ContactTitle>{t('contacts.info.hours.title', 'Working Hours')}</ContactTitle>
+                <ContactDetails>
                 <ContactDetail>
                   <ClockIcon />
-                  <span>{t('contacts.hours.daily', 'Ежедневно: 7:00 - 22:00')}</span>
+                  <span>{t('contacts.info.hours.daily', 'Daily: 7:00 - 22:00')}</span>
                 </ContactDetail>
                 <ContactDetail>
                   <UserIcon />
-                  <span>{t('contacts.hours.booking', 'Бронирование 24/7')}</span>
+                  <span>{t('contacts.info.hours.booking', 'Booking 24/7')}</span>
                 </ContactDetail>
-                <ContactAction 
-                  href="https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20забронировать%20услуги%20KAIF"
+                </ContactDetails>
+              </ContactContent>
+              <ContactAction 
+                  href={`https://wa.me/66624805877?text=${encodeURIComponent(t('contacts.whatsapp.message_book'))}`}
                   target="_blank" 
                   rel="noopener noreferrer"
                 >
-                  {t('contacts.hours.book', 'Забронировать')}
+                  {t('contacts.buttons.book', 'Book Now')}
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
                     <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
                   </svg>
                 </ContactAction>
-              </ContactDetails>
             </SafeAnimatedCard>
           </ContactGrid>
         </ContentContainer>

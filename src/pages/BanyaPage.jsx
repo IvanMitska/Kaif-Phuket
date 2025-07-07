@@ -30,7 +30,7 @@ const BanyaPage = () => {
   
 
   React.useEffect(() => {
-    console.log('BanyaPage загружается...');
+    console.log('BanyaPage loading...');
    
     document.body.classList.add('banya-page');
     
@@ -44,7 +44,7 @@ const BanyaPage = () => {
     
     
     return () => {
-      console.log('BanyaPage выгружается...');
+      console.log('BanyaPage unloading...');
       document.body.classList.remove('banya-page');
       clearTimeout(timer);
     };

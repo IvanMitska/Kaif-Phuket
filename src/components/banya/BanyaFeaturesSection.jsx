@@ -340,7 +340,7 @@ const BanyaFeaturesSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Why Choose <span className="highlight">Us</span>
+            <span dangerouslySetInnerHTML={{ __html: t('banya.features.title', 'Why Choose <span className="highlight">Us</span>') }} />
           </SectionTitle>
           
           <SectionDescription

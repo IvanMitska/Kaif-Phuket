@@ -274,7 +274,7 @@ const BanyaFAQSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Frequently Asked <span className="highlight">Questions</span>
+            <span dangerouslySetInnerHTML={{ __html: t('banya.faq.title', 'Frequently Asked <span className="highlight">Questions</span>') }} />
           </SectionTitle>
           
           <SectionDescription
