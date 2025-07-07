@@ -48,6 +48,7 @@ const BackgroundSlider = styled.div`
   right: 0;
   bottom: 0;
   z-index: 1;
+  height: 100%;
 `;
 
 const BackgroundImage = styled(motion.div)`
@@ -59,6 +60,7 @@ const BackgroundImage = styled(motion.div)`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  height: 100%;
   
   &::before {
     content: '';

@@ -1,131 +1,31 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { 
-  ArrowRightIcon,
-  FireIcon,
-  SparklesIcon,
-  HeartIcon,
-  UserGroupIcon,
-  CheckIcon,
-  ClockIcon
-} from '@heroicons/react/24/solid';
+import SparksEffect from './SparksEffect';
 
 // =============================================================================
-// МИНИМАЛИСТИЧНАЯ СЕКЦИЯ УСЛУГ
+// СКАНДИНАВСКАЯ СЕКЦИЯ УСЛУГ БАНИ
 // =============================================================================
+
+const runeGlow = keyframes`
+  0%, 100% { text-shadow: 0 0 10px #ff6b35, 0 0 20px #ff6b35; }
+  50% { text-shadow: 0 0 20px #ff6b35, 0 0 30px #ff6b35, 0 0 40px #ff6b35; }
+`;
+
+const vikingPulse = keyframes`
+  0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 107, 53, 0.3); }
+  50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 107, 53, 0.5); }
+`;
 
 const ServicesContainer = styled.section`
-  padding: clamp(4rem, 8vw, 8rem) 0;
-  background: white;
-  position: relative;
-`;
-
-const ContentWrapper = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 clamp(1rem, 4vw, 2rem);
-`;
-
-const SectionHeader = styled.div`
-  text-align: center;
-  margin-bottom: clamp(4rem, 8vw, 6rem);
-`;
-
-const Badge = styled(motion.div)`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: rgba(230, 126, 34, 0.08);
-  border: 1px solid rgba(230, 126, 34, 0.15);
-  border-radius: 50px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #90B3A7;
-  margin-bottom: 2rem;
-  
-  svg {
-    width: 1rem;
-    height: 1rem;
-    color: #90B3A7;
-  }
-`;
-
-const SectionTitle = styled(motion.h2)`
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 300;
-  color: #1a1a1a;
-  margin-bottom: 2rem;
-  line-height: 1.2;
-`;
-
-const SectionDescription = styled(motion.p)`
-  font-size: clamp(1.125rem, 2vw, 1.25rem);
-  line-height: 1.6;
-  color: #666;
-  max-width: 700px;
-  margin: 0 auto;
-`;
-
-const ServicesGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-`;
-
-const ServiceCard = styled(motion.div)`
-  background: white;
-  border: 1px solid #f8f8f8;
-  border-radius: 32px;
-  padding: 3rem 2.5rem;
-  text-align: center;
+  padding: 0;
+  margin-top: -1px;
+  background: #0f0f0f;
   position: relative;
   overflow: hidden;
-  transition: all 0.4s ease;
-  
-  ${props => props.$highlight && `
-    border-color: #90B3A7;
-    box-shadow: 0 4px 20px rgba(144, 179, 167, 0.08);
-    
-    &::before {
-      content: 'Popular';
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: #90B3A7;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      z-index: 3;
-    }
-  `}
-  
-  &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
-    border-color: rgba(144, 179, 167, 0.3);
-  }
-`;
+  margin-bottom: 0;
 
-const ServiceImage = styled.div`
-  height: 200px;
-  background: ${props => props.$image ? `url(${props.$image})` : props.$gradient};
-  background-size: cover;
-  background-position: center;
-  border-radius: 24px;
-  margin-bottom: 2rem;
-  position: relative;
-  overflow: hidden;
-  
   &::before {
     content: '';
     position: absolute;
@@ -133,7 +33,76 @@ const ServiceImage = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, rgba(144, 179, 167, 0.08) 100%);
+    background: 
+      radial-gradient(circle at 30% 20%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(255, 107, 53, 0.08) 0%, transparent 50%);
+    z-index: 1;
+  }
+`;
+
+const ContentWrapper = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  position: relative;
+  z-index: 2;
+`;
+
+const SectionHeader = styled.div`
+  text-align: center;
+  margin-bottom: 3rem;
+`;
+
+const HeaderTitle = styled.div`
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid #ff6b35;
+  border-radius: 8px;
+  color: #ff6b35;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  
+  &::before {
+    content: '🔥';
+    font-size: 1.2em;
+    margin-right: 0.75rem;
+  }
+`;
+
+const RitualsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 0 auto;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
+
+const RitualCard = styled(motion.div)`
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.9) 100%);
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ff6b35, #ffd662, #ff6b35);
+    background-size: 200px 100%;
+    animation: shimmer 2s linear infinite;
     opacity: 0;
     transition: opacity 0.3s ease;
   }
@@ -141,231 +110,175 @@ const ServiceImage = styled.div`
   &:hover::before {
     opacity: 1;
   }
-`;
 
-const ServiceTitle = styled.h3`
-  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-  font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 1rem;
-`;
+  &:hover {
+    border-color: #ff6b35;
+    transform: translateY(-10px);
+    box-shadow: 
+      0 25px 50px rgba(0, 0, 0, 0.5),
+      0 0 40px rgba(255, 107, 53, 0.3);
+  }
 
-const ServiceDescription = styled.p`
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #666;
-  margin-bottom: 1.5rem;
-`;
-
-const ServiceFeatures = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0 0 2rem 0;
-  text-align: left;
-`;
-
-const ServiceFeature = styled.li`
-  font-size: 0.875rem;
-  color: #555;
-  margin-bottom: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  
-  &::before {
-    content: '✓';
-    color: #90B3A7;
-    font-weight: bold;
-    font-size: 1rem;
+  @keyframes shimmer {
+    0% { background-position: -200px 0; }
+    100% { background-position: 200px 0; }
   }
 `;
 
-const ServicePrice = styled.div`
-  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+const RitualHeader = styled.div`
+  margin-bottom: 1.5rem;
+`;
+
+const RitualTitle = styled.h3`
+  font-size: 2rem;
   font-weight: 700;
-  color: #90B3A7;
-  margin-bottom: 1.5rem;
-  
-  span {
-    font-size: 0.875rem;
-    font-weight: 400;
-    color: #666;
-  }
+  color: #fff;
+  margin: 0;
+  line-height: 1.2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 `;
 
-const ServiceButton = styled(motion.button)`
-  width: 100%;
-  padding: 1.25rem 2rem;
-  background: #90B3A7;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  transition: all 0.4s ease;
-  
-  &:hover {
-    background: #7DA399;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(144, 179, 167, 0.25);
-  }
-  
-  svg {
-    width: 1rem;
-    height: 1rem;
-    transition: transform 0.3s ease;
-  }
-  
-  &:hover svg {
-    transform: translateX(3px);
-  }
-`;
-
-// Заглушка "Скоро открытие"
-const ComingSoonCard = styled(motion.div)`
-  background: white;
-  border: 1px solid #f8f8f8;
-  border-radius: 32px;
-  padding: 4rem 3rem;
-  text-align: center;
-  transition: all 0.4s ease;
-  max-width: 600px;
-  margin: 0 auto;
-  
-  &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
-    border-color: rgba(144, 179, 167, 0.3);
-  }
-`;
-
-const ComingSoonIcon = styled.div`
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #90B3A7, #A8C5B8);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 2rem;
-  box-shadow: 0 8px 24px rgba(144, 179, 167, 0.15);
-  
-  svg {
-    width: 2rem;
-    height: 2rem;
-    color: white;
-  }
-`;
-
-const ComingSoonTitle = styled.h3`
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 1rem;
-`;
-
-const ComingSoonText = styled.p`
+const RitualSubtitle = styled.div`
+  color: #ff6b35;
   font-size: 1.125rem;
-  line-height: 1.6;
-  color: #666;
-  margin-bottom: 2rem;
-`;
-
-const ComingSoonSubtext = styled.p`
-  font-size: 1rem;
-  color: #90B3A7;
+  margin-top: 0.5rem;
   font-weight: 500;
+  animation: ${runeGlow} 4s ease-in-out infinite;
 `;
 
-// =============================================================================
-// КОМПОНЕНТ
-// =============================================================================
+const RitualDescription = styled.div`
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  margin-top: 0.75rem;
+  font-style: italic;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+`;
+
+const RitualDetails = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 107, 53, 0.2);
+`;
+
+const RitualDuration = styled.div`
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &::before {
+    content: '⏱';
+    font-size: 1.2rem;
+    animation: ${vikingPulse} 3s ease-in-out infinite;
+  }
+`;
+
+const RitualPrice = styled.div`
+  color: #ffd662;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+`;
+
+// Декоративные элементы
+const VikingOrnament = styled.div`
+  position: absolute;
+  font-size: 3rem;
+  color: rgba(255, 107, 53, 0.1);
+  z-index: 1;
+  
+  &.top-left {
+    top: 5%;
+    left: 5%;
+    transform: rotate(-30deg);
+  }
+  
+  &.bottom-right {
+    bottom: 5%;
+    right: 5%;
+    transform: rotate(30deg);
+  }
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
 
 const BanyaServicesSection = () => {
   const { t } = useTranslation();
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
+  const rituals = [
+    {
+      id: 'light',
+      title: 'Огненный старт',
+      subtitle: 'Лёгкий пар',
+      duration: '10 мин',
+      price: '1200 бат',
+      description: '1 заход, взвар дубовый'
+    },
+    {
+      id: 'medium',
+      title: 'Путь воина',
+      subtitle: 'Средний пар',
+      duration: '15-20 мин',
+      price: '2000 бат',
+      description: '1 заход, взвар квас'
+    },
+    {
+      id: 'hard',
+      title: 'Сила Тора',
+      subtitle: 'Сильный пар',
+      duration: '30 мин',
+      price: '2600 бат',
+      description: '2 захода, взвар: чесночный и цитрусовый'
+    },
+    {
+      id: 'valhalla',
+      title: 'Вальхалла',
+      subtitle: 'Крепкий пар',
+      duration: '1 час',
+      price: '3500 бат',
+      description: '3 захода, взвар: цитрусовые, имбирный, пивной'
     }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
+  ];
 
   return (
     <ServicesContainer>
+      <VikingOrnament className="top-left">᚛ᚃᚔᚏᚓ᚜</VikingOrnament>
+      <VikingOrnament className="bottom-right">᚛ᚔᚉᚓ᚜</VikingOrnament>
+      <SparksEffect intensity="low" />
       <ContentWrapper>
         <SectionHeader>
-          <Badge
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <FireIcon />
-            {t('banya.services.badge', 'Банные программы')}
-          </Badge>
-          
-          <SectionTitle
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            {t('banya.services.title', 'Выберите свой банный ритуал')}
-          </SectionTitle>
-          
-          <SectionDescription
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            {t('banya.services.description', 'От панорамной бани с видом на джунгли до приватных VIP-ритуалов с мастером парения')}
-          </SectionDescription>
+          <HeaderTitle>
+            Банные программы
+          </HeaderTitle>
         </SectionHeader>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <ComingSoonCard variants={itemVariants}>
-            <ComingSoonIcon>
-              <ClockIcon />
-            </ComingSoonIcon>
-            
-            <ComingSoonTitle>{t('banya.services.coming_soon.title', 'Скоро открытие')}</ComingSoonTitle>
-            
-            <ComingSoonText>
-              {t('banya.services.coming_soon.description', 'Мы готовим для вас уникальные банные программы с традиционными русскими ритуалами и современными wellness-процедурами')}
-            </ComingSoonText>
-            
-            <ComingSoonSubtext>
-              {t('banya.services.coming_soon.subtext', 'Следите за новостями — скоро мы обновим этот раздел!')}
-            </ComingSoonSubtext>
-          </ComingSoonCard>
-        </motion.div>
+        <RitualsGrid>
+          {rituals.map((ritual, index) => (
+            <RitualCard
+              key={ritual.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+            >
+              <RitualHeader>
+                <RitualTitle>{ritual.title}</RitualTitle>
+                <RitualSubtitle>{ritual.subtitle}</RitualSubtitle>
+                <RitualDescription>{ritual.description}</RitualDescription>
+              </RitualHeader>
+              <RitualDetails>
+                <RitualDuration>{ritual.duration}</RitualDuration>
+                <RitualPrice>{ritual.price}</RitualPrice>
+              </RitualDetails>
+            </RitualCard>
+          ))}
+        </RitualsGrid>
       </ContentWrapper>
     </ServicesContainer>
   );
