@@ -71,7 +71,7 @@ const BackgroundImage = styled(motion.div)`
       to bottom,
       rgba(0, 0, 0, 0.7) 0%,
       rgba(0, 0, 0, 0.5) 50%,
-      rgba(0, 0, 0, 0.7) 100%
+      rgba(0, 0, 0, 0) 100%
     );
     z-index: 1;
   }
