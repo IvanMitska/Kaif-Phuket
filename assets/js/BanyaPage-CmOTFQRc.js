@@ -1,4 +1,4 @@
-import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d as c,I as p,R as m}from"./vendor-react-DH92txf0.js";import{d as f,m as g}from"./vendor-styles-BdfYSv7I.js";import{P as h}from"./PageScrollReset-Cnr3na49.js";import{P as b}from"./main-B7Q6RO7I.js";import{m as x,A as u}from"./vendor-animations-CUcon76j.js";import"./vendor-other-CZupzcPt.js";import"./vendor-i18n-C4kh69yx.js";f.div`
+import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,d,F as c,I as p,R as m}from"./vendor-react-DH92txf0.js";import{d as f,m as g}from"./vendor-styles-BdfYSv7I.js";import{P as h}from"./PageScrollReset-Cnr3na49.js";import{P as b}from"./main-nwhNSQx8.js";import{m as x,A as u}from"./vendor-animations-CUcon76j.js";import"./vendor-other-CZupzcPt.js";import"./vendor-i18n-C4kh69yx.js";f.div`
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -212,7 +212,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   margin-bottom: 1rem;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
   letter-spacing: 0.05em;
-`,N=f(x.p)`
+`,C=f(x.p)`
   font-size: clamp(1.25rem, 3vw, 1.75rem);
   color: #cccccc;
   margin-bottom: 4rem;
@@ -222,7 +222,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
   font-weight: 300;
   line-height: 1.4;
-`,C=f(x.div)`
+`,N=f(x.div)`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -278,7 +278,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
     width: 1.5rem;
     height: 1.5rem;
   }
-`,A=f(x.button)`
+`,_=f(x.button)`
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -346,7 +346,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
       border-top: 8px solid #ff6b35;
     }
   }
-`;const _=f.div`
+`;const A=f.div`
   position: absolute;
   font-size: 2rem;
   color: rgba(255, 107, 53, 0.3);
@@ -379,7 +379,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   @media (max-width: 768px) {
     display: none;
   }
-`,V=e.memo(()=>{const{t:o}=t(),[n,s]=e.useState(0),[l,d]=e.useState(0),c=[{src:"/images/banya/panoramic.png",alt:o("banya.hero.images.panoramic","Panoramic sauna 150 m²")},{src:"/images/banya/private.jpg",alt:o("banya.hero.images.private","Private sauna")},{src:"/images/banya/public.jpg",alt:o("banya.hero.images.public","Public sauna")}];return e.useEffect(()=>{const e=setInterval(()=>{d(e=>(e+1)%c.length)},8e3);return()=>clearInterval(e)},[c.length]),e.useEffect(()=>{const e=setTimeout(()=>{s(l)},1500);return()=>clearTimeout(e)},[l]),a.jsxs(w,{children:[a.jsxs(v,{children:[a.jsx(j,{style:{backgroundImage:`url(${c[n].src})`,opacity:1,zIndex:1}},`current-${n}`),a.jsx(j,{initial:{opacity:0},animate:{opacity:n===l?0:1},transition:{duration:2,ease:"easeInOut"},style:{backgroundImage:`url(${c[l].src})`,zIndex:2}},`next-${l}`)]}),a.jsx(k,{}),a.jsx(_,{className:"top-left",children:"᚛ᚏᚓᚐᚉ᚜"}),a.jsx(_,{className:"top-right",children:"᚛ᚈᚓᚐᚉ᚜"}),a.jsx(_,{className:"bottom-left",children:"᚛ᚄᚐᚒᚈ᚜"}),a.jsx(_,{className:"bottom-right",children:"᚛ᚏᚓᚐᚉ᚜"}),a.jsxs(z,{children:[a.jsx($,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.8},children:o("banya.hero.badge","ЛУЧШАЯ БАНЯ ПХУКЕТА")}),a.jsx(I,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:1,delay:.2},dangerouslySetInnerHTML:{__html:o("banya.hero.title",'Панорамная <span class="highlight">русская баня</span>')}}),a.jsx(q,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.8,delay:.4},children:o("banya.hero.area","150 квадратных метров")}),a.jsx(N,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.8,delay:.6},children:o("banya.hero.subtitle","Баня из сибирского кедра и алтайской липы")}),a.jsxs(C,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.8,delay:.8},children:[a.jsxs(B,{onClick:()=>{const e=o("common.phone_number","+66 62 480 5877"),t=encodeURIComponent(o("common.whatsapp_messages.book_banya","Hello! I would like to book the Russian Banya"));window.open(`https://wa.me/${e.replace(/\D/g,"")}?text=${t}`,"_blank")},whileHover:{scale:1.05},whileTap:{scale:.95},children:[a.jsx(i,{}),o("banya.hero.book_button","ЗАБРОНИРОВАТЬ")]}),a.jsxs(A,{onClick:()=>{const e=o("common.phone_number","+66 62 480 5877");window.open(`tel:${e}`,"_self")},whileHover:{scale:1.05},whileTap:{scale:.95},children:[a.jsx(r,{}),o("banya.hero.contacts_button","КОНТАКТЫ")]})]})]})]})}),P=f.div`
+`,P=e.memo(()=>{const{t:o}=t(),[n,s]=e.useState(0),[l,d]=e.useState(0),c=[{src:"/images/banya/panoramic.png",alt:o("banya.hero.images.panoramic","Panoramic sauna 150 m²")},{src:"/images/banya/private.jpg",alt:o("banya.hero.images.private","Private sauna")},{src:"/images/banya/public.jpg",alt:o("banya.hero.images.public","Public sauna")}];return e.useEffect(()=>{const e=setInterval(()=>{d(e=>(e+1)%c.length)},8e3);return()=>clearInterval(e)},[c.length]),e.useEffect(()=>{const e=setTimeout(()=>{s(l)},1500);return()=>clearTimeout(e)},[l]),a.jsxs(w,{children:[a.jsxs(v,{children:[a.jsx(j,{style:{backgroundImage:`url(${c[n].src})`,opacity:1,zIndex:1}},`current-${n}`),a.jsx(j,{initial:{opacity:0},animate:{opacity:n===l?0:1},transition:{duration:2,ease:"easeInOut"},style:{backgroundImage:`url(${c[l].src})`,zIndex:2}},`next-${l}`)]}),a.jsx(k,{}),a.jsx(A,{className:"top-left",children:"᚛ᚏᚓᚐᚉ᚜"}),a.jsx(A,{className:"top-right",children:"᚛ᚈᚓᚐᚉ᚜"}),a.jsx(A,{className:"bottom-left",children:"᚛ᚄᚐᚒᚈ᚜"}),a.jsx(A,{className:"bottom-right",children:"᚛ᚏᚓᚐᚉ᚜"}),a.jsxs(z,{children:[a.jsx($,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.8},children:o("banya.hero.badge","ЛУЧШАЯ БАНЯ ПХУКЕТА")}),a.jsx(I,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:1,delay:.2},dangerouslySetInnerHTML:{__html:o("banya.hero.title",'Панорамная <span class="highlight">русская баня</span>')}}),a.jsx(q,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.8,delay:.4},children:o("banya.hero.area","150 квадратных метров")}),a.jsx(C,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.8,delay:.6},children:o("banya.hero.subtitle","Баня из сибирского кедра и алтайской липы")}),a.jsxs(N,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.8,delay:.8},children:[a.jsxs(B,{onClick:()=>{const e=o("common.phone_number","+66 62 480 5877"),t=encodeURIComponent(o("common.whatsapp_messages.book_banya","Hello! I would like to book the Russian Banya"));window.open(`https://wa.me/${e.replace(/\D/g,"")}?text=${t}`,"_blank")},whileHover:{scale:1.05},whileTap:{scale:.95},children:[a.jsx(i,{}),o("banya.hero.book_button","ЗАБРОНИРОВАТЬ")]}),a.jsxs(_,{onClick:()=>{const e=o("common.phone_number","+66 62 480 5877");window.open(`tel:${e}`,"_self")},whileHover:{scale:1.05},whileTap:{scale:.95},children:[a.jsx(r,{}),o("banya.hero.contacts_button","КОНТАКТЫ")]})]})]})]})}),T=f.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -397,13 +397,13 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   background-repeat: no-repeat;
   mix-blend-mode: screen;
   opacity: 0.5;
-`,R=({intensity:e="medium",className:t=""})=>a.jsx(P,{className:t,children:a.jsx(E,{style:{opacity:(()=>{switch(e){case"low":return.3;case"medium":default:return.5;case"high":return.7}})(),backgroundImage:"url(/src/assets/effects/banya/overlays/sparks.png)"}})}),S=g`
+`,S=({intensity:e="medium",className:t=""})=>a.jsx(T,{className:t,children:a.jsx(E,{style:{opacity:(()=>{switch(e){case"low":return.3;case"medium":default:return.5;case"high":return.7}})(),backgroundImage:"url(/src/assets/effects/banya/overlays/sparks.png)"}})}),Y=g`
   0%, 100% { text-shadow: 0 0 10px #ff6b35, 0 0 20px #ff6b35; }
   50% { text-shadow: 0 0 20px #ff6b35, 0 0 30px #ff6b35, 0 0 40px #ff6b35; }
-`,Y=g`
+`,H=g`
   0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 107, 53, 0.3); }
   50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 107, 53, 0.5); }
-`,T=f.section`
+`,V=f.section`
   padding: 0;
   margin-top: -1px;
   background: #0f0f0f;
@@ -423,7 +423,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
       radial-gradient(circle at 70% 80%, rgba(255, 107, 53, 0.08) 0%, transparent 50%);
     z-index: 1;
   }
-`,H=f.div`
+`,R=f.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 4rem 1.5rem;
@@ -507,26 +507,26 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   margin: 0;
   line-height: 1.2;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-`,U=f.div`
+`,M=f.div`
   color: #ff6b35;
   font-size: 1.125rem;
   margin-top: 0.5rem;
   font-weight: 500;
-  animation: ${S} 4s ease-in-out infinite;
-`,M=f.div`
+  animation: ${Y} 4s ease-in-out infinite;
+`,U=f.div`
   color: rgba(255, 255, 255, 0.7);
   font-size: 1rem;
   margin-top: 0.75rem;
   font-style: italic;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-`,Q=f.div`
+`,J=f.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 2rem;
   padding-top: 1rem;
   border-top: 1px solid rgba(255, 107, 53, 0.2);
-`,X=f.div`
+`,Q=f.div`
   color: rgba(255, 255, 255, 0.7);
   font-size: 1rem;
   display: flex;
@@ -536,14 +536,14 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   &::before {
     content: '⏱';
     font-size: 1.2rem;
-    animation: ${Y} 3s ease-in-out infinite;
+    animation: ${H} 3s ease-in-out infinite;
   }
-`,G=f.div`
+`,X=f.div`
   color: #ffd662;
   font-size: 1.5rem;
   font-weight: 700;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-`,J=f.div`
+`,G=f.div`
   position: absolute;
   font-size: 3rem;
   color: rgba(255, 107, 53, 0.1);
@@ -564,7 +564,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   @media (max-width: 768px) {
     display: none;
   }
-`,Z=()=>{const{t:e}=t();return a.jsxs(T,{children:[a.jsx(J,{className:"top-left",children:"᚛ᚃᚔᚏᚓ᚜"}),a.jsx(J,{className:"bottom-right",children:"᚛ᚔᚉᚓ᚜"}),a.jsx(R,{intensity:"low"}),a.jsxs(H,{children:[a.jsx(O,{children:a.jsx(K,{children:"Банные программы"})}),a.jsx(W,{children:[{id:"light",title:"Огненный старт",subtitle:"Лёгкий пар",duration:"10 мин",price:"1200 бат",description:"1 заход, взвар дубовый"},{id:"medium",title:"Путь воина",subtitle:"Средний пар",duration:"15-20 мин",price:"2000 бат",description:"1 заход, взвар квас"},{id:"hard",title:"Сила Тора",subtitle:"Сильный пар",duration:"30 мин",price:"2600 бат",description:"2 захода, взвар: чесночный и цитрусовый"},{id:"valhalla",title:"Вальхалла",subtitle:"Крепкий пар",duration:"1 час",price:"3500 бат",description:"3 захода, взвар: цитрусовые, имбирный, пивной"}].map((e,t)=>a.jsxs(D,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.2*t},children:[a.jsxs(F,{children:[a.jsx(L,{children:e.title}),a.jsx(U,{children:e.subtitle}),a.jsx(M,{children:e.description})]}),a.jsxs(Q,{children:[a.jsx(X,{children:e.duration}),a.jsx(G,{children:e.price})]})]},e.id))})]})]})},ee=g`
+`,Z=()=>{const{t:e}=t();return a.jsxs(V,{children:[a.jsx(G,{className:"top-left",children:"᚛ᚃᚔᚏᚓ᚜"}),a.jsx(G,{className:"bottom-right",children:"᚛ᚔᚉᚓ᚜"}),a.jsx(S,{intensity:"low"}),a.jsxs(R,{children:[a.jsx(O,{children:a.jsx(K,{children:"Банные программы"})}),a.jsx(W,{children:[{id:"light",title:"Огненный старт",subtitle:"Лёгкий пар",duration:"10 мин",price:"1200 бат",description:"1 заход, взвар дубовый"},{id:"medium",title:"Путь воина",subtitle:"Средний пар",duration:"15-20 мин",price:"2000 бат",description:"1 заход, взвар квас"},{id:"hard",title:"Сила Тора",subtitle:"Сильный пар",duration:"30 мин",price:"2600 бат",description:"2 захода, взвар: чесночный и цитрусовый"},{id:"valhalla",title:"Вальхалла",subtitle:"Крепкий пар",duration:"1 час",price:"3500 бат",description:"3 захода, взвар: цитрусовые, имбирный, пивной"}].map((e,t)=>a.jsxs(D,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.2*t},children:[a.jsxs(F,{children:[a.jsx(L,{children:e.title}),a.jsx(M,{children:e.subtitle}),a.jsx(U,{children:e.description})]}),a.jsxs(J,{children:[a.jsx(Q,{children:e.duration}),a.jsx(X,{children:e.price})]})]},e.id))})]})]})},ee=g`
   0%, 100% { text-shadow: 0 0 10px #ff6b35, 0 0 20px #ff6b35; }
   50% { text-shadow: 0 0 20px #ff6b35, 0 0 30px #ff6b35, 0 0 40px #ff6b35; }
 `,te=g`
@@ -927,7 +927,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   margin-left: auto;
   margin-right: auto;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-`,Ne=f.div`
+`,Ce=f.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
@@ -937,7 +937,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-`,Ce=f(x.div)`
+`,Ne=f(x.div)`
   background: rgba(255, 107, 53, 0.1);
   border: 1px solid rgba(255, 107, 53, 0.3);
   border-radius: 16px;
@@ -967,18 +967,18 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
     height: 1.5rem;
     color: #1a1a1a;
   }
-`,Ae=f.h4`
+`,_e=f.h4`
   font-size: 1.25rem;
   font-weight: 700;
   color: #f5f5f5;
   margin-bottom: 0.75rem;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-`,_e=f.p`
+`,Ae=f.p`
   font-size: 1rem;
   color: #cccccc;
   margin: 0;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-`,Ve=f.div`
+`,Pe=f.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -989,7 +989,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
     justify-content: center;
     gap: 2rem;
   }
-`,Pe=f(x.button)`
+`,Te=f(x.button)`
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -1066,7 +1066,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
     width: 1.5rem;
     height: 1.5rem;
   }
-`,Re=f.div`
+`,Se=f.div`
   position: absolute;
   font-size: 6rem;
   color: rgba(255, 107, 53, 0.05);
@@ -1087,13 +1087,13 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   @media (max-width: 768px) {
     display: none;
   }
-`,Se=()=>{const{t:e}=t(),i=()=>{const t=e("common.phone_number","+66 62 480 5877"),a=encodeURIComponent(e("common.whatsapp_messages.book_banya","Hello! I would like to book the Russian Banya"));window.open(`https://wa.me/${t.replace(/\D/g,"")}?text=${a}`,"_blank")},o=[{icon:l,title:"WhatsApp",value:"Book via WhatsApp",action:i},{icon:d,title:"Location",value:"Kathu, Phuket",action:()=>{const t=encodeURIComponent(e("common.address","73, Baan Chalekiri Village, 6 Pra Phuket Keaw Road, Kathu"));window.open(`https://maps.google.com/?q=${t}`,"_blank")}},{icon:c,title:"Hours",value:"09:00 - 22:00",action:null}];return a.jsxs(ye,{children:[a.jsx(Re,{className:"top-left",children:"᚛ᚃᚔᚏᚓ᚜"}),a.jsx(Re,{className:"bottom-right",children:"᚛ᚔᚉᚓ᚜"}),a.jsxs(we,{children:[a.jsxs(ve,{children:[a.jsx(je,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6},children:e("banya.booking.badge","Booking")}),a.jsxs(ke,{initial:{opacity:0,y:30},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.8,delay:.2},children:["Book the ",a.jsx("span",{className:"highlight",children:"Banya"})]}),a.jsx(ze,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.4},children:e("banya.booking.description","Contact us through convenient channels for booking")})]}),a.jsx(x.div,{initial:{opacity:0,y:40},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.8,delay:.6},children:a.jsxs($e,{children:[a.jsxs(Ie,{children:["Ready to immerse in the world of ",a.jsx("span",{className:"highlight",children:"Russian Banya"}),"?"]}),a.jsx(qe,{children:e("banya.booking.cta.description","Contact us for detailed information about prices, availability and features of our banya programs")}),a.jsx(Ne,{children:o.map((e,t)=>a.jsxs(Ce,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.8+.1*t},onClick:e.action,style:{cursor:e.action?"pointer":"default"},children:[a.jsx(Be,{children:a.jsx(e.icon,{})}),a.jsx(Ae,{children:e.title}),a.jsx(_e,{children:e.value})]},t))}),a.jsxs(Ve,{children:[a.jsxs(Pe,{onClick:i,whileHover:{scale:1.05},whileTap:{scale:.95},children:[a.jsx(l,{}),"Book via WhatsApp"]}),a.jsxs(Ee,{onClick:()=>{const t=e("common.phone_number","+66 62 480 5877");window.open(`tel:${t}`,"_self")},whileHover:{scale:1.05},whileTap:{scale:.95},children:[a.jsx(r,{}),"Call Now"]})]})]})})]})]})},Ye=g`
+`,Ye=()=>{const{t:e}=t(),i=()=>{window.location.href=`tel:${e("common.phone_number")}`},o=()=>{const t=encodeURIComponent("Hello! I would like to book a banya session.");window.open(`https://wa.me/${e("common.phone_number").replace(/\D/g,"")}?text=${t}`,"_blank")};return a.jsxs(ye,{children:[a.jsx(Se,{className:"top-left",children:"᚛ᚃᚔᚏᚓ᚜"}),a.jsx(Se,{className:"bottom-right",children:"᚛ᚔᚉᚓ᚜"}),a.jsxs(we,{children:[a.jsxs(ve,{children:[a.jsx(je,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.6},children:e("banya.booking.badge","Book Your Session")}),a.jsx(ke,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.6,delay:.2},children:e("banya.booking.title",'Experience the <span class="highlight">Power</span> of Traditional Banya')}),a.jsx(ze,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.6,delay:.4},children:e("banya.booking.description","Book your banya session and immerse yourself in the ancient tradition of Russian steam bathing")})]}),a.jsx(x.div,{initial:{opacity:0,y:40},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.8,delay:.6},children:a.jsxs($e,{children:[a.jsx(Ie,{children:e("banya.booking.cta_title",'Ready for Your <span class="highlight">Banya Journey</span>?')}),a.jsx(qe,{children:e("banya.booking.cta_description","Contact us to book your session or learn more about our banya procedures")}),a.jsxs(Ce,{children:[a.jsxs(Ne,{whileHover:{scale:1.02},whileTap:{scale:.98},onClick:i,children:[a.jsx(Be,{children:a.jsx(r,{})}),a.jsx(_e,{children:e("banya.booking.phone_title","Call Us")}),a.jsx(Ae,{children:e("common.phone_number")})]}),a.jsxs(Ne,{whileHover:{scale:1.02},whileTap:{scale:.98},onClick:o,children:[a.jsx(Be,{children:a.jsx(l,{})}),a.jsx(_e,{children:e("banya.booking.whatsapp_title","WhatsApp")}),a.jsx(Ae,{children:e("banya.booking.whatsapp_description","Message us directly")})]}),a.jsxs(Ne,{whileHover:{scale:1.02},whileTap:{scale:.98},children:[a.jsx(Be,{children:a.jsx(d,{})}),a.jsx(_e,{children:e("banya.booking.hours_title","Working Hours")}),a.jsx(Ae,{children:"17:00 - 22:00"})]}),a.jsxs(Ne,{whileHover:{scale:1.02},whileTap:{scale:.98},onClick:()=>{window.open("https://maps.app.goo.gl/h7PzpHpBeurg7eK18","_blank")},children:[a.jsx(Be,{children:a.jsx(c,{})}),a.jsx(_e,{children:e("banya.booking.location_title","Location")}),a.jsx(Ae,{children:"73, Baan Chalekiri Village, 6 Pra Phuket Keaw Road, Kathu"})]})]}),a.jsxs(Pe,{children:[a.jsxs(Te,{onClick:o,whileHover:{scale:1.05},whileTap:{scale:.95},children:[a.jsx(l,{}),"Book via WhatsApp"]}),a.jsxs(Ee,{onClick:i,whileHover:{scale:1.05},whileTap:{scale:.95},children:[a.jsx(r,{}),"Call Now"]})]})]})})]})]})},He=g`
   0%, 100% { text-shadow: 0 0 10px #ff6b35, 0 0 20px #ff6b35; }
   50% { text-shadow: 0 0 20px #ff6b35, 0 0 30px #ff6b35, 0 0 40px #ff6b35; }
-`,Te=g`
+`,Ve=g`
   0%, 100% { opacity: 0.7; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.05); }
-`,He=f.section`
+`,Re=f.section`
   padding: clamp(6rem, 12vw, 10rem) 0 0 0;
   background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
   position: relative;
@@ -1151,7 +1151,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   
   .highlight {
     color: #ff6b35;
-    animation: ${Ye} 4s ease-in-out infinite;
+    animation: ${He} 4s ease-in-out infinite;
   }
 `,Fe=f(x.p)`
   font-size: clamp(1.125rem, 2.5vw, 1.5rem);
@@ -1164,7 +1164,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-`,Ue=f(x.div)`
+`,Me=f(x.div)`
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.9) 100%);
   border: 1px solid rgba(255, 107, 53, 0.3);
   border-radius: 16px;
@@ -1192,7 +1192,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
     border-color: #ff6b35;
     box-shadow: 0 8px 32px rgba(255, 107, 53, 0.2);
   }
-`,Me=f.button`
+`,Ue=f.button`
   width: 100%;
   padding: 2rem 2.5rem;
   background: transparent;
@@ -1208,7 +1208,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   &:hover {
     background: rgba(255, 107, 53, 0.05);
   }
-`,Qe=f.h3`
+`,Je=f.h3`
   font-size: clamp(1.125rem, 2.5vw, 1.5rem);
   font-weight: 600;
   color: ${e=>e.$isOpen?"#ffffff":"#cccccc"};
@@ -1220,7 +1220,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   &:hover {
     color: #ffffff;
   }
-`,Xe=f.div`
+`,Qe=f.div`
   width: 40px;
   height: 40px;
   background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
@@ -1230,7 +1230,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   justify-content: center;
   flex-shrink: 0;
   transition: all 0.3s ease;
-  animation: ${Te} 3s ease-in-out infinite;
+  animation: ${Ve} 3s ease-in-out infinite;
   
   svg {
     width: 1.25rem;
@@ -1239,7 +1239,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
     transform: ${e=>e.$isOpen?"rotate(180deg)":"rotate(0deg)"};
     transition: transform 0.3s ease;
   }
-`,Ge=f(x.div)`
+`,Xe=f(x.div)`
   padding: 0 2.5rem 2rem;
   color: #ffffff;
   font-size: clamp(1.125rem, 2vw, 1.25rem);
@@ -1256,7 +1256,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
       margin-bottom: 0;
     }
   }
-`,Je=f.div`
+`,Ge=f.div`
   position: absolute;
   font-size: 4rem;
   color: rgba(255, 107, 53, 0.08);
@@ -1277,7 +1277,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   @media (max-width: 768px) {
     display: none;
   }
-`,Ze=()=>{const{t:i}=t(),[r,o]=e.useState(null),n=[{question:i("banya.faq.questions.panoramic.question","What's special about the panoramic banya?"),answer:i("banya.faq.questions.panoramic.answer","Our banya is unique with several features: 150 square meters with panoramic jungle windows, built from Siberian cedar and Altai linden - premium natural materials. It's the only panoramic Russian banya in Phuket where you can enjoy traditional banya rituals with tropical nature views.")},{question:i("banya.faq.questions.procedures.question","What procedures are included in the banya ritual?"),answer:i("banya.faq.questions.procedures.answer","Depending on your chosen program you'll receive: classic banya ritual with birch brooms, aromatherapy with essential oils, herbal infusions and teas, option to order massage in the steam room, and personal accompaniment by a master attendant for VIP programs.")},{question:i("banya.faq.questions.materials.question","What materials is the banya built from?"),answer:i("banya.faq.questions.materials.answer","The banya is built exclusively from natural eco-friendly materials: Siberian cedar, Altai linden, Karelian birch. All finishes are natural, without chemical additives. Such materials create a special microclimate and provide natural aromatherapy.")}];return a.jsxs(He,{children:[a.jsxs(Oe,{children:[a.jsxs(Ke,{children:[a.jsx(We,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6},children:i("banya.faq.badge","Questions & Answers")}),a.jsxs(De,{initial:{opacity:0,y:30},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.8,delay:.2},children:["Frequently Asked ",a.jsx("span",{className:"highlight",children:"Questions"})]}),a.jsx(Fe,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.4},children:i("banya.faq.subtitle","Answers to the most popular questions about our banya")})]}),a.jsx(Le,{children:n.map((e,t)=>a.jsxs(Ue,{initial:{opacity:0,y:30},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.1*t},children:[a.jsxs(Me,{onClick:()=>(e=>{o(r===e?null:e)})(t),children:[a.jsx(Qe,{$isOpen:r===t,children:e.question}),a.jsx(Xe,{$isOpen:r===t,children:a.jsx(p,{})})]}),a.jsx(u,{children:r===t&&a.jsx(Ge,{initial:{height:0,opacity:0},animate:{height:"auto",opacity:1},exit:{height:0,opacity:0},transition:{duration:.3,ease:"easeInOut"},children:a.jsx("p",{children:e.answer})})})]},t))})]}),a.jsx(Je,{className:"left",children:"ᚠ"}),a.jsx(Je,{className:"right",children:"ᚢ"})]})},et=f.div`
+`,Ze=()=>{const{t:i}=t(),[r,o]=e.useState(null),n=[{question:i("banya.faq.questions.panoramic.question","What's special about the panoramic banya?"),answer:i("banya.faq.questions.panoramic.answer","Our banya is unique with several features: 150 square meters with panoramic jungle windows, built from Siberian cedar and Altai linden - premium natural materials. It's the only panoramic Russian banya in Phuket where you can enjoy traditional banya rituals with tropical nature views.")},{question:i("banya.faq.questions.procedures.question","What procedures are included in the banya ritual?"),answer:i("banya.faq.questions.procedures.answer","Depending on your chosen program you'll receive: classic banya ritual with birch brooms, aromatherapy with essential oils, herbal infusions and teas, option to order massage in the steam room, and personal accompaniment by a master attendant for VIP programs.")},{question:i("banya.faq.questions.materials.question","What materials is the banya built from?"),answer:i("banya.faq.questions.materials.answer","The banya is built exclusively from natural eco-friendly materials: Siberian cedar, Altai linden, Karelian birch. All finishes are natural, without chemical additives. Such materials create a special microclimate and provide natural aromatherapy.")}];return a.jsxs(Re,{children:[a.jsxs(Oe,{children:[a.jsxs(Ke,{children:[a.jsx(We,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6},children:i("banya.faq.badge","Questions & Answers")}),a.jsxs(De,{initial:{opacity:0,y:30},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.8,delay:.2},children:["Frequently Asked ",a.jsx("span",{className:"highlight",children:"Questions"})]}),a.jsx(Fe,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.4},children:i("banya.faq.subtitle","Answers to the most popular questions about our banya")})]}),a.jsx(Le,{children:n.map((e,t)=>a.jsxs(Me,{initial:{opacity:0,y:30},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.1*t},children:[a.jsxs(Ue,{onClick:()=>(e=>{o(r===e?null:e)})(t),children:[a.jsx(Je,{$isOpen:r===t,children:e.question}),a.jsx(Qe,{$isOpen:r===t,children:a.jsx(p,{})})]}),a.jsx(u,{children:r===t&&a.jsx(Xe,{initial:{height:0,opacity:0},animate:{height:"auto",opacity:1},exit:{height:0,opacity:0},transition:{duration:.3,ease:"easeInOut"},children:a.jsx("p",{children:e.answer})})})]},t))})]}),a.jsx(Ge,{className:"left",children:"ᚠ"}),a.jsx(Ge,{className:"right",children:"ᚢ"})]})},et=f.div`
   background: transparent;
   color: ${e=>e.theme.colors.text.primary};
   min-height: 100vh;
@@ -1285,4 +1285,4 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-`,tt=()=>{const{t:e}=t(),[i,r]=m.useState(!1);return m.useEffect(()=>{document.body.classList.add("banya-page"),window.scrollTo(0,0);const e=setTimeout(()=>{r(!0)},50);return()=>{document.body.classList.remove("banya-page"),clearTimeout(e)}},[]),i?a.jsxs(et,{as:x.div,initial:"initial",animate:"animate",exit:"exit",variants:{initial:{opacity:0},animate:{opacity:1},exit:{opacity:0}},transition:{duration:.2},children:[a.jsx(b,{titleKey:"page_titles.banya",description:e("banya.hero.subtitle","Traditional Russian banya experience"),keywords:"KAIF banya, Russian sauna, traditional banya, steam bath, Phuket",ogImage:"/images/banya/panoramic.jpg"}),a.jsx(h,{}),a.jsx(V,{}),a.jsx(Z,{}),a.jsx(be,{}),a.jsx(Ze,{}),a.jsx(Se,{})]}):null};export{tt as default};
+`,tt=()=>{const{t:e}=t(),[i,r]=m.useState(!1);return m.useEffect(()=>{document.body.classList.add("banya-page"),window.scrollTo(0,0);const e=setTimeout(()=>{r(!0)},50);return()=>{document.body.classList.remove("banya-page"),clearTimeout(e)}},[]),i?a.jsxs(et,{as:x.div,initial:"initial",animate:"animate",exit:"exit",variants:{initial:{opacity:0},animate:{opacity:1},exit:{opacity:0}},transition:{duration:.2},children:[a.jsx(b,{titleKey:"page_titles.banya",description:e("banya.hero.subtitle","Traditional Russian banya experience"),keywords:"KAIF banya, Russian sauna, traditional banya, steam bath, Phuket",ogImage:"/images/banya/panoramic.jpg"}),a.jsx(h,{}),a.jsx(P,{}),a.jsx(Z,{}),a.jsx(be,{}),a.jsx(Ze,{}),a.jsx(Ye,{})]}):null};export{tt as default};
