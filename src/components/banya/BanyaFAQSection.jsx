@@ -157,10 +157,11 @@ const FAQQuestion = styled.button`
 const QuestionText = styled.h3`
   font-size: clamp(1.125rem, 2.5vw, 1.5rem);
   font-weight: 600;
-  color: #f5f5f5;
+  color: ${props => props.$isOpen ? '#f5f5f5' : '#cccccc'};
   margin: 0;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
   flex: 1;
+  transition: color 0.3s ease;
 `;
 
 const QuestionIcon = styled.div`
@@ -289,7 +290,7 @@ const BanyaFAQSection = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
               <FAQQuestion onClick={() => toggleItem(index)}>
-                <QuestionText>{item.question}</QuestionText>
+                <QuestionText $isOpen={openItem === index}>{item.question}</QuestionText>
                 <QuestionIcon $isOpen={openItem === index}>
                   <ChevronDownIcon />
                 </QuestionIcon>
