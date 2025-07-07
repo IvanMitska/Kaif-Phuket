@@ -1,4 +1,4 @@
-import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d as c,I as p,R as m}from"./vendor-react-DH92txf0.js";import{d as f,m as g}from"./vendor-styles-BdfYSv7I.js";import{P as h}from"./PageScrollReset-Cnr3na49.js";import{P as b}from"./main-X15zW6Tw.js";import{m as x,A as u}from"./vendor-animations-CUcon76j.js";import"./vendor-other-CZupzcPt.js";import"./vendor-i18n-C4kh69yx.js";f.div`
+import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d as c,I as p,R as m}from"./vendor-react-DH92txf0.js";import{d as f,m as g}from"./vendor-styles-BdfYSv7I.js";import{P as h}from"./PageScrollReset-Cnr3na49.js";import{P as b}from"./main-0O3IBo1V.js";import{m as x,A as u}from"./vendor-animations-CUcon76j.js";import"./vendor-other-CZupzcPt.js";import"./vendor-i18n-C4kh69yx.js";f.div`
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -1236,7 +1236,7 @@ import{r as e,a as t,j as a,A as i,c as r,C as o,D as n,E as s,G as l,F as d,d a
   }
 `,Ge=f(x.div)`
   padding: 0 2.5rem 2rem;
-  color: #cccccc;
+  color: #f5f5f5;
   font-size: 1rem;
   line-height: 1.7;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
