@@ -186,7 +186,7 @@ const QuestionIcon = styled.div`
 
 const FAQAnswer = styled(motion.div)`
   padding: 0 2.5rem 2rem;
-  color: #cccccc;
+  color: #f5f5f5;
   font-size: 1rem;
   line-height: 1.7;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
