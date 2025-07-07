@@ -9,14 +9,16 @@ import {
   FireIcon
 } from '@heroicons/react/24/solid';
 import OptimizedImage from '../common/OptimizedImage';
+// import torchImage from '../../assets/effects/banya/torch.png';
 
 
 
 const flameFlicker = keyframes`
-  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
-  25% { transform: scale(1.1) rotate(2deg); opacity: 1; }
-  50% { transform: scale(0.9) rotate(-1deg); opacity: 0.9; }
-  75% { transform: scale(1.05) rotate(1deg); opacity: 0.95; }
+  0% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.1, 1) rotate(1deg); }
+  50% { transform: scale(0.95, 1) rotate(-1deg); }
+  75% { transform: scale(1.05, 1) rotate(0.5deg); }
+  100% { transform: scale(1) rotate(0deg); }
 `;
 
 const smokeRise = keyframes`
@@ -28,6 +30,12 @@ const smokeRise = keyframes`
 const runeGlow = keyframes`
   0%, 100% { text-shadow: 0 0 10px #ff6b35, 0 0 20px #ff6b35, 0 0 30px #ff6b35; }
   50% { text-shadow: 0 0 20px #ff6b35, 0 0 30px #ff6b35, 0 0 40px #ff6b35; }
+`;
+
+const glowPulse = keyframes`
+  0% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+  100% { opacity: 0.4; }
 `;
 
 const HeroContainer = styled.section`
@@ -61,6 +69,7 @@ const BackgroundImage = styled(motion.div)`
   background-position: center;
   background-repeat: no-repeat;
   height: 100%;
+  will-change: opacity;
   
   &::before {
     content: '';
@@ -71,24 +80,11 @@ const BackgroundImage = styled(motion.div)`
     bottom: 0;
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.7) 0%,
-      rgba(0, 0, 0, 0.5) 50%,
-      rgba(0, 0, 0, 0) 100%
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.8) 50%,
+      rgba(0, 0, 0, 0.75) 100%
     );
     z-index: 1;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-      radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.15) 0%, transparent 50%);
-    z-index: 2;
   }
 `;
 
@@ -124,46 +120,11 @@ const TorchContainer = styled.div`
   }
 `;
 
-const TorchFlame = styled.div`
-  width: 40px;
-  height: 60px;
-  background: linear-gradient(to top, #ff6b35 0%, #ff8c42 50%, #ffd662 100%);
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  animation: ${flameFlicker} 2s ease-in-out infinite;
-  position: relative;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 30px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    animation: ${smokeRise} 3s ease-out infinite;
-  }
-`;
-
-const TorchHandle = styled.div`
-  width: 8px;
-  height: 80px;
-  background: linear-gradient(to bottom, #8b4513 0%, #654321 100%);
-  margin: 0 auto;
-  border-radius: 4px;
-  position: relative;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -6px;
-    width: 20px;
-    height: 20px;
-    background: #654321;
-    border-radius: 50%;
-  }
+const TorchImage = styled.img`
+  width: auto;
+  height: 140px;
+  filter: drop-shadow(0 0 15px rgba(255, 147, 53, 0.4));
+  object-fit: contain;
 `;
 
 const ContentWrapper = styled.div`
@@ -414,6 +375,7 @@ const NorseOrnament = styled.div`
 const BanyaHeroSection = () => {
   const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [nextSlide, setNextSlide] = useState(0);
   
   const images = [
     {
@@ -432,10 +394,17 @@ const BanyaHeroSection = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % images.length);
+      setNextSlide((prev) => (prev + 1) % images.length);
     }, 8000);
     return () => clearInterval(interval);
   }, [images.length]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCurrentSlide(nextSlide);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, [nextSlide]);
 
   const handleContactClick = () => {
     const phoneNumber = t('common.phone_number', '+66 62 480 5877');
@@ -451,41 +420,36 @@ const BanyaHeroSection = () => {
   return (
     <HeroContainer>
       <BackgroundSlider>
-        <AnimatePresence mode="wait">
-          {images.map((image, index) => (
-            index === currentSlide && (
-              <BackgroundImage
-                key={image.src}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1.5 }}
-                style={{
-                  backgroundImage: `url(${image.src})`,
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%'
-                }}
-              />
-            )
-          ))}
-        </AnimatePresence>
+        <BackgroundImage
+          key={`current-${currentSlide}`}
+          style={{
+            backgroundImage: `url(${images[currentSlide].src})`,
+            opacity: 1,
+            zIndex: 1
+          }}
+        />
+        <BackgroundImage
+          key={`next-${nextSlide}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: currentSlide === nextSlide ? 0 : 1 }}
+          transition={{ duration: 2, ease: "easeInOut" }}
+          style={{
+            backgroundImage: `url(${images[nextSlide].src})`,
+            zIndex: 2
+          }}
+        />
       </BackgroundSlider>
       
       <WoodTexture />
       
       {/* Анимированные факелы */}
-      <TorchContainer className="left">
-        <TorchFlame />
-        <TorchHandle />
+      {/* <TorchContainer className="left">
+        <TorchImage src={torchImage} alt="Torch" />
       </TorchContainer>
       
       <TorchContainer className="right">
-        <TorchFlame />
-        <TorchHandle />
-      </TorchContainer>
+        <TorchImage src={torchImage} alt="Torch" />
+      </TorchContainer> */}
       
       {/* Скандинавские орнаменты */}
       <NorseOrnament className="top-left">᚛ᚏᚓᚐᚉ᚜</NorseOrnament>

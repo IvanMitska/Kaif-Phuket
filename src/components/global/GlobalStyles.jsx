@@ -113,6 +113,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     overflow-x: hidden;
     min-height: 100%;
+    line-height: 1;
   }
   
   html {
@@ -123,6 +124,24 @@ const GlobalStyles = createGlobalStyle`
   section, div, main {
     scroll-snap-align: none !important;
     scroll-snap-type: none !important;
+  }
+  
+  /* Устранение белых зазоров между секциями */
+  section {
+    display: block;
+    margin: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+  }
+  
+  /* Специальное правило для footer */
+  footer {
+    display: block;
+    margin: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
   }
   
   /* Типография */

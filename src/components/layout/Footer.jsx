@@ -24,9 +24,9 @@ const FooterWrapper = styled.footer`
   background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
   padding: 3rem 2rem 0;
   color: white;
-  z-index: 1;
+  z-index: 3;
   overflow: hidden;
-  margin: -5px 0 0 0;
+  margin: 0;
   min-height: auto;
   border-bottom: 0;
   
@@ -39,18 +39,6 @@ const FooterWrapper = styled.footer`
     height: 100%;
     background: rgba(0, 0, 0, 0.45);
     z-index: -1;
-  }
-  
-  /* Добавляем псевдоэлемент для закрытия белой полосы внизу */
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -2px; /* Небольшой отрицательный отступ, чтобы убрать белую полосу */
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: inherit;
-    z-index: 20;
   }
   
   @media (max-width: 768px) {

@@ -27,6 +27,8 @@ const MainContent = styled.main`
   position: relative;
   flex: 1 0 auto;
   margin: 0;
+  padding: 0;
+  background: transparent;
 `;
 
 const Layout = ({ children }) => {
@@ -64,7 +66,7 @@ const Layout = ({ children }) => {
         <MainContent>
           {children}
         </MainContent>
-        {isPageLoaded && <Footer style={{ marginBottom: '-2px' }} />}
+        {isPageLoaded && <Footer />}
       </MainContainer>
     </>
   );

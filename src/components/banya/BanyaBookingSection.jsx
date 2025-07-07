@@ -1,26 +1,70 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { 
-  CalendarIcon,
+  PhoneIcon,
+  ChatBubbleLeftRightIcon,
+  MapPinIcon,
+  ClockIcon,
+  FireIcon,
   ArrowRightIcon
 } from '@heroicons/react/24/solid';
 
 // =============================================================================
-// МИНИМАЛИСТИЧНАЯ СЕКЦИЯ БРОНИРОВАНИЯ
+// СКАНДИНАВСКАЯ СЕКЦИЯ БРОНИРОВАНИЯ
 // =============================================================================
 
+const runeGlow = keyframes`
+  0%, 100% { text-shadow: 0 0 10px #ff6b35, 0 0 20px #ff6b35; }
+  50% { text-shadow: 0 0 20px #ff6b35, 0 0 30px #ff6b35, 0 0 40px #ff6b35; }
+`;
+
+const vikingFlame = keyframes`
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+  25% { transform: scale(1.1) rotate(2deg); opacity: 1; }
+  50% { transform: scale(0.9) rotate(-1deg); opacity: 0.9; }
+  75% { transform: scale(1.05) rotate(1deg); opacity: 0.95; }
+`;
+
 const BookingContainer = styled.section`
-  padding: clamp(4rem, 8vw, 8rem) 0;
-  background: white;
+  padding: clamp(4rem, 8vw, 6rem) 0 clamp(6rem, 12vw, 10rem) 0;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 50%, #1a1a1a 100%);
   position: relative;
+  overflow: hidden;
+  margin: 0;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 30% 20%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(255, 107, 53, 0.08) 0%, transparent 50%);
+    z-index: 1;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 50%, #1a1a1a 100%);
+    z-index: 2;
+  }
 `;
 
 const ContentWrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 clamp(1rem, 4vw, 2rem);
+  position: relative;
+  z-index: 2;
 `;
 
 const SectionHeader = styled.div`
@@ -28,454 +72,420 @@ const SectionHeader = styled.div`
   margin-bottom: clamp(4rem, 8vw, 6rem);
 `;
 
-const Badge = styled(motion.div)`
+const VikingBadge = styled(motion.div)`
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: rgba(230, 126, 34, 0.08);
-  border: 1px solid rgba(230, 126, 34, 0.15);
-  border-radius: 50px;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid #ff6b35;
+  border-radius: 8px;
   font-size: 0.875rem;
-  font-weight: 500;
-  color: #90B3A7;
+  font-weight: 600;
+  color: #ff6b35;
   margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   
-  svg {
-    width: 1rem;
-    height: 1rem;
-    color: #90B3A7;
+  &::before {
+    content: '🔥';
+    font-size: 1.2em;
+    animation: ${vikingFlame} 2s ease-in-out infinite;
   }
 `;
 
 const SectionTitle = styled(motion.h2)`
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 300;
-  color: #1a1a1a;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 900;
+  color: #f5f5f5;
   margin-bottom: 2rem;
-  line-height: 1.2;
-`;
-
-const SectionDescription = styled(motion.p)`
-  font-size: clamp(1.125rem, 2vw, 1.25rem);
-  line-height: 1.6;
-  color: #666;
-  max-width: 700px;
-  margin: 0 auto;
-`;
-
-const BookingGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  line-height: 1.1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  font-family: 'Bebas Neue', 'Arial Black', sans-serif;
   
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 3rem;
+  .highlight {
+    color: #ff6b35;
+    animation: ${runeGlow} 4s ease-in-out infinite;
   }
 `;
 
-const ContactInfo = styled(motion.div)`
-  background: #fafafa;
-  border-radius: 28px;
-  padding: 3rem;
-  border: 1px solid #f8f8f8;
+const SectionDescription = styled(motion.p)`
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  line-height: 1.6;
+  color: #cccccc;
+  max-width: 700px;
+  margin: 0 auto;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 `;
 
-const ContactTitle = styled.h3`
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 2rem;
-`;
-
-const ContactItem = styled.div`
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+const CTAContainer = styled.div`
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(26, 26, 26, 0.95) 100%);
+  border: 2px solid rgba(255, 107, 53, 0.3);
+  border-radius: 24px;
+  padding: 4rem 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
   
-  &:last-child {
-    margin-bottom: 0;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ff6b35, #ffd662, #ff6b35);
+    background-size: 200px 100%;
+    animation: shimmer 2s linear infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: -200px 0; }
+    100% { background-position: 200px 0; }
+  }
+  
+  &:hover {
+    border-color: #ff6b35;
+    box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
+  }
+`;
+
+const CTATitle = styled.h3`
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: #f5f5f5;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+  
+  .highlight {
+    color: #ff6b35;
+    animation: ${runeGlow} 4s ease-in-out infinite;
+  }
+`;
+
+const CTADescription = styled.p`
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  color: #cccccc;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+`;
+
+const ContactGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+`;
+
+const ContactCard = styled(motion.div)`
+  background: rgba(255, 107, 53, 0.1);
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: #ff6b35;
+    background: rgba(255, 107, 53, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
   }
 `;
 
 const ContactIcon = styled.div`
-  width: 40px;
-  height: 40px;
-  background: #90B3A7;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  margin: 0 auto 1.5rem;
+  animation: ${vikingFlame} 3s ease-in-out infinite;
   
   svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    color: white;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #1a1a1a;
   }
 `;
 
-const ContactDetails = styled.div`
-  flex: 1;
-`;
-
-const ContactLabel = styled.p`
-  font-size: 0.875rem;
-  color: #666;
-  margin-bottom: 0.25rem;
-  font-weight: 500;
+const ContactTitle = styled.h4`
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f5f5f5;
+  margin-bottom: 0.75rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 `;
 
 const ContactValue = styled.p`
   font-size: 1rem;
-  color: #1a1a1a;
+  color: #cccccc;
   margin: 0;
-  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
   
-  a {
-    color: inherit;
-    text-decoration: none;
-    
-    &:hover {
-      color: #90B3A7;
-    }
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
   }
 `;
 
-const BookingForm = styled(motion.div)`
-  background: white;
-  border: 1px solid #f8f8f8;
-  border-radius: 28px;
-  padding: 3rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
-`;
-
-const FormTitle = styled.h3`
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 2rem;
-`;
-
-const FormGroup = styled.div`
-  margin-bottom: 1.5rem;
-`;
-
-const FormLabel = styled.label`
-  display: block;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #1a1a1a;
-  margin-bottom: 0.5rem;
-`;
-
-const FormInput = styled.input`
-  width: 100%;
-  padding: 1.25rem 1.5rem;
-  border: 1px solid #f0f0f0;
-  border-radius: 20px;
-  font-size: 1rem;
-  color: #1a1a1a;
-  background: white;
-  transition: all 0.4s ease;
-  
-  &:focus {
-    outline: none;
-    border-color: #90B3A7;
-    box-shadow: 0 0 0 3px rgba(144, 179, 167, 0.1);
-  }
-  
-  &::placeholder {
-    color: #999;
-  }
-`;
-
-const FormSelect = styled.select`
-  width: 100%;
-  padding: 1.25rem 1.5rem;
-  border: 1px solid #f0f0f0;
-  border-radius: 20px;
-  font-size: 1rem;
-  color: #1a1a1a;
-  background: white;
-  transition: all 0.4s ease;
-  cursor: pointer;
-  
-  &:focus {
-    outline: none;
-    border-color: #90B3A7;
-    box-shadow: 0 0 0 3px rgba(144, 179, 167, 0.1);
-  }
-`;
-
-const FormTextarea = styled.textarea`
-  width: 100%;
-  padding: 1.25rem 1.5rem;
-  border: 1px solid #f0f0f0;
-  border-radius: 20px;
-  font-size: 1rem;
-  color: #1a1a1a;
-  background: white;
-  min-height: 120px;
-  resize: vertical;
-  transition: all 0.4s ease;
-  font-family: inherit;
-  
-  &:focus {
-    outline: none;
-    border-color: #90B3A7;
-    box-shadow: 0 0 0 3px rgba(144, 179, 167, 0.1);
-  }
-  
-  &::placeholder {
-    color: #999;
-  }
-`;
-
-const FormRow = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const SubmitButton = styled(motion.button)`
-  width: 100%;
-  padding: 1.5rem 2rem;
-  background: #90B3A7;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
+const VikingButton = styled(motion.button)`
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  transition: all 0.4s ease;
-  
-  &:hover:not(:disabled) {
-    background: #7DA399;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(144, 179, 167, 0.25);
-  }
-  
-  &:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-  
-  svg {
-    width: 1rem;
-    height: 1rem;
-    transition: transform 0.3s ease;
-  }
-  
-  &:hover:not(:disabled) svg {
-    transform: translateX(3px);
-  }
-`;
-
-const SuccessMessage = styled(motion.div)`
-  background: #e8f5e8;
-  border: 1px solid #4caf50;
-  border-radius: 8px;
-  padding: 1rem;
-  color: #2e7d32;
-  text-align: center;
-  margin-bottom: 1rem;
-  
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    margin-right: 0.5rem;
-    vertical-align: middle;
-  }
-`;
-
-// Кнопка перехода к контактам
-const ContactButton = styled(motion.button)`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 0.875rem 2rem;
-  width: auto;
-  min-width: 220px;
-  background: #90B3A7;
-  color: white;
+  gap: 1rem;
+  padding: 1.5rem 3rem;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  color: #1a1a1a;
   border: none;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 500;
+  border-radius: 12px;
+  font-size: 1.125rem;
+  font-weight: 700;
   cursor: pointer;
-  text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(144, 179, 167, 0.15);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  overflow: hidden;
+  min-width: 200px;
+  justify-content: center;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+  }
   
   &:hover {
-    background: #7DA399;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(144, 179, 167, 0.25);
+    transform: translateY(-3px);
+    box-shadow: 
+      0 10px 30px rgba(255, 107, 53, 0.4),
+      0 0 30px rgba(255, 107, 53, 0.3);
+  
+    &::before {
+      left: 100%;
+    }
   }
   
   svg {
-    width: 1.125rem;
-    height: 1.125rem;
-    transition: transform 0.3s ease;
-  }
-  
-  &:hover svg {
-    transform: translateX(3px);
-  }
-  
-  @media (max-width: 480px) {
-    width: 100%;
-    max-width: 280px;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 `;
 
-const ContactCTA = styled.div`
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 2.5rem 2rem;
+const SecondaryButton = styled(motion.button)`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 3rem;
+  background: transparent;
+  color: #f5f5f5;
+  border: 2px solid #ff6b35;
+  border-radius: 12px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(10px);
+  min-width: 200px;
+  justify-content: center;
   
-  h3 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 1rem;
+  &:hover {
+    background: rgba(255, 107, 53, 0.1);
+    border-color: #ffd662;
+    color: #ffd662;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.2);
   }
   
-  p {
-    font-size: 1.125rem;
-    line-height: 1.6;
-    color: #666;
-    margin-bottom: 2rem;
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 `;
 
-// =============================================================================
-// КОМПОНЕНТ
-// =============================================================================
+// Декоративные викингские элементы
+const VikingOrnament = styled.div`
+  position: absolute;
+  font-size: 6rem;
+  color: rgba(255, 107, 53, 0.05);
+  z-index: 1;
+  
+  &.top-left {
+    top: 10%;
+    left: 5%;
+    transform: rotate(-30deg);
+  }
+  
+  &.bottom-right {
+    bottom: 10%;
+    right: 5%;
+    transform: rotate(30deg);
+  }
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
 
 const BanyaBookingSection = () => {
   const { t } = useTranslation();
   
   const handleContactClick = () => {
-    // Плавная прокрутка к секции контактов
-    const contactsSection = document.getElementById('contacts');
-    if (contactsSection) {
-      contactsSection.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-    } else {
-      // Если на другой странице, переходим к контактам
-      window.location.href = '/#contacts';
-    }
+    const phoneNumber = t('common.phone_number', '+66 62 480 5877');
+    window.open(`tel:${phoneNumber}`, '_self');
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
+  const handleWhatsAppClick = () => {
+    const phoneNumber = t('common.phone_number', '+66 62 480 5877');
+    const message = encodeURIComponent(t('common.whatsapp_messages.book_banya', 'Hello! I would like to book the Russian Banya'));
+    window.open(`https://wa.me/${phoneNumber.replace(/\D/g, '')}?text=${message}`, '_blank');
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
+  const handleLocationClick = () => {
+    const address = encodeURIComponent(t('common.address', '73, Baan Chalekiri Village, 6 Pra Phuket Keaw Road, Kathu'));
+    window.open(`https://maps.google.com/?q=${address}`, '_blank');
   };
+
+  const contactInfo = [
+    {
+      icon: ChatBubbleLeftRightIcon,
+      title: 'WhatsApp',
+      value: 'Book via WhatsApp',
+      action: handleWhatsAppClick
+    },
+    {
+      icon: MapPinIcon,
+      title: 'Location',
+      value: 'Kathu, Phuket',
+      action: handleLocationClick
+    },
+    {
+      icon: ClockIcon,
+      title: 'Hours',
+      value: '09:00 - 22:00',
+      action: null
+    }
+  ];
 
   return (
     <BookingContainer>
+      {/* Декоративные викингские орнаменты */}
+      <VikingOrnament className="top-left">᚛ᚃᚔᚏᚓ᚜</VikingOrnament>
+      <VikingOrnament className="bottom-right">᚛ᚔᚉᚓ᚜</VikingOrnament>
+      
       <ContentWrapper>
         <SectionHeader>
-          <Badge
+          <VikingBadge
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <CalendarIcon />
-            {t('banya.booking.badge', 'Бронирование')}
-          </Badge>
+            {t('banya.booking.badge', 'Booking')}
+          </VikingBadge>
           
           <SectionTitle
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {t('banya.booking.title', 'Забронировать баню')}
+            Book the <span className="highlight">Banya</span>
           </SectionTitle>
           
           <SectionDescription
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
-            {t('banya.booking.description', 'Для бронирования свяжитесь с нами удобным способом')}
+            {t('banya.booking.description', 'Contact us through convenient channels for booking')}
           </SectionDescription>
         </SectionHeader>
 
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <ContactCTA variants={itemVariants}>
-            <motion.h3
+          <CTAContainer>
+            <CTATitle>
+              Ready to immerse in the world of <span className="highlight">Russian Banya</span>?
+            </CTATitle>
+            
+            <CTADescription>
+              {t('banya.booking.cta.description', 'Contact us for detailed information about prices, availability and features of our banya programs')}
+            </CTADescription>
+            
+            <ContactGrid>
+              {contactInfo.map((contact, index) => (
+                <ContactCard
+                  key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              {t('banya.booking.cta.title', 'Готовы окунуться в мир русской бани?')}
-            </motion.h3>
+                  transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+                  onClick={contact.action}
+                  style={{ cursor: contact.action ? 'pointer' : 'default' }}
+                >
+                  <ContactIcon>
+                    <contact.icon />
+                  </ContactIcon>
+                  <ContactTitle>{contact.title}</ContactTitle>
+                  <ContactValue>{contact.value}</ContactValue>
+                </ContactCard>
+              ))}
+            </ContactGrid>
             
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              {t('banya.booking.cta.description', 'Свяжитесь с нами для получения подробной информации о ценах, доступности и особенностях наших банных программ')}
-            </motion.p>
+            <ButtonGroup>
+              <VikingButton
+                onClick={handleWhatsAppClick}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ChatBubbleLeftRightIcon />
+                Book via WhatsApp
+              </VikingButton>
             
-            <ContactButton
+              <SecondaryButton
               onClick={handleContactClick}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {t('banya.booking.cta.button', 'Перейти к контактам')}
-              <ArrowRightIcon />
-            </ContactButton>
-          </ContactCTA>
+                <PhoneIcon />
+                Call Now
+              </SecondaryButton>
+            </ButtonGroup>
+          </CTAContainer>
         </motion.div>
       </ContentWrapper>
     </BookingContainer>
