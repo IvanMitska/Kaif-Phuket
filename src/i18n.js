@@ -7,8 +7,6 @@ import enTranslation from './locales/en/translation.json';
 import ruTranslation from './locales/ru/translation.json';
 import thTranslation from './locales/th/translation.json';
 
-const savedLanguage = localStorage.getItem('i18nextLng') || 'en';
-
 // Initialize i18next
 i18n
   .use(LanguageDetector)
@@ -25,7 +23,7 @@ i18n
         translation: thTranslation,
       },
     },
-    lng: savedLanguage,
+    lng: 'en', // Force English as default
     fallbackLng: 'en',
     debug: process.env.NODE_ENV === 'development',
     
@@ -41,6 +39,6 @@ i18n
   });
 
 // Set initial HTML lang attribute
-document.documentElement.lang = savedLanguage;
+document.documentElement.lang = 'en';
 
 export default i18n;
