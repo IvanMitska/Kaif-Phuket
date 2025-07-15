@@ -11,7 +11,7 @@ function doPost(e) {
     const wantsOffers = e.parameter.wantsOffers === 'true';
     const phoneNumber = e.parameter.phoneNumber || '';
 
-    const SHEET_ID = '1knOEO57YwXBmtS3_9JEGOM6ioDfKw-o883znNYu0BC8';
+    const SHEET_ID = '1ErDWbXVEi4IAoh-updyOoJGnOZge-AxA8fG8Urg4WIw';
     const sheet = SpreadsheetApp.openById(SHEET_ID).getActiveSheet();
 
     // Добавляем заголовки, если лист пустой
@@ -62,7 +62,7 @@ function doGet(e) {
     const wantsOffers = e.parameter.wantsOffers === 'true';
     const phoneNumber = e.parameter.phoneNumber || '';
 
-    const SHEET_ID = '1knOEO57YwXBmtS3_9JEGOM6ioDfKw-o883znNYu0BC8';
+    const SHEET_ID = '1ErDWbXVEi4IAoh-updyOoJGnOZge-AxA8fG8Urg4WIw';
     const sheet = SpreadsheetApp.openById(SHEET_ID).getActiveSheet();
 
     // Добавляем заголовки, если лист пустой
