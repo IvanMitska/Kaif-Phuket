@@ -486,25 +486,29 @@ const SurveyPage = () => {
       // URL вашего Google Apps Script
       const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxmqEA8Vojx-Lsr8wNTtuoFbCXTkqLS40RkXgZOtTq_kEiDze7SvkQTd6vBDZGiBKbL/exec';
       
-      // Преобразуем данные в FormData для отправки
-      const formDataToSend = new FormData();
-      formDataToSend.append('services', JSON.stringify(formData.services));
-      formDataToSend.append('source', formData.source);
-      formDataToSend.append('otherSource', formData.otherSource);
-      formDataToSend.append('serviceRating', formData.serviceRating);
-      formDataToSend.append('resultRating', formData.resultRating);
-      formDataToSend.append('masterName', formData.masterName);
-      formDataToSend.append('improvements', formData.improvements);
-      formDataToSend.append('wantsOffers', formData.wantsOffers);
-      formDataToSend.append('phoneNumber', formData.phoneNumber);
+      // Создаем URL с параметрами
+      const params = new URLSearchParams();
+      params.append('services', JSON.stringify(formData.services));
+      params.append('source', formData.source || '');
+      params.append('otherSource', formData.otherSource || '');
+      params.append('serviceRating', formData.serviceRating || '');
+      params.append('resultRating', formData.resultRating || '');
+      params.append('masterName', formData.masterName || '');
+      params.append('improvements', formData.improvements || '');
+      params.append('wantsOffers', String(formData.wantsOffers));
+      params.append('phoneNumber', formData.phoneNumber || '');
       
-      const response = await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        body: formDataToSend,
-        mode: 'no-cors' // Необходимо для Google Apps Script
+      console.log('Отправка данных:', formData);
+
+      // Отправляем GET запрос с параметрами
+      const response = await fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, {
+        method: 'GET',
+        mode: 'no-cors'
       });
 
       // При mode: 'no-cors' response всегда будет opaque, поэтому считаем успешным
+      // Добавляем небольшую задержку для уверенности
+      await new Promise(resolve => setTimeout(resolve, 1000));
       setIsSubmitted(true);
       
     } catch (error) {
