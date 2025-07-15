@@ -484,7 +484,7 @@ const SurveyPage = () => {
 
     try {
       // URL вашего Google Apps Script
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyvQVgaNnm4bS3vB1esaoBp5zvR3S6zVvXh2U9l4ILkeuTrIYuxVjocn-TuPdZNv2m9/exec';
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxmqEA8Vojx-Lsr8wNTtuoFbCXTkqLS40RkXgZOtTq_kEiDze7SvkQTd6vBDZGiBKbL/exec';
       
       // Преобразуем данные в FormData для отправки
       const formDataToSend = new FormData();
