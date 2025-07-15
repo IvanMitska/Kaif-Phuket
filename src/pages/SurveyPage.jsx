@@ -483,8 +483,8 @@ const SurveyPage = () => {
     setError('');
 
     try {
-      // Замените этот URL на URL вашего Google Apps Script
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+      // URL вашего Google Apps Script
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyvQVgaNnm4bS3vB1esaoBp5zvR3S6zVvXh2U9l4ILkeuTrIYuxVjocn-TuPdZNv2m9/exec';
       
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
