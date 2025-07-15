@@ -18,16 +18,16 @@ const MainContainer = styled.div`
   flex-direction: column;
   overflow-x: hidden;
   margin: 0;
-  padding-top: 65px;
+  padding: 0;
 `;
 
 const MainContent = styled.main`
   width: 100%;
-  min-height: calc(100vh - 65px);
+  min-height: 100vh;
   position: relative;
   flex: 1 0 auto;
   margin: 0;
-  padding: 0;
+  padding: 65px 0 0 0;
   background: transparent;
 `;
 

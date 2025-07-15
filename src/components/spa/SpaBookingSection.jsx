@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { 
   PhoneIcon, 
   ChatBubbleLeftRightIcon,
   CalendarDaysIcon,
   ClockIcon,
-  MapPinIcon
+  MapPinIcon,
+  DocumentTextIcon
 } from '@heroicons/react/24/solid';
 // import YclientsModal from '../booking/YclientsModal'; // Временно отключено
 
@@ -112,12 +114,10 @@ const BookingGrid = styled.div`
     gap: 2rem;
   }
   
-  /* Временно отключено - было для 3 карточек
   @media (min-width: 1024px) {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 2rem;
   }
-  */
 `;
 
 const BookingCard = styled(motion.div)`
@@ -291,6 +291,7 @@ const SecondaryButton = styled(motion.a)`
 
 const SpaBookingSection = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   // const [isYclientsModalOpen, setIsYclientsModalOpen] = useState(false); // Временно отключено
 
   // Animation variants
@@ -340,7 +341,7 @@ const SpaBookingSection = () => {
         </SectionHeader>
 
         <BookingGrid>
-          {/* Временно отключено - онлайн-запись через Yclients
+          {/* Опросник для клиентов */}
           <motion.div
             variants={cardVariants}
             initial="hidden"
@@ -349,38 +350,37 @@ const SpaBookingSection = () => {
           >
             <BookingCard>
               <CardIcon>
-                <CalendarDaysIcon />
+                <DocumentTextIcon />
               </CardIcon>
-              <CardTitle>{t('spa.booking.online.title', 'Онлайн-запись')}</CardTitle>
+              <CardTitle>{t('spa.booking.survey.title', 'Оставить отзыв')}</CardTitle>
               <CardDescription>
-                {t('spa.booking.online.description', 'Удобная онлайн-запись на любую процедуру. Выберите мастера, время и услугу в несколько кликов. Моментальное подтверждение записи.')}
+                {t('spa.booking.survey.description', 'Помогите нам стать лучше! Заполните короткую анкету о вашем визите и поделитесь впечатлениями о наших услугах.')}
               </CardDescription>
               
               <ContactList>
                 <ContactItem>
                   <ClockIcon />
-                  <span>{t('spa.booking.online.hours', 'Запись 24/7 онлайн')}</span>
+                  <span>{t('spa.booking.survey.time', 'Займет 2-3 минуты')}</span>
                 </ContactItem>
                 <ContactItem>
-                  <CalendarDaysIcon />
-                  <span>{t('spa.booking.online.feature', 'Выбор мастера и времени')}</span>
+                  <DocumentTextIcon />
+                  <span>{t('spa.booking.survey.feature', 'Анонимный опрос')}</span>
                 </ContactItem>
               </ContactList>
               
               <div style={{ marginTop: '1.5rem' }}>
-                <ActionButton 
+                <SecondaryButton 
                   as="button"
-                  onClick={() => setIsYclientsModalOpen(true)}
+                  onClick={() => navigate('/survey')}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <CalendarDaysIcon />
-                  {t('spa.booking.online.button', 'Записаться онлайн')}
-                </ActionButton>
+                  <DocumentTextIcon />
+                  {t('spa.booking.survey.button', 'Заполнить анкету')}
+                </SecondaryButton>
               </div>
             </BookingCard>
           </motion.div>
-          */}
 
           {/* Телефонное бронирование */}
           <motion.div

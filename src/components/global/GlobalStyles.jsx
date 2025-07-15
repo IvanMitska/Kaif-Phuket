@@ -1,4 +1,3 @@
-import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
 // Import custom KAIF font
@@ -142,6 +141,37 @@ const GlobalStyles = createGlobalStyle`
     border: 0;
     outline: 0;
     vertical-align: baseline;
+    margin-top: 0 !important;
+    padding-top: 0;
+  }
+  
+  /* Устранение зазоров между main и footer */
+  main {
+    margin: 0;
+    padding-bottom: 0;
+    display: block;
+  }
+  
+  /* Устранение любых возможных зазоров */
+  main + footer,
+  section + footer,
+  div + footer {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  
+  /* Принудительное устранение зазоров для всех элементов перед footer */
+  footer {
+    margin-top: 0 !important;
+    border-top: none !important;
+  }
+  
+  /* Убираем любые возможные отступы в конце main контента */
+  main > *:last-child,
+  main > div:last-child,
+  main > section:last-child {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
   }
   
   /* Типография */
