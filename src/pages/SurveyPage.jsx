@@ -486,12 +486,21 @@ const SurveyPage = () => {
       // URL вашего Google Apps Script
       const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyvQVgaNnm4bS3vB1esaoBp5zvR3S6zVvXh2U9l4ILkeuTrIYuxVjocn-TuPdZNv2m9/exec';
       
+      // Преобразуем данные в FormData для отправки
+      const formDataToSend = new FormData();
+      formDataToSend.append('services', JSON.stringify(formData.services));
+      formDataToSend.append('source', formData.source);
+      formDataToSend.append('otherSource', formData.otherSource);
+      formDataToSend.append('serviceRating', formData.serviceRating);
+      formDataToSend.append('resultRating', formData.resultRating);
+      formDataToSend.append('masterName', formData.masterName);
+      formDataToSend.append('improvements', formData.improvements);
+      formDataToSend.append('wantsOffers', formData.wantsOffers);
+      formDataToSend.append('phoneNumber', formData.phoneNumber);
+      
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        body: formDataToSend,
         mode: 'no-cors' // Необходимо для Google Apps Script
       });
 
