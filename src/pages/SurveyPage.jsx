@@ -489,49 +489,41 @@ const SurveyPage = () => {
       console.log('Начинаем отправку формы...');
       console.log('Данные формы:', formData);
 
-      // Используем альтернативный метод - создаем скрытый iframe для отправки
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.name = 'hidden-form-frame';
-      document.body.appendChild(iframe);
+      // Используем метод отправки через изображение (pixel tracking)
+      const params = new URLSearchParams();
+      params.append('services', JSON.stringify(formData.services));
+      params.append('source', formData.source || '');
+      params.append('otherSource', formData.otherSource || '');
+      params.append('serviceRating', formData.serviceRating || '');
+      params.append('resultRating', formData.resultRating || '');
+      params.append('masterName', formData.masterName || '');
+      params.append('improvements', formData.improvements || '');
+      params.append('wantsOffers', String(formData.wantsOffers));
+      params.append('phoneNumber', formData.phoneNumber || '');
 
-      // Создаем форму
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = GOOGLE_SCRIPT_URL;
-      form.target = 'hidden-form-frame';
-
-      // Добавляем поля формы
-      const fields = {
-        services: JSON.stringify(formData.services),
-        source: formData.source || '',
-        otherSource: formData.otherSource || '',
-        serviceRating: formData.serviceRating || '',
-        resultRating: formData.resultRating || '',
-        masterName: formData.masterName || '',
-        improvements: formData.improvements || '',
-        wantsOffers: String(formData.wantsOffers),
-        phoneNumber: formData.phoneNumber || ''
+      console.log('Отправляем данные через GET...');
+      
+      // Создаем скрытое изображение для отправки GET запроса
+      const img = new Image();
+      img.style.display = 'none';
+      
+      // Обработчики событий
+      img.onload = () => {
+        console.log('Данные успешно отправлены!');
+        document.body.removeChild(img);
       };
-
-      Object.entries(fields).forEach(([name, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = name;
-        input.value = value;
-        form.appendChild(input);
-      });
-
-      document.body.appendChild(form);
       
-      console.log('Отправляем форму...');
-      form.submit();
+      img.onerror = () => {
+        console.log('Ошибка при отправке, но данные могли быть получены');
+        document.body.removeChild(img);
+      };
+      
+      // Устанавливаем URL с параметрами
+      img.src = `${GOOGLE_SCRIPT_URL}?${params.toString()}`;
+      document.body.appendChild(img);
 
-      // Ждем отправки и удаляем элементы
+      // Ждем отправки
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      document.body.removeChild(form);
-      document.body.removeChild(iframe);
       
       console.log('Форма отправлена успешно!');
       setIsSubmitted(true);
