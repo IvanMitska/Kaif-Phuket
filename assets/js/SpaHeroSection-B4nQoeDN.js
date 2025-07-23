@@ -1,4 +1,4 @@
-import{r as e,a as i,j as t,ad as a,s as r}from"./vendor-react-CiYCyw2Q.js";import{d as n}from"./vendor-styles-BbzM21L4.js";import{h as o}from"./main-jHxpdAz9.js";import{m}from"./vendor-animations-BNNrahxh.js";import"./vendor-other-CZupzcPt.js";import"./vendor-i18n-C4kh69yx.js";const d=n.section`
+import{r as e,a as i,j as t,ad as a,t as r}from"./vendor-react-C8d7Q6_M.js";import{d as n}from"./vendor-styles-DGlzumVJ.js";import{h as o}from"./main-BvvD-B-G.js";import{m}from"./vendor-animations-DZaFu96O.js";import"./vendor-other-CZupzcPt.js";import"./vendor-i18n-C4kh69yx.js";const d=n.section`
   position: relative;
   min-height: 100vh;
   background: url(${o});
