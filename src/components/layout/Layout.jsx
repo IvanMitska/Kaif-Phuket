@@ -7,7 +7,6 @@ import Header from './Header';
 import Footer from './Footer';
 import GlobalStyles from '../global/GlobalStyles';
 import LoadingScreen from '../global/LoadingScreen';
-import PromoBanner from '../common/PromoBanner';
 
 const MainContainer = styled.div`
   min-height: 100vh;
@@ -61,7 +60,6 @@ const Layout = ({ children }) => {
       <GlobalStyles />
       <LoadingScreen isVisible={!isPageLoaded && !isGlobalLoading} />
       <Header />
-      <PromoBanner />
       <MainContainer>
         <MainContent>
           {children}
