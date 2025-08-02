@@ -1,4 +1,4 @@
-import{a as e,b as i,j as r,ah as n,ai as o,d as a,c as t,F as s,I as d}from"./vendor-react-C8d7Q6_M.js";import{d as l}from"./vendor-styles-DGlzumVJ.js";import{m as p}from"./vendor-animations-DZaFu96O.js";import"./vendor-other-CZupzcPt.js";const m=l.section`
+import{a as e,b as i,j as r,ag as n,ah as o,d as a,c as t,F as s,E as d}from"./vendor-react-Ce3vtg5u.js";import{d as l}from"./vendor-styles-CmrnBrPu.js";import{m as p}from"./vendor-animations-C-51Dz0N.js";import"./vendor-other-CZupzcPt.js";const m=l.section`
   position: relative;
   padding: 5rem 0 0 0; /* Убираем нижний padding для устранения белой линии */
   background: linear-gradient(135deg, rgba(144, 179, 167, 0.05) 0%, rgba(168, 197, 184, 0.03) 100%);

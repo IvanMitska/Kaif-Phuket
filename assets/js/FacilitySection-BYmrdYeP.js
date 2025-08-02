@@ -1,4 +1,4 @@
-import{a as e,r as i,b as t,j as r,P as a,ag as s,h as o,al as n}from"./vendor-react-C8d7Q6_M.js";import{d as l}from"./vendor-styles-DGlzumVJ.js";import{m as p}from"./vendor-animations-DZaFu96O.js";import{S as c,T as d,C as x,a as h,b as g,c as m,B as f}from"./SportsPage-8R0v4av7.js";import"./vendor-other-CZupzcPt.js";import"./main-BvvD-B-G.js";import"./vendor-i18n-C4kh69yx.js";import"./PageScrollReset-BkpYX3BD.js";const b=l(p.div)`
+import{a as e,r as i,b as t,j as r,M as a,af as s,f as o,ak as n}from"./vendor-react-Ce3vtg5u.js";import{d as l}from"./vendor-styles-CmrnBrPu.js";import{m as p}from"./vendor-animations-C-51Dz0N.js";import{S as c,T as d,C as x,a as h,b as g,c as m,B as f}from"./SportsPage-CdsCQxWS.js";import"./vendor-other-CZupzcPt.js";import"./main-BTrWckLr.js";import"./vendor-i18n-C4kh69yx.js";import"./PageScrollReset-Cu8pCFiy.js";const b=l(p.div)`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;

@@ -1,4 +1,4 @@
-import{r as e,a as t,j as a,C as i,c as r,D as n,E as o,G as s,I as l,F as d,d as c,J as p,R as m}from"./vendor-react-C8d7Q6_M.js";import{d as f,m as g}from"./vendor-styles-DGlzumVJ.js";import{P as b}from"./PageScrollReset-BkpYX3BD.js";import{P as h}from"./main-BvvD-B-G.js";import{m as x,A as u}from"./vendor-animations-DZaFu96O.js";import"./vendor-other-CZupzcPt.js";import"./vendor-i18n-C4kh69yx.js";f.div`
+import{r as e,a as t,j as a,z as i,c as r,A as n,C as o,D as s,E as l,F as d,d as c,G as p,R as m}from"./vendor-react-Ce3vtg5u.js";import{d as f,m as g}from"./vendor-styles-CmrnBrPu.js";import{P as b}from"./PageScrollReset-Cu8pCFiy.js";import{P as h}from"./main-BTrWckLr.js";import{m as x,A as u}from"./vendor-animations-C-51Dz0N.js";import"./vendor-other-CZupzcPt.js";import"./vendor-i18n-C4kh69yx.js";f.div`
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -519,14 +519,14 @@ import{r as e,a as t,j as a,C as i,c as r,D as n,E as o,G as s,I as l,F as d,d a
   margin-top: 0.75rem;
   font-style: italic;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-`,J=f.div`
+`,Q=f.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 2rem;
   padding-top: 1rem;
   border-top: 1px solid rgba(255, 107, 53, 0.2);
-`,Q=f.div`
+`,X=f.div`
   color: rgba(255, 255, 255, 0.7);
   font-size: 1rem;
   display: flex;
@@ -538,12 +538,12 @@ import{r as e,a as t,j as a,C as i,c as r,D as n,E as o,G as s,I as l,F as d,d a
     font-size: 1.2rem;
     animation: ${H} 3s ease-in-out infinite;
   }
-`,X=f.div`
+`,G=f.div`
   color: #ffd662;
   font-size: 1.5rem;
   font-weight: 700;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-`,G=f.div`
+`,J=f.div`
   position: absolute;
   font-size: 3rem;
   color: rgba(255, 107, 53, 0.1);
@@ -564,7 +564,7 @@ import{r as e,a as t,j as a,C as i,c as r,D as n,E as o,G as s,I as l,F as d,d a
   @media (max-width: 768px) {
     display: none;
   }
-`,Z=()=>{const{t:e}=t(),i=[{id:"light",title:e("banya.services.rituals.light.title"),subtitle:e("banya.services.rituals.light.subtitle"),duration:e("banya.services.rituals.light.duration"),price:e("banya.services.rituals.light.price"),description:e("banya.services.rituals.light.description")},{id:"medium",title:e("banya.services.rituals.medium.title"),subtitle:e("banya.services.rituals.medium.subtitle"),duration:e("banya.services.rituals.medium.duration"),price:e("banya.services.rituals.medium.price"),description:e("banya.services.rituals.medium.description")},{id:"hard",title:e("banya.services.rituals.hard.title"),subtitle:e("banya.services.rituals.hard.subtitle"),duration:e("banya.services.rituals.hard.duration"),price:e("banya.services.rituals.hard.price"),description:e("banya.services.rituals.hard.description")},{id:"valhalla",title:e("banya.services.rituals.valhalla.title"),subtitle:e("banya.services.rituals.valhalla.subtitle"),duration:e("banya.services.rituals.valhalla.duration"),price:e("banya.services.rituals.valhalla.price"),description:e("banya.services.rituals.valhalla.description")}];return a.jsxs(Y,{children:[a.jsx(G,{className:"top-left",children:"᚛ᚃᚔᚏᚓ᚜"}),a.jsx(G,{className:"bottom-right",children:"᚛ᚔᚉᚓ᚜"}),a.jsx(P,{intensity:"low"}),a.jsxs(R,{children:[a.jsx(L,{children:a.jsx(M,{children:e("banya.services.badge")})}),a.jsx(O,{children:i.map((e,t)=>a.jsxs(W,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.2*t},children:[a.jsxs(K,{children:[a.jsx(D,{children:e.title}),a.jsx(F,{children:e.subtitle}),a.jsx(U,{children:e.description})]}),a.jsxs(J,{children:[a.jsx(Q,{children:e.duration}),a.jsx(X,{children:e.price})]})]},e.id))})]})]})},ee=g`
+`,Z=()=>{const{t:e}=t(),i=[{id:"light",title:e("banya.services.rituals.light.title"),subtitle:e("banya.services.rituals.light.subtitle"),duration:e("banya.services.rituals.light.duration"),price:e("banya.services.rituals.light.price"),description:e("banya.services.rituals.light.description")},{id:"medium",title:e("banya.services.rituals.medium.title"),subtitle:e("banya.services.rituals.medium.subtitle"),duration:e("banya.services.rituals.medium.duration"),price:e("banya.services.rituals.medium.price"),description:e("banya.services.rituals.medium.description")},{id:"hard",title:e("banya.services.rituals.hard.title"),subtitle:e("banya.services.rituals.hard.subtitle"),duration:e("banya.services.rituals.hard.duration"),price:e("banya.services.rituals.hard.price"),description:e("banya.services.rituals.hard.description")},{id:"valhalla",title:e("banya.services.rituals.valhalla.title"),subtitle:e("banya.services.rituals.valhalla.subtitle"),duration:e("banya.services.rituals.valhalla.duration"),price:e("banya.services.rituals.valhalla.price"),description:e("banya.services.rituals.valhalla.description")}];return a.jsxs(Y,{children:[a.jsx(J,{className:"top-left",children:"᚛ᚃᚔᚏᚓ᚜"}),a.jsx(J,{className:"bottom-right",children:"᚛ᚔᚉᚓ᚜"}),a.jsx(P,{intensity:"low"}),a.jsxs(R,{children:[a.jsx(L,{children:a.jsx(M,{children:e("banya.services.badge")})}),a.jsx(O,{children:i.map((e,t)=>a.jsxs(W,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.2*t},children:[a.jsxs(K,{children:[a.jsx(D,{children:e.title}),a.jsx(F,{children:e.subtitle}),a.jsx(U,{children:e.description})]}),a.jsxs(Q,{children:[a.jsx(X,{children:e.duration}),a.jsx(G,{children:e.price})]})]},e.id))})]})]})},ee=g`
   0%, 100% { text-shadow: 0 0 10px #ff6b35, 0 0 20px #ff6b35; }
   50% { text-shadow: 0 0 20px #ff6b35, 0 0 30px #ff6b35, 0 0 40px #ff6b35; }
 `,te=g`
@@ -1208,7 +1208,7 @@ import{r as e,a as t,j as a,C as i,c as r,D as n,E as o,G as s,I as l,F as d,d a
   &:hover {
     background: rgba(255, 107, 53, 0.05);
   }
-`,Je=f.h3`
+`,Qe=f.h3`
   font-size: clamp(1.125rem, 2.5vw, 1.5rem);
   font-weight: 600;
   color: ${e=>e.$isOpen?"#ffffff":"#cccccc"};
@@ -1220,7 +1220,7 @@ import{r as e,a as t,j as a,C as i,c as r,D as n,E as o,G as s,I as l,F as d,d a
   &:hover {
     color: #ffffff;
   }
-`,Qe=f.div`
+`,Xe=f.div`
   width: 40px;
   height: 40px;
   background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
@@ -1239,7 +1239,7 @@ import{r as e,a as t,j as a,C as i,c as r,D as n,E as o,G as s,I as l,F as d,d a
     transform: ${e=>e.$isOpen?"rotate(180deg)":"rotate(0deg)"};
     transition: transform 0.3s ease;
   }
-`,Xe=f(x.div)`
+`,Ge=f(x.div)`
   padding: 0 2.5rem 2rem;
   color: #ffffff;
   font-size: clamp(1.125rem, 2vw, 1.25rem);
@@ -1256,7 +1256,7 @@ import{r as e,a as t,j as a,C as i,c as r,D as n,E as o,G as s,I as l,F as d,d a
       margin-bottom: 0;
     }
   }
-`,Ge=f.div`
+`,Je=f.div`
   position: absolute;
   font-size: 4rem;
   color: rgba(255, 107, 53, 0.08);
@@ -1277,7 +1277,7 @@ import{r as e,a as t,j as a,C as i,c as r,D as n,E as o,G as s,I as l,F as d,d a
   @media (max-width: 768px) {
     display: none;
   }
-`,Ze=()=>{const{t:i}=t(),[r,n]=e.useState(null),o=[{question:i("banya.faq.questions.panoramic.question","What's special about the panoramic banya?"),answer:i("banya.faq.questions.panoramic.answer","Our banya is unique with several features: 150 square meters with panoramic jungle windows, built from Siberian cedar and Altai linden - premium natural materials. It's the only panoramic Russian banya in Phuket where you can enjoy traditional banya rituals with tropical nature views.")},{question:i("banya.faq.questions.procedures.question","What procedures are included in the banya ritual?"),answer:i("banya.faq.questions.procedures.answer","Depending on your chosen program you'll receive: classic banya ritual with birch brooms, aromatherapy with essential oils, herbal infusions and teas, option to order massage in the steam room, and personal accompaniment by a master attendant for VIP programs.")},{question:i("banya.faq.questions.materials.question","What materials is the banya built from?"),answer:i("banya.faq.questions.materials.answer","The banya is built exclusively from natural eco-friendly materials: Siberian cedar, Altai linden, Karelian birch. All finishes are natural, without chemical additives. Such materials create a special microclimate and provide natural aromatherapy.")}];return a.jsxs(Re,{children:[a.jsxs(Le,{children:[a.jsxs(Me,{children:[a.jsx(Oe,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6},children:i("banya.faq.badge","Questions & Answers")}),a.jsx(We,{initial:{opacity:0,y:30},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.8,delay:.2},children:a.jsx("span",{dangerouslySetInnerHTML:{__html:i("banya.faq.title",'Frequently Asked <span className="highlight">Questions</span>')}})}),a.jsx(Ke,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.4},children:i("banya.faq.subtitle","Answers to the most popular questions about our banya")})]}),a.jsx(De,{children:o.map((e,t)=>a.jsxs(Fe,{initial:{opacity:0,y:30},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.1*t},children:[a.jsxs(Ue,{onClick:()=>(e=>{n(r===e?null:e)})(t),children:[a.jsx(Je,{$isOpen:r===t,children:e.question}),a.jsx(Qe,{$isOpen:r===t,children:a.jsx(p,{})})]}),a.jsx(u,{children:r===t&&a.jsx(Xe,{initial:{height:0,opacity:0},animate:{height:"auto",opacity:1},exit:{height:0,opacity:0},transition:{duration:.3,ease:"easeInOut"},children:a.jsx("p",{children:e.answer})})})]},t))})]}),a.jsx(Ge,{className:"left",children:"ᚠ"}),a.jsx(Ge,{className:"right",children:"ᚢ"})]})},et=f.div`
+`,Ze=()=>{const{t:i}=t(),[r,n]=e.useState(null),o=[{question:i("banya.faq.questions.panoramic.question","What's special about the panoramic banya?"),answer:i("banya.faq.questions.panoramic.answer","Our banya is unique with several features: 150 square meters with panoramic jungle windows, built from Siberian cedar and Altai linden - premium natural materials. It's the only panoramic Russian banya in Phuket where you can enjoy traditional banya rituals with tropical nature views.")},{question:i("banya.faq.questions.procedures.question","What procedures are included in the banya ritual?"),answer:i("banya.faq.questions.procedures.answer","Depending on your chosen program you'll receive: classic banya ritual with birch brooms, aromatherapy with essential oils, herbal infusions and teas, option to order massage in the steam room, and personal accompaniment by a master attendant for VIP programs.")},{question:i("banya.faq.questions.materials.question","What materials is the banya built from?"),answer:i("banya.faq.questions.materials.answer","The banya is built exclusively from natural eco-friendly materials: Siberian cedar, Altai linden, Karelian birch. All finishes are natural, without chemical additives. Such materials create a special microclimate and provide natural aromatherapy.")}];return a.jsxs(Re,{children:[a.jsxs(Le,{children:[a.jsxs(Me,{children:[a.jsx(Oe,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6},children:i("banya.faq.badge","Questions & Answers")}),a.jsx(We,{initial:{opacity:0,y:30},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.8,delay:.2},children:a.jsx("span",{dangerouslySetInnerHTML:{__html:i("banya.faq.title",'Frequently Asked <span className="highlight">Questions</span>')}})}),a.jsx(Ke,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.4},children:i("banya.faq.subtitle","Answers to the most popular questions about our banya")})]}),a.jsx(De,{children:o.map((e,t)=>a.jsxs(Fe,{initial:{opacity:0,y:30},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6,delay:.1*t},children:[a.jsxs(Ue,{onClick:()=>(e=>{n(r===e?null:e)})(t),children:[a.jsx(Qe,{$isOpen:r===t,children:e.question}),a.jsx(Xe,{$isOpen:r===t,children:a.jsx(p,{})})]}),a.jsx(u,{children:r===t&&a.jsx(Ge,{initial:{height:0,opacity:0},animate:{height:"auto",opacity:1},exit:{height:0,opacity:0},transition:{duration:.3,ease:"easeInOut"},children:a.jsx("p",{children:e.answer})})})]},t))})]}),a.jsx(Je,{className:"left",children:"ᚠ"}),a.jsx(Je,{className:"right",children:"ᚢ"})]})},et=f.div`
   background: transparent;
   color: ${e=>e.theme.colors.text.primary};
   min-height: 100vh;
