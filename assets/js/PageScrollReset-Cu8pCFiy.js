@@ -1,1 +1,0 @@
-import{r as o}from"./vendor-react-Ce3vtg5u.js";const t=()=>(o.useEffect(()=>{const o=()=>{window.scrollTo({top:0,left:0,behavior:"instant"}),document.documentElement.scrollTop=0,document.body.scrollTop=0};o(),setTimeout(o,0),setTimeout(o,10),setTimeout(o,50),setTimeout(o,100),requestAnimationFrame(()=>{o()})},[]),null);export{t as P};
