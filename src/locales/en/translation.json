@@ -356,7 +356,8 @@
         "main": "Main Courses"
       },
       "tag": "Exquisite Dishes",
-      "download_pdf": "Menu PDF"
+      "download_pdf": "Download Menu PDF",
+      "popular": "Popular"
     },
     "bar": {
       "label": "Bar",
@@ -436,6 +437,17 @@
         "coffee": "Coffee",
         "coffee_signature": "Signature Coffee",
         "smoothie": "Smoothies",
+        "mocktail": "Mocktails",
+        "juice": "Fresh Juices",
+        "cocktail": "Cocktails",
+        "wine": "Wine",
+        "beer": "Beer",
+        "strong": "Spirits",
+        "liqueur": "Liqueurs",
+        "fitness": "Fitness Drinks",
+        "water": "Water",
+        "milk": "Milk",
+        "soft_drink": "Soft Drinks",
         "mocktail": "Mocktails",
         "juice": "Fresh Juices",
         "cocktail": "Cocktails",
@@ -2143,6 +2155,11 @@
     "hero": {
       "badge": "Best Banya in Phuket",
       "title": "Panoramic <span className=\"highlight\">Russian Banya</span>",
+      "title_part1": "Russian",
+      "title_part2": "Banya",
+      "location": "Phuket",
+      "area_unit": "m²",
+      "feature": "Largest banya on the island",
       "area": "150 square meters",
       "subtitle": "Banya made from Siberian cedar and Altai linden",
       "book_button": "Book Now",
@@ -2219,33 +2236,75 @@
       "title": "Choose Your Banya Ritual",
       "description": "From panoramic banya with jungle views to private VIP rituals with master attendants",
       "rituals": {
-        "light": {
-          "title": "Fire Start",
+        "intro": {
+          "title": "Introductory Steaming",
           "subtitle": "Light steam",
-          "duration": "10 min",
+          "duration": "5-8 min",
           "price": "1,200 THB",
-          "description": "1 session, oak infusion"
+          "description": "Contact warming of back and legs with birch brooms. Light steam without turning over"
         },
-        "medium": {
-          "title": "Warrior's Path",
+        "classic": {
+          "title": "Classic Steaming",
           "subtitle": "Medium steam",
-          "duration": "15-20 min",
-          "price": "2,000 THB",
-          "description": "1 session, kvass infusion"
+          "duration": "10-15 min",
+          "price": "1,800 THB",
+          "description": "Steaming with oak brooms in one session. Thorough whole body steaming with aromatic steam"
         },
-        "hard": {
-          "title": "Thor's Strength",
-          "subtitle": "Strong steam",
-          "duration": "30 min",
-          "price": "2,600 THB",
-          "description": "2 sessions, garlic and citrus infusions"
+        "artesian": {
+          "title": "Artesian",
+          "subtitle": "Contrast steaming",
+          "duration": "15-20 min",
+          "price": "2,500 THB",
+          "description": "Classic steaming with oak brooms with contrast of cool mineral water. Bubble contrast sensations"
+        },
+        "gravity": {
+          "title": "Gravity",
+          "subtitle": "Weightless steaming",
+          "duration": "15-20 min",
+          "price": "2,500 THB",
+          "description": "Classic steaming with subsequent floating in a warm pool. Complete relaxation and weightlessness"
+        },
+        "salt_fire": {
+          "title": "Fire Start",
+          "subtitle": "Salt steaming",
+          "duration": "15-20 min",
+          "price": "2,500 THB",
+          "description": "Classic steaming with sea salt application and warming through a sheet. Salt cave effect"
+        },
+        "warrior_path": {
+          "title": "Warrior's Path",
+          "subtitle": "Contrast steaming",
+          "duration": "20-25 min",
+          "price": "3,500 THB",
+          "description": "Steaming in two sessions with cold water dousing between them. Back warming and kvass refreshment"
+        },
+        "stalwar": {
+          "title": "Thor's Power",
+          "subtitle": "Steelworker's steaming",
+          "duration": "15-20 min",
+          "price": "3,500 THB",
+          "description": "Dynamic steaming on high hot steam. Tones the body and relieves muscle tension"
+        },
+        "honey": {
+          "title": "Honey Steaming",
+          "subtitle": "With natural honey",
+          "duration": "15-20 min",
+          "price": "4,000 THB",
+          "description": "Author's steaming with Canadian brooms with honey application. Vitamins through open pores and summer meadow aroma"
+        },
+        "royal": {
+          "title": "Royal Steaming",
+          "subtitle": "Honey-salt scrub",
+          "duration": "25-30 min",
+          "price": "4,500 THB",
+          "description": "Royal steaming with Canadian brooms from both sides. Deep scrub with honey and sea salt cleanses the skin"
         },
         "valhalla": {
           "title": "Valhalla",
-          "subtitle": "Intense steam",
-          "duration": "1 hour",
+          "subtitle": "Group steaming",
+          "duration": "10-20 min",
           "price": "3,500 THB",
-          "description": "3 sessions, citrus, ginger, and beer infusions"
+          "description": "Steaming with fan and brooms for a group of 3-5 people. Foot bath with herbs and sea stones"
         }
       },
       "coming_soon": {
@@ -2254,6 +2313,23 @@
         "subtext": "Stay tuned — we will update this section soon!"
       },
       "popular": "Popular"
+    },
+    "gallery": {
+      "badge": "GALLERY",
+      "title": "Gallery",
+      "subtitle": "Atmosphere of authentic Russian banya",
+      "steam_room": "Steam Room",
+      "steam_room_desc": "Classic Russian steam room with birch brooms",
+      "rest_area": "Rest Area",
+      "rest_area_desc": "Comfortable rest area after steaming",
+      "cold_pool": "Cold Pool",
+      "cold_pool_desc": "Cold water pool for contrast procedures",
+      "hot_stones": "Hot Stones",
+      "hot_stones_desc": "Red-hot stones for steam creation",
+      "tea_ceremony": "Tea Ceremony",
+      "tea_ceremony_desc": "Traditional tea drinking after banya",
+      "lounge": "Lounge Zone",
+      "lounge_desc": "Spacious relaxation area"
     },
     "faq": {
       "badge": "Questions & Answers",

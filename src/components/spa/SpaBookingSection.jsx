@@ -11,7 +11,7 @@ import {
   MapPinIcon,
   DocumentTextIcon
 } from '@heroicons/react/24/solid';
-// import YclientsModal from '../booking/YclientsModal'; // Временно отключено
+import YclientsModal from '../booking/YclientsModal';
 
 // =============================================================================
 // СОВРЕМЕННАЯ СЕКЦИЯ БРОНИРОВАНИЯ SPA
@@ -292,7 +292,7 @@ const SecondaryButton = styled(motion.a)`
 const SpaBookingSection = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  // const [isYclientsModalOpen, setIsYclientsModalOpen] = useState(false); // Временно отключено
+  const [isYclientsModalOpen, setIsYclientsModalOpen] = useState(false);
 
   // Animation variants
   const cardVariants = {
@@ -341,7 +341,7 @@ const SpaBookingSection = () => {
         </SectionHeader>
 
         <BookingGrid>
-          {/* Опросник для клиентов */}
+          {/* Онлайн-запись через Altegio */}
           <motion.div
             variants={cardVariants}
             initial="hidden"
@@ -350,34 +350,34 @@ const SpaBookingSection = () => {
           >
             <BookingCard>
               <CardIcon>
-                <DocumentTextIcon />
+                <CalendarDaysIcon />
               </CardIcon>
-              <CardTitle>{t('spa.booking.survey.title', 'Оставить отзыв')}</CardTitle>
+              <CardTitle>{t('spa.booking.online.title', 'Онлайн-запись')}</CardTitle>
               <CardDescription>
-                {t('spa.booking.survey.description', 'Помогите нам стать лучше! Заполните короткую анкету о вашем визите и поделитесь впечатлениями о наших услугах.')}
+                {t('spa.booking.online.description', 'Удобная онлайн-запись на любую процедуру. Выберите услугу, мастера и удобное время в несколько кликов.')}
               </CardDescription>
               
               <ContactList>
                 <ContactItem>
                   <ClockIcon />
-                  <span>{t('spa.booking.survey.time', 'Займет 2-3 минуты')}</span>
+                  <span>{t('spa.booking.online.hours', 'Запись 24/7 онлайн')}</span>
                 </ContactItem>
                 <ContactItem>
-                  <DocumentTextIcon />
-                  <span>{t('spa.booking.survey.feature', 'Анонимный опрос')}</span>
+                  <CalendarDaysIcon />
+                  <span>{t('spa.booking.online.feature', 'Выбор мастера и времени')}</span>
                 </ContactItem>
               </ContactList>
               
               <div style={{ marginTop: '1.5rem' }}>
-                <SecondaryButton 
+                <ActionButton 
                   as="button"
-                  onClick={() => navigate('/survey')}
+                  onClick={() => setIsYclientsModalOpen(true)}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <DocumentTextIcon />
-                  {t('spa.booking.survey.button', 'Заполнить анкету')}
-                </SecondaryButton>
+                  <CalendarDaysIcon />
+                  {t('spa.booking.online.button', 'Записаться онлайн')}
+                </ActionButton>
               </div>
             </BookingCard>
           </motion.div>
@@ -468,13 +468,11 @@ const SpaBookingSection = () => {
         </BookingGrid>
       </ContentWrapper>
       
-      {/* Временно отключено - модальное окно Yclients
       <YclientsModal
         isOpen={isYclientsModalOpen}
         onClose={() => setIsYclientsModalOpen(false)}
         customUrl="https://n1329009.alteg.io"
       />
-      */}
     </BookingContainer>
   );
 };

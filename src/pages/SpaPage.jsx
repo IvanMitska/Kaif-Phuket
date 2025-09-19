@@ -9,6 +9,7 @@ import PageHead from '../components/layout/PageHead';
 const SpaHeroSection = React.lazy(() => import('../components/spa/SpaHeroSection'));
 const SpaServicesSection = React.lazy(() => import('../components/spa/SpaServicesSection'));
 const SpaFeaturesSection = React.lazy(() => import('../components/spa/SpaFeaturesSection'));
+// Галерея импортируется напрямую вверху файла
 // const SpaTestimonialsSection = React.lazy(() => import('../components/spa/SpaTestimonialsSection')); // Отключено
 const SpaBookingSection = React.lazy(() => import('../components/spa/SpaBookingSection'));
 const SpaFAQSection = React.lazy(() => import('../components/spa/SpaFAQSection'));
@@ -76,6 +77,10 @@ const SpaPage = () => {
         <SpaHeroSection />
         <SpaServicesSection />
         <SpaFeaturesSection />
+      </Suspense>
+      
+      
+      <Suspense fallback={<InvisibleLoader />}>
         {/* <SpaTestimonialsSection /> */}
         <SpaFAQSection />
         <SpaBookingSection />

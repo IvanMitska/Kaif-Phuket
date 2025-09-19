@@ -10,7 +10,11 @@ const ModalOverlay = styled(motion.div)`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(20, 25, 30, 0.85) 100%
+  );
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,6 +26,8 @@ const ModalOverlay = styled(motion.div)`
   min-height: 100dvh;
   width: 100vw;
   height: 100vh;
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
   
   @media (max-width: 768px) {
     padding: 1rem;
@@ -37,25 +43,35 @@ const ModalOverlay = styled(motion.div)`
 `;
 
 const ModalContent = styled(motion.div)`
-  background: white;
-  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #fafbfc 100%
+  );
+  border-radius: 24px;
   max-width: 600px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 20px 40px -5px rgba(0, 0, 0, 0.15),
+    0 50px 100px -20px rgba(50, 50, 93, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
   -webkit-overflow-scrolling: touch;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   
   @media (max-width: 768px) {
     max-height: 85vh;
-    border-radius: 16px;
+    border-radius: 20px;
     max-width: 90vw;
   }
   
   @media (max-width: 480px) {
     max-height: 90vh;
-    border-radius: 12px;
+    border-radius: 16px;
     max-width: 95vw;
     width: 95vw;
   }
@@ -65,27 +81,40 @@ const CloseButton = styled.button`
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    0 1px 2px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   
   &:hover {
     background: white;
-    transform: scale(1.1);
+    transform: scale(1.08) rotate(90deg);
+    box-shadow: 
+      0 4px 16px rgba(0, 0, 0, 0.12),
+      0 2px 4px rgba(0, 0, 0, 0.06);
+  }
+  
+  &:active {
+    transform: scale(0.95) rotate(90deg);
   }
   
   svg {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     color: #5A6B5D;
+    transition: transform 0.3s ease;
   }
   
   @media (max-width: 768px) {
@@ -121,19 +150,55 @@ const ServiceHeader = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 4rem;
-  border-radius: 20px 20px 0 0;
+  border-radius: 24px 24px 0 0;
   position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.15),
+      transparent
+    );
+    animation: shimmer 4s infinite;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.05),
+      transparent
+    );
+  }
+  
+  @keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
   
   @media (max-width: 768px) {
     height: 160px;
     font-size: 3.5rem;
-    border-radius: 16px 16px 0 0;
+    border-radius: 20px 20px 0 0;
   }
   
   @media (max-width: 480px) {
     height: 140px;
     font-size: 3rem;
-    border-radius: 0;
+    border-radius: 16px 16px 0 0;
   }
 `;
 
@@ -168,15 +233,21 @@ const ServiceTitle = styled.h2`
 
 const ServiceCategory = styled.div`
   display: inline-block;
-  background: rgba(144, 179, 167, 0.1);
+  background: linear-gradient(
+    135deg,
+    rgba(144, 179, 167, 0.12) 0%,
+    rgba(168, 197, 184, 0.08) 100%
+  );
   color: #90B3A7;
-  padding: 0.3rem 0.8rem;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
   margin-bottom: 1.5rem;
+  border: 1px solid rgba(144, 179, 167, 0.2);
+  box-shadow: 0 2px 4px rgba(144, 179, 167, 0.1);
   
   @media (max-width: 768px) {
     padding: 0.5rem 1rem;
@@ -211,10 +282,18 @@ const ServiceDescription = styled.p`
 `;
 
 const PricingSection = styled.div`
-  background: rgba(144, 179, 167, 0.05);
-  border-radius: 15px;
+  background: linear-gradient(
+    135deg,
+    rgba(144, 179, 167, 0.06) 0%,
+    rgba(168, 197, 184, 0.04) 100%
+  );
+  border-radius: 20px;
   padding: 1.5rem;
   margin-bottom: 2rem;
+  border: 1px solid rgba(144, 179, 167, 0.1);
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
   
   @media (max-width: 768px) {
     padding: 1.8rem;
@@ -349,17 +428,54 @@ const BookingButton = styled(motion.button)`
   background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
   color: white;
   border: none;
-  border-radius: 15px;
-  padding: 1rem 2rem;
+  border-radius: 16px;
+  padding: 1.1rem 2rem;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 4px 14px rgba(144, 179, 167, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.02em;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.3) 0%,
+      transparent 70%
+    );
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease;
+  }
   
   &:hover {
     background: linear-gradient(135deg, #A8C5B8 0%, #B8CFC2 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(144, 179, 167, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 
+      0 8px 30px rgba(144, 179, 167, 0.35),
+      0 12px 40px rgba(144, 179, 167, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    
+    &::before {
+      transform: translate(-50%, -50%) scale(2);
+    }
+  }
+  
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 
+      0 4px 20px rgba(144, 179, 167, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
   
   @media (max-width: 768px) {
@@ -383,12 +499,23 @@ const PopularBadge = styled.div`
   left: 1rem;
   background: linear-gradient(135deg, #E8A87C 0%, #F8B88C 100%);
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+  border-radius: 24px;
+  font-size: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
+  box-shadow: 
+    0 4px 12px rgba(232, 168, 124, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1;
+  animation: pulse 2s infinite;
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
   
   @media (max-width: 768px) {
     padding: 0.6rem 1.2rem;
@@ -468,10 +595,14 @@ const SpaServiceModal = ({ isOpen, onClose, service, categoryData }) => {
           onClick={onClose}
         >
           <ModalContent
-            initial={{ opacity: 0, scale: 0.95, y: 50 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 50 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            initial={{ opacity: 0, scale: 0.9, y: 60, rotateX: -10 }}
+            animate={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 60, rotateX: -10 }}
+            transition={{ 
+              duration: 0.4, 
+              ease: [0.25, 0.46, 0.45, 0.94],
+              opacity: { duration: 0.3 }
+            }}
             onClick={(e) => e.stopPropagation()}
           >
             <CloseButton onClick={onClose}>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { 
   ChevronDownIcon,
@@ -22,32 +22,18 @@ const emberFlicker = keyframes`
 `;
 
 const FAQContainer = styled.section`
-  padding: clamp(6rem, 12vw, 10rem) 0 0 0;
-  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+  padding: clamp(5rem, 10vw, 8rem) 0;
+  background: #0a0a0a;
   position: relative;
   overflow: hidden;
   margin-bottom: 0;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-      radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.06) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.06) 0%, transparent 50%);
-    z-index: 1;
-  }
 `;
 
 const ContentWrapper = styled.div`
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 clamp(1rem, 4vw, 2rem);
   position: relative;
-  z-index: 2;
 `;
 
 const SectionHeader = styled.div`
@@ -58,46 +44,53 @@ const SectionHeader = styled.div`
 const VikingBadge = styled(motion.div)`
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 2rem;
-  background: rgba(0, 0, 0, 0.6);
-  border: 2px solid #ff6b35;
-  border-radius: 8px;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 214, 98, 0.1) 100%);
+  border: 1px solid rgba(255, 214, 98, 0.3);
+  border-radius: 30px;
   font-size: 0.875rem;
-  font-weight: 600;
-  color: #ff6b35;
-  margin-bottom: 2rem;
+  font-weight: 500;
+  color: #ffd662;
+  margin-bottom: 1.5rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  
-  &::before {
-    content: '❓';
-    font-size: 1.2em;
+  letter-spacing: 0.12em;
+  backdrop-filter: blur(10px);
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    color: #ff6b35;
   }
 `;
 
 const SectionTitle = styled(motion.h2)`
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 900;
-  color: #f5f5f5;
-  margin-bottom: 2rem;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 300;
+  color: #ffffff;
+  margin-bottom: 1rem;
   line-height: 1.1;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  font-family: 'Bebas Neue', 'Arial Black', sans-serif;
-  
+  letter-spacing: -0.02em;
+
   .highlight {
-    color: #ff6b35;
-    animation: ${runeGlow} 4s ease-in-out infinite;
+    background: linear-gradient(135deg, #ff6b35 0%, #ffd662 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 `;
 
 const SectionDescription = styled(motion.p)`
-  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
   line-height: 1.6;
-  color: #cccccc;
+  background: linear-gradient(135deg, rgba(255, 214, 98, 0.9) 0%, rgba(255, 107, 53, 0.9) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   max-width: 700px;
-  margin: 0 auto;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  margin: 0 auto 3rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 `;
 
 const FAQList = styled.div`
@@ -107,32 +100,36 @@ const FAQList = styled.div`
 `;
 
 const FAQItem = styled(motion.div)`
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.9) 100%);
-  border: 1px solid rgba(255, 107, 53, 0.3);
-  border-radius: 16px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+  border-radius: 20px;
   overflow: hidden;
-  backdrop-filter: blur(10px);
   position: relative;
-  
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
   &::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #ff6b35, transparent);
+    inset: 0;
+    background: radial-gradient(
+      circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 107, 53, 0.03) 0%,
+      transparent 40%
+    );
     opacity: 0;
     transition: opacity 0.3s ease;
+    pointer-events: none;
   }
-  
+
   &:hover::before {
     opacity: 1;
   }
-  
+
   &:hover {
-    border-color: #ff6b35;
-    box-shadow: 0 8px 32px rgba(255, 107, 53, 0.2);
+    transform: translateY(-4px);
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.4),
+      0 0 30px rgba(255, 107, 53, 0.05);
   }
 `;
 
@@ -148,89 +145,86 @@ const FAQQuestion = styled.button`
   justify-content: space-between;
   gap: 1.5rem;
   transition: all 0.3s ease;
-  
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 2.5rem;
+    right: 2.5rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  }
+
   &:hover {
-    background: rgba(255, 107, 53, 0.05);
+    background: rgba(255, 255, 255, 0.01);
   }
 `;
 
 const QuestionText = styled.h3`
-  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-  font-weight: 600;
-  color: ${props => props.$isOpen ? '#ffffff' : '#cccccc'};
+  font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+  font-weight: ${props => props.$isOpen ? '600' : '500'};
+  background: ${props => props.$isOpen
+    ? 'linear-gradient(135deg, #ffffff 0%, #ffd662 100%)'
+    : 'linear-gradient(135deg, #ffffff 0%, #cccccc 100%)'};
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin: 0;
-  text-shadow: ${props => props.$isOpen ? '0 0 10px rgba(255, 255, 255, 0.3)' : '1px 1px 2px rgba(0, 0, 0, 0.8)'};
   flex: 1;
   transition: all 0.3s ease;
-  
-  &:hover {
-    color: #ffffff;
-  }
+  letter-spacing: -0.01em;
+  text-align: left;
 `;
 
 const QuestionIcon = styled.div`
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
-  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  background: ${props => props.$isOpen
+    ? 'linear-gradient(135deg, #ff6b35 0%, #ffd662 100%)'
+    : 'rgba(255, 107, 53, 0.1)'};
+  border: 1px solid ${props => props.$isOpen
+    ? 'rgba(255, 214, 98, 0.3)'
+    : 'rgba(255, 107, 53, 0.2)'};
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: all 0.3s ease;
-  animation: ${emberFlicker} 3s ease-in-out infinite;
-  
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
   svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    color: #1a1a1a;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: ${props => props.$isOpen ? '#1a1a1a' : '#ff6b35'};
     transform: ${props => props.$isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
-    transition: transform 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 `;
 
-const FAQAnswer = styled(motion.div)`
-  padding: 0 2.5rem 2rem;
-  color: #ffffff;
-  font-size: clamp(1.125rem, 2vw, 1.25rem);
+const FAQAnswer = styled.div`
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  max-height: ${props => props.$isOpen ? '500px' : '0'};
+  opacity: ${props => props.$isOpen ? '1' : '0'};
+`;
+
+const FAQAnswerContent = styled.div`
+  padding: 0 2.5rem 2.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
   line-height: 1.8;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-  letter-spacing: 0.01em;
-  
+  letter-spacing: 0.02em;
+
   p {
-    margin: 0 0 1rem 0;
-    color: #ffffff;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
     font-weight: 400;
-    
-    &:last-child {
-      margin-bottom: 0;
-    }
   }
 `;
 
-// Декоративные викингские элементы
-const VikingRune = styled.div`
-  position: absolute;
-  font-size: 4rem;
-  color: rgba(255, 107, 53, 0.08);
-  z-index: 1;
-  
-  &.left {
-    top: 20%;
-    left: 5%;
-    transform: rotate(-20deg);
-  }
-  
-  &.right {
-    top: 60%;
-    right: 5%;
-    transform: rotate(20deg);
-  }
-  
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
+// Removed Viking runes for cleaner design
 
 const BanyaFAQSection = () => {
   const { t } = useTranslation();
@@ -265,6 +259,7 @@ const BanyaFAQSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
+            <QuestionMarkCircleIcon />
             {t('banya.faq.badge', 'Questions & Answers')}
           </VikingBadge>
           
@@ -302,25 +297,16 @@ const BanyaFAQSection = () => {
                   <ChevronDownIcon />
                 </QuestionIcon>
               </FAQQuestion>
-              
-              <AnimatePresence>
-                {openItem === index && (
-                  <FAQAnswer
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  >
-                    <p>{item.answer}</p>
-                  </FAQAnswer>
-                )}
-              </AnimatePresence>
+
+              <FAQAnswer $isOpen={openItem === index}>
+                <FAQAnswerContent>
+                  <p>{item.answer}</p>
+                </FAQAnswerContent>
+              </FAQAnswer>
             </FAQItem>
           ))}
         </FAQList>
       </ContentWrapper>
-      <VikingRune className="left">ᚠ</VikingRune>
-      <VikingRune className="right">ᚢ</VikingRune>
     </FAQContainer>
   );
 };

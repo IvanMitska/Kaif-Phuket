@@ -9,18 +9,39 @@ import PageHead from '../components/layout/PageHead';
 import BanyaHeroSection from '../components/banya/BanyaHeroSection';
 import BanyaServicesSection from '../components/banya/BanyaServicesSection';
 import BanyaFeaturesSection from '../components/banya/BanyaFeaturesSection';
+import BanyaGallerySection from '../components/banya/BanyaGallerySection';
 import BanyaBookingSection from '../components/banya/BanyaBookingSection';
 import BanyaFAQSection from '../components/banya/BanyaFAQSection';
 
 
 const BanyaContainer = styled.div`
-  background: transparent;
+  background: linear-gradient(180deg, #0a0a0a 0%, #0f0d0a 25%, #0a0a0a 50%, #0f0d0a 75%, #0a0a0a 100%);
   color: ${props => props.theme.colors.text.primary};
   min-height: 100vh;
-  font-family: ${props => props.theme.fonts.primary};
+  font-family: 'Inter', ${props => props.theme.fonts.primary};
   overflow-x: hidden;
   margin: 0;
   padding: 0;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(255, 107, 53, 0.015) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(255, 214, 98, 0.015) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  & > * {
+    position: relative;
+    z-index: 2;
+  }
 `;
 
 
@@ -50,11 +71,25 @@ const BanyaPage = () => {
     };
   }, []);
   
-  // Варианты анимации
+  // Улучшенные варианты анимации
   const pageVariants = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 }
+    initial: { opacity: 0, scale: 0.98 },
+    animate: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        ease: [0.43, 0.13, 0.23, 0.96]
+      }
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.98,
+      transition: {
+        duration: 0.3,
+        ease: [0.43, 0.13, 0.23, 0.96]
+      }
+    }
   };
   
   if (!isReady) {
@@ -79,6 +114,7 @@ const BanyaPage = () => {
       <PageScrollReset />
       <BanyaHeroSection />
       <BanyaServicesSection />
+      <BanyaGallerySection />
       <BanyaFeaturesSection />
       <BanyaFAQSection />
       <BanyaBookingSection />

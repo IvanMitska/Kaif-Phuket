@@ -46,7 +46,7 @@ const HeroContainer = styled.section`
   overflow: hidden;
   margin: 0;
   padding: 0;
-  background: #0f0f0f;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1410 50%, #0f0f0f 100%);
 `;
 
 const BackgroundSlider = styled.div`
@@ -70,7 +70,8 @@ const BackgroundImage = styled(motion.div)`
   background-repeat: no-repeat;
   height: 100%;
   will-change: opacity;
-  
+  filter: contrast(1.1) brightness(0.95);
+
   &::before {
     content: '';
     position: absolute;
@@ -78,12 +79,20 @@ const BackgroundImage = styled(motion.div)`
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.85) 0%,
-      rgba(0, 0, 0, 0.8) 50%,
-      rgba(0, 0, 0, 0.75) 100%
-    );
+    background:
+      linear-gradient(
+        180deg,
+        rgba(10, 10, 10, 0.4) 0%,
+        rgba(10, 10, 10, 0.65) 40%,
+        rgba(15, 12, 8, 0.85) 70%,
+        rgba(10, 10, 10, 0.95) 100%
+      ),
+      radial-gradient(
+        ellipse at center top,
+        transparent 0%,
+        rgba(255, 107, 53, 0.05) 50%,
+        transparent 100%
+      );
     z-index: 1;
   }
 `;
@@ -138,70 +147,74 @@ const ContentWrapper = styled.div`
 `;
 
 const VikingRune = styled(motion.div)`
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem 2rem;
-  background: rgba(0, 0, 0, 0.4);
-  border: 2px solid #ff6b35;
-  border-radius: 8px;
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
-  font-weight: 600;
-  color: #ff6b35;
-  margin-bottom: 3rem;
-  backdrop-filter: blur(10px);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  
-  &::before {
-    content: '᚛';
-    font-size: 1.5em;
-    animation: ${runeGlow} 3s ease-in-out infinite;
-  }
-  
-  &::after {
-    content: '᚜';
-    font-size: 1.5em;
-    animation: ${runeGlow} 3s ease-in-out infinite;
-  }
+  display: none;
 `;
 
 const MainTitle = styled(motion.h1)`
-  font-size: clamp(3rem, 10vw, 7rem);
-  font-weight: 900;
+  font-size: clamp(4rem, 12vw, 8.5rem);
+  font-weight: 200;
   line-height: 0.9;
   margin-bottom: 2rem;
-  color: #f5f5f5;
-  text-shadow: 
-    2px 2px 4px rgba(0, 0, 0, 0.8),
-    0 0 20px rgba(255, 107, 53, 0.3);
-  font-family: 'Bebas Neue', 'Arial Black', sans-serif;
-  
-  .highlight {
-    color: #ff6b35;
-    animation: ${runeGlow} 4s ease-in-out infinite;
+  color: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: -0.03em;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+
+  .accent {
+    color: transparent;
+    background: linear-gradient(
+      135deg,
+      #ff6b35 0%,
+      #ffd662 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-weight: 300;
   }
 `;
 
 const Area = styled(motion.div)`
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  font-weight: 300;
-  color: #ffd662;
-  margin-bottom: 1rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-  letter-spacing: 0.05em;
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  font-weight: 400;
+  color: rgba(255, 214, 98, 0.9);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  line-height: 1.4;
+
+  @media (max-width: 768px) {
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    letter-spacing: 0.1em;
+  }
+
+  .location {
+    color: #ffd662;
+    font-weight: 500;
+  }
+
+  .size {
+    color: #ff6b35;
+    font-weight: 600;
+    text-shadow: 0 2px 12px rgba(255, 107, 53, 0.4);
+  }
+
+  .feature {
+    color: rgba(255, 214, 98, 0.8);
+    font-weight: 400;
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.9em;
+    letter-spacing: 0.1em;
+  }
 `;
 
 const Subtitle = styled(motion.p)`
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
-  color: #cccccc;
-  margin-bottom: 4rem;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-  font-weight: 300;
-  line-height: 1.4;
+  display: none;
 `;
 
 const CTAContainer = styled(motion.div)`
@@ -220,21 +233,24 @@ const CTAContainer = styled(motion.div)`
 const VikingButton = styled(motion.button)`
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1.5rem 3rem;
+  gap: 0.75rem;
+  padding: 1.25rem 2.5rem;
   background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
-  color: #1a1a1a;
+  color: #ffffff;
   border: none;
-  border-radius: 8px;
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  font-weight: 700;
+  border-radius: 60px;
+  font-size: clamp(0.95rem, 1.75vw, 1.125rem);
+  font-weight: 600;
   cursor: pointer;
-  min-height: 60px;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  min-height: 56px;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-transform: none;
+  letter-spacing: 0.02em;
   position: relative;
   overflow: hidden;
+  box-shadow:
+    0 4px 15px rgba(255, 107, 53, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.2);
   
   &::before {
     content: '';
@@ -248,11 +264,12 @@ const VikingButton = styled(motion.button)`
   }
   
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 
-      0 10px 30px rgba(255, 107, 53, 0.4),
-      0 0 30px rgba(255, 107, 53, 0.3);
-    
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+      0 8px 25px rgba(255, 107, 53, 0.45),
+      0 2px 8px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
     &::before {
       left: 100%;
     }
@@ -267,27 +284,32 @@ const VikingButton = styled(motion.button)`
 const SecondaryButton = styled(motion.button)`
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1.5rem 3rem;
-  background: transparent;
-  color: #f5f5f5;
-  border: 2px solid #ff6b35;
-  border-radius: 8px;
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  font-weight: 600;
+  gap: 0.75rem;
+  padding: 1.25rem 2.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(245, 245, 245, 0.95);
+  border: 1.5px solid rgba(255, 107, 53, 0.4);
+  border-radius: 60px;
+  font-size: clamp(0.95rem, 1.75vw, 1.125rem);
+  font-weight: 500;
   cursor: pointer;
-  min-height: 60px;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  backdrop-filter: blur(10px);
+  min-height: 56px;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-transform: none;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(20px) saturate(1.5);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
   
   &:hover {
-    background: rgba(255, 107, 53, 0.1);
-    border-color: #ffd662;
+    background: rgba(255, 107, 53, 0.08);
+    border-color: rgba(255, 214, 98, 0.6);
     color: #ffd662;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.2);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+      0 6px 20px rgba(255, 107, 53, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
   
   svg {
@@ -373,7 +395,8 @@ const NorseOrnament = styled.div`
 `;
 
 const BanyaHeroSection = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRussian = i18n.language === 'ru';
   const [currentSlide, setCurrentSlide] = useState(0);
   const [nextSlide, setNextSlide] = useState(0);
   
@@ -458,37 +481,30 @@ const BanyaHeroSection = () => {
       <NorseOrnament className="bottom-right">᚛ᚏᚓᚐᚉ᚜</NorseOrnament>
       
       <ContentWrapper>
-        <VikingRune
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          {t('banya.hero.badge', 'ЛУЧШАЯ БАНЯ ПХУКЕТА')}
-        </VikingRune>
         
         <MainTitle
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          dangerouslySetInnerHTML={{
-            __html: t('banya.hero.title', 'Панорамная <span class="highlight">русская баня</span>')
-          }}
-        />
-        
+        >
+          {t('banya.hero.title_part1', isRussian ? 'Русская' : 'Russian')} <span className="accent">{t('banya.hero.title_part2', isRussian ? 'Баня' : 'Banya')}</span>
+        </MainTitle>
+
         <Area
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          {t('banya.hero.area', '150 квадратных метров')}
+          <span className="location">{t('banya.hero.location', isRussian ? 'Пхукет' : 'Phuket')}</span> — <span className="size">150 {t('banya.hero.area_unit', isRussian ? 'м²' : 'm²')}</span>
+          <span className="feature">{t('banya.hero.feature', isRussian ? 'Самая большая баня на острове' : 'Largest banya on the island')}</span>
         </Area>
-        
+
         <Subtitle
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          {t('banya.hero.subtitle', 'Баня из сибирского кедра и алтайской липы')}
+          Сибирский кедр и алтайская липа
         </Subtitle>
         
         <CTAContainer

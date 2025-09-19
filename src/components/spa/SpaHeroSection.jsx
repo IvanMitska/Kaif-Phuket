@@ -10,7 +10,7 @@ import {
   CalendarDaysIcon
 } from '@heroicons/react/24/solid';
 import heroRestaurantImg from '../../assets/images/hero/hero-restaurant.jpg';
-// import YclientsModal from '../booking/YclientsModal'; // Временно отключено
+import YclientsModal from '../booking/YclientsModal';
 
 // =============================================================================
 // ОПТИМИЗИРОВАННЫЙ SPA HERO (БЕЗ ТЯЖЕЛЫХ ИЗОБРАЖЕНИЙ)
@@ -289,7 +289,7 @@ const PrimaryButton = styled(motion.button)`
 
 const SpaHeroSection = memo(() => {
   const { t } = useTranslation();
-  // const [isYclientsModalOpen, setIsYclientsModalOpen] = useState(false); // Временно отключено
+  const [isYclientsModalOpen, setIsYclientsModalOpen] = useState(false);
 
   return (
     <HeroContainer>
@@ -332,7 +332,6 @@ const SpaHeroSection = memo(() => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              {/* Временно отключено - онлайн-запись через Yclients
               <PrimaryButton
                 onClick={() => setIsYclientsModalOpen(true)}
                 whileHover={{ scale: 1.02 }}
@@ -341,7 +340,6 @@ const SpaHeroSection = memo(() => {
                 <CalendarDaysIcon />
                 {t('spa.hero.book_online', 'Онлайн-запись')}
               </PrimaryButton>
-              */}
 
               <PrimaryButton
                 as="a"
@@ -361,13 +359,11 @@ const SpaHeroSection = memo(() => {
         </HeroGrid>
       </ContentWrapper>
       
-      {/* Временно отключено - модальное окно Yclients
       <YclientsModal
         isOpen={isYclientsModalOpen}
         onClose={() => setIsYclientsModalOpen(false)}
         customUrl="https://n1329009.alteg.io"
       />
-      */}
     </HeroContainer>
   );
 });
