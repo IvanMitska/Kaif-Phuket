@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
-import { ShoppingBagIcon, ArrowRightIcon, DocumentArrowDownIcon } from '@heroicons/react/24/solid';
-import { 
-  BeakerIcon, 
+import { motion, AnimatePresence } from 'framer-motion';
+import { ShoppingBagIcon, ArrowRightIcon, DocumentArrowDownIcon, MagnifyingGlassIcon, AdjustmentsHorizontalIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import {
+  BeakerIcon,
   FireIcon,
   SparklesIcon,
   HeartIcon,
@@ -90,8 +90,53 @@ const getDrinkColorRGB = (bgClass) => {
 
 const MenuSection = ({ menuSectionRef }) => {
   const { t } = useTranslation();
-  const [activeCategory, setActiveCategory] = React.useState('all');
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [sortBy, setSortBy] = useState('default');
+  const [showFilters, setShowFilters] = useState(false);
   const { menuItems, tagStyles } = getRestaurantData(t);
+
+  // Filtered and sorted menu items
+  const filteredAndSortedItems = useMemo(() => {
+    let filtered = menuItems;
+
+    // Filter by category
+    if (activeCategory !== 'all') {
+      filtered = filtered.filter(item => item.category === activeCategory);
+    }
+
+    // Filter by search term
+    if (searchTerm.trim()) {
+      const search = searchTerm.toLowerCase().trim();
+      filtered = filtered.filter(item =>
+        item.name.toLowerCase().includes(search) ||
+        item.description.toLowerCase().includes(search) ||
+        item.tags.some(tag => tag.toLowerCase().includes(search))
+      );
+    }
+
+    // Sort items
+    switch (sortBy) {
+      case 'name-asc':
+        filtered.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case 'name-desc':
+        filtered.sort((a, b) => b.name.localeCompare(a.name));
+        break;
+      case 'popular':
+        filtered.sort((a, b) => {
+          if (a.popular && !b.popular) return -1;
+          if (!a.popular && b.popular) return 1;
+          return 0;
+        });
+        break;
+      default:
+        // Keep original order
+        break;
+    }
+
+    return filtered;
+  }, [menuItems, activeCategory, searchTerm, sortBy]);
 
   const handleDownloadPDF = () => {
     window.open('/documents/menu.pdf', '_blank');
@@ -117,145 +162,188 @@ const MenuSection = ({ menuSectionRef }) => {
         </p>
         <motion.button
           onClick={handleDownloadPDF}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D29B84] text-white hover:bg-[#C08B74] transition-all duration-300 shadow-md hover:shadow-lg"
+          className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#D29B84] text-white hover:bg-[#C08B74] transition-all duration-300 shadow-md hover:shadow-lg"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <DocumentArrowDownIcon className="w-6 h-6" />
-          <span className="text-base font-medium">{t('restaurant.menu.download_pdf', 'Скачать PDF')}</span>
+          <DocumentArrowDownIcon className="w-5 h-5 flex-shrink-0" />
+          <span className="font-medium leading-none">{t('restaurant.menu.download_pdf', 'Скачать PDF')}</span>
         </motion.button>
       </motion.div>
 
-      {/* Menu Categories */}
-      <div className="mb-16">
-        <motion.div 
-          className="flex justify-center flex-wrap gap-2 mb-8 px-2 sm:px-0"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <motion.button 
-            className="px-6 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 cursor-pointer mb-2 mr-2"
-            style={{
-              background: 'linear-gradient(135deg, #D29B84 0%, #E6A691 100%)',
-              color: '#FFFFFF',
-              border: 'none',
-              boxShadow: '0 8px 25px rgba(210, 155, 132, 0.25)'
-            }}
-            whileHover={{ y: -2, scale: 1.02 }}
-            whileTap={{ y: 0, scale: 0.98 }}
-            onClick={handleDownloadPDF}
-          >
-            <div className="flex items-center gap-2">
-              <DocumentArrowDownIcon className="w-5 h-5" />
-              <span>{t('restaurant.menu.download_pdf', 'Скачать меню PDF')}</span>
-            </div>
-          </motion.button>
-          {[
-            { key: 'all', icon: '🍽️', color: '#8B5CF6' },
-            { key: 'breakfast', icon: '🌅', color: '#F59E0B' },
-            { key: 'soup', icon: '🍲', color: '#3B82F6' },
-            { key: 'salad', icon: '🥗', color: '#10B981' },
-            { key: 'grill', icon: '🔥', color: '#EF4444' },
-            { key: 'side', icon: '🥔', color: '#6B7280' },
-            { key: 'sauce', icon: '🫙', color: '#84CC16' },
-            { key: 'bread', icon: '🍞', color: '#D97706' },
-            { key: 'burger', icon: '🍔', color: '#F97316' },
-            { key: 'dessert', icon: '🍰', color: '#EC4899' },
-            { key: 'tea', icon: '🍵', color: '#059669' },
-            { key: 'coffee', icon: '☕', color: '#92400E' },
-            { key: 'coffee_signature', icon: '✨', color: '#7C2D12' },
-            { key: 'smoothie', icon: '🥤', color: '#06B6D4' },
-            { key: 'mocktail', icon: '🍹', color: '#8B5CF6' },
-            { key: 'juice', icon: '🧃', color: '#F59E0B' },
-            { key: 'cocktail', icon: '🍸', color: '#EF4444' },
-            { key: 'wine', icon: '🍷', color: '#991B1B' },
-            { key: 'beer', icon: '🍺', color: '#CA8A04' },
-            { key: 'strong', icon: '🥃', color: '#1F2937' },
-            { key: 'liqueur', icon: '🍾', color: '#7C3AED' },
-            { key: 'fitness', icon: '💪', color: '#2563EB' },
-            { key: 'water', icon: '💧', color: '#0891B2' },
-            { key: 'milk', icon: '🥛', color: '#6B7280' },
-            { key: 'soft_drink', icon: '🥤', color: '#16A34A' }
-          ].map((category) => (
-            <motion.button 
-              key={category.key}
-              className="px-3 py-2.5 sm:px-4 rounded-2xl text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer mb-2 mr-1"
-              style={{
-                background: activeCategory === category.key 
-                  ? `linear-gradient(135deg, ${category.color} 0%, ${category.color}CC 100%)`
-                  : 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%)',
-                color: activeCategory === category.key ? '#FFFFFF' : '#374151',
-                border: `1px solid ${activeCategory === category.key ? category.color : 'rgba(209, 213, 219, 0.6)'}`,
-                boxShadow: activeCategory === category.key 
-                  ? `0 8px 25px ${category.color}40`
-                  : '0 2px 8px rgba(0, 0, 0, 0.05)',
-                backdropFilter: 'blur(8px)'
-              }}
-              whileHover={{ y: -2, scale: 1.02 }}
-              whileTap={{ y: 0, scale: 0.98 }}
-              onClick={() => setActiveCategory(category.key)}
-            >
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <span className="text-sm sm:text-base">{category.icon}</span>
-                <span className="hidden sm:inline">{t(`restaurant.menu.categories.${category.key}`, category.key.charAt(0).toUpperCase() + category.key.slice(1))}</span>
-                <span className="sm:hidden text-xs">{(t(`restaurant.menu.categories.${category.key}`, category.key.charAt(0).toUpperCase() + category.key.slice(1)) || '').slice(0, 6)}</span>
-              </div>
-            </motion.button>
-          ))}
-        </motion.div>
-
-        {/* Enhanced Search and Filter Bar */}
-        <motion.div 
-          className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8 p-4 rounded-2xl bg-gradient-to-r from-gray-50 to-white border border-gray-200 shadow-sm"
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.3 }}
-        >
-          <div className="flex flex-col md:flex-row items-center gap-3">
-            <div className="flex items-center gap-2 text-gray-600">
-              <span className="text-2xl">🔍</span>
-              <span className="font-medium">Поиск по меню:</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">
-                {menuItems.filter(item => activeCategory === 'all' || item.category === activeCategory).length} блюд
-              </span>
-              {activeCategory !== 'all' && (
+      {/* Modern Search & Filter Bar */}
+      <motion.div
+        className="mb-8"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        {/* Mobile Filter Toggle + Search */}
+        <div className="flex flex-col gap-4 mb-6">
+          <div className="flex gap-3">
+            {/* Search Bar */}
+            <div className="flex-1 relative">
+              <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                placeholder={t('restaurant.menu.search_placeholder', 'Поиск блюд...')}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-12 pr-4 py-3 rounded-2xl border-2 border-gray-100 focus:border-[#D29B84] focus:outline-none transition-colors bg-white/80 backdrop-blur-sm text-gray-900 placeholder-gray-500"
+              />
+              {searchTerm && (
                 <motion.button
-                  onClick={() => setActiveCategory('all')}
-                  className="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-semibold hover:bg-red-200 transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setSearchTerm('')}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 p-1 hover:bg-gray-100 rounded-full transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                 >
-                  ✕ Очистить фильтр
+                  <XMarkIcon className="w-4 h-4 text-gray-400" />
                 </motion.button>
               )}
             </div>
+
+            {/* Mobile Filter Toggle */}
+            <motion.button
+              onClick={() => setShowFilters(!showFilters)}
+              className="lg:hidden flex items-center gap-2 px-4 py-3 rounded-2xl bg-[#D29B84] text-white font-medium shadow-lg"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <AdjustmentsHorizontalIcon className="w-5 h-5" />
+              <span>Фильтр</span>
+            </motion.button>
+
+            {/* Download PDF Button */}
+            <motion.button
+              onClick={handleDownloadPDF}
+              className="hidden sm:flex items-center gap-2 px-4 py-3 rounded-2xl bg-gradient-to-r from-[#D29B84] to-[#E6A691] text-white font-medium shadow-lg"
+              whileHover={{ scale: 1.02, y: -1 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <DocumentArrowDownIcon className="w-5 h-5" />
+              <span className="hidden md:inline">PDF</span>
+            </motion.button>
           </div>
-          <div className="flex items-center gap-3">
-            <select className="border-2 border-gray-200 rounded-xl px-3 py-2 sm:px-4 text-xs sm:text-sm text-gray-700 bg-white hover:border-[#D29B84] transition-colors focus:border-[#D29B84] focus:outline-none">
-              <option value="default">По умолчанию</option>
-              <option value="price-low">Цена ↑</option>
-              <option value="price-high">Цена ↓</option>
-              <option value="popular">Популярное</option>
+
+          {/* Sort Dropdown */}
+          <div className="flex items-center justify-between">
+            <div className="text-sm text-gray-600">
+              <span className="font-medium">
+                {filteredAndSortedItems.length} {t('restaurant.menu.items_found', 'блюд найдено')}
+              </span>
+              {(activeCategory !== 'all' || searchTerm) && (
+                <motion.button
+                  onClick={() => {
+                    setActiveCategory('all');
+                    setSearchTerm('');
+                  }}
+                  className="ml-3 text-xs px-2 py-1 bg-red-100 text-red-800 rounded-full hover:bg-red-200 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  ✕ Очистить
+                </motion.button>
+              )}
+            </div>
+
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="text-sm px-3 py-2 rounded-xl border-2 border-gray-200 focus:border-[#D29B84] focus:outline-none bg-white"
+            >
+              <option value="default">{t('restaurant.menu.sort.default', 'По умолчанию')}</option>
+              <option value="name-asc">{t('restaurant.menu.sort.name_asc', 'Название ↑')}</option>
+              <option value="name-desc">{t('restaurant.menu.sort.name_desc', 'Название ↓')}</option>
+              <option value="popular">{t('restaurant.menu.sort.popular', 'Популярное')}</option>
             </select>
           </div>
-        </motion.div>
+        </div>
+
+        {/* Category Pills - Desktop Always Visible, Mobile Collapsible */}
+        <AnimatePresence>
+          <motion.div
+            className={`${showFilters ? 'block' : 'hidden'} lg:block`}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+              {[
+                { key: 'all', icon: '🍽️', color: '#8B5CF6', label: 'Все' },
+                { key: 'breakfast', icon: '🌅', color: '#F59E0B', label: 'Завтраки' },
+                { key: 'soup', icon: '🍲', color: '#3B82F6', label: 'Супы' },
+                { key: 'salad', icon: '🥗', color: '#10B981', label: 'Салаты' },
+                { key: 'grill', icon: '🔥', color: '#EF4444', label: 'Гриль' },
+                { key: 'burger', icon: '🍔', color: '#F97316', label: 'Бургеры' },
+                { key: 'dessert', icon: '🍰', color: '#EC4899', label: 'Десерты' },
+                { key: 'tea', icon: '🍵', color: '#059669', label: 'Чай' },
+                { key: 'coffee', icon: '☕', color: '#92400E', label: 'Кофе' },
+                { key: 'coffee_signature', icon: '✨', color: '#7C2D12', label: 'Авторский кофе' },
+                { key: 'smoothie', icon: '🥤', color: '#06B6D4', label: 'Смузи' },
+                { key: 'cocktail', icon: '🍸', color: '#EF4444', label: 'Коктейли' }
+              ].map((category) => {
+                const itemCount = menuItems.filter(item =>
+                  category.key === 'all' ? true : item.category === category.key
+                ).length;
+
+                return (
+                  <motion.button
+                    key={category.key}
+                    onClick={() => {
+                      setActiveCategory(category.key);
+                      setShowFilters(false);
+                    }}
+                    className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl font-medium transition-all duration-300 ${
+                      activeCategory === category.key
+                        ? 'text-white shadow-lg transform scale-105'
+                        : 'text-gray-700 bg-white/80 border border-gray-200 hover:border-gray-300 hover:bg-white'
+                    }`}
+                    style={{
+                      background: activeCategory === category.key
+                        ? `linear-gradient(135deg, ${category.color} 0%, ${category.color}DD 100%)`
+                        : undefined,
+                      boxShadow: activeCategory === category.key
+                        ? `0 8px 25px ${category.color}40`
+                        : undefined
+                    }}
+                    whileHover={{
+                      scale: activeCategory === category.key ? 1.05 : 1.02,
+                      y: -1
+                    }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <span className="text-sm">{category.icon}</span>
+                    <span className="text-sm font-medium">
+                      {t(`restaurant.menu.categories.${category.key}`, category.label)}
+                    </span>
+                    <span className={`text-xs px-1.5 py-0.5 rounded-full ${
+                      activeCategory === category.key
+                        ? 'bg-white/20 text-white'
+                        : 'bg-gray-100 text-gray-600'
+                    }`}>
+                      {itemCount}
+                    </span>
+                  </motion.button>
+                );
+              })}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </motion.div>
+
 
         {/* Enhanced Menu Grid */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          {/* Фильтруем блюда по выбранной категории */}
-          {menuItems
-            .filter(item => activeCategory === 'all' || item.category === activeCategory)
+          {filteredAndSortedItems
             .map((item, index) => {
               const isDrink = isDrinkCategory(item.category);
               const drinkColors = isDrink ? getDrinkColor(item.category) : null;
@@ -423,6 +511,25 @@ const MenuSection = ({ menuSectionRef }) => {
                 </motion.div>
               );
             })}
+        </motion.div>
+
+        {/* Mobile PDF Download Button */}
+        <motion.div
+          className="sm:hidden flex justify-center mt-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.button
+            onClick={handleDownloadPDF}
+            className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-gradient-to-r from-[#D29B84] to-[#E6A691] text-white font-medium shadow-lg w-full max-w-sm justify-center"
+            whileHover={{ scale: 1.02, y: -1 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <DocumentArrowDownIcon className="w-5 h-5" />
+            <span>Скачать полное меню PDF</span>
+          </motion.button>
         </motion.div>
 
         {/* Call to Action Section */}
