@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Оптимизированный логотип для хедера
-const headerLogoPath = '/src/assets/images/optimized/logo-header.png';
+const headerLogoPath = '/images/logos/logo-header.png';
 
 console.log('🔥 HEADER.JSX FILE LOADED!');
 
@@ -337,7 +337,7 @@ const Header = () => {
               <meta itemProp="url" content="https://kaif-phuket.com" />
               <picture>
                 <source
-                  srcSet="/src/assets/images/optimized/webp/logo-header.webp"
+                  srcSet="/images/logos/logo-header-1x.webp"
                   type="image/webp"
                   sizes="38px"
                 />
