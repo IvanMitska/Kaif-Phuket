@@ -1,7 +1,7 @@
-import{r as e,a as i,j as t,ac as a,ad as r,q as n}from"./vendor-react-DZA4WcA9.js";import{d as o}from"./vendor-styles-DHpaP57L.js";import{h as m}from"./main-EopnawY0.js";import{Y as d}from"./YclientsModal-BsjJTvue.js";import{m as s}from"./vendor-animations-WcfxAmq3.js";import"./vendor-other-CZupzcPt.js";import"./vendor-i18n-C4kh69yx.js";const h=o.section`
+import{r as e,a as i,j as t,ac as a,ad as r,q as n}from"./vendor-react-DZA4WcA9.js";import{d as o}from"./vendor-styles-DHpaP57L.js";import{Y as m}from"./YclientsModal-BsjJTvue.js";import{m as d}from"./vendor-animations-WcfxAmq3.js";import"./vendor-other-CZupzcPt.js";const s=o.section`
   position: relative;
   min-height: 100vh;
-  background: url(${m});
+  background: url(${"/assets/images/hero-restaurant-B-WOCk0r.jpg"});
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -37,7 +37,7 @@ import{r as e,a as i,j as t,ac as a,ad as r,q as n}from"./vendor-react-DZA4WcA9.
     min-height: 100vh; /* Полная высота экрана на мобильных */
     padding: 3rem 0;
   }
-`,p=o.div`
+`,h=o.div`
   position: relative;
   z-index: 2;
   width: 100%;
@@ -56,14 +56,14 @@ import{r as e,a as i,j as t,ac as a,ad as r,q as n}from"./vendor-react-DZA4WcA9.
   @media (max-width: 480px) {
     padding: 0 2rem;
   }
-`,l=o.div`
+`,p=o.div`
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   z-index: 2;
   width: 100%;
-`,x=o(s.div)`
+`,l=o(d.div)`
   position: relative;
   text-align: center;
   max-width: 800px;
@@ -81,7 +81,7 @@ import{r as e,a as i,j as t,ac as a,ad as r,q as n}from"./vendor-react-DZA4WcA9.
     max-width: 100%;
     padding: 0;
   }
-`,g=o(s.div)`
+`,x=o(d.div)`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -117,7 +117,7 @@ import{r as e,a as i,j as t,ac as a,ad as r,q as n}from"./vendor-react-DZA4WcA9.
       height: 1.2rem;
     }
   }
-`,c=o(s.h1)`
+`,g=o(d.h1)`
   font-size: clamp(2.2rem, 6vw, 3.8rem);
   font-weight: 600;
   line-height: 1.2;
@@ -140,7 +140,7 @@ import{r as e,a as i,j as t,ac as a,ad as r,q as n}from"./vendor-react-DZA4WcA9.
     margin-bottom: 2.5rem;
     line-height: 1.4;
   }
-`,w=o(s.h2)`
+`,c=o(d.h2)`
   font-size: clamp(1.125rem, 2.2vw, 1.4rem);
   font-weight: 400;
   line-height: 1.5;
@@ -166,7 +166,7 @@ import{r as e,a as i,j as t,ac as a,ad as r,q as n}from"./vendor-react-DZA4WcA9.
     line-height: 1.6;
     max-width: 100%;
   }
-`,b=o(s.div)`
+`,w=o(d.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -194,7 +194,7 @@ import{r as e,a as i,j as t,ac as a,ad as r,q as n}from"./vendor-react-DZA4WcA9.
     max-width: 95%;
     flex-direction: column;
   }
-`,f=o(s.button)`
+`,b=o(d.button)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -246,4 +246,4 @@ import{r as e,a as i,j as t,ac as a,ad as r,q as n}from"./vendor-react-DZA4WcA9.
       height: 0.95rem;
     }
   }
-`,u=e.memo(()=>{const{t:o}=i(),[m,s]=e.useState(!1);return t.jsxs(h,{children:[t.jsx(p,{children:t.jsx(l,{children:t.jsxs(x,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6,delay:.2},children:[t.jsxs(g,{initial:{opacity:0,scale:.9},animate:{opacity:1,scale:1},transition:{duration:.5,delay:.3},children:[t.jsx(a,{}),o("spa.hero.badge","Премиум СПА")]}),t.jsx(c,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.6,delay:.4},children:o("spa.hero.title","Погрузитесь в мир релаксации и красоты")}),t.jsx(w,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.6,delay:.5},children:o("spa.hero.subtitle","Профессиональные СПА процедуры в роскошной атмосфере KAIF")}),t.jsxs(b,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.6,delay:.6},children:[t.jsxs(f,{onClick:()=>s(!0),whileHover:{scale:1.02},whileTap:{scale:.98},children:[t.jsx(r,{}),o("spa.hero.book_online","Онлайн-запись")]}),t.jsxs(f,{as:"a",href:"https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20записаться%20на%20СПА%20процедуру%20в%20KAIF",target:"_blank",rel:"noopener noreferrer",whileHover:{scale:1.02},whileTap:{scale:.98},children:[o("spa.hero.book_whatsapp","WhatsApp"),t.jsx(n,{})]})]})]})})}),t.jsx(d,{isOpen:m,onClose:()=>s(!1),customUrl:"https://n1329009.alteg.io"})]})});u.displayName="SpaHeroSection";export{u as default};
+`,f=e.memo(()=>{const{t:o}=i(),[d,f]=e.useState(!1);return t.jsxs(s,{children:[t.jsx(h,{children:t.jsx(p,{children:t.jsxs(l,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6,delay:.2},children:[t.jsxs(x,{initial:{opacity:0,scale:.9},animate:{opacity:1,scale:1},transition:{duration:.5,delay:.3},children:[t.jsx(a,{}),o("spa.hero.badge","Премиум СПА")]}),t.jsx(g,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.6,delay:.4},children:o("spa.hero.title","Погрузитесь в мир релаксации и красоты")}),t.jsx(c,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.6,delay:.5},children:o("spa.hero.subtitle","Профессиональные СПА процедуры в роскошной атмосфере KAIF")}),t.jsxs(w,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.6,delay:.6},children:[t.jsxs(b,{onClick:()=>f(!0),whileHover:{scale:1.02},whileTap:{scale:.98},children:[t.jsx(r,{}),o("spa.hero.book_online","Онлайн-запись")]}),t.jsxs(b,{as:"a",href:"https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20записаться%20на%20СПА%20процедуру%20в%20KAIF",target:"_blank",rel:"noopener noreferrer",whileHover:{scale:1.02},whileTap:{scale:.98},children:[o("spa.hero.book_whatsapp","WhatsApp"),t.jsx(n,{})]})]})]})})}),t.jsx(m,{isOpen:d,onClose:()=>f(!1),customUrl:"https://n1329009.alteg.io"})]})});f.displayName="SpaHeroSection";export{f as default};
