@@ -1,8 +1,7 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import SparksEffect from './SparksEffect';
 
 // =============================================================================
 // СОВРЕМЕННАЯ СЕКЦИЯ УСЛУГ БАНИ
@@ -13,8 +12,17 @@ const ServicesContainer = styled.section`
   margin-top: -1px;
   background: #0a0a0a;
   position: relative;
-  overflow: hidden;
   margin-bottom: 0;
+
+  /* Оптимизация для мобильных */
+  @media (max-width: 768px) {
+    overflow-x: hidden;
+    will-change: auto;
+  }
+
+  @media (min-width: 769px) {
+    overflow: hidden;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -58,9 +66,15 @@ const RitualsGrid = styled.div`
   gap: 1.5rem;
   margin: 0 auto;
 
+  /* Оптимизация производительности */
+  contain: layout style;
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 1.25rem;
+    /* Оптимизация для мобильных */
+    will-change: auto;
+    transform: translateZ(0);
   }
 
   @media (min-width: 769px) and (max-width: 1200px) {
@@ -80,40 +94,45 @@ const RitualCard = styled(motion.div)`
   position: relative;
   cursor: pointer;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 340px;
   display: flex;
   flex-direction: column;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-      rgba(255, 107, 53, 0.06) 0%,
-      transparent 40%
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-  }
-
-  &:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow:
-      0 30px 60px rgba(0, 0, 0, 0.4),
-      0 0 40px rgba(255, 107, 53, 0.05);
+  /* Отключаем сложные эффекты на мобильных для производительности */
+  @media (hover: hover) and (pointer: fine) {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
 
     &::after {
-      opacity: 1;
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at 50% 50%,
+        rgba(255, 107, 53, 0.04) 0%,
+        transparent 40%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
     }
 
-    .ritual-title {
-      background-size: 200% 100%;
-      background-position: 100% 0;
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 16px 32px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(255, 107, 53, 0.03);
+
+      &::after {
+        opacity: 1;
+      }
+
+      .ritual-title {
+        background-size: 200% 100%;
+        background-position: 100% 0;
+      }
     }
   }
 
@@ -121,6 +140,13 @@ const RitualCard = styled(motion.div)`
     padding: 2rem;
     min-height: auto;
     border-radius: 20px;
+    /* Упрощаем эффекты на мобильных */
+    backdrop-filter: none;
+    transition: none;
+
+    &::after {
+      display: none;
+    }
   }
 `;
 
@@ -378,23 +404,36 @@ const BanyaServicesSection = () => {
 
   const rituals = getRituals();
 
+  // Определяем мобильное устройство для оптимизации анимаций
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <ServicesContainer>
       <ContentWrapper>
         <SectionHeader>
           <SectionTitle
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? { opacity: 0 } : { opacity: 0, y: 20 }}
+            whileInView={isMobile ? { opacity: 1 } : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: isMobile ? 0.4 : 0.6 }}
           >
             {isRussian ? 'Индивидуальные парения' : 'Individual Steam Sessions'}
           </SectionTitle>
           <SectionSubtitle
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? { opacity: 0 } : { opacity: 0, y: 20 }}
+            whileInView={isMobile ? { opacity: 1 } : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: isMobile ? 0.4 : 0.6, delay: isMobile ? 0.05 : 0.1 }}
           >
             {isRussian
               ? 'Выберите свой идеальный банный ритуал'
@@ -403,18 +442,19 @@ const BanyaServicesSection = () => {
         </SectionHeader>
 
         <RitualsGrid>
-          {rituals.map((ritual, index) => (
-            <RitualCard
-              key={`${ritual.id}-${ready}`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{
-                duration: 0.4,
-                delay: index * 0.05,
-                ease: "easeOut"
-              }}
-            >
+          {rituals.map((ritual, index) => {
+            return (
+              <RitualCard
+                key={`${ritual.id}-${ready}`}
+                initial={isMobile ? { opacity: 0 } : { opacity: 0, y: 20 }}
+                whileInView={isMobile ? { opacity: 1 } : { opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: isMobile ? "-20px" : "-50px" }}
+                transition={{
+                  duration: isMobile ? 0.3 : 0.4,
+                  delay: isMobile ? index * 0.02 : index * 0.05,
+                  ease: "easeOut"
+                }}
+              >
               <AccentLine />
 
               <RitualHeader>
@@ -440,7 +480,8 @@ const BanyaServicesSection = () => {
                 </RitualPrice>
               </RitualDetails>
             </RitualCard>
-          ))}
+            );
+          })}
         </RitualsGrid>
       </ContentWrapper>
     </ServicesContainer>

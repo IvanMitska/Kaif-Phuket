@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Оптимизированный логотип для хедера
-const headerLogoPath = '/images/logos/logo-header-1x.png';
+const headerLogoPath = '/src/assets/images/optimized/logo-header.png';
 
 console.log('🔥 HEADER.JSX FILE LOADED!');
 
@@ -319,40 +319,41 @@ const Header = () => {
             margin: 0,
             padding: 0
           }}>
-            <div 
+            <div
               onClick={() => debouncedNavigate('/')}
-              style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                textDecoration: 'none', 
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                textDecoration: 'none',
                 height: '65px',
                 margin: 0,
                 padding: 0,
                 cursor: 'pointer'
               }}
+              itemScope
+              itemType="https://schema.org/Organization"
             >
+              <meta itemProp="name" content="KAIF SAUNA & SPA" />
+              <meta itemProp="url" content="https://kaif-phuket.com" />
               <picture>
-                <source 
-                  srcSet="/images/logos/logo-header-2x.webp 2x, /images/logos/logo-header-1x.webp 1x"
+                <source
+                  srcSet="/src/assets/images/optimized/webp/logo-header.webp"
                   type="image/webp"
                   sizes="38px"
                 />
-                <source 
-                  srcSet="/images/logos/logo-header-2x.png 2x, /images/logos/logo-header-1x.png 1x"
-                  type="image/png"
-                  sizes="38px"
-                />
-                <img 
-                  src={headerLogoPath} 
-                  alt="KAIF" 
+                <img
+                  src={headerLogoPath}
+                  alt="KAIF SAUNA & SPA - Phuket"
+                  title="KAIF SAUNA & SPA"
                   style={{
                     height: '38px',
                     width: 'auto',
                     display: 'block',
                     margin: 0,
                     padding: 0
-                  }} 
+                  }}
                   loading="eager"
+                  itemProp="logo"
                 />
               </picture>
             </div>

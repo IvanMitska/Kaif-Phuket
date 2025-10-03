@@ -8,33 +8,42 @@ const PrimaryButton = styled(motion.button)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
-  background: rgba(0, 0, 0, 0.25);
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.15);
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 50px;
-  font-size: 0.9rem;
-  font-weight: 500;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  height: 46px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  height: 52px;
+  min-width: 160px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
   svg {
-    width: 1rem;
-    height: 1rem;
+    width: 1.1rem;
+    height: 1.1rem;
     transition: transform 0.3s ease;
   }
-  
+
   &:hover svg {
-    transform: translateX(3px);
+    transform: translateX(4px);
   }
 `;
 
@@ -42,33 +51,42 @@ const SecondaryButton = styled(motion.button)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
-  background: rgba(0, 0, 0, 0.1);
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.08);
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 50px;
-  font-size: 0.9rem;
-  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  height: 46px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  height: 52px;
+  min-width: 160px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 
   &:hover {
-    background: rgba(0, 0, 0, 0.25);
-    border-color: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-1px);
   }
-  
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
   svg {
-    width: 1rem;
-    height: 1rem;
+    width: 1.1rem;
+    height: 1.1rem;
     transition: transform 0.3s ease;
   }
 
   &:hover svg {
-    transform: translateX(3px);
+    transform: translateX(4px);
   }
 `;
 
@@ -208,9 +226,32 @@ const Subtitle = styled(motion.p)`
 const ButtonWrapper = styled(motion.div)`
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem;
   width: 100%;
+  margin-top: 0.5rem;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1rem;
+
+    button {
+      width: 100%;
+      max-width: 300px;
+      min-width: 260px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    button {
+      max-width: 280px;
+      min-width: 240px;
+      height: 52px;
+      font-size: 0.95rem;
+    }
+  }
 `;
 
 const DecorativeElement = styled(motion.div)`
@@ -242,12 +283,18 @@ const HeroSection = memo(({ menuSectionRef }) => {
   return (
     <HeroContainer>
       <HeroBackground>
-        <img 
-          src="/images/restaurant/booking.jpg"
-          alt={t('restaurant.hero.image_alt', 'Restaurant interior')}
-          loading="eager"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
+        <picture>
+          <source
+            srcSet="/src/assets/images/optimized/webp/booking.webp"
+            type="image/webp"
+          />
+          <img
+            src="/src/assets/images/optimized/booking.jpg"
+            alt={t('restaurant.hero.image_alt', 'Restaurant interior')}
+            loading="eager"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </picture>
       </HeroBackground>
       <ContentWrapper>
         <DecorativeElement 
@@ -297,16 +344,22 @@ const HeroSection = memo(({ menuSectionRef }) => {
             >
               <PrimaryButton
                 onClick={() => menuSectionRef.current?.scrollIntoView({ behavior: 'smooth' })}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.9 }}
               >
                 {t('restaurant.hero.button', 'Наше меню')}
                 <ArrowRightIcon />
               </PrimaryButton>
               <SecondaryButton
                 onClick={handleBookingClick}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.0 }}
               >
                 {t('common.book', 'Забронировать')}
               </SecondaryButton>

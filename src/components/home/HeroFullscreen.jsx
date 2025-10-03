@@ -5,21 +5,27 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 // Импорт изображений для слайдера (оптимизированные версии)
-import heroSpaImage from '../../assets/images/hero/hero-spa.jpg';
-import heroPoolImage from '../../assets/images/hero/hero-pool.jpg';
-import heroRestaurantImage from '../../assets/images/hero/hero-restaurant.jpg';
-import heroFitnessImage from '../../assets/images/hero/hero-fitness.jpg';
-// Убираем тяжелое изображение hero-luxury.png (3.7MB)
+import heroSpaImage from '../../assets/images/optimized/hero-spa.jpg';
+import heroPoolImage from '../../assets/images/optimized/hero-pool.jpg';
+import heroRestaurantImage from '../../assets/images/optimized/hero-restaurant.jpg';
+import heroFitnessImage from '../../assets/images/optimized/hero-fitness.jpg';
+
+// WebP версии изображений
+import heroSpaWebp from '../../assets/images/optimized/webp/hero-spa.webp';
+import heroPoolWebp from '../../assets/images/optimized/webp/hero-pool.webp';
+import heroRestaurantWebp from '../../assets/images/optimized/webp/hero-restaurant.webp';
+import heroFitnessWebp from '../../assets/images/optimized/webp/hero-fitness.webp';
 
 // Импорт логотипа для главной страницы
-import homepageLogo from '../../assets/images/logos/logo-homepage.png';
+import homepageLogo from '../../assets/images/optimized/logo-homepage.png';
+import homepageLogoWebp from '../../assets/images/optimized/webp/logo-homepage.webp';
 
-// Массив изображений для слайдера (только легкие изображения)
+// Массив изображений для слайдера с WebP поддержкой
 const slideImages = [
-  heroSpaImage,
-  heroPoolImage,
-  heroRestaurantImage,
-  heroFitnessImage
+  { webp: heroSpaWebp, fallback: heroSpaImage },
+  { webp: heroPoolWebp, fallback: heroPoolImage },
+  { webp: heroRestaurantWebp, fallback: heroRestaurantImage },
+  { webp: heroFitnessWebp, fallback: heroFitnessImage }
 ];
 
 // Основной контейнер с улучшенным дизайном
@@ -435,21 +441,27 @@ const HeroFullscreen = memo(() => {
             key={`slide-${index}`}
             $active={index === currentSlide}
           >
-            <img 
-              src={image} 
-              alt={`KAIF - Слайд ${index + 1}`} 
-              loading={index === 0 ? "eager" : "lazy"}
-              decoding="async"
-              onError={(e) => {
-                const fallbackImages = [
-                  "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
-                  "https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
-                  "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
-                  "https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75"
-                ];
-                e.target.src = fallbackImages[index % fallbackImages.length];
-              }}
-            />
+            <picture>
+              <source
+                srcSet={image.webp}
+                type="image/webp"
+              />
+              <img
+                src={image.fallback}
+                alt={`KAIF - Слайд ${index + 1}`}
+                loading={index === 0 ? "eager" : "lazy"}
+                decoding="async"
+                onError={(e) => {
+                  const fallbackImages = [
+                    "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
+                    "https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
+                    "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
+                    "https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75"
+                  ];
+                  e.target.src = fallbackImages[index % fallbackImages.length];
+                }}
+              />
+            </picture>
           </Slide>
         ))}
       </SliderContainer>
@@ -457,19 +469,22 @@ const HeroFullscreen = memo(() => {
       {/* Основной контент */}
       <ContentContainer>
         <ContentWrapper>
-          <LogoImage 
-            src={homepageLogo} 
-            alt="KAIF" 
-            initial={animations.logo.initial}
-            animate={animations.logo.animate}
-            whileHover={{ 
-              scale: 1.02,
-              transition: { 
-                duration: 0.2,
+          <picture style={{ display: 'block' }}>
+            <source srcSet={homepageLogoWebp} type="image/webp" />
+            <LogoImage
+              src={homepageLogo}
+              alt="KAIF"
+              initial={animations.logo.initial}
+              animate={animations.logo.animate}
+              whileHover={{
+                scale: 1.02,
+                transition: {
+                  duration: 0.2,
                 ease: "easeOut"
               }
             }}
           />
+          </picture>
           
           
           <ButtonContainer

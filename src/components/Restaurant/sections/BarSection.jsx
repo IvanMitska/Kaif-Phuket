@@ -208,15 +208,21 @@ const BarSection = () => {
                 overflow: 'hidden',
                 boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)'
               }}>
-                <img 
-                  src="/images/restaurant/bar.jpg" 
-                  alt="Our Bar" 
-                  style={{
-                    width: '100%',
+                <picture>
+                  <source
+                    srcSet="/src/assets/images/optimized/webp/bar.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="/src/assets/images/optimized/bar.jpg"
+                    alt="Our Bar"
+                    style={{
+                      width: '100%',
                     height: '100%',
                     objectFit: 'cover'
                   }}
                 />
+                </picture>
               </div>
             </div>
           </div>
