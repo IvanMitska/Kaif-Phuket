@@ -1298,14 +1298,14 @@ const ContactsPage = () => {
             viewport={{ once: true }}
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.8203398876644!2d98.3510499760479!3d7.9138279921095105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x305031603c054903%3A0x818d8108ef4f8a55!2sKAIF%20%E2%80%93%20Jungle%20club%20%26%20SPA!5e0!3m2!1sru!2sth!4v1750756305368!5m2!1sru!2sth"
-              width="600"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.8203398876644!2d98.3510499760479!3d7.9138279921095105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x305031603c054903%3A0x818d8108ef4f8a55!2sKAIF%20SAUNA%20%26%20SPA!5e0!3m2!1sru!2sth!4v1760257722396!5m2!1sru!2sth"
+              width="100%"
               height="450"
               style={{ border: 0 }}
-              allowFullScreen=""
+              allowFullScreen={true}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="KAIF Jungle Club & SPA Location"
+              title="KAIF SAUNA & SPA Location"
             />
           </MapFrame>
         </MapContainer>

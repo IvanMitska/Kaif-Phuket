@@ -18,6 +18,8 @@ import {
   StarIcon
 } from '@heroicons/react/24/outline';
 import PageScrollReset from '../components/common/PageScrollReset';
+import LazyImage from '../components/common/LazyImage';
+import { useNavigate } from 'react-router-dom';
 
 // Импортируем функцию получения данных ресторана
 import { getRestaurantData } from '../components/Restaurant/data/restaurantData';
@@ -76,8 +78,8 @@ const isDrinkCategory = (category) => {
 import BarSection from '../components/Restaurant/sections/BarSection';
 // Импортируем секцию героя
 import HeroSection from '../components/Restaurant/sections/HeroSection';
-// Импортируем изображение для секции бронирования
-import bookingImage from '../assets/images/restaurant/booking.jpg';
+// Путь к изображению для секции бронирования
+const bookingImage = '/images-optimized/restaurant/booking.jpg';
 
 // Стили для скрытия полосы прокрутки добавлены в компонент ниже
 
@@ -667,6 +669,7 @@ const MenuCategoriesTabs = ({ activeCategory, setActiveCategory }) => {
 
 const RestaurantPage = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeCategory, setActiveCategory] = useState('all');
   const [visibleItems, setVisibleItems] = useState(6); // Количество видимых элементов
@@ -976,25 +979,20 @@ const RestaurantPage = () => {
                       )}
                     </div>
                   ) : (
-                    /* Для еды - обычное фото */
+                    /* Для еды - обычное фото с ленивой загрузкой */
                     <div className="h-72 overflow-hidden relative p-0">
-                      <img 
-                        src={item.image && item.image.startsWith('/') ? `${window.location.origin}${item.image}` : `${window.location.origin}/${item.image || ''}`} 
-                        alt={item.name} 
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                      <LazyImage
+                        src={item.image || '/images/placeholder.jpg'}
+                        alt={item.name}
+                        className="w-full h-full"
                         style={{
-                          objectPosition: 'center center'
+                          width: '100%',
+                          height: '100%'
                         }}
+                        loading="lazy"
+                        placeholder="/images/placeholder.jpg"
                         onError={(e) => {
                           console.error(`Failed to load image: ${item.image} for item: ${item.name}`);
-                          console.error(`Full URL attempted: ${e.target.src}`);
-                          console.error(`Error details:`, e);
-                          // Временно убираем fallback чтобы увидеть проблему
-                          e.target.style.backgroundColor = '#f0f0f0';
-                          e.target.style.display = 'flex';
-                          e.target.style.alignItems = 'center';
-                          e.target.style.justifyContent = 'center';
-                          e.target.alt = `ОШИБКА ЗАГРУЗКИ: ${item.image}`;
                         }}
                         onLoad={() => {
                           console.log(`Successfully loaded image: ${item.image} for item: ${item.name}`);
@@ -1025,11 +1023,12 @@ const RestaurantPage = () => {
                     <p className="text-gray-600 mb-4">{item.description}</p>
                     <div className="flex justify-between items-center">
                       <span className="text-primary text-xl font-bold">{item.price}</span>
-                      <motion.button 
+                      <motion.button
                         className="flex items-center justify-center gap-2 px-3 py-2 bg-primary rounded-full text-white transition-all duration-300"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                         title={t('restaurant.menu.add_to_order', 'Добавить в заказ')}
+                        onClick={() => navigate('/payment')}
                       >
                         <ShoppingBagIcon className="w-4 h-4" />
                         <span className="text-sm font-medium">{t('restaurant.menu.add', 'Добавить')}</span>
@@ -1219,47 +1218,92 @@ const RestaurantPage = () => {
                 </div>
               </div>
               
-              <div className="flex justify-center">
-                <a 
+              <div className="flex justify-center gap-4 flex-wrap">
+                <a
                   href="tel:+66624805877"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: '8px',
-                  padding: '14px 35px',
-                  fontSize: '14px',
+                  padding: '0.75rem 1.75rem',
+                  fontSize: '0.875rem',
                   fontWeight: '600',
-                  letterSpacing: '1px',
+                  letterSpacing: '0.5px',
                   textTransform: 'uppercase',
                   textDecoration: 'none',
                   borderRadius: '50px',
                   transition: 'all 0.3s ease-out',
                   position: 'relative',
                   overflow: 'hidden',
-                  minWidth: '220px',
+                  minWidth: '180px',
                   textAlign: 'center',
                   background: 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)',
                   color: 'white',
                   border: '2px solid transparent',
-                  boxShadow: '0 6px 20px rgba(144, 179, 167, 0.3)',
+                  boxShadow: '0 4px 15px rgba(144, 179, 167, 0.25)',
                   willChange: 'transform, box-shadow',
                   transform: 'translateZ(0)'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-2px) translateZ(0)';
-                  e.target.style.boxShadow = '0 8px 25px rgba(144, 179, 167, 0.5)';
+                  e.target.style.transform = 'translateY(-1px) translateZ(0)';
+                  e.target.style.boxShadow = '0 6px 20px rgba(144, 179, 167, 0.35)';
                   e.target.style.background = 'linear-gradient(135deg, #A8C5B8 0%, #B8CFC2 100%)';
                 }}
                 onMouseLeave={(e) => {
                   e.target.style.transform = 'translateZ(0)';
-                  e.target.style.boxShadow = '0 6px 20px rgba(144, 179, 167, 0.3)';
+                  e.target.style.boxShadow = '0 4px 15px rgba(144, 179, 167, 0.25)';
                   e.target.style.background = 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)';
                 }}
               >
                 {t('restaurant.booking.call_now', 'Позвонить сейчас')}
-                <PhoneIcon style={{ width: '16px', height: '16px', transition: 'transform 0.2s ease' }} />
+                <PhoneIcon style={{ width: '14px', height: '14px', transition: 'transform 0.2s ease' }} />
               </a>
+
+              {/* COMMENTED OUT: Online booking button */}
+              {/* <motion.button
+                onClick={() => navigate('/payment')}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '0.75rem 1.75rem',
+                  fontSize: '0.875rem',
+                  fontWeight: '600',
+                  letterSpacing: '0.5px',
+                  textTransform: 'uppercase',
+                  textDecoration: 'none',
+                  borderRadius: '50px',
+                  transition: 'all 0.3s ease-out',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  minWidth: '180px',
+                  textAlign: 'center',
+                  background: 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)',
+                  color: 'white',
+                  border: 'none',
+                  boxShadow: '0 4px 15px rgba(144, 179, 167, 0.25)',
+                  willChange: 'transform, box-shadow',
+                  transform: 'translateZ(0)',
+                  cursor: 'pointer'
+                }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = 'translateY(-1px) translateZ(0)';
+                  e.target.style.boxShadow = '0 6px 20px rgba(144, 179, 167, 0.35)';
+                  e.target.style.background = 'linear-gradient(135deg, #A8C5B8 0%, #B8CFC2 100%)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = 'translateZ(0)';
+                  e.target.style.boxShadow = '0 4px 15px rgba(144, 179, 167, 0.25)';
+                  e.target.style.background = 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)';
+                }}
+              >
+                {t('restaurant.booking.order_online', 'Заказать онлайн')}
+                <ShoppingBagIcon style={{ width: '14px', height: '14px', transition: 'transform 0.2s ease' }} />
+              </motion.button> */}
               </div>
             </motion.div>
             
@@ -1272,10 +1316,16 @@ const RestaurantPage = () => {
               className="relative mx-auto lg:mx-0 max-w-lg w-full"
             >
               <div className="relative rounded-3xl overflow-hidden aspect-[4/3] shadow-xl">
-                <img 
-                  src={bookingImage} 
-                  alt="Restaurant interior" 
-                  className="w-full h-full object-cover"
+                <img
+                  src={bookingImage}
+                  alt="Restaurant interior"
+                  className="w-full h-full"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                  loading="eager"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
               </div>

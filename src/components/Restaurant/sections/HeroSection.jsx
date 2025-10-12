@@ -285,11 +285,11 @@ const HeroSection = memo(({ menuSectionRef }) => {
       <HeroBackground>
         <picture>
           <source
-            srcSet="/src/assets/images/optimized/webp/booking.webp"
-            type="image/webp"
+            srcSet="/images-optimized/restaurant/booking.jpg"
+            type="image/jpeg"
           />
           <img
-            src="/src/assets/images/optimized/booking.jpg"
+            src="/images-optimized/restaurant/booking.jpg"
             alt={t('restaurant.hero.image_alt', 'Restaurant interior')}
             loading="eager"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}

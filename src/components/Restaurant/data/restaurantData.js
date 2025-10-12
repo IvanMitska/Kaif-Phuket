@@ -72,7 +72,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.homemade_granola.name', 'Домашняя гранола'),
       description: safeT('restaurant.menu.items.homemade_granola.description', 'Домашняя гранола / лабне / микс ягод'),
       price: '290 THB',
-      image: '/images/menu/breakfast/granola.jpg',
+      image: null,
       tags: ['breakfast', 'healthy', 'vegan'],
       popular: false,
       category: 'breakfast'
@@ -96,7 +96,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.pumpkin_soup.name', 'Тыквенный крем-суп'),
       description: safeT('restaurant.menu.items.pumpkin_soup.description', 'Тыквенный крем-суп / сыр фета / тыквенные семечки'),
       price: '190 THB',
-      image: '/images/menu/soup/pumpkin-soup.jpg',
+      image: null,
       tags: ['soup', 'hot', 'vegan'],
       popular: true,
       category: 'soup'
@@ -116,7 +116,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.creamy_salmon.name', 'Сливочный суп с лососем'),
       description: safeT('restaurant.menu.items.creamy_salmon.description', 'Сливочный суп с лососем'),
       price: '290 THB',
-      image: '/images/menu/soup/salmon-soup.jpg',
+      image: null,
       tags: ['soup', 'hot', 'seafood'],
       popular: false,
       category: 'soup'
@@ -126,7 +126,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.gazpacho_shrimp.name', 'Гаспачо с креветками'),
       description: safeT('restaurant.menu.items.gazpacho_shrimp.description', 'Борщ Гаспачо / тар-тар из креветок / тар-тар из свежих овощей'),
       price: '270 THB',
-      image: '/images/menu/soup/gazpacho.jpg',
+      image: null,
       tags: ['soup', 'cold'],
       popular: false,
       category: 'soup'
@@ -139,7 +139,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.green_salad.name', 'Зеленый салат'),
       description: safeT('restaurant.menu.items.green_salad.description', 'Зеленый салат / брокколи / огурцы / бэби шпинат / бобы эдамамэ'),
       price: '290 THB',
-      image: '/images/menu/salad/green-salad.jpg',
+      image: null,
       tags: ['salad', 'vegetarian', 'vegan', 'healthy'],
       popular: true,
       category: 'salad'
@@ -149,7 +149,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.crispy_eggplant.name', 'Хрустящие баклажаны'),
       description: safeT('restaurant.menu.items.crispy_eggplant.description', 'Хрустящие баклажаны / йогурт / микс орехов / соус сладкий чили'),
       price: '290 THB',
-      image: '/images/menu/salad/crispy-eggplant.jpg',
+      image: null,
       tags: ['appetizer', 'vegetarian'],
       popular: false,
       category: 'salad'
@@ -159,7 +159,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.caesar_chicken.name', 'Салат Цезарь с цыпленком'),
       description: safeT('restaurant.menu.items.caesar_chicken.description', 'Салат цезарь / печеный цыпленок / перепелиные яйца'),
       price: '330 THB',
-      image: '/images/menu/salad/caesar-chicken.jpg',
+      image: '/images/menu/salad/caesar-salad.jpg',
       tags: ['salad', 'meat'],
       popular: true,
       category: 'salad'
@@ -169,7 +169,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.vegetable_salad.name', 'Овощной салат'),
       description: safeT('restaurant.menu.items.vegetable_salad.description', 'Овощной салат / огурцы / томаты / редис / оливковое масло'),
       price: '190 THB',
-      image: '/images/menu/salad/vegetable-salad.jpg',
+      image: null,
       tags: ['salad', 'vegetarian', 'vegan', 'healthy'],
       popular: false,
       category: 'salad'
@@ -179,7 +179,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.roast_beef_salad.name', 'Салат с ростбифом'),
       description: safeT('restaurant.menu.items.roast_beef_salad.description', 'Салат с ростбифом / болгарский перец / огурцы / микс салатов'),
       price: '390 THB',
-      image: '/images/menu/salad/roast-beef-salad.jpg',
+      image: null,
       tags: ['salad', 'meat'],
       popular: false,
       category: 'salad'
@@ -189,7 +189,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.crispy_shrimp.name', 'Хрустящие креветки'),
       description: safeT('restaurant.menu.items.crispy_shrimp.description', 'Хрустящие креветки / мусс из печеных овощей'),
       price: '390 THB',
-      image: '/images/menu/salad/crispy-shrimp.jpg',
+      image: null,
       tags: ['appetizer', 'seafood'],
       popular: true,
       category: 'salad'
@@ -199,7 +199,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.big_snack_set.name', 'Большой сет снеков'),
       description: safeT('restaurant.menu.items.big_snack_set.description', 'Большой сет снеков'),
       price: '2100 THB',
-      image: '/images/menu/salad/big-snack-set.jpg',
+      image: null,
       tags: ['appetizer', 'meat', 'seafood'],
       popular: false,
       category: 'salad'
@@ -209,7 +209,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.small_snack_set.name', 'Маленький сет снеков'),
       description: safeT('restaurant.menu.items.small_snack_set.description', 'Маленький сет снеков'),
       price: '1290 THB',
-      image: '/images/menu/salad/small-snack-set.jpg',
+      image: null,
       tags: ['appetizer', 'meat'],
       popular: false,
       category: 'salad'
@@ -305,7 +305,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.salmon_steak.name', 'Стейк лосося'),
       description: safeT('restaurant.menu.items.salmon_steak.description', 'Стейк лосося / спаржа / шпинат / копченый йогурт'),
       price: '490 THB',
-      image: '/images/menu/hot/salmon_steak.jpg',
+      image: null,
       tags: ['main', 'seafood'],
       popular: true,
       category: 'main'
@@ -315,7 +315,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.sea_bass_zucchini.name', 'Сибас с цукини'),
       description: safeT('restaurant.menu.items.sea_bass_zucchini.description', 'Сибас с цукини / соус из белого вина / оливок и каперсов'),
       price: '470 THB',
-      image: '/images/menu/hot/sea_bass.jpg',
+      image: null,
       tags: ['main', 'seafood'],
       popular: false,
       category: 'main'
@@ -325,7 +325,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.classic_cheeseburger.name', 'Классический чизбургер'),
       description: safeT('restaurant.menu.items.classic_cheeseburger.description', 'Классический чизбургер / картофель фри с пармезаном'),
       price: '420 THB',
-      image: '/images/menu/burger/classic_cheeseburger.jpg',
+      image: '/images/menu/burger/cheeseburger-deluxe.jpg',
       tags: ['burger', 'meat'],
       popular: true,
       category: 'main'
@@ -335,7 +335,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.mignon_steak.name', 'Стейк миньон'),
       description: safeT('restaurant.menu.items.mignon_steak.description', 'Стейк миньон / картофельное пюре / ромейн / соус демиглас'),
       price: '1100 THB',
-      image: '/images/menu/hot/mignon_steak.jpg',
+      image: null,
       tags: ['main', 'meat'],
       popular: true,
       category: 'main'
@@ -345,7 +345,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.fried_rice_shrimp.name', 'Жареный рис с овощами и креветками'),
       description: safeT('restaurant.menu.items.fried_rice_shrimp.description', 'Жареный рис с овощами и креветками'),
       price: '210 THB',
-      image: '/images/menu/hot/fried_rice.jpg',
+      image: null,
       tags: ['main', 'seafood'],
       popular: false,
       category: 'main'
@@ -359,7 +359,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.mashed_potatoes_truffle.name', 'Картофельное пюре с трюфельным маслом'),
       description: safeT('restaurant.menu.items.mashed_potatoes_truffle.description', 'Картофельное пюре с трюфельным маслом'),
       price: '140 THB',
-      image: '/images/menu/side/mashed_potatoes.jpg',
+      image: null,
       tags: ['side', 'vegetarian'],
       popular: false,
       category: 'side'
@@ -369,7 +369,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.broccoli_grill.name', 'Брокколи на мангале'),
       description: safeT('restaurant.menu.items.broccoli_grill.description', 'Брокколи на мангале / мусс из йогурта и авокадо'),
       price: '140 THB',
-      image: '/images/menu/side/broccoli_grill.jpg',
+      image: null,
       tags: ['side', 'vegetarian', 'healthy'],
       popular: false,
       category: 'side'
@@ -379,7 +379,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.steamed_rice.name', 'Рис на пару'),
       description: safeT('restaurant.menu.items.steamed_rice.description', 'Рис на пару'),
       price: '90 THB',
-      image: '/images/menu/side/steamed_rice.jpg',
+      image: null,
       tags: ['side', 'vegetarian', 'vegan'],
       popular: false,
       category: 'side'
@@ -389,7 +389,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.baked_potatoes_herbs.name', 'Картофель печеный с зеленью'),
       description: safeT('restaurant.menu.items.baked_potatoes_herbs.description', 'Картофель печеный с зеленью'),
       price: '140 THB',
-      image: '/images/menu/side/baked_potatoes.jpg',
+      image: null,
       tags: ['side', 'vegetarian'],
       popular: false,
       category: 'side'
@@ -402,7 +402,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.napoleon.name', 'Наполеон'),
       description: safeT('restaurant.menu.items.napoleon.description', 'Наполеон / соус из белого шоколада'),
       price: '250 THB',
-      image: '/images/menu/dessert/napoleon.jpg',
+      image: null,
       tags: ['dessert', 'sweet'],
       popular: false,
       category: 'dessert'
@@ -412,7 +412,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.cheesecake_pistachio.name', 'Чизкейк'),
       description: safeT('restaurant.menu.items.cheesecake_pistachio.description', 'Чизкейк / фисташковый соус'),
       price: '270 THB',
-      image: '/images/menu/dessert/cheesecake.jpg',
+      image: null,
       tags: ['dessert', 'sweet'],
       popular: true,
       category: 'dessert'
@@ -422,7 +422,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.chocolate_fondant.name', 'Шоколадный фондан'),
       description: safeT('restaurant.menu.items.chocolate_fondant.description', 'Шоколадный фондан / ванильное мороженое / варенье из вишни'),
       price: '250 THB',
-      image: '/images/menu/dessert/chocolate_fondant.jpg',
+      image: null,
       tags: ['dessert', 'sweet'],
       popular: true,
       category: 'dessert'
@@ -432,7 +432,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.tiramisu.name', 'Тирамису'),
       description: safeT('restaurant.menu.items.tiramisu.description', 'Тирамису'),
       price: '270 THB',
-      image: '/images/menu/dessert/tiramisu.jpg',
+      image: null,
       tags: ['dessert', 'sweet'],
       popular: false,
       category: 'dessert'
@@ -442,7 +442,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.coconut_pudding_chia.name', 'Кокосовый пудинг с чиа'),
       description: safeT('restaurant.menu.items.coconut_pudding_chia.description', 'Кокосовый пудинг с чиа / джем манго / кокосовые чипсы'),
       price: '170 THB',
-      image: '/images/menu/dessert/coconut_pudding.jpg',
+      image: null,
       tags: ['dessert', 'sweet', 'vegan'],
       popular: false,
       category: 'dessert'
@@ -452,7 +452,7 @@ export const getRestaurantData = (t) => {
       name: safeT('restaurant.menu.items.italian_gelato.name', 'Итальянский джелато'),
       description: safeT('restaurant.menu.items.italian_gelato.description', 'Итальянский джелато / ваниль / черный шоколад / соленая карамель'),
       price: '80 THB',
-      image: '/images/menu/dessert/gelato.jpg',
+      image: null,
       tags: ['dessert', 'sweet'],
       popular: true,
       category: 'dessert'
