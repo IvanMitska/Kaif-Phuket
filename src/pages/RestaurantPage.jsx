@@ -19,7 +19,6 @@ import {
 } from '@heroicons/react/24/outline';
 import PageScrollReset from '../components/common/PageScrollReset';
 import LazyImage from '../components/common/LazyImage';
-import { useNavigate } from 'react-router-dom';
 
 // Импортируем функцию получения данных ресторана
 import { getRestaurantData } from '../components/Restaurant/data/restaurantData';
@@ -669,7 +668,6 @@ const MenuCategoriesTabs = ({ activeCategory, setActiveCategory }) => {
 
 const RestaurantPage = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeCategory, setActiveCategory] = useState('all');
   const [visibleItems, setVisibleItems] = useState(6); // Количество видимых элементов
@@ -1023,16 +1021,16 @@ const RestaurantPage = () => {
                     <p className="text-gray-600 mb-4">{item.description}</p>
                     <div className="flex justify-between items-center">
                       <span className="text-primary text-xl font-bold">{item.price}</span>
-                      <motion.button
+                      {/* COMMENTED OUT: Add to order button (payment functionality disabled) */}
+                      {/* <motion.button
                         className="flex items-center justify-center gap-2 px-3 py-2 bg-primary rounded-full text-white transition-all duration-300"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                         title={t('restaurant.menu.add_to_order', 'Добавить в заказ')}
-                        onClick={() => navigate('/payment')}
                       >
                         <ShoppingBagIcon className="w-4 h-4" />
                         <span className="text-sm font-medium">{t('restaurant.menu.add', 'Добавить')}</span>
-                      </motion.button>
+                      </motion.button> */}
                     </div>
                   </div>
                 </motion.div>

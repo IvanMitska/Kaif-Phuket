@@ -41,7 +41,6 @@ const ContactsPage = React.lazy(() => import('./pages/ContactsPage'));
 const PrivacyPage = React.lazy(() => import('./pages/PrivacyPage'));
 const TermsPage = React.lazy(() => import('./pages/TermsPage'));
 const SurveyPage = React.lazy(() => import('./pages/SurveyPage'));
-const PaymentPage = React.lazy(() => import('./pages/PaymentPage'));
 
 
 // Невидимый компонент загрузки - без индикаторов
@@ -56,7 +55,6 @@ const AnimatedRoutes = () => {
       <Routes location={location}>
         <Route path="/" element={<HomePage />} />
         <Route path="/restaurant" element={<RestaurantPage />} />
-        <Route path="/payment" element={<PaymentPage />} />
         <Route path="/spa" element={<SpaPage />} />
         <Route path="/sports" element={<SportsPage />} />
         <Route path="/banya" element={<BanyaPage />} />
