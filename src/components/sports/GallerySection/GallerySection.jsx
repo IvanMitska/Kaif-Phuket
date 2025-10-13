@@ -168,7 +168,7 @@ const GallerySection = () => {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            {t('sports.gallery.subtitle', 'Captured moments of sports life at KAIF Jungle Club & SPA. Join our community and share your own achievements')}
+            {t('sports.gallery.subtitle', 'Captured moments of sports life at KAIF Sauna & SPA. Join our community and share your own achievements')}
           </SectionSubtitle>
         </div>
         

@@ -933,7 +933,7 @@ const ContactsPage = () => {
       <PageHead 
         titleKey="page_titles.contacts"
         defaultTitle="KAIF Contacts | Get in Touch with Us"
-        description="Contact KAIF Jungle Club & Spa in Phuket. Phone, address, working hours and booking information."
+        description="Contact KAIF Sauna & Spa in Phuket. Phone, address, working hours and booking information."
       />
       <PageScrollReset />
       {/* Стильная Hero Section с визуальными элементами */}

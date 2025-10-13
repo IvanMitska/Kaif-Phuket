@@ -1,6 +1,6 @@
-# KAIF - Jungle Club & Spa Website
+# KAIF - Sauna & Spa Website
 
-A modern, responsive website for KAIF - Jungle Club & Spa in Phuket, Thailand. This website showcases the four main service areas of the complex: Restaurant, SPA, Sports facilities, and Beauty Salon.
+A modern, responsive website for KAIF - Sauna & Spa in Phuket, Thailand. This website showcases the four main service areas of the complex: Restaurant, SPA, Sports facilities, and Beauty Salon.
 
 ## Features
 

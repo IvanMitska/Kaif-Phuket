@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 // Компонент для управления метаданными страницы (title, favicon и т.д.)
 const PageHead = ({ 
   titleKey = 'page_titles.home', 
-  defaultTitle = 'KAIF | Jungle Club & Spa',
+  defaultTitle = 'KAIF | Sauna & Spa',
   description,
   keywords,
   ogImage,

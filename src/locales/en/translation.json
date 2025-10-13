@@ -1,6 +1,6 @@
 {
   "page_titles": {
-    "home": "KAIF | Jungle Club & Spa",
+    "home": "KAIF | Sauna & Spa",
     "restaurant": "KAIF Restaurant | Gourmet Cuisine and Exquisite Dishes",
     "spa": "KAIF SPA | Luxury Spa Treatments and Relaxation",
     "sports": "KAIF Sports | Modern Fitness and Martial Arts",
@@ -52,16 +52,16 @@
   },
   "home": {
     "hero": {
-      "title": "KAIF - Jungle Club & Spa",
+      "title": "KAIF - Sauna & Spa",
       "subtitle": "Unique relaxation and wellness experience in Phuket",
       "cta": "Our Services",
       "overline": "Premium Complex in Phuket",
       "mainTitle": "KAIF",
-      "subtitle": "Jungle Club & Spa",
+      "subtitle": "Sauna & Spa",
       "services": "Our Services",
       "bookNow": "Book Now",
       "virtualTour": "Virtual Tour",
-      "slideAlt": "KAIF - Jungle Club & Spa",
+      "slideAlt": "KAIF - Sauna & Spa",
       "stats": {
         "zones": "RELAXATION ZONES",
         "sauna": "SAUNA",
@@ -340,7 +340,7 @@
       "badge": "Our Restaurant",
       "title": "Exquisite Cuisine",
       "highlight": "with Modern Twist",
-      "subtitle": "Our chefs create unique dishes by combining traditional recipes with new culinary techniques.",
+      "subtitle": "Signature cuisine and exquisite dishes",
       "button": "Our Menu",
       "menu_button": "Our Menu",
       "reviews": "Excellent Reviews"
@@ -2053,7 +2053,7 @@
       "tag": "Our Services",
       "facility_tag": "Fitness",
       "section_title": "Premium Sports Facilities",
-      "section_subtitle": "Discover the world of fitness and sports at KAIF Jungle Club. Our modern services are designed to give you the opportunity to train with pleasure and reach new heights.",
+      "section_subtitle": "Discover the world of fitness and sports at KAIF Sauna. Our modern services are designed to give you the opportunity to train with pleasure and reach new heights.",
       "title": "Gym",
       "description1": "Spacious modern gym with cardio and strength equipment of high class. The gym is equipped with everything necessary for full-fledged training and maintaining physical fitness.",
       "description2": "Guests have access to personal lockers, showers, as well as personal trainer services by appointment."
@@ -2068,7 +2068,7 @@
     "gallery": {
       "tag": "Our Moments",
       "title": "Gallery",
-      "subtitle": "Captured moments of sports life at KAIF Jungle Club & SPA. Join our community and share your own achievements",
+      "subtitle": "Captured moments of sports life at KAIF Sauna & SPA. Join our community and share your own achievements",
       "yoga": "Sunset Yoga",
       "subtitle_yoga": "Daily classes",
       "training": "Training with a personal trainer",
@@ -2380,7 +2380,7 @@
 
   "about": {
     "title": "About Us",
-    "description": "KAIF - Jungle Club & Spa is Phuket's premier wellness complex",
+    "description": "KAIF - Sauna & Spa is Phuket's premier wellness complex",
     "overview": {
       "title": "Complex Overview",
       "description": "Detailed information about all our facilities"

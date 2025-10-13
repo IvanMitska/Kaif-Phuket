@@ -114,10 +114,10 @@ function App() {
     
     // Обновляем заголовок страницы при смене языка
     // Если на странице нет специального заголовка, используем базовый
-    if (document.title === 'KAIF | Jungle Club & Spa' || 
+    if (document.title === 'KAIF | Sauna & Spa' || 
         document.title.includes('KAIF') || 
         !document.title.includes('|')) {
-      document.title = t('page_titles.home', 'KAIF | Jungle Club & Spa');
+      document.title = t('page_titles.home', 'KAIF | Sauna & Spa');
     }
   }, [i18n.language, t, forceUpdate]);
 

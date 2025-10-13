@@ -1,4 +1,4 @@
-# KAIF - Jungle Club & Spa
+# KAIF - Sauna & Spa
 
 Современный веб-сайт для премиального велнес-комплекса KAIF на Пхукете.
 
@@ -153,4 +153,4 @@ src/
 
 ---
 
-Сделано с ❤️ для KAIF | Jungle Club & Spa
+Сделано с ❤️ для KAIF | Sauna & Spa
