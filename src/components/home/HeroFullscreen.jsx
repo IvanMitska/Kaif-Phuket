@@ -1,32 +1,13 @@
-import React, { useState, useEffect, memo, useCallback } from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
-// Импорт изображений для слайдера (оптимизированные версии)
-import heroSpaImage from '../../assets/images/optimized/hero-spa.jpg';
-import heroPoolImage from '../../assets/images/optimized/hero-pool.jpg';
-import heroRestaurantImage from '../../assets/images/optimized/hero-restaurant.jpg';
-import heroFitnessImage from '../../assets/images/optimized/hero-fitness.jpg';
-
-// WebP версии изображений
-import heroSpaWebp from '../../assets/images/optimized/webp/hero-spa.webp';
-import heroPoolWebp from '../../assets/images/optimized/webp/hero-pool.webp';
-import heroRestaurantWebp from '../../assets/images/optimized/webp/hero-restaurant.webp';
-import heroFitnessWebp from '../../assets/images/optimized/webp/hero-fitness.webp';
-
+// Halloween Mental Hospital - Use hospital.png as background
 // Импорт логотипа для главной страницы
 import homepageLogo from '../../assets/images/optimized/logo-homepage.png';
 import homepageLogoWebp from '../../assets/images/optimized/webp/logo-homepage.webp';
-
-// Массив изображений для слайдера с WebP поддержкой
-const slideImages = [
-  { webp: heroSpaWebp, fallback: heroSpaImage },
-  { webp: heroPoolWebp, fallback: heroPoolImage },
-  { webp: heroRestaurantWebp, fallback: heroRestaurantImage },
-  { webp: heroFitnessWebp, fallback: heroFitnessImage }
-];
 
 // Halloween Mental Hospital Theme - Flickering Animation
 const flicker = `
@@ -89,36 +70,21 @@ const HeroContainer = styled.section`
   }
 `;
 
-// Слайдер с современным затемнением - ИСПРАВЛЕН
-const SliderContainer = styled.div`
+// Mental Hospital Background
+const HospitalBackground = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
-  will-change: auto;
   pointer-events: none;
-  
-  /* Разрешаем события только для дочерних элементов слайдера */
-  > * {
-    pointer-events: auto;
-  }
-`;
+  background-image: url('/images/events/hospital.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-// Слайд - Mental Hospital Dark Theme
-const Slide = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: ${props => props.$active ? 1 : 0};
-  transition: opacity 2s ease-in-out;
-  transform: translateZ(0);
-  will-change: opacity;
-  pointer-events: none;
-
+  /* Lighter overlay for visibility */
   &::after {
     content: '';
     position: absolute;
@@ -128,27 +94,11 @@ const Slide = styled.div`
     height: 100%;
     background: linear-gradient(
       135deg,
-      rgba(10,0,0,0.85) 0%,
-      rgba(26,5,5,0.75) 50%,
-      rgba(15,0,0,0.8) 100%
-    ),
-    radial-gradient(
-      ellipse at center,
-      rgba(139, 0, 0, 0.2) 0%,
-      transparent 60%
+      rgba(0,0,0,0.5) 0%,
+      rgba(26,5,5,0.4) 50%,
+      rgba(0,0,0,0.55) 100%
     );
     z-index: 2;
-    pointer-events: none;
-  }
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    filter: brightness(0.4) contrast(1.3) saturate(0.6) hue-rotate(350deg);
-    pointer-events: none;
-    will-change: auto;
   }
 `;
 
@@ -206,30 +156,79 @@ const ContentWrapper = styled.div`
   }
 `;
 
-// Логотип - Mental Hospital with bloody glow
-const LogoImage = styled(motion.img)`
-  max-width: 520px;
-  width: auto;
-  height: auto;
-  margin: 0 0 3rem 0;
-  display: block;
-  filter:
-    drop-shadow(0 25px 80px rgba(139, 0, 0, 0.8))
-    drop-shadow(0 10px 30px rgba(255, 0, 0, 0.5))
-    drop-shadow(0 0 50px rgba(139, 0, 0, 0.4));
+// Mental Hospital Title
+const MentalHospitalTitle = styled(motion.h1)`
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 200;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem 0;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.8),
+    0 0 50px rgba(139, 0, 0, 0.6);
 
   @media (max-width: 768px) {
-    max-width: 450px;
-    margin: 0 0 2.5rem 0;
+    font-size: clamp(2rem, 5vw, 3.5rem);
   }
 
   @media (max-width: 480px) {
-    max-width: 420px;
-    margin: 0 0 2rem 0;
+    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+  }
+`;
+
+const MentalHospitalSubtitle = styled(motion.p)`
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  font-weight: 200;
+  color: #ffffff;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  margin: 0 0 1rem 0;
+  text-align: center;
+  background: linear-gradient(135deg, #8B0000 0%, #FF0000 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 20px rgba(139, 0, 0, 0.5);
+  filter: drop-shadow(0 2px 20px rgba(139, 0, 0, 0.5));
+
+  @media (max-width: 768px) {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  @media (max-width: 480px) {
+    font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+  }
+`;
+
+// Логотип - Mental Hospital with bloody glow
+const LogoImage = styled(motion.img)`
+  max-width: 320px;
+  width: auto;
+  height: auto;
+  margin: 0 0 2rem 0;
+  display: block;
+  filter:
+    drop-shadow(0 15px 40px rgba(139, 0, 0, 0.7))
+    drop-shadow(0 5px 20px rgba(255, 0, 0, 0.4))
+    drop-shadow(0 0 30px rgba(139, 0, 0, 0.3));
+
+  @media (max-width: 768px) {
+    max-width: 280px;
+    margin: 0 0 1.5rem 0;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 250px;
+    margin: 0 0 1rem 0;
   }
 
   @media (max-width: 375px) {
-    max-width: 380px;
+    max-width: 220px;
   }
 `;
 
@@ -445,25 +444,12 @@ const animations = {
 
 const HeroFullscreen = memo(() => {
   const { t } = useTranslation();
-  const [currentSlide, setCurrentSlide] = useState(0);
-  
-  // ИСПРАВЛЕНИЕ: Оптимизированное автоматическое переключение слайдов без блокировки скролла
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Используем requestAnimationFrame для синхронизации с браузером
-      requestAnimationFrame(() => {
-        setCurrentSlide(prev => (prev + 1) % slideImages.length);
-      });
-    }, 6000);
-    
-    return () => clearInterval(interval);
-  }, []);
 
-  // ИСПРАВЛЕН: Обработчик скролла без конфликтов
+  // Обработчик скролла
   const handleScrollToZones = () => {
     const zonesSection = document.querySelector('#exclusive-zones');
     if (zonesSection) {
-      zonesSection.scrollIntoView({ 
+      zonesSection.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
@@ -472,66 +458,56 @@ const HeroFullscreen = memo(() => {
 
   return (
     <HeroContainer>
-      {/* Слайдер изображений */}
-      <SliderContainer>
-        {slideImages.map((image, index) => (
-          <Slide 
-            key={`slide-${index}`}
-            $active={index === currentSlide}
-          >
-            <picture>
-              <source
-                srcSet={image.webp}
-                type="image/webp"
-              />
-              <img
-                src={image.fallback}
-                alt={`KAIF - Слайд ${index + 1}`}
-                loading={index === 0 ? "eager" : "lazy"}
-                decoding="async"
-                onError={(e) => {
-                  const fallbackImages = [
-                    "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
-                    "https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
-                    "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
-                    "https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75"
-                  ];
-                  e.target.src = fallbackImages[index % fallbackImages.length];
-                }}
-              />
-            </picture>
-          </Slide>
-        ))}
-      </SliderContainer>
-      
+      {/* Mental Hospital Background */}
+      <HospitalBackground />
+
       {/* Основной контент */}
       <ContentContainer>
         <ContentWrapper>
+          {/* Mental Hospital Title */}
+          <MentalHospitalTitle
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          >
+            MENTAL HOSPITAL
+          </MentalHospitalTitle>
+
+          <MentalHospitalSubtitle
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+          >
+            OF KAIF
+          </MentalHospitalSubtitle>
+
+          {/* Small Logo */}
           <picture style={{ display: 'block' }}>
             <source srcSet={homepageLogoWebp} type="image/webp" />
             <LogoImage
               src={homepageLogo}
               alt="KAIF"
-              initial={animations.logo.initial}
-              animate={animations.logo.animate}
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
               whileHover={{
                 scale: 1.02,
                 transition: {
                   duration: 0.2,
-                ease: "easeOut"
-              }
-            }}
-          />
+                  ease: "easeOut"
+                }
+              }}
+            />
           </picture>
-          
-          
+
           <ButtonContainer
             as={motion.div}
-            initial={animations.buttons.initial}
-            animate={animations.buttons.animate}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.7 }}
           >
             <motion.div
-              whileHover={{ 
+              whileHover={{
                 scale: 1.02,
                 transition: {
                   duration: 0.15,
@@ -540,18 +516,18 @@ const HeroFullscreen = memo(() => {
               }}
               whileTap={{ scale: 0.98 }}
             >
-              <PrimaryButton 
-                href="https://wa.me/66624805877?text=Здравствуйте! Хочу записаться в KAIF"
+              <PrimaryButton
+                href="https://wa.me/66624805877?text=Hi!%20I%20want%20to%20book%20for%20Halloween%20Mental%20Hospital%20at%20KAIF"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {t('common.book')}
+                🎃 ENTER IF YOU DARE
               </PrimaryButton>
             </motion.div>
-            
+
             <motion.div
               onClick={handleScrollToZones}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.01,
                 transition: {
                   duration: 0.15,
@@ -561,7 +537,7 @@ const HeroFullscreen = memo(() => {
               whileTap={{ scale: 0.99 }}
             >
               <SecondaryButton>
-                {t('common.learn_more')}
+                EXPLORE THE ASYLUM
               </SecondaryButton>
             </motion.div>
           </ButtonContainer>
