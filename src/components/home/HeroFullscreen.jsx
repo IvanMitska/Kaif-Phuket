@@ -28,8 +28,20 @@ const slideImages = [
   { webp: heroFitnessWebp, fallback: heroFitnessImage }
 ];
 
-// Основной контейнер с улучшенным дизайном
+// Halloween Mental Hospital Theme - Flickering Animation
+const flicker = `
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+    55% { opacity: 1; }
+    60% { opacity: 0.9; }
+    65% { opacity: 0.95; }
+  }
+`;
+
+// Основной контейнер - Mental Hospital Theme
 const HeroContainer = styled.section`
+  ${flicker}
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -40,7 +52,7 @@ const HeroContainer = styled.section`
   align-items: center;
   color: white;
   overflow: hidden;
-  background: #000;
+  background: linear-gradient(135deg, #0a0000 0%, #1a0505 50%, #0f0000 100%);
   /* Убираем все свойства, влияющие на скролл */
   scroll-snap-align: unset;
   scroll-snap-type: unset;
@@ -51,7 +63,25 @@ const HeroContainer = styled.section`
   touch-action: auto;
   overscroll-behavior: auto;
   -webkit-overscroll-behavior: auto;
-  
+
+  /* Mental Hospital eerie glow overlay */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(139, 0, 0, 0.15) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: 5;
+    animation: flicker 4s infinite;
+  }
+
   @media (max-width: 768px) {
     min-height: 100svh;
     height: auto;
@@ -76,7 +106,7 @@ const SliderContainer = styled.div`
   }
 `;
 
-// Слайд с оптимальным затемнением для читаемости - ИСПРАВЛЕН
+// Слайд - Mental Hospital Dark Theme
 const Slide = styled.div`
   position: absolute;
   top: 0;
@@ -85,12 +115,10 @@ const Slide = styled.div`
   height: 100%;
   opacity: ${props => props.$active ? 1 : 0};
   transition: opacity 2s ease-in-out;
-  /* ИСПРАВЛЕНИЕ: Оптимизация для GPU без блокировки скролла */
   transform: translateZ(0);
   will-change: opacity;
-  /* Не блокируем события указателя */
   pointer-events: none;
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -100,23 +128,26 @@ const Slide = styled.div`
     height: 100%;
     background: linear-gradient(
       135deg,
-      rgba(0,0,0,0.65) 0%,
-      rgba(0,0,0,0.45) 50%,
-      rgba(0,0,0,0.55) 100%
+      rgba(10,0,0,0.85) 0%,
+      rgba(26,5,5,0.75) 50%,
+      rgba(15,0,0,0.8) 100%
+    ),
+    radial-gradient(
+      ellipse at center,
+      rgba(139, 0, 0, 0.2) 0%,
+      transparent 60%
     );
     z-index: 2;
     pointer-events: none;
   }
-  
+
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
-    filter: brightness(0.8) contrast(1.1) saturate(0.9);
-    /* Не блокируем события указателя */
+    filter: brightness(0.4) contrast(1.3) saturate(0.6) hue-rotate(350deg);
     pointer-events: none;
-    /* Оптимизация без создания новых слоев */
     will-change: auto;
   }
 `;
@@ -175,34 +206,34 @@ const ContentWrapper = styled.div`
   }
 `;
 
-// Увеличенный логотип с лучшим контрастом
+// Логотип - Mental Hospital with bloody glow
 const LogoImage = styled(motion.img)`
   max-width: 520px;
   width: auto;
   height: auto;
   margin: 0 0 3rem 0;
   display: block;
-  filter: 
-    drop-shadow(0 25px 80px rgba(0, 0, 0, 0.9))
-    drop-shadow(0 10px 30px rgba(0, 0, 0, 0.7));
-  
+  filter:
+    drop-shadow(0 25px 80px rgba(139, 0, 0, 0.8))
+    drop-shadow(0 10px 30px rgba(255, 0, 0, 0.5))
+    drop-shadow(0 0 50px rgba(139, 0, 0, 0.4));
+
   @media (max-width: 768px) {
     max-width: 450px;
     margin: 0 0 2.5rem 0;
   }
-  
+
   @media (max-width: 480px) {
     max-width: 420px;
     margin: 0 0 2rem 0;
   }
-  
-  /* Для маленьких экранов но все еще достаточно большой */
+
   @media (max-width: 375px) {
     max-width: 380px;
   }
 `;
 
-// Белая кнопка с чёрным текстом - премиальный вид
+// Mental Hospital Primary Button - Blood Red
 const PrimaryButton = styled.a`
   display: inline-flex;
   align-items: center;
@@ -213,19 +244,20 @@ const PrimaryButton = styled.a`
   letter-spacing: 0.1em;
   text-decoration: none;
   text-transform: uppercase;
-  color: #000;
-  background: rgba(255, 255, 255, 0.95);
-  border: none;
+  color: #fff;
+  background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+  border: 1px solid rgba(139, 0, 0, 0.5);
   border-radius: 12px;
   backdrop-filter: blur(10px);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
   min-width: 220px;
-  box-shadow: 
-    0 8px 25px rgba(0, 0, 0, 0.3),
-    0 15px 50px rgba(0, 0, 0, 0.2);
-  
+  box-shadow:
+    0 8px 25px rgba(139, 0, 0, 0.5),
+    0 15px 50px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(139, 0, 0, 0.3);
+
   &::before {
     content: '';
     position: absolute;
@@ -234,38 +266,39 @@ const PrimaryButton = styled.a`
     width: 100%;
     height: 100%;
     background: linear-gradient(
-      90deg, 
-      transparent, 
-      rgba(0, 0, 0, 0.05), 
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
       transparent
     );
     transition: left 0.6s ease;
   }
-  
+
   &:hover {
-    background: rgba(255, 255, 255, 1);
+    background: linear-gradient(135deg, #A00000 0%, #FF1744 100%);
     transform: translateY(-2px);
-    box-shadow: 
-      0 12px 35px rgba(0, 0, 0, 0.4),
-      0 20px 60px rgba(0, 0, 0, 0.25);
-    color: #000;
+    box-shadow:
+      0 12px 35px rgba(139, 0, 0, 0.7),
+      0 20px 60px rgba(0, 0, 0, 0.5),
+      0 0 50px rgba(255, 0, 0, 0.5);
+    color: #fff;
     text-decoration: none;
-    
+
     &::before {
       left: 100%;
     }
   }
-  
+
   &:active {
     transform: translateY(-1px);
   }
-  
+
   @media (max-width: 768px) {
     padding: 1.1rem 2.5rem;
     font-size: 0.85rem;
     min-width: 200px;
   }
-  
+
   @media (max-width: 480px) {
     padding: 1rem 2rem;
     font-size: 0.8rem;
@@ -275,7 +308,7 @@ const PrimaryButton = styled.a`
   }
 `;
 
-// Вторичная кнопка - улучшенная видимость
+// Mental Hospital Secondary Button - Dark with red glow
 const SecondaryButton = styled.button`
   display: inline-flex;
   align-items: center;
@@ -287,37 +320,41 @@ const SecondaryButton = styled.button`
   text-decoration: none;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.95);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(139, 0, 0, 0.6);
   border-radius: 12px;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease-out;
   position: relative;
   min-width: 220px;
   margin-top: 1.2rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(139, 0, 0, 0.2);
   cursor: pointer;
   font-family: inherit;
-  
+
   &:hover {
     color: rgba(255, 255, 255, 1);
-    border-color: rgba(255, 255, 255, 0.7);
-    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(139, 0, 0, 0.9);
+    background: rgba(139, 0, 0, 0.3);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+    box-shadow:
+      0 8px 25px rgba(139, 0, 0, 0.4),
+      0 0 30px rgba(139, 0, 0, 0.3);
     text-decoration: none;
   }
-  
+
   &:active {
     transform: translateY(0);
   }
-  
+
   @media (max-width: 768px) {
     padding: 1.1rem 2.5rem;
     font-size: 0.85rem;
     min-width: 200px;
   }
-  
+
   @media (max-width: 480px) {
     padding: 1rem 2rem;
     font-size: 0.8rem;
@@ -325,10 +362,11 @@ const SecondaryButton = styled.button`
     width: 100%;
     max-width: 300px;
     margin-top: 1rem;
-    /* Улучшенная видимость на мобильных */
-    background: rgba(255, 255, 255, 0.15);
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(139, 0, 0, 0.7);
+    box-shadow:
+      0 6px 20px rgba(0, 0, 0, 0.6),
+      0 0 25px rgba(139, 0, 0, 0.3);
   }
 `;
 
