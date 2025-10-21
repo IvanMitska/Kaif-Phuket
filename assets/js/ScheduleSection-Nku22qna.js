@@ -1,4 +1,4 @@
-import{a as e,r,j as a}from"./vendor-react-C2zHc7Dg.js";import{d as t}from"./vendor-styles-CUryOWdt.js";import{S as i,C as n,a as o}from"./SportsPage-DYY9Qrc4.js";import"./vendor-other-CZupzcPt.js";import"./main-CznId4au.js";import"./vendor-i18n-C4kh69yx.js";import"./vendor-animations-BsYeMdwa.js";import"./PageScrollReset-BtbcusFr.js";const d=t.div`
+import{a as e,r,j as a}from"./vendor-react-2dSHS-vn.js";import{d as t}from"./vendor-styles-trh3mqkF.js";import{S as i,C as n,a as o}from"./SportsPage-CLKHP7Gw.js";import"./vendor-other-CZupzcPt.js";import"./main-BBhvPUHW.js";import"./vendor-i18n-C4kh69yx.js";import"./vendor-animations-Coyk9q7u.js";import"./PageScrollReset-BJFNCQZ7.js";const d=t.div`
   width: 100%;
   margin: 2rem 0;
   padding: 1.5rem;
