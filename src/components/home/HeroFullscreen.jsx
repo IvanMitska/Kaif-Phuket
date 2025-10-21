@@ -79,7 +79,7 @@ const HospitalBackground = styled.div`
   height: 100%;
   z-index: 1;
   pointer-events: none;
-  background-image: url('/images/events/hospital.png');
+  background-image: url('/images/events/hospitalhero.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
