@@ -182,14 +182,10 @@ const PricingGrid = styled(motion.div)`
   margin-bottom: 2rem;
   align-content: start;
   width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 1rem;
-    position: relative;
   }
 `;
 
@@ -452,14 +448,8 @@ const Feature = styled.li`
 `;
 
 const GridContainer = styled.div`
-  min-height: 850px;
   position: relative;
-  display: flex;
-  flex-direction: column;
-
-  @media (max-width: 1024px) {
-    min-height: 1200px;
-  }
+  overflow: visible;
 
   @media (max-width: 768px) {
     min-height: auto;
@@ -803,13 +793,13 @@ const PricingSection = () => {
           ))}
         </CategoryTabs>
 
-        <GridContainer>
+        <GridContainer style={{ minHeight: currentCategory.plans.length > 3 ? '850px' : currentCategory.plans.length > 2 ? '450px' : '400px' }}>
           <AnimatePresence mode="wait" initial={false}>
             <PricingGrid
               key={activeCategory}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.15, ease: "easeOut" }}
             >
             {currentCategory.plans.map((plan, index) => (
