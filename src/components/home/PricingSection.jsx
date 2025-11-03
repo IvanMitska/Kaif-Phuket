@@ -576,14 +576,9 @@ const PricingSection = () => {
           duration: t('pricing.features.morningAccess'),
           price: '390',
           features: [
-            t('pricing.features.gymCardio'),
+            t('pricing.features.fullAccessMorning'),
+            t('pricing.features.gymAndBanya'),
             t('pricing.features.swimmingPool'),
-            t('pricing.features.steamRoom'),
-            t('pricing.features.iceBarrel'),
-            t('pricing.features.russianSauna'),
-            t('pricing.features.collectiveSteaming'),
-            t('pricing.features.japanesePool'),
-            t('pricing.features.aromaIceBarrel'),
             t('pricing.features.saunaAfter14')
           ],
           perMonth: null
@@ -593,14 +588,10 @@ const PricingSection = () => {
           duration: t('pricing.durations.fullDay'),
           price: '490',
           features: [
-            t('pricing.features.gymCardio'),
+            t('pricing.features.fullDayAccess'),
+            t('pricing.features.gymAndBanya'),
             t('pricing.features.swimmingPool'),
-            t('pricing.features.steamRoom'),
-            t('pricing.features.iceBarrel'),
-            t('pricing.features.russianSauna'),
-            t('pricing.features.collectiveSteaming'),
-            t('pricing.features.japanesePool'),
-            t('pricing.features.aromaIceBarrel')
+            t('pricing.features.towelsIncluded')
           ],
           perMonth: null
         },
@@ -683,14 +674,10 @@ const PricingSection = () => {
           duration: t('pricing.durations.day'),
           price: '490',
           features: [
-            t('pricing.features.gymCardio'),
+            t('pricing.features.fullDayAccess'),
+            t('pricing.features.gymAndBanya'),
             t('pricing.features.swimmingPool'),
-            t('pricing.features.steamRoom'),
-            t('pricing.features.iceBarrel'),
-            t('pricing.features.russianSauna'),
-            t('pricing.features.collectiveSteaming'),
-            t('pricing.features.japanesePool'),
-            t('pricing.features.aromaIceBarrel')
+            t('pricing.features.lockersAndShowers')
           ],
           perMonth: null
         },
@@ -699,10 +686,9 @@ const PricingSection = () => {
           duration: t('pricing.durations.month'),
           price: '3,800',
           features: [
-            t('pricing.features.gymCardio'),
+            t('pricing.features.unlimitedAccess'),
+            t('pricing.features.gymAndBanya'),
             t('pricing.features.swimmingPool'),
-            t('pricing.features.russianSauna'),
-            t('pricing.features.japanesePool'),
             t('pricing.features.towelsIncluded')
           ],
           perMonth: null
@@ -712,10 +698,8 @@ const PricingSection = () => {
           duration: t('pricing.durations.months_3'),
           price: '9,400',
           features: [
-            t('pricing.features.gymCardio'),
-            t('pricing.features.swimmingPool'),
-            t('pricing.features.russianSauna'),
-            t('pricing.features.japanesePool'),
+            t('pricing.features.unlimitedAccess'),
+            t('pricing.features.gymAndBanya'),
             t('pricing.features.towelsIncluded'),
             `${t('pricing.features.savings')} 18%`
           ],
@@ -728,10 +712,8 @@ const PricingSection = () => {
           duration: t('pricing.durations.months_6'),
           price: '17,800',
           features: [
-            t('pricing.features.gymCardio'),
-            t('pricing.features.swimmingPool'),
-            t('pricing.features.russianSauna'),
-            t('pricing.features.japanesePool'),
+            t('pricing.features.unlimitedAccess'),
+            t('pricing.features.gymAndBanya'),
             t('pricing.features.towelsIncluded'),
             `${t('pricing.features.savings')} 22%`
           ],
@@ -742,10 +724,8 @@ const PricingSection = () => {
           duration: t('pricing.durations.months_12'),
           price: '29,000',
           features: [
-            t('pricing.features.gymCardio'),
-            t('pricing.features.swimmingPool'),
-            t('pricing.features.russianSauna'),
-            t('pricing.features.japanesePool'),
+            t('pricing.features.unlimitedAccess'),
+            t('pricing.features.gymAndBanya'),
             t('pricing.features.towelsIncluded'),
             `${t('pricing.features.maxSavings')} 36%`
           ],
