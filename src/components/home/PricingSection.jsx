@@ -578,7 +578,8 @@ const PricingSection = () => {
           features: [
             t('pricing.features.gymCardio'),
             t('pricing.features.swimmingPool'),
-            t('pricing.features.steamRoom') + ' & ' + t('pricing.features.iceBarrel'),
+            t('pricing.features.steamRoom'),
+            t('pricing.features.iceBarrel'),
             t('pricing.features.russianSauna') + ' & ' + t('pricing.features.japanesePool'),
             t('pricing.features.saunaAfter14')
           ],
@@ -591,7 +592,8 @@ const PricingSection = () => {
           features: [
             t('pricing.features.gymCardio'),
             t('pricing.features.swimmingPool'),
-            t('pricing.features.steamRoom') + ' & ' + t('pricing.features.iceBarrel'),
+            t('pricing.features.steamRoom'),
+            t('pricing.features.iceBarrel'),
             t('pricing.features.russianSauna') + ' & ' + t('pricing.features.japanesePool'),
             t('pricing.features.towelsIncluded')
           ],
@@ -678,7 +680,8 @@ const PricingSection = () => {
           features: [
             t('pricing.features.gymCardio'),
             t('pricing.features.swimmingPool'),
-            t('pricing.features.steamRoom') + ' & ' + t('pricing.features.iceBarrel'),
+            t('pricing.features.steamRoom'),
+            t('pricing.features.iceBarrel'),
             t('pricing.features.russianSauna') + ' & ' + t('pricing.features.japanesePool'),
             t('pricing.features.lockersAndShowers')
           ],
