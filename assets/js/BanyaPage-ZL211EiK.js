@@ -1,4 +1,4 @@
-import{r as e,a,j as t,G as i,c as r,R as n,I as o,J as s,K as l,M as c,F as d,d as p,O as g,P as m}from"./vendor-react-FHR7Sy-E.js";import{d as b,m as f}from"./vendor-styles-DcQt-q6S.js";import{P as h}from"./PageScrollReset-Jvg3lmV2.js";import{P as u}from"./main-BF39YShs.js";import{m as x}from"./vendor-animations-BsFJxBmq.js";import"./vendor-other-CZupzcPt.js";import"./vendor-i18n-C4kh69yx.js";b.div`
+import{r as e,a,j as t,G as i,c as r,R as n,I as o,J as s,K as l,M as c,F as d,d as p,O as g,P as m}from"./vendor-react-FHR7Sy-E.js";import{d as b,m as f}from"./vendor-styles-DcQt-q6S.js";import{P as h}from"./PageScrollReset-Jvg3lmV2.js";import{P as u}from"./main-Dd8zjV6a.js";import{m as x}from"./vendor-animations-BsFJxBmq.js";import"./vendor-other-CZupzcPt.js";import"./vendor-i18n-C4kh69yx.js";b.div`
   position: relative;
   overflow: hidden;
   background-color: #f0f0f0;
