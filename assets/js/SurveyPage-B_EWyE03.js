@@ -1,4 +1,4 @@
-import{r as e,j as i,W as a,X as t,Y as r,o as n,Z as s,_ as o,$ as l,a0 as d,a1 as c,a2 as p,a3 as h,a4 as m,a5 as x,a6 as g,a7 as f,a8 as b}from"./vendor-react-FHR7Sy-E.js";import{d as y}from"./vendor-styles-DcQt-q6S.js";import{P as u}from"./PageScrollReset-Jvg3lmV2.js";import{P as j}from"./main-Dd8zjV6a.js";import{m as w,A as v}from"./vendor-animations-BsFJxBmq.js";import"./vendor-other-CZupzcPt.js";import"./vendor-i18n-C4kh69yx.js";const k=y.div`
+import{r as e,j as i,W as a,X as t,Y as r,o as n,Z as s,_ as o,$ as l,a0 as d,a1 as c,a2 as p,a3 as h,a4 as m,a5 as x,a6 as g,a7 as f,a8 as b}from"./vendor-react-FHR7Sy-E.js";import{d as y}from"./vendor-styles-DcQt-q6S.js";import{P as u}from"./PageScrollReset-Jvg3lmV2.js";import{P as j}from"./main-XwyZg8iN.js";import{m as w,A as v}from"./vendor-animations-BsFJxBmq.js";import"./vendor-other-CZupzcPt.js";import"./vendor-i18n-C4kh69yx.js";const k=y.div`
   min-height: 100vh;
   background: linear-gradient(180deg, #f0f9f5 0%, #e8f6ea 70%, #90b3a7 100%);
   padding: 2rem 1rem;
