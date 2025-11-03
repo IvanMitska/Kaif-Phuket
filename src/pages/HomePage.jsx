@@ -9,6 +9,7 @@ import PageHead from '../components/layout/PageHead';
 
 // Импортируем только критические компоненты
 import HeroFullscreen from '../components/home/HeroFullscreen';
+import PromotionsSlider from '../components/PromotionsSlider';
 import ExclusiveZones from '../components/home/ExclusiveZones';
 import PricingSection from '../components/home/PricingSection';
 // import EventBanner from '../components/home/EventBanner'; // Временно отключен
@@ -149,6 +150,9 @@ const HomePage = memo(() => {
       
       {/* Полноэкранная секция героя */}
       <HeroFullscreen />
+
+      {/* Слайдер акций по дням недели */}
+      <PromotionsSlider />
 
       {/* Баннер мероприятия SAUNA RAVE - временно отключен */}
       {/* <EventBanner /> */}
