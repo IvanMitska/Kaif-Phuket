@@ -2132,5 +2132,67 @@
   "promo_banner": {
     "title": "Последний шанс по текущим ценам",
     "subtitle": "Успейте приобрести безлимитные абонементы до повышения цен 1 августа"
+  },
+  "pricing": {
+    "title": "Абонементы и Цены",
+    "subtitle": "Выберите идеальный план для ваших целей",
+    "select_plan": "Выбрать план",
+    "categories": {
+      "clubAccess": "Club Access",
+      "clubAccessPlus": "Club Access+",
+      "groupClasses": "Групповые",
+      "swimming": "Плавание",
+      "dayPass": "Day Pass"
+    },
+    "durations": {
+      "day": "День",
+      "month": "1 месяц",
+      "months_3": "3 месяца",
+      "months_6": "6 месяцев",
+      "months_12": "12 месяцев",
+      "single": "1 занятие",
+      "classes_4": "4 занятия",
+      "classes_8": "8 классов",
+      "classes_12": "12 занятий",
+      "classes_24": "24 занятия",
+      "classes_48": "48 занятий",
+      "fullDay": "Полный день",
+      "morning": "Утренний",
+      "groupClass": "Групповое занятие"
+    },
+    "features": {
+      "fullAccess": "Полный доступ к залу",
+      "modernEquipment": "Современное оборудование",
+      "lockersAndShowers": "Раздевалки и душевые",
+      "savings": "Экономия",
+      "maxSavings": "Максимальная экономия",
+      "unlimitedAccess": "Безлимитный доступ",
+      "gymAndBanya": "Зал + Баня",
+      "towelsIncluded": "Полотенца включены",
+      "fullDayAccess": "Полный доступ на день",
+      "dayAccess": "С дневным доступом",
+      "anyClass": "Любой класс на выбор",
+      "anyClasses": "Любые классы",
+      "professionalTrainer": "Профессиональный тренер",
+      "validMonth": "Действует 1 месяц",
+      "validMonths_2": "Действует 2 месяца",
+      "validMonths_3": "Действует 3 месяца",
+      "validMonths_6": "Действует 6 месяцев",
+      "individualApproach": "Индивидуальный подход",
+      "certifiedInstructor": "Сертифицированный инструктор",
+      "trainingProgram": "Программа обучения",
+      "fullProgram": "Полная программа",
+      "perClass": "за занятие",
+      "morningAccess": "Доступ до 14:00",
+      "saunaAfter14": "После 14:00 сауна недоступна",
+      "fullAccessMorning": "Полный доступ утром"
+    },
+    "subtitles": {
+      "withoutBanya": "(без бани)",
+      "allPlusBanya": "(всё + баня)",
+      "groupClasses": "(групповые занятия)",
+      "swimmingSchool": "(школа плавания)",
+      "dayPass": "(разовые посещения)"
+    }
   }
 }

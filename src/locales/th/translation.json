@@ -2318,5 +2318,67 @@
       "email": "อีเมล: info@kaif-phuket.com",
       "phone": "โทรศัพท์: +66 62 480 5877"
     }
+  },
+  "pricing": {
+    "title": "สมาชิกและราคา",
+    "subtitle": "เลือกแพ็คเกจที่เหมาะกับเป้าหมายของคุณ",
+    "select_plan": "เลือกแพ็คเกจ",
+    "categories": {
+      "clubAccess": "Club Access",
+      "clubAccessPlus": "Club Access+",
+      "groupClasses": "คลาสกลุ่ม",
+      "swimming": "ว่ายน้ำ",
+      "dayPass": "Day Pass"
+    },
+    "durations": {
+      "day": "วัน",
+      "month": "1 เดือน",
+      "months_3": "3 เดือน",
+      "months_6": "6 เดือน",
+      "months_12": "12 เดือน",
+      "single": "1 คลาส",
+      "classes_4": "4 คลาส",
+      "classes_8": "8 คลาส",
+      "classes_12": "12 คลาส",
+      "classes_24": "24 คลาส",
+      "classes_48": "48 คลาส",
+      "fullDay": "ทั้งวัน",
+      "morning": "ช่วงเช้า",
+      "groupClass": "คลาสกลุ่ม"
+    },
+    "features": {
+      "fullAccess": "เข้าใช้ยิมได้เต็มที่",
+      "modernEquipment": "อุปกรณ์ที่ทันสมัย",
+      "lockersAndShowers": "ล็อกเกอร์และห้องอาบน้ำ",
+      "savings": "ประหยัด",
+      "maxSavings": "ประหยัดสูงสุด",
+      "unlimitedAccess": "เข้าใช้ไม่จำกัด",
+      "gymAndBanya": "ยิม + ซาวน่า",
+      "towelsIncluded": "รวมผ้าเช็ดตัว",
+      "fullDayAccess": "เข้าใช้ได้ทั้งวัน",
+      "dayAccess": "พร้อมการเข้าใช้ในวัน",
+      "anyClass": "เลือกคลาสใดก็ได้",
+      "anyClasses": "คลาสใดก็ได้",
+      "professionalTrainer": "เทรนเนอร์มืออาชีพ",
+      "validMonth": "ใช้ได้ 1 เดือน",
+      "validMonths_2": "ใช้ได้ 2 เดือน",
+      "validMonths_3": "ใช้ได้ 3 เดือน",
+      "validMonths_6": "ใช้ได้ 6 เดือน",
+      "individualApproach": "การดูแลเป็นรายบุคคล",
+      "certifiedInstructor": "ผู้สอนที่ได้รับการรับรอง",
+      "trainingProgram": "โปรแกรมการฝึก",
+      "fullProgram": "โปรแกรมเต็ม",
+      "perClass": "ต่อคลาส",
+      "morningAccess": "เข้าใช้ได้ถึง 14:00",
+      "saunaAfter14": "ซาวน่าไม่สามารถใช้ได้หลัง 14:00",
+      "fullAccessMorning": "เข้าใช้ได้เต็มที่ช่วงเช้า"
+    },
+    "subtitles": {
+      "withoutBanya": "(ไม่รวมซาวน่า)",
+      "allPlusBanya": "(ทั้งหมด + ซาวน่า)",
+      "groupClasses": "(คลาสกลุ่ม)",
+      "swimmingSchool": "(โรงเรียนว่ายน้ำ)",
+      "dayPass": "(บัตรเข้าชมรายวัน)"
+    }
   }
 }

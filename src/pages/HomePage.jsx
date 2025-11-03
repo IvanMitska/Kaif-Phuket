@@ -10,6 +10,7 @@ import PageHead from '../components/layout/PageHead';
 // Импортируем только критические компоненты
 import HeroFullscreen from '../components/home/HeroFullscreen';
 import ExclusiveZones from '../components/home/ExclusiveZones';
+import PricingSection from '../components/home/PricingSection';
 // import EventBanner from '../components/home/EventBanner'; // Временно отключен
 
 // Lazy loading для тяжелых компонентов с улучшенной загрузкой
@@ -154,7 +155,10 @@ const HomePage = memo(() => {
 
       {/* Эксклюзивные зоны */}
       <ExclusiveZones />
-      
+
+      {/* Секция с ценами и абонементами */}
+      <PricingSection />
+
       {/* Lazy загрузка компонентов с улучшенной производительностью */}
       <Suspense fallback={<SectionLoader />}>
         <AdvantagesSection />

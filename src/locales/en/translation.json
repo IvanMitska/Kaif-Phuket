@@ -8,22 +8,6 @@
     "contacts": "KAIF Contacts | Get in Touch with Us"
   },
   "common": {
-    "phone_number": "+66 62 480 5877",
-    "whatsapp_messages": {
-      "book_table": "Hello! I would like to book a table at KAIF restaurant"
-    }
-  },
-  "navigation": {
-    "home": "Home",
-    "restaurant": "Restaurant",
-    "spa": "SPA",
-    "sports": "Sports",
-    "banya": "Russian Banya",
-    "about": "About Us",
-    "promotions": "Promotions",
-    "contacts": "Contacts"
-  },
-  "common": {
     "book": "Book Now",
     "book_now": "Book Now",
     "learn_more": "Learn More",
@@ -50,14 +34,23 @@
     "activity": "ACTIVITY",
     "relaxation": "RELAXATION"
   },
+  "navigation": {
+    "home": "Home",
+    "restaurant": "Restaurant",
+    "spa": "SPA",
+    "sports": "Sports",
+    "banya": "Russian Banya",
+    "about": "About Us",
+    "promotions": "Promotions",
+    "contacts": "Contacts"
+  },
   "home": {
     "hero": {
       "title": "KAIF - Sauna & Spa",
-      "subtitle": "Unique relaxation and wellness experience in Phuket",
+      "subtitle": "Sauna & Spa",
       "cta": "Our Services",
       "overline": "Premium Complex in Phuket",
       "mainTitle": "KAIF",
-      "subtitle": "Sauna & Spa",
       "services": "Our Services",
       "bookNow": "Book Now",
       "virtualTour": "Virtual Tour",
@@ -124,32 +117,62 @@
       "fitness": {
         "title": "Fitness Center",
         "description": "Modern gym with professional equipment for all types of workouts.",
-        "features": ["70+ modern equipment", "Cardio zone", "Functional training", "Personal training"]
+        "features": [
+          "70+ modern equipment",
+          "Cardio zone",
+          "Functional training",
+          "Personal training"
+        ]
       },
       "combat": {
         "title": "Martial Arts",
         "description": "Professional MMA, boxing and muay thai training under experienced trainers.",
-        "features": ["MMA and boxing", "Muay Thai", "Professional ring", "Group and individual classes"]
+        "features": [
+          "MMA and boxing",
+          "Muay Thai",
+          "Professional ring",
+          "Group and individual classes"
+        ]
       },
       "pool": {
         "title": "Swimming Pool",
         "description": "25-meter Olympic standard pool for swimming and water workouts.",
-        "features": ["25m Olympic standard", "Heated water", "Aqua fitness", "Kids zone"]
+        "features": [
+          "25m Olympic standard",
+          "Heated water",
+          "Aqua fitness",
+          "Kids zone"
+        ]
       },
       "spa": {
         "title": "SPA Center",
         "description": "Oasis of tranquility with a wide range of relaxing and restorative treatments.",
-        "features": ["Thai massage", "Aromatherapy", "Hot stones", "Relaxation zones"]
+        "features": [
+          "Thai massage",
+          "Aromatherapy",
+          "Hot stones",
+          "Relaxation zones"
+        ]
       },
       "banya": {
         "title": "Russian Banya",
         "description": "The largest Russian banya in Phuket with traditional procedures.",
-        "features": ["50m2 Russian banya", "Birch brooms and aromas", "Steam procedures", "Tea ceremony"]
+        "features": [
+          "50m2 Russian banya",
+          "Birch brooms and aromas",
+          "Steam procedures",
+          "Tea ceremony"
+        ]
       },
       "restaurant": {
         "title": "Restaurant",
         "description": "Exquisite signature cuisine with 50+ unique dishes from the chef.",
-        "features": ["50+ signature dishes", "Signature recipes", "Wine list", "Panoramic terrace"]
+        "features": [
+          "50+ signature dishes",
+          "Signature recipes",
+          "Wine list",
+          "Panoramic terrace"
+        ]
       },
       "learn_more": "Learn More"
     },
@@ -318,7 +341,7 @@
       "title": "Support Service",
       "description": "Our team is ready to help you during business hours. Contact us in any convenient way.",
       "location": "Phuket, Thailand",
-              "hours": "Support during business hours"
+      "hours": "Support during business hours"
     },
     "whatsapp": {
       "title": "WhatsApp Chat",
@@ -348,71 +371,6 @@
     "menu": {
       "title": "Our Menu",
       "description": "Discover a variety of flavors in our menu created by talented chefs",
-      "coming_soon": "Our menu with detailed dish information will be available here soon",
-      "categories": {
-        "breakfast": "Breakfast",
-        "soups": "Soups",
-        "salads": "Salads & Appetizers",
-        "main": "Main Courses"
-      },
-      "tag": "Exquisite Dishes",
-      "download_pdf": "Download Menu PDF",
-      "popular": "Popular"
-    },
-    "bar": {
-      "label": "Bar",
-      "title": "Our Bar",
-      "description": "We have everything to quench your thirst — from sports protein shakes to relaxing cocktails.",
-      "menu_button": "View Drinks Menu",
-      "feature1": {
-        "title": "Signature Drinks",
-        "description": "Unique cocktails created by our mixologists"
-      },
-      "feature2": {
-        "title": "Refreshing Mixes",
-        "description": "Freshly squeezed juices and fruit combinations"
-      },
-      "feature3": {
-        "title": "Post-Workout Recovery Drinks",
-        "description": "Protein shakes and sports nutrition"
-      }
-    },
-    "booking": {
-      "label": "Booking",
-      "title": "Book a Table",
-      "description": "Reserve your table to guarantee your spot",
-      "coming_soon": "Online booking will be available soon. For now, please call us for reservations.",
-      "open_hours": "Open Hours",
-      "reservation": "Reservations",
-      "call_now": "Call Now"
-    },
-    "cuisines": {
-      "title": "Our Cuisines",
-      "description": "Experience culinary delights from around the world"
-    },
-    "chef": "Chef's Recommendations",
-    "slider": {
-      "slide1": {
-        "title": "Exquisite Cuisine",
-        "description": "Discover unique flavors from five different world cuisines in our restaurant"
-      },
-      "slide2": {
-        "title": "Comfortable Atmosphere",
-        "description": "Enjoy your meal in a cozy atmosphere with a view of the tropical garden"
-      },
-      "slide3": {
-        "title": "Fresh Ingredients",
-        "description": "We use only fresh and quality ingredients to prepare our dishes"
-      }
-    },
-    "bookTable": "Book a Table",
-    "dish_details": {
-      "ingredients": "Ingredients",
-      "nutritional_info": "Nutritional Information"
-    },
-    "menu": {
-      "title": "Our Menu",
-      "description": "Discover a variety of flavors in our menu created by talented chefs",
       "drinks_info": "Beverages are presented with beautiful icons instead of photos",
       "tag": "Exquisite Dishes",
       "sort_by": "Sort by:",
@@ -437,17 +395,6 @@
         "coffee": "Coffee",
         "coffee_signature": "Signature Coffee",
         "smoothie": "Smoothies",
-        "mocktail": "Mocktails",
-        "juice": "Fresh Juices",
-        "cocktail": "Cocktails",
-        "wine": "Wine",
-        "beer": "Beer",
-        "strong": "Spirits",
-        "liqueur": "Liqueurs",
-        "fitness": "Fitness Drinks",
-        "water": "Water",
-        "milk": "Milk",
-        "soft_drink": "Soft Drinks",
         "mocktail": "Mocktails",
         "juice": "Fresh Juices",
         "cocktail": "Cocktails",
@@ -1248,6 +1195,57 @@
           "description": "Quick restorative procedure"
         }
       }
+    },
+    "bar": {
+      "label": "Bar",
+      "title": "Our Bar",
+      "description": "We have everything to quench your thirst — from sports protein shakes to relaxing cocktails.",
+      "menu_button": "View Drinks Menu",
+      "feature1": {
+        "title": "Signature Drinks",
+        "description": "Unique cocktails created by our mixologists"
+      },
+      "feature2": {
+        "title": "Refreshing Mixes",
+        "description": "Freshly squeezed juices and fruit combinations"
+      },
+      "feature3": {
+        "title": "Post-Workout Recovery Drinks",
+        "description": "Protein shakes and sports nutrition"
+      }
+    },
+    "booking": {
+      "label": "Booking",
+      "title": "Book a Table",
+      "description": "Reserve your table to guarantee your spot",
+      "coming_soon": "Online booking will be available soon. For now, please call us for reservations.",
+      "open_hours": "Open Hours",
+      "reservation": "Reservations",
+      "call_now": "Call Now"
+    },
+    "cuisines": {
+      "title": "Our Cuisines",
+      "description": "Experience culinary delights from around the world"
+    },
+    "chef": "Chef's Recommendations",
+    "slider": {
+      "slide1": {
+        "title": "Exquisite Cuisine",
+        "description": "Discover unique flavors from five different world cuisines in our restaurant"
+      },
+      "slide2": {
+        "title": "Comfortable Atmosphere",
+        "description": "Enjoy your meal in a cozy atmosphere with a view of the tropical garden"
+      },
+      "slide3": {
+        "title": "Fresh Ingredients",
+        "description": "We use only fresh and quality ingredients to prepare our dishes"
+      }
+    },
+    "bookTable": "Book a Table",
+    "dish_details": {
+      "ingredients": "Ingredients",
+      "nutritional_info": "Nutritional Information"
     }
   },
   "spa": {
@@ -1458,35 +1456,35 @@
         },
         "complex_1": {
           "name": "Calves + Armpits + Deep Bikini",
-          "description": "Popular package for women"
+          "description": "Popular women's complex"
         },
         "complex_2": {
           "name": "Armpits + Deep Bikini/Calves",
-          "description": "Basic hair removal package"
+          "description": "Basic hair removal complex"
         },
         "complex_3": {
           "name": "Full Legs + Armpits + Deep Bikini",
-          "description": "Extended leg package"
+          "description": "Extended leg complex"
         },
         "complex_4": {
           "name": "Full Arms + Full Legs + Armpits + Deep Bikini",
-          "description": "Maximum hair removal package"
+          "description": "Maximum hair removal complex"
         },
         "endosphere_full_body": {
           "name": "Full Body",
-          "description": "Endosphere therapy for full body figure correction"
+          "description": "Full body endosphere therapy for figure correction"
         },
         "endosphere_face": {
-          "name": "Hardware Facial Massage (Endosphere, RF lifting)",
-          "description": "Rejuvenating hardware facial massage"
+          "name": "Face apparatus massage (Endosphere, RF lifting)",
+          "description": "Rejuvenating apparatus face massage"
         },
         "endosphere_subscription_6": {
-          "name": "Endosphere Subscription (6 sessions)",
-          "description": "Advantageous package of 6 procedures"
+          "name": "Endosphere subscription (6 sessions)",
+          "description": "Advantageous package of 6 treatments"
         },
         "endosphere_subscription_12": {
-          "name": "Endosphere Subscription (12 sessions)",
-          "description": "Maximum package of 12 procedures"
+          "name": "Endosphere subscription (12 sessions)",
+          "description": "Maximum package of 12 treatments"
         },
         "manicure_no_coating": {
           "name": "Manicure without coating",
@@ -1502,7 +1500,7 @@
         },
         "gel_strengthening": {
           "name": "Gel strengthening without gel polish",
-          "description": "Natural nail strengthening with gel"
+          "description": "Strengthening natural nails with gel"
         },
         "gel_strengthening_polish": {
           "name": "Gel strengthening with gel polish",
@@ -1534,7 +1532,7 @@
         },
         "pedicure_toes_no_coating": {
           "name": "Toe pedicure without coating",
-          "description": "Treatment of toe nails only"
+          "description": "Treatment of toenails only"
         },
         "pedicure_toes_coating": {
           "name": "Toe pedicure with gel polish coating",
@@ -1563,118 +1561,6 @@
         "mens_haircut": {
           "name": "Men's haircut",
           "description": "Stylish men's haircut"
-        },
-        "hair_styling": {
-          "name": "Styling with brushing and styling products",
-          "description": "Professional hair styling"
-        },
-        "evening_styling": {
-          "name": "Evening styling",
-          "description": "Festive styling for special occasions"
-        },
-        "coloring_roots": {
-          "name": "Single-tone root coloring",
-          "description": "Regrowth root coloring"
-        },
-        "coloring_stretching": {
-          "name": "Root coloring + color stretching along full length",
-          "description": "Complex coloring with color stretching"
-        },
-        "coloring_short": {
-          "name": "Single-tone coloring short",
-          "description": "Full coloring of short hair"
-        },
-        "coloring_medium": {
-          "name": "Single-tone coloring medium",
-          "description": "Full coloring of medium-length hair"
-        },
-        "coloring_long": {
-          "name": "Single-tone coloring long",
-          "description": "Full coloring of long hair"
-        },
-        "total_blond_short": {
-          "name": "Total blond short",
-          "description": "Short hair lightening to blond"
-        },
-        "total_blond_medium": {
-          "name": "Total blond medium",
-          "description": "Medium-length hair lightening to blond"
-        },
-        "total_blond_long": {
-          "name": "Total blond long",
-          "description": "Long hair lightening to blond"
-        },
-        "happiness_short": {
-          "name": "Hair happiness treatment short",
-          "description": "Restorative procedure for short hair"
-        },
-        "happiness_medium": {
-          "name": "Hair happiness treatment medium",
-          "description": "Restorative procedure for medium-length hair"
-        },
-        "happiness_long": {
-          "name": "Hair happiness treatment long",
-          "description": "Restorative procedure for long hair"
-        },
-        "indian_head_massage": {
-          "name": "Indian head massage",
-          "description": "Traditional Indian massage for hair growth"
-        },
-        "hair_express_care": {
-          "name": "Express care",
-          "description": "Quick restorative procedure"
-        },
-        "endosphere_spa_program": {
-          "name": "Endosphere therapy SPA program",
-          "description": "Comprehensive SPA program with endosphere"
-        },
-        "gel_strengthening": {
-          "name": "Gel strengthening without gel polish",
-          "description": "Strengthening natural nails with gel"
-        },
-        "gel_strengthening_polish": {
-          "name": "Gel strengthening with gel polish",
-          "description": "Nail strengthening with colored coating"
-        },
-        "gel_french": {
-          "name": "Gel polish French correction",
-          "description": "Classic French manicure with gel polish"
-        },
-        "nail_extension_short": {
-          "name": "Classic nail extension short (up to 2mm)",
-          "description": "Short nail extension"
-        },
-        "nail_extension_long": {
-          "name": "Nail extension (over 2mm)",
-          "description": "Long nail extension"
-        },
-        "nail_repair": {
-          "name": "Nail repair",
-          "description": "Damaged nail restoration"
-        },
-        "pedicure_toes_no_coating": {
-          "name": "Toe pedicure without coating",
-          "description": "Treatment of toenails only"
-        },
-        "pedicure_toes_coating": {
-          "name": "Toe pedicure with gel polish coating",
-          "description": "Nail treatment with colored coating"
-        },
-        "callus_removal": {
-          "name": "Callus removal",
-          "description": "Professional callus removal"
-        },
-        "onycholysis_cleaning": {
-          "name": "Onycholysis cleaning (top master)",
-          "description": "Treatment of nail plate detachment"
-        },
-        "hair_wash_brushing": {
-          "name": "Hair wash with brushing",
-          "description": "Hair washing with brush styling"
-        },
-        "bangs_haircut": {
-          "name": "Bangs haircut",
-          "description": "Bangs correction and cutting"
         },
         "hair_styling": {
           "name": "Brushing with styling products",
@@ -1736,37 +1622,9 @@
           "name": "Express care",
           "description": "Quick restorative treatment"
         },
-        "complex_1": {
-          "name": "Calves + Armpits + Deep Bikini",
-          "description": "Popular women's complex"
-        },
-        "complex_2": {
-          "name": "Armpits + Deep Bikini/Calves",
-          "description": "Basic hair removal complex"
-        },
-        "complex_3": {
-          "name": "Full Legs + Armpits + Deep Bikini",
-          "description": "Extended leg complex"
-        },
-        "complex_4": {
-          "name": "Full Arms + Full Legs + Armpits + Deep Bikini",
-          "description": "Maximum hair removal complex"
-        },
-        "endosphere_full_body": {
-          "name": "Full Body",
-          "description": "Full body endosphere therapy for figure correction"
-        },
-        "endosphere_face": {
-          "name": "Face apparatus massage (Endosphere, RF lifting)",
-          "description": "Rejuvenating apparatus face massage"
-        },
-        "endosphere_subscription_6": {
-          "name": "Endosphere subscription (6 sessions)",
-          "description": "Advantageous package of 6 treatments"
-        },
-        "endosphere_subscription_12": {
-          "name": "Endosphere subscription (12 sessions)",
-          "description": "Maximum package of 12 treatments"
+        "endosphere_spa_program": {
+          "name": "Endosphere therapy SPA program",
+          "description": "Comprehensive SPA program with endosphere"
         },
         "shoulders_legs": {
           "name": "Shoulders and legs massage",
@@ -2377,7 +2235,6 @@
       "call_now_button": "Call Now"
     }
   },
-
   "about": {
     "title": "About Us",
     "description": "KAIF - Sauna & Spa is Phuket's premier wellness complex",
@@ -2392,7 +2249,6 @@
       "restaurant": "Restaurant with 5 cuisines",
       "dance_studio": "Dance and yoga studio (available for rent)",
       "gym": "Fitness center with 70+ equipment",
-
       "pool": "25m swimming pool",
       "massage": "Various massage techniques",
       "fight_club": "Fight club",
@@ -2456,9 +2312,7 @@
         "directions": "Get Directions"
       },
       "phone": {
-        "title": "Phone",
-        "number": "+66 62 480 5877",
-        "hours": "WhatsApp Available"
+        "call_now": "Call Now"
       },
       "email": {
         "title": "Email",
@@ -2476,9 +2330,6 @@
       "whatsapp": {
         "text": "Message on WhatsApp",
         "greeting": "Hello! I would like to make a booking at KAIF"
-      },
-      "phone": {
-        "call_now": "Call Now"
       },
       "buttons": {
         "get_directions": "Get Directions",
@@ -2605,5 +2456,67 @@
   "promo": {
     "title": "LAST CHANCE FOR CURRENT PRICES",
     "subtitle": "Get your gym all-inclusive passes before rates go up on August 1"
+  },
+  "pricing": {
+    "title": "Memberships & Pricing",
+    "subtitle": "Choose the perfect plan for your goals",
+    "select_plan": "Select Plan",
+    "categories": {
+      "clubAccess": "Club Access",
+      "clubAccessPlus": "Club Access+",
+      "groupClasses": "Group Classes",
+      "swimming": "Swimming",
+      "dayPass": "Day Pass"
+    },
+    "durations": {
+      "day": "Day",
+      "month": "1 month",
+      "months_3": "3 months",
+      "months_6": "6 months",
+      "months_12": "12 months",
+      "single": "1 class",
+      "classes_4": "4 classes",
+      "classes_8": "8 classes",
+      "classes_12": "12 classes",
+      "classes_24": "24 classes",
+      "classes_48": "48 classes",
+      "fullDay": "Full Day",
+      "morning": "Morning",
+      "groupClass": "Group Class"
+    },
+    "features": {
+      "fullAccess": "Full gym access",
+      "modernEquipment": "Modern equipment",
+      "lockersAndShowers": "Lockers and showers",
+      "savings": "Save",
+      "maxSavings": "Maximum savings",
+      "unlimitedAccess": "Unlimited access",
+      "gymAndBanya": "Gym + Sauna",
+      "towelsIncluded": "Towels included",
+      "fullDayAccess": "Full day access",
+      "dayAccess": "With day access",
+      "anyClass": "Any class to choose",
+      "anyClasses": "Any classes",
+      "professionalTrainer": "Professional trainer",
+      "validMonth": "Valid for 1 month",
+      "validMonths_2": "Valid for 2 months",
+      "validMonths_3": "Valid for 3 months",
+      "validMonths_6": "Valid for 6 months",
+      "individualApproach": "Individual approach",
+      "certifiedInstructor": "Certified instructor",
+      "trainingProgram": "Training program",
+      "fullProgram": "Full program",
+      "perClass": "per class",
+      "morningAccess": "Access until 14:00",
+      "saunaAfter14": "Sauna unavailable after 14:00",
+      "fullAccessMorning": "Full morning access"
+    },
+    "subtitles": {
+      "withoutBanya": "(without sauna)",
+      "allPlusBanya": "(all + sauna)",
+      "groupClasses": "(group classes)",
+      "swimmingSchool": "(swimming school)",
+      "dayPass": "(single visits)"
+    }
   }
 }
