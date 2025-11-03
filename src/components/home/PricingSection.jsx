@@ -481,7 +481,7 @@ const BookButton = styled(motion.a)`
       default: return 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)';
     }
   }};
-  color: white;
+  color: white !important;
   border: none;
   border-radius: 16px;
   text-align: center;
@@ -520,6 +520,7 @@ const BookButton = styled(motion.a)`
 
   &:hover {
     transform: translateY(-3px);
+    color: white !important;
     box-shadow: ${props => {
       switch(props.$category) {
         case 'dayPass': return '0 8px 25px rgba(156, 39, 176, 0.4)';
