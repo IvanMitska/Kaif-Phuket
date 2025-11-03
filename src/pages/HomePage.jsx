@@ -10,7 +10,7 @@ import PageHead from '../components/layout/PageHead';
 // Импортируем только критические компоненты
 import HeroFullscreen from '../components/home/HeroFullscreen';
 import ExclusiveZones from '../components/home/ExclusiveZones';
-import EventBanner from '../components/home/EventBanner';
+// import EventBanner from '../components/home/EventBanner'; // Временно отключен
 
 // Lazy loading для тяжелых компонентов с улучшенной загрузкой
 const AdvantagesSection = lazy(() => 
@@ -149,8 +149,8 @@ const HomePage = memo(() => {
       {/* Полноэкранная секция героя */}
       <HeroFullscreen />
 
-      {/* Баннер мероприятия SAUNA RAVE */}
-      <EventBanner />
+      {/* Баннер мероприятия SAUNA RAVE - временно отключен */}
+      {/* <EventBanner /> */}
 
       {/* Эксклюзивные зоны */}
       <ExclusiveZones />
