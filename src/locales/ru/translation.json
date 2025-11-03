@@ -2185,7 +2185,15 @@
       "perClass": "за занятие",
       "morningAccess": "Доступ до 14:00",
       "saunaAfter14": "После 14:00 сауна недоступна",
-      "fullAccessMorning": "Полный доступ утром"
+      "fullAccessMorning": "Полный доступ утром",
+      "gymCardio": "Тренажерный и кардио зал",
+      "swimmingPool": "Бассейн",
+      "steamRoom": "Парная",
+      "iceBarrel": "Ледяная купель",
+      "russianSauna": "Русская баня",
+      "collectiveSteaming": "Коллективное парение",
+      "japanesePool": "Японский бассейн",
+      "aromaIceBarrel": "Арома-ледяная купель"
     },
     "subtitles": {
       "withoutBanya": "(без бани)",

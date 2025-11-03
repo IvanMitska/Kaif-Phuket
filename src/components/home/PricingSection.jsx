@@ -575,14 +575,33 @@ const PricingSection = () => {
           name: t('pricing.durations.morning') + ' Pass',
           duration: t('pricing.features.morningAccess'),
           price: '390',
-          features: [t('pricing.features.fullAccessMorning'), t('pricing.features.gymAndBanya'), t('pricing.features.saunaAfter14')],
+          features: [
+            t('pricing.features.gymCardio'),
+            t('pricing.features.swimmingPool'),
+            t('pricing.features.steamRoom'),
+            t('pricing.features.iceBarrel'),
+            t('pricing.features.russianSauna'),
+            t('pricing.features.collectiveSteaming'),
+            t('pricing.features.japanesePool'),
+            t('pricing.features.aromaIceBarrel'),
+            t('pricing.features.saunaAfter14')
+          ],
           perMonth: null
         },
         {
           name: 'Day Pass',
           duration: t('pricing.durations.fullDay'),
           price: '490',
-          features: [t('pricing.features.fullDayAccess'), t('pricing.features.gymAndBanya'), t('pricing.features.lockersAndShowers')],
+          features: [
+            t('pricing.features.gymCardio'),
+            t('pricing.features.swimmingPool'),
+            t('pricing.features.steamRoom'),
+            t('pricing.features.iceBarrel'),
+            t('pricing.features.russianSauna'),
+            t('pricing.features.collectiveSteaming'),
+            t('pricing.features.japanesePool'),
+            t('pricing.features.aromaIceBarrel')
+          ],
           perMonth: null
         },
         {
@@ -603,14 +622,25 @@ const PricingSection = () => {
           name: 'Club Access',
           duration: t('pricing.durations.month'),
           price: '2,000',
-          features: [t('pricing.features.fullAccess'), t('pricing.features.modernEquipment'), t('pricing.features.lockersAndShowers')],
+          features: [
+            t('pricing.features.gymCardio'),
+            t('pricing.features.swimmingPool'),
+            t('pricing.features.steamRoom'),
+            t('pricing.features.iceBarrel')
+          ],
           perMonth: null
         },
         {
           name: 'Club Access',
           duration: t('pricing.durations.months_3'),
           price: '4,800',
-          features: [t('pricing.features.fullAccess'), t('pricing.features.modernEquipment'), t('pricing.features.lockersAndShowers'), `${t('pricing.features.savings')} 20%`],
+          features: [
+            t('pricing.features.gymCardio'),
+            t('pricing.features.swimmingPool'),
+            t('pricing.features.steamRoom'),
+            t('pricing.features.iceBarrel'),
+            `${t('pricing.features.savings')} 20%`
+          ],
           perMonth: '1,600 ฿/мес',
           featured: true,
           popular: true
@@ -619,14 +649,26 @@ const PricingSection = () => {
           name: 'Club Access',
           duration: t('pricing.durations.months_6'),
           price: '9,900',
-          features: [t('pricing.features.fullAccess'), t('pricing.features.modernEquipment'), t('pricing.features.lockersAndShowers'), `${t('pricing.features.savings')} 17%`],
+          features: [
+            t('pricing.features.gymCardio'),
+            t('pricing.features.swimmingPool'),
+            t('pricing.features.steamRoom'),
+            t('pricing.features.iceBarrel'),
+            `${t('pricing.features.savings')} 17%`
+          ],
           perMonth: '1,650 ฿/мес'
         },
         {
           name: 'Club Access',
           duration: t('pricing.durations.months_12'),
           price: '18,000',
-          features: [t('pricing.features.fullAccess'), t('pricing.features.modernEquipment'), t('pricing.features.lockersAndShowers'), `${t('pricing.features.maxSavings')} 25%`],
+          features: [
+            t('pricing.features.gymCardio'),
+            t('pricing.features.swimmingPool'),
+            t('pricing.features.steamRoom'),
+            t('pricing.features.iceBarrel'),
+            `${t('pricing.features.maxSavings')} 25%`
+          ],
           perMonth: '1,500 ฿/мес'
         }
       ]
@@ -640,21 +682,43 @@ const PricingSection = () => {
           name: 'Club Access+',
           duration: t('pricing.durations.day'),
           price: '490',
-          features: [t('pricing.features.fullDayAccess'), t('pricing.features.gymAndBanya'), t('pricing.features.lockersAndShowers')],
+          features: [
+            t('pricing.features.gymCardio'),
+            t('pricing.features.swimmingPool'),
+            t('pricing.features.steamRoom'),
+            t('pricing.features.iceBarrel'),
+            t('pricing.features.russianSauna'),
+            t('pricing.features.collectiveSteaming'),
+            t('pricing.features.japanesePool'),
+            t('pricing.features.aromaIceBarrel')
+          ],
           perMonth: null
         },
         {
           name: 'Club Access+',
           duration: t('pricing.durations.month'),
           price: '3,800',
-          features: [t('pricing.features.unlimitedAccess'), t('pricing.features.gymAndBanya'), t('pricing.features.lockersAndShowers'), t('pricing.features.towelsIncluded')],
+          features: [
+            t('pricing.features.gymCardio'),
+            t('pricing.features.swimmingPool'),
+            t('pricing.features.russianSauna'),
+            t('pricing.features.japanesePool'),
+            t('pricing.features.towelsIncluded')
+          ],
           perMonth: null
         },
         {
           name: 'Club Access+',
           duration: t('pricing.durations.months_3'),
           price: '9,400',
-          features: [t('pricing.features.unlimitedAccess'), t('pricing.features.gymAndBanya'), t('pricing.features.lockersAndShowers'), t('pricing.features.towelsIncluded'), `${t('pricing.features.savings')} 18%`],
+          features: [
+            t('pricing.features.gymCardio'),
+            t('pricing.features.swimmingPool'),
+            t('pricing.features.russianSauna'),
+            t('pricing.features.japanesePool'),
+            t('pricing.features.towelsIncluded'),
+            `${t('pricing.features.savings')} 18%`
+          ],
           perMonth: '3,133 ฿/мес',
           featured: true,
           popular: true
@@ -663,14 +727,28 @@ const PricingSection = () => {
           name: 'Club Access+',
           duration: t('pricing.durations.months_6'),
           price: '17,800',
-          features: [t('pricing.features.unlimitedAccess'), t('pricing.features.gymAndBanya'), t('pricing.features.lockersAndShowers'), t('pricing.features.towelsIncluded'), `${t('pricing.features.savings')} 22%`],
+          features: [
+            t('pricing.features.gymCardio'),
+            t('pricing.features.swimmingPool'),
+            t('pricing.features.russianSauna'),
+            t('pricing.features.japanesePool'),
+            t('pricing.features.towelsIncluded'),
+            `${t('pricing.features.savings')} 22%`
+          ],
           perMonth: '2,967 ฿/мес'
         },
         {
           name: 'Club Access+',
           duration: t('pricing.durations.months_12'),
           price: '29,000',
-          features: [t('pricing.features.unlimitedAccess'), t('pricing.features.gymAndBanya'), t('pricing.features.lockersAndShowers'), t('pricing.features.towelsIncluded'), `${t('pricing.features.maxSavings')} 36%`],
+          features: [
+            t('pricing.features.gymCardio'),
+            t('pricing.features.swimmingPool'),
+            t('pricing.features.russianSauna'),
+            t('pricing.features.japanesePool'),
+            t('pricing.features.towelsIncluded'),
+            `${t('pricing.features.maxSavings')} 36%`
+          ],
           perMonth: '2,417 ฿/мес'
         }
       ]

@@ -2509,7 +2509,15 @@
       "perClass": "per class",
       "morningAccess": "Access until 14:00",
       "saunaAfter14": "Sauna unavailable after 14:00",
-      "fullAccessMorning": "Full morning access"
+      "fullAccessMorning": "Full morning access",
+      "gymCardio": "Gym and cardio room",
+      "swimmingPool": "Swimming pool",
+      "steamRoom": "Steam room",
+      "iceBarrel": "Ice barrel",
+      "russianSauna": "Russian sauna",
+      "collectiveSteaming": "Collective steaming",
+      "japanesePool": "Japanese pool",
+      "aromaIceBarrel": "Aroma ice barrel"
     },
     "subtitles": {
       "withoutBanya": "(without sauna)",

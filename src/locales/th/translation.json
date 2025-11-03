@@ -2371,7 +2371,15 @@
       "perClass": "ต่อคลาส",
       "morningAccess": "เข้าใช้ได้ถึง 14:00",
       "saunaAfter14": "ซาวน่าไม่สามารถใช้ได้หลัง 14:00",
-      "fullAccessMorning": "เข้าใช้ได้เต็มที่ช่วงเช้า"
+      "fullAccessMorning": "เข้าใช้ได้เต็มที่ช่วงเช้า",
+      "gymCardio": "ห้องยิมและคาร์ดิโอ",
+      "swimmingPool": "สระว่ายน้ำ",
+      "steamRoom": "ห้องอบไอน้ำ",
+      "iceBarrel": "อ่างน้ำแข็ง",
+      "russianSauna": "ซาวน่ารัสเซีย",
+      "collectiveSteaming": "การอบไอน้ำแบบกลุ่ม",
+      "japanesePool": "สระน้ำญี่ปุ่น",
+      "aromaIceBarrel": "อ่างน้ำแข็งอโรมา"
     },
     "subtitles": {
       "withoutBanya": "(ไม่รวมซาวน่า)",
