@@ -385,23 +385,20 @@ const FeatureList = styled.ul`
   padding: 0;
   margin: 0 0 2rem 0;
   flex: 1;
-  display: ${props => props.$twoColumns ? 'grid' : 'block'};
-  grid-template-columns: ${props => props.$twoColumns ? '1fr 1fr' : '1fr'};
-  gap: ${props => props.$twoColumns ? '0.5rem 1rem' : '0'};
 `;
 
 const Feature = styled.li`
   font-family: 'Montserrat', sans-serif;
   display: flex;
-  align-items: ${props => props.$compact ? 'flex-start' : 'center'};
-  gap: ${props => props.$compact ? '0.5rem' : '1rem'};
-  padding: ${props => props.$compact ? '0.4rem 0' : '0.75rem 0'};
+  align-items: center;
+  gap: ${props => props.$compact ? '0.6rem' : '0.85rem'};
+  padding: ${props => props.$compact ? '0.5rem 0' : '0.65rem 0'};
   color: #374151;
-  font-size: ${props => props.$compact ? '0.85rem' : '0.95rem'};
-  line-height: ${props => props.$compact ? '1.4' : '1.6'};
+  font-size: ${props => props.$compact ? '0.88rem' : '0.92rem'};
+  line-height: 1.5;
   font-weight: 400;
   transition: all 0.2s ease;
-  border-bottom: 1px solid ${props => {
+  border-bottom: ${props => props.$noBorder ? 'none' : '1px solid'} ${props => {
     switch(props.$category) {
       case 'dayPass': return 'rgba(156, 39, 176, 0.05)';
       case 'clubAccess': return 'rgba(76, 175, 80, 0.05)';
@@ -418,9 +415,8 @@ const Feature = styled.li`
 
   svg {
     color: #fff;
-    font-size: ${props => props.$compact ? '0.65rem' : '0.75rem'};
+    font-size: ${props => props.$compact ? '0.7rem' : '0.75rem'};
     flex-shrink: 0;
-    margin-top: ${props => props.$compact ? '2px' : '0'};
     background: ${props => {
       switch(props.$category) {
         case 'dayPass': return 'linear-gradient(135deg, #9C27B0, #BA68C8)';
@@ -582,16 +578,11 @@ const PricingSection = () => {
           features: [
             t('pricing.features.gymCardio'),
             t('pricing.features.swimmingPool'),
-            t('pricing.features.steamRoom'),
-            t('pricing.features.iceBarrel'),
-            t('pricing.features.russianSauna'),
-            t('pricing.features.collectiveSteaming'),
-            t('pricing.features.japanesePool'),
-            t('pricing.features.aromaIceBarrel'),
+            t('pricing.features.steamRoom') + ' & ' + t('pricing.features.iceBarrel'),
+            t('pricing.features.russianSauna') + ' & ' + t('pricing.features.japanesePool'),
             t('pricing.features.saunaAfter14')
           ],
-          perMonth: null,
-          twoColumnFeatures: true
+          perMonth: null
         },
         {
           name: 'Day Pass',
@@ -600,15 +591,11 @@ const PricingSection = () => {
           features: [
             t('pricing.features.gymCardio'),
             t('pricing.features.swimmingPool'),
-            t('pricing.features.steamRoom'),
-            t('pricing.features.iceBarrel'),
-            t('pricing.features.russianSauna'),
-            t('pricing.features.collectiveSteaming'),
-            t('pricing.features.japanesePool'),
-            t('pricing.features.aromaIceBarrel')
+            t('pricing.features.steamRoom') + ' & ' + t('pricing.features.iceBarrel'),
+            t('pricing.features.russianSauna') + ' & ' + t('pricing.features.japanesePool'),
+            t('pricing.features.towelsIncluded')
           ],
-          perMonth: null,
-          twoColumnFeatures: true
+          perMonth: null
         },
         {
           name: t('pricing.categories.groupClasses'),
@@ -691,15 +678,11 @@ const PricingSection = () => {
           features: [
             t('pricing.features.gymCardio'),
             t('pricing.features.swimmingPool'),
-            t('pricing.features.steamRoom'),
-            t('pricing.features.iceBarrel'),
-            t('pricing.features.russianSauna'),
-            t('pricing.features.collectiveSteaming'),
-            t('pricing.features.japanesePool'),
-            t('pricing.features.aromaIceBarrel')
+            t('pricing.features.steamRoom') + ' & ' + t('pricing.features.iceBarrel'),
+            t('pricing.features.russianSauna') + ' & ' + t('pricing.features.japanesePool'),
+            t('pricing.features.lockersAndShowers')
           ],
-          perMonth: null,
-          twoColumnFeatures: true
+          perMonth: null
         },
         {
           name: 'Club Access+',
@@ -903,12 +886,13 @@ const PricingSection = () => {
                 </Price>
               </PriceContainer>
 
-              <FeatureList $twoColumns={plan.twoColumnFeatures}>
+              <FeatureList>
                 {plan.features.map((feature, idx) => (
                   <Feature
                     key={idx}
                     $category={activeCategory}
-                    $compact={plan.twoColumnFeatures}
+                    $compact={plan.features.length > 5}
+                    $noBorder={idx === plan.features.length - 1}
                   >
                     <FaCheck />
                     {feature}
