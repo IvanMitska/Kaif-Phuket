@@ -450,6 +450,11 @@ const Feature = styled.li`
 const GridContainer = styled.div`
   position: relative;
   overflow: visible;
+  min-height: 900px;
+
+  @media (max-width: 1200px) {
+    min-height: 1300px;
+  }
 
   @media (max-width: 768px) {
     min-height: auto;
@@ -793,24 +798,20 @@ const PricingSection = () => {
           ))}
         </CategoryTabs>
 
-        <GridContainer style={{ minHeight: currentCategory.plans.length > 3 ? '850px' : currentCategory.plans.length > 2 ? '450px' : '400px' }}>
+        <GridContainer>
           <AnimatePresence mode="wait" initial={false}>
             <PricingGrid
               key={activeCategory}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.15, ease: "easeOut" }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
             >
             {currentCategory.plans.map((plan, index) => (
             <PricingCard
               key={`${activeCategory}-${index}`}
               $featured={plan.featured}
               $category={activeCategory}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2, delay: index * 0.03 }}
             >
               <CardHeader $category={activeCategory}>
                 <PlanName>{plan.name}</PlanName>
