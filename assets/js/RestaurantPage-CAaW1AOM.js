@@ -1,4 +1,4 @@
-import{r as e,j as t,a,n as r,o as i,p as n,q as s,H as o,s as l,t as d,d as p,c as m,f as c,v as g,w as u,e as x,x as h}from"./vendor-react-Udk5_aBK.js";import{P as b}from"./main-D9N-51Xa.js";import{d as f}from"./vendor-styles-DIjDOctl.js";import{P as y}from"./PageScrollReset-DmMAXs50.js";import{m as w,A as k}from"./vendor-animations-B-vr_HsI.js";import"./vendor-other-CZupzcPt.js";import"./vendor-i18n-C4kh69yx.js";const v=f.div`
+import{r as e,j as t,a,v as r,w as i,x as n,y as s,H as o,z as l,A as d,d as p,c as m,f as c,C as g,D as u,e as x,E as h}from"./vendor-react-FHR7Sy-E.js";import{P as b}from"./main-DPYWM2Ip.js";import{d as f}from"./vendor-styles-DcQt-q6S.js";import{P as y}from"./PageScrollReset-Jvg3lmV2.js";import{m as w,A as k}from"./vendor-animations-BsFJxBmq.js";import"./vendor-other-CZupzcPt.js";import"./vendor-i18n-C4kh69yx.js";const v=f.div`
   position: relative;
   overflow: hidden;
   background-color: #f0f0f0;
@@ -163,14 +163,14 @@ import{r as e,j as t,a,n as r,o as i,p as n,q as s,H as o,s as l,t as d,d as p,c
   @media (min-width: 1280px) {
     padding: 0 3rem;
   }
-`,I=f.div`
+`,C=f.div`
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   z-index: 2;
   width: 100%;
-`,C=f(w.div)`
+`,I=f(w.div)`
   position: relative;
   text-align: center;
   max-width: 900px;
@@ -262,7 +262,7 @@ import{r as e,j as t,a,n as r,o as i,p as n,q as s,H as o,s as l,t as d,d as p,c
     bottom: 10%;
     left: 10%;
   }
-`,M=e.memo(({menuSectionRef:e})=>{const{t:r}=a();return t.jsxs(S,{children:[t.jsx(H,{children:t.jsxs("picture",{children:[t.jsx("source",{srcSet:"/images-optimized/restaurant/booking.jpg",type:"image/jpeg"}),t.jsx("img",{src:"/images-optimized/restaurant/booking.jpg",alt:r("restaurant.hero.image_alt","Restaurant interior"),loading:"eager",style:{width:"100%",height:"100%",objectFit:"cover"}})]})}),t.jsxs(N,{children:[t.jsx(R,{className:"top-right",initial:{opacity:0,scale:.8},animate:{opacity:1,scale:1},transition:{duration:.6,delay:.4}}),t.jsx(R,{className:"bottom-left",initial:{opacity:0,scale:.8},animate:{opacity:1,scale:1},transition:{duration:.6,delay:.4}}),t.jsx(I,{children:t.jsxs(C,{children:[t.jsx(T,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6},children:r("restaurant.hero.label","Наш ресторан")}),t.jsx(D,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6,delay:.2},children:r("restaurant.hero.title","Изысканная кухня с современным подходом")}),t.jsx(W,{initial:{opacity:0,scaleX:0},animate:{opacity:1,scaleX:1},transition:{duration:.6,delay:.4}}),t.jsx(E,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6,delay:.6},children:r("restaurant.hero.subtitle","Наши шеф-повара создают уникальные блюда, сочетая традиционные рецепты с новыми кулинарными техниками.")}),t.jsxs(F,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6,delay:.8},children:[t.jsxs(z,{onClick:()=>{var t;return null==(t=e.current)?void 0:t.scrollIntoView({behavior:"smooth"})},whileHover:{scale:1.01},whileTap:{scale:.98},initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.5,delay:.9},children:[r("restaurant.hero.button","Наше меню"),t.jsx(s,{})]}),t.jsx(A,{onClick:()=>{const e=r("common.whatsapp_messages.book_table","Здравствуйте! Хочу забронировать столик в ресторане KAIF");window.open(`https://wa.me/66624805877?text=${encodeURIComponent(e)}`,"_blank")},whileHover:{scale:1.01},whileTap:{scale:.98},initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.5,delay:1},children:r("common.book","Забронировать")})]})]})})]})]})});M.displayName="HeroSection";const L=f(w.div)`
+`,M=e.memo(({menuSectionRef:e})=>{const{t:r}=a();return t.jsxs(S,{children:[t.jsx(H,{children:t.jsxs("picture",{children:[t.jsx("source",{srcSet:"/images-optimized/restaurant/booking.jpg",type:"image/jpeg"}),t.jsx("img",{src:"/images-optimized/restaurant/booking.jpg",alt:r("restaurant.hero.image_alt","Restaurant interior"),loading:"eager",style:{width:"100%",height:"100%",objectFit:"cover"}})]})}),t.jsxs(N,{children:[t.jsx(R,{className:"top-right",initial:{opacity:0,scale:.8},animate:{opacity:1,scale:1},transition:{duration:.6,delay:.4}}),t.jsx(R,{className:"bottom-left",initial:{opacity:0,scale:.8},animate:{opacity:1,scale:1},transition:{duration:.6,delay:.4}}),t.jsx(C,{children:t.jsxs(I,{children:[t.jsx(T,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6},children:r("restaurant.hero.label","Наш ресторан")}),t.jsx(D,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6,delay:.2},children:r("restaurant.hero.title","Изысканная кухня с современным подходом")}),t.jsx(W,{initial:{opacity:0,scaleX:0},animate:{opacity:1,scaleX:1},transition:{duration:.6,delay:.4}}),t.jsx(E,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6,delay:.6},children:r("restaurant.hero.subtitle","Наши шеф-повара создают уникальные блюда, сочетая традиционные рецепты с новыми кулинарными техниками.")}),t.jsxs(F,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6,delay:.8},children:[t.jsxs(z,{onClick:()=>{var t;return null==(t=e.current)?void 0:t.scrollIntoView({behavior:"smooth"})},whileHover:{scale:1.01},whileTap:{scale:.98},initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.5,delay:.9},children:[r("restaurant.hero.button","Наше меню"),t.jsx(s,{})]}),t.jsx(A,{onClick:()=>{const e=r("common.whatsapp_messages.book_table","Здравствуйте! Хочу забронировать столик в ресторане KAIF");window.open(`https://wa.me/66624805877?text=${encodeURIComponent(e)}`,"_blank")},whileHover:{scale:1.01},whileTap:{scale:.98},initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.5,delay:1},children:r("common.book","Забронировать")})]})]})})]})]})});M.displayName="HeroSection";const L=f(w.div)`
   color: ${e=>e.theme.colors.text.primary};
   font-family: ${e=>e.theme.fonts.primary};
   overflow-x: hidden;
