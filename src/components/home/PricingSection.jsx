@@ -181,15 +181,11 @@ const PricingGrid = styled(motion.div)`
   gap: 1.5rem;
   align-content: start;
   width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  padding-bottom: 2rem;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 1rem;
-    position: relative;
   }
 `;
 
@@ -453,15 +449,15 @@ const Feature = styled.li`
 
 const GridContainer = styled.div`
   position: relative;
-  height: 950px;
+  min-height: 1050px;
   overflow: visible;
 
   @media (max-width: 1200px) {
-    height: 1400px;
+    min-height: 1500px;
   }
 
   @media (max-width: 768px) {
-    height: auto;
+    min-height: auto;
     overflow: visible;
   }
 `;
