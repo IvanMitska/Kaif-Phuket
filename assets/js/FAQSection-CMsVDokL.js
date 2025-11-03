@@ -1,4 +1,4 @@
-import{a as e,r as i,j as r,E as n,d as s,a8 as t,a9 as a,D as o,aa as d,ab as l,c as h,F as m}from"./vendor-react-2dSHS-vn.js";import{d as c}from"./vendor-styles-trh3mqkF.js";import{m as p,A as f}from"./vendor-animations-Coyk9q7u.js";import"./vendor-other-CZupzcPt.js";const g=c.section`
+import{a as e,r as i,j as r,E as n,d as s,a7 as t,a8 as a,D as o,a9 as d,aa as l,c as h,F as m}from"./vendor-react-Udk5_aBK.js";import{d as c}from"./vendor-styles-DIjDOctl.js";import{m as p,A as f}from"./vendor-animations-B-vr_HsI.js";import"./vendor-other-CZupzcPt.js";const g=c.section`
   position: relative;
   padding: 3rem 0;
   background: linear-gradient(135deg, rgba(144, 179, 167, 0.05) 0%, rgba(168, 197, 184, 0.03) 100%); /* Легкий градиент в зеленых тонах */
