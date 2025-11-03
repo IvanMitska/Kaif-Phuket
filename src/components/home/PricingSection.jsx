@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -176,17 +176,11 @@ const CategoryTab = styled(motion.button)`
 
 // Pricing cards grid - better layout
 const PricingGrid = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
   align-content: start;
-  opacity: ${props => props.$visible ? '1' : '0'};
-  visibility: ${props => props.$visible ? 'visible' : 'hidden'};
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  width: 100%;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -455,8 +449,7 @@ const Feature = styled.li`
 const GridContainer = styled.div`
   position: relative;
   width: 100%;
-  min-height: ${props => props.$height || '600px'};
-  transition: min-height 0.3s ease;
+  min-height: 600px;
 `;
 
 const SelectCategoryPrompt = styled.div`
@@ -560,7 +553,19 @@ const BookButton = styled(motion.a)`
 const PricingSection = () => {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState('dayPass');
-  const [containerHeight, setContainerHeight] = useState('800px');
+
+  const handleCategoryChange = (category) => {
+    // Store the current scroll position
+    const scrollY = window.scrollY;
+
+    // Change category
+    setActiveCategory(category);
+
+    // Restore scroll position after a brief delay to let React update
+    setTimeout(() => {
+      window.scrollTo(0, scrollY);
+    }, 0);
+  };
 
   // Pricing data with translations
   const pricingData = {
@@ -823,33 +828,6 @@ const PricingSection = () => {
 
   const currentCategory = pricingData[activeCategory];
 
-  // Calculate and update container height
-  useEffect(() => {
-    const updateHeight = () => {
-      const planCount = pricingData[activeCategory].plans.length;
-      let height;
-
-      if (window.innerWidth > 1200) {
-        // Desktop: 3 columns
-        const rows = Math.ceil(planCount / 3);
-        height = rows * 600 + 'px';
-      } else if (window.innerWidth > 768) {
-        // Tablet: 2 columns
-        const rows = Math.ceil(planCount / 2);
-        height = rows * 600 + 'px';
-      } else {
-        // Mobile: 1 column
-        height = planCount * 550 + 'px';
-      }
-
-      setContainerHeight(height);
-    };
-
-    updateHeight();
-    window.addEventListener('resize', updateHeight);
-    return () => window.removeEventListener('resize', updateHeight);
-  }, [activeCategory, pricingData]);
-
   return (
     <SectionContainer id="pricing">
       <Container>
@@ -878,7 +856,7 @@ const PricingSection = () => {
               key={category.key}
               $active={activeCategory === category.key}
               $categoryKey={category.key}
-              onClick={() => setActiveCategory(category.key)}
+              onClick={() => handleCategoryChange(category.key)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -888,60 +866,52 @@ const PricingSection = () => {
           ))}
         </CategoryTabs>
 
-        <GridContainer $height={containerHeight}>
-          {categories.map((category) => {
-            const categoryData = pricingData[category.key];
-            return (
-              <PricingGrid
-                key={category.key}
-                $visible={activeCategory === category.key}
+        <GridContainer>
+          <PricingGrid key={activeCategory}>
+            {currentCategory.plans.map((plan, index) => (
+              <PricingCard
+                key={`${activeCategory}-${index}`}
+                $featured={plan.featured}
+                $category={activeCategory}
               >
-                {categoryData.plans.map((plan, index) => (
-                  <PricingCard
-                    key={`${category.key}-${index}`}
-                    $featured={plan.featured}
-                    $category={category.key}
-                  >
-                    <CardHeader $category={category.key}>
-                      <PlanName>{plan.name}</PlanName>
-                      <PlanDuration>{plan.duration}</PlanDuration>
-                    </CardHeader>
+                <CardHeader $category={activeCategory}>
+                  <PlanName>{plan.name}</PlanName>
+                  <PlanDuration>{plan.duration}</PlanDuration>
+                </CardHeader>
 
-                    <PriceContainer>
-                      <Price>
-                        {plan.price} <span>฿</span>
-                      </Price>
-                    </PriceContainer>
+                <PriceContainer>
+                  <Price>
+                    {plan.price} <span>฿</span>
+                  </Price>
+                </PriceContainer>
 
-                    <FeatureList>
-                      {plan.features.map((feature, idx) => (
-                        <Feature
-                          key={idx}
-                          $category={category.key}
-                          $compact={plan.features.length > 5}
-                          $noBorder={idx === plan.features.length - 1}
-                        >
-                          <FaCheck />
-                          {feature}
-                        </Feature>
-                      ))}
-                    </FeatureList>
-
-                    <BookButton
-                      href="https://wa.me/66624805877?text=Здравствуйте! Хочу приобрести абонемент"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      $category={category.key}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                <FeatureList>
+                  {plan.features.map((feature, idx) => (
+                    <Feature
+                      key={idx}
+                      $category={activeCategory}
+                      $compact={plan.features.length > 5}
+                      $noBorder={idx === plan.features.length - 1}
                     >
-                      {t('pricing.select_plan')}
-                    </BookButton>
-                  </PricingCard>
-                ))}
-              </PricingGrid>
-            );
-          })}
+                      <FaCheck />
+                      {feature}
+                    </Feature>
+                  ))}
+                </FeatureList>
+
+                <BookButton
+                  href="https://wa.me/66624805877?text=Здравствуйте! Хочу приобрести абонемент"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  $category={activeCategory}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {t('pricing.select_plan')}
+                </BookButton>
+              </PricingCard>
+            ))}
+          </PricingGrid>
         </GridContainer>
       </Container>
     </SectionContainer>
