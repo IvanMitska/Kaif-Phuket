@@ -179,13 +179,17 @@ const PricingGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
-  margin-bottom: 2rem;
   align-content: start;
   width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 1rem;
+    position: relative;
   }
 `;
 
@@ -449,15 +453,16 @@ const Feature = styled.li`
 
 const GridContainer = styled.div`
   position: relative;
+  height: 950px;
   overflow: visible;
-  min-height: 900px;
 
   @media (max-width: 1200px) {
-    min-height: 1300px;
+    height: 1400px;
   }
 
   @media (max-width: 768px) {
-    min-height: auto;
+    height: auto;
+    overflow: visible;
   }
 `;
 
