@@ -176,14 +176,18 @@ const CategoryTab = styled(motion.button)`
 
 // Pricing cards grid - better layout
 const PricingGrid = styled(motion.div)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
   align-content: start;
   width: 100%;
-  padding-bottom: 2rem;
 
   @media (max-width: 768px) {
+    position: relative;
     grid-template-columns: 1fr;
     gap: 1rem;
   }
@@ -449,16 +453,15 @@ const Feature = styled.li`
 
 const GridContainer = styled.div`
   position: relative;
-  min-height: 1050px;
-  overflow: visible;
+  height: 1100px;
+  width: 100%;
 
   @media (max-width: 1200px) {
-    min-height: 1500px;
+    height: 1550px;
   }
 
   @media (max-width: 768px) {
-    min-height: auto;
-    overflow: visible;
+    height: auto;
   }
 `;
 
@@ -870,7 +873,7 @@ const PricingSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2, ease: "easeInOut" }}
+              transition={{ duration: 0.15 }}
             >
             {currentCategory.plans.map((plan, index) => (
             <PricingCard
