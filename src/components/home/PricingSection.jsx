@@ -181,10 +181,15 @@ const PricingGrid = styled(motion.div)`
   gap: 1.5rem;
   margin-bottom: 2rem;
   align-content: start;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 1rem;
+    position: relative;
   }
 `;
 
@@ -447,8 +452,14 @@ const Feature = styled.li`
 `;
 
 const GridContainer = styled.div`
-  min-height: 650px;
+  min-height: 850px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 1024px) {
+    min-height: 1200px;
+  }
 
   @media (max-width: 768px) {
     min-height: auto;
@@ -793,23 +804,23 @@ const PricingSection = () => {
         </CategoryTabs>
 
         <GridContainer>
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" initial={false}>
             <PricingGrid
               key={activeCategory}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
             >
             {currentCategory.plans.map((plan, index) => (
             <PricingCard
               key={`${activeCategory}-${index}`}
               $featured={plan.featured}
               $category={activeCategory}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2, delay: index * 0.03 }}
             >
               <CardHeader $category={activeCategory}>
                 <PlanName>{plan.name}</PlanName>
