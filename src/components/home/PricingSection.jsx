@@ -522,6 +522,7 @@ const BookButton = styled(motion.a)`
     transform: translateY(-3px);
     box-shadow: ${props => {
       switch(props.$category) {
+        case 'dayPass': return '0 8px 25px rgba(156, 39, 176, 0.4)';
         case 'clubAccess': return '0 8px 25px rgba(76, 175, 80, 0.4)';
         case 'premium': return '0 8px 25px rgba(33, 33, 33, 0.35)';
         case 'groupClasses': return '0 8px 25px rgba(255, 152, 0, 0.4)';
@@ -531,6 +532,7 @@ const BookButton = styled(motion.a)`
     }};
     background: ${props => {
       switch(props.$category) {
+        case 'dayPass': return 'linear-gradient(135deg, #AB47BC 0%, #BA68C8 50%, #CE93D8 100%)';
         case 'clubAccess': return 'linear-gradient(135deg, #66BB6A 0%, #81C784 50%, #A5D6A7 100%)';
         case 'premium': return 'linear-gradient(135deg, #424242 0%, #616161 50%, #757575 100%)';
         case 'groupClasses': return 'linear-gradient(135deg, #FFB74D 0%, #FFCC80 50%, #FFE0B2 100%)';
