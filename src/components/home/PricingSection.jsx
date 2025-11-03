@@ -576,17 +576,17 @@ const PricingSection = () => {
       subtitle: t('pricing.subtitles.dayPass'),
       plans: [
         {
-          name: 'Day Pass',
-          duration: t('pricing.durations.fullDay'),
-          price: '490',
-          features: [t('pricing.features.fullDayAccess'), t('pricing.features.gymAndBanya'), t('pricing.features.lockersAndShowers')],
-          perMonth: null
-        },
-        {
           name: t('pricing.durations.morning') + ' Pass',
           duration: t('pricing.features.morningAccess'),
           price: '390',
           features: [t('pricing.features.fullAccessMorning'), t('pricing.features.gymAndBanya'), t('pricing.features.saunaAfter14')],
+          perMonth: null
+        },
+        {
+          name: 'Day Pass',
+          duration: t('pricing.durations.fullDay'),
+          price: '490',
+          features: [t('pricing.features.fullDayAccess'), t('pricing.features.gymAndBanya'), t('pricing.features.lockersAndShowers')],
           perMonth: null
         },
         {
