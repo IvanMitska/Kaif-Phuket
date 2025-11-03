@@ -1,4 +1,4 @@
-import{a as e,r as i,j as r,O as n,d as s,ac as t,ad as a,M as o,ae as d,af as l,c as h,F as m}from"./vendor-react-FHR7Sy-E.js";import{d as c}from"./vendor-styles-DcQt-q6S.js";import{m as p,A as f}from"./vendor-animations-BsFJxBmq.js";import"./vendor-other-CZupzcPt.js";const g=c.section`
+import{a as e,r as i,j as r,Q as n,d as s,ae as t,af as a,P as o,ag as d,ah as l,c as h,F as m}from"./vendor-react-DNm9nmuF.js";import{d as c}from"./vendor-styles-CvOjvN1-.js";import{m as p,A as f}from"./vendor-animations-BiVsbNIQ.js";import"./vendor-other-CZupzcPt.js";const g=c.section`
   position: relative;
   padding: 3rem 0;
   background: linear-gradient(135deg, rgba(144, 179, 167, 0.05) 0%, rgba(168, 197, 184, 0.03) 100%); /* Легкий градиент в зеленых тонах */
@@ -166,13 +166,13 @@ import{a as e,r as i,j as r,O as n,d as s,ac as t,ad as a,M as o,ae as d,af as l
   @media (max-width: 768px) {
     padding: 0 1.5rem 2rem 1.5rem;
   }
-`,O=c.p`
+`,K=c.p`
   font-family: ${({theme:e})=>{var i;return(null==(i=null==e?void 0:e.fonts)?void 0:i.primary)||"Inter, sans-serif"}};
   font-size: 1rem;
   line-height: 1.7;
   color: #64748b;
   margin: 0;
-`,K=c(p.div)`
+`,O=c(p.div)`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -241,24 +241,24 @@ import{a as e,r as i,j as r,O as n,d as s,ac as t,ad as a,M as o,ae as d,af as l
       transform: scale(1.1);
     }
   }
-`,H=c.h3`
+`,P=c.h3`
   font-family: ${({theme:e})=>{var i;return(null==(i=null==e?void 0:e.fonts)?void 0:i.heading)||'"Poppins", sans-serif'}};
   font-size: 1.25rem;
   font-weight: 600;
   color: #0f172a;
   margin-bottom: 1rem;
   line-height: 1.3;
-`,P=c.p`
+`,H=c.p`
   font-family: ${({theme:e})=>{var i;return(null==(i=null==e?void 0:e.fonts)?void 0:i.primary)||"Inter, sans-serif"}};
   font-size: 0.9rem;
   color: #64748b;
   line-height: 1.6;
   margin-bottom: 1.5rem;
-`,M=c.div`
+`,X=c.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-`,X=c.div`
+`,Y=c.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -274,4 +274,4 @@ import{a as e,r as i,j as r,O as n,d as s,ac as t,ad as a,M as o,ae as d,af as l
     color: #94a3b8;
     flex-shrink: 0;
   }
-`,Y=()=>{const{t:c}=e(),[Y,S]=i.useState(null),V={hidden:{opacity:.5,y:10},visible:{opacity:1,y:0,transition:{duration:.4,ease:"easeOut"}}},D={hidden:{opacity:.4,y:15},visible:{opacity:1,y:0,transition:{duration:.3,ease:"easeOut"}}},E={hidden:{height:0,opacity:0,transition:{height:{duration:.3},opacity:{duration:.2}}},visible:{height:"auto",opacity:1,transition:{height:{duration:.4,ease:[.25,.46,.45,.94]},opacity:{duration:.3,delay:.1}}}},G=i.useMemo(()=>[{category:"general",icon:r.jsx(n,{}),question:c("faq.questions.what_includes.question"),answer:c("faq.questions.what_includes.answer")},{category:"general",icon:r.jsx(s,{}),question:c("faq.questions.working_hours.question"),answer:c("faq.questions.working_hours.answer")},{category:"booking",icon:r.jsx(t,{}),question:c("faq.questions.how_to_book.question"),answer:c("faq.questions.how_to_book.answer")},{category:"booking",icon:r.jsx(a,{}),question:c("faq.questions.memberships.question"),answer:c("faq.questions.memberships.answer")},{category:"services",icon:r.jsx(t,{}),question:c("faq.questions.experience_needed.question"),answer:c("faq.questions.experience_needed.answer")},{category:"payment",icon:r.jsx(a,{}),question:c("faq.questions.payment_methods.question"),answer:c("faq.questions.payment_methods.answer")}],[c]);return r.jsx(g,{children:r.jsx(x,{children:r.jsxs("div",{children:[r.jsxs(u,{children:[r.jsxs(v,{children:[r.jsx(o,{}),c("faq.badge")]}),r.jsx(b,{children:c("faq.title")}),r.jsx(j,{children:c("faq.subtitle")})]}),r.jsxs(w,{children:[r.jsx(y,{children:G.map((e,i)=>r.jsx(p.div,{variants:D,custom:i,whileInView:"visible",viewport:{once:!0,amount:.1},children:r.jsxs(q,{$isOpen:Y===i,children:[r.jsxs(A,{onClick:()=>(e=>{S(Y===e?null:e)})(i),children:[r.jsxs(k,{children:[r.jsx($,{children:e.icon}),r.jsx(I,{children:e.question})]}),r.jsx(_,{$isOpen:Y===i,animate:{rotate:Y===i?180:0},transition:{duration:.3,ease:"easeInOut"},children:Y===i?r.jsx(d,{}):r.jsx(l,{})})]}),r.jsx(f,{children:Y===i&&r.jsx(B,{variants:E,initial:"hidden",animate:"visible",exit:"hidden",children:r.jsx(F,{children:r.jsx(O,{children:e.answer})})})})]})},i))}),r.jsxs(K,{children:[r.jsx(p.div,{variants:V,children:r.jsxs(z,{whileHover:{scale:1.02,transition:{duration:.2}},children:[r.jsx(C,{children:r.jsx(h,{})}),r.jsx(H,{children:c("faq.support.title")}),r.jsx(P,{children:c("faq.support.description")}),r.jsxs(M,{children:[r.jsxs(X,{children:[r.jsx(m,{}),c("faq.support.location")]}),r.jsxs(X,{children:[r.jsx(s,{}),c("faq.support.hours")]})]})]})}),r.jsx(p.div,{variants:V,children:r.jsxs(z,{whileHover:{scale:1.02,transition:{duration:.2}},children:[r.jsx(C,{children:r.jsx(o,{})}),r.jsx(H,{children:c("faq.whatsapp.title")}),r.jsx(P,{children:c("faq.whatsapp.description")}),r.jsxs(M,{children:[r.jsxs(X,{children:[r.jsx(t,{}),c("faq.whatsapp.instant_replies")]}),r.jsxs(X,{children:[r.jsx(h,{}),c("faq.whatsapp.personal_manager")]})]})]})}),r.jsx(p.div,{variants:V,children:r.jsxs(z,{whileHover:{scale:1.02,transition:{duration:.2}},children:[r.jsx(C,{children:r.jsx(n,{})}),r.jsx(H,{children:c("faq.consultation.title")}),r.jsx(P,{children:c("faq.consultation.description")}),r.jsxs(M,{children:[r.jsxs(X,{children:[r.jsx(n,{}),c("faq.consultation.free")]}),r.jsxs(X,{children:[r.jsx(a,{}),"Гибкая оплата"]})]})]})})]})]})]})})})};export{Y as default};
+`,M=()=>{const{t:c}=e(),[M,Q]=i.useState(null),S={hidden:{opacity:.5,y:10},visible:{opacity:1,y:0,transition:{duration:.4,ease:"easeOut"}}},V={hidden:{opacity:.4,y:15},visible:{opacity:1,y:0,transition:{duration:.3,ease:"easeOut"}}},D={hidden:{height:0,opacity:0,transition:{height:{duration:.3},opacity:{duration:.2}}},visible:{height:"auto",opacity:1,transition:{height:{duration:.4,ease:[.25,.46,.45,.94]},opacity:{duration:.3,delay:.1}}}},E=i.useMemo(()=>[{category:"general",icon:r.jsx(n,{}),question:c("faq.questions.what_includes.question"),answer:c("faq.questions.what_includes.answer")},{category:"general",icon:r.jsx(s,{}),question:c("faq.questions.working_hours.question"),answer:c("faq.questions.working_hours.answer")},{category:"booking",icon:r.jsx(t,{}),question:c("faq.questions.how_to_book.question"),answer:c("faq.questions.how_to_book.answer")},{category:"booking",icon:r.jsx(a,{}),question:c("faq.questions.memberships.question"),answer:c("faq.questions.memberships.answer")},{category:"services",icon:r.jsx(t,{}),question:c("faq.questions.experience_needed.question"),answer:c("faq.questions.experience_needed.answer")},{category:"payment",icon:r.jsx(a,{}),question:c("faq.questions.payment_methods.question"),answer:c("faq.questions.payment_methods.answer")}],[c]);return r.jsx(g,{children:r.jsx(x,{children:r.jsxs("div",{children:[r.jsxs(u,{children:[r.jsxs(v,{children:[r.jsx(o,{}),c("faq.badge")]}),r.jsx(b,{children:c("faq.title")}),r.jsx(j,{children:c("faq.subtitle")})]}),r.jsxs(w,{children:[r.jsx(y,{children:E.map((e,i)=>r.jsx(p.div,{variants:V,custom:i,whileInView:"visible",viewport:{once:!0,amount:.1},children:r.jsxs(q,{$isOpen:M===i,children:[r.jsxs(A,{onClick:()=>(e=>{Q(M===e?null:e)})(i),children:[r.jsxs(k,{children:[r.jsx($,{children:e.icon}),r.jsx(I,{children:e.question})]}),r.jsx(_,{$isOpen:M===i,animate:{rotate:M===i?180:0},transition:{duration:.3,ease:"easeInOut"},children:M===i?r.jsx(d,{}):r.jsx(l,{})})]}),r.jsx(f,{children:M===i&&r.jsx(B,{variants:D,initial:"hidden",animate:"visible",exit:"hidden",children:r.jsx(F,{children:r.jsx(K,{children:e.answer})})})})]})},i))}),r.jsxs(O,{children:[r.jsx(p.div,{variants:S,children:r.jsxs(z,{whileHover:{scale:1.02,transition:{duration:.2}},children:[r.jsx(C,{children:r.jsx(h,{})}),r.jsx(P,{children:c("faq.support.title")}),r.jsx(H,{children:c("faq.support.description")}),r.jsxs(X,{children:[r.jsxs(Y,{children:[r.jsx(m,{}),c("faq.support.location")]}),r.jsxs(Y,{children:[r.jsx(s,{}),c("faq.support.hours")]})]})]})}),r.jsx(p.div,{variants:S,children:r.jsxs(z,{whileHover:{scale:1.02,transition:{duration:.2}},children:[r.jsx(C,{children:r.jsx(o,{})}),r.jsx(P,{children:c("faq.whatsapp.title")}),r.jsx(H,{children:c("faq.whatsapp.description")}),r.jsxs(X,{children:[r.jsxs(Y,{children:[r.jsx(t,{}),c("faq.whatsapp.instant_replies")]}),r.jsxs(Y,{children:[r.jsx(h,{}),c("faq.whatsapp.personal_manager")]})]})]})}),r.jsx(p.div,{variants:S,children:r.jsxs(z,{whileHover:{scale:1.02,transition:{duration:.2}},children:[r.jsx(C,{children:r.jsx(n,{})}),r.jsx(P,{children:c("faq.consultation.title")}),r.jsx(H,{children:c("faq.consultation.description")}),r.jsxs(X,{children:[r.jsxs(Y,{children:[r.jsx(n,{}),c("faq.consultation.free")]}),r.jsxs(Y,{children:[r.jsx(a,{}),"Гибкая оплата"]})]})]})})]})]})]})})})};export{M as default};
