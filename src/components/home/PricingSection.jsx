@@ -385,17 +385,20 @@ const FeatureList = styled.ul`
   padding: 0;
   margin: 0 0 2rem 0;
   flex: 1;
+  display: ${props => props.$twoColumns ? 'grid' : 'block'};
+  grid-template-columns: ${props => props.$twoColumns ? '1fr 1fr' : '1fr'};
+  gap: ${props => props.$twoColumns ? '0.5rem 1rem' : '0'};
 `;
 
 const Feature = styled.li`
   font-family: 'Montserrat', sans-serif;
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.75rem 0;
+  align-items: ${props => props.$compact ? 'flex-start' : 'center'};
+  gap: ${props => props.$compact ? '0.5rem' : '1rem'};
+  padding: ${props => props.$compact ? '0.4rem 0' : '0.75rem 0'};
   color: #374151;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: ${props => props.$compact ? '0.85rem' : '0.95rem'};
+  line-height: ${props => props.$compact ? '1.4' : '1.6'};
   font-weight: 400;
   transition: all 0.2s ease;
   border-bottom: 1px solid ${props => {
@@ -415,8 +418,9 @@ const Feature = styled.li`
 
   svg {
     color: #fff;
-    font-size: 0.75rem;
+    font-size: ${props => props.$compact ? '0.65rem' : '0.75rem'};
     flex-shrink: 0;
+    margin-top: ${props => props.$compact ? '2px' : '0'};
     background: ${props => {
       switch(props.$category) {
         case 'dayPass': return 'linear-gradient(135deg, #9C27B0, #BA68C8)';
@@ -576,24 +580,35 @@ const PricingSection = () => {
           duration: t('pricing.features.morningAccess'),
           price: '390',
           features: [
-            t('pricing.features.fullAccessMorning'),
-            t('pricing.features.gymAndBanya'),
+            t('pricing.features.gymCardio'),
             t('pricing.features.swimmingPool'),
+            t('pricing.features.steamRoom'),
+            t('pricing.features.iceBarrel'),
+            t('pricing.features.russianSauna'),
+            t('pricing.features.collectiveSteaming'),
+            t('pricing.features.japanesePool'),
+            t('pricing.features.aromaIceBarrel'),
             t('pricing.features.saunaAfter14')
           ],
-          perMonth: null
+          perMonth: null,
+          twoColumnFeatures: true
         },
         {
           name: 'Day Pass',
           duration: t('pricing.durations.fullDay'),
           price: '490',
           features: [
-            t('pricing.features.fullDayAccess'),
-            t('pricing.features.gymAndBanya'),
+            t('pricing.features.gymCardio'),
             t('pricing.features.swimmingPool'),
-            t('pricing.features.towelsIncluded')
+            t('pricing.features.steamRoom'),
+            t('pricing.features.iceBarrel'),
+            t('pricing.features.russianSauna'),
+            t('pricing.features.collectiveSteaming'),
+            t('pricing.features.japanesePool'),
+            t('pricing.features.aromaIceBarrel')
           ],
-          perMonth: null
+          perMonth: null,
+          twoColumnFeatures: true
         },
         {
           name: t('pricing.categories.groupClasses'),
@@ -674,12 +689,17 @@ const PricingSection = () => {
           duration: t('pricing.durations.day'),
           price: '490',
           features: [
-            t('pricing.features.fullDayAccess'),
-            t('pricing.features.gymAndBanya'),
+            t('pricing.features.gymCardio'),
             t('pricing.features.swimmingPool'),
-            t('pricing.features.lockersAndShowers')
+            t('pricing.features.steamRoom'),
+            t('pricing.features.iceBarrel'),
+            t('pricing.features.russianSauna'),
+            t('pricing.features.collectiveSteaming'),
+            t('pricing.features.japanesePool'),
+            t('pricing.features.aromaIceBarrel')
           ],
-          perMonth: null
+          perMonth: null,
+          twoColumnFeatures: true
         },
         {
           name: 'Club Access+',
@@ -883,9 +903,13 @@ const PricingSection = () => {
                 </Price>
               </PriceContainer>
 
-              <FeatureList>
+              <FeatureList $twoColumns={plan.twoColumnFeatures}>
                 {plan.features.map((feature, idx) => (
-                  <Feature key={idx} $category={activeCategory}>
+                  <Feature
+                    key={idx}
+                    $category={activeCategory}
+                    $compact={plan.twoColumnFeatures}
+                  >
                     <FaCheck />
                     {feature}
                   </Feature>
