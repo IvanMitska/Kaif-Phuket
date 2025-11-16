@@ -1,4 +1,4 @@
-import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as a}from"./styled-components-fuCKgGld.js";import{m as i,n as s,o as t,p as n,q as c,a as o}from"./react-icons-DxYdSIzX.js";import{u as g}from"./i18n-core-DrMVsQFB.js";import{m as u}from"./framer-motion-BYP67fZ8.js";import"./vendor-misc-D8JVgYt7.js";const p=a.section`
+import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as a}from"./styled-components-fuCKgGld.js";import{m as i,n as s,o as t,p as n,q as c,a as o}from"./react-icons-DxYdSIzX.js";import{u as g}from"./i18n-core-DrMVsQFB.js";import{m as u}from"./framer-motion-Ep29qSuC.js";import"./vendor-misc-D8JVgYt7.js";const p=a.section`
   padding: 5rem 2rem;
   background: linear-gradient(135deg, #f8faf9 0%, #ffffff 50%, #f0f4f2 100%);
   position: relative;

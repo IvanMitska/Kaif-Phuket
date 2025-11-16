@@ -1,4 +1,4 @@
-import{R as e,j as t}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-components-fuCKgGld.js";import{A as r,m as o}from"./framer-motion-BYP67fZ8.js";import{C as a}from"./heroicons-Dc4hJBDs.js";const n=i(o.div)`
+import{R as e,j as t}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-components-fuCKgGld.js";import{A as r,m as o}from"./framer-motion-Ep29qSuC.js";import{C as a}from"./heroicons-Dc4hJBDs.js";const n=i(o.div)`
   position: fixed;
   top: 0;
   left: 0;

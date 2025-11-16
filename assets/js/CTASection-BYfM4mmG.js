@@ -1,4 +1,4 @@
-import{j as t}from"./react-core-DWAaPJsY.js";import{d as e}from"./styled-components-fuCKgGld.js";import{m as i}from"./framer-motion-BYP67fZ8.js";import{u as r}from"./i18n-core-DrMVsQFB.js";import{U as o,O as a,w as n}from"./heroicons-Dc4hJBDs.js";import"./vendor-misc-D8JVgYt7.js";const s=e.section`
+import{j as t}from"./react-core-DWAaPJsY.js";import{d as e}from"./styled-components-fuCKgGld.js";import{m as i}from"./framer-motion-Ep29qSuC.js";import{u as r}from"./i18n-core-DrMVsQFB.js";import{U as o,O as a,w as n}from"./heroicons-Dc4hJBDs.js";import"./vendor-misc-D8JVgYt7.js";const s=e.section`
   position: relative;
   padding: 8rem 2rem 8rem 2rem;
   overflow: visible;

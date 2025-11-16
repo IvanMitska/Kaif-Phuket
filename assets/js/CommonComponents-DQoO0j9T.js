@@ -1,4 +1,4 @@
-import{d as e}from"./styled-components-fuCKgGld.js";import{m as r}from"./framer-motion-BYP67fZ8.js";const t=e(r.div)`
+import{d as e}from"./styled-components-fuCKgGld.js";import{m as r}from"./framer-motion-Ep29qSuC.js";const t=e(r.div)`
   background-color: ${e=>e.theme.colors.background};
   color: ${e=>e.theme.colors.text.primary};
   min-height: 100vh;

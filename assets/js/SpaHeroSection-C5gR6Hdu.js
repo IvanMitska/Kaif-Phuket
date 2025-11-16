@@ -1,4 +1,4 @@
-import{r as e,j as i}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-components-fuCKgGld.js";import{Y as a}from"./YclientsModal-BDWNfMxi.js";import{u as r}from"./i18n-core-DrMVsQFB.js";import{I as n,J as o,f as m}from"./heroicons-Dc4hJBDs.js";import{m as d}from"./framer-motion-BYP67fZ8.js";import"./vendor-misc-D8JVgYt7.js";const s=t.section`
+import{r as e,j as i}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-components-fuCKgGld.js";import{Y as a}from"./YclientsModal-4chwTQwk.js";import{u as r}from"./i18n-core-DrMVsQFB.js";import{I as n,J as o,f as m}from"./heroicons-Dc4hJBDs.js";import{m as d}from"./framer-motion-Ep29qSuC.js";import"./vendor-misc-D8JVgYt7.js";const s=t.section`
   position: relative;
   min-height: 100vh;
   background: url(${"/assets/images/hero-restaurant-B-WOCk0r.jpg"});
