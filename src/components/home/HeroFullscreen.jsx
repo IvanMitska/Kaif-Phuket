@@ -1,6 +1,6 @@
 import React, { useState, useEffect, memo } from 'react';
 import styled from 'styled-components';
-import { m as motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 // ОПТИМИЗАЦИЯ: Импортируем только логотип, изображения загружаем из public/
