@@ -12,8 +12,8 @@ import {
   BoltIcon
 } from '@heroicons/react/24/outline';
 
-// Импорт локального изображения для карточки "Русская баня"
-import heroLuxuryImage from '../../assets/images/hero/hero-luxury.png';
+// Импорт локального изображения для карточки "Русская баня" (оптимизированный WebP)
+import heroLuxuryImage from '../../assets/images/hero/hero-luxury.webp';
 
 // Основной контейнер - ИСПРАВЛЕН для предотвращения блокировки скролла
 const SectionContainer = styled.section`

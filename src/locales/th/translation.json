@@ -1872,6 +1872,12 @@
     "charity": {
       "title": "การออกกำลังกายเพื่อการกุศล",
       "description": "การออกกำลังกายวันเสาร์กับนักกีฬามืออาชีพ รายได้ทั้งหมดมอบให้กับมูลนิธิ Child Watch Phuket"
+    },
+    "scrolling": {
+      "text1": "BE STRONG",
+      "text2": "BE CONFIDENT",
+      "text3": "BE UNSTOPPABLE",
+      "text4": "BE MORE HUMAN"
     }
   },
   "banya": {

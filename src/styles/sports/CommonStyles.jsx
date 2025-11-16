@@ -3,71 +3,77 @@ import { motion } from 'framer-motion';
 
 // Основные стилизованные компоненты
 export const PageContainer = styled(motion.div)`
-  background-color: ${props => props.theme.colors.background};
-  color: ${props => props.theme.colors.text.primary};
+  background-color: #000000;
+  color: #FFFFFF;
   min-height: 100vh;
   font-family: ${props => props.theme.fonts.primary};
   overflow-x: hidden;
 `;
 
 export const Section = styled.section`
-  padding: 9rem 2rem;
-  background-color: ${props => props.bgColor || props.theme.colors.background};
+  padding: 8rem 2rem;
+  background-color: ${props => props.bgColor || '#000000'};
   position: relative;
   overflow: hidden;
-  
+
   &:nth-child(even) {
-    background-color: ${props => props.bgColor || props.theme.colors.surface};
+    background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+  }
+
+  @media (max-width: 768px) {
+    padding: 5rem 1.5rem;
   }
 `;
 
 export const SectionTag = styled(motion.span)`
   display: inline-block;
-  background-color: rgba(210, 155, 132, 0.1);
-  color: ${props => props.theme.colors.primary};
-  padding: 0.6rem 1.2rem;
-  border-radius: 50px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  letter-spacing: 1px;
+  background: #FFE600;
+  color: #000000;
+  padding: 0.7rem 1.5rem;
+  border-radius: 0;
+  font-size: 0.85rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
   text-transform: uppercase;
+  border: none;
+  box-shadow: 0 4px 16px rgba(255, 230, 0, 0.4);
 `;
 
 export const SectionTitle = styled(motion.h2)`
   font-family: ${props => props.theme.fonts.heading};
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  color: ${props => props.theme.colors.text.primary};
+  font-size: clamp(3rem, 6vw, 5rem);
+  color: #FFFFFF;
   text-align: center;
   margin-bottom: 1.5rem;
-  font-weight: 700;
-  
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+
   span {
-    color: ${props => props.theme.colors.primary};
+    background: linear-gradient(135deg, #FFE600 0%, #FFA500 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     position: relative;
-    
-    &::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 0.08em;
-      background-color: ${props => props.theme.colors.primary};
-      opacity: 0.15;
-      border-radius: 2px;
-    }
+    filter: drop-shadow(0 0 30px rgba(255, 230, 0, 0.5));
+  }
+
+  @media (max-width: 768px) {
+    font-size: clamp(2.2rem, 9vw, 3.5rem);
   }
 `;
 
 export const SectionSubtitle = styled(motion.p)`
-  font-size: clamp(1rem, 2vw, 1.1rem);
-  color: ${props => props.theme.colors.text.secondary};
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.6);
   text-align: center;
-  max-width: 800px;
-  margin: 2.5rem auto 4.5rem auto;
-  line-height: 1.8;
-  font-weight: 300;
+  max-width: 700px;
+  margin: 1.5rem auto 3rem auto;
+  line-height: 1.7;
+  font-weight: 400;
 `;
 
 export const ContentContainer = styled.div`

@@ -4,28 +4,29 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
-// Импорт изображений для слайдера (оптимизированные версии)
-import heroSpaImage from '../../assets/images/optimized/hero-spa.jpg';
-import heroPoolImage from '../../assets/images/optimized/hero-pool.jpg';
-import heroRestaurantImage from '../../assets/images/optimized/hero-restaurant.jpg';
-import heroFitnessImage from '../../assets/images/optimized/hero-fitness.jpg';
-
-// WebP версии изображений
-import heroSpaWebp from '../../assets/images/optimized/webp/hero-spa.webp';
-import heroPoolWebp from '../../assets/images/optimized/webp/hero-pool.webp';
-import heroRestaurantWebp from '../../assets/images/optimized/webp/hero-restaurant.webp';
-import heroFitnessWebp from '../../assets/images/optimized/webp/hero-fitness.webp';
-
+// ОПТИМИЗАЦИЯ: Импортируем только логотип, изображения загружаем из public/
 // Импорт логотипа для главной страницы
 import homepageLogo from '../../assets/images/optimized/logo-homepage.png';
 import homepageLogoWebp from '../../assets/images/optimized/webp/logo-homepage.webp';
 
-// Массив изображений для слайдера с WebP поддержкой
+// ОПТИМИЗАЦИЯ: Используем пути к изображениям вместо импорта (уменьшает initial bundle)
 const slideImages = [
-  { webp: heroSpaWebp, fallback: heroSpaImage },
-  { webp: heroPoolWebp, fallback: heroPoolImage },
-  { webp: heroRestaurantWebp, fallback: heroRestaurantImage },
-  { webp: heroFitnessWebp, fallback: heroFitnessImage }
+  {
+    webp: '/images-optimized/spa.jpg', // Используем самое маленькое изображение для первого слайда
+    fallback: '/images-optimized/spa.jpg'
+  },
+  {
+    webp: '/images-webp/hero/hero-pool.webp',
+    fallback: '/images-optimized/hero/hero-pool.jpg'
+  },
+  {
+    webp: '/images-webp/hero/hero-restaurant.webp',
+    fallback: '/images-optimized/hero/hero-restaurant.jpg'
+  },
+  {
+    webp: '/images-webp/hero/hero-fitness.webp',
+    fallback: '/images-optimized/hero/hero-fitness.jpg'
+  }
 ];
 
 // Основной контейнер с улучшенным дизайном
@@ -409,17 +410,30 @@ const HeroFullscreen = memo(() => {
   const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // ИСПРАВЛЕНИЕ: Оптимизированное автоматическое переключение слайдов без блокировки скролла
+  // ОПТИМИЗАЦИЯ: Определяем мобильное устройство
+  const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // ОПТИМИЗАЦИЯ: Отключаем слайдер на мобильных для производительности
+  useEffect(() => {
+    if (isMobile) return; // Не запускаем слайдер на мобильных
+
     const interval = setInterval(() => {
-      // Используем requestAnimationFrame для синхронизации с браузером
       requestAnimationFrame(() => {
         setCurrentSlide(prev => (prev + 1) % slideImages.length);
       });
     }, 6000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isMobile]);
 
   // ИСПРАВЛЕН: Обработчик скролла без конфликтов
   const handleScrollToZones = () => {
@@ -436,21 +450,26 @@ const HeroFullscreen = memo(() => {
     <HeroContainer>
       {/* Слайдер изображений */}
       <SliderContainer>
-        {slideImages.map((image, index) => (
-          <Slide
-            key={`slide-${index}`}
-            $active={index === currentSlide}
-          >
-            <picture>
-              <source
-                srcSet={image.webp}
-                type="image/webp"
-              />
-              <img
-                src={image.fallback}
-                alt={`KAIF - Слайд ${index + 1}`}
-                loading={index === 0 ? "eager" : "lazy"}
-                decoding="async"
+        {slideImages.map((image, index) => {
+          // ОПТИМИЗАЦИЯ: На мобильных рендерим только первое изображение
+          if (isMobile && index !== 0) return null;
+
+          return (
+            <Slide
+              key={`slide-${index}`}
+              $active={index === currentSlide}
+            >
+              <picture>
+                <source
+                  srcSet={image.webp}
+                  type="image/webp"
+                />
+                <img
+                  src={image.fallback}
+                  alt={`KAIF - Слайд ${index + 1}`}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  decoding="async"
+                  fetchpriority={index === 0 ? "high" : "low"}
                 onError={(e) => {
                   const fallbackImages = [
                     "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
@@ -463,7 +482,8 @@ const HeroFullscreen = memo(() => {
               />
             </picture>
           </Slide>
-        ))}
+          );
+        })}
       </SliderContainer>
 
       {/* Основной контент */}
