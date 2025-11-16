@@ -170,55 +170,31 @@ export default defineConfig({
       }
     },
     
-    // PERFORMANCE: Aggressive minification with Terser
+    // SAFE minification - don't break styled-components
     minify: 'terser',
     terserOptions: {
       compress: {
         drop_console: true,
         drop_debugger: true,
-        pure_funcs: ['console.log', 'console.debug', 'console.info', 'console.warn'],
-        passes: 3,
-        // Additional aggressive compression
-        arguments: true,
-        booleans_as_integers: true,
-        collapse_vars: true,
-        comparisons: true,
-        computed_props: true,
-        conditionals: true,
+        // SAFE: Don't be too aggressive
+        passes: 1,
         dead_code: true,
+        conditionals: true,
         evaluate: true,
-        hoist_funs: true,
-        hoist_props: true,
-        hoist_vars: false,
-        if_return: true,
-        inline: 3,
-        join_vars: true,
-        keep_fargs: false,
-        loops: true,
-        negate_iife: true,
-        properties: true,
-        reduce_funcs: true,
-        reduce_vars: true,
-        sequences: true,
-        side_effects: true,
-        switches: true,
-        toplevel: true,
-        typeofs: true,
         unused: true,
+        if_return: true,
+        join_vars: true,
+        sequences: true,
       },
       format: {
         comments: false,
-        ecma: 2020,
-        semicolons: false,
-        shebang: false,
       },
       mangle: {
-        properties: false,
-        toplevel: true,
+        // CRITICAL: Don't mangle for styled-components
+        keep_classnames: true,
+        keep_fnames: true,
         safari10: true,
       },
-      toplevel: true,
-      module: true,
     },
 
     // AGGRESSIVE: Target very small chunk sizes
@@ -259,21 +235,12 @@ export default defineConfig({
     }
   },
   
-  // PERFORMANCE: Aggressive esbuild optimizations
+  // SAFE esbuild options
   esbuild: {
-    drop: ['console', 'debugger'],
-    minifyIdentifiers: true,
-    minifySyntax: true,
-    minifyWhitespace: true,
-    treeShaking: true,
-    ignoreAnnotations: false,
+    drop: ['debugger'],
     target: 'es2020',
     legalComments: 'none',
-    charset: 'utf8',
     logLevel: 'warning',
-    // Additional optimizations
-    logLimit: 0,
-    pure: ['console.log', 'console.debug', 'console.info'],
   },
   
   // Предварительный рендеринг для SEO
