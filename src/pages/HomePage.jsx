@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, lazy, Suspense, memo } from 'react';
-import { motion } from 'framer-motion';
-import { useLocation } from 'react-router-dom';
 import { useLoading } from '../components/global/LoadingContext';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';

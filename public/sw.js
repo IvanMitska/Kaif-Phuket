@@ -1,7 +1,9 @@
-// Service Worker для кэширования изображений KAIF
-const CACHE_NAME = 'kaif-images-v2';
-const IMAGE_CACHE_NAME = 'kaif-images-cache-v2';
-const IS_DEV = false; // Устанавливается в false для production
+// PERFORMANCE: Enhanced Service Worker for KAIF - cache JS, CSS, and images
+const CACHE_VERSION = 'v3';
+const STATIC_CACHE_NAME = `kaif-static-${CACHE_VERSION}`;
+const IMAGE_CACHE_NAME = `kaif-images-${CACHE_VERSION}`;
+const RUNTIME_CACHE_NAME = `kaif-runtime-${CACHE_VERSION}`;
+const IS_DEV = false; // Set to false for production
 
 // Вспомогательная функция для логирования (только в dev режиме)
 const log = (...args) => {
@@ -49,15 +51,17 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Активация Service Worker
+// Активация Service Worker with cleanup
 self.addEventListener('activate', (event) => {
   log('🚀 Activating KAIF Service Worker...');
+
+  const currentCaches = [STATIC_CACHE_NAME, IMAGE_CACHE_NAME, RUNTIME_CACHE_NAME];
 
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheName !== IMAGE_CACHE_NAME && cacheName !== CACHE_NAME) {
+          if (!currentCaches.includes(cacheName)) {
             log('🗑️ Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
@@ -70,35 +74,89 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Обработка запросов
+// PERFORMANCE: Enhanced fetch handling - cache JS, CSS, and images
 self.addEventListener('fetch', (event) => {
   const request = event.request;
   const url = new URL(request.url);
 
-  // Кэшируем только изображения
-  if (url.pathname.match(/\.(jpg|jpeg|png|webp|svg|gif)$/i)) {
+  // Skip caching for non-GET requests
+  if (request.method !== 'GET') return;
+
+  // Cache strategy based on resource type
+  // 1. JS/CSS bundles - Cache First with Network Fallback
+  if (url.pathname.match(/\.(js|css)$/i)) {
+    event.respondWith(
+      caches.open(STATIC_CACHE_NAME).then((cache) => {
+        return cache.match(request).then((cachedResponse) => {
+          if (cachedResponse) {
+            log('📦 JS/CSS from cache:', url.pathname);
+            return cachedResponse;
+          }
+
+          return fetch(request).then((networkResponse) => {
+            if (networkResponse.status === 200) {
+              log('💾 Caching JS/CSS:', url.pathname);
+              cache.put(request, networkResponse.clone());
+            }
+            return networkResponse;
+          });
+        });
+      })
+    );
+  }
+
+  // 2. Images - Cache First with Network Fallback
+  else if (url.pathname.match(/\.(jpg|jpeg|png|webp|svg|gif)$/i)) {
     event.respondWith(
       caches.open(IMAGE_CACHE_NAME).then((cache) => {
         return cache.match(request).then((cachedResponse) => {
           if (cachedResponse) {
-            log('📦 Serving from cache:', url.pathname);
+            log('📦 Image from cache:', url.pathname);
             return cachedResponse;
           }
 
-          log('🌐 Fetching from network:', url.pathname);
+          log('🌐 Fetching image:', url.pathname);
           return fetch(request).then((networkResponse) => {
-            // Кэшируем только успешные ответы
             if (networkResponse.status === 200) {
               log('💾 Caching image:', url.pathname);
               cache.put(request, networkResponse.clone());
             }
             return networkResponse;
           }).catch((error) => {
-            logError('❌ Network fetch failed:', error);
-            // Возвращаем placeholder при ошибке
+            logError('❌ Image fetch failed:', error);
             return new Response('', { status: 404 });
           });
         });
+      })
+    );
+  }
+
+  // 3. Fonts - Cache First (fonts rarely change)
+  else if (url.pathname.match(/\.(woff2?|ttf|eot|otf)$/i)) {
+    event.respondWith(
+      caches.open(STATIC_CACHE_NAME).then((cache) => {
+        return cache.match(request).then((cachedResponse) => {
+          return cachedResponse || fetch(request).then((networkResponse) => {
+            cache.put(request, networkResponse.clone());
+            return networkResponse;
+          });
+        });
+      })
+    );
+  }
+
+  // 4. API/Dynamic content - Network First with Cache Fallback
+  else if (url.origin === location.origin) {
+    event.respondWith(
+      fetch(request).then((networkResponse) => {
+        if (networkResponse.status === 200) {
+          caches.open(RUNTIME_CACHE_NAME).then((cache) => {
+            cache.put(request, networkResponse.clone());
+          });
+        }
+        return networkResponse;
+      }).catch(() => {
+        return caches.match(request);
       })
     );
   }

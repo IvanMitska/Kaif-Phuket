@@ -4,7 +4,14 @@ import { resolve } from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      // PERFORMANCE: Optimize React plugin
+      jsxRuntime: 'automatic',
+      // FastRefresh optimizations
+      fastRefresh: true,
+    })
+  ],
   base: '/', // Изменяем базовый путь для локальной разработки
   server: {
     historyApiFallback: true, // Перенаправляем все запросы на index.html для SPA
@@ -31,56 +38,65 @@ export default defineConfig({
 
   build: {
     outDir: 'dist', // Директория для билда
-    assetsInlineLimit: 4096, // Инлайним только маленькие ассеты < 4KB
+    assetsInlineLimit: 2048, // Reduce inline limit to 2KB
     cssCodeSplit: true, // Разделение CSS по чанкам
     sourcemap: false, // Отключаем в продакшене
     reportCompressedSize: false, // Экономия времени сборки
-    
+
     // Оптимизация Rollup
     rollupOptions: {
       output: {
-        // Улучшенное разделение чанков
+        // PERFORMANCE: Optimized chunk splitting - defer heavy libs
         manualChunks: (id) => {
-          // Основные реакт-библиотеки
-          if (id.includes('react') || id.includes('react-dom')) {
-            return 'vendor-react';
+          // Core React (essential for initial load)
+          if (id.includes('react') && !id.includes('react-dom') && !id.includes('react-router')) {
+            return 'vendor-react-core';
           }
-          
-          // Роутер
+
+          if (id.includes('react-dom')) {
+            return 'vendor-react-dom';
+          }
+
+          // Router (critical for navigation)
           if (id.includes('react-router')) {
             return 'vendor-router';
           }
-          
-          // Анимации
+
+          // CRITICAL CHANGE: Split animations into separate chunks for lazy loading
           if (id.includes('framer-motion')) {
-            return 'vendor-animations';
+            return 'vendor-framer';
           }
-          
-          // i18n
+
+          // GSAP animations (LAZY LOAD - not needed initially)
+          if (id.includes('gsap') || id.includes('split-type')) {
+            return 'vendor-gsap';
+          }
+
+          // i18n (needed early but can be optimized)
           if (id.includes('i18next') || id.includes('react-i18next')) {
             return 'vendor-i18n';
           }
-          
-          // Стили
+
+          // Styled components (large, should be optimized)
           if (id.includes('styled-components')) {
-            return 'vendor-styles';
+            return 'vendor-styled';
           }
-          
-          // UI элементы и иконки
+
+          // Icons (lazy loadable)
           if (id.includes('heroicons') || id.includes('react-icons') || id.includes('lucide-react')) {
             return 'vendor-icons';
           }
 
-          // GSAP анимации
-          if (id.includes('gsap') || id.includes('split-type')) {
-            return 'vendor-animations';
-          }
-          
-          // Формы
+          // Forms (not needed on homepage)
           if (id.includes('formik') || id.includes('yup')) {
             return 'vendor-forms';
           }
-          
+
+          // Helmet (SEO, defer loading)
+          if (id.includes('react-helmet')) {
+            return 'vendor-helmet';
+          }
+
           // Остальные node_modules
           if (id.includes('node_modules')) {
             return 'vendor-other';
@@ -125,59 +141,105 @@ export default defineConfig({
       }
     },
     
-    // Минификация с Terser
+    // PERFORMANCE: Aggressive minification with Terser
     minify: 'terser',
     terserOptions: {
       compress: {
         drop_console: true,
         drop_debugger: true,
-        pure_funcs: ['console.log', 'console.debug', 'console.info'], // Удаляем вызовы к консоли
-        passes: 3, // Увеличиваем количество проходов минификации
+        pure_funcs: ['console.log', 'console.debug', 'console.info', 'console.warn'],
+        passes: 3,
+        // Additional aggressive compression
+        arguments: true,
+        booleans_as_integers: true,
+        collapse_vars: true,
+        comparisons: true,
+        computed_props: true,
+        conditionals: true,
+        dead_code: true,
+        evaluate: true,
+        hoist_funs: true,
+        hoist_props: true,
+        hoist_vars: false,
+        if_return: true,
+        inline: 3,
+        join_vars: true,
+        keep_fargs: false,
+        loops: true,
+        negate_iife: true,
+        properties: true,
+        reduce_funcs: true,
+        reduce_vars: true,
+        sequences: true,
+        side_effects: true,
+        switches: true,
+        toplevel: true,
+        typeofs: true,
+        unused: true,
       },
       format: {
-        comments: false, // Удаляем комментарии из кода
-        ecma: 2020, // Используем современный стандарт
+        comments: false,
+        ecma: 2020,
+        semicolons: false,
+        shebang: false,
       },
       mangle: {
-        properties: false, // Не изменяем имена свойств объектов
+        properties: false,
+        toplevel: true,
+        safari10: true,
       },
-      toplevel: true, // Включаем максимальную оптимизацию для топ-уровня
+      toplevel: true,
+      module: true,
     },
-    
-    // Размеры для предупреждения
-    chunkSizeWarningLimit: 1000
+
+    // Target smaller chunk sizes
+    chunkSizeWarningLimit: 500
   },
   
-  // Предварительная оптимизация зависимостей
+  // PERFORMANCE: Pre-bundle only critical dependencies
   optimizeDeps: {
     include: [
-      'react', 
-      'react-dom', 
-      'framer-motion',
+      'react',
+      'react-dom',
       'react-router-dom',
       'react-i18next',
       'i18next',
-      'styled-components',
-      '@heroicons/react/24/outline',
-      '@heroicons/react/24/solid',
-      'formik',
-      'yup'
     ],
-    // Игнорируем неиспользуемый код
-    exclude: ['@heroicons/react/24/solid', 'react-icons'] 
+    // Exclude heavy libraries to load them on-demand
+    exclude: [
+      'gsap',
+      'split-type',
+      'framer-motion',
+      'styled-components',
+      '@heroicons/react/24/solid',
+      'react-icons',
+      'formik',
+      'yup',
+      'lucide-react'
+    ],
+    esbuildOptions: {
+      target: 'es2020',
+      supported: {
+        'top-level-await': true
+      },
+    }
   },
   
-  // Оптимизации для esbuild
+  // PERFORMANCE: Aggressive esbuild optimizations
   esbuild: {
-    // Оптимизация для продакшена
     drop: ['console', 'debugger'],
     minifyIdentifiers: true,
     minifySyntax: true,
     minifyWhitespace: true,
     treeShaking: true,
     ignoreAnnotations: false,
-    target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
+    target: 'es2020',
     legalComments: 'none',
+    charset: 'utf8',
+    logLevel: 'warning',
+    // Additional optimizations
+    logLimit: 0,
+    pure: ['console.log', 'console.debug', 'console.info'],
   },
   
   // Предварительный рендеринг для SEO

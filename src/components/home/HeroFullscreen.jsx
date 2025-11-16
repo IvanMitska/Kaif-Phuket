@@ -1,7 +1,6 @@
-import React, { useState, useEffect, memo, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, memo } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 // ОПТИМИЗАЦИЯ: Импортируем только логотип, изображения загружаем из public/
@@ -448,6 +447,8 @@ const HeroFullscreen = memo(() => {
               <img
                 src={image.fallback}
                 alt={`KAIF - Слайд ${index + 1}`}
+                width="1920"
+                height="1080"
                 loading={index === 0 ? "eager" : "lazy"}
                 decoding="async"
                 fetchpriority={index === 0 ? "high" : "low"}
@@ -474,6 +475,8 @@ const HeroFullscreen = memo(() => {
             <LogoImage
               src={homepageLogo}
               alt="KAIF"
+              width="520"
+              height="auto"
               initial={animations.logo.initial}
               animate={animations.logo.animate}
               whileHover={{
