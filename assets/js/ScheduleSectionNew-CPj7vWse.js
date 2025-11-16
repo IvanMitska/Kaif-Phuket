@@ -1,4 +1,4 @@
-import{a as t,r as i,R as e,j as r,M as o,O as a,at as s}from"./vendor-react-Dj8BKr9E.js";import{d as n}from"./vendor-styles-CqEOfFkH.js";import{m as l}from"./vendor-animations-DXmTBijG.js";import{S as d,C as p,a as c,b as m,c as u}from"./SportsPage-DkJTlYRK.js";import"./vendor-other-CZupzcPt.js";import"./main-gWwDaDWJ.js";import"./vendor-i18n-C4kh69yx.js";import"./PageScrollReset-BOx4uGe6.js";const h=n.div`
+import{a as t,r as i,R as e,j as r,M as o,O as a,at as s}from"./vendor-react-Dj8BKr9E.js";import{d as n}from"./vendor-styles-CqEOfFkH.js";import{m as l}from"./vendor-animations-DXmTBijG.js";import{S as d,C as p,a as c,b as m,c as u}from"./SportsPage-fyJoDaBv.js";import"./vendor-other-CZupzcPt.js";import"./main-CdH45h78.js";import"./vendor-i18n-C4kh69yx.js";import"./PageScrollReset-BOx4uGe6.js";const h=n.div`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
