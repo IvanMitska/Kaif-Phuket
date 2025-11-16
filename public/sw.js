@@ -150,8 +150,10 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(request).then((networkResponse) => {
         if (networkResponse.status === 200) {
+          // Clone the response BEFORE using it
+          const responseToCache = networkResponse.clone();
           caches.open(RUNTIME_CACHE_NAME).then((cache) => {
-            cache.put(request, networkResponse.clone());
+            cache.put(request, responseToCache);
           });
         }
         return networkResponse;
