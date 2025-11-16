@@ -1,46 +1,41 @@
-import React, { useEffect, Suspense } from 'react';
+import { useEffect, Suspense, lazy, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { HelmetProvider } from 'react-helmet-async';
-import GlobalFontStyle from './components/global/GlobalFontStyle';
-import GlobalStyles from './components/global/GlobalStyles';
 
+// DEFER: Load global styles components lazily
+const GlobalFontStyle = lazy(() => import('./components/global/GlobalFontStyle'));
+const GlobalStyles = lazy(() => import('./components/global/GlobalStyles'));
 
-// Импортируем контекст загрузки и экран загрузки
+// CRITICAL: Loading components (needed immediately)
 import { LoadingProvider, useLoading } from './components/global/LoadingContext';
 import LoadingScreen from './components/global/LoadingScreen';
-// import ScrollDiagnostic from './components/ui/ScrollDiagnostic';
-// import useScrollFix from './components/common/hooks/useScrollFix';
 import ScrollToTop from './components/common/ScrollToTop';
-
-// Import i18n configuration
-import './i18n';
 
 // Подавляем CSS предупреждения в development режиме
 import './utils/suppressCSSWarnings';
 
-// Оптимизированные импорты CSS
-import './styles/global-theme.css';
-import './index.css';
-import './styles/mobile-optimizations.css';
-import './styles/simple-header-fix.css';
-// ИСПРАВЛЕНИЕ: Импортируем CSS для исправления интерференции скролла
-import './styles/scroll-fix.css';
+// DEFER: Load non-critical CSS asynchronously
+import('./styles/mobile-optimizations.css');
+import('./styles/simple-header-fix.css');
+import('./styles/scroll-fix.css');
 
 import { theme } from './theme.fixed';
-import Layout from './components/layout/Layout';
 
-// Pages - оптимизированная загрузка
-import HomePage from './pages/HomePage';
-const RestaurantPage = React.lazy(() => import('./pages/RestaurantPage'));
-const SpaPage = React.lazy(() => import('./pages/SpaPage'));
-const SportsPage = React.lazy(() => import('./pages/SportsPage'));
-const BanyaPage = React.lazy(() => import('./pages/BanyaPage'));
-const ContactsPage = React.lazy(() => import('./pages/ContactsPage'));
-const PrivacyPage = React.lazy(() => import('./pages/PrivacyPage'));
-const TermsPage = React.lazy(() => import('./pages/TermsPage'));
-const SurveyPage = React.lazy(() => import('./pages/SurveyPage'));
+// DEFER: Layout will be loaded when needed
+const Layout = lazy(() => import('./components/layout/Layout'));
+
+// AGGRESSIVE: Lazy load ALL pages including HomePage
+const HomePage = lazy(() => import('./pages/HomePage'));
+const RestaurantPage = lazy(() => import('./pages/RestaurantPage'));
+const SpaPage = lazy(() => import('./pages/SpaPage'));
+const SportsPage = lazy(() => import('./pages/SportsPage'));
+const BanyaPage = lazy(() => import('./pages/BanyaPage'));
+const ContactsPage = lazy(() => import('./pages/ContactsPage'));
+const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
+const TermsPage = lazy(() => import('./pages/TermsPage'));
+const SurveyPage = lazy(() => import('./pages/SurveyPage'));
 
 
 // Невидимый компонент загрузки - без индикаторов
@@ -73,18 +68,19 @@ const AnimatedRoutes = () => {
 // Основной компонент приложения с экраном загрузки
 const AppContent = () => {
   const { isLoading, isContentReady } = useLoading();
-  // useScrollFix(); // Автоматическое исправление проблем с исчезновением
-  
+
   return (
     <>
       <LoadingScreen isVisible={isLoading} />
       <ScrollToTop />
       {isContentReady && (
-        <div className="App">
-          <Layout>
-            <AnimatedRoutes />
-          </Layout>
-        </div>
+        <Suspense fallback={<InvisibleLoader />}>
+          <div className="App">
+            <Layout>
+              <AnimatedRoutes />
+            </Layout>
+          </div>
+        </Suspense>
       )}
     </>
   );
@@ -92,7 +88,7 @@ const AppContent = () => {
 
 function App() {
   const { i18n, t } = useTranslation();
-  const [forceUpdate, setForceUpdate] = React.useState(0);
+  const [forceUpdate, setForceUpdate] = useState(0);
 
   // Принудительное обновление всего приложения при смене языка
   useEffect(() => {
@@ -127,8 +123,10 @@ function App() {
   return (
     <HelmetProvider key={`app-${i18n.language}-${forceUpdate}`}>
       <ThemeProvider theme={theme}>
-        <GlobalFontStyle />
-        <GlobalStyles />
+        <Suspense fallback={null}>
+          <GlobalFontStyle />
+          <GlobalStyles />
+        </Suspense>
         <LoadingProvider>
           <Router basename="/">
             <AppContent />

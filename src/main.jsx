@@ -1,57 +1,61 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 
-// Стили
-import './index.css';
-import './assets/fonts/fonts.css';
-import './styles/global-theme.css';
+// CRITICAL OPTIMIZATION: Only load absolutely essential CSS immediately
+import './styles/critical.css';
 
+// DEFER: Load App component with all dependencies
+const loadApp = async () => {
+  // Load non-critical styles asynchronously
+  await Promise.all([
+    import('./index.css'),
+    import('./assets/fonts/fonts.css'),
+    import('./styles/global-theme.css')
+  ]);
 
+  // Load i18n configuration asynchronously
+  await import('./i18n.js');
 
-// Конфигурация интернационализации
-import './i18n.js';
+  // Load App component
+  const { default: App } = await import('./App.jsx');
 
+  return App;
+};
 
-
-// Отключаем React DevTools в production
+// PRODUCTION: Disable console and devtools
 if (import.meta.env.PROD) {
-  // Отключаем console.log в production
-  console.log = () => {};
-  console.warn = () => {};
-  console.info = () => {};
+  console.log = console.warn = console.info = () => {};
 }
 
-// Регистрация Service Worker для кэширования изображений
+// DEFER: Service Worker registration (non-critical)
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then((registration) => {
-        console.log('✅ SW registered successfully:', registration.scope);
-        
-        // Проверяем обновления Service Worker
-        registration.addEventListener('updatefound', () => {
-          const newWorker = registration.installing;
-          newWorker.addEventListener('statechange', () => {
-            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              console.log('🔄 New SW available, will activate on next page load');
-            }
-          });
-        });
-      })
-      .catch((error) => {
-        console.log('❌ SW registration failed:', error);
-      });
-  });
+  setTimeout(() => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  }, 3000); // Register after 3 seconds
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  // Убираем StrictMode в development для лучшей производительности
-  import.meta.env.PROD ? (
-    <App />
-  ) : (
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  )
+// Initialize app
+const root = createRoot(document.getElementById('root'));
+
+// Show loading state immediately
+root.render(
+  <div className="app-loading">
+    <div className="loader"></div>
+  </div>
 );
+
+// Load and render app asynchronously
+loadApp().then(App => {
+  root.render(
+    import.meta.env.PROD ? (
+      <App />
+    ) : (
+      <StrictMode>
+        <App />
+      </StrictMode>
+    )
+  );
+}).catch(error => {
+  console.error('Failed to load app:', error);
+  root.render(<div style={{color:'#fff',padding:'20px',textAlign:'center'}}>Failed to load application</div>);
+});

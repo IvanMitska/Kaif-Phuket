@@ -37,69 +37,100 @@ export default defineConfig({
   publicDir: 'public', // Публичная директория
 
   build: {
-    outDir: 'dist', // Директория для билда
-    assetsInlineLimit: 2048, // Reduce inline limit to 2KB
-    cssCodeSplit: true, // Разделение CSS по чанкам
-    sourcemap: false, // Отключаем в продакшене
-    reportCompressedSize: false, // Экономия времени сборки
+    outDir: 'dist',
+    assetsInlineLimit: 1024, // AGGRESSIVE: Reduce to 1KB to minimize main bundle
+    cssCodeSplit: true,
+    sourcemap: false,
+    reportCompressedSize: false,
 
-    // Оптимизация Rollup
+    // AGGRESSIVE: Rollup optimizations
     rollupOptions: {
       output: {
-        // PERFORMANCE: Optimized chunk splitting - defer heavy libs
+        // AGGRESSIVE CHUNK SPLITTING: Maximize code splitting for minimal initial load
         manualChunks: (id) => {
-          // Core React (essential for initial load)
-          if (id.includes('react') && !id.includes('react-dom') && !id.includes('react-router')) {
-            return 'vendor-react-core';
+          // CRITICAL: Only React core in initial bundle
+          if (id.includes('node_modules/react/') && !id.includes('react-dom') && !id.includes('react-router')) {
+            return 'react-core';
           }
 
+          // DEFER: React DOM in separate chunk
+          if (id.includes('react-dom/client')) {
+            return 'react-dom-client';
+          }
           if (id.includes('react-dom')) {
-            return 'vendor-react-dom';
+            return 'react-dom';
           }
 
-          // Router (critical for navigation)
-          if (id.includes('react-router')) {
-            return 'vendor-router';
+          // DEFER: Router
+          if (id.includes('react-router-dom')) {
+            return 'react-router';
           }
 
-          // CRITICAL CHANGE: Split animations into separate chunks for lazy loading
+          // DEFER: Animations (heavy, load on interaction)
           if (id.includes('framer-motion')) {
-            return 'vendor-framer';
+            return 'framer-motion';
           }
 
-          // GSAP animations (LAZY LOAD - not needed initially)
-          if (id.includes('gsap') || id.includes('split-type')) {
-            return 'vendor-gsap';
+          // DEFER: GSAP (not needed initially)
+          if (id.includes('gsap')) {
+            return 'gsap';
+          }
+          if (id.includes('split-type')) {
+            return 'split-type';
           }
 
-          // i18n (needed early but can be optimized)
-          if (id.includes('i18next') || id.includes('react-i18next')) {
-            return 'vendor-i18n';
+          // DEFER: i18n (load async)
+          if (id.includes('i18next-browser-languagedetector')) {
+            return 'i18n-detector';
+          }
+          if (id.includes('i18next')) {
+            return 'i18n-core';
+          }
+          if (id.includes('react-i18next')) {
+            return 'react-i18n';
           }
 
-          // Styled components (large, should be optimized)
+          // DEFER: Styled components (heavy, minimize usage)
           if (id.includes('styled-components')) {
-            return 'vendor-styled';
+            return 'styled-components';
           }
 
-          // Icons (lazy loadable)
-          if (id.includes('heroicons') || id.includes('react-icons') || id.includes('lucide-react')) {
-            return 'vendor-icons';
+          // DEFER: Icons (load per page)
+          if (id.includes('heroicons')) {
+            return 'heroicons';
+          }
+          if (id.includes('lucide-react')) {
+            return 'lucide';
+          }
+          if (id.includes('react-icons')) {
+            return 'react-icons';
           }
 
-          // Forms (not needed on homepage)
-          if (id.includes('formik') || id.includes('yup')) {
-            return 'vendor-forms';
+          // DEFER: Forms (only for contact page)
+          if (id.includes('formik')) {
+            return 'formik';
+          }
+          if (id.includes('yup')) {
+            return 'yup';
           }
 
-          // Helmet (SEO, defer loading)
+          // DEFER: Helmet (SEO, not critical for initial render)
           if (id.includes('react-helmet')) {
-            return 'vendor-helmet';
+            return 'react-helmet';
           }
 
-          // Остальные node_modules
+          // DEFER: All other node_modules
           if (id.includes('node_modules')) {
-            return 'vendor-other';
+            // Further split large libraries
+            const match = id.match(/node_modules\/(@?[^/]+)/);
+            if (match) {
+              const packageName = match[1];
+              // Split large packages individually
+              if (['scheduler', 'object-assign', 'prop-types'].includes(packageName)) {
+                return `vendor-${packageName}`;
+              }
+            }
+            return 'vendor-misc';
           }
         },
         
@@ -192,36 +223,41 @@ export default defineConfig({
       module: true,
     },
 
-    // Target smaller chunk sizes
-    chunkSizeWarningLimit: 500
+    // AGGRESSIVE: Target very small chunk sizes
+    chunkSizeWarningLimit: 300
   },
-  
-  // PERFORMANCE: Pre-bundle only critical dependencies
+
+  // AGGRESSIVE: Minimal pre-bundling for faster initial load
   optimizeDeps: {
     include: [
       'react',
-      'react-dom',
+      'react/jsx-runtime',
+      'react-dom/client',
+    ],
+    // AGGRESSIVE: Exclude almost everything for on-demand loading
+    exclude: [
       'react-router-dom',
       'react-i18next',
       'i18next',
-    ],
-    // Exclude heavy libraries to load them on-demand
-    exclude: [
+      'i18next-browser-languagedetector',
       'gsap',
       'split-type',
       'framer-motion',
       'styled-components',
-      '@heroicons/react/24/solid',
+      '@heroicons/react',
       'react-icons',
+      'lucide-react',
       'formik',
       'yup',
-      'lucide-react'
+      'react-helmet-async'
     ],
     esbuildOptions: {
       target: 'es2020',
       supported: {
         'top-level-await': true
       },
+      treeShaking: true,
+      minify: true,
     }
   },
   
