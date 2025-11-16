@@ -189,15 +189,12 @@
       }
     }
     </script>
-    <script type="module" crossorigin src="/assets/js/main-tG30qmu8.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-other-CjR0Saws.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-react-core-CiytVzfL.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-react-dom-CkSH6ppF.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-styled-6ntj7xXP.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-router-BDqfUxHK.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-i18n-qu44yWMJ.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-framer-DJEKn808.js">
-    <link rel="stylesheet" crossorigin href="/assets/css/main-D0mj8cMI.css">
+    <script type="module" crossorigin src="/assets/js/main-C1zLyBkI.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/js/react-core-CV8k_GRh.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-scheduler-DKYT7Wy5.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/react-dom-C7S9v3DL.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/react-dom-client-fHgFUAUX.js">
+    <link rel="stylesheet" crossorigin href="/assets/css/main-CVol-v9f.css">
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -216,22 +213,133 @@
     </div>
     
     <div id="root"></div>
-    
+
+    <!-- CRITICAL INLINE JAVASCRIPT: Hero functionality for instant interactivity -->
     <script>
-      // Удаляем прелоадер после загрузки приложения
-      document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(function() {
-          const loader = document.querySelector('.app-loading');
-          if (loader) loader.classList.add('hidden');
-        }, 800);
-      });
-      
-      // Маркируем загруженные изображения для плавных переходов
-      document.addEventListener('load', function(e) {
-        if (e.target.tagName === 'IMG') {
-          e.target.classList.add('loaded');
+      // PERFORMANCE: Inline critical JavaScript to avoid render-blocking
+
+      // 1. Preload critical resources
+      (function() {
+        // Mark fonts as loaded to prevent FOIT
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(function() {
+            document.documentElement.classList.add('fonts-loaded');
+          });
+        } else {
+          // Fallback for older browsers
+          setTimeout(function() {
+            document.documentElement.classList.add('fonts-loaded');
+          }, 100);
         }
-      }, true);
+      })();
+
+      // 2. Remove loading screen when content is interactive
+      (function() {
+        var removeLoader = function() {
+          var loader = document.querySelector('.app-loading');
+          if (loader) {
+            loader.classList.add('hidden');
+            setTimeout(function() { loader.remove(); }, 300);
+          }
+        };
+
+        // Try to remove after DOMContentLoaded
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(removeLoader, 500);
+          });
+        } else {
+          setTimeout(removeLoader, 500);
+        }
+      })();
+
+      // 3. Prefetch next page assets on hover (intelligent prefetching)
+      (function() {
+        var prefetched = {};
+        var prefetch = function(url) {
+          if (prefetched[url]) return;
+          prefetched[url] = true;
+          var link = document.createElement('link');
+          link.rel = 'prefetch';
+          link.href = url;
+          document.head.appendChild(link);
+        };
+
+        // Prefetch on link hover
+        setTimeout(function() {
+          document.addEventListener('mouseover', function(e) {
+            var target = e.target;
+            if (target.tagName === 'A' && target.href && target.href.startsWith(window.location.origin)) {
+              prefetch(target.href);
+            }
+          }, { passive: true });
+        }, 2000);
+      })();
+
+      // 4. Optimize image loading
+      (function() {
+        // Lazy load images with IntersectionObserver
+        if ('IntersectionObserver' in window) {
+          var imageObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                var img = entry.target;
+                if (img.dataset.src) {
+                  img.src = img.dataset.src;
+                  img.removeAttribute('data-src');
+                }
+                if (img.dataset.srcset) {
+                  img.srcset = img.dataset.srcset;
+                  img.removeAttribute('data-srcset');
+                }
+                imageObserver.unobserve(img);
+              }
+            });
+          }, { rootMargin: '50px' });
+
+          // Observe lazy images when DOM is ready
+          setTimeout(function() {
+            document.querySelectorAll('img[data-src], img[data-srcset]').forEach(function(img) {
+              imageObserver.observe(img);
+            });
+          }, 100);
+        }
+      })();
+
+      // 5. Performance monitoring (for debugging)
+      if (typeof PerformanceObserver !== 'undefined' && !window.location.host.includes('localhost')) {
+        try {
+          // Monitor LCP
+          var lcpObserver = new PerformanceObserver(function(list) {
+            var entries = list.getEntries();
+            var lastEntry = entries[entries.length - 1];
+            console.log('LCP:', lastEntry.renderTime || lastEntry.loadTime);
+          });
+          lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
+
+          // Monitor FID
+          var fidObserver = new PerformanceObserver(function(list) {
+            list.getEntries().forEach(function(entry) {
+              console.log('FID:', entry.processingStart - entry.startTime);
+            });
+          });
+          fidObserver.observe({ entryTypes: ['first-input'] });
+
+          // Monitor CLS
+          var clsScore = 0;
+          var clsObserver = new PerformanceObserver(function(list) {
+            list.getEntries().forEach(function(entry) {
+              if (!entry.hadRecentInput) {
+                clsScore += entry.value;
+                console.log('CLS:', clsScore);
+              }
+            });
+          });
+          clsObserver.observe({ entryTypes: ['layout-shift'] });
+        } catch (e) {
+          // Silently fail in production
+        }
+      }
     </script>
 
 
