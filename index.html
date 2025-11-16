@@ -40,10 +40,6 @@
     <meta name="twitter:description" lang="en" content="Luxury spa center, Russian banya, gourmet cuisine and fitness club. Premium relaxation in the heart of the city" />
     <meta name="twitter:image" content="https://kaif-phuket.com/images/logos/logo-header.png" />
     
-    <!-- Принудительное обновление favicon -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
     
     <!-- Предзагрузка критических ресурсов -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -125,26 +121,12 @@
       }
     </style>
     
-    <!-- Preload critical logos first (highest priority) -->
+    <!-- Preload only critical logo -->
     <link rel="preload" as="image" href="/images/logos/logo-header-1x.webp">
-    <link rel="preload" as="image" href="/images/logos/logo-header-1x.png">
-    
-    <!-- Preload critical images for Banya -->
-    <link rel="preload" as="image" href="/images-webp/small/banya/panoramic.webp" media="(max-width: 767px)">
-    <link rel="preload" as="image" href="/images-webp/medium/banya/panoramic.webp" media="(min-width: 768px) and (max-width: 1023px)">
-    <link rel="preload" as="image" href="/images-webp/large/banya/panoramic.webp" media="(min-width: 1024px)">
-    
-
-    
-    <!-- Preload hero images for restaurant -->
-    <link rel="preload" as="image" href="/images-webp/small/menu/breakfast/kaif-breakfast.webp" media="(max-width: 768px)">
-    <link rel="preload" as="image" href="/images-webp/medium/menu/breakfast/kaif-breakfast.webp" media="(min-width: 769px)">
-    
-    <!-- Preload logos -->
-    <link rel="preload" as="image" href="/images-webp/logos/logo-header.webp">
     
     <!-- Google Fonts with display=swap for better performance -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Bebas+Neue&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Bebas+Neue&display=swap" rel="stylesheet"></noscript>
     
     <title>KAIF SAUNA & SPA</title>
 
@@ -171,22 +153,12 @@
       }
     }
     </script>
-
-    <!-- Google Tag Manager -->
-    <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id=GTM-5WP6GKBQ';f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5WP6GKBQ');
-    </script>
-    <!-- End Google Tag Manager -->
-    <script type="module" crossorigin src="/assets/js/main-b0ZGIBHm.js"></script>
+    <script type="module" crossorigin src="/assets/js/main-NmLpDNjT.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/js/vendor-other-CZupzcPt.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-react-DNm9nmuF.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-styles-CvOjvN1-.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-react-smdvTdEP.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-styles-2AL1ceAB.js">
     <link rel="modulepreload" crossorigin href="/assets/js/vendor-i18n-C4kh69yx.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-animations-BiVsbNIQ.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-animations-CgIIu-dn.js">
     <link rel="stylesheet" crossorigin href="/assets/css/main-u34IuCry.css">
   </head>
   <body>
@@ -223,6 +195,16 @@
         }
       }, true);
     </script>
-    
+
+
+    <!-- Google Tag Manager - loaded at end for better performance -->
+    <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id=GTM-5WP6GKBQ';f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5WP6GKBQ');
+    </script>
+    <!-- End Google Tag Manager -->
   </body>
 </html>
