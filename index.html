@@ -41,13 +41,11 @@
     <meta name="twitter:image" content="https://kaif-phuket.com/images/logos/logo-header.png" />
     
     
-    <!-- Предзагрузка критических ресурсов -->
+    <!-- PERFORMANCE: Resource hints optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- PERFORMANCE: DNS prefetch for external domains only -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
     
     <!-- Определение поддержки WebP -->
     <script>
@@ -61,17 +59,38 @@
       })();
     </script>
     
-    <!-- Первоначальные стили для предотвращения мерцания -->
+    <!-- CRITICAL CSS: Inline above-the-fold styles for fast FCP -->
     <style>
-      body {
+      /* Base reset and layout */
+      * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         opacity: 1;
-        transition: opacity 0.2s;
-        background: #f5f5f5;
+        background: #000;
+        color: #fff;
       }
-      
+
+      #root {
+        min-height: 100vh;
+        isolation: isolate;
+      }
+
+      /* Loading screen - minimal styles */
       .app-loading {
         position: fixed;
         top: 0;
@@ -81,51 +100,69 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #fff;
-        z-index: 1000;
+        background: #000;
+        z-index: 9999;
         opacity: 1;
         transition: opacity 0.3s ease;
       }
-      
+
       .app-loading.hidden {
         opacity: 0;
         pointer-events: none;
       }
-      
+
       .loader {
-        width: 60px;
-        height: 60px;
-        border: 3px solid #f0f0f0;
-        border-top: 3px solid #90B3A7;
+        width: 48px;
+        height: 48px;
+        border: 2px solid rgba(255,255,255,0.1);
+        border-top: 2px solid rgba(255,255,255,0.8);
         border-radius: 50%;
-        animation: spinner 1s linear infinite;
+        animation: spinner 0.8s linear infinite;
       }
-      
+
       @keyframes spinner {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+        to { transform: rotate(360deg); }
       }
-      
-      .no-js .app-loading {
-        display: none;
+
+      /* Critical hero styles for LCP */
+      section {
+        position: relative;
+        width: 100%;
       }
-      
-      /* Предотвращаем мерцание при загрузке изображений */
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Prevent layout shift for images */
+      img[width][height] {
+        aspect-ratio: attr(width) / attr(height);
+      }
+
+      /* Fast image loading */
       img[loading="lazy"] {
-        opacity: 0;
-        transition: opacity 0.3s;
+        content-visibility: auto;
       }
-      
-      img.loaded {
-        opacity: 1;
+
+      /* Font loading optimization */
+      .fonts-loading body {
+        visibility: hidden;
+      }
+
+      .fonts-loaded body,
+      .no-js body {
+        visibility: visible;
       }
     </style>
     
     <!-- PERFORMANCE: Removed preload - let browser prioritize naturally -->
     
-    <!-- PERFORMANCE: Google Fonts - only essential weights, async load -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet"></noscript>
+    <!-- PERFORMANCE: Google Fonts - optimized with font-display swap and minimal weights -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600&family=Bebas+Neue&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600&family=Bebas+Neue&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600&family=Bebas+Neue&display=swap" rel="stylesheet"></noscript>
     
     <title>KAIF SAUNA & SPA</title>
 
@@ -152,13 +189,15 @@
       }
     }
     </script>
-    <script type="module" crossorigin src="/assets/js/main-CdH45h78.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-other-CZupzcPt.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-react-Dj8BKr9E.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-styles-CqEOfFkH.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-i18n-C4kh69yx.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-animations-DXmTBijG.js">
-    <link rel="stylesheet" crossorigin href="/assets/css/main-u34IuCry.css">
+    <script type="module" crossorigin src="/assets/js/main-tG30qmu8.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-other-CjR0Saws.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-react-core-CiytVzfL.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-react-dom-CkSH6ppF.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-styled-6ntj7xXP.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-router-BDqfUxHK.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-i18n-qu44yWMJ.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-framer-DJEKn808.js">
+    <link rel="stylesheet" crossorigin href="/assets/css/main-D0mj8cMI.css">
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
