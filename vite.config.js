@@ -28,9 +28,10 @@ export default defineConfig({
   },
   
   publicDir: 'public', // Публичная директория
+
   build: {
     outDir: 'dist', // Директория для билда
-    assetsInlineLimit: 0, // Отключаем для изображений, чтобы не переводить в base64
+    assetsInlineLimit: 4096, // Инлайним только маленькие ассеты < 4KB
     cssCodeSplit: true, // Разделение CSS по чанкам
     sourcemap: false, // Отключаем в продакшене
     reportCompressedSize: false, // Экономия времени сборки
@@ -65,9 +66,14 @@ export default defineConfig({
             return 'vendor-styles';
           }
           
-          // UI элементы
-          if (id.includes('heroicons')) {
+          // UI элементы и иконки
+          if (id.includes('heroicons') || id.includes('react-icons') || id.includes('lucide-react')) {
             return 'vendor-icons';
+          }
+
+          // GSAP анимации
+          if (id.includes('gsap') || id.includes('split-type')) {
+            return 'vendor-animations';
           }
           
           // Формы

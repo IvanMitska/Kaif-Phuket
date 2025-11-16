@@ -1,6 +1,15 @@
 // Service Worker для кэширования изображений KAIF
-const CACHE_NAME = 'kaif-images-v1';
-const IMAGE_CACHE_NAME = 'kaif-images-cache-v1';
+const CACHE_NAME = 'kaif-images-v2';
+const IMAGE_CACHE_NAME = 'kaif-images-cache-v2';
+const IS_DEV = false; // Устанавливается в false для production
+
+// Вспомогательная функция для логирования (только в dev режиме)
+const log = (...args) => {
+  if (IS_DEV) console.log(...args);
+};
+const logError = (...args) => {
+  if (IS_DEV) console.error(...args);
+};
 
 // Список критических изображений для предкэширования
 const CRITICAL_IMAGES = [
@@ -22,40 +31,40 @@ const CRITICAL_IMAGES = [
 
 // Установка Service Worker
 self.addEventListener('install', (event) => {
-  console.log('🔧 Installing KAIF Service Worker...');
-  
+  log('🔧 Installing KAIF Service Worker...');
+
   event.waitUntil(
     caches.open(IMAGE_CACHE_NAME)
       .then((cache) => {
-        console.log('📦 Precaching critical images...');
+        log('📦 Precaching critical images...');
         return cache.addAll(CRITICAL_IMAGES);
       })
       .then(() => {
-        console.log('✅ Service Worker installed successfully');
+        log('✅ Service Worker installed successfully');
         return self.skipWaiting();
       })
       .catch((error) => {
-        console.error('❌ Error during service worker installation:', error);
+        logError('❌ Error during service worker installation:', error);
       })
   );
 });
 
 // Активация Service Worker
 self.addEventListener('activate', (event) => {
-  console.log('🚀 Activating KAIF Service Worker...');
-  
+  log('🚀 Activating KAIF Service Worker...');
+
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== IMAGE_CACHE_NAME && cacheName !== CACHE_NAME) {
-            console.log('🗑️ Deleting old cache:', cacheName);
+            log('🗑️ Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
     }).then(() => {
-      console.log('✅ Service Worker activated');
+      log('✅ Service Worker activated');
       return self.clients.claim();
     })
   );
@@ -72,20 +81,20 @@ self.addEventListener('fetch', (event) => {
       caches.open(IMAGE_CACHE_NAME).then((cache) => {
         return cache.match(request).then((cachedResponse) => {
           if (cachedResponse) {
-            console.log('📦 Serving from cache:', url.pathname);
+            log('📦 Serving from cache:', url.pathname);
             return cachedResponse;
           }
 
-          console.log('🌐 Fetching from network:', url.pathname);
+          log('🌐 Fetching from network:', url.pathname);
           return fetch(request).then((networkResponse) => {
             // Кэшируем только успешные ответы
             if (networkResponse.status === 200) {
-              console.log('💾 Caching image:', url.pathname);
+              log('💾 Caching image:', url.pathname);
               cache.put(request, networkResponse.clone());
             }
             return networkResponse;
           }).catch((error) => {
-            console.error('❌ Network fetch failed:', error);
+            logError('❌ Network fetch failed:', error);
             // Возвращаем placeholder при ошибке
             return new Response('', { status: 404 });
           });
@@ -99,10 +108,10 @@ self.addEventListener('fetch', (event) => {
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'CLEAR_IMAGE_CACHE') {
     caches.delete(IMAGE_CACHE_NAME).then(() => {
-      console.log('🗑️ Image cache cleared');
+      log('🗑️ Image cache cleared');
       event.ports[0].postMessage({ success: true });
     });
   }
 });
 
-console.log('📱 KAIF Service Worker loaded'); 
+log('📱 KAIF Service Worker loaded'); 

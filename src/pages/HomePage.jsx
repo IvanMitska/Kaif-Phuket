@@ -7,25 +7,26 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PageHead from '../components/layout/PageHead';
 
-// Импортируем только критические компоненты
+// Импортируем только критический hero компонент
 import HeroFullscreen from '../components/home/HeroFullscreen';
-import PromotionsSlider from '../components/PromotionsSlider';
-import ExclusiveZones from '../components/home/ExclusiveZones';
-import PricingSection from '../components/home/PricingSection';
 // import EventBanner from '../components/home/EventBanner'; // Временно отключен
 
-// Lazy loading для тяжелых компонентов с улучшенной загрузкой
-const AdvantagesSection = lazy(() => 
+// Lazy loading для всех некритических компонентов
+const PromotionsSlider = lazy(() => import('../components/PromotionsSlider'));
+const ExclusiveZones = lazy(() => import('../components/home/ExclusiveZones'));
+const PricingSection = lazy(() => import('../components/home/PricingSection'));
+
+const AdvantagesSection = lazy(() =>
   import('../components/home/AdvantagesSection').then(module => ({
     default: memo(module.default)
   }))
 );
-const GallerySection = lazy(() => 
-  import('../components/common/GallerySection').then(module => ({ 
-    default: memo(module.GallerySection) 
+const GallerySection = lazy(() =>
+  import('../components/common/GallerySection').then(module => ({
+    default: memo(module.GallerySection)
   }))
 );
-const FAQSection = lazy(() => 
+const FAQSection = lazy(() =>
   import('../components/home/FAQSection').then(module => ({
     default: memo(module.default)
   }))
@@ -132,10 +133,11 @@ const HomePage = memo(() => {
   const hasInitializedRef = useRef(false);
 
   useEffect(() => {
-    // Запускаем загрузку только один раз при первом монтировании
+    // Отключаем искусственную задержку для лучшей производительности
+    // Loading screen блокирует FCP и LCP
     if (!hasInitializedRef.current) {
       hasInitializedRef.current = true;
-      showLoading(1000); // Увеличиваем время загрузки
+      // showLoading(1000); // Отключено для производительности
     }
   }, []); // Пустой массив зависимостей - эффект выполнится только один раз
 
@@ -148,30 +150,33 @@ const HomePage = memo(() => {
         ogImage="/images/logos/logo-og.png"
       />
       
-      {/* Полноэкранная секция героя */}
+      {/* Полноэкранная секция героя - единственный критический компонент */}
       <HeroFullscreen />
 
-      {/* Слайдер акций по дням недели */}
-      <PromotionsSlider />
+      {/* Все остальные компоненты загружаются по требованию */}
+      <Suspense fallback={<SectionLoader />}>
+        <PromotionsSlider />
+      </Suspense>
 
       {/* Баннер мероприятия SAUNA RAVE - временно отключен */}
       {/* <EventBanner /> */}
 
-      {/* Эксклюзивные зоны */}
-      <ExclusiveZones />
+      <Suspense fallback={<SectionLoader />}>
+        <ExclusiveZones />
+      </Suspense>
 
-      {/* Секция с ценами и абонементами */}
-      <PricingSection />
+      <Suspense fallback={<SectionLoader />}>
+        <PricingSection />
+      </Suspense>
 
-      {/* Lazy загрузка компонентов с улучшенной производительностью */}
       <Suspense fallback={<SectionLoader />}>
         <AdvantagesSection />
       </Suspense>
-      
+
       <Suspense fallback={<SectionLoader />}>
         <GallerySection />
       </Suspense>
-      
+
       <Suspense fallback={<SectionLoader />}>
         <FAQSection />
       </Suspense>

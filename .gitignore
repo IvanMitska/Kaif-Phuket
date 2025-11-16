@@ -56,3 +56,7 @@ docs/*.log
 *.orig
 *.tmp
 *.temp
+
+# Original/unoptimized images
+**/originals/
+**/original/
