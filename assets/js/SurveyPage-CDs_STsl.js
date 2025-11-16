@@ -110,13 +110,13 @@ const k=a.div`
   @media (max-width: 768px) {
     padding: 1.5rem;
   }
-`,I=a(w.div)`
+`,N=a(w.div)`
   margin-bottom: 2.5rem;
   
   &:last-of-type {
     margin-bottom: 0;
   }
-`,N=a.span`
+`,B=a.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -129,11 +129,11 @@ const k=a.div`
   font-weight: 600;
   margin-right: 1rem;
   flex-shrink: 0;
-`,B=a.div`
+`,F=a.div`
   display: flex;
   align-items: center;
   margin-bottom: 1.25rem;
-`,F=a.h3`
+`,I=a.h3`
   font-size: 1.125rem;
   font-weight: 600;
   color: #1F2937;
@@ -194,11 +194,11 @@ const k=a.div`
   opacity: 0;
   width: 0;
   height: 0;
-`,K=a.span`
+`,D=a.span`
   font-size: 1rem;
   color: #374151;
   font-family: 'Inter', sans-serif;
-`,D=a.div`
+`,K=a.div`
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
@@ -211,7 +211,7 @@ const k=a.div`
   @media (max-width: 480px) {
     gap: 0.5rem;
   }
-`,L=a(w.label)`
+`,E=a(w.label)`
   position: relative;
   width: 60px;
   height: 60px;
@@ -242,7 +242,7 @@ const k=a.div`
     opacity: ${e=>e.$showStar?1:0};
     transition: opacity 0.3s ease;
   }
-`,q=a(w.input)`
+`,L=a(w.input)`
   width: 100%;
   padding: 1rem 1.25rem;
   background: #f9fafb;
@@ -262,7 +262,7 @@ const k=a.div`
   &::placeholder {
     color: #9ca3af;
   }
-`,E=a(w.textarea)`
+`,q=a(w.textarea)`
   width: 100%;
   padding: 1rem 1.25rem;
   background: #f9fafb;
@@ -286,7 +286,7 @@ const k=a.div`
   }
 `,Y=a(w.div)`
   margin-top: 1rem;
-`,J=a(w.button)`
+`,X=a(w.button)`
   width: 100%;
   padding: 1.25rem 2rem;
   margin-top: 3rem;
@@ -316,7 +316,7 @@ const k=a.div`
     background: linear-gradient(135deg, #90b3a7 0%, #a8c5b8 100%);
     transform: none !important;
   }
-`,X=a(w.div)`
+`,Z=a(w.div)`
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border-radius: 32px;
@@ -328,7 +328,7 @@ const k=a.div`
   @media (max-width: 768px) {
     padding: 3rem 1.5rem;
   }
-`,Z=a(w.div)`
+`,_=a(w.div)`
   width: 120px;
   height: 120px;
   background: linear-gradient(135deg, #90b3a7 0%, #a8c5b8 100%);
@@ -343,13 +343,13 @@ const k=a.div`
     font-size: 3.5rem;
     color: white;
   }
-`,_=a.h2`
+`,G=a.h2`
   font-size: 2rem;
   font-weight: 700;
   color: #1F2937;
   margin-bottom: 1rem;
   font-family: 'Playfair Display', serif;
-`,G=a.p`
+`,J=a.p`
   font-size: 1.125rem;
   color: #6B7280;
   line-height: 1.6;
@@ -365,10 +365,10 @@ const k=a.div`
   z-index: -1;
   pointer-events: none;
 `,Q=()=>{const[a,Q]=e.useState({services:[],source:"",otherSource:"",serviceRating:"",resultRating:"",masterName:"",improvements:"",wantsOffers:null,phoneNumber:""}),[U,V]=e.useState(0),[W,ee]=e.useState(0),[ie,ae]=e.useState(""),te=[{id:"manicure",label:"Маникюр / педикюр",icon:i.jsx(l,{})},{id:"facial",label:"Уход за лицом",icon:i.jsx(d,{})},{id:"brows",label:"Брови / ресницы",icon:i.jsx(c,{})},{id:"hair",label:"Стрижка / укладка",icon:i.jsx(p,{})},{id:"massage",label:"Массаж",icon:i.jsx(h,{})},{id:"other",label:"Другое",icon:i.jsx(m,{})}],re=[{id:"instagram",label:"Instagram",icon:i.jsx(x,{})},{id:"recommendation",label:"По рекомендации",icon:i.jsx(g,{})},{id:"resident",label:"Проживаю в KAIF",icon:i.jsx(f,{})},{id:"passing",label:"Проходил(а) мимо",icon:i.jsx(b,{})},{id:"other",label:"Другое",icon:i.jsx(y,{})}]
-return U?i.jsxs(k,{children:[i.jsx(u,{}),i.jsx(S,{children:i.jsxs(X,{initial:{opacity:0,scale:.9},animate:{opacity:1,scale:1},transition:{duration:.5,type:"spring"},children:[i.jsx(Z,{initial:{scale:0},animate:{scale:1},transition:{delay:.2,type:"spring",stiffness:200},children:i.jsx(t,{})}),i.jsxs(w.div,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.4},children:[i.jsx(_,{children:"Спасибо за ваш отзыв!"}),i.jsx(G,{children:"Мы очень ценим ваше мнение и постараемся стать еще лучше для вас. Ваши предложения помогают нам совершенствовать наш сервис."})]})]})})]}):i.jsxs(k,{children:[i.jsx(j,{titleKey:"page_titles.survey",description:"Анкета клиента бьюти-салона KAIF Beauty",keywords:"KAIF survey, feedback, customer satisfaction"}),i.jsx(u,{}),i.jsx(M,{$size:"300px",$color1:"#90B3A7",$color2:"#A8C5B8",style:{top:"-150px",right:"-100px"},animate:{rotate:360},transition:{duration:50,repeat:1/0,ease:"linear"}}),i.jsx(M,{$size:"250px",$color1:"#D4A574",$color2:"#E8B796",style:{bottom:"-100px",left:"-120px"},animate:{rotate:-360},transition:{duration:40,repeat:1/0,ease:"linear"}}),i.jsxs(S,{children:[i.jsxs($,{initial:{opacity:0,y:-20},animate:{opacity:1,y:0},transition:{duration:.6},children:[i.jsx(z,{children:i.jsx(r,{})}),i.jsx(R,{children:"Анкета клиента"}),i.jsx(C,{children:"KAIF Beauty — ваше мнение важно для нас"})]}),i.jsx(T,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.6,delay:.2},children:i.jsxs(A,{onSubmit:async e=>{e.preventDefault(),ee(1),ae("")
+return U?i.jsxs(k,{children:[i.jsx(u,{}),i.jsx(S,{children:i.jsxs(Z,{initial:{opacity:0,scale:.9},animate:{opacity:1,scale:1},transition:{duration:.5,type:"spring"},children:[i.jsx(_,{initial:{scale:0},animate:{scale:1},transition:{delay:.2,type:"spring",stiffness:200},children:i.jsx(t,{})}),i.jsxs(w.div,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.4},children:[i.jsx(G,{children:"Спасибо за ваш отзыв!"}),i.jsx(J,{children:"Мы очень ценим ваше мнение и постараемся стать еще лучше для вас. Ваши предложения помогают нам совершенствовать наш сервис."})]})]})})]}):i.jsxs(k,{children:[i.jsx(j,{titleKey:"page_titles.survey",description:"Анкета клиента бьюти-салона KAIF Beauty",keywords:"KAIF survey, feedback, customer satisfaction"}),i.jsx(u,{}),i.jsx(M,{$size:"300px",$color1:"#90B3A7",$color2:"#A8C5B8",style:{top:"-150px",right:"-100px"},animate:{rotate:360},transition:{duration:50,repeat:1/0,ease:"linear"}}),i.jsx(M,{$size:"250px",$color1:"#D4A574",$color2:"#E8B796",style:{bottom:"-100px",left:"-120px"},animate:{rotate:-360},transition:{duration:40,repeat:1/0,ease:"linear"}}),i.jsxs(S,{children:[i.jsxs($,{initial:{opacity:0,y:-20},animate:{opacity:1,y:0},transition:{duration:.6},children:[i.jsx(z,{children:i.jsx(r,{})}),i.jsx(R,{children:"Анкета клиента"}),i.jsx(C,{children:"KAIF Beauty — ваше мнение важно для нас"})]}),i.jsx(T,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.6,delay:.2},children:i.jsxs(A,{onSubmit:async e=>{e.preventDefault(),ee(1),ae("")
 try{const e="https://script.google.com/macros/s/AKfycbxmqEA8Vojx-Lsr8wNTtuoFbCXTkqLS40RkXgZOtTq_kEiDze7SvkQTd6vBDZGiBKbL/exec",i=new URLSearchParams
 i.append("services",JSON.stringify(a.services)),i.append("source",a.source||""),i.append("otherSource",a.otherSource||""),i.append("serviceRating",a.serviceRating||""),i.append("resultRating",a.resultRating||""),i.append("masterName",a.masterName||""),i.append("improvements",a.improvements||""),i.append("wantsOffers",String(a.wantsOffers)),i.append("phoneNumber",a.phoneNumber||"")
 const t=new Image
-t.style.display="none",t.onload=()=>{document.body.removeChild(t)},t.onerror=()=>{document.body.removeChild(t)},t.src=`${e}?${i.toString()}`,document.body.appendChild(t),await new Promise(e=>setTimeout(e,2e3)),V(1)}catch(i){ae("Произошла ошибка при отправке анкеты. Попробуйте еще раз.")}finally{ee(0)}},children:[i.jsxs(I,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.3,type:"spring",stiffness:100},children:[i.jsxs(B,{children:[i.jsx(N,{children:"1"}),i.jsx(F,{children:"Какую услугу вы получили сегодня?"})]}),i.jsx(O,{children:te.map((e,t)=>i.jsxs(H,{whileHover:{scale:1.02},whileTap:{scale:.98},initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.4+.05*t},children:[i.jsx(P,{type:"checkbox",checked:a.services.includes(e.id),onChange:()=>{return i=e.id,void Q(e=>({...e,services:e.services.includes(i)?e.services.filter(e=>e!==i):[...e.services,i]}))
-var i}}),i.jsx("span",{style:{marginRight:"0.75rem",fontSize:"1.25rem",color:"#90b3a7"},children:e.icon}),i.jsx(K,{children:e.label})]},e.id))})]}),i.jsxs(I,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.4,type:"spring",stiffness:100},children:[i.jsxs(B,{children:[i.jsx(N,{children:"2"}),i.jsx(F,{children:"Как вы узнали о нашем салоне?"})]}),i.jsx(O,{children:re.map((e,t)=>i.jsxs(H,{whileHover:{scale:1.02},whileTap:{scale:.98},initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.5+.05*t},children:[i.jsx(P,{type:"radio",name:"source",checked:a.source===e.id,onChange:()=>Q(i=>({...i,source:e.id}))}),i.jsx("span",{style:{marginRight:"0.75rem",fontSize:"1.25rem",color:"#90b3a7"},children:e.icon}),i.jsx(K,{children:e.label})]},e.id))}),i.jsx(v,{children:"other"===a.source&&i.jsx(w.div,{initial:{opacity:0,height:0},animate:{opacity:1,height:"auto"},exit:{opacity:0,height:0},transition:{duration:.3},style:{marginTop:"1rem"},children:i.jsx(q,{type:"text",placeholder:"Укажите, пожалуйста...",value:a.otherSource,onChange:e=>Q(i=>({...i,otherSource:e.target.value}))})})})]}),i.jsxs(I,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.5,type:"spring",stiffness:100},children:[i.jsxs(B,{children:[i.jsx(N,{children:"3"}),i.jsx(F,{children:"Насколько вы довольны обслуживанием?"})]}),i.jsx(D,{children:[1,2,3,4,5].map(e=>i.jsxs(L,{$isSelected:a.serviceRating===String(e),$showStar:e>=4,whileHover:{scale:1.1},whileTap:{scale:.95},children:[i.jsx(P,{type:"radio",name:"serviceRating",value:e,checked:a.serviceRating===String(e),onChange:e=>Q(i=>({...i,serviceRating:e.target.value}))}),e,i.jsx(n,{})]},e))})]}),i.jsxs(I,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.6,type:"spring",stiffness:100},children:[i.jsxs(B,{children:[i.jsx(N,{children:"4"}),i.jsx(F,{children:"Насколько вам понравился результат процедуры?"})]}),i.jsx(D,{children:[1,2,3,4,5].map(e=>i.jsxs(L,{$isSelected:a.resultRating===String(e),$showStar:e>=4,whileHover:{scale:1.1},whileTap:{scale:.95},children:[i.jsx(P,{type:"radio",name:"resultRating",value:e,checked:a.resultRating===String(e),onChange:e=>Q(i=>({...i,resultRating:e.target.value}))}),e,i.jsx(n,{})]},e))})]}),i.jsxs(I,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.7,type:"spring",stiffness:100},children:[i.jsxs(B,{children:[i.jsx(N,{children:"5"}),i.jsx(F,{children:"Ваш мастер (если помните имя):"})]}),i.jsx(q,{type:"text",placeholder:"Имя мастера...",value:a.masterName,onChange:e=>Q(i=>({...i,masterName:e.target.value})),whileFocus:{scale:1.01}})]}),i.jsxs(I,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.8,type:"spring",stiffness:100},children:[i.jsxs(B,{children:[i.jsx(N,{children:"6"}),i.jsx(F,{children:"Что можно улучшить?"})]}),i.jsx(E,{placeholder:"Ваши предложения и пожелания...",value:a.improvements,onChange:e=>Q(i=>({...i,improvements:e.target.value})),whileFocus:{scale:1.01}})]}),i.jsxs(I,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.9,type:"spring",stiffness:100},children:[i.jsxs(B,{children:[i.jsx(N,{children:"7"}),i.jsx(F,{children:"Хотите получать персональные предложения и акции?"})]}),i.jsxs(O,{children:[i.jsxs(H,{whileHover:{scale:1.02},whileTap:{scale:.98},children:[i.jsx(P,{type:"radio",name:"wantsOffers",checked:1==a.wantsOffers,onChange:()=>Q(e=>({...e,wantsOffers:1}))}),i.jsx("span",{style:{marginRight:"0.75rem",fontSize:"1.25rem",color:"#90b3a7"},children:i.jsx(s,{})}),i.jsx(K,{children:"Да, хочу получать"})]}),i.jsxs(H,{whileHover:{scale:1.02},whileTap:{scale:.98},children:[i.jsx(P,{type:"radio",name:"wantsOffers",checked:0==a.wantsOffers,onChange:()=>Q(e=>({...e,wantsOffers:0,phoneNumber:""}))}),i.jsx("span",{style:{marginRight:"0.75rem",fontSize:"1.25rem",color:"#90b3a7"},children:i.jsx(o,{})}),i.jsx(K,{children:"Нет, спасибо"})]})]}),i.jsx(v,{children:1==a.wantsOffers&&i.jsx(Y,{initial:{opacity:0,height:0},animate:{opacity:1,height:"auto"},exit:{opacity:0,height:0},transition:{duration:.3},children:i.jsx(q,{type:"tel",placeholder:"Ваш номер телефона...",value:a.phoneNumber,onChange:e=>Q(i=>({...i,phoneNumber:e.target.value})),whileFocus:{scale:1.01}})})})]}),ie&&i.jsx(w.div,{initial:{opacity:0,y:10},animate:{opacity:1,y:0},style:{background:"#fee",border:"1px solid #fcc",borderRadius:"8px",padding:"1rem",color:"#c33",textAlign:"center",marginTop:"2rem"},children:ie}),i.jsx(J,{type:"submit",disabled:W,whileHover:{scale:W?1:1.02},whileTap:{scale:W?1:.98},initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:1},children:W?"Отправка...":"Отправить анкету"})]})})]})]})}
+t.style.display="none",t.onload=()=>{document.body.removeChild(t)},t.onerror=()=>{document.body.removeChild(t)},t.src=`${e}?${i.toString()}`,document.body.appendChild(t),await new Promise(e=>setTimeout(e,2e3)),V(1)}catch(i){ae("Произошла ошибка при отправке анкеты. Попробуйте еще раз.")}finally{ee(0)}},children:[i.jsxs(N,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.3,type:"spring",stiffness:100},children:[i.jsxs(F,{children:[i.jsx(B,{children:"1"}),i.jsx(I,{children:"Какую услугу вы получили сегодня?"})]}),i.jsx(O,{children:te.map((e,t)=>i.jsxs(H,{whileHover:{scale:1.02},whileTap:{scale:.98},initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.4+.05*t},children:[i.jsx(P,{type:"checkbox",checked:a.services.includes(e.id),onChange:()=>{return i=e.id,void Q(e=>({...e,services:e.services.includes(i)?e.services.filter(e=>e!==i):[...e.services,i]}))
+var i}}),i.jsx("span",{style:{marginRight:"0.75rem",fontSize:"1.25rem",color:"#90b3a7"},children:e.icon}),i.jsx(D,{children:e.label})]},e.id))})]}),i.jsxs(N,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.4,type:"spring",stiffness:100},children:[i.jsxs(F,{children:[i.jsx(B,{children:"2"}),i.jsx(I,{children:"Как вы узнали о нашем салоне?"})]}),i.jsx(O,{children:re.map((e,t)=>i.jsxs(H,{whileHover:{scale:1.02},whileTap:{scale:.98},initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.5+.05*t},children:[i.jsx(P,{type:"radio",name:"source",checked:a.source===e.id,onChange:()=>Q(i=>({...i,source:e.id}))}),i.jsx("span",{style:{marginRight:"0.75rem",fontSize:"1.25rem",color:"#90b3a7"},children:e.icon}),i.jsx(D,{children:e.label})]},e.id))}),i.jsx(v,{children:"other"===a.source&&i.jsx(w.div,{initial:{opacity:0,height:0},animate:{opacity:1,height:"auto"},exit:{opacity:0,height:0},transition:{duration:.3},style:{marginTop:"1rem"},children:i.jsx(L,{type:"text",placeholder:"Укажите, пожалуйста...",value:a.otherSource,onChange:e=>Q(i=>({...i,otherSource:e.target.value}))})})})]}),i.jsxs(N,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.5,type:"spring",stiffness:100},children:[i.jsxs(F,{children:[i.jsx(B,{children:"3"}),i.jsx(I,{children:"Насколько вы довольны обслуживанием?"})]}),i.jsx(K,{children:[1,2,3,4,5].map(e=>i.jsxs(E,{$isSelected:a.serviceRating===String(e),$showStar:e>=4,whileHover:{scale:1.1},whileTap:{scale:.95},children:[i.jsx(P,{type:"radio",name:"serviceRating",value:e,checked:a.serviceRating===String(e),onChange:e=>Q(i=>({...i,serviceRating:e.target.value}))}),e,i.jsx(n,{})]},e))})]}),i.jsxs(N,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.6,type:"spring",stiffness:100},children:[i.jsxs(F,{children:[i.jsx(B,{children:"4"}),i.jsx(I,{children:"Насколько вам понравился результат процедуры?"})]}),i.jsx(K,{children:[1,2,3,4,5].map(e=>i.jsxs(E,{$isSelected:a.resultRating===String(e),$showStar:e>=4,whileHover:{scale:1.1},whileTap:{scale:.95},children:[i.jsx(P,{type:"radio",name:"resultRating",value:e,checked:a.resultRating===String(e),onChange:e=>Q(i=>({...i,resultRating:e.target.value}))}),e,i.jsx(n,{})]},e))})]}),i.jsxs(N,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.7,type:"spring",stiffness:100},children:[i.jsxs(F,{children:[i.jsx(B,{children:"5"}),i.jsx(I,{children:"Ваш мастер (если помните имя):"})]}),i.jsx(L,{type:"text",placeholder:"Имя мастера...",value:a.masterName,onChange:e=>Q(i=>({...i,masterName:e.target.value})),whileFocus:{scale:1.01}})]}),i.jsxs(N,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.8,type:"spring",stiffness:100},children:[i.jsxs(F,{children:[i.jsx(B,{children:"6"}),i.jsx(I,{children:"Что можно улучшить?"})]}),i.jsx(q,{placeholder:"Ваши предложения и пожелания...",value:a.improvements,onChange:e=>Q(i=>({...i,improvements:e.target.value})),whileFocus:{scale:1.01}})]}),i.jsxs(N,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.9,type:"spring",stiffness:100},children:[i.jsxs(F,{children:[i.jsx(B,{children:"7"}),i.jsx(I,{children:"Хотите получать персональные предложения и акции?"})]}),i.jsxs(O,{children:[i.jsxs(H,{whileHover:{scale:1.02},whileTap:{scale:.98},children:[i.jsx(P,{type:"radio",name:"wantsOffers",checked:1==a.wantsOffers,onChange:()=>Q(e=>({...e,wantsOffers:1}))}),i.jsx("span",{style:{marginRight:"0.75rem",fontSize:"1.25rem",color:"#90b3a7"},children:i.jsx(s,{})}),i.jsx(D,{children:"Да, хочу получать"})]}),i.jsxs(H,{whileHover:{scale:1.02},whileTap:{scale:.98},children:[i.jsx(P,{type:"radio",name:"wantsOffers",checked:0==a.wantsOffers,onChange:()=>Q(e=>({...e,wantsOffers:0,phoneNumber:""}))}),i.jsx("span",{style:{marginRight:"0.75rem",fontSize:"1.25rem",color:"#90b3a7"},children:i.jsx(o,{})}),i.jsx(D,{children:"Нет, спасибо"})]})]}),i.jsx(v,{children:1==a.wantsOffers&&i.jsx(Y,{initial:{opacity:0,height:0},animate:{opacity:1,height:"auto"},exit:{opacity:0,height:0},transition:{duration:.3},children:i.jsx(L,{type:"tel",placeholder:"Ваш номер телефона...",value:a.phoneNumber,onChange:e=>Q(i=>({...i,phoneNumber:e.target.value})),whileFocus:{scale:1.01}})})})]}),ie&&i.jsx(w.div,{initial:{opacity:0,y:10},animate:{opacity:1,y:0},style:{background:"#fee",border:"1px solid #fcc",borderRadius:"8px",padding:"1rem",color:"#c33",textAlign:"center",marginTop:"2rem"},children:ie}),i.jsx(X,{type:"submit",disabled:W,whileHover:{scale:W?1:1.02},whileTap:{scale:W?1:.98},initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:1},children:W?"Отправка...":"Отправить анкету"})]})})]})]})}
 export{Q as default}

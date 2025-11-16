@@ -161,7 +161,7 @@ null==(e=document.getElementById("menu-section"))||e.scrollIntoView({behavior:"s
     z-index: 2;
     pointer-events: none;
   }
-`,I=i.div`
+`,N=i.div`
   position: relative;
   z-index: 3;
   width: 100%;
@@ -176,7 +176,7 @@ null==(e=document.getElementById("menu-section"))||e.scrollIntoView({behavior:"s
   @media (min-width: 1280px) {
     padding: 0 3rem;
   }
-`,N=i.div`
+`,I=i.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -276,7 +276,7 @@ null==(e=document.getElementById("menu-section"))||e.scrollIntoView({behavior:"s
     left: 10%;
   }
 `,M=e.memo(({menuSectionRef:e})=>{const{t:a}=s()
-return t.jsxs(S,{children:[t.jsx(H,{children:t.jsxs("picture",{children:[t.jsx("source",{srcSet:"/images-optimized/restaurant/booking.jpg",type:"image/jpeg"}),t.jsx("img",{src:"/images-optimized/restaurant/booking.jpg",alt:a("restaurant.hero.image_alt","Restaurant interior"),loading:"eager",style:{width:"100%",height:"100%",objectFit:"cover"}})]})}),t.jsxs(I,{children:[t.jsx(R,{className:"top-right",initial:{opacity:0,scale:.8},animate:{opacity:1,scale:1},transition:{duration:.6,delay:.4}}),t.jsx(R,{className:"bottom-left",initial:{opacity:0,scale:.8},animate:{opacity:1,scale:1},transition:{duration:.6,delay:.4}}),t.jsx(N,{children:t.jsxs(C,{children:[t.jsx(T,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6},children:a("restaurant.hero.label","Наш ресторан")}),t.jsx(D,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6,delay:.2},children:a("restaurant.hero.title","Изысканная кухня с современным подходом")}),t.jsx(W,{initial:{opacity:0,scaleX:0},animate:{opacity:1,scaleX:1},transition:{duration:.6,delay:.4}}),t.jsx(E,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6,delay:.6},children:a("restaurant.hero.subtitle","Наши шеф-повара создают уникальные блюда, сочетая традиционные рецепты с новыми кулинарными техниками.")}),t.jsxs(F,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6,delay:.8},children:[t.jsxs(z,{onClick:()=>{var t
+return t.jsxs(S,{children:[t.jsx(H,{children:t.jsxs("picture",{children:[t.jsx("source",{srcSet:"/images-optimized/restaurant/booking.jpg",type:"image/jpeg"}),t.jsx("img",{src:"/images-optimized/restaurant/booking.jpg",alt:a("restaurant.hero.image_alt","Restaurant interior"),loading:"eager",style:{width:"100%",height:"100%",objectFit:"cover"}})]})}),t.jsxs(N,{children:[t.jsx(R,{className:"top-right",initial:{opacity:0,scale:.8},animate:{opacity:1,scale:1},transition:{duration:.6,delay:.4}}),t.jsx(R,{className:"bottom-left",initial:{opacity:0,scale:.8},animate:{opacity:1,scale:1},transition:{duration:.6,delay:.4}}),t.jsx(I,{children:t.jsxs(C,{children:[t.jsx(T,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6},children:a("restaurant.hero.label","Наш ресторан")}),t.jsx(D,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6,delay:.2},children:a("restaurant.hero.title","Изысканная кухня с современным подходом")}),t.jsx(W,{initial:{opacity:0,scaleX:0},animate:{opacity:1,scaleX:1},transition:{duration:.6,delay:.4}}),t.jsx(E,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6,delay:.6},children:a("restaurant.hero.subtitle","Наши шеф-повара создают уникальные блюда, сочетая традиционные рецепты с новыми кулинарными техниками.")}),t.jsxs(F,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6,delay:.8},children:[t.jsxs(z,{onClick:()=>{var t
 return null==(t=e.current)?void 0:t.scrollIntoView({behavior:"smooth"})},whileHover:{scale:1.01},whileTap:{scale:.98},initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.5,delay:.9},children:[a("restaurant.hero.button","Наше меню"),t.jsx(p,{})]}),t.jsx(A,{onClick:()=>{const e=a("common.whatsapp_messages.book_table","Здравствуйте! Хочу забронировать столик в ресторане KAIF")
 window.open(`https://wa.me/66624805877?text=${encodeURIComponent(e)}`,"_blank")},whileHover:{scale:1.01},whileTap:{scale:.98},initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.5,delay:1},children:a("common.book","Забронировать")})]})]})})]})]})})
 M.displayName="HeroSection"

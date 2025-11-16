@@ -1,7 +1,6 @@
 const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/js/PromotionsSlider-8lMGzsxm.js","assets/js/react-core-CV8k_GRh.js","assets/js/lucide-Ch0YV0fj.js","assets/js/ExclusiveZones-CgY8S_v8.js","assets/js/styled-components-CMIfAvVS.js","assets/js/vendor-misc-Bm4JrmXh.js","assets/js/i18n-core-CSZVPE1N.js","assets/js/heroicons-B0mUXsxG.js","assets/js/framer-motion-h7lgP0Yp.js","assets/js/PricingSection-BGHycazb.js","assets/js/react-icons-DCZb7Iim.js","assets/js/AdvantagesSection-XqTi9r6s.js","assets/js/GallerySection-BYZHscnm.js","assets/js/FAQSection-DLF_6SCj.js"])))=>i.map(i=>d[i]);
-import{_ as e}from"./main-C1zLyBkI.js"
-import{r as t,j as i}from"./react-core-CV8k_GRh.js"
-import{u as a}from"./App-F156KX6S.js"
+import{u as e,_ as t}from"./main-CL3FGD6u.js"
+import{r as i,j as a}from"./react-core-CV8k_GRh.js"
 import{d as o}from"./styled-components-CMIfAvVS.js"
 import{P as r}from"./PageHead-C4ywpL0o.js"
 import{u as n}from"./i18n-core-CSZVPE1N.js"
@@ -10,6 +9,7 @@ import{ab as d}from"./vendor-misc-Bm4JrmXh.js"
 import"./react-dom-client-fHgFUAUX.js"
 import"./react-dom-C7S9v3DL.js"
 import"./vendor-scheduler-DKYT7Wy5.js"
+import"./i18n-detector-DpBHbpfO.js"
 import"./react-helmet-C_ZFuiA7.js"
 const p=[{webp:"/images-optimized/spa.jpg",fallback:"/images-optimized/spa.jpg"},{webp:"/images-webp/hero/hero-pool.webp",fallback:"/images-optimized/hero/hero-pool.jpg"},{webp:"/images-webp/hero/hero-restaurant.webp",fallback:"/images-optimized/hero/hero-restaurant.jpg"},{webp:"/images-webp/hero/hero-fitness.webp",fallback:"/images-optimized/hero/hero-fitness.jpg"}],m=o.section`
   position: relative;
@@ -327,13 +327,13 @@ const p=[{webp:"/images-optimized/spa.jpg",fallback:"/images-optimized/spa.jpg"}
     bottom: 2.5rem;
     margin-bottom: 6rem;
   }
-`,w={logo:{initial:{scale:.95,opacity:0},animate:{scale:1,opacity:1,transition:{duration:.8,ease:"easeOut",delay:.2}}},buttons:{initial:{opacity:0,y:15},animate:{opacity:1,y:0,transition:{duration:.5,ease:"easeOut",delay:.6}}}},j=t.memo(()=>{const{t:e}=n(),[a,o]=t.useState(0)
-return t.useEffect(()=>{const e=setInterval(()=>{o(e=>(e+1)%p.length)},6e3)
-return()=>clearInterval(e)},[]),i.jsxs(m,{children:[i.jsx(l,{children:p.map((e,t)=>i.jsx(c,{$active:t===a,children:i.jsxs("picture",{children:[i.jsx("source",{srcSet:e.webp,type:"image/webp"}),i.jsx("img",{src:e.fallback,alt:`KAIF - Слайд ${t+1}`,width:"1920",height:"1080",loading:0===t?"eager":"lazy",decoding:"async",fetchpriority:0===t?"high":"low",onError:e=>{const i=["https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75","https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75","https://images.unsplash.com/photo-1519823551278-64ac92734fb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75","https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75"]
-e.target.src=i[t%i.length]}})]})},`slide-${t}`))}),i.jsx(h,{children:i.jsxs(x,{children:[i.jsxs("picture",{style:{display:"block"},children:[i.jsx("source",{srcSet:"/assets/images/logo-homepage-Bvg3zKLL.webp",type:"image/webp"}),i.jsx(g,{src:"/assets/images/logo-homepage-H1DZjSiR.png",alt:"KAIF",width:"520",height:"auto",initial:w.logo.initial,animate:w.logo.animate,whileHover:{scale:1.02,transition:{duration:.2,ease:"easeOut"}}})]}),i.jsxs(f,{as:s.div,initial:w.buttons.initial,animate:w.buttons.animate,children:[i.jsx(s.div,{whileHover:{scale:1.02,transition:{duration:.15,ease:"easeOut"}},whileTap:{scale:.98},children:i.jsx(b,{href:"https://wa.me/66624805877?text=Здравствуйте! Хочу записаться в KAIF",target:"_blank",rel:"noopener noreferrer",children:e("common.book")})}),i.jsx(s.div,{onClick:()=>{const e=document.querySelector("#exclusive-zones")
-e&&e.scrollIntoView({behavior:"smooth",block:"start"})},whileHover:{scale:1.01,transition:{duration:.15,ease:"easeOut"}},whileTap:{scale:.99},children:i.jsx(u,{children:e("common.learn_more")})})]})]})})]})})
+`,w={logo:{initial:{scale:.95,opacity:0},animate:{scale:1,opacity:1,transition:{duration:.8,ease:"easeOut",delay:.2}}},buttons:{initial:{opacity:0,y:15},animate:{opacity:1,y:0,transition:{duration:.5,ease:"easeOut",delay:.6}}}},j=i.memo(()=>{const{t:e}=n(),[t,o]=i.useState(0)
+return i.useEffect(()=>{const e=setInterval(()=>{o(e=>(e+1)%p.length)},6e3)
+return()=>clearInterval(e)},[]),a.jsxs(m,{children:[a.jsx(l,{children:p.map((e,i)=>a.jsx(c,{$active:i===t,children:a.jsxs("picture",{children:[a.jsx("source",{srcSet:e.webp,type:"image/webp"}),a.jsx("img",{src:e.fallback,alt:`KAIF - Слайд ${i+1}`,width:"1920",height:"1080",loading:0===i?"eager":"lazy",decoding:"async",fetchpriority:0===i?"high":"low",onError:e=>{const t=["https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75","https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75","https://images.unsplash.com/photo-1519823551278-64ac92734fb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75","https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75"]
+e.target.src=t[i%t.length]}})]})},`slide-${i}`))}),a.jsx(h,{children:a.jsxs(x,{children:[a.jsxs("picture",{style:{display:"block"},children:[a.jsx("source",{srcSet:"/assets/images/logo-homepage-Bvg3zKLL.webp",type:"image/webp"}),a.jsx(g,{src:"/assets/images/logo-homepage-H1DZjSiR.png",alt:"KAIF",width:"520",height:"auto",initial:w.logo.initial,animate:w.logo.animate,whileHover:{scale:1.02,transition:{duration:.2,ease:"easeOut"}}})]}),a.jsxs(f,{as:s.div,initial:w.buttons.initial,animate:w.buttons.animate,children:[a.jsx(s.div,{whileHover:{scale:1.02,transition:{duration:.15,ease:"easeOut"}},whileTap:{scale:.98},children:a.jsx(b,{href:"https://wa.me/66624805877?text=Здравствуйте! Хочу записаться в KAIF",target:"_blank",rel:"noopener noreferrer",children:e("common.book")})}),a.jsx(s.div,{onClick:()=>{const e=document.querySelector("#exclusive-zones")
+e&&e.scrollIntoView({behavior:"smooth",block:"start"})},whileHover:{scale:1.01,transition:{duration:.15,ease:"easeOut"}},whileTap:{scale:.99},children:a.jsx(u,{children:e("common.learn_more")})})]})]})})]})})
 j.displayName="HeroFullscreen"
-const v=t.lazy(()=>e(()=>import("./PromotionsSlider-8lMGzsxm.js"),__vite__mapDeps([0,1,2]))),y=t.lazy(()=>e(()=>import("./ExclusiveZones-CgY8S_v8.js"),__vite__mapDeps([3,1,4,5,6,7,8]))),k=t.lazy(()=>e(()=>import("./PricingSection-BGHycazb.js"),__vite__mapDeps([9,1,4,5,10,6,8]))),_=t.lazy(()=>e(()=>import("./AdvantagesSection-XqTi9r6s.js"),__vite__mapDeps([11,1,4,5,6,8])).then(e=>({default:t.memo(e.default)}))),z=t.lazy(()=>e(()=>import("./GallerySection-BYZHscnm.js"),__vite__mapDeps([12,1,4,5,6,8,7])).then(e=>({default:t.memo(e.GallerySection)}))),P=t.lazy(()=>e(()=>import("./FAQSection-DLF_6SCj.js"),__vite__mapDeps([13,1,4,5,6,7,8])).then(e=>({default:t.memo(e.default)}))),E=o.div`
+const v=i.lazy(()=>t(()=>import("./PromotionsSlider-8lMGzsxm.js"),__vite__mapDeps([0,1,2]))),y=i.lazy(()=>t(()=>import("./ExclusiveZones-CgY8S_v8.js"),__vite__mapDeps([3,1,4,5,6,7,8]))),k=i.lazy(()=>t(()=>import("./PricingSection-BGHycazb.js"),__vite__mapDeps([9,1,4,5,10,6,8]))),_=i.lazy(()=>t(()=>import("./AdvantagesSection-XqTi9r6s.js"),__vite__mapDeps([11,1,4,5,6,8])).then(e=>({default:i.memo(e.default)}))),z=i.lazy(()=>t(()=>import("./GallerySection-BYZHscnm.js"),__vite__mapDeps([12,1,4,5,6,8,7])).then(e=>({default:i.memo(e.GallerySection)}))),P=i.lazy(()=>t(()=>import("./FAQSection-DLF_6SCj.js"),__vite__mapDeps([13,1,4,5,6,7,8])).then(e=>({default:i.memo(e.default)}))),S=o.div`
   height: 120px;
   display: flex;
   align-items: center;
@@ -354,12 +354,12 @@ const v=t.lazy(()=>e(()=>import("./PromotionsSlider-8lMGzsxm.js"),__vite__mapDep
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
-`,S=o.div`
+`,A=o.div`
   display: flex;
   justify-content: center;
   padding: 20px;
   background: rgba(144, 179, 167, 0.02);
-`,A=o(d)`
+`,E=o(d)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -418,7 +418,7 @@ const v=t.lazy(()=>e(()=>import("./PromotionsSlider-8lMGzsxm.js"),__vite__mapDep
       height: 14px;
     }
   }
-`,I=t.memo(()=>{const{t:e}=n(),{showLoading:o}=a(),s=t.useRef(0)
-return t.useEffect(()=>{s.current||(s.current=1)},[]),i.jsxs("main",{children:[i.jsx(r,{titleKey:"page_titles.home",description:e("home.hero.subtitle","Unique relaxation and wellness experience in Phuket"),keywords:"KAIF, spa, wellness, Phuket, gym, restaurant, banya, massage",ogImage:"/images/logos/logo-og.png"}),i.jsx(j,{}),i.jsx(t.Suspense,{fallback:i.jsx(E,{}),children:i.jsx(v,{})}),i.jsx(t.Suspense,{fallback:i.jsx(E,{}),children:i.jsx(y,{})}),i.jsx(t.Suspense,{fallback:i.jsx(E,{}),children:i.jsx(k,{})}),i.jsx(t.Suspense,{fallback:i.jsx(E,{}),children:i.jsx(_,{})}),i.jsx(t.Suspense,{fallback:i.jsx(E,{}),children:i.jsx(z,{})}),i.jsx(t.Suspense,{fallback:i.jsx(E,{}),children:i.jsx(P,{})}),i.jsx(S,{children:i.jsxs(A,{to:"/contacts",children:[e("common.contact_us"),i.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor",children:i.jsx("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M17 8l4 4m0 0l-4 4m4-4H3"})})]})})]})})
+`,I=i.memo(()=>{const{t}=n(),{showLoading:o}=e(),s=i.useRef(0)
+return i.useEffect(()=>{s.current||(s.current=1)},[]),a.jsxs("main",{children:[a.jsx(r,{titleKey:"page_titles.home",description:t("home.hero.subtitle","Unique relaxation and wellness experience in Phuket"),keywords:"KAIF, spa, wellness, Phuket, gym, restaurant, banya, massage",ogImage:"/images/logos/logo-og.png"}),a.jsx(j,{}),a.jsx(i.Suspense,{fallback:a.jsx(S,{}),children:a.jsx(v,{})}),a.jsx(i.Suspense,{fallback:a.jsx(S,{}),children:a.jsx(y,{})}),a.jsx(i.Suspense,{fallback:a.jsx(S,{}),children:a.jsx(k,{})}),a.jsx(i.Suspense,{fallback:a.jsx(S,{}),children:a.jsx(_,{})}),a.jsx(i.Suspense,{fallback:a.jsx(S,{}),children:a.jsx(z,{})}),a.jsx(i.Suspense,{fallback:a.jsx(S,{}),children:a.jsx(P,{})}),a.jsx(A,{children:a.jsxs(E,{to:"/contacts",children:[t("common.contact_us"),a.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor",children:a.jsx("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M17 8l4 4m0 0l-4 4m4-4H3"})})]})})]})})
 I.displayName="HomePage"
 export{I as default}
