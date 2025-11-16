@@ -410,30 +410,15 @@ const HeroFullscreen = memo(() => {
   const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // ОПТИМИЗАЦИЯ: Определяем мобильное устройство
-  const [isMobile, setIsMobile] = useState(false);
-
+  // PERFORMANCE FIX: Simple slider without device detection (avoid TBT increase)
+  // Slider is lightweight and runs smoothly on all devices
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  // ОПТИМИЗАЦИЯ: Отключаем слайдер на мобильных для производительности
-  useEffect(() => {
-    if (isMobile) return; // Не запускаем слайдер на мобильных
-
     const interval = setInterval(() => {
-      requestAnimationFrame(() => {
-        setCurrentSlide(prev => (prev + 1) % slideImages.length);
-      });
+      setCurrentSlide(prev => (prev + 1) % slideImages.length);
     }, 6000);
 
     return () => clearInterval(interval);
-  }, [isMobile]);
+  }, []);
 
   // ИСПРАВЛЕН: Обработчик скролла без конфликтов
   const handleScrollToZones = () => {
@@ -450,26 +435,22 @@ const HeroFullscreen = memo(() => {
     <HeroContainer>
       {/* Слайдер изображений */}
       <SliderContainer>
-        {slideImages.map((image, index) => {
-          // ОПТИМИЗАЦИЯ: На мобильных рендерим только первое изображение
-          if (isMobile && index !== 0) return null;
-
-          return (
-            <Slide
-              key={`slide-${index}`}
-              $active={index === currentSlide}
-            >
-              <picture>
-                <source
-                  srcSet={image.webp}
-                  type="image/webp"
-                />
-                <img
-                  src={image.fallback}
-                  alt={`KAIF - Слайд ${index + 1}`}
-                  loading={index === 0 ? "eager" : "lazy"}
-                  decoding="async"
-                  fetchpriority={index === 0 ? "high" : "low"}
+        {slideImages.map((image, index) => (
+          <Slide
+            key={`slide-${index}`}
+            $active={index === currentSlide}
+          >
+            <picture>
+              <source
+                srcSet={image.webp}
+                type="image/webp"
+              />
+              <img
+                src={image.fallback}
+                alt={`KAIF - Слайд ${index + 1}`}
+                loading={index === 0 ? "eager" : "lazy"}
+                decoding="async"
+                fetchpriority={index === 0 ? "high" : "low"}
                 onError={(e) => {
                   const fallbackImages = [
                     "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
@@ -482,8 +463,7 @@ const HeroFullscreen = memo(() => {
               />
             </picture>
           </Slide>
-          );
-        })}
+        ))}
       </SliderContainer>
 
       {/* Основной контент */}
