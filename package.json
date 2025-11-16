@@ -10,8 +10,10 @@
     "preview": "vite preview",
     "optimize-images": "node optimize-images-sharp.js",
     "convert-webp": "node convert-to-webp.js",
-    "compress-webp": "node compress-webp-further.js",
-    "optimize-all": "npm run optimize-images && npm run convert-webp && npm run compress-webp"
+    "compress-webp": "node compress-webp-further.cjs",
+    "optimize-jpg": "node optimize-jpg-images.cjs",
+    "optimize-all": "npm run optimize-images && npm run convert-webp && npm run compress-webp && npm run optimize-jpg",
+    "build:prod": "npm run optimize-all && vite build"
   },
   "dependencies": {
     "@anthropic-ai/claude-code": "^1.0.43",
