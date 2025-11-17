@@ -1,16 +1,18 @@
 [build]
-  command = "npm install --ignore-platform-reqs && npm run build"
+  command = "npm install --legacy-peer-deps && npm run build"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "22"
   CI = "true"
-  NPM_FLAGS = "--prefer-offline --no-audit"
+  NPM_FLAGS = "--legacy-peer-deps --prefer-offline --no-audit"
   ROLLUP_DISABLE_NATIVE = "true"
   # Оптимизация для производительности
   GENERATE_SOURCEMAP = "false"
   INLINE_RUNTIME_CHUNK = "false"
   IMAGE_INLINE_SIZE_LIMIT = "2000"
+  NODE_OPTIONS = "--max-old-space-size=4096"
+  VITE_BUILD_SOURCEMAP = "false"
 
 # Устанавливаем правила перенаправления для SPA
 [[redirects]]
@@ -39,11 +41,13 @@
   for = "/*.js"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+    Content-Encoding = "gzip, br"
 
 [[headers]]
   for = "/*.css"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+    Content-Encoding = "gzip, br"
 
 # Кэширование шрифтов
 [[headers]]
@@ -83,15 +87,4 @@
   minify = true
 
 [build.processing.images]
-  compress = true
-
-# Плагины для дополнительной оптимизации
-[[plugins]]
-  package = "@netlify/plugin-lighthouse"
-  [plugins.inputs]
-    output_path = "reports/lighthouse.html"
-    fail_deploy_on_score_thresholds = false
-    thresholds.performance = 0.6
-    thresholds.accessibility = 0.9
-    thresholds.best-practices = 0.9
-    thresholds.seo = 0.9 
+  compress = false  # Отключаем, так как изображения уже оптимизированы 
