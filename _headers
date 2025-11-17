@@ -1,0 +1,38 @@
+# Netlify _headers file for additional performance optimizations
+
+/*
+  # Security headers
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Performance headers
+  Link: </assets/css/main*.css>; rel=preload; as=style
+  Link: </assets/js/main*.js>; rel=preload; as=script
+  Link: <https://fonts.googleapis.com>; rel=preconnect
+  Link: <https://fonts.gstatic.com>; rel=preconnect; crossorigin
+
+# Cache static assets for 1 year
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=604800
+
+/images-optimized/*
+  Cache-Control: public, max-age=604800
+
+/images-webp/*
+  Cache-Control: public, max-age=604800
+
+# Font caching
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.ttf
+  Cache-Control: public, max-age=31536000, immutable
+
+# Service Worker
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate

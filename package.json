@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:optimized": "vite build --config vite.config.optimized.js",
     "lint": "eslint .",
     "preview": "vite preview",
+    "preview:optimized": "vite preview --config vite.config.optimized.js",
     "optimize-images": "node optimize-images-sharp.js",
     "convert-webp": "node convert-to-webp.js",
     "compress-webp": "node compress-webp-further.cjs",

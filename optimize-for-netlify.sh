@@ -1,3 +1,10 @@
+#!/bin/bash
+
+# Script to optimize build for Netlify deployment
+echo "🚀 Optimizing for Netlify deployment..."
+
+# 1. Create optimized index.html with inline critical CSS
+cat > index.html << 'EOF'
 <!DOCTYPE html>
 <html lang="ru">
   <head>
@@ -66,3 +73,38 @@
     </script>
   </body>
 </html>
+EOF
+
+echo "✅ Created optimized index.html"
+
+# 2. Build the project
+echo "📦 Building project..."
+npm run build
+
+# 3. Post-build optimizations
+echo "🎨 Applying post-build optimizations..."
+
+# Remove source maps if they exist
+find dist -name "*.map" -type f -delete
+
+# Create a _redirects file for Netlify if it doesn't exist
+if [ ! -f dist/_redirects ]; then
+  echo "/* /index.html 200" > dist/_redirects
+  echo "✅ Created _redirects file"
+fi
+
+# Copy _headers to dist
+if [ -f _headers ]; then
+  cp _headers dist/
+  echo "✅ Copied _headers file"
+fi
+
+echo "🎉 Build optimized for Netlify! Ready to deploy."
+echo ""
+echo "📊 Expected improvements:"
+echo "- Inline critical CSS for instant rendering"
+echo "- Preload critical resources"
+echo "- Optimized cache headers"
+echo "- Lighthouse plugin will track performance"
+echo ""
+echo "🚀 Push to git and Netlify will automatically deploy with optimizations!"
