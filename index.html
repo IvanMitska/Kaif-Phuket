@@ -2,196 +2,41 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <!-- DISABLE CSP completely to fix Google Analytics -->
     <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src *; img-src * data: blob:; frame-src *; style-src * 'unsafe-inline';">
-    <!-- Favicon для разных устройств и браузеров -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2024" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2024" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2024" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2024" />
-    <link rel="shortcut icon" href="/favicon.ico?v=2024" />
-    <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Мета-теги на русском (по умолчанию) -->
-    <meta name="description" content="KAIF Club & Spa — эксклюзивный комплекс с авторской кухней, роскошным спа-центром, традиционной русской баней и современным фитнес-клубом. Премиальный отдых и расслабление в сердце города. Забронируйте незабываемый отдых прямо сейчас!" />
-    <meta name="keywords" content="спа центр, русская баня, ресторан, фитнес клуб, массаж, отдых, релакс, эксклюзивный клуб, авторская кухня, премиум" />
-    
-    <!-- Мета-теги на английском -->
-    <meta name="description" lang="en" content="KAIF Club & Spa — exclusive complex with gourmet cuisine, luxury spa center, traditional Russian banya and modern fitness club. Premium relaxation and wellness in the heart of the city. Book your unforgettable experience now!" />
-    <meta name="keywords" lang="en" content="spa center, russian banya, restaurant, fitness club, massage, relaxation, exclusive club, gourmet cuisine, premium" />
-    
-    <meta name="robots" content="index, follow" />
-    <meta name="author" content="KAIF Club & Spa" />
-    <meta name="theme-color" content="#FFFFFF" />
-    
-    <!-- Open Graph для социальных сетей -->
-    <meta property="og:title" content="KAIF SAUNA & SPA" />
-    <meta property="og:title" lang="en" content="KAIF SAUNA & SPA" />
-    <meta property="og:description" content="Роскошный спа-центр, русская баня, авторская кухня и фитнес-клуб. Премиальный отдых в сердце города. Забронируйте незабываемый отдых!" />
-    <meta property="og:description" lang="en" content="Luxury spa center, Russian banya, gourmet cuisine and fitness club. Premium relaxation in the heart of the city. Book your unforgettable experience!" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://kaif-phuket.com/images/logos/logo-header.png" />
-    <meta property="og:url" content="https://kaif-spa.com" />
-    <meta property="og:site_name" content="KAIF SAUNA & SPA" />
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="KAIF SAUNA & SPA" />
-    <meta name="twitter:title" lang="en" content="KAIF SAUNA & SPA" />
-    <meta name="twitter:description" content="Роскошный спа-центр, русская баня, авторская кухня и фитнес-клуб. Премиальный отдых в сердце города" />
-    <meta name="twitter:description" lang="en" content="Luxury spa center, Russian banya, gourmet cuisine and fitness club. Premium relaxation in the heart of the city" />
-    <meta name="twitter:image" content="https://kaif-phuket.com/images/logos/logo-header.png" />
-    
-    
-    <!-- PERFORMANCE: Resource hints optimization -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-    <link rel="dns-prefetch" href="https://www.google-analytics.com">
-    
-    <!-- Определение поддержки WebP -->
-    <script>
-      // Проверяем поддержку WebP для использования оптимизированных изображений
-      (function() {
-        var WebP = new Image();
-        WebP.onload = WebP.onerror = function() {
-          document.documentElement.classList.add(WebP.height === 1 ? 'webp' : 'no-webp');
-        };
-        WebP.src = 'data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=';
-      })();
-    </script>
-    
-    <!-- CRITICAL CSS: Inline above-the-fold styles for fast FCP -->
-    <style>
-      /* Base reset and layout */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      html, body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-
-      body {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        opacity: 1;
-        background: #000;
-        color: #fff;
-      }
-
-      #root {
-        min-height: 100vh;
-        isolation: isolate;
-      }
-
-      /* Loading screen - minimal styles */
-      .app-loading {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #000;
-        z-index: 9999;
-        opacity: 1;
-        transition: opacity 0.3s ease;
-      }
-
-      .app-loading.hidden {
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      .loader {
-        width: 48px;
-        height: 48px;
-        border: 2px solid rgba(255,255,255,0.1);
-        border-top: 2px solid rgba(255,255,255,0.8);
-        border-radius: 50%;
-        animation: spinner 0.8s linear infinite;
-      }
-
-      @keyframes spinner {
-        to { transform: rotate(360deg); }
-      }
-
-      /* Critical hero styles for LCP */
-      section {
-        position: relative;
-        width: 100%;
-      }
-
-      img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-      }
-
-      /* Prevent layout shift for images */
-      img[width][height] {
-        aspect-ratio: attr(width) / attr(height);
-      }
-
-      /* Fast image loading */
-      img[loading="lazy"] {
-        content-visibility: auto;
-      }
-
-      /* Font loading optimization */
-      .fonts-loading body {
-        visibility: hidden;
-      }
-
-      .fonts-loaded body,
-      .no-js body {
-        visibility: visible;
-      }
-    </style>
-    
-    <!-- PERFORMANCE: Removed preload - let browser prioritize naturally -->
-    
-    <!-- PERFORMANCE: Google Fonts - optimized with font-display swap and minimal weights -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600&family=Bebas+Neue&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600&family=Bebas+Neue&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600&family=Bebas+Neue&display=swap" rel="stylesheet"></noscript>
-    
+    <meta name="description" content="KAIF Club & Spa — эксклюзивный комплекс с авторской кухней, роскошным спа-центром, традиционной русской баней и современным фитнес-клубом." />
     <title>KAIF SAUNA & SPA</title>
 
-    <!-- Structured Data for Organization -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "KAIF SAUNA & SPA",
-      "alternateName": "KAIF Club & Spa",
-      "url": "https://kaif-phuket.com",
-      "logo": "https://kaif-phuket.com/images/logos/logo-header.png",
-      "image": "https://kaif-phuket.com/images/logos/logo-header.png",
-      "description": "KAIF Club & Spa — эксклюзивный комплекс с авторской кухней, роскошным спа-центром, традиционной русской баней и современным фитнес-клубом.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Phuket",
-        "addressCountry": "Thailand"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "customer service",
-        "availableLanguage": ["Russian", "English", "Thai"]
-      }
-    }
-    </script>
-    <script type="module" crossorigin src="/assets/js/main-BWtFflYc.js"></script>
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Critical inline CSS for instant render -->
+    <style>
+      *{margin:0;padding:0;box-sizing:border-box}
+      body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',Roboto,sans-serif;background:#000;color:#fff}
+      #root{min-height:100vh}
+      .app-loading{position:fixed;top:0;left:0;right:0;bottom:0;background:#000;display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s}
+      .app-loading.hidden{opacity:0;pointer-events:none}
+      .loader{width:48px;height:48px;border:2px solid rgba(255,255,255,0.1);border-top:2px solid #fff;border-radius:50%;animation:spin .8s linear infinite}
+      @keyframes spin{to{transform:rotate(360deg)}}
+
+      /* Critical hero styles */
+      section{position:relative;width:100%;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#000;overflow:hidden}
+      img{max-width:100%;height:auto;display:block}
+      picture{display:block}
+    </style>
+
+    <!-- Async fonts -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600&family=Bebas+Neue&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600&family=Bebas+Neue&display=swap" media="print" onload="this.media='all'">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" as="image" href="/images-optimized/spa.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="/assets/images/logo-homepage-Bvg3zKLL.webp" type="image/webp">
+    <script type="module" crossorigin src="/assets/js/main-Bin8y1ez.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/js/react-core-DWAaPJsY.js">
     <link rel="modulepreload" crossorigin href="/assets/js/vendor-scheduler-9xQDShOA.js">
     <link rel="modulepreload" crossorigin href="/assets/js/react-dom-Bb3pWfRT.js">
@@ -201,163 +46,33 @@
     <link rel="modulepreload" crossorigin href="/assets/js/vendor-misc-D8JVgYt7.js">
     <link rel="modulepreload" crossorigin href="/assets/js/styled-components-fuCKgGld.js">
     <link rel="modulepreload" crossorigin href="/assets/js/react-helmet-BCF-s7y-.js">
-    <link rel="stylesheet" crossorigin href="/assets/css/main-BY1aykOm.css">
+    <link rel="stylesheet" crossorigin href="/assets/css/main-DkA6gZoN.css">
   </head>
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5WP6GKBQ"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    
-    <noscript>
-      <div style="padding: 20px; text-align: center; background: #f5f5f5; color: #333;">
-        Для работы сайта необходимо включить JavaScript
-      </div>
-    </noscript>
-    
-    <div class="app-loading">
+    <div class="app-loading" id="loader">
       <div class="loader"></div>
     </div>
-    
+
     <div id="root"></div>
 
-    <!-- CRITICAL INLINE JAVASCRIPT: Hero functionality for instant interactivity -->
+    <!-- Quick loader hide -->
     <script>
-      // PERFORMANCE: Inline critical JavaScript to avoid render-blocking
-
-      // 1. Preload critical resources
-      (function() {
-        // Mark fonts as loaded to prevent FOIT
-        if (document.fonts && document.fonts.ready) {
-          document.fonts.ready.then(function() {
-            document.documentElement.classList.add('fonts-loaded');
-          });
-        } else {
-          // Fallback for older browsers
-          setTimeout(function() {
-            document.documentElement.classList.add('fonts-loaded');
-          }, 100);
-        }
-      })();
-
-      // 2. Remove loading screen when content is interactive
-      (function() {
-        var removeLoader = function() {
-          var loader = document.querySelector('.app-loading');
-          if (loader) {
-            loader.classList.add('hidden');
-            setTimeout(function() { loader.remove(); }, 300);
-          }
-        };
-
-        // Try to remove after DOMContentLoaded
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(removeLoader, 500);
-          });
-        } else {
-          setTimeout(removeLoader, 500);
-        }
-      })();
-
-      // 3. Prefetch next page assets on hover (intelligent prefetching)
-      (function() {
-        var prefetched = {};
-        var prefetch = function(url) {
-          if (prefetched[url]) return;
-          prefetched[url] = true;
-          var link = document.createElement('link');
-          link.rel = 'prefetch';
-          link.href = url;
-          document.head.appendChild(link);
-        };
-
-        // Prefetch on link hover
-        setTimeout(function() {
-          document.addEventListener('mouseover', function(e) {
-            var target = e.target;
-            if (target.tagName === 'A' && target.href && target.href.startsWith(window.location.origin)) {
-              prefetch(target.href);
-            }
-          }, { passive: true });
-        }, 2000);
-      })();
-
-      // 4. Optimize image loading
-      (function() {
-        // Lazy load images with IntersectionObserver
-        if ('IntersectionObserver' in window) {
-          var imageObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-              if (entry.isIntersecting) {
-                var img = entry.target;
-                if (img.dataset.src) {
-                  img.src = img.dataset.src;
-                  img.removeAttribute('data-src');
-                }
-                if (img.dataset.srcset) {
-                  img.srcset = img.dataset.srcset;
-                  img.removeAttribute('data-srcset');
-                }
-                imageObserver.unobserve(img);
-              }
-            });
-          }, { rootMargin: '50px' });
-
-          // Observe lazy images when DOM is ready
-          setTimeout(function() {
-            document.querySelectorAll('img[data-src], img[data-srcset]').forEach(function(img) {
-              imageObserver.observe(img);
-            });
-          }, 100);
-        }
-      })();
-
-      // 5. Performance monitoring (for debugging)
-      if (typeof PerformanceObserver !== 'undefined' && !window.location.host.includes('localhost')) {
-        try {
-          // Monitor LCP
-          var lcpObserver = new PerformanceObserver(function(list) {
-            var entries = list.getEntries();
-            var lastEntry = entries[entries.length - 1];
-            console.log('LCP:', lastEntry.renderTime || lastEntry.loadTime);
-          });
-          lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
-
-          // Monitor FID
-          var fidObserver = new PerformanceObserver(function(list) {
-            list.getEntries().forEach(function(entry) {
-              console.log('FID:', entry.processingStart - entry.startTime);
-            });
-          });
-          fidObserver.observe({ entryTypes: ['first-input'] });
-
-          // Monitor CLS
-          var clsScore = 0;
-          var clsObserver = new PerformanceObserver(function(list) {
-            list.getEntries().forEach(function(entry) {
-              if (!entry.hadRecentInput) {
-                clsScore += entry.value;
-                console.log('CLS:', clsScore);
-              }
-            });
-          });
-          clsObserver.observe({ entryTypes: ['layout-shift'] });
-        } catch (e) {
-          // Silently fail in production
-        }
-      }
+      document.addEventListener('DOMContentLoaded',function(){
+        setTimeout(function(){
+          var l=document.getElementById('loader');
+          if(l)l.classList.add('hidden');
+        },100);
+      });
     </script>
 
 
-    <!-- Google Tag Manager - loaded at end for better performance -->
+    <!-- Async Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-5WP6GKBQ"></script>
     <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id=GTM-5WP6GKBQ';f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5WP6GKBQ');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GTM-5WP6GKBQ');
     </script>
-    <!-- End Google Tag Manager -->
   </body>
 </html>
