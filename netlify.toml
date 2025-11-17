@@ -20,71 +20,13 @@
   to = "/index.html"
   status = 200
 
-# Базовые заголовки безопасности
+# Минимальные заголовки для отладки
 [[headers]]
   for = "/*"
   [headers.values]
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "SAMEORIGIN"
-    X-XSS-Protection = "1; mode=block"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
-# Кэширование статических ресурсов
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Кэширование JS и CSS файлов
-[[headers]]
-  for = "/*.js"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-    Content-Encoding = "gzip, br"
-
-[[headers]]
-  for = "/*.css"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-    Content-Encoding = "gzip, br"
-
-# Кэширование шрифтов
-[[headers]]
-  for = "/*.woff2"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Кэширование изображений
-[[headers]]
-  for = "/images/*"
-  [headers.values]
-    Cache-Control = "public, max-age=604800"
-
-[[headers]]
-  for = "/images-optimized/*"
-  [headers.values]
-    Cache-Control = "public, max-age=604800"
-
-[[headers]]
-  for = "/images-webp/*"
-  [headers.values]
-    Cache-Control = "public, max-age=604800"
-
-# Оптимизация производительности
+# Оптимизация производительности - ОТКЛЮЧЕНО для отладки
 [build.processing]
-  skip_processing = false
-
-[build.processing.css]
-  bundle = true
-  minify = true
-
-[build.processing.js]
-  bundle = true
-  minify = true
-
-[build.processing.html]
-  minify = true
-
-[build.processing.images]
-  compress = false  # Отключаем, так как изображения уже оптимизированы 
+  skip_processing = true 
