@@ -1,4 +1,4 @@
-import{r as e,j as i}from"./react-core-DWAaPJsY.js";import{d as s}from"./styled-components-fuCKgGld.js";import{u as a}from"./i18n-core-DrMVsQFB.js";import{K as r,L as p}from"./heroicons-Dc4hJBDs.js";import{m as o}from"./framer-motion-Ep29qSuC.js";import"./vendor-misc-D8JVgYt7.js";const c=s.section`
+import{r as e,j as i}from"./react-core-DWAaPJsY.js";import{d as s}from"./styled-components-fuCKgGld.js";import{u as a}from"./i18n-core-DrMVsQFB.js";import{K as r,L as p}from"./heroicons-DSEs4UIN.js";import{m as o}from"./framer-motion-Ep29qSuC.js";import"./vendor-misc-D8JVgYt7.js";const c=s.section`
   padding: 5rem 0;
   background: linear-gradient(135deg, rgba(144, 179, 167, 0.02) 0%, rgba(168, 197, 184, 0.01) 100%);
   position: relative;

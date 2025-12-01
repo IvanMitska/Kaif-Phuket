@@ -1,4 +1,4 @@
-import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as a}from"./styled-components-fuCKgGld.js";import{m as i,n as s,o as t,p as n,q as c,a as o}from"./react-icons-DxYdSIzX.js";import{u as g}from"./i18n-core-DrMVsQFB.js";import{m as u}from"./framer-motion-Ep29qSuC.js";import"./vendor-misc-D8JVgYt7.js";const p=a.section`
+import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as a}from"./styled-components-fuCKgGld.js";import{m as i,n as s,o as t,p as n,q as c,a as o}from"./react-icons-DxYdSIzX.js";import{B as g}from"./BookingModal-CAtnWKl-.js";import{u}from"./i18n-core-DrMVsQFB.js";import{m as p}from"./framer-motion-Ep29qSuC.js";import"./vendor-misc-D8JVgYt7.js";import"./heroicons-DSEs4UIN.js";const l=a.section`
   padding: 5rem 2rem;
   background: linear-gradient(135deg, #f8faf9 0%, #ffffff 50%, #f0f4f2 100%);
   position: relative;
@@ -29,17 +29,17 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as a}from"./styled-
   @media (max-width: 768px) {
     padding: 3rem 1rem;
   }
-`,l=a.div`
+`,d=a.div`
   max-width: 1200px;
   margin: 0 auto;
-`,d=a.div`
+`,m=a.div`
   text-align: center;
   margin-bottom: 3rem;
 
   @media (max-width: 768px) {
     margin-bottom: 2rem;
   }
-`,m=a(u.h2)`
+`,f=a(p.h2)`
   font-family: 'Montserrat', sans-serif;
   font-size: 2.5rem;
   font-weight: 600;
@@ -50,7 +50,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as a}from"./styled-
   @media (max-width: 768px) {
     font-size: 2rem;
   }
-`,f=a(u.p)`
+`,b=a(p.p)`
   font-family: 'Montserrat', sans-serif;
   font-size: 1.1rem;
   color: #6b7280;
@@ -62,7 +62,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as a}from"./styled-
   @media (max-width: 768px) {
     font-size: 1rem;
   }
-`,b=a.div`
+`,x=a.div`
   display: flex;
   justify-content: center;
   gap: 0.75rem;
@@ -73,7 +73,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as a}from"./styled-
     gap: 0.5rem;
     margin-bottom: 2rem;
   }
-`,x=a(u.button)`
+`,h=a(p.button)`
   font-family: 'Montserrat', sans-serif;
   padding: 0.75rem 1.5rem;
   background: ${e=>{if(!e.$active)return"#ffffff";switch(e.$categoryKey){case"dayPass":return"linear-gradient(135deg, #9C27B0 0%, #AB47BC 100%)";case"clubAccess":return"linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%)";case"premium":return"linear-gradient(135deg, #212121 0%, #424242 100%)";case"groupClasses":return"linear-gradient(135deg, #FF9800 0%, #FFB74D 100%)";case"swimming":return"linear-gradient(135deg, #2196F3 0%, #42A5F5 100%)";default:return"linear-gradient(135deg, #90B3A7 0%, #7da399 100%)"}}};
@@ -103,7 +103,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as a}from"./styled-
     padding: 0.6rem 1.2rem;
     font-size: 0.85rem;
   }
-`,h=a.div`
+`,y=a.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
@@ -114,7 +114,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as a}from"./styled-
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-`,y=a(u.div)`
+`,w=a(p.div)`
   background: #ffffff;
   border-radius: 24px;
   padding: 2.5rem;
@@ -171,7 +171,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as a}from"./styled-
   letter-spacing: 0.05em;
   box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
   z-index: 1;
-`;const w=a.div`
+`;const C=a.div`
   margin-bottom: 2rem;
   padding-bottom: 1.75rem;
   border-bottom: 1px solid ${e=>{switch(e.$category){case"dayPass":return"rgba(156, 39, 176, 0.12)";case"clubAccess":return"rgba(76, 175, 80, 0.12)";case"premium":return"rgba(33, 33, 33, 0.08)";case"groupClasses":return"rgba(255, 152, 0, 0.12)";case"swimming":return"rgba(33, 150, 243, 0.12)";default:return"rgba(144, 179, 167, 0.12)"}}};
@@ -188,21 +188,21 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as a}from"./styled-
     height: 2px;
     background: ${e=>{switch(e.$category){case"dayPass":return"linear-gradient(90deg, #9C27B0, #BA68C8)";case"clubAccess":return"linear-gradient(90deg, #4CAF50, #81C784)";case"premium":return"linear-gradient(90deg, #212121, #424242)";case"groupClasses":return"linear-gradient(90deg, #FF9800, #FFB74D)";case"swimming":return"linear-gradient(90deg, #2196F3, #64B5F6)";default:return"linear-gradient(90deg, #90B3A7, #A8C5B8)"}}};
   }
-`,C=a.h3`
+`,A=a.h3`
   font-family: 'Montserrat', sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
   color: #1a1a1a;
   margin-bottom: 0.5rem;
   letter-spacing: -0.02em;
-`,A=a.p`
+`,$=a.p`
   font-family: 'Montserrat', sans-serif;
   font-size: 0.95rem;
   color: #6b7280;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-`,$=a.div`
+`,B=a.div`
   margin-bottom: 2rem;
   padding: 1rem 0;
 `,v=a.div`
@@ -235,12 +235,12 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as a}from"./styled-
       font-size: 1.25rem;
     }
   }
-`,B=a.ul`
+`,F=a.ul`
   list-style: none;
   padding: 0;
   margin: 0 0 2rem 0;
   flex: 1;
-`,F=a.li`
+`,j=a.li`
   font-family: 'Montserrat', sans-serif;
   display: flex;
   align-items: center;
@@ -271,7 +271,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as a}from"./styled-
     color: #111827;
     padding-left: 0.5rem;
   }
-`,j=a.div`
+`,P=a.div`
   position: relative;
   width: 100%;
   min-height: 600px;
@@ -284,7 +284,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as a}from"./styled-
   background: rgba(144, 179, 167, 0.02);
   border-radius: 20px;
   border: 2px dashed rgba(144, 179, 167, 0.2);
-`;const P=a(u.a)`
+`;const M=a(p.a)`
   font-family: 'Montserrat', sans-serif;
   display: block;
   width: 100%;
@@ -333,4 +333,4 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as a}from"./styled-
   &:active {
     transform: translateY(-1px);
   }
-`,PricingSection=()=>{const{t:a}=g(),[u,M]=e.useState("dayPass"),k={dayPass:{icon:r.jsx(i,{}),title:a("pricing.categories.dayPass"),subtitle:a("pricing.subtitles.dayPass"),plans:[{name:a("pricing.durations.morning")+" Pass",duration:a("pricing.features.morningAccess"),price:"390",features:[a("pricing.features.gymCardio"),a("pricing.features.swimmingPool"),a("pricing.features.steamRoom"),a("pricing.features.iceBarrel"),a("pricing.features.russianSauna")+" & "+a("pricing.features.japanesePool"),a("pricing.features.saunaAfter14")],perMonth:null},{name:"Day Pass",duration:a("pricing.durations.fullDay"),price:"490",features:[a("pricing.features.gymCardio"),a("pricing.features.swimmingPool"),a("pricing.features.steamRoom"),a("pricing.features.iceBarrel"),a("pricing.features.russianSauna")+" & "+a("pricing.features.japanesePool"),a("pricing.features.towelsIncluded")],perMonth:null},{name:a("pricing.categories.groupClasses"),duration:a("pricing.durations.single"),price:"600",features:[a("pricing.features.dayAccess"),a("pricing.features.anyClass"),a("pricing.features.professionalTrainer")],perMonth:null}]},clubAccess:{icon:r.jsx(s,{}),title:"Club Access",subtitle:a("pricing.subtitles.withoutBanya"),plans:[{name:"Club Access",duration:a("pricing.durations.month"),price:"2,000",features:[a("pricing.features.gymCardio"),a("pricing.features.swimmingPool"),a("pricing.features.steamRoom"),a("pricing.features.iceBarrel")],perMonth:null},{name:"Club Access",duration:a("pricing.durations.months_3"),price:"4,800",features:[a("pricing.features.gymCardio"),a("pricing.features.swimmingPool"),a("pricing.features.steamRoom"),a("pricing.features.iceBarrel"),`${a("pricing.features.savings")} 20%`],perMonth:"1,600 ฿/мес",featured:!0,popular:!0},{name:"Club Access",duration:a("pricing.durations.months_6"),price:"9,900",features:[a("pricing.features.gymCardio"),a("pricing.features.swimmingPool"),a("pricing.features.steamRoom"),a("pricing.features.iceBarrel"),`${a("pricing.features.savings")} 17%`],perMonth:"1,650 ฿/мес"},{name:"Club Access",duration:a("pricing.durations.months_12"),price:"18,000",features:[a("pricing.features.gymCardio"),a("pricing.features.swimmingPool"),a("pricing.features.steamRoom"),a("pricing.features.iceBarrel"),`${a("pricing.features.maxSavings")} 25%`],perMonth:"1,500 ฿/мес"}]},premium:{icon:r.jsx(t,{}),title:"Club Access+",subtitle:a("pricing.subtitles.allPlusBanya"),plans:[{name:"Club Access+",duration:a("pricing.durations.day"),price:"490",features:[a("pricing.features.gymCardio"),a("pricing.features.swimmingPool"),a("pricing.features.steamRoom"),a("pricing.features.iceBarrel"),a("pricing.features.russianSauna")+" & "+a("pricing.features.japanesePool"),a("pricing.features.lockersAndShowers")],perMonth:null},{name:"Club Access+",duration:a("pricing.durations.month"),price:"3,800",features:[a("pricing.features.unlimitedAccess"),a("pricing.features.gymAndBanya"),a("pricing.features.swimmingPool"),a("pricing.features.towelsIncluded")],perMonth:null},{name:"Club Access+",duration:a("pricing.durations.months_3"),price:"9,400",features:[a("pricing.features.unlimitedAccess"),a("pricing.features.gymAndBanya"),a("pricing.features.towelsIncluded"),`${a("pricing.features.savings")} 18%`],perMonth:"3,133 ฿/мес",featured:!0,popular:!0},{name:"Club Access+",duration:a("pricing.durations.months_6"),price:"17,800",features:[a("pricing.features.unlimitedAccess"),a("pricing.features.gymAndBanya"),a("pricing.features.towelsIncluded"),`${a("pricing.features.savings")} 22%`],perMonth:"2,967 ฿/мес"},{name:"Club Access+",duration:a("pricing.durations.months_12"),price:"29,000",features:[a("pricing.features.unlimitedAccess"),a("pricing.features.gymAndBanya"),a("pricing.features.towelsIncluded"),`${a("pricing.features.maxSavings")} 36%`],perMonth:"2,417 ฿/мес"}]},groupClasses:{icon:r.jsx(n,{}),title:a("pricing.categories.groupClasses"),subtitle:a("pricing.subtitles.groupClasses"),plans:[{name:a("pricing.categories.groupClasses"),duration:a("pricing.durations.single"),price:"600",features:[a("pricing.features.dayAccess"),a("pricing.features.anyClass"),a("pricing.features.professionalTrainer")],perMonth:null},{name:a("pricing.categories.groupClasses"),duration:a("pricing.durations.classes_4"),price:"2,000",features:[`500 ฿ ${a("pricing.features.perClass")}`,a("pricing.features.validMonth"),a("pricing.features.anyClasses")],perMonth:null},{name:a("pricing.categories.groupClasses"),duration:a("pricing.durations.classes_12"),price:"3,000",features:[`250 ฿ ${a("pricing.features.perClass")}`,a("pricing.features.validMonths_2"),a("pricing.features.anyClasses"),`${a("pricing.features.savings")} 50%`],perMonth:null,featured:!0,popular:!0},{name:a("pricing.categories.groupClasses"),duration:a("pricing.durations.classes_24"),price:"5,500",features:[`229 ฿ ${a("pricing.features.perClass")}`,a("pricing.features.validMonths_3"),a("pricing.features.anyClasses"),`${a("pricing.features.savings")} 62%`],perMonth:null},{name:a("pricing.categories.groupClasses"),duration:a("pricing.durations.classes_48"),price:"10,200",features:[`213 ฿ ${a("pricing.features.perClass")}`,a("pricing.features.validMonths_6"),a("pricing.features.anyClasses"),`${a("pricing.features.maxSavings")} 65%`],perMonth:null}]},swimming:{icon:r.jsx(c,{}),title:a("pricing.categories.swimming"),subtitle:a("pricing.subtitles.swimmingSchool"),plans:[{name:a("pricing.categories.swimming"),duration:a("pricing.durations.single"),price:"800",features:[a("pricing.features.dayAccess"),a("pricing.features.individualApproach"),a("pricing.features.certifiedInstructor")],perMonth:null},{name:a("pricing.categories.swimming"),duration:a("pricing.durations.classes_8"),price:"3,800",features:[`475 ฿ ${a("pricing.features.perClass")}`,a("pricing.features.validMonths_2"),a("pricing.features.trainingProgram"),`${a("pricing.features.savings")} 41%`],perMonth:null,featured:!0,popular:!0},{name:a("pricing.categories.swimming"),duration:a("pricing.durations.classes_12"),price:"5,500",features:[`458 ฿ ${a("pricing.features.perClass")}`,a("pricing.features.validMonths_3"),a("pricing.features.fullProgram"),`${a("pricing.features.savings")} 43%`],perMonth:null}]}},z=[{key:"dayPass",label:a("pricing.categories.dayPass"),icon:r.jsx(i,{})},{key:"clubAccess",label:a("pricing.categories.clubAccess"),icon:r.jsx(s,{})},{key:"premium",label:a("pricing.categories.clubAccessPlus"),icon:r.jsx(t,{})},{key:"groupClasses",label:a("pricing.categories.groupClasses"),icon:r.jsx(n,{})},{key:"swimming",label:a("pricing.categories.swimming"),icon:r.jsx(c,{})}],_=k[u];return r.jsx(p,{id:"pricing",children:r.jsxs(l,{children:[r.jsxs(d,{children:[r.jsx(m,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},transition:{duration:.6},viewport:{once:!0},children:a("pricing.title")}),r.jsx(f,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},transition:{duration:.6,delay:.1},viewport:{once:!0},children:a("pricing.subtitle")})]}),r.jsx(b,{children:z.map(e=>r.jsxs(x,{$active:u===e.key,$categoryKey:e.key,onClick:()=>(e=>{const r=window.scrollY;M(e),setTimeout(()=>{window.scrollTo(0,r)},0)})(e.key),whileHover:{scale:1.05},whileTap:{scale:.95},children:[e.icon,e.label]},e.key))}),r.jsx(j,{children:r.jsx(h,{children:_.plans.map((e,i)=>r.jsxs(y,{$featured:e.featured,$category:u,children:[r.jsxs(w,{$category:u,children:[r.jsx(C,{children:e.name}),r.jsx(A,{children:e.duration})]}),r.jsx($,{children:r.jsxs(v,{children:[e.price," ",r.jsx("span",{children:"฿"})]})}),r.jsx(B,{children:e.features.map((a,i)=>r.jsxs(F,{$category:u,$compact:e.features.length>5,$noBorder:i===e.features.length-1,children:[r.jsx(o,{}),a]},i))}),r.jsx(P,{href:"https://wa.me/66624805877?text=Здравствуйте! Хочу приобрести абонемент",target:"_blank",rel:"noopener noreferrer",$category:u,whileHover:{scale:1.02},whileTap:{scale:.98},children:a("pricing.select_plan")})]},`${u}-${i}`))},u)})]})})};export{PricingSection as default};
+`,PricingSection=()=>{const{t:a}=u(),[p,k]=e.useState("dayPass"),[z,_]=e.useState(!1),[D,S]=e.useState(null),I={dayPass:{icon:r.jsx(i,{}),title:a("pricing.categories.dayPass"),subtitle:a("pricing.subtitles.dayPass"),plans:[{name:a("pricing.durations.morning")+" Pass",duration:a("pricing.features.morningAccess"),price:"390",features:[a("pricing.features.gymCardio"),a("pricing.features.swimmingPool"),a("pricing.features.steamRoom"),a("pricing.features.iceBarrel"),a("pricing.features.russianSauna")+" & "+a("pricing.features.japanesePool"),a("pricing.features.saunaAfter14")],perMonth:null},{name:"Day Pass",duration:a("pricing.durations.fullDay"),price:"490",features:[a("pricing.features.gymCardio"),a("pricing.features.swimmingPool"),a("pricing.features.steamRoom"),a("pricing.features.iceBarrel"),a("pricing.features.russianSauna")+" & "+a("pricing.features.japanesePool"),a("pricing.features.towelsIncluded")],perMonth:null},{name:a("pricing.categories.groupClasses"),duration:a("pricing.durations.single"),price:"600",features:[a("pricing.features.dayAccess"),a("pricing.features.anyClass"),a("pricing.features.professionalTrainer")],perMonth:null}]},clubAccess:{icon:r.jsx(s,{}),title:"Club Access",subtitle:a("pricing.subtitles.withoutBanya"),plans:[{name:"Club Access",duration:a("pricing.durations.month"),price:"2,000",features:[a("pricing.features.gymCardio"),a("pricing.features.swimmingPool"),a("pricing.features.steamRoom"),a("pricing.features.iceBarrel")],perMonth:null},{name:"Club Access",duration:a("pricing.durations.months_3"),price:"4,800",features:[a("pricing.features.gymCardio"),a("pricing.features.swimmingPool"),a("pricing.features.steamRoom"),a("pricing.features.iceBarrel"),`${a("pricing.features.savings")} 20%`],perMonth:"1,600 ฿/мес",featured:!0,popular:!0},{name:"Club Access",duration:a("pricing.durations.months_6"),price:"9,900",features:[a("pricing.features.gymCardio"),a("pricing.features.swimmingPool"),a("pricing.features.steamRoom"),a("pricing.features.iceBarrel"),`${a("pricing.features.savings")} 17%`],perMonth:"1,650 ฿/мес"},{name:"Club Access",duration:a("pricing.durations.months_12"),price:"18,000",features:[a("pricing.features.gymCardio"),a("pricing.features.swimmingPool"),a("pricing.features.steamRoom"),a("pricing.features.iceBarrel"),`${a("pricing.features.maxSavings")} 25%`],perMonth:"1,500 ฿/мес"}]},premium:{icon:r.jsx(t,{}),title:"Club Access+",subtitle:a("pricing.subtitles.allPlusBanya"),plans:[{name:"Club Access+",duration:a("pricing.durations.day"),price:"490",features:[a("pricing.features.gymCardio"),a("pricing.features.swimmingPool"),a("pricing.features.steamRoom"),a("pricing.features.iceBarrel"),a("pricing.features.russianSauna")+" & "+a("pricing.features.japanesePool"),a("pricing.features.lockersAndShowers")],perMonth:null},{name:"Club Access+",duration:a("pricing.durations.month"),price:"3,800",features:[a("pricing.features.unlimitedAccess"),a("pricing.features.gymAndBanya"),a("pricing.features.swimmingPool"),a("pricing.features.towelsIncluded")],perMonth:null},{name:"Club Access+",duration:a("pricing.durations.months_3"),price:"9,400",features:[a("pricing.features.unlimitedAccess"),a("pricing.features.gymAndBanya"),a("pricing.features.towelsIncluded"),`${a("pricing.features.savings")} 18%`],perMonth:"3,133 ฿/мес",featured:!0,popular:!0},{name:"Club Access+",duration:a("pricing.durations.months_6"),price:"17,800",features:[a("pricing.features.unlimitedAccess"),a("pricing.features.gymAndBanya"),a("pricing.features.towelsIncluded"),`${a("pricing.features.savings")} 22%`],perMonth:"2,967 ฿/мес"},{name:"Club Access+",duration:a("pricing.durations.months_12"),price:"29,000",features:[a("pricing.features.unlimitedAccess"),a("pricing.features.gymAndBanya"),a("pricing.features.towelsIncluded"),`${a("pricing.features.maxSavings")} 36%`],perMonth:"2,417 ฿/мес"}]},groupClasses:{icon:r.jsx(n,{}),title:a("pricing.categories.groupClasses"),subtitle:a("pricing.subtitles.groupClasses"),plans:[{name:a("pricing.categories.groupClasses"),duration:a("pricing.durations.single"),price:"600",features:[a("pricing.features.dayAccess"),a("pricing.features.anyClass"),a("pricing.features.professionalTrainer")],perMonth:null},{name:a("pricing.categories.groupClasses"),duration:a("pricing.durations.classes_4"),price:"2,000",features:[`500 ฿ ${a("pricing.features.perClass")}`,a("pricing.features.validMonth"),a("pricing.features.anyClasses")],perMonth:null},{name:a("pricing.categories.groupClasses"),duration:a("pricing.durations.classes_12"),price:"3,000",features:[`250 ฿ ${a("pricing.features.perClass")}`,a("pricing.features.validMonths_2"),a("pricing.features.anyClasses"),`${a("pricing.features.savings")} 50%`],perMonth:null,featured:!0,popular:!0},{name:a("pricing.categories.groupClasses"),duration:a("pricing.durations.classes_24"),price:"5,500",features:[`229 ฿ ${a("pricing.features.perClass")}`,a("pricing.features.validMonths_3"),a("pricing.features.anyClasses"),`${a("pricing.features.savings")} 62%`],perMonth:null},{name:a("pricing.categories.groupClasses"),duration:a("pricing.durations.classes_48"),price:"10,200",features:[`213 ฿ ${a("pricing.features.perClass")}`,a("pricing.features.validMonths_6"),a("pricing.features.anyClasses"),`${a("pricing.features.maxSavings")} 65%`],perMonth:null}]},swimming:{icon:r.jsx(c,{}),title:a("pricing.categories.swimming"),subtitle:a("pricing.subtitles.swimmingSchool"),plans:[{name:a("pricing.categories.swimming"),duration:a("pricing.durations.single"),price:"800",features:[a("pricing.features.dayAccess"),a("pricing.features.individualApproach"),a("pricing.features.certifiedInstructor")],perMonth:null},{name:a("pricing.categories.swimming"),duration:a("pricing.durations.classes_8"),price:"3,800",features:[`475 ฿ ${a("pricing.features.perClass")}`,a("pricing.features.validMonths_2"),a("pricing.features.trainingProgram"),`${a("pricing.features.savings")} 41%`],perMonth:null,featured:!0,popular:!0},{name:a("pricing.categories.swimming"),duration:a("pricing.durations.classes_12"),price:"5,500",features:[`458 ฿ ${a("pricing.features.perClass")}`,a("pricing.features.validMonths_3"),a("pricing.features.fullProgram"),`${a("pricing.features.savings")} 43%`],perMonth:null}]}},K=[{key:"dayPass",label:a("pricing.categories.dayPass"),icon:r.jsx(i,{})},{key:"clubAccess",label:a("pricing.categories.clubAccess"),icon:r.jsx(s,{})},{key:"premium",label:a("pricing.categories.clubAccessPlus"),icon:r.jsx(t,{})},{key:"groupClasses",label:a("pricing.categories.groupClasses"),icon:r.jsx(n,{})},{key:"swimming",label:a("pricing.categories.swimming"),icon:r.jsx(c,{})}],R=I[p];return r.jsxs(l,{id:"pricing",children:[r.jsxs(d,{children:[r.jsxs(m,{children:[r.jsx(f,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},transition:{duration:.6},viewport:{once:!0},children:a("pricing.title")}),r.jsx(b,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},transition:{duration:.6,delay:.1},viewport:{once:!0},children:a("pricing.subtitle")})]}),r.jsx(x,{children:K.map(e=>r.jsxs(h,{$active:p===e.key,$categoryKey:e.key,onClick:()=>(e=>{const r=window.scrollY;k(e),setTimeout(()=>{window.scrollTo(0,r)},0)})(e.key),whileHover:{scale:1.05},whileTap:{scale:.95},children:[e.icon,e.label]},e.key))}),r.jsx(P,{children:r.jsx(y,{children:R.plans.map((e,i)=>r.jsxs(w,{$featured:e.featured,$category:p,children:[r.jsxs(C,{$category:p,children:[r.jsx(A,{children:e.name}),r.jsx($,{children:e.duration})]}),r.jsx(B,{children:r.jsxs(v,{children:[e.price," ",r.jsx("span",{children:"฿"})]})}),r.jsx(F,{children:e.features.map((a,i)=>r.jsxs(j,{$category:p,$compact:e.features.length>5,$noBorder:i===e.features.length-1,children:[r.jsx(o,{}),a]},i))}),r.jsx(M,{as:"button",onClick:()=>(e=>{S(e),_(!0)})(e),$category:p,whileHover:{scale:1.02},whileTap:{scale:.98},children:a("pricing.select_plan")})]},`${p}-${i}`))},p)})]}),r.jsx(g,{isOpen:z,onClose:()=>_(!1),service:D?`${D.name} - ${D.duration}`:"",source:"Home - Pricing"})]})};export{PricingSection as default};
