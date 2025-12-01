@@ -10,7 +10,6 @@ import HeroFullscreen from '../components/home/HeroFullscreen';
 // import EventBanner from '../components/home/EventBanner'; // Временно отключен
 
 // Lazy loading для всех некритических компонентов
-const PromotionsSlider = lazy(() => import('../components/PromotionsSlider'));
 const ExclusiveZones = lazy(() => import('../components/home/ExclusiveZones'));
 const PricingSection = lazy(() => import('../components/home/PricingSection'));
 
@@ -150,11 +149,6 @@ const HomePage = memo(() => {
       
       {/* Полноэкранная секция героя - единственный критический компонент */}
       <HeroFullscreen />
-
-      {/* Все остальные компоненты загружаются по требованию */}
-      <Suspense fallback={<SectionLoader />}>
-        <PromotionsSlider />
-      </Suspense>
 
       {/* Баннер мероприятия SAUNA RAVE - временно отключен */}
       {/* <EventBanner /> */}
