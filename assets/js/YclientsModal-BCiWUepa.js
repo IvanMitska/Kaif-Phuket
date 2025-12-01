@@ -148,12 +148,12 @@ import{R as e,j as t}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-
   @media (max-width: 480px) {
     height: 450px;
   }
-`,h=i.iframe`
+`,g=i.iframe`
   width: 100%;
   height: 100%;
   border: none;
   background: white;
-`,m=i.div`
+`,h=i.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,4 +185,4 @@ import{R as e,j as t}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-
       }
     }
   }
-`,YclientsModal=({isOpen:i,onClose:o,companyId:g=null,customUrl:x=null})=>(e.useEffect(()=>{const handleEscape=e=>{"Escape"===e.key&&o()};return i&&(document.addEventListener("keydown",handleEscape),document.body.style.overflow="hidden"),()=>{document.removeEventListener("keydown",handleEscape),document.body.style.overflow="unset"}},[i,o]),t.jsx(r,{children:i&&t.jsx(n,{initial:{opacity:0},animate:{opacity:1},exit:{opacity:0},transition:{duration:.3},onClick:o,children:t.jsxs(s,{initial:{opacity:0,scale:.85,y:40,rotateX:-5},animate:{opacity:1,scale:1,y:0,rotateX:0},exit:{opacity:0,scale:.85,y:40,rotateX:-5},transition:{duration:.4,ease:[.32,.72,0,1],opacity:{duration:.25}},onClick:e=>e.stopPropagation(),children:[t.jsxs(d,{children:[t.jsx(l,{children:"Онлайн-запись в KAIF SPA"}),t.jsx(c,{onClick:o,children:t.jsx(a,{})})]}),t.jsx(p,{children:g||x?t.jsx(h,{src:x||(g?`https://n${g}.yclients.com/`:"https://example.yclients.com/"),title:"Онлайн-запись Yclients",allow:"camera; microphone; geolocation"}):t.jsx(m,{children:t.jsxs("div",{children:[t.jsx("p",{children:"Для настройки онлайн-записи нужно:"}),t.jsxs("ol",{style:{textAlign:"left",marginTop:"1rem"},children:[t.jsx("li",{children:"ID компании в Yclients"}),t.jsx("li",{children:"Или прямая ссылка на виджет записи"})]})]})})})]})})}));export{YclientsModal as Y};
+`,YclientsModal=({isOpen:i,onClose:o,companyId:m=null,customUrl:x=null})=>(e.useEffect(()=>{const handleEscape=e=>{"Escape"===e.key&&o()};return i&&(document.addEventListener("keydown",handleEscape),document.body.style.overflow="hidden"),()=>{document.removeEventListener("keydown",handleEscape),document.body.style.overflow="unset"}},[i,o]),t.jsx(r,{children:i&&t.jsx(n,{initial:{opacity:0},animate:{opacity:1},exit:{opacity:0},transition:{duration:.3},onClick:o,children:t.jsxs(s,{initial:{opacity:0,scale:.85,y:40,rotateX:-5},animate:{opacity:1,scale:1,y:0,rotateX:0},exit:{opacity:0,scale:.85,y:40,rotateX:-5},transition:{duration:.4,ease:[.32,.72,0,1],opacity:{duration:.25}},onClick:e=>e.stopPropagation(),children:[t.jsxs(d,{children:[t.jsx(l,{children:"Онлайн-запись в KAIF SPA"}),t.jsx(c,{onClick:o,children:t.jsx(a,{})})]}),t.jsx(p,{children:m||x?t.jsx(g,{src:x||(m?`https://n${m}.yclients.com/`:"https://example.yclients.com/"),title:"Онлайн-запись Yclients",allow:"camera; microphone; geolocation"}):t.jsx(h,{children:t.jsxs("div",{children:[t.jsx("p",{children:"Для настройки онлайн-записи нужно:"}),t.jsxs("ol",{style:{textAlign:"left",marginTop:"1rem"},children:[t.jsx("li",{children:"ID компании в Yclients"}),t.jsx("li",{children:"Или прямая ссылка на виджет записи"})]})]})})})]})})}));export{YclientsModal as Y};

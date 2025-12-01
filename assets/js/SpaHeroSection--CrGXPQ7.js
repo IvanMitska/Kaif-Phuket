@@ -1,4 +1,4 @@
-import{r as e,j as i}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-components-fuCKgGld.js";import{Y as a}from"./YclientsModal-4chwTQwk.js";import{u as r}from"./i18n-core-DrMVsQFB.js";import{I as n,J as o,f as m}from"./heroicons-Dc4hJBDs.js";import{m as d}from"./framer-motion-Ep29qSuC.js";import"./vendor-misc-D8JVgYt7.js";const s=t.section`
+import{r as e,j as i}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-components-fuCKgGld.js";import{Y as a}from"./YclientsModal-BCiWUepa.js";import{u as r}from"./i18n-core-DrMVsQFB.js";import{I as n,J as o,f as m}from"./heroicons-Dc4hJBDs.js";import{m as d}from"./framer-motion-Ep29qSuC.js";import"./vendor-misc-D8JVgYt7.js";const s=t.section`
   position: relative;
   min-height: 100vh;
   background: url(${"/assets/images/hero-restaurant-B-WOCk0r.jpg"});
@@ -37,7 +37,7 @@ import{r as e,j as i}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
     min-height: 100vh; /* Полная высота экрана на мобильных */
     padding: 3rem 0;
   }
-`,h=t.div`
+`,p=t.div`
   position: relative;
   z-index: 2;
   width: 100%;
@@ -56,7 +56,7 @@ import{r as e,j as i}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
   @media (max-width: 480px) {
     padding: 0 2rem;
   }
-`,p=t.div`
+`,h=t.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -246,4 +246,4 @@ import{r as e,j as i}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
       height: 0.95rem;
     }
   }
-`,f=e.memo(()=>{const{t:t}=r(),[d,f]=e.useState(!1);return i.jsxs(s,{children:[i.jsx(h,{children:i.jsx(p,{children:i.jsxs(l,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6,delay:.2},children:[i.jsxs(x,{initial:{opacity:0,scale:.9},animate:{opacity:1,scale:1},transition:{duration:.5,delay:.3},children:[i.jsx(n,{}),t("spa.hero.badge","Премиум СПА")]}),i.jsx(g,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.6,delay:.4},children:t("spa.hero.title","Погрузитесь в мир релаксации и красоты")}),i.jsx(c,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.6,delay:.5},children:t("spa.hero.subtitle","Профессиональные СПА процедуры в роскошной атмосфере KAIF")}),i.jsxs(w,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.6,delay:.6},children:[i.jsxs(b,{onClick:()=>f(!0),whileHover:{scale:1.02},whileTap:{scale:.98},children:[i.jsx(o,{}),t("spa.hero.book_online","Онлайн-запись")]}),i.jsxs(b,{as:"a",href:"https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20записаться%20на%20СПА%20процедуру%20в%20KAIF",target:"_blank",rel:"noopener noreferrer",whileHover:{scale:1.02},whileTap:{scale:.98},children:[t("spa.hero.book_whatsapp","WhatsApp"),i.jsx(m,{})]})]})]})})}),i.jsx(a,{isOpen:d,onClose:()=>f(!1),customUrl:"https://n1329009.alteg.io"})]})});f.displayName="SpaHeroSection";export{f as default};
+`,f=e.memo(()=>{const{t:t}=r(),[d,f]=e.useState(!1);return i.jsxs(s,{children:[i.jsx(p,{children:i.jsx(h,{children:i.jsxs(l,{initial:{opacity:0,y:30},animate:{opacity:1,y:0},transition:{duration:.6,delay:.2},children:[i.jsxs(x,{initial:{opacity:0,scale:.9},animate:{opacity:1,scale:1},transition:{duration:.5,delay:.3},children:[i.jsx(n,{}),t("spa.hero.badge","Премиум СПА")]}),i.jsx(g,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.6,delay:.4},children:t("spa.hero.title","Погрузитесь в мир релаксации и красоты")}),i.jsx(c,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.6,delay:.5},children:t("spa.hero.subtitle","Профессиональные СПА процедуры в роскошной атмосфере KAIF")}),i.jsxs(w,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.6,delay:.6},children:[i.jsxs(b,{onClick:()=>f(!0),whileHover:{scale:1.02},whileTap:{scale:.98},children:[i.jsx(o,{}),t("spa.hero.book_online","Онлайн-запись")]}),i.jsxs(b,{as:"a",href:"https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20записаться%20на%20СПА%20процедуру%20в%20KAIF",target:"_blank",rel:"noopener noreferrer",whileHover:{scale:1.02},whileTap:{scale:.98},children:[t("spa.hero.book_whatsapp","WhatsApp"),i.jsx(m,{})]})]})]})})}),i.jsx(a,{isOpen:d,onClose:()=>f(!1),customUrl:"https://n1329009.alteg.io"})]})});f.displayName="SpaHeroSection";export{f as default};

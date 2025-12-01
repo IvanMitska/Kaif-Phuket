@@ -1,4 +1,4 @@
-import{r as e,j as i}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-components-fuCKgGld.js";import{Y as n}from"./YclientsModal-4chwTQwk.js";import{u as o}from"./i18n-core-DrMVsQFB.js";import{J as t,b as a,a as s,F as l,r as d}from"./heroicons-Dc4hJBDs.js";import{m}from"./framer-motion-Ep29qSuC.js";import{aa as p}from"./vendor-misc-D8JVgYt7.js";const h=r.section`
+import{r as e,j as i}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-components-fuCKgGld.js";import{Y as n}from"./YclientsModal-BCiWUepa.js";import{u as o}from"./i18n-core-DrMVsQFB.js";import{J as t,b as a,a as s,F as l,r as d}from"./heroicons-Dc4hJBDs.js";import{m}from"./framer-motion-Ep29qSuC.js";import{aa as p}from"./vendor-misc-D8JVgYt7.js";const h=r.section`
   position: relative;
   padding: 5rem 0 0 0; /* Убираем нижний padding для устранения белой линии */
   background: linear-gradient(135deg, rgba(144, 179, 167, 0.05) 0%, rgba(168, 197, 184, 0.03) 100%);

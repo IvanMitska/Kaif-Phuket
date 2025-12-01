@@ -1,5 +1,5 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/js/HeroSection-C3b8vydR.js","assets/js/react-core-DWAaPJsY.js","assets/js/styled-components-fuCKgGld.js","assets/js/vendor-misc-D8JVgYt7.js","assets/js/framer-motion-Ep29qSuC.js","assets/js/i18n-core-DrMVsQFB.js","assets/js/heroicons-Dc4hJBDs.js","assets/js/BenefitsSection-BWTAzjan.js","assets/js/main-Bin8y1ez.js","assets/js/react-dom-client-BkLB9BFi.js","assets/js/react-dom-Bb3pWfRT.js","assets/js/vendor-scheduler-9xQDShOA.js","assets/js/i18n-detector-l8ePocMX.js","assets/js/react-helmet-BCF-s7y-.js","assets/css/main-DkA6gZoN.css","assets/js/PageHead-ByG18s83.js","assets/js/PageScrollReset-BDYyiQ41.js","assets/js/ScrollingText-Don3Rqth.js","assets/js/gsap-Cw1IU11l.js","assets/js/split-type-DfRFsPdw.js","assets/js/FacilitySectionNew-4F4Fokfe.js","assets/js/ScheduleSectionNew-NUBbgZaX.js","assets/js/CTASection-BYfM4mmG.js"])))=>i.map(i=>d[i]);
-import{_ as e}from"./main-Bin8y1ez.js";import{r as t,j as o,R as r}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageHead-ByG18s83.js";import{d as a}from"./styled-components-fuCKgGld.js";import{m as s}from"./framer-motion-Ep29qSuC.js";import{P as n}from"./PageScrollReset-BDYyiQ41.js";import{u as p}from"./i18n-core-DrMVsQFB.js";const m=a(s.div)`
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/js/HeroSection-C3b8vydR.js","assets/js/react-core-DWAaPJsY.js","assets/js/styled-components-fuCKgGld.js","assets/js/vendor-misc-D8JVgYt7.js","assets/js/framer-motion-Ep29qSuC.js","assets/js/i18n-core-DrMVsQFB.js","assets/js/heroicons-Dc4hJBDs.js","assets/js/BenefitsSection-B9bFxMwp.js","assets/js/main-B130mzbQ.js","assets/js/react-dom-client-BkLB9BFi.js","assets/js/react-dom-Bb3pWfRT.js","assets/js/vendor-scheduler-9xQDShOA.js","assets/js/i18n-detector-l8ePocMX.js","assets/js/react-helmet-BCF-s7y-.js","assets/css/main-DkA6gZoN.css","assets/js/PageHead-ByG18s83.js","assets/js/PageScrollReset-BDYyiQ41.js","assets/js/ScrollingText-Don3Rqth.js","assets/js/gsap-Cw1IU11l.js","assets/js/split-type-DfRFsPdw.js","assets/js/FacilitySectionNew-CUmcCTNW.js","assets/js/ScheduleSectionNew-B1vTUc9J.js","assets/js/CTASection-BYfM4mmG.js"])))=>i.map(i=>d[i]);
+import{_ as e}from"./main-B130mzbQ.js";import{r as t,j as o,R as r}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageHead-ByG18s83.js";import{d as a}from"./styled-components-fuCKgGld.js";import{m as s}from"./framer-motion-Ep29qSuC.js";import{P as n}from"./PageScrollReset-BDYyiQ41.js";import{u as p}from"./i18n-core-DrMVsQFB.js";const m=a(s.div)`
   background-color: #000000;
   color: #FFFFFF;
   min-height: 100vh;
@@ -63,28 +63,28 @@ import{_ as e}from"./main-Bin8y1ez.js";import{r as t,j as o,R as r}from"./react-
   margin: 1.5rem auto 3rem auto;
   line-height: 1.7;
   font-weight: 400;
-`,h=a.div`
+`,x=a.div`
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
   z-index: 2;
-`,x=a(s.div)`
+`,h=a(s.div)`
   position: absolute;
   border-radius: 50%;
   background: linear-gradient(135deg, ${e=>e.theme.colors.primary}10, ${e=>e.theme.colors.primary}30);
   filter: blur(60px);
   z-index: 1;
-`;a(x)`
+`;a(h)`
   width: 500px;
   height: 500px;
   top: -100px;
   right: -100px;
-`,a(x)`
+`,a(h)`
   width: 600px;
   height: 600px;
   bottom: -200px;
   left: -200px;
-`,a(x)`
+`,a(h)`
   width: 500px;
   height: 500px;
   bottom: -150px;
@@ -139,4 +139,4 @@ import{_ as e}from"./main-Bin8y1ez.js";import{r as t,j as o,R as r}from"./react-
   &:hover svg {
     transform: translateX(5px);
   }
-`;const f=r.lazy(()=>e(()=>import("./HeroSection-C3b8vydR.js"),__vite__mapDeps([0,1,2,3,4,5,6]))),b=r.lazy(()=>e(()=>import("./BenefitsSection-BWTAzjan.js"),__vite__mapDeps([7,1,2,3,4,5,6,8,9,10,11,12,13,14,15,16]))),u=r.lazy(()=>e(()=>import("./ScrollingText-Don3Rqth.js"),__vite__mapDeps([17,1,18,19,2,3,5]))),_=r.lazy(()=>e(()=>import("./FacilitySectionNew-4F4Fokfe.js"),__vite__mapDeps([20,1,2,3,4,5,6,8,9,10,11,12,13,14,15,16]))),w=r.lazy(()=>e(()=>import("./ScheduleSectionNew-NUBbgZaX.js"),__vite__mapDeps([21,1,2,3,4,5,6,8,9,10,11,12,13,14,15,16]))),y=r.lazy(()=>e(()=>import("./CTASection-BYfM4mmG.js"),__vite__mapDeps([22,1,2,3,4,5,6]))),InvisibleLoader=()=>null,j=Object.freeze(Object.defineProperty({__proto__:null,default:()=>{const{t:e}=p();return t.useEffect(()=>(document.body.classList.add("sports-page"),window.scrollTo(0,0),()=>{document.body.classList.remove("sports-page")}),[]),o.jsxs(m,{initial:{opacity:0},animate:{opacity:1},transition:{duration:.2},children:[o.jsx(i,{titleKey:"page_titles.sports",description:e("sports.hero.subtitle","Modern equipment, professional trainers and atmosphere to achieve your sporting goals"),keywords:"KAIF sports, gym, fitness, martial arts, MMA, boxing, training, Phuket",ogImage:"/images/sports/gym/gym-main.jpg"}),o.jsx(n,{}),o.jsxs(t.Suspense,{fallback:o.jsx(InvisibleLoader,{}),children:[o.jsx(f,{}),o.jsx(b,{}),o.jsx(u,{}),o.jsx(_,{}),o.jsx(w,{}),o.jsx(y,{})]})]})}},Symbol.toStringTag,{value:"Module"}));export{h as C,l as S,d as a,g as b,c,j as d};
+`;const f=r.lazy(()=>e(()=>import("./HeroSection-C3b8vydR.js"),__vite__mapDeps([0,1,2,3,4,5,6]))),b=r.lazy(()=>e(()=>import("./BenefitsSection-B9bFxMwp.js"),__vite__mapDeps([7,1,2,3,4,5,6,8,9,10,11,12,13,14,15,16]))),u=r.lazy(()=>e(()=>import("./ScrollingText-Don3Rqth.js"),__vite__mapDeps([17,1,18,19,2,3,5]))),_=r.lazy(()=>e(()=>import("./FacilitySectionNew-CUmcCTNW.js"),__vite__mapDeps([20,1,2,3,4,5,6,8,9,10,11,12,13,14,15,16]))),w=r.lazy(()=>e(()=>import("./ScheduleSectionNew-B1vTUc9J.js"),__vite__mapDeps([21,1,2,3,4,5,6,8,9,10,11,12,13,14,15,16]))),y=r.lazy(()=>e(()=>import("./CTASection-BYfM4mmG.js"),__vite__mapDeps([22,1,2,3,4,5,6]))),InvisibleLoader=()=>null,j=Object.freeze(Object.defineProperty({__proto__:null,default:()=>{const{t:e}=p();return t.useEffect(()=>(document.body.classList.add("sports-page"),window.scrollTo(0,0),()=>{document.body.classList.remove("sports-page")}),[]),o.jsxs(m,{initial:{opacity:0},animate:{opacity:1},transition:{duration:.2},children:[o.jsx(i,{titleKey:"page_titles.sports",description:e("sports.hero.subtitle","Modern equipment, professional trainers and atmosphere to achieve your sporting goals"),keywords:"KAIF sports, gym, fitness, martial arts, MMA, boxing, training, Phuket",ogImage:"/images/sports/gym/gym-main.jpg"}),o.jsx(n,{}),o.jsxs(t.Suspense,{fallback:o.jsx(InvisibleLoader,{}),children:[o.jsx(f,{}),o.jsx(b,{}),o.jsx(u,{}),o.jsx(_,{}),o.jsx(w,{}),o.jsx(y,{})]})]})}},Symbol.toStringTag,{value:"Module"}));export{x as C,l as S,d as a,g as b,c,j as d};

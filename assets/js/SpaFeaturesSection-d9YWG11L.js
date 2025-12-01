@@ -34,7 +34,7 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-compone
   @media (min-width: 992px) {
     grid-template-columns: repeat(4, 1fr);
   }
-`,x=i(s.div)`
+`,g=i(s.div)`
   background: rgba(255, 255, 255, 0.8);
   padding: 2.5rem 2rem;
   border-radius: 25px;
@@ -50,7 +50,7 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-compone
     transform: translateY(-5px);
     box-shadow: 0 20px 40px rgba(144, 179, 167, 0.15);
   }
-`,g=i.div`
+`,x=i.div`
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -78,7 +78,7 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-compone
   color: #5A6B5D;
   transition: color 0.3s ease;
   
-  ${x}:hover & {
+  ${g}:hover & {
     color: #90B3A7;
   }
 `,u=i.p`
@@ -87,4 +87,4 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-compone
   color: #7A8A7D;
   margin-bottom: 0;
   font-weight: 400;
-`,SpaFeaturesSection=()=>{const{t:i}=t(),s=[{id:1,icon:e.jsx(r,{}),title:i("spa.features.premium_quality.title","Премиум качество"),description:i("spa.features.premium_quality.description","Используем только лучшие продукты и оборудование для всех процедур")},{id:2,icon:e.jsx(a,{}),title:i("spa.features.full_relaxation.title","Полное расслабление"),description:i("spa.features.full_relaxation.description","Создаем атмосферу комфорта для вашего расслабления и отдыха")},{id:3,icon:e.jsx(o,{}),title:i("spa.features.experienced_masters.title","Опытные мастера"),description:i("spa.features.experienced_masters.description","Специалисты с многолетним опытом и постоянным развитием навыков")},{id:4,icon:e.jsx(n,{}),title:i("spa.features.individual_approach.title","Индивидуальный подход"),description:i("spa.features.individual_approach.description","Учитываем ваши пожелания и особенности для максимального результата")}];return e.jsx(l,{children:e.jsxs(d,{children:[e.jsx(p,{initial:{opacity:0,y:30},whileInView:{opacity:1,y:0},transition:{duration:.6},viewport:{once:!0},children:i("spa.features.title","Почему выбирают нас")}),e.jsx(c,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},transition:{duration:.6,delay:.2},viewport:{once:!0},children:i("spa.features.subtitle","Мы стремимся предоставить вам исключительный опыт релаксации и ухода")}),e.jsx(m,{children:s.map((i,t)=>e.jsxs(x,{initial:{opacity:0,y:30},whileInView:{opacity:1,y:0},transition:{duration:.5,delay:.1*t},viewport:{once:!0},whileHover:{scale:1.02},children:[e.jsx(g,{children:i.icon}),e.jsx(h,{children:i.title}),e.jsx(u,{children:i.description})]},i.id))})]})})};export{SpaFeaturesSection as default};
+`,SpaFeaturesSection=()=>{const{t:i}=t(),s=[{id:1,icon:e.jsx(r,{}),title:i("spa.features.premium_quality.title","Премиум качество"),description:i("spa.features.premium_quality.description","Используем только лучшие продукты и оборудование для всех процедур")},{id:2,icon:e.jsx(a,{}),title:i("spa.features.full_relaxation.title","Полное расслабление"),description:i("spa.features.full_relaxation.description","Создаем атмосферу комфорта для вашего расслабления и отдыха")},{id:3,icon:e.jsx(o,{}),title:i("spa.features.experienced_masters.title","Опытные мастера"),description:i("spa.features.experienced_masters.description","Специалисты с многолетним опытом и постоянным развитием навыков")},{id:4,icon:e.jsx(n,{}),title:i("spa.features.individual_approach.title","Индивидуальный подход"),description:i("spa.features.individual_approach.description","Учитываем ваши пожелания и особенности для максимального результата")}];return e.jsx(l,{children:e.jsxs(d,{children:[e.jsx(p,{initial:{opacity:0,y:30},whileInView:{opacity:1,y:0},transition:{duration:.6},viewport:{once:!0},children:i("spa.features.title","Почему выбирают нас")}),e.jsx(c,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},transition:{duration:.6,delay:.2},viewport:{once:!0},children:i("spa.features.subtitle","Мы стремимся предоставить вам исключительный опыт релаксации и ухода")}),e.jsx(m,{children:s.map((i,t)=>e.jsxs(g,{initial:{opacity:0,y:30},whileInView:{opacity:1,y:0},transition:{duration:.5,delay:.1*t},viewport:{once:!0},whileHover:{scale:1.02},children:[e.jsx(x,{children:i.icon}),e.jsx(h,{children:i.title}),e.jsx(u,{children:i.description})]},i.id))})]})})};export{SpaFeaturesSection as default};
