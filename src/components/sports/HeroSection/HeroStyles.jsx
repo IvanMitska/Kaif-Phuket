@@ -2,18 +2,18 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 export const HeroSection = styled.section`
-  min-height: 100vh;
-  max-height: 100vh;
+  min-height: auto;
   position: relative;
   display: flex;
   align-items: center;
   background: #000000;
-  overflow: hidden;
-  padding: 80px 0 40px 0;
+  overflow: visible;
+  padding: 100px 0 30px 0;
 
   @media (max-width: 768px) {
-    min-height: 100vh;
+    min-height: auto;
     padding: 80px 0 20px 0;
+    overflow: visible !important;
   }
 `;
 
@@ -102,14 +102,13 @@ export const HeroContent = styled(motion.div)`
 
 export const HeroTag = styled(motion.span)`
   display: inline-block;
-  background-color: rgba(210, 155, 132, 0.2);
+  background-color: rgba(210, 155, 132, 0.3);
   color: ${props => props.theme.colors.primary};
   padding: 0.6rem 1.2rem;
   border-radius: 50px;
   font-size: 0.9rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
-  backdrop-filter: blur(5px);
   border: 1px solid rgba(210, 155, 132, 0.3);
 `;
 
@@ -216,11 +215,12 @@ export const PrimaryButton = styled(motion.button)`
   box-shadow: 0 8px 30px rgba(255, 230, 0, 0.4);
   position: relative;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow 0.3s ease, color 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 1.2px;
   white-space: nowrap;
   -webkit-font-smoothing: antialiased;
+  z-index: 1;
 
   &::before {
     content: '';
@@ -231,22 +231,12 @@ export const PrimaryButton = styled(motion.button)`
     height: 100%;
     background: #000000;
     transition: width 0.3s ease;
-    z-index: 0;
-  }
-
-  & > * {
-    position: relative;
-    z-index: 1;
-    transition: color 0.3s ease;
+    z-index: -1;
   }
 
   &:hover {
     box-shadow: 0 12px 40px rgba(255, 230, 0, 0.6);
-    transform: translateY(-2px);
-
-    & > * {
-      color: #FFE600;
-    }
+    color: #FFE600;
   }
 
   &:hover::before {
@@ -275,7 +265,7 @@ export const SecondaryButton = styled(motion.button)`
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
   font-weight: 800;
   font-size: 1rem;
@@ -283,14 +273,14 @@ export const SecondaryButton = styled(motion.button)`
   border-radius: 0;
   cursor: pointer;
   border: 2px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color 0.3s ease, color 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 1.2px;
   white-space: nowrap;
   -webkit-font-smoothing: antialiased;
+  z-index: 1;
 
   &::before {
     content: '';
@@ -301,21 +291,12 @@ export const SecondaryButton = styled(motion.button)`
     height: 100%;
     background-color: rgba(255, 255, 255, 1);
     transition: width 0.3s ease;
-  }
-
-  & > * {
-    position: relative;
-    z-index: 1;
-    transition: color 0.3s ease;
+    z-index: -1;
   }
 
   &:hover {
     border-color: rgba(255, 255, 255, 1);
-    transform: translateY(-2px);
-
-    & > * {
-      color: #000000;
-    }
+    color: #000000;
   }
 
   &:hover::before {
@@ -359,20 +340,18 @@ export const HeroStat = styled(motion.div)`
   align-items: center;
   text-align: center;
   padding: 1.5rem 1rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(20, 20, 20, 0.8);
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease;
 
   svg {
     margin-bottom: 0.75rem;
   }
 
   &:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(30, 30, 30, 0.9);
     border-color: rgba(210, 155, 132, 0.4);
-    transform: translateY(-5px);
   }
 `;
 
@@ -421,8 +400,9 @@ export const HeroImageContainer = styled(motion.div)`
   }
 
   @media (max-width: 768px) {
-    height: 320px;
-    max-height: 320px;
+    height: auto;
+    min-height: 320px;
+    max-height: none;
   }
 `;
 
@@ -443,17 +423,18 @@ export const HeroImage = styled(motion.img)`
   }
 `;
 
-export const HeroImageGlow = styled(motion.div)`
+export const HeroImageGlow = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) translateZ(0);
   width: 120%;
   height: 120%;
-  background: radial-gradient(circle, rgba(210, 155, 132, 0.4) 0%, transparent 70%);
-  filter: blur(60px);
+  background: radial-gradient(circle, rgba(210, 155, 132, 0.35) 0%, transparent 70%);
+  filter: blur(40px);
   z-index: 1;
   pointer-events: none;
+  will-change: opacity;
 `;
 
 export const HeroImageFrame = styled(motion.div)`

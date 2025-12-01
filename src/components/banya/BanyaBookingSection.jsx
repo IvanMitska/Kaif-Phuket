@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { 
+import {
   PhoneIcon,
   ChatBubbleLeftRightIcon,
   MapPinIcon,
   ClockIcon,
   FireIcon,
-  ArrowRightIcon
+  ArrowRightIcon,
+  CalendarDaysIcon
 } from '@heroicons/react/24/solid';
+import BookingModal from '../booking/BookingModal';
 
 // =============================================================================
 // СКАНДИНАВСКАЯ СЕКЦИЯ БРОНИРОВАНИЯ
@@ -416,7 +418,8 @@ const VikingOrnament = styled.div`
 
 const BanyaBookingSection = () => {
   const { t } = useTranslation();
-  
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+
   const handleContactClick = () => {
     const phoneNumber = t('common.phone_number', '+66 62 480 5877');
     window.open(`tel:${phoneNumber}`, '_self');
@@ -527,19 +530,19 @@ const BanyaBookingSection = () => {
         
             <ButtonGroup>
               <VikingButton
-                onClick={handleWhatsAppClick}
+                onClick={() => setIsBookingModalOpen(true)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ChatBubbleLeftRightIcon />
-                {t('banya.booking.book_whatsapp_button', 'Book via WhatsApp')}
+                <CalendarDaysIcon />
+                {t('banya.booking.book_online_button', 'Book Online')}
               </VikingButton>
-            
+
               <SecondaryButton
-              onClick={handleContactClick}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+                onClick={handleContactClick}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <PhoneIcon />
                 {t('banya.booking.call_now_button', 'Call Now')}
               </SecondaryButton>
@@ -547,6 +550,13 @@ const BanyaBookingSection = () => {
           </CTAContainer>
         </motion.div>
       </ContentWrapper>
+
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        service={t('banya.booking.service', 'Russian Banya')}
+        source="Banya page - booking section"
+      />
     </BookingContainer>
   );
 };

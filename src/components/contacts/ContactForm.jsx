@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { 
+import {
   CheckCircleIcon,
   ExclamationCircleIcon,
   PaperAirplaneIcon,
@@ -13,6 +13,7 @@ import {
   EnvelopeIcon,
   ChatBubbleLeftEllipsisIcon
 } from '@heroicons/react/24/outline';
+import { createLead } from '../../services/bitrix24';
 import { 
   Section,
   ContentContainer,
@@ -310,15 +311,25 @@ const ContactForm = () => {
     message: Yup.string().required(t('contacts.form.validation.message_required', 'Пожалуйста, напишите ваше сообщение')).max(maxMessageLength, t('contacts.form.validation.message_too_long', `Сообщение не должно превышать ${maxMessageLength} символов`))
   });
   
-  const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    // Здесь будет код для отправки формы на сервер
-    // Имитируем задержку отправки
-    setTimeout(() => {
-      console.log('Form values:', values);
-      setSubmitting(false);
+  const handleSubmit = async (values, { setSubmitting, resetForm, setStatus }) => {
+    try {
+      // Отправляем лид в Bitrix24 CRM
+      await createLead({
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+        message: values.message,
+        source: 'Контактная форма на сайте',
+      });
+
       resetForm();
       setFormSubmitted(true);
-    }, 800);
+    } catch (error) {
+      console.error('Failed to submit form:', error);
+      setStatus({ error: t('contacts.form.error', 'Произошла ошибка. Попробуйте ещё раз или свяжитесь с нами через WhatsApp.') });
+    } finally {
+      setSubmitting(false);
+    }
   };
   
   return (
@@ -368,8 +379,23 @@ const ContactForm = () => {
                   validationSchema={validationSchema}
                   onSubmit={handleSubmit}
                 >
-                  {({ isSubmitting, values, errors, touched }) => (
+                  {({ isSubmitting, values, errors, touched, status }) => (
                     <Form>
+                      {status?.error && (
+                        <ErrorText
+                          as={motion.div}
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          style={{
+                            marginBottom: '1.5rem',
+                            padding: '1rem',
+                            background: 'rgba(239, 68, 68, 0.1)',
+                            borderRadius: '8px'
+                          }}
+                        >
+                          <ExclamationCircleIcon /> {status.error}
+                        </ErrorText>
+                      )}
                       <FormGroup>
                         <Label htmlFor="name">{t('contacts.form.name', 'Имя')}</Label>
                         <InputWrapper>

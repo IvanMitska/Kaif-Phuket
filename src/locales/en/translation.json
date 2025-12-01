@@ -1895,17 +1895,61 @@
     "title": "Sports Facilities",
     "description": "State-of-the-art exercise facilities for everyone",
     "hero": {
-      "tag": "Fitness & Sports",
+      "tag": "YOUR ELITE FITNESS",
       "title": "Reach new <span>sports heights</span> with KAIF",
-      "subtitle": "Our premium sports facilities are designed to accommodate various fitness levels and goals.",
+      "subtitle": "Modern equipment, professional trainers and atmosphere to achieve your sports goals",
       "cta": "Explore Facilities",
-      "primary_cta": "Book a training",
-      "secondary_cta": "Learn more",
+      "primary_cta": "BOOK A TRAINING",
+      "secondary_cta": "LEARN MORE",
+      "main_title_1": "YOUR",
+      "main_title_2": "ELITE",
+      "main_title_3": "FITNESS",
+      "main_title_4": "EXPERIENCE",
+      "equipment_count": "Equipment",
+      "trainers_count": "Pro Trainers",
+      "members_badge": "MEMBERS",
       "stats": {
         "facilities": "Sports Facilities",
         "trainers": "Professional Trainers",
         "access": "Modern Equipment"
       }
+    },
+    "benefits": {
+      "tag": "Why Choose Us",
+      "title": "Advantages of <span>KAIF sports complex</span>",
+      "premium": {
+        "title": "Premium Equipment",
+        "description": "Equipment from world-leading manufacturers Technogym and Life Fitness"
+      },
+      "trainers": {
+        "title": "Professional Trainers",
+        "description": "Certified specialists with international experience"
+      },
+      "schedule": {
+        "title": "Flexible Schedule",
+        "description": "Open from 07:00 to 22:00 every day of the week"
+      },
+      "technology": {
+        "title": "Modern Technology",
+        "description": "Progress monitoring and personalized training programs"
+      },
+      "atmosphere": {
+        "title": "Comfortable Atmosphere",
+        "description": "Spacious rooms with air conditioning and panoramic windows"
+      },
+      "safety": {
+        "title": "Safety First",
+        "description": "Insurance, medical supervision and compliance with all standards"
+      }
+    },
+    "cta": {
+      "title": "Ready to Start?",
+      "subtitle": "Sign up for a free trial session and start your journey to your sports goals today",
+      "primary_button": "Book a Training",
+      "secondary_button": "Call Us"
+    },
+    "booking": {
+      "service": "Fitness Training"
     },
     "gym": {
       "tag": "Our Services",
@@ -1939,55 +1983,118 @@
       "title": "SCHEDULE",
       "subtitle": "SELECT DAY OF WEEK",
       "minutes": "min",
+      "spots": "spots",
+      "book": "Book",
       "description": "Weekly class schedule with professional instructors",
       "coming_soon": "Training schedule will be available soon. For current information, please contact us.",
-      "contact_button": "Contact Us"
+      "contact_button": "Contact Us",
+      "days": {
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday",
+        "mon_short": "MON",
+        "tue_short": "TUE",
+        "wed_short": "WED",
+        "thu_short": "THU",
+        "fri_short": "FRI",
+        "sat_short": "SAT",
+        "sun_short": "SUN"
+      },
+      "classes": {
+        "yoga_flow": "Yoga Flow",
+        "hiit_training": "HIIT Training",
+        "boxing": "Boxing",
+        "stretching": "Stretching",
+        "crossfit": "CrossFit",
+        "pilates": "Pilates",
+        "muay_thai": "Muay Thai",
+        "dance_cardio": "Dance Cardio",
+        "strength_training": "Strength Training",
+        "yoga_therapy": "Yoga Therapy",
+        "functional_training": "Functional Training",
+        "zumba": "Zumba",
+        "mma_basics": "MMA Basics",
+        "mobility": "Mobility",
+        "body_pump": "Body Pump",
+        "yoga_power": "Power Yoga",
+        "boxing_advanced": "Boxing Advanced",
+        "barre": "Barre",
+        "trx_training": "TRX Training",
+        "stretching_relax": "Relaxing Stretching",
+        "hiit_cardio": "HIIT Cardio",
+        "dance_fitness": "Dance Fitness",
+        "muay_thai_sparring": "Muay Thai Sparring",
+        "core_training": "Core Training",
+        "crossfit_wod": "CrossFit WOD",
+        "morning_yoga": "Morning Yoga",
+        "open_mat_mma": "Open Mat MMA",
+        "zumba_party": "Zumba Party",
+        "strength_conditioning": "Strength & Conditioning",
+        "gentle_yoga": "Gentle Yoga",
+        "family_fitness": "Family Fitness",
+        "recovery_session": "Recovery Session"
+      }
     },
     "facilities": {
       "tag": "Our facilities",
       "title": "Modern <span>sports</span> spaces",
       "subtitle": "KAIF offers a wide selection of premium sports spaces with cutting-edge equipment and professional trainers to help you achieve your fitness goals.",
       "gym": {
-        "title": "Gym",
+        "tag": "GYM",
+        "title": "Modern Gym",
+        "short_description": "Premium equipment from Technogym and Life Fitness for effective workouts",
         "description": "Over 70 pieces of professional equipment",
         "hours": "07:00 - 22:00",
         "capacity": "Up to 40 people",
         "description1": "Our gym is equipped with modern premium equipment from leading manufacturers. Here you will find everything you need for effective workouts - from free weights to the latest generation of cardio machines.",
         "description2": "The spacious room with panoramic windows creates the perfect atmosphere for training, and professional trainers are always ready to help create an individual program.",
-        "feature1": "Premium Technogym and Life Fitness equipment",
-        "feature2": "Functional training area",
-        "feature3": "Individual training with certified trainers"
+        "feature1": "Cardio equipment zone",
+        "feature2": "Free weights zone",
+        "feature3": "Functional training"
       },
       "book_button": "Book a training session",
       "fight": {
+        "tag": "MARTIAL ARTS",
         "title": "Fight Club",
+        "short_description": "Professional ring and equipment for boxing, Muay Thai and MMA",
         "description": "Professional boxing and MMA facility",
         "hours": "07:00 - 22:00",
         "capacity": "Up to 25 people",
         "description1": "KAIF Fighting Club is a modern space for training in various martial arts. Professional ring, punching bags, heavy bags, and special flooring create ideal conditions for both beginners and experienced fighters.",
         "description2": "Our trainers are experienced fighters and champions who will help you master techniques and achieve high results in your chosen martial art.",
         "feature1": "Professional boxing ring",
-        "feature2": "Boxing, Muay Thai, and MMA training",
-        "feature3": "Trainers with international certifications"
+        "feature2": "Punching bags and heavy bags",
+        "feature3": "Champion trainers"
       },
       "fight_club": {
+        "tag": "MARTIAL ARTS",
         "title": "Fight Club",
+        "short_description": "Professional ring and equipment for boxing, Muay Thai and MMA",
         "description": "Professional boxing and MMA facility",
         "hours": "07:00 - 22:00",
         "capacity": "Up to 25 people",
         "description1": "KAIF Fighting Club is a modern space for training in various martial arts. Professional ring, punching bags, heavy bags, and special flooring create ideal conditions for both beginners and experienced fighters.",
         "description2": "Our trainers are experienced fighters and champions who will help you master techniques and achieve high results in your chosen martial art.",
         "feature1": "Professional boxing ring",
-        "feature2": "Boxing, Muay Thai, and MMA training",
-        "feature3": "Trainers with international certifications"
+        "feature2": "Punching bags and heavy bags",
+        "feature3": "Champion trainers"
       },
       "dance": {
+        "tag": "DANCE & FITNESS",
         "title": "Dance Studio",
+        "short_description": "Spacious studio for dance, yoga and group fitness programs",
         "description": "For yoga and dance classes",
         "hours": "07:00 - 22:00",
         "capacity": "Up to 30 people",
         "description1": "Spacious dance studio with professional flooring, mirrored walls and advanced audio system creates ideal conditions for various dance styles and group classes.",
         "description2": "Classes in modern and classical dance styles are held here, as well as group fitness training under the guidance of experienced instructors.",
+        "feature1": "Mirrored walls",
+        "feature2": "Professional flooring",
+        "feature3": "Sound system",
         "feature4": "Flexible schedule for group and individual classes",
         "schedule_title": "Classes and Schedule",
         "schedule_subtitle": "Find the right class",

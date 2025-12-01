@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { XMarkIcon, ClockIcon, CurrencyDollarIcon } from '@heroicons/react/24/outline';
+import BookingModal from '../booking/BookingModal';
 
 const ModalOverlay = styled(motion.div)`
   position: fixed;
@@ -533,6 +534,8 @@ const PopularBadge = styled.div`
 `;
 
 const SpaServiceModal = ({ isOpen, onClose, service, categoryData }) => {
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+
   // Блокируем скролл body когда модальное окно открыто
   React.useEffect(() => {
     if (isOpen) {
@@ -577,11 +580,7 @@ const SpaServiceModal = ({ isOpen, onClose, service, categoryData }) => {
   };
 
   const handleBooking = () => {
-    // Открываем WhatsApp с предварительно заполненным сообщением
-    const message = `Здравствуйте! Хочу записаться на ${service.name} в СПА KAIF`;
-    const whatsappUrl = `https://wa.me/66624805877?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
-    onClose();
+    setIsBookingModalOpen(true);
   };
 
   return createPortal(
@@ -651,11 +650,21 @@ const SpaServiceModal = ({ isOpen, onClose, service, categoryData }) => {
               </BookingButton>
             </ServiceInfo>
           </ModalContent>
+
+          <BookingModal
+            isOpen={isBookingModalOpen}
+            onClose={() => {
+              setIsBookingModalOpen(false);
+              onClose();
+            }}
+            service={service?.name || 'SPA-процедура'}
+            source="SPA Service Modal"
+          />
         </ModalOverlay>
               )}
       </AnimatePresence>,
       document.body
     );
   };
-  
+
   export default SpaServiceModal; 

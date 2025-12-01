@@ -3,15 +3,12 @@ import { motion } from 'framer-motion';
 
 export const CTAContainer = styled.section`
   position: relative;
-  padding: 8rem 2rem 8rem 2rem;
-  overflow: visible;
-  margin: 0;
+  padding: 8rem 2rem;
   margin-bottom: 0;
-  padding-bottom: 0;
+  overflow: visible;
 
   @media (max-width: 768px) {
-    padding: 5rem 1.5rem 5rem 1.5rem;
-    padding-bottom: 0;
+    padding: 5rem 1.5rem;
   }
 `;
 
@@ -20,7 +17,7 @@ export const CTABackground = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  bottom: -100px;
+  bottom: -20px;
   background: #FFE600;
   z-index: 1;
 
@@ -48,7 +45,7 @@ export const CTAPattern = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  bottom: -100px;
+  bottom: -20px;
   background-image:
     radial-gradient(circle at 15% 20%, rgba(0, 0, 0, 0.08) 0%, transparent 30%),
     radial-gradient(circle at 85% 80%, rgba(0, 0, 0, 0.08) 0%, transparent 30%);
@@ -131,12 +128,13 @@ export const CTAPrimaryButton = styled(motion.a)`
   cursor: pointer;
   text-decoration: none;
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow 0.3s ease, color 0.3s ease;
   position: relative;
   overflow: hidden;
   text-transform: uppercase;
   letter-spacing: 2px;
   -webkit-font-smoothing: antialiased;
+  z-index: 1;
 
   &::before {
     content: '';
@@ -146,29 +144,19 @@ export const CTAPrimaryButton = styled(motion.a)`
     width: 0;
     height: 100%;
     background: #FFFFFF;
-    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 0;
-  }
-
-  & > * {
-    position: relative;
-    z-index: 1;
-    transition: color 0.4s ease;
+    transition: width 0.3s ease;
+    z-index: -1;
   }
 
   svg {
     width: 24px;
     height: 24px;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.3s ease;
   }
 
   &:hover {
-    transform: translateY(-3px);
     box-shadow: 0 16px 64px rgba(0, 0, 0, 0.6);
-
-    & > * {
-      color: #000000;
-    }
+    color: #000000;
   }
 
   &:hover::before {
@@ -193,7 +181,7 @@ export const CTASecondaryButton = styled(motion.a)`
   justify-content: center;
   gap: 0.75rem;
   padding: 1.8rem 4.5rem;
-  background: transparent;
+  background: rgba(255, 230, 0, 0.1);
   color: #000000;
   border: 4px solid rgba(0, 0, 0, 0.4);
   border-radius: 0;
@@ -201,13 +189,13 @@ export const CTASecondaryButton = styled(motion.a)`
   font-size: 1.2rem;
   cursor: pointer;
   text-decoration: none;
-  backdrop-filter: blur(10px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 2px;
   -webkit-font-smoothing: antialiased;
   position: relative;
   overflow: hidden;
+  z-index: 1;
 
   &::before {
     content: '';
@@ -217,14 +205,8 @@ export const CTASecondaryButton = styled(motion.a)`
     width: 0;
     height: 100%;
     background: #000000;
-    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 0;
-  }
-
-  & > * {
-    position: relative;
-    z-index: 1;
-    transition: color 0.4s ease;
+    transition: width 0.3s ease;
+    z-index: -1;
   }
 
   svg {
@@ -234,12 +216,8 @@ export const CTASecondaryButton = styled(motion.a)`
 
   &:hover {
     border-color: #000000;
-    transform: translateY(-3px);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-
-    & > * {
-      color: #FFFFFF;
-    }
+    color: #FFFFFF;
   }
 
   &:hover::before {

@@ -64,57 +64,76 @@ article {
 }
 
 html {
-  /* ИСПРАВЛЕНО: Убираем все scroll-behavior для предотвращения конфликтов */
   font-size: 16px;
   line-height: 1.5;
   margin: 0;
   padding: 0;
-  height: 100%;
   overflow-x: hidden;
-  /* Отключаем все scroll-snap свойства */
   scroll-snap-type: none !important;
   scroll-snap-align: none !important;
   scroll-snap-stop: normal !important;
-  background-color: #ffffff;
-  /* Оптимизация прокрутки без блокировки */
   -webkit-overflow-scrolling: touch;
-  /* Важно: не устанавливаем scroll-behavior - позволяем браузеру управлять */
+  /* Цвет футера с оверлеем для iOS overscroll bounce */
+  background-color: #4a5c54;
 }
 
 body {
   font-family: var(--font-primary);
-  background-color: #ffffff;
+  background-color: #4a5c54;
   color: var(--color-text-primary);
   line-height: 1.6;
   font-weight: 400;
   font-size: 1rem;
   min-height: 100vh;
-  height: 100%;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   margin: 0;
   padding: 0;
-  /* Отключаем все scroll-snap свойства */
   scroll-snap-type: none !important;
   scroll-snap-align: none !important;
   scroll-snap-stop: normal !important;
-  /* ИСПРАВЛЕНО: Оптимизация скролла без блокировки */
-  overscroll-behavior: auto;
-  -webkit-overscroll-behavior: auto;
-  /* Разрешаем все типы touch действий */
-  touch-action: manipulation;
+  overscroll-behavior-y: none;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
 }
 
 #root {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
+  background-color: #4a5c54;
+  position: relative;
+}
+
+/* Sports page */
+body.sports-page,
+body.sports-page #root {
+  background-color: #000000 !important;
+}
+
+body.sports-page main {
+  background-color: #000000 !important;
+}
+
+body.sports-page footer {
+  margin-top: 0 !important;
+}
+
+/* Ensure header stays fixed on sports page */
+body.sports-page .kaif-header,
+body.sports-page header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 99999 !important;
+  transform: none !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 /* Typography */

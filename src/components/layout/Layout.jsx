@@ -9,25 +9,35 @@ import GlobalStyles from '../global/GlobalStyles';
 import LoadingScreen from '../global/LoadingScreen';
 
 const MainContainer = styled.div`
-  min-height: 100vh;
   width: 100%;
   position: relative;
   z-index: 1;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
+  background: transparent;
+
+  @media (max-width: 768px) {
+    overflow: visible !important;
+  }
 `;
 
 const MainContent = styled.main`
   width: 100%;
-  min-height: 100vh;
   position: relative;
+  z-index: 0;
   flex: 1 0 auto;
   margin: 0;
   padding: 65px 0 0 0;
-  background: transparent;
+  background: #FFFFFF;
+
+  @media (max-width: 768px) {
+    overflow: visible !important;
+    min-height: auto !important;
+  }
 `;
 
 const Layout = ({ children }) => {

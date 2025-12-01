@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { 
+import {
   ArrowRightIcon,
   TagIcon,
   CheckIcon,
   StarIcon
 } from '@heroicons/react/24/solid';
+import BookingModal from '../booking/BookingModal';
 
 // =============================================================================
 // СОВРЕМЕННАЯ МИНИМАЛИСТИЧНАЯ СЕКЦИЯ ПРОМО-АКЦИЙ
@@ -301,6 +302,13 @@ const PromotionsSection = () => {
     minutes: 45,
     seconds: 30
   });
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [selectedPromo, setSelectedPromo] = useState(null);
+
+  const handleBookClick = (promo) => {
+    setSelectedPromo(promo);
+    setIsBookingModalOpen(true);
+  };
 
   // Countdown timer
   useEffect(() => {
@@ -507,10 +515,8 @@ const PromotionsSection = () => {
                   </PromoFeatures>
                   
                   <PromoButton
-                    as="a"
-                    href="https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20забронировать%20акцию%20KAIF"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    as="button"
+                    onClick={() => handleBookClick(promo)}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -523,6 +529,13 @@ const PromotionsSection = () => {
           </PromotionsGrid>
         </motion.div>
       </ContentWrapper>
+
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        service={selectedPromo?.title || 'Акция'}
+        source="Home - Promotions"
+      />
     </PromotionsContainer>
   );
 };

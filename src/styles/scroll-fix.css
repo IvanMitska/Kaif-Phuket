@@ -10,21 +10,13 @@
 
 /* Обеспечиваем плавный скролл для всего документа */
 html {
-  scroll-behavior: smooth !important;
-  /* Для мобильных Safari */
-  -webkit-overflow-scrolling: touch;
-  /* Предотвращаем bounce на iOS */
-  overscroll-behavior-y: contain;
-  -webkit-overscroll-behavior-y: contain;
+  /* Убрано -webkit-overflow-scrolling: touch - может мешать fixed header */
 }
 
 /* Оптимизация скролла для body */
 body {
   /* Разрешаем только вертикальный скролл */
-  touch-action: pan-y pinch-zoom;
-  /* Предотвращаем блокировку скролла */
-  overscroll-behavior: auto;
-  -webkit-overscroll-behavior: auto;
+  touch-action: pan-y;
 }
 
 /* =============================================================================
@@ -38,9 +30,6 @@ body {
 *[class*="Slider"] {
   touch-action: pan-y !important;
   will-change: auto !important;
-  /* Минимальная GPU оптимизация */
-  transform: translateZ(0);
-  backface-visibility: hidden;
 }
 
 /* Слайдер треки не должны блокировать скролл */
@@ -66,8 +55,6 @@ section[class*="hero"] {
   scroll-snap-align: none !important;
   scroll-snap-type: none !important;
   touch-action: pan-y;
-  contain: layout style;
-  isolation: auto;
 }
 
 /* =============================================================================
@@ -87,9 +74,7 @@ section[class*="hero"] {
   }
 
   body {
-    /* Критично для iOS Safari */
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
+    /* Убрано -webkit-overflow-scrolling: touch - может мешать fixed header */
   }
 
   /* Слайдеры на мобильных должны быть особенно осторожными */
@@ -111,15 +96,15 @@ section[class*="hero"] {
 [role="dialog"],
 .modal,
 *[class*="Modal"] {
-  overscroll-behavior: contain;
-  -webkit-overscroll-behavior: contain;
+  /* На Android contain работает нормально, на iOS может быть проблема */
+  overscroll-behavior: auto;
 }
 
 /* Оверлеи модальных окон */
 .modal-overlay,
 *[class*="ModalOverlay"] {
   touch-action: pan-y;
-  overscroll-behavior: contain;
+  overscroll-behavior: auto;
 }
 
 /* =============================================================================
@@ -161,7 +146,5 @@ a,
 
 /* Класс для контейнеров, безопасных для скролла */
 .scroll-safe {
-  contain: layout style;
-  isolation: auto;
   touch-action: pan-y;
 }

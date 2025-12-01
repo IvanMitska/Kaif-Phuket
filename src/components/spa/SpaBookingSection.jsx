@@ -3,15 +3,17 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { 
-  PhoneIcon, 
+import {
+  PhoneIcon,
   ChatBubbleLeftRightIcon,
   CalendarDaysIcon,
   ClockIcon,
   MapPinIcon,
-  DocumentTextIcon
+  DocumentTextIcon,
+  PaperAirplaneIcon
 } from '@heroicons/react/24/solid';
 import YclientsModal from '../booking/YclientsModal';
+import BookingModal from '../booking/BookingModal';
 
 // =============================================================================
 // СОВРЕМЕННАЯ СЕКЦИЯ БРОНИРОВАНИЯ SPA
@@ -293,6 +295,7 @@ const SpaBookingSection = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [isYclientsModalOpen, setIsYclientsModalOpen] = useState(false);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   // Animation variants
   const cardVariants = {
@@ -423,7 +426,7 @@ const SpaBookingSection = () => {
             </BookingCard>
           </motion.div>
 
-          {/* WhatsApp бронирование */}
+          {/* Быстрая заявка */}
           <motion.div
             variants={cardVariants}
             initial="hidden"
@@ -433,35 +436,34 @@ const SpaBookingSection = () => {
           >
             <BookingCard>
               <CardIcon>
-                <ChatBubbleLeftRightIcon />
+                <PaperAirplaneIcon />
               </CardIcon>
-              <CardTitle>{t('spa.booking.whatsapp.title', 'WhatsApp чат')}</CardTitle>
+              <CardTitle>{t('spa.booking.form.title', 'Оставить заявку')}</CardTitle>
               <CardDescription>
-                {t('spa.booking.whatsapp.description', 'Напишите нам в WhatsApp для удобного бронирования. Мы быстро ответим и поможем выбрать лучшее время для вас.')}
+                {t('spa.booking.form.description', 'Оставьте заявку онлайн — мы перезвоним вам в течение 15 минут и поможем выбрать подходящую процедуру.')}
               </CardDescription>
-              
+
               <ContactList>
                 <ContactItem>
                   <ClockIcon />
-                  <span>{t('spa.booking.whatsapp.hours', 'Онлайн поддержка: 24/7')}</span>
+                  <span>{t('spa.booking.form.feature1', 'Перезвоним за 15 минут')}</span>
                 </ContactItem>
                 <ContactItem>
-                  <ChatBubbleLeftRightIcon />
-                  <span>{t('spa.booking.whatsapp.feature', 'Быстрые ответы')}</span>
+                  <CalendarDaysIcon />
+                  <span>{t('spa.booking.form.feature2', 'Подберём удобное время')}</span>
                 </ContactItem>
               </ContactList>
-              
+
               <div style={{ marginTop: '1.5rem' }}>
-                <SecondaryButton 
-                  href="https://wa.me/66624805877"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <ActionButton
+                  as="button"
+                  onClick={() => setIsBookingModalOpen(true)}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <ChatBubbleLeftRightIcon />
-                  {t('spa.booking.whatsapp.button', 'Написать в WhatsApp')}
-                </SecondaryButton>
+                  <PaperAirplaneIcon />
+                  {t('spa.booking.form.button', 'Оставить заявку')}
+                </ActionButton>
               </div>
             </BookingCard>
           </motion.div>
@@ -472,6 +474,13 @@ const SpaBookingSection = () => {
         isOpen={isYclientsModalOpen}
         onClose={() => setIsYclientsModalOpen(false)}
         customUrl="https://n1329009.alteg.io"
+      />
+
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        service={t('spa.booking.service', 'SPA-процедура')}
+        source="SPA страница - секция записи"
       />
     </BookingContainer>
   );

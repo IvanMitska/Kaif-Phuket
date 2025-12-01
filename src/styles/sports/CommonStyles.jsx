@@ -2,16 +2,18 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 // Основные стилизованные компоненты
-export const PageContainer = styled(motion.div)`
+export const PageContainer = styled.div`
   background-color: #000000;
   color: #FFFFFF;
   min-height: 100vh;
   font-family: ${props => props.theme.fonts.primary};
-  overflow-x: hidden;
+  overflow: visible;
+  position: relative;
+  z-index: 0;
 `;
 
 export const Section = styled.section`
-  padding: 8rem 2rem;
+  padding: 4rem 2rem;
   background-color: ${props => props.bgColor || '#000000'};
   position: relative;
   overflow: hidden;
@@ -21,7 +23,7 @@ export const Section = styled.section`
   }
 
   @media (max-width: 768px) {
-    padding: 5rem 1.5rem;
+    padding: 0.75rem 1rem;
   }
 `;
 
@@ -38,6 +40,12 @@ export const SectionTag = styled(motion.span)`
   text-transform: uppercase;
   border: none;
   box-shadow: 0 4px 16px rgba(255, 230, 0, 0.4);
+
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
 `;
 
 export const SectionTitle = styled(motion.h2)`
@@ -63,6 +71,7 @@ export const SectionTitle = styled(motion.h2)`
 
   @media (max-width: 768px) {
     font-size: clamp(2.2rem, 9vw, 3.5rem);
+    margin-bottom: 1rem;
   }
 `;
 
@@ -74,6 +83,10 @@ export const SectionSubtitle = styled(motion.p)`
   margin: 1.5rem auto 3rem auto;
   line-height: 1.7;
   font-weight: 400;
+
+  @media (max-width: 768px) {
+    margin: 1rem auto 1.5rem auto;
+  }
 `;
 
 export const ContentContainer = styled.div`
@@ -83,12 +96,14 @@ export const ContentContainer = styled.div`
   z-index: 2;
 `;
 
-export const BackgroundShape = styled(motion.div)`
+export const BackgroundShape = styled.div`
   position: absolute;
   border-radius: 50%;
   background: linear-gradient(135deg, ${props => props.theme.colors.primary}10, ${props => props.theme.colors.primary}30);
-  filter: blur(60px);
+  filter: blur(40px);
   z-index: 1;
+  transform: translateZ(0);
+  will-change: opacity;
 `;
 
 export const TopRightShape = styled(BackgroundShape)`

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { FaDumbbell, FaSpa, FaUsers, FaSwimmer, FaCheck, FaClock } from 'react-icons/fa';
+import BookingModal from '../booking/BookingModal';
 
 // Main container - modern gradient background
 const SectionContainer = styled.section`
@@ -553,6 +554,13 @@ const BookButton = styled(motion.a)`
 const PricingSection = () => {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState('dayPass');
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState(null);
+
+  const handleBookClick = (plan) => {
+    setSelectedPlan(plan);
+    setIsBookingModalOpen(true);
+  };
 
   const handleCategoryChange = (category) => {
     // Store the current scroll position
@@ -900,9 +908,8 @@ const PricingSection = () => {
                 </FeatureList>
 
                 <BookButton
-                  href="https://wa.me/66624805877?text=Здравствуйте! Хочу приобрести абонемент"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  as="button"
+                  onClick={() => handleBookClick(plan)}
                   $category={activeCategory}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -914,6 +921,13 @@ const PricingSection = () => {
           </PricingGrid>
         </GridContainer>
       </Container>
+
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        service={selectedPlan ? `${selectedPlan.name} - ${selectedPlan.duration}` : ''}
+        source="Home - Pricing"
+      />
     </SectionContainer>
   );
 };

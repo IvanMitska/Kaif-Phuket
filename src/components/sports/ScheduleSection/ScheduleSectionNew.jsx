@@ -6,6 +6,10 @@ import {
   UserIcon,
   CalendarIcon
 } from '@heroicons/react/24/outline';
+// TODO: Временно отключено - BookingModal
+// import BookingModal from '../../booking/BookingModal';
+
+const WHATSAPP_NUMBER = '66624805877';
 import {
   ScheduleContainer,
   ScheduleTabs,
@@ -24,66 +28,74 @@ import { Section, SectionTag, SectionTitle, SectionSubtitle, ContentContainer } 
 
 const scheduleData = {
   monday: [
-    { time: '09:00', title: 'Yoga Flow', instructor: 'Anna K.', duration: 60, spots: 12 },
-    { time: '11:00', title: 'HIIT Training', instructor: 'Michael S.', duration: 45, spots: 20 },
-    { time: '14:00', title: 'Boxing', instructor: 'Sergei T.', duration: 60, spots: 15 },
-    { time: '17:00', title: 'Stretching', instructor: 'Elena G.', duration: 45, spots: 15 },
-    { time: '19:00', title: 'CrossFit', instructor: 'Dmitry L.', duration: 60, spots: 18 }
+    { time: '09:00', titleKey: 'yoga_flow', instructor: 'Anna K.', duration: 60, spots: 12 },
+    { time: '11:00', titleKey: 'hiit_training', instructor: 'Michael S.', duration: 45, spots: 20 },
+    { time: '14:00', titleKey: 'boxing', instructor: 'Sergei T.', duration: 60, spots: 15 },
+    { time: '17:00', titleKey: 'stretching', instructor: 'Elena G.', duration: 45, spots: 15 },
+    { time: '19:00', titleKey: 'crossfit', instructor: 'Dmitry L.', duration: 60, spots: 18 }
   ],
   tuesday: [
-    { time: '09:00', title: 'Pilates', instructor: 'Maria V.', duration: 60, spots: 12 },
-    { time: '11:00', title: 'Muay Thai', instructor: 'Alexey D.', duration: 60, spots: 15 },
-    { time: '15:00', title: 'Dance Cardio', instructor: 'Viktoria Z.', duration: 45, spots: 20 },
-    { time: '18:00', title: 'Strength Training', instructor: 'Ivan P.', duration: 60, spots: 16 },
-    { time: '20:00', title: 'Yoga Therapy', instructor: 'Natalia M.', duration: 60, spots: 10 }
+    { time: '09:00', titleKey: 'pilates', instructor: 'Maria V.', duration: 60, spots: 12 },
+    { time: '11:00', titleKey: 'muay_thai', instructor: 'Alexey D.', duration: 60, spots: 15 },
+    { time: '15:00', titleKey: 'dance_cardio', instructor: 'Viktoria Z.', duration: 45, spots: 20 },
+    { time: '18:00', titleKey: 'strength_training', instructor: 'Ivan P.', duration: 60, spots: 16 },
+    { time: '20:00', titleKey: 'yoga_therapy', instructor: 'Natalia M.', duration: 60, spots: 10 }
   ],
   wednesday: [
-    { time: '09:00', title: 'Functional Training', instructor: 'Michael S.', duration: 60, spots: 18 },
-    { time: '11:00', title: 'Zumba', instructor: 'Viktoria Z.', duration: 45, spots: 25 },
-    { time: '14:00', title: 'MMA Basics', instructor: 'Sergei T.', duration: 60, spots: 12 },
-    { time: '17:00', title: 'Mobility', instructor: 'Elena G.', duration: 45, spots: 15 },
-    { time: '19:00', title: 'Body Pump', instructor: 'Dmitry L.', duration: 60, spots: 20 }
+    { time: '09:00', titleKey: 'functional_training', instructor: 'Michael S.', duration: 60, spots: 18 },
+    { time: '11:00', titleKey: 'zumba', instructor: 'Viktoria Z.', duration: 45, spots: 25 },
+    { time: '14:00', titleKey: 'mma_basics', instructor: 'Sergei T.', duration: 60, spots: 12 },
+    { time: '17:00', titleKey: 'mobility', instructor: 'Elena G.', duration: 45, spots: 15 },
+    { time: '19:00', titleKey: 'body_pump', instructor: 'Dmitry L.', duration: 60, spots: 20 }
   ],
   thursday: [
-    { time: '09:00', title: 'Yoga Power', instructor: 'Anna K.', duration: 60, spots: 12 },
-    { time: '11:00', title: 'Boxing Advanced', instructor: 'Alexey D.', duration: 60, spots: 10 },
-    { time: '15:00', title: 'Barre', instructor: 'Maria V.', duration: 45, spots: 15 },
-    { time: '18:00', title: 'TRX Training', instructor: 'Ivan P.', duration: 45, spots: 12 },
-    { time: '20:00', title: 'Stretching & Relax', instructor: 'Natalia M.', duration: 60, spots: 15 }
+    { time: '09:00', titleKey: 'yoga_power', instructor: 'Anna K.', duration: 60, spots: 12 },
+    { time: '11:00', titleKey: 'boxing_advanced', instructor: 'Alexey D.', duration: 60, spots: 10 },
+    { time: '15:00', titleKey: 'barre', instructor: 'Maria V.', duration: 45, spots: 15 },
+    { time: '18:00', titleKey: 'trx_training', instructor: 'Ivan P.', duration: 45, spots: 12 },
+    { time: '20:00', titleKey: 'stretching_relax', instructor: 'Natalia M.', duration: 60, spots: 15 }
   ],
   friday: [
-    { time: '09:00', title: 'HIIT Cardio', instructor: 'Michael S.', duration: 45, spots: 20 },
-    { time: '11:00', title: 'Dance Fitness', instructor: 'Viktoria Z.', duration: 60, spots: 25 },
-    { time: '14:00', title: 'Muay Thai Sparring', instructor: 'Sergei T.', duration: 60, spots: 10 },
-    { time: '17:00', title: 'Core Training', instructor: 'Elena G.', duration: 45, spots: 15 },
-    { time: '19:00', title: 'CrossFit WOD', instructor: 'Dmitry L.', duration: 60, spots: 18 }
+    { time: '09:00', titleKey: 'hiit_cardio', instructor: 'Michael S.', duration: 45, spots: 20 },
+    { time: '11:00', titleKey: 'dance_fitness', instructor: 'Viktoria Z.', duration: 60, spots: 25 },
+    { time: '14:00', titleKey: 'muay_thai_sparring', instructor: 'Sergei T.', duration: 60, spots: 10 },
+    { time: '17:00', titleKey: 'core_training', instructor: 'Elena G.', duration: 45, spots: 15 },
+    { time: '19:00', titleKey: 'crossfit_wod', instructor: 'Dmitry L.', duration: 60, spots: 18 }
   ],
   saturday: [
-    { time: '10:00', title: 'Morning Yoga', instructor: 'Anna K.', duration: 60, spots: 15 },
-    { time: '12:00', title: 'Open Mat (MMA)', instructor: 'Alexey D.', duration: 90, spots: 12 },
-    { time: '15:00', title: 'Zumba Party', instructor: 'Viktoria Z.', duration: 60, spots: 30 },
-    { time: '17:00', title: 'Strength & Conditioning', instructor: 'Ivan P.', duration: 60, spots: 16 }
+    { time: '10:00', titleKey: 'morning_yoga', instructor: 'Anna K.', duration: 60, spots: 15 },
+    { time: '12:00', titleKey: 'open_mat_mma', instructor: 'Alexey D.', duration: 90, spots: 12 },
+    { time: '15:00', titleKey: 'zumba_party', instructor: 'Viktoria Z.', duration: 60, spots: 30 },
+    { time: '17:00', titleKey: 'strength_conditioning', instructor: 'Ivan P.', duration: 60, spots: 16 }
   ],
   sunday: [
-    { time: '10:00', title: 'Gentle Yoga', instructor: 'Natalia M.', duration: 60, spots: 15 },
-    { time: '12:00', title: 'Family Fitness', instructor: 'Maria V.', duration: 45, spots: 20 },
-    { time: '15:00', title: 'Recovery Session', instructor: 'Elena G.', duration: 60, spots: 12 }
+    { time: '10:00', titleKey: 'gentle_yoga', instructor: 'Natalia M.', duration: 60, spots: 15 },
+    { time: '12:00', titleKey: 'family_fitness', instructor: 'Maria V.', duration: 45, spots: 20 },
+    { time: '15:00', titleKey: 'recovery_session', instructor: 'Elena G.', duration: 60, spots: 12 }
   ]
 };
 
 const days = [
-  { key: 'monday', label: 'Понедельник', short: 'ПН' },
-  { key: 'tuesday', label: 'Вторник', short: 'ВТ' },
-  { key: 'wednesday', label: 'Среда', short: 'СР' },
-  { key: 'thursday', label: 'Четверг', short: 'ЧТ' },
-  { key: 'friday', label: 'Пятница', short: 'ПТ' },
-  { key: 'saturday', label: 'Суббота', short: 'СБ' },
-  { key: 'sunday', label: 'Воскресенье', short: 'ВС' }
+  { key: 'monday', labelKey: 'monday', shortKey: 'mon_short' },
+  { key: 'tuesday', labelKey: 'tuesday', shortKey: 'tue_short' },
+  { key: 'wednesday', labelKey: 'wednesday', shortKey: 'wed_short' },
+  { key: 'thursday', labelKey: 'thursday', shortKey: 'thu_short' },
+  { key: 'friday', labelKey: 'friday', shortKey: 'fri_short' },
+  { key: 'saturday', labelKey: 'saturday', shortKey: 'sat_short' },
+  { key: 'sunday', labelKey: 'sunday', shortKey: 'sun_short' }
 ];
 
 const ScheduleSectionNew = () => {
   const { t } = useTranslation();
   const [activeDay, setActiveDay] = useState('monday');
+
+  const handleBookClick = (classItem) => {
+    const className = t(`sports.schedule.classes.${classItem.titleKey}`);
+    const dayName = t(`sports.schedule.days.${activeDay}`);
+    const message = `Здравствуйте! Хочу записаться на занятие в KAIF.\n\nЗанятие: ${className}\nДень: ${dayName}\nВремя: ${classItem.time}\nИнструктор: ${classItem.instructor}`;
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
 
   const getCurrentDayKey = () => {
     const dayIndex = new Date().getDay();
@@ -98,7 +110,7 @@ const ScheduleSectionNew = () => {
   return (
     <Section id="schedule">
       <ContentContainer>
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <SectionTag
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -143,34 +155,27 @@ const ScheduleSectionNew = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="full">{day.label}</span>
-                <span className="short">{day.short}</span>
+                <span className="full">{t(`sports.schedule.days.${day.labelKey}`)}</span>
+                <span className="short">{t(`sports.schedule.days.${day.shortKey}`)}</span>
               </ScheduleTab>
             ))}
           </ScheduleTabs>
 
           <ScheduleContent
             key={activeDay}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.4 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
           >
             {scheduleData[activeDay].map((classItem, index) => (
-              <ClassCard
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                whileHover={{ y: -5, boxShadow: '0 15px 40px rgba(0, 0, 0, 0.12)' }}
-              >
+              <ClassCard key={index}>
                 <ClassTime>
                   <ClockIcon />
                   <span>{classItem.time}</span>
                 </ClassTime>
 
                 <ClassInfo>
-                  <ClassTitle>{classItem.title}</ClassTitle>
+                  <ClassTitle>{t(`sports.schedule.classes.${classItem.titleKey}`)}</ClassTitle>
                   <ClassInstructor>
                     <UserIcon />
                     {classItem.instructor}
@@ -189,10 +194,8 @@ const ScheduleSectionNew = () => {
                 </ClassInfo>
 
                 <BookButton
-                  as="a"
-                  href={`https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20записаться%20на%20${classItem.title}%20в%20${classItem.time}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  as="button"
+                  onClick={() => handleBookClick(classItem)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -204,6 +207,15 @@ const ScheduleSectionNew = () => {
           </ScheduleContent>
         </ScheduleContainer>
       </ContentContainer>
+
+      {/* TODO: Временно отключено - BookingModal, используем WhatsApp
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        service={selectedClass ? `${t(`sports.schedule.classes.${selectedClass.titleKey}`)} (${selectedClass.time})` : ''}
+        source="Sports - Schedule"
+      />
+      */}
     </Section>
   );
 };

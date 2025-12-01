@@ -19,24 +19,24 @@ export const BenefitsGrid = styled(motion.div)`
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 `;
 
 export const BenefitCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(20, 20, 20, 0.9);
   padding: 3rem 2.5rem;
   border-radius: 0;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
   border: none;
-  backdrop-filter: blur(20px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  will-change: transform;
 
   &::before {
     content: '';
@@ -80,7 +80,7 @@ export const BenefitCard = styled(motion.div)`
   }
 
   @media (max-width: 768px) {
-    padding: 2.5rem 2rem;
+    padding: 1.5rem 1.25rem;
   }
 `;
 
@@ -103,6 +103,17 @@ export const BenefitIcon = styled.div`
     height: 40px;
     color: #000000;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @media (max-width: 768px) {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+
+    svg {
+      width: 30px;
+      height: 30px;
+    }
   }
 
   &::before {
@@ -161,7 +172,8 @@ export const BenefitTitle = styled.h3`
   }
 
   @media (max-width: 768px) {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
   }
 `;
 
@@ -173,7 +185,9 @@ export const BenefitDescription = styled.p`
   margin-top: 0.5rem;
 
   @media (max-width: 768px) {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-top: 0.25rem;
   }
 `;
 

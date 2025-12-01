@@ -3,14 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { 
+import {
   ArrowRightIcon,
   SparklesIcon,
   StarIcon,
-  CalendarDaysIcon
+  CalendarDaysIcon,
+  PaperAirplaneIcon
 } from '@heroicons/react/24/solid';
 import heroRestaurantImg from '../../assets/images/hero/hero-restaurant.jpg';
 import YclientsModal from '../booking/YclientsModal';
+import BookingModal from '../booking/BookingModal';
 
 // =============================================================================
 // ОПТИМИЗИРОВАННЫЙ SPA HERO (БЕЗ ТЯЖЕЛЫХ ИЗОБРАЖЕНИЙ)
@@ -290,6 +292,7 @@ const PrimaryButton = styled(motion.button)`
 const SpaHeroSection = memo(() => {
   const { t } = useTranslation();
   const [isYclientsModalOpen, setIsYclientsModalOpen] = useState(false);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   return (
     <HeroContainer>
@@ -342,15 +345,12 @@ const SpaHeroSection = memo(() => {
               </PrimaryButton>
 
               <PrimaryButton
-                as="a"
-                href="https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20записаться%20на%20СПА%20процедуру%20в%20KAIF"
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={() => setIsBookingModalOpen(true)}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {t('spa.hero.book_whatsapp', 'WhatsApp')}
-                <ArrowRightIcon />
+                <PaperAirplaneIcon />
+                {t('spa.hero.book_form', 'Оставить заявку')}
               </PrimaryButton>
             </CTAContainer>
           </MainContent>
@@ -363,6 +363,13 @@ const SpaHeroSection = memo(() => {
         isOpen={isYclientsModalOpen}
         onClose={() => setIsYclientsModalOpen(false)}
         customUrl="https://n1329009.alteg.io"
+      />
+
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        service={t('spa.booking.service', 'SPA-процедура')}
+        source="SPA страница - Hero"
       />
     </HeroContainer>
   );

@@ -22,14 +22,11 @@ const footerLogoPath = '/images/logos/logo-footer-1x.png';
 const FooterWrapper = styled.footer`
   position: relative;
   background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
-  padding: 3rem 2rem 0;
+  padding: 3rem 2rem calc(1.5rem + env(safe-area-inset-bottom, 0px));
   color: white;
   z-index: 3;
   overflow: hidden;
-  margin: 0;
-  min-height: auto;
-  border-bottom: 0;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -40,9 +37,9 @@ const FooterWrapper = styled.footer`
     background: rgba(0, 0, 0, 0.45);
     z-index: -1;
   }
-  
+
   @media (max-width: 768px) {
-    padding: 2.5rem 1rem 0;
+    padding: 2.5rem 1rem calc(1.5rem + env(safe-area-inset-bottom, 0px));
   }
 `;
 

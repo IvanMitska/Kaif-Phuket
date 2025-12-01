@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { IoClose } from 'react-icons/io5';
+import BookingModal from '../booking/BookingModal';
 
 /* ============================================
    COMMENTED OUT - Sauna Rave Banner
@@ -1363,6 +1364,7 @@ const HandPrint = styled.div`
 
 const EventBanner = ({ onClose }) => {
   const [isVisible, setIsVisible] = useState(true);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   // Check if banner was already closed in this session
   useEffect(() => {
@@ -1535,9 +1537,8 @@ const EventBanner = ({ onClose }) => {
                 >
                   <CTAContainer>
                     <BookButton
-                      href="https://wa.me/66624805877?text=Hi!%20I%20want%20to%20book%20for%20the%20Halloween%20Mental%20Hospital%20event%20on%20October%2031"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      as="button"
+                      onClick={() => setIsBookingModalOpen(true)}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -1548,6 +1549,13 @@ const EventBanner = ({ onClose }) => {
               </InfoContainer>
             </BannerContent>
           </ContentWrapper>
+
+          <BookingModal
+            isOpen={isBookingModalOpen}
+            onClose={() => setIsBookingModalOpen(false)}
+            service="Halloween Mental Hospital Event"
+            source="Home - Event Banner"
+          />
         </HalloweenBannerContainer>
       )}
     </AnimatePresence>

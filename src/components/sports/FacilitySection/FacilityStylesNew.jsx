@@ -73,7 +73,6 @@ export const FacilityTag = styled(motion.div)`
   top: 1.5rem;
   left: 1.5rem;
   background: #FFE600;
-  backdrop-filter: blur(10px);
   padding: 0.65rem 1.3rem;
   border-radius: 0;
   font-size: 0.75rem;
@@ -209,11 +208,12 @@ export const FacilityButton = styled(motion.a)`
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s ease, color 0.3s ease;
   box-shadow: 0 6px 24px rgba(255, 230, 0, 0.4);
   position: relative;
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
+  z-index: 1;
 
   &::before {
     content: '';
@@ -224,27 +224,19 @@ export const FacilityButton = styled(motion.a)`
     height: 100%;
     background: #000000;
     transition: width 0.3s ease;
-    z-index: 0;
-  }
-
-  & > * {
-    position: relative;
-    z-index: 1;
-    transition: color 0.3s ease;
+    z-index: -1;
   }
 
   svg {
     width: 18px;
     height: 18px;
+    position: relative;
+    z-index: 2;
   }
 
   &:hover {
     box-shadow: 0 8px 32px rgba(255, 230, 0, 0.6);
-    transform: translateY(-2px);
-
-    & > * {
-      color: #FFE600;
-    }
+    color: #FFE600;
   }
 
   &:hover::before {

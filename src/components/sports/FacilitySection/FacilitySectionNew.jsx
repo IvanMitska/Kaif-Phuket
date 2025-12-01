@@ -8,6 +8,10 @@ import {
   CheckCircleIcon,
   ArrowRightIcon
 } from '@heroicons/react/24/outline';
+// TODO: Временно отключено - BookingModal
+// import BookingModal from '../../booking/BookingModal';
+
+const WHATSAPP_NUMBER = '66624805877';
 
 import {
   FacilityGrid,
@@ -105,6 +109,12 @@ const FacilitySectionNew = () => {
   const [activeImages, setActiveImages] = useState(
     facilities.reduce((acc, facility) => ({ ...acc, [facility.id]: 0 }), {})
   );
+
+  const handleBookClick = (facility) => {
+    // Прямой переход в WhatsApp
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${facility.whatsappMessage}`;
+    window.open(whatsappUrl, '_blank');
+  };
 
   const handleImageChange = (facilityId, imageIndex) => {
     setActiveImages(prev => ({
@@ -214,13 +224,7 @@ const FacilitySectionNew = () => {
 
                 <FacilityFeaturesList>
                   {facility.features.map((feature, featureIndex) => (
-                    <FacilityFeatureItem
-                      key={featureIndex}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: featureIndex * 0.1 }}
-                    >
+                    <FacilityFeatureItem key={featureIndex}>
                       <CheckCircleIcon />
                       <span>{t(feature.key, feature.default)}</span>
                     </FacilityFeatureItem>
@@ -228,10 +232,8 @@ const FacilitySectionNew = () => {
                 </FacilityFeaturesList>
 
                 <FacilityButton
-                  as="a"
-                  href={`https://wa.me/66624805877?text=${facility.whatsappMessage}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  as="button"
+                  onClick={() => handleBookClick(facility)}
                   whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(210, 155, 132, 0.3)' }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -244,6 +246,15 @@ const FacilitySectionNew = () => {
           ))}
         </FacilityGrid>
       </ContentContainer>
+
+      {/* TODO: Временно отключено - BookingModal, используем WhatsApp
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        service={selectedFacility ? t(selectedFacility.titleKey, selectedFacility.defaultTitle) : ''}
+        source={`Sports - ${selectedFacility?.id || 'Facility'}`}
+      />
+      */}
     </Section>
   );
 };

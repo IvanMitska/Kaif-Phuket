@@ -2,6 +2,7 @@ import React, { useState, useEffect, memo } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import BookingModal from '../booking/BookingModal';
 
 // ОПТИМИЗАЦИЯ: Импортируем только логотип, изображения загружаем из public/
 // Импорт логотипа для главной страницы
@@ -408,6 +409,7 @@ const animations = {
 const HeroFullscreen = memo(() => {
   const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   // PERFORMANCE FIX: Simple slider without device detection (avoid TBT increase)
   // Slider is lightweight and runs smoothly on all devices
@@ -505,9 +507,9 @@ const HeroFullscreen = memo(() => {
               whileTap={{ scale: 0.98 }}
             >
               <PrimaryButton
-                href="https://wa.me/66624805877?text=Здравствуйте! Хочу записаться в KAIF"
-                target="_blank"
-                rel="noopener noreferrer"
+                as="button"
+                onClick={() => setIsBookingModalOpen(true)}
+                style={{ cursor: 'pointer' }}
               >
                 {t('common.book')}
               </PrimaryButton>
@@ -531,6 +533,13 @@ const HeroFullscreen = memo(() => {
           </ButtonContainer>
         </ContentWrapper>
       </ContentContainer>
+
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        service={t('booking.service.general', 'KAIF Club & Spa')}
+        source="Главная страница - Hero"
+      />
     </HeroContainer>
   );
 });

@@ -215,13 +215,14 @@ export const BookButton = styled(motion.a)`
   font-size: 0.95rem;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s ease, color 0.3s ease;
   box-shadow: 0 6px 24px rgba(255, 230, 0, 0.4);
   text-transform: uppercase;
   letter-spacing: 1px;
   -webkit-font-smoothing: antialiased;
   position: relative;
   overflow: hidden;
+  z-index: 1;
 
   &::before {
     content: '';
@@ -232,13 +233,7 @@ export const BookButton = styled(motion.a)`
     height: 100%;
     background: #000000;
     transition: width 0.3s ease;
-    z-index: 0;
-  }
-
-  & > * {
-    position: relative;
-    z-index: 1;
-    transition: color 0.3s ease;
+    z-index: -1;
   }
 
   svg {
@@ -248,13 +243,10 @@ export const BookButton = styled(motion.a)`
 
   &:hover {
     box-shadow: 0 8px 32px rgba(255, 230, 0, 0.6);
+    color: #FFE600;
   }
 
   &:hover::before {
     width: 100%;
-  }
-
-  &:hover > * {
-    color: #FFE600;
   }
 `;

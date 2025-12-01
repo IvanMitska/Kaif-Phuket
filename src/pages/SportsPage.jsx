@@ -1,6 +1,7 @@
 import React, { useEffect, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import PageHead from '../components/layout/PageHead';
+import '../styles/ios-scroll-fix.css';
 
 // Ленивая загрузка компонентов спорта для оптимизации
 const HeroSection = React.lazy(() => import('../components/sports/HeroSection/HeroSection'));
@@ -35,11 +36,7 @@ const SportsPage = () => {
   }, []);
 
   return (
-    <PageContainer
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.2 }}
-    >
+    <PageContainer>
       <PageHead
         titleKey="page_titles.sports"
         description={t('sports.hero.subtitle', 'Modern equipment, professional trainers and atmosphere to achieve your sporting goals')}
@@ -49,10 +46,20 @@ const SportsPage = () => {
       <PageScrollReset />
       <Suspense fallback={<InvisibleLoader />}>
         <HeroSection />
-        <BenefitsSection />
-        <ScrollingText />
+      </Suspense>
+      <Suspense fallback={<InvisibleLoader />}>
         <FacilitySectionNew />
+      </Suspense>
+      <Suspense fallback={<InvisibleLoader />}>
+        <BenefitsSection />
+      </Suspense>
+      <Suspense fallback={<InvisibleLoader />}>
+        <ScrollingText />
+      </Suspense>
+      <Suspense fallback={<InvisibleLoader />}>
         <ScheduleSectionNew />
+      </Suspense>
+      <Suspense fallback={<InvisibleLoader />}>
         <CTASection />
       </Suspense>
     </PageContainer>

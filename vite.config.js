@@ -201,29 +201,22 @@ export default defineConfig({
     chunkSizeWarningLimit: 300
   },
 
-  // AGGRESSIVE: Minimal pre-bundling for faster initial load
+  // Optimized pre-bundling
   optimizeDeps: {
     include: [
       'react',
       'react/jsx-runtime',
       'react-dom/client',
-    ],
-    // AGGRESSIVE: Exclude almost everything for on-demand loading
-    exclude: [
-      'react-router-dom',
+      // i18n - need to include for proper ESM handling
       'react-i18next',
       'i18next',
       'i18next-browser-languagedetector',
+      'html-parse-stringify',
+      'void-elements',
+    ],
+    exclude: [
       'gsap',
       'split-type',
-      'framer-motion',
-      'styled-components',
-      '@heroicons/react',
-      'react-icons',
-      'lucide-react',
-      'formik',
-      'yup',
-      'react-helmet-async'
     ],
     esbuildOptions: {
       target: 'es2020',

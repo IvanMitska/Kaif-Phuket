@@ -1,8 +1,9 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
+import BookingModal from '../../booking/BookingModal';
 
 const PrimaryButton = styled(motion.button)`
   display: inline-flex;
@@ -274,11 +275,7 @@ const DecorativeElement = styled(motion.div)`
 
 const HeroSection = memo(({ menuSectionRef }) => {
   const { t } = useTranslation();
-
-  const handleBookingClick = () => {
-    const message = t('common.whatsapp_messages.book_table', 'Здравствуйте! Хочу забронировать столик в ресторане KAIF');
-    window.open(`https://wa.me/66624805877?text=${encodeURIComponent(message)}`, '_blank');
-  };
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   return (
     <HeroContainer>
@@ -354,7 +351,7 @@ const HeroSection = memo(({ menuSectionRef }) => {
                 <ArrowRightIcon />
               </PrimaryButton>
               <SecondaryButton
-                onClick={handleBookingClick}
+                onClick={() => setIsBookingModalOpen(true)}
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
                 initial={{ opacity: 0, y: 20 }}
@@ -367,6 +364,13 @@ const HeroSection = memo(({ menuSectionRef }) => {
           </MainContent>
         </HeroGrid>
       </ContentWrapper>
+
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        service={t('restaurant.booking.service', 'Бронирование столика')}
+        source="Restaurant - Hero"
+      />
     </HeroContainer>
   );
 });

@@ -3,12 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
+import {
   ArrowRightIcon,
   PhoneIcon,
-  FireIcon
+  FireIcon,
+  CalendarDaysIcon
 } from '@heroicons/react/24/solid';
 import OptimizedImage from '../common/OptimizedImage';
+import BookingModal from '../booking/BookingModal';
 // import torchImage from '../../assets/effects/banya/torch.png';
 
 
@@ -399,6 +401,7 @@ const BanyaHeroSection = () => {
   const isRussian = i18n.language === 'ru';
   const [currentSlide, setCurrentSlide] = useState(0);
   const [nextSlide, setNextSlide] = useState(0);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   
   const images = [
     {
@@ -513,11 +516,11 @@ const BanyaHeroSection = () => {
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <VikingButton
-            onClick={handleBookingClick}
+            onClick={() => setIsBookingModalOpen(true)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <FireIcon />
+            <CalendarDaysIcon />
             {t('banya.hero.book_button', 'ЗАБРОНИРОВАТЬ')}
           </VikingButton>
           
@@ -531,6 +534,13 @@ const BanyaHeroSection = () => {
           </SecondaryButton>
         </CTAContainer>
       </ContentWrapper>
+
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        service={t('banya.booking.service', 'Russian Banya')}
+        source="Banya page - Hero"
+      />
     </HeroContainer>
   );
 };

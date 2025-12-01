@@ -98,23 +98,15 @@ const BenefitsSection = () => {
 
   return (
     <Section>
+      {/* Статичные декоративные элементы без анимации для производительности */}
       <FloatingShape
         style={{
           top: '10%',
           left: '5%',
           width: '200px',
           height: '200px',
-          background: 'radial-gradient(circle, rgba(210, 155, 132, 0.1) 0%, transparent 70%)'
-        }}
-        animate={{
-          y: [0, 30, 0],
-          scale: [1, 1.1, 1],
-          opacity: [0.3, 0.5, 0.3]
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: 'easeInOut'
+          background: 'radial-gradient(circle, rgba(210, 155, 132, 0.1) 0%, transparent 70%)',
+          opacity: 0.4
         }}
       />
 
@@ -124,22 +116,13 @@ const BenefitsSection = () => {
           right: '5%',
           width: '150px',
           height: '150px',
-          background: 'radial-gradient(circle, rgba(144, 179, 167, 0.1) 0%, transparent 70%)'
-        }}
-        animate={{
-          y: [0, -30, 0],
-          scale: [1, 1.15, 1],
-          opacity: [0.3, 0.6, 0.3]
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: 'easeInOut'
+          background: 'radial-gradient(circle, rgba(144, 179, 167, 0.1) 0%, transparent 70%)',
+          opacity: 0.4
         }}
       />
 
       <ContentContainer>
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
           <SectionTag
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

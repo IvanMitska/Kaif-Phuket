@@ -5,9 +5,14 @@ import {
   FireIcon,
   BoltIcon,
   TrophyIcon,
-  HeartIcon
+  HeartIcon,
+  CalendarDaysIcon
 } from '@heroicons/react/24/outline';
 import { motion, AnimatePresence } from 'framer-motion';
+// TODO: Временно отключено - BookingModal
+// import BookingModal from '../../booking/BookingModal';
+
+const WHATSAPP_NUMBER = '66624805877';
 
 import {
   HeroSection as HeroSectionContainer,
@@ -41,6 +46,11 @@ const HeroSection = () => {
   const { t } = useTranslation();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  const handleBookClick = () => {
+    const message = encodeURIComponent('Здравствуйте! Хочу записаться на тренировку в KAIF.');
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
+  };
+
   // Автоматическая смена изображений
   useEffect(() => {
     const interval = setInterval(() => {
@@ -67,8 +77,8 @@ const HeroSection = () => {
         />
       </AnimatePresence>
 
-      {/* Декоративные элементы */}
-      <motion.div
+      {/* Декоративные элементы - статичные для производительности */}
+      <div
         style={{
           position: 'absolute',
           top: '20%',
@@ -77,16 +87,8 @@ const HeroSection = () => {
           height: '300px',
           background: 'radial-gradient(circle, rgba(210, 155, 132, 0.3) 0%, transparent 70%)',
           filter: 'blur(80px)',
-          zIndex: 1
-        }}
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3]
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: 'easeInOut'
+          zIndex: 1,
+          opacity: 0.4
         }}
       />
 
@@ -172,16 +174,13 @@ const HeroSection = () => {
             transition={{ duration: 0.5, delay: 0.6 }}
           >
             <PrimaryButton
-              as="a"
-              href="https://wa.me/66624805877?text=Здравствуйте!%20Хочу%20записаться%20на%20тренировку%20в%20KAIF"
-              target="_blank"
-              rel="noopener noreferrer"
+              as="button"
+              onClick={handleBookClick}
               whileHover={{ scale: 1.05, boxShadow: '0 15px 50px rgba(210, 155, 132, 0.6)' }}
               whileTap={{ scale: 0.95 }}
             >
-              <BoltIcon />
+              <CalendarDaysIcon />
               {t('sports.hero.primary_cta', 'BOOK A TRAINING')}
-              <ArrowRightIcon />
             </PrimaryButton>
 
             <SecondaryButton
@@ -257,17 +256,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <HeroImageGlow
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.6, 0.3]
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: 'easeInOut'
-            }}
-          />
+          <HeroImageGlow />
           <HeroImageFrame
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -282,45 +271,6 @@ const HeroSection = () => {
           />
 
           {/* Декоративные плашки */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 1.0 }}
-            style={{
-              position: 'absolute',
-              top: '20px',
-              left: '20px',
-              background: '#FFE600',
-              backdropFilter: 'blur(20px)',
-              padding: '1.2rem 2rem',
-              borderRadius: '0',
-              border: 'none',
-              boxShadow: '0 10px 40px rgba(255, 230, 0, 0.5)',
-              zIndex: 3
-            }}
-            className="hero-badge-left"
-          >
-            <div style={{
-              fontSize: '2.2rem',
-              fontWeight: '900',
-              color: '#000000',
-              lineHeight: '1',
-              marginBottom: '0.3rem',
-              letterSpacing: '-0.02em'
-            }}>
-              24/7
-            </div>
-            <div style={{
-              fontSize: '0.7rem',
-              fontWeight: '800',
-              color: '#000000',
-              textTransform: 'uppercase',
-              letterSpacing: '0.15em'
-            }}>
-              {t('sports.hero.access', 'ACCESS')}
-            </div>
-          </motion.div>
-
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -361,6 +311,15 @@ const HeroSection = () => {
           </motion.div>
         </HeroImageContainer>
       </HeroContainer>
+
+      {/* TODO: Временно отключено - BookingModal, используем WhatsApp
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        service={t('sports.booking.service', 'Fitness Training')}
+        source="Sports page - Hero"
+      />
+      */}
     </HeroSectionContainer>
   );
 };

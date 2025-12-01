@@ -16,11 +16,6 @@ const GlobalStyles = createGlobalStyle`
 
   /* Стиль для исправления проблем с переходами между страницами */
   .route-transition {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-    will-change: transform;
-    contain: layout paint style;
     animation: fadeIn 0.5s ease forwards;
   }
   
@@ -72,34 +67,20 @@ const GlobalStyles = createGlobalStyle`
   /* Базовые стили для всего сайта, основанные на теме */
   body {
     font-family: ${({ theme }) => theme.fonts.primary || '"Inter", sans-serif'};
-    background-color: #FFFFFF;
     color: ${({ theme }) => theme.colors.text.primary || '#2C3E2D'};
     margin: 0;
     padding: 0;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
     overflow-x: hidden;
-    /* Убираем -webkit-overflow-scrolling для предотвращения проблем с fixed позиционированием */
     scroll-behavior: auto;
   }
-  
+
   /* Дополнительные оптимизации для мобильных устройств */
   @media (max-width: 768px) {
-    body {
-      /* Отключение эластичной прокрутки для предотвращения зеленого цвета */
-      overscroll-behavior: none;
-      -webkit-overscroll-behavior: none;
-      background-color: #FFFFFF !important;
-    }
-    
     html {
-      /* Улучшение прокрутки на мобильных */
       -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
-      background-color: #FFFFFF !important;
-    }
-    
-    /* Исправление зеленого фона при перетягивании на iOS */
-    #root {
-      background-color: #FFFFFF !important;
+      overflow-x: hidden !important;
     }
   }
   
@@ -111,12 +92,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    min-height: 100%;
     line-height: 1;
-  }
-  
-  html {
-    height: 100%;
   }
   
   /* Предотвращение рывков в секциях */

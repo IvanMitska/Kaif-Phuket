@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { 
-  MapPinIcon, 
-  PhoneIcon, 
+import {
+  MapPinIcon,
+  PhoneIcon,
   ClockIcon,
   ArrowTopRightOnSquareIcon
 } from '@heroicons/react/24/outline';
+import BookingModal from '../booking/BookingModal';
 import { 
   Section,
   ContentContainer,
@@ -107,15 +108,16 @@ const ContactLink = styled.a`
 const ContactInfo = () => {
   const { t, i18n } = useTranslation();
   const [forceUpdate, setForceUpdate] = useState(0);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   // Принудительное обновление при смене языка
   useEffect(() => {
     const handleLanguageChange = () => {
       setForceUpdate(prev => prev + 1);
     };
-    
+
     i18n.on('languageChanged', handleLanguageChange);
-    
+
     return () => {
       i18n.off('languageChanged', handleLanguageChange);
     };
@@ -172,10 +174,10 @@ const ContactInfo = () => {
                 <div style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>
                   {t('contacts.info.phone.hours', 'WhatsApp Available')}
                 </div>
-                <ContactLink 
-                  href={`https://wa.me/66624805877?text=${encodeURIComponent(t('contacts.info.whatsapp.greeting', 'Hello! I would like to book at KAIF'))}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <ContactLink
+                  as="button"
+                  onClick={() => setIsBookingModalOpen(true)}
+                  style={{ cursor: 'pointer', border: 'none' }}
                 >
                   {t('contacts.info.buttons.contact', 'Contact')}
                   <ArrowTopRightOnSquareIcon />
@@ -207,6 +209,13 @@ const ContactInfo = () => {
           </ContactCard>
         </Grid>
       </ContentContainer>
+
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        service={t('contacts.booking.service', 'Общий запрос')}
+        source="Contacts Page"
+      />
     </Section>
   );
 };
