@@ -1,5 +1,5 @@
 const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/js/ExclusiveZones-CUkLyNyo.js","assets/js/react-core-DWAaPJsY.js","assets/js/styled-components-fuCKgGld.js","assets/js/vendor-misc-D8JVgYt7.js","assets/js/i18n-core-DrMVsQFB.js","assets/js/heroicons-DSEs4UIN.js","assets/js/framer-motion-Ep29qSuC.js","assets/js/PricingSection-D5ueBp-y.js","assets/js/react-icons-DxYdSIzX.js","assets/js/BookingModal-CAtnWKl-.js","assets/js/AdvantagesSection-DOYisO00.js","assets/js/GallerySection-vnBw8PYa.js","assets/js/FAQSection-BY4M_0iC.js"])))=>i.map(i=>d[i]);
-import{u as e,_ as t}from"./main-2c5tcijp.js";import{r as i,j as a}from"./react-core-DWAaPJsY.js";import{d as o}from"./styled-components-fuCKgGld.js";import{P as r}from"./PageHead-ByG18s83.js";import{B as n}from"./BookingModal-CAtnWKl-.js";import{u as s}from"./i18n-core-DrMVsQFB.js";import{m as p}from"./framer-motion-Ep29qSuC.js";import{ab as d}from"./vendor-misc-D8JVgYt7.js";import"./react-dom-client-BkLB9BFi.js";import"./react-dom-Bb3pWfRT.js";import"./vendor-scheduler-9xQDShOA.js";import"./i18n-detector-l8ePocMX.js";import"./react-helmet-BCF-s7y-.js";import"./heroicons-DSEs4UIN.js";const m="/assets/images/logo-homepage-H1DZjSiR.png",l=[{webp:"/images-optimized/spa.jpg",fallback:"/images-optimized/spa.jpg"},{webp:"/images-webp/hero/hero-pool.webp",fallback:"/images-optimized/hero/hero-pool.jpg"},{webp:"/images-webp/hero/hero-restaurant.webp",fallback:"/images-optimized/hero/hero-restaurant.jpg"},{webp:"/images-webp/hero/hero-fitness.webp",fallback:"/images-optimized/hero/hero-fitness.jpg"}],c=o.section`
+import{u as e,_ as t}from"./main-CvcICHu9.js";import{r as i,j as a}from"./react-core-DWAaPJsY.js";import{d as o}from"./styled-components-fuCKgGld.js";import{P as r}from"./PageHead-ByG18s83.js";import{B as n}from"./BookingModal-CAtnWKl-.js";import{u as s}from"./i18n-core-DrMVsQFB.js";import{m as d}from"./framer-motion-Ep29qSuC.js";import{ab as p}from"./vendor-misc-D8JVgYt7.js";import"./react-dom-client-BkLB9BFi.js";import"./react-dom-Bb3pWfRT.js";import"./vendor-scheduler-9xQDShOA.js";import"./i18n-detector-l8ePocMX.js";import"./react-helmet-BCF-s7y-.js";import"./heroicons-DSEs4UIN.js";const m="/assets/images/logo-homepage-H1DZjSiR.png",l=[{webp:"/images-optimized/spa.jpg",fallback:"/images-optimized/spa.jpg"},{webp:"/images-webp/hero/hero-pool.webp",fallback:"/images-optimized/hero/hero-pool.jpg"},{webp:"/images-webp/hero/hero-restaurant.webp",fallback:"/images-optimized/hero/hero-restaurant.jpg"},{webp:"/images-webp/hero/hero-fitness.webp",fallback:"/images-optimized/hero/hero-fitness.jpg"}],c=o.section`
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -27,7 +27,7 @@ import{u as e,_ as t}from"./main-2c5tcijp.js";import{r as i,j as a}from"./react-
     height: auto;
     touch-action: auto;
   }
-`,x=o.div`
+`,h=o.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -41,7 +41,7 @@ import{u as e,_ as t}from"./main-2c5tcijp.js";import{r as i,j as a}from"./react-
   > * {
     pointer-events: auto;
   }
-`,h=o.div`
+`,x=o.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -131,7 +131,7 @@ import{u as e,_ as t}from"./main-2c5tcijp.js";import{r as i,j as a}from"./react-
   @media (max-width: 480px) {
     padding: 0 1.5rem;
   }
-`,u=o(p.img)`
+`,u=o(d.img)`
   max-width: 520px;
   width: auto;
   height: auto;
@@ -156,7 +156,6 @@ import{u as e,_ as t}from"./main-2c5tcijp.js";import{r as i,j as a}from"./react-
     max-width: 380px;
   }
 `,f=o.a`
-  ${"\n  @keyframes holidayGlow {\n    0%, 100% {\n      box-shadow:\n        0 8px 25px rgba(0, 0, 0, 0.3),\n        0 15px 50px rgba(0, 0, 0, 0.2),\n        0 0 20px rgba(255, 215, 0, 0.3),\n        0 0 40px rgba(196, 30, 58, 0.2);\n    }\n    50% {\n      box-shadow:\n        0 8px 25px rgba(0, 0, 0, 0.3),\n        0 15px 50px rgba(0, 0, 0, 0.2),\n        0 0 30px rgba(255, 215, 0, 0.5),\n        0 0 60px rgba(196, 30, 58, 0.3);\n    }\n  }\n"}
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -171,15 +170,13 @@ import{u as e,_ as t}from"./main-2c5tcijp.js";import{r as i,j as a}from"./react-
   border: none;
   border-radius: 12px;
   backdrop-filter: blur(10px);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   min-width: 220px;
-  animation: holidayGlow 2s ease-in-out infinite;
   box-shadow:
     0 8px 25px rgba(0, 0, 0, 0.3),
-    0 15px 50px rgba(0, 0, 0, 0.2),
-    0 0 20px rgba(255, 215, 0, 0.3);
+    0 0 15px rgba(255, 215, 0, 0.25);
 
   &::before {
     content: '';
@@ -318,7 +315,7 @@ import{u as e,_ as t}from"./main-2c5tcijp.js";import{r as i,j as a}from"./react-
     bottom: 2.5rem;
     margin-bottom: 6rem;
   }
-`,v={buttons:{initial:{opacity:0,y:15},animate:{opacity:1,y:0,transition:{duration:.5,ease:"easeOut",delay:.6}}}},y=i.memo(()=>{const{t:e}=s(),[t,o]=i.useState(0),[r,d]=i.useState(!1);i.useEffect(()=>{const e=setInterval(()=>{o(e=>(e+1)%l.length)},6e3);return()=>clearInterval(e)},[]);return a.jsxs(c,{children:[a.jsx(x,{children:l.map((e,i)=>a.jsx(h,{$active:i===t,children:a.jsxs("picture",{children:[a.jsx("source",{srcSet:e.webp,type:"image/webp"}),a.jsx("img",{src:e.fallback,alt:`KAIF - Слайд ${i+1}`,width:"1920",height:"1080",loading:0===i?"eager":"lazy",decoding:"async",fetchpriority:0===i?"high":"low",onError:e=>{const t=["https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75","https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75","https://images.unsplash.com/photo-1519823551278-64ac92734fb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75","https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75"];e.target.src=t[i%t.length]}})]})},`slide-${i}`))}),a.jsx(g,{children:a.jsxs(b,{children:[a.jsxs("picture",{style:{display:"block"},children:[a.jsx("source",{srcSet:"/assets/images/logo-homepage-Bvg3zKLL.webp",type:"image/webp"}),a.jsx(u,{src:m,alt:"KAIF",width:"520",height:"auto",loading:"eager",fetchpriority:"high",initial:{opacity:1,scale:1},animate:{opacity:1,scale:1},whileHover:{scale:1.02,transition:{duration:.2,ease:"easeOut"}},onError:e=>{e.target.src=m}})]}),a.jsxs(j,{as:p.div,initial:v.buttons.initial,animate:v.buttons.animate,children:[a.jsx(p.div,{whileHover:{scale:1.02,transition:{duration:.15,ease:"easeOut"}},whileTap:{scale:.98},children:a.jsx(f,{as:"button",onClick:()=>d(!0),style:{cursor:"pointer"},children:e("common.book")})}),a.jsx(p.div,{onClick:()=>{const e=document.querySelector("#exclusive-zones");e&&e.scrollIntoView({behavior:"smooth",block:"start"})},whileHover:{scale:1.01,transition:{duration:.15,ease:"easeOut"}},whileTap:{scale:.99},children:a.jsx(w,{children:e("common.learn_more")})})]})]})}),a.jsx(n,{isOpen:r,onClose:()=>d(!1),service:e("booking.service.general","KAIF Club & Spa"),source:"Главная страница - Hero"})]})});y.displayName="HeroFullscreen";const k=i.lazy(()=>t(()=>import("./ExclusiveZones-CUkLyNyo.js"),__vite__mapDeps([0,1,2,3,4,5,6]))),_=i.lazy(()=>t(()=>import("./PricingSection-D5ueBp-y.js"),__vite__mapDeps([7,1,2,3,8,9,4,6,5]))),z=i.lazy(()=>t(()=>import("./AdvantagesSection-DOYisO00.js"),__vite__mapDeps([10,1,2,3,4,6])).then(e=>({default:i.memo(e.default)}))),S=i.lazy(()=>t(()=>import("./GallerySection-vnBw8PYa.js"),__vite__mapDeps([11,1,2,3,4,6,5])).then(e=>({default:i.memo(e.GallerySection)}))),P=i.lazy(()=>t(()=>import("./FAQSection-BY4M_0iC.js"),__vite__mapDeps([12,1,2,3,4,5,6])).then(e=>({default:i.memo(e.default)}))),A=o.div`
+`,v={buttons:{initial:{opacity:0,y:15},animate:{opacity:1,y:0,transition:{duration:.5,ease:"easeOut",delay:.6}}}},y=i.memo(()=>{const{t:e}=s(),[t,o]=i.useState(0),[r,p]=i.useState(!1);i.useEffect(()=>{const e=setInterval(()=>{o(e=>(e+1)%l.length)},6e3);return()=>clearInterval(e)},[]);return a.jsxs(c,{children:[a.jsx(h,{children:l.map((e,i)=>a.jsx(x,{$active:i===t,children:a.jsxs("picture",{children:[a.jsx("source",{srcSet:e.webp,type:"image/webp"}),a.jsx("img",{src:e.fallback,alt:`KAIF - Слайд ${i+1}`,width:"1920",height:"1080",loading:0===i?"eager":"lazy",decoding:"async",fetchpriority:0===i?"high":"low",onError:e=>{const t=["https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75","https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75","https://images.unsplash.com/photo-1519823551278-64ac92734fb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75","https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75"];e.target.src=t[i%t.length]}})]})},`slide-${i}`))}),a.jsx(g,{children:a.jsxs(b,{children:[a.jsxs("picture",{style:{display:"block"},children:[a.jsx("source",{srcSet:"/assets/images/logo-homepage-Bvg3zKLL.webp",type:"image/webp"}),a.jsx(u,{src:m,alt:"KAIF",width:"520",height:"auto",loading:"eager",fetchpriority:"high",initial:{opacity:1,scale:1},animate:{opacity:1,scale:1},whileHover:{scale:1.02,transition:{duration:.2,ease:"easeOut"}},onError:e=>{e.target.src=m}})]}),a.jsxs(j,{as:d.div,initial:v.buttons.initial,animate:v.buttons.animate,children:[a.jsx(d.div,{whileHover:{scale:1.02,transition:{duration:.15,ease:"easeOut"}},whileTap:{scale:.98},children:a.jsx(f,{as:"button",onClick:()=>p(!0),style:{cursor:"pointer"},children:e("common.book")})}),a.jsx(d.div,{onClick:()=>{const e=document.querySelector("#exclusive-zones");e&&e.scrollIntoView({behavior:"smooth",block:"start"})},whileHover:{scale:1.01,transition:{duration:.15,ease:"easeOut"}},whileTap:{scale:.99},children:a.jsx(w,{children:e("common.learn_more")})})]})]})}),a.jsx(n,{isOpen:r,onClose:()=>p(!1),service:e("booking.service.general","KAIF Club & Spa"),source:"Главная страница - Hero"})]})});y.displayName="HeroFullscreen";const k=i.lazy(()=>t(()=>import("./ExclusiveZones-CUkLyNyo.js"),__vite__mapDeps([0,1,2,3,4,5,6]))),_=i.lazy(()=>t(()=>import("./PricingSection-D5ueBp-y.js"),__vite__mapDeps([7,1,2,3,8,9,4,6,5]))),z=i.lazy(()=>t(()=>import("./AdvantagesSection-DOYisO00.js"),__vite__mapDeps([10,1,2,3,4,6])).then(e=>({default:i.memo(e.default)}))),S=i.lazy(()=>t(()=>import("./GallerySection-vnBw8PYa.js"),__vite__mapDeps([11,1,2,3,4,6,5])).then(e=>({default:i.memo(e.GallerySection)}))),P=i.lazy(()=>t(()=>import("./FAQSection-BY4M_0iC.js"),__vite__mapDeps([12,1,2,3,4,5,6])).then(e=>({default:i.memo(e.default)}))),A=o.div`
   height: 120px;
   display: flex;
   align-items: center;
@@ -344,7 +341,7 @@ import{u as e,_ as t}from"./main-2c5tcijp.js";import{r as i,j as a}from"./react-
   justify-content: center;
   padding: 20px;
   background: rgba(144, 179, 167, 0.02);
-`,I=o(d)`
+`,I=o(p)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
