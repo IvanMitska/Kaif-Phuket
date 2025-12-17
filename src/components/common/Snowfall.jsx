@@ -43,23 +43,23 @@ const Snowfall = memo(() => {
   useEffect(() => {
     // Detect low performance devices
     const isLowEnd = navigator.hardwareConcurrency <= 4 ||
-                     window.innerWidth < 768 ||
                      /Android|iPhone|iPad/i.test(navigator.userAgent);
+    const isMobile = window.innerWidth < 768;
 
     setIsLowPerf(isLowEnd);
 
     const flakes = [];
-    // Minimal count: 8 on low-end, 15 on desktop
-    const flakeCount = isLowEnd ? 8 : 15;
+    // More snow: 15 mobile, 35 desktop, 20 low-end desktop
+    const flakeCount = isMobile ? 15 : (isLowEnd ? 20 : 35);
 
     for (let i = 0; i < flakeCount; i++) {
       flakes.push({
         id: i,
-        left: (i / flakeCount) * 100 + Math.random() * 5,
-        size: 12 + (i % 3) * 4,
-        duration: 15 + (i % 5) * 3,
-        delay: i * 0.8,
-        opacity: 0.5 + (i % 3) * 0.15,
+        left: (i / flakeCount) * 100 + (i % 7) - 3,
+        size: 10 + (i % 4) * 3,
+        duration: 12 + (i % 6) * 2,
+        delay: (i % 10) * 1.2,
+        opacity: 0.4 + (i % 4) * 0.12,
       });
     }
     setSnowflakes(flakes);
