@@ -1,5 +1,5 @@
 const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/js/ExclusiveZones-CUkLyNyo.js","assets/js/react-core-DWAaPJsY.js","assets/js/styled-components-fuCKgGld.js","assets/js/vendor-misc-D8JVgYt7.js","assets/js/i18n-core-DrMVsQFB.js","assets/js/heroicons-DSEs4UIN.js","assets/js/framer-motion-Ep29qSuC.js","assets/js/PricingSection-D5ueBp-y.js","assets/js/react-icons-DxYdSIzX.js","assets/js/BookingModal-CAtnWKl-.js","assets/js/AdvantagesSection-DOYisO00.js","assets/js/GallerySection-vnBw8PYa.js","assets/js/FAQSection-BY4M_0iC.js"])))=>i.map(i=>d[i]);
-import{u as e,_ as t}from"./main-DSFwFVja.js";import{r as i,j as a}from"./react-core-DWAaPJsY.js";import{d as o}from"./styled-components-fuCKgGld.js";import{P as r}from"./PageHead-ByG18s83.js";import{B as n}from"./BookingModal-CAtnWKl-.js";import{u as s}from"./i18n-core-DrMVsQFB.js";import{m as p}from"./framer-motion-Ep29qSuC.js";import{ab as d}from"./vendor-misc-D8JVgYt7.js";import"./react-dom-client-BkLB9BFi.js";import"./react-dom-Bb3pWfRT.js";import"./vendor-scheduler-9xQDShOA.js";import"./i18n-detector-l8ePocMX.js";import"./react-helmet-BCF-s7y-.js";import"./heroicons-DSEs4UIN.js";const m=[{webp:"/images-optimized/spa.jpg",fallback:"/images-optimized/spa.jpg"},{webp:"/images-webp/hero/hero-pool.webp",fallback:"/images-optimized/hero/hero-pool.jpg"},{webp:"/images-webp/hero/hero-restaurant.webp",fallback:"/images-optimized/hero/hero-restaurant.jpg"},{webp:"/images-webp/hero/hero-fitness.webp",fallback:"/images-optimized/hero/hero-fitness.jpg"}],l=o.section`
+import{u as e,_ as t}from"./main-2c5tcijp.js";import{r as i,j as a}from"./react-core-DWAaPJsY.js";import{d as o}from"./styled-components-fuCKgGld.js";import{P as r}from"./PageHead-ByG18s83.js";import{B as n}from"./BookingModal-CAtnWKl-.js";import{u as s}from"./i18n-core-DrMVsQFB.js";import{m as p}from"./framer-motion-Ep29qSuC.js";import{ab as d}from"./vendor-misc-D8JVgYt7.js";import"./react-dom-client-BkLB9BFi.js";import"./react-dom-Bb3pWfRT.js";import"./vendor-scheduler-9xQDShOA.js";import"./i18n-detector-l8ePocMX.js";import"./react-helmet-BCF-s7y-.js";import"./heroicons-DSEs4UIN.js";const m="/assets/images/logo-homepage-H1DZjSiR.png",l=[{webp:"/images-optimized/spa.jpg",fallback:"/images-optimized/spa.jpg"},{webp:"/images-webp/hero/hero-pool.webp",fallback:"/images-optimized/hero/hero-pool.jpg"},{webp:"/images-webp/hero/hero-restaurant.webp",fallback:"/images-optimized/hero/hero-restaurant.jpg"},{webp:"/images-webp/hero/hero-fitness.webp",fallback:"/images-optimized/hero/hero-fitness.jpg"}],c=o.section`
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -27,7 +27,7 @@ import{u as e,_ as t}from"./main-DSFwFVja.js";import{r as i,j as a}from"./react-
     height: auto;
     touch-action: auto;
   }
-`,c=o.div`
+`,x=o.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -41,7 +41,7 @@ import{u as e,_ as t}from"./main-DSFwFVja.js";import{r as i,j as a}from"./react-
   > * {
     pointer-events: auto;
   }
-`,x=o.div`
+`,h=o.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -83,7 +83,7 @@ import{u as e,_ as t}from"./main-DSFwFVja.js";import{r as i,j as a}from"./react-
     /* Оптимизация без создания новых слоев */
     will-change: auto;
   }
-`,h=o.div`
+`,g=o.div`
   position: relative;
   z-index: 10;
   text-align: center;
@@ -119,7 +119,7 @@ import{u as e,_ as t}from"./main-DSFwFVja.js";import{r as i,j as a}from"./react-
   @media (max-width: 375px) and (max-height: 812px) {
     padding-top: 8vh;
   }
-`,g=o.div`
+`,b=o.div`
   max-width: 800px;
   width: 100%;
   display: flex;
@@ -131,7 +131,7 @@ import{u as e,_ as t}from"./main-DSFwFVja.js";import{r as i,j as a}from"./react-
   @media (max-width: 480px) {
     padding: 0 1.5rem;
   }
-`,b=o(p.img)`
+`,u=o(p.img)`
   max-width: 520px;
   width: auto;
   height: auto;
@@ -155,7 +155,7 @@ import{u as e,_ as t}from"./main-DSFwFVja.js";import{r as i,j as a}from"./react-
   @media (max-width: 375px) {
     max-width: 380px;
   }
-`,u=o.a`
+`,f=o.a`
   ${"\n  @keyframes holidayGlow {\n    0%, 100% {\n      box-shadow:\n        0 8px 25px rgba(0, 0, 0, 0.3),\n        0 15px 50px rgba(0, 0, 0, 0.2),\n        0 0 20px rgba(255, 215, 0, 0.3),\n        0 0 40px rgba(196, 30, 58, 0.2);\n    }\n    50% {\n      box-shadow:\n        0 8px 25px rgba(0, 0, 0, 0.3),\n        0 15px 50px rgba(0, 0, 0, 0.2),\n        0 0 30px rgba(255, 215, 0, 0.5),\n        0 0 60px rgba(196, 30, 58, 0.3);\n    }\n  }\n"}
   display: inline-flex;
   align-items: center;
@@ -228,7 +228,7 @@ import{u as e,_ as t}from"./main-DSFwFVja.js";import{r as i,j as a}from"./react-
     width: 100%;
     max-width: 300px;
   }
-`,f=o.button`
+`,w=o.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -282,7 +282,7 @@ import{u as e,_ as t}from"./main-DSFwFVja.js";import{r as i,j as a}from"./react-
     border: 2px solid rgba(255, 255, 255, 0.5);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
   }
-`,w=o.div`
+`,j=o.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -318,7 +318,7 @@ import{u as e,_ as t}from"./main-DSFwFVja.js";import{r as i,j as a}from"./react-
     bottom: 2.5rem;
     margin-bottom: 6rem;
   }
-`,j={logo:{initial:{scale:.95,opacity:0},animate:{scale:1,opacity:1,transition:{duration:.8,ease:"easeOut",delay:.2}}},buttons:{initial:{opacity:0,y:15},animate:{opacity:1,y:0,transition:{duration:.5,ease:"easeOut",delay:.6}}}},v=i.memo(()=>{const{t:e}=s(),[t,o]=i.useState(0),[r,d]=i.useState(!1);i.useEffect(()=>{const e=setInterval(()=>{o(e=>(e+1)%m.length)},6e3);return()=>clearInterval(e)},[]);return a.jsxs(l,{children:[a.jsx(c,{children:m.map((e,i)=>a.jsx(x,{$active:i===t,children:a.jsxs("picture",{children:[a.jsx("source",{srcSet:e.webp,type:"image/webp"}),a.jsx("img",{src:e.fallback,alt:`KAIF - Слайд ${i+1}`,width:"1920",height:"1080",loading:0===i?"eager":"lazy",decoding:"async",fetchpriority:0===i?"high":"low",onError:e=>{const t=["https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75","https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75","https://images.unsplash.com/photo-1519823551278-64ac92734fb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75","https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75"];e.target.src=t[i%t.length]}})]})},`slide-${i}`))}),a.jsx(h,{children:a.jsxs(g,{children:[a.jsxs("picture",{style:{display:"block"},children:[a.jsx("source",{srcSet:"/assets/images/logo-homepage-Bvg3zKLL.webp",type:"image/webp"}),a.jsx(b,{src:"/assets/images/logo-homepage-H1DZjSiR.png",alt:"KAIF",width:"520",height:"auto",initial:j.logo.initial,animate:j.logo.animate,whileHover:{scale:1.02,transition:{duration:.2,ease:"easeOut"}}})]}),a.jsxs(w,{as:p.div,initial:j.buttons.initial,animate:j.buttons.animate,children:[a.jsx(p.div,{whileHover:{scale:1.02,transition:{duration:.15,ease:"easeOut"}},whileTap:{scale:.98},children:a.jsx(u,{as:"button",onClick:()=>d(!0),style:{cursor:"pointer"},children:e("common.book")})}),a.jsx(p.div,{onClick:()=>{const e=document.querySelector("#exclusive-zones");e&&e.scrollIntoView({behavior:"smooth",block:"start"})},whileHover:{scale:1.01,transition:{duration:.15,ease:"easeOut"}},whileTap:{scale:.99},children:a.jsx(f,{children:e("common.learn_more")})})]})]})}),a.jsx(n,{isOpen:r,onClose:()=>d(!1),service:e("booking.service.general","KAIF Club & Spa"),source:"Главная страница - Hero"})]})});v.displayName="HeroFullscreen";const y=i.lazy(()=>t(()=>import("./ExclusiveZones-CUkLyNyo.js"),__vite__mapDeps([0,1,2,3,4,5,6]))),k=i.lazy(()=>t(()=>import("./PricingSection-D5ueBp-y.js"),__vite__mapDeps([7,1,2,3,8,9,4,6,5]))),_=i.lazy(()=>t(()=>import("./AdvantagesSection-DOYisO00.js"),__vite__mapDeps([10,1,2,3,4,6])).then(e=>({default:i.memo(e.default)}))),z=i.lazy(()=>t(()=>import("./GallerySection-vnBw8PYa.js"),__vite__mapDeps([11,1,2,3,4,6,5])).then(e=>({default:i.memo(e.GallerySection)}))),S=i.lazy(()=>t(()=>import("./FAQSection-BY4M_0iC.js"),__vite__mapDeps([12,1,2,3,4,5,6])).then(e=>({default:i.memo(e.default)}))),P=o.div`
+`,v={buttons:{initial:{opacity:0,y:15},animate:{opacity:1,y:0,transition:{duration:.5,ease:"easeOut",delay:.6}}}},y=i.memo(()=>{const{t:e}=s(),[t,o]=i.useState(0),[r,d]=i.useState(!1);i.useEffect(()=>{const e=setInterval(()=>{o(e=>(e+1)%l.length)},6e3);return()=>clearInterval(e)},[]);return a.jsxs(c,{children:[a.jsx(x,{children:l.map((e,i)=>a.jsx(h,{$active:i===t,children:a.jsxs("picture",{children:[a.jsx("source",{srcSet:e.webp,type:"image/webp"}),a.jsx("img",{src:e.fallback,alt:`KAIF - Слайд ${i+1}`,width:"1920",height:"1080",loading:0===i?"eager":"lazy",decoding:"async",fetchpriority:0===i?"high":"low",onError:e=>{const t=["https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75","https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75","https://images.unsplash.com/photo-1519823551278-64ac92734fb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75","https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75"];e.target.src=t[i%t.length]}})]})},`slide-${i}`))}),a.jsx(g,{children:a.jsxs(b,{children:[a.jsxs("picture",{style:{display:"block"},children:[a.jsx("source",{srcSet:"/assets/images/logo-homepage-Bvg3zKLL.webp",type:"image/webp"}),a.jsx(u,{src:m,alt:"KAIF",width:"520",height:"auto",loading:"eager",fetchpriority:"high",initial:{opacity:1,scale:1},animate:{opacity:1,scale:1},whileHover:{scale:1.02,transition:{duration:.2,ease:"easeOut"}},onError:e=>{e.target.src=m}})]}),a.jsxs(j,{as:p.div,initial:v.buttons.initial,animate:v.buttons.animate,children:[a.jsx(p.div,{whileHover:{scale:1.02,transition:{duration:.15,ease:"easeOut"}},whileTap:{scale:.98},children:a.jsx(f,{as:"button",onClick:()=>d(!0),style:{cursor:"pointer"},children:e("common.book")})}),a.jsx(p.div,{onClick:()=>{const e=document.querySelector("#exclusive-zones");e&&e.scrollIntoView({behavior:"smooth",block:"start"})},whileHover:{scale:1.01,transition:{duration:.15,ease:"easeOut"}},whileTap:{scale:.99},children:a.jsx(w,{children:e("common.learn_more")})})]})]})}),a.jsx(n,{isOpen:r,onClose:()=>d(!1),service:e("booking.service.general","KAIF Club & Spa"),source:"Главная страница - Hero"})]})});y.displayName="HeroFullscreen";const k=i.lazy(()=>t(()=>import("./ExclusiveZones-CUkLyNyo.js"),__vite__mapDeps([0,1,2,3,4,5,6]))),_=i.lazy(()=>t(()=>import("./PricingSection-D5ueBp-y.js"),__vite__mapDeps([7,1,2,3,8,9,4,6,5]))),z=i.lazy(()=>t(()=>import("./AdvantagesSection-DOYisO00.js"),__vite__mapDeps([10,1,2,3,4,6])).then(e=>({default:i.memo(e.default)}))),S=i.lazy(()=>t(()=>import("./GallerySection-vnBw8PYa.js"),__vite__mapDeps([11,1,2,3,4,6,5])).then(e=>({default:i.memo(e.GallerySection)}))),P=i.lazy(()=>t(()=>import("./FAQSection-BY4M_0iC.js"),__vite__mapDeps([12,1,2,3,4,5,6])).then(e=>({default:i.memo(e.default)}))),A=o.div`
   height: 120px;
   display: flex;
   align-items: center;
@@ -339,12 +339,12 @@ import{u as e,_ as t}from"./main-DSFwFVja.js";import{r as i,j as a}from"./react-
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
-`,A=o.div`
+`,E=o.div`
   display: flex;
   justify-content: center;
   padding: 20px;
   background: rgba(144, 179, 167, 0.02);
-`,E=o(d)`
+`,I=o(d)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -403,4 +403,4 @@ import{u as e,_ as t}from"./main-DSFwFVja.js";import{r as i,j as a}from"./react-
       height: 14px;
     }
   }
-`,I=i.memo(()=>{const{t:t}=s(),{showLoading:o}=e(),n=i.useRef(!1);return i.useEffect(()=>{n.current||(n.current=!0)},[]),a.jsxs("main",{children:[a.jsx(r,{titleKey:"page_titles.home",description:t("home.hero.subtitle","Unique relaxation and wellness experience in Phuket"),keywords:"KAIF, spa, wellness, Phuket, gym, restaurant, banya, massage",ogImage:"/images/logos/logo-og.png"}),a.jsx(v,{}),a.jsx(i.Suspense,{fallback:a.jsx(P,{}),children:a.jsx(y,{})}),a.jsx(i.Suspense,{fallback:a.jsx(P,{}),children:a.jsx(k,{})}),a.jsx(i.Suspense,{fallback:a.jsx(P,{}),children:a.jsx(_,{})}),a.jsx(i.Suspense,{fallback:a.jsx(P,{}),children:a.jsx(z,{})}),a.jsx(i.Suspense,{fallback:a.jsx(P,{}),children:a.jsx(S,{})}),a.jsx(A,{children:a.jsxs(E,{to:"/contacts",children:[t("common.contact_us"),a.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor",children:a.jsx("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M17 8l4 4m0 0l-4 4m4-4H3"})})]})})]})});I.displayName="HomePage";export{I as default};
+`,L=i.memo(()=>{const{t:t}=s(),{showLoading:o}=e(),n=i.useRef(!1);return i.useEffect(()=>{n.current||(n.current=!0)},[]),a.jsxs("main",{children:[a.jsx(r,{titleKey:"page_titles.home",description:t("home.hero.subtitle","Unique relaxation and wellness experience in Phuket"),keywords:"KAIF, spa, wellness, Phuket, gym, restaurant, banya, massage",ogImage:"/images/logos/logo-og.png"}),a.jsx(y,{}),a.jsx(i.Suspense,{fallback:a.jsx(A,{}),children:a.jsx(k,{})}),a.jsx(i.Suspense,{fallback:a.jsx(A,{}),children:a.jsx(_,{})}),a.jsx(i.Suspense,{fallback:a.jsx(A,{}),children:a.jsx(z,{})}),a.jsx(i.Suspense,{fallback:a.jsx(A,{}),children:a.jsx(S,{})}),a.jsx(i.Suspense,{fallback:a.jsx(A,{}),children:a.jsx(P,{})}),a.jsx(E,{children:a.jsxs(I,{to:"/contacts",children:[t("common.contact_us"),a.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor",children:a.jsx("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M17 8l4 4m0 0l-4 4m4-4H3"})})]})})]})});L.displayName="HomePage";export{L as default};
