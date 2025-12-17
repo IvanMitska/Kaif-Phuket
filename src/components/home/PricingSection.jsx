@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { FaDumbbell, FaSpa, FaUsers, FaSwimmer, FaCheck, FaClock } from 'react-icons/fa';
 import BookingModal from '../booking/BookingModal';
+
+// Holiday garland animation
+const twinkle = keyframes`
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1.3);
+  }
+  50% {
+    opacity: 0.5;
+    filter: brightness(0.9);
+  }
+`;
 
 // Main container - modern gradient background
 const SectionContainer = styled.section`
@@ -262,6 +274,12 @@ const PricingCard = styled(motion.div)`
     &::before {
       opacity: 1;
     }
+
+    /* Show garland on hover */
+    ${CardGarland} {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @media (max-width: 768px) {
@@ -290,6 +308,48 @@ const PopularBadge = styled.div`
   letter-spacing: 0.05em;
   box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
   z-index: 1;
+`;
+
+// Holiday garland for cards
+const CardGarland = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+  z-index: 2;
+  pointer-events: none;
+`;
+
+const GarlandLight = styled.div`
+  width: 8px;
+  height: 10px;
+  background: ${props => props.$color};
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: ${twinkle} ${props => props.$duration}s ease-in-out infinite;
+  animation-delay: ${props => props.$delay}s;
+  box-shadow:
+    0 0 6px ${props => props.$color},
+    0 0 12px ${props => props.$color}80;
+  margin-top: 2px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: #1a472a;
+    border-radius: 2px;
+  }
 `;
 
 const CardHeader = styled.div`
@@ -870,12 +930,24 @@ const PricingSection = () => {
 
         <GridContainer>
           <PricingGrid key={activeCategory}>
-            {currentCategory.plans.map((plan, index) => (
+            {currentCategory.plans.map((plan, index) => {
+              const garlandColors = ['#ff0000', '#FFD700', '#00ff00', '#00bfff', '#ff0000', '#FFD700', '#00ff00'];
+              return (
               <PricingCard
                 key={`${activeCategory}-${index}`}
                 $featured={plan.featured}
                 $category={activeCategory}
               >
+                <CardGarland>
+                  {garlandColors.map((color, i) => (
+                    <GarlandLight
+                      key={i}
+                      $color={color}
+                      $duration={1 + Math.random() * 1.5}
+                      $delay={i * 0.2}
+                    />
+                  ))}
+                </CardGarland>
                 <CardHeader $category={activeCategory}>
                   <PlanName>{plan.name}</PlanName>
                   <PlanDuration>{plan.duration}</PlanDuration>
@@ -911,7 +983,8 @@ const PricingSection = () => {
                   {t('pricing.select_plan')}
                 </BookButton>
               </PricingCard>
-            ))}
+            );
+            })}
           </PricingGrid>
         </GridContainer>
       </Container>

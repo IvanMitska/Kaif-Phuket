@@ -21,38 +21,17 @@ const swing = keyframes`
   }
 `;
 
-const GarlandWrapper = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-  z-index: 999;
-  pointer-events: auto;
-
-  @media (max-width: 768px) {
-    height: 80px;
-  }
-
-  &:hover > div {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
 const GarlandContainer = styled.div`
-  position: absolute;
+  position: fixed;
   top: 70px;
   left: 0;
   right: 0;
   height: 20px;
+  z-index: 999;
   pointer-events: none;
   display: flex;
   justify-content: center;
   overflow: hidden;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
 
   @media (max-width: 768px) {
     top: 60px;
@@ -145,20 +124,18 @@ const HolidayGarland = () => {
   ];
 
   return (
-    <GarlandWrapper>
-      <GarlandContainer>
-        <Wire>
-          {colors.map((color, i) => (
-            <Light
-              key={i}
-              $color={color}
-              $duration={1 + Math.random() * 2}
-              $delay={i * 0.15}
-            />
-          ))}
-        </Wire>
-      </GarlandContainer>
-    </GarlandWrapper>
+    <GarlandContainer>
+      <Wire>
+        {colors.map((color, i) => (
+          <Light
+            key={i}
+            $color={color}
+            $duration={1 + Math.random() * 2}
+            $delay={i * 0.15}
+          />
+        ))}
+      </Wire>
+    </GarlandContainer>
   );
 };
 
