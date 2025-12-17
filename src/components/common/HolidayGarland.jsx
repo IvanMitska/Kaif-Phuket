@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled, { keyframes } from 'styled-components';
 
+// Simplified twinkle - removed filter for better performance
 const twinkle = keyframes`
   0%, 100% {
     opacity: 1;
-    filter: brightness(1.2);
   }
   50% {
     opacity: 0.4;
-    filter: brightness(0.8);
   }
 `;
 
@@ -74,12 +73,10 @@ const Light = styled.div`
   position: relative;
   animation: ${twinkle} ${props => props.$duration}s ease-in-out infinite;
   animation-delay: ${props => props.$delay}s;
-  box-shadow:
-    0 0 10px ${props => props.$color},
-    0 0 20px ${props => props.$color},
-    0 0 30px ${props => props.$color}40;
+  box-shadow: 0 0 8px ${props => props.$color};
   transform-origin: top center;
   margin-top: 5px;
+  will-change: opacity;
 
   &::before {
     content: '';
@@ -99,28 +96,12 @@ const Light = styled.div`
   }
 `;
 
-const HolidayGarland = () => {
+const HolidayGarland = memo(() => {
+  // Reduced number of lights for better performance
   const colors = [
-    '#ff0000', // red
-    '#FFD700', // gold
-    '#00ff00', // green
-    '#ff0000', // red
-    '#00bfff', // blue
-    '#FFD700', // gold
-    '#ff0000', // red
-    '#00ff00', // green
-    '#FFD700', // gold
-    '#00bfff', // blue
-    '#ff0000', // red
-    '#00ff00', // green
-    '#FFD700', // gold
-    '#ff0000', // red
-    '#00bfff', // blue
-    '#00ff00', // green
-    '#FFD700', // gold
-    '#ff0000', // red
-    '#00ff00', // green
-    '#00bfff', // blue
+    '#ff0000', '#FFD700', '#00ff00', '#00bfff',
+    '#ff0000', '#FFD700', '#00ff00', '#00bfff',
+    '#ff0000', '#FFD700', '#00ff00', '#00bfff',
   ];
 
   return (
@@ -130,13 +111,15 @@ const HolidayGarland = () => {
           <Light
             key={i}
             $color={color}
-            $duration={1 + Math.random() * 2}
-            $delay={i * 0.15}
+            $duration={2 + (i % 3)}
+            $delay={i * 0.2}
           />
         ))}
       </Wire>
     </GarlandContainer>
   );
-};
+});
+
+HolidayGarland.displayName = 'HolidayGarland';
 
 export default HolidayGarland;
