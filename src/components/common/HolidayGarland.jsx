@@ -1,24 +1,7 @@
 import React, { memo } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
-// Simplified twinkle - removed filter for better performance
-const twinkle = keyframes`
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.4;
-  }
-`;
-
-const swing = keyframes`
-  0%, 100% {
-    transform: rotate(-2deg);
-  }
-  50% {
-    transform: rotate(2deg);
-  }
-`;
+// No animations for better performance - static lights look good too
 
 const GarlandContainer = styled.div`
   position: fixed;
@@ -71,12 +54,8 @@ const Light = styled.div`
   background: ${props => props.$color};
   border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   position: relative;
-  animation: ${twinkle} ${props => props.$duration}s ease-in-out infinite;
-  animation-delay: ${props => props.$delay}s;
-  box-shadow: 0 0 8px ${props => props.$color};
-  transform-origin: top center;
+  box-shadow: 0 0 6px ${props => props.$color};
   margin-top: 5px;
-  will-change: opacity;
 
   &::before {
     content: '';
@@ -97,7 +76,7 @@ const Light = styled.div`
 `;
 
 const HolidayGarland = memo(() => {
-  // Reduced number of lights for better performance
+  // Static lights - no animations for better performance
   const colors = [
     '#ff0000', '#FFD700', '#00ff00', '#00bfff',
     '#ff0000', '#FFD700', '#00ff00', '#00bfff',
@@ -108,12 +87,7 @@ const HolidayGarland = memo(() => {
     <GarlandContainer>
       <Wire>
         {colors.map((color, i) => (
-          <Light
-            key={i}
-            $color={color}
-            $duration={2 + (i % 3)}
-            $delay={i * 0.2}
-          />
+          <Light key={i} $color={color} />
         ))}
       </Wire>
     </GarlandContainer>

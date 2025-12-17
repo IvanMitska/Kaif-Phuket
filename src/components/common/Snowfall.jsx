@@ -1,16 +1,10 @@
 import React, { useEffect, useState, memo } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
-// Simplified animation for better performance
+// Ultra-lightweight animation
 const fall = keyframes`
-  0% {
-    transform: translate3d(0, -10vh, 0);
-    opacity: 1;
-  }
-  100% {
-    transform: translate3d(10px, 110vh, 0);
-    opacity: 0.3;
-  }
+  from { transform: translateY(-5vh); }
+  to { transform: translateY(105vh); }
 `;
 
 const SnowContainer = styled.div`
@@ -22,9 +16,12 @@ const SnowContainer = styled.div`
   pointer-events: none;
   z-index: 9999;
   overflow: hidden;
-  /* GPU acceleration */
-  transform: translateZ(0);
   contain: strict;
+
+  /* Disable on reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    display: none;
+  }
 `;
 
 const Snowflake = styled.div`
@@ -32,37 +29,46 @@ const Snowflake = styled.div`
   top: -20px;
   color: white;
   font-size: ${props => props.$size}px;
-  text-shadow: 0 0 3px rgba(255, 255, 255, 0.6);
+  opacity: ${props => props.$opacity};
+  left: ${props => props.$left}%;
   animation: ${fall} ${props => props.$duration}s linear infinite;
   animation-delay: ${props => props.$delay}s;
-  left: ${props => props.$left}%;
-  opacity: ${props => props.$opacity};
-  /* GPU acceleration */
   will-change: transform;
-  backface-visibility: hidden;
 `;
 
 const Snowfall = memo(() => {
   const [snowflakes, setSnowflakes] = useState([]);
+  const [isLowPerf, setIsLowPerf] = useState(false);
 
   useEffect(() => {
+    // Detect low performance devices
+    const isLowEnd = navigator.hardwareConcurrency <= 4 ||
+                     window.innerWidth < 768 ||
+                     /Android|iPhone|iPad/i.test(navigator.userAgent);
+
+    setIsLowPerf(isLowEnd);
+
     const flakes = [];
-    // Reduced count for better performance
-    const flakeCount = window.innerWidth < 768 ? 15 : 25;
+    // Minimal count: 8 on low-end, 15 on desktop
+    const flakeCount = isLowEnd ? 8 : 15;
 
     for (let i = 0; i < flakeCount; i++) {
       flakes.push({
         id: i,
-        left: Math.random() * 100,
-        size: Math.random() * 8 + 10,
-        duration: Math.random() * 8 + 12,
-        delay: Math.random() * 8,
-        opacity: Math.random() * 0.4 + 0.4,
-        char: '❄'
+        left: (i / flakeCount) * 100 + Math.random() * 5,
+        size: 12 + (i % 3) * 4,
+        duration: 15 + (i % 5) * 3,
+        delay: i * 0.8,
+        opacity: 0.5 + (i % 3) * 0.15,
       });
     }
     setSnowflakes(flakes);
   }, []);
+
+  // Don't render on very low-end devices
+  if (isLowPerf && navigator.hardwareConcurrency <= 2) {
+    return null;
+  }
 
   return (
     <SnowContainer>
@@ -75,7 +81,7 @@ const Snowfall = memo(() => {
           $delay={flake.delay}
           $opacity={flake.opacity}
         >
-          {flake.char}
+          ❄
         </Snowflake>
       ))}
     </SnowContainer>
