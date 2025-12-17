@@ -276,7 +276,7 @@ const PricingCard = styled(motion.div)`
     }
 
     /* Show garland on hover */
-    ${CardGarland} {
+    .card-garland {
       opacity: 1;
       transform: translateY(0);
     }
@@ -938,7 +938,7 @@ const PricingSection = () => {
                 $featured={plan.featured}
                 $category={activeCategory}
               >
-                <CardGarland>
+                <CardGarland className="card-garland">
                   {garlandColors.map((color, i) => (
                     <GarlandLight
                       key={i}
