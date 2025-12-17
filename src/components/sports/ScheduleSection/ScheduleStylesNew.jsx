@@ -9,14 +9,15 @@ export const ScheduleContainer = styled.div`
 
 export const ScheduleTabs = styled(motion.div)`
   display: flex;
-  gap: 1rem;
-  margin-bottom: 3rem;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
   overflow-x: auto;
-  padding: 0;
-  background: transparent;
-  border-radius: 0;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
   scrollbar-width: none;
   justify-content: center;
+  flex-wrap: wrap;
 
   &::-webkit-scrollbar {
     display: none;
@@ -24,23 +25,24 @@ export const ScheduleTabs = styled(motion.div)`
 
   @media (max-width: 768px) {
     gap: 0.5rem;
-    justify-content: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0.75rem;
   }
 `;
 
 export const ScheduleTab = styled(motion.button)`
   flex: 0 0 auto;
-  min-width: 140px;
-  padding: 1rem 2rem;
-  background: ${props => props.active ? '#FFE600' : 'rgba(255, 255, 255, 0.03)'};
-  color: ${props => props.active ? '#000000' : 'rgba(255, 255, 255, 0.7)'};
-  border: none;
-  border-radius: 0;
-  font-weight: ${props => props.active ? '800' : '600'};
-  font-size: 0.95rem;
+  min-width: 120px;
+  padding: 0.875rem 1.5rem;
+  background: ${props => props.active ? '#FFE600' : 'transparent'};
+  color: ${props => props.active ? '#000000' : '#FFFFFF'};
+  border: 2px solid ${props => props.active ? '#FFE600' : 'rgba(255, 255, 255, 0.3)'};
+  border-radius: 6px;
+  font-weight: ${props => props.active ? '700' : '500'};
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: ${props => props.active ? '0 8px 24px rgba(255, 230, 0, 0.4)' : 'none'};
+  transition: all 0.2s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   -webkit-font-smoothing: antialiased;
@@ -54,14 +56,16 @@ export const ScheduleTab = styled(motion.button)`
   }
 
   &:hover {
-    background: ${props => props.active ? '#FFE600' : 'rgba(255, 255, 255, 0.05)'};
-    color: ${props => props.active ? '#000000' : '#FFFFFF'};
+    background: ${props => props.active ? '#FFE600' : 'rgba(255, 230, 0, 0.15)'};
+    border-color: #FFE600;
+    color: ${props => props.active ? '#000000' : '#FFE600'};
   }
 
   @media (max-width: 768px) {
-    min-width: 70px;
-    padding: 0.875rem 1rem;
-    font-size: 0.85rem;
+    min-width: auto;
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    flex: 0 1 auto;
 
     .short {
       display: inline;
@@ -73,54 +77,53 @@ export const ScheduleTab = styled(motion.button)`
   }
 `;
 
+export const CategoryTab = styled(ScheduleTab)`
+  @media (max-width: 768px) {
+    .short {
+      display: none;
+    }
+
+    .full {
+      display: inline;
+    }
+  }
+`;
+
 export const ScheduleContent = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 0.75rem;
   }
 `;
 
 export const ClassCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.03);
-  padding: 2rem;
-  border-radius: 0;
-  border: none;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 4px solid #FFE600;
   box-shadow: none;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   position: relative;
   overflow: hidden;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: #FFE600;
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform 0.3s ease;
-  }
-
   &:hover {
-    background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 0 0 1px rgba(255, 230, 0, 0.3);
-  }
-
-  &:hover::before {
-    transform: scaleY(1);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 230, 0, 0.5);
+    border-left-color: #FFE600;
+    transform: translateY(-2px);
   }
 
   @media (max-width: 768px) {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 `;
 
@@ -205,48 +208,28 @@ export const BookButton = styled(motion.a)`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
-  padding: 1rem 1.5rem;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
   background: #FFE600;
   color: #000000;
   border: none;
-  border-radius: 0;
-  font-weight: 800;
-  font-size: 0.95rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.85rem;
   cursor: pointer;
   text-decoration: none;
-  transition: box-shadow 0.3s ease, color 0.3s ease;
-  box-shadow: 0 6px 24px rgba(255, 230, 0, 0.4);
+  transition: all 0.2s ease;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   -webkit-font-smoothing: antialiased;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: #000000;
-    transition: width 0.3s ease;
-    z-index: -1;
-  }
 
   svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
   }
 
   &:hover {
-    box-shadow: 0 8px 32px rgba(255, 230, 0, 0.6);
-    color: #FFE600;
-  }
-
-  &:hover::before {
-    width: 100%;
+    background: #fff;
+    transform: scale(1.02);
   }
 `;

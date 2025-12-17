@@ -175,12 +175,12 @@ const CategoryTab = styled(motion.button)`
   }
 `;
 
-// Pricing cards grid - better layout
+// Pricing cards grid - better layout with CSS Grid for equal heights
 const PricingGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 340px));
+  justify-content: center;
   gap: 1.5rem;
-  align-content: start;
   width: 100%;
 
   @media (max-width: 768px) {
@@ -197,6 +197,9 @@ const PricingCard = styled(motion.div)`
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
   position: relative;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 340px;
+  max-width: 100%;
+  min-height: 620px;
   border: 1px solid ${props => {
     switch(props.$category) {
       case 'dayPass': return 'rgba(156, 39, 176, 0.08)';
@@ -262,6 +265,8 @@ const PricingCard = styled(motion.div)`
   }
 
   @media (max-width: 768px) {
+    width: 100%;
+    min-height: auto;
     padding: 1.75rem;
     &:hover {
       transform: translateY(-4px) scale(1.01);
@@ -383,8 +388,11 @@ const Price = styled.div`
 const FeatureList = styled.ul`
   list-style: none;
   padding: 0;
-  margin: 0 0 2rem 0;
+  margin: 0;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 `;
 
 const Feature = styled.li`
@@ -583,23 +591,9 @@ const PricingSection = () => {
       subtitle: t('pricing.subtitles.dayPass'),
       plans: [
         {
-          name: t('pricing.durations.morning') + ' Pass',
-          duration: t('pricing.features.morningAccess'),
-          price: '390',
-          features: [
-            t('pricing.features.gymCardio'),
-            t('pricing.features.swimmingPool'),
-            t('pricing.features.steamRoom'),
-            t('pricing.features.iceBarrel'),
-            t('pricing.features.russianSauna') + ' & ' + t('pricing.features.japanesePool'),
-            t('pricing.features.saunaAfter14')
-          ],
-          perMonth: null
-        },
-        {
           name: 'Day Pass',
           duration: t('pricing.durations.fullDay'),
-          price: '490',
+          price: '590',
           features: [
             t('pricing.features.gymCardio'),
             t('pricing.features.swimmingPool'),
