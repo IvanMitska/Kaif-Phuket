@@ -15,7 +15,6 @@ import ScrollToTop from './components/common/ScrollToTop';
 
 // Holiday components (December 2024 - January 2025)
 import Snowfall from './components/common/Snowfall';
-import HolidayBanner from './components/common/HolidayBanner';
 
 // Подавляем CSS предупреждения в development режиме
 import './utils/suppressCSSWarnings';
@@ -80,7 +79,6 @@ const AppContent = () => {
       <Snowfall />
       {isContentReady && (
         <Suspense fallback={<InvisibleLoader />}>
-          <HolidayBanner />
           <div className="App">
             <Layout>
               <AnimatedRoutes />
