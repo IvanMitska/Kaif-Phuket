@@ -1,0 +1,81 @@
+/* Holiday Theme 2025 - Festive Button Accents */
+
+/* Primary CTA buttons - festive glow */
+.holiday-theme button[class*="primary"],
+.holiday-theme a[class*="primary"],
+.holiday-theme button[class*="cta"],
+.holiday-theme a[class*="cta"],
+.holiday-theme [class*="BookButton"],
+.holiday-theme [class*="CTAButton"] {
+  position: relative;
+  overflow: visible;
+}
+
+/* Add sparkle effect to main CTAs */
+@keyframes holiday-sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+@keyframes holiday-glow {
+  0%, 100% {
+    box-shadow:
+      0 4px 15px rgba(255, 215, 0, 0.3),
+      0 0 20px rgba(196, 30, 58, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 4px 20px rgba(255, 215, 0, 0.5),
+      0 0 30px rgba(196, 30, 58, 0.3);
+  }
+}
+
+/* Hero section special holiday styling */
+.holiday-theme [class*="HeroSection"] [class*="Button"],
+.holiday-theme [class*="hero"] button {
+  animation: holiday-glow 2s ease-in-out infinite;
+}
+
+/* Festive border animation for cards on hover */
+@keyframes festive-border {
+  0% {
+    border-color: rgba(196, 30, 58, 0.3);
+  }
+  33% {
+    border-color: rgba(255, 215, 0, 0.4);
+  }
+  66% {
+    border-color: rgba(0, 128, 0, 0.3);
+  }
+  100% {
+    border-color: rgba(196, 30, 58, 0.3);
+  }
+}
+
+/* Add subtle festive touch to pricing cards */
+.holiday-theme [class*="PricingCard"]:hover,
+.holiday-theme [class*="Card"]:hover {
+  animation: festive-border 3s linear infinite;
+}
+
+/* Gold accent for active/selected states */
+.holiday-theme [class*="active"],
+.holiday-theme [class*="Active"],
+.holiday-theme .active {
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Festive scrollbar */
+.holiday-theme::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #c41e3a, #1a472a);
+}
+
+.holiday-theme::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
