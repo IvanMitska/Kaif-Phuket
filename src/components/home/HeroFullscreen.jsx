@@ -203,8 +203,29 @@ const LogoImage = styled(motion.img)`
   }
 `;
 
+// Holiday glow animation for buttons
+const holidayGlow = `
+  @keyframes holidayGlow {
+    0%, 100% {
+      box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        0 15px 50px rgba(0, 0, 0, 0.2),
+        0 0 20px rgba(255, 215, 0, 0.3),
+        0 0 40px rgba(196, 30, 58, 0.2);
+    }
+    50% {
+      box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        0 15px 50px rgba(0, 0, 0, 0.2),
+        0 0 30px rgba(255, 215, 0, 0.5),
+        0 0 60px rgba(196, 30, 58, 0.3);
+    }
+  }
+`;
+
 // Белая кнопка с чёрным текстом - премиальный вид
 const PrimaryButton = styled.a`
+  ${holidayGlow}
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -223,9 +244,11 @@ const PrimaryButton = styled.a`
   position: relative;
   overflow: hidden;
   min-width: 220px;
+  animation: holidayGlow 2s ease-in-out infinite;
   box-shadow:
     0 8px 25px rgba(0, 0, 0, 0.3),
-    0 15px 50px rgba(0, 0, 0, 0.2);
+    0 15px 50px rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(255, 215, 0, 0.3);
 
   &::before {
     content: '';

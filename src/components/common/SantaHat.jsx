@@ -12,16 +12,20 @@ const swing = keyframes`
 
 const HatContainer = styled.div`
   position: fixed;
-  top: 8px;
-  left: 95px;
-  z-index: 1001;
+  top: 3px;
+  left: calc((100vw - 1400px) / 2 + 2rem + 35px);
+  z-index: 10001;
   pointer-events: none;
   transform-origin: bottom center;
   animation: ${swing} 3s ease-in-out infinite;
 
+  @media (max-width: 1400px) {
+    left: calc(2rem + 35px);
+  }
+
   @media (max-width: 768px) {
-    left: 75px;
-    top: 5px;
+    left: calc(1rem + 30px);
+    top: 2px;
   }
 `;
 
