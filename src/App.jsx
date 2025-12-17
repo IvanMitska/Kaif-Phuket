@@ -13,6 +13,10 @@ import { LoadingProvider, useLoading } from './components/global/LoadingContext'
 import LoadingScreen from './components/global/LoadingScreen';
 import ScrollToTop from './components/common/ScrollToTop';
 
+// Holiday components (December 2024 - January 2025)
+import Snowfall from './components/common/Snowfall';
+import HolidayBanner from './components/common/HolidayBanner';
+
 // Подавляем CSS предупреждения в development режиме
 import './utils/suppressCSSWarnings';
 
@@ -73,8 +77,10 @@ const AppContent = () => {
     <>
       <LoadingScreen isVisible={isLoading} />
       <ScrollToTop />
+      <Snowfall />
       {isContentReady && (
         <Suspense fallback={<InvisibleLoader />}>
+          <HolidayBanner />
           <div className="App">
             <Layout>
               <AnimatedRoutes />
