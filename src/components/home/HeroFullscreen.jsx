@@ -502,14 +502,19 @@ const HeroFullscreen = memo(() => {
               alt="KAIF"
               width="520"
               height="auto"
-              initial={animations.logo.initial}
-              animate={animations.logo.animate}
+              loading="eager"
+              fetchpriority="high"
+              initial={{ opacity: 1, scale: 1 }}
+              animate={{ opacity: 1, scale: 1 }}
               whileHover={{
                 scale: 1.02,
                 transition: {
                   duration: 0.2,
                   ease: "easeOut"
                 }
+              }}
+              onError={(e) => {
+                e.target.src = homepageLogo;
               }}
             />
           </picture>
