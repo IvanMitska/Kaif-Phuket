@@ -1,7 +1,49 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+
+// Holiday garland animation
+const twinkle = keyframes`
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1.3);
+  }
+  50% {
+    opacity: 0.5;
+    filter: brightness(0.9);
+  }
+`;
+
+// Holiday garland for cards
+const CardGarland = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+  z-index: 10;
+  pointer-events: none;
+`;
+
+const GarlandLight = styled.div`
+  width: 8px;
+  height: 10px;
+  background: ${props => props.$color};
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: ${twinkle} ${props => props.$duration}s ease-in-out infinite;
+  animation-delay: ${props => props.$delay}s;
+  box-shadow:
+    0 0 8px ${props => props.$color},
+    0 0 16px ${props => props.$color}80;
+  margin-top: 2px;
+`;
 
 // =============================================================================
 // СОВРЕМЕННАЯ СЕКЦИЯ УСЛУГ БАНИ
@@ -132,6 +174,12 @@ const RitualCard = styled(motion.div)`
       .ritual-title {
         background-size: 200% 100%;
         background-position: 100% 0;
+      }
+
+      /* Show garland on hover */
+      .card-garland {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
   }
@@ -443,6 +491,7 @@ const BanyaServicesSection = () => {
 
         <RitualsGrid>
           {rituals.map((ritual, index) => {
+            const garlandColors = ['#ff0000', '#FFD700', '#00ff00', '#00bfff', '#ff0000', '#FFD700', '#00ff00'];
             return (
               <RitualCard
                 key={`${ritual.id}-${ready}`}
@@ -455,6 +504,16 @@ const BanyaServicesSection = () => {
                   ease: "easeOut"
                 }}
               >
+              <CardGarland className="card-garland">
+                {garlandColors.map((color, i) => (
+                  <GarlandLight
+                    key={i}
+                    $color={color}
+                    $duration={1 + Math.random() * 1.5}
+                    $delay={i * 0.2}
+                  />
+                ))}
+              </CardGarland>
               <AccentLine />
 
               <RitualHeader>
