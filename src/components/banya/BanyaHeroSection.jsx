@@ -405,7 +405,7 @@ const BanyaHeroSection = () => {
   
   const images = [
     {
-      src: '/images/banya/panoramic.png',
+      src: '/images/banya/panoramic.jpg',
       alt: t('banya.hero.images.panoramic', 'Panoramic sauna 150 m²')
     },
     {

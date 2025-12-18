@@ -1472,7 +1472,7 @@ const EventBanner = ({ onClose }) => {
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
                 <HalloweenImage
-                  src="/images/events/hospital.png"
+                  src="/images/events/hospital.jpg"
                   alt="Halloween Event"
                   loading="eager"
                 />

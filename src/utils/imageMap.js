@@ -707,29 +707,29 @@ export const imageMap = {
         width: 320,
       },
     },
-    'banya/panoramic.png': {
+    'banya/panoramic.jpg': {
       "original": {
         webp: "/images-webp/banya/panoramic.webp",
-        fallback: "/images/banya/panoramic.png",
+        fallback: "/images/banya/panoramic.jpg",
       },
       "large": {
         webp: "/images-webp/large/banya/panoramic.webp",
-        fallback: "/images/banya/panoramic.png",
+        fallback: "/images/banya/panoramic.jpg",
         width: 1600,
       },
       "medium": {
         webp: "/images-webp/medium/banya/panoramic.webp",
-        fallback: "/images/banya/panoramic.png",
+        fallback: "/images/banya/panoramic.jpg",
         width: 1024,
       },
       "small": {
         webp: "/images-webp/small/banya/panoramic.webp",
-        fallback: "/images/banya/panoramic.png",
+        fallback: "/images/banya/panoramic.jpg",
         width: 768,
       },
       "thumbnail": {
         webp: "/images-webp/thumbnail/banya/panoramic.webp",
-        fallback: "/images/banya/panoramic.png",
+        fallback: "/images/banya/panoramic.jpg",
         width: 320,
       },
     },
