@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { IoClose } from 'react-icons/io5';
-import BookingModal from '../booking/BookingModal';
+
+// WhatsApp номер для записи
+const WHATSAPP_NUMBER = '66624805877';
 
 // Animations
 const snowfall = keyframes`
@@ -311,7 +313,11 @@ const BookButton = styled.button`
 
 const EventBanner = ({ onClose }) => {
   const [isVisible, setIsVisible] = useState(true);
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+
+  const handleBookNow = () => {
+    const message = encodeURIComponent('Hi! I would like to book Sauna Rave Event on 27 December');
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
+  };
 
   useEffect(() => {
     const bannerClosed = sessionStorage.getItem('saunaRaveBannerClosed');
@@ -399,19 +405,12 @@ const EventBanner = ({ onClose }) => {
                   <FeatureItem>DJ</FeatureItem>
                 </FeatureList>
 
-                <BookButton onClick={() => setIsBookingModalOpen(true)}>
+                <BookButton onClick={handleBookNow}>
                   🎄 Book Now 🎄
                 </BookButton>
               </InfoContainer>
             </BannerContent>
           </ContentWrapper>
-
-          <BookingModal
-            isOpen={isBookingModalOpen}
-            onClose={() => setIsBookingModalOpen(false)}
-            service="Sauna Rave Event - 27 December"
-            source="Home - Event Banner"
-          />
         </BannerContainer>
       )}
     </>
