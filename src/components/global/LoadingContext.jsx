@@ -1,64 +1,78 @@
-import React, { createContext, useContext, useState, useRef } from 'react';
+import React, { createContext, useContext, useState, useRef, useCallback } from 'react';
 
 const LoadingContext = createContext();
-
-// Флаг, сохраняющийся между повторными монтированиями при React.StrictMode
-let hasShownInitialLoading = false;
 
 export const useLoading = () => useContext(LoadingContext);
 
 export const LoadingProvider = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isContentReady, setIsContentReady] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isContentReady, setIsContentReady] = useState(false);
   const loadingRef = useRef(false);
-  const hasShownLoadingRef = useRef(false);
-  
-  const showLoading = (duration = 1000) => {
-    // Упрощенная версия для отладки
-    if (loadingRef.current || hasShownLoadingRef.current || hasShownInitialLoading) {
-      return Promise.resolve();
+  const isInitialLoad = useRef(true);
+
+  // Начальная загрузка при первом открытии
+  React.useEffect(() => {
+    if (isInitialLoad.current) {
+      isInitialLoad.current = false;
+      // Даём React LoadingScreen отрендериться, потом скрываем HTML лоадер
+      requestAnimationFrame(() => {
+        if (window.hideInitialLoader) {
+          window.hideInitialLoader();
+        }
+      });
+      // Показываем контент, потом скрываем загрузку
+      setTimeout(() => {
+        setIsContentReady(true);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 300);
+      }, 500);
+
+      // Fallback: гарантированно показать контент через 2 секунды
+      setTimeout(() => {
+        setIsContentReady(true);
+        setIsLoading(false);
+      }, 2000);
     }
-    
-    // Помечаем, что анимация уже была показана
-    hasShownInitialLoading = true;
+  }, []);
+
+  // Показать загрузку при переходе между страницами
+  const showPageTransition = useCallback((duration = 350) => {
+    if (loadingRef.current) return Promise.resolve();
+
     loadingRef.current = true;
-    hasShownLoadingRef.current = true;
-    setIsContentReady(false);
+
+    // Сразу показываем загрузку и скрываем контент
     setIsLoading(true);
-    
+    setIsContentReady(false);
+    window.scrollTo(0, 0);
+
     return new Promise((resolve) => {
       setTimeout(() => {
-        setIsLoading(false);
+        // Сначала показываем контент ЗА экраном загрузки
+        setIsContentReady(true);
+        // Даём контенту загрузиться перед fade out
         setTimeout(() => {
-          setIsContentReady(true);
+          setIsLoading(false);
           loadingRef.current = false;
           resolve();
-        }, 200);
+        }, 300);
       }, duration);
     });
-  };
-  
-  const showContentDirectly = () => {
-    hasShownLoadingRef.current = true;
+  }, []);
+
+  const hideLoading = useCallback(() => {
     setIsLoading(false);
     setIsContentReady(true);
     loadingRef.current = false;
-  };
-  
-  const resetLoading = () => {
-    hasShownLoadingRef.current = false;
-    loadingRef.current = false;
-    setIsLoading(false);
-    setIsContentReady(true);
-  };
-  
+  }, []);
+
   return (
-    <LoadingContext.Provider value={{ 
-      isLoading, 
-      isContentReady, 
-      showLoading, 
-      showContentDirectly,
-      resetLoading 
+    <LoadingContext.Provider value={{
+      isLoading,
+      isContentReady,
+      showPageTransition,
+      hideLoading
     }}>
       {children}
     </LoadingContext.Provider>

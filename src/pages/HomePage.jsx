@@ -7,7 +7,7 @@ import PageHead from '../components/layout/PageHead';
 
 // Импортируем только критический hero компонент
 import HeroFullscreen from '../components/home/HeroFullscreen';
-// import EventBanner from '../components/home/EventBanner'; // Временно отключен
+import EventBanner from '../components/home/EventBanner';
 
 // Lazy loading для всех некритических компонентов
 const ExclusiveZones = lazy(() => import('../components/home/ExclusiveZones'));
@@ -139,19 +139,19 @@ const HomePage = memo(() => {
   }, []); // Пустой массив зависимостей - эффект выполнится только один раз
 
   return (
-    <main>
-      <PageHead 
+    <>
+      <PageHead
         titleKey="page_titles.home"
         description={t('home.hero.subtitle', 'Unique relaxation and wellness experience in Phuket')}
         keywords="KAIF, spa, wellness, Phuket, gym, restaurant, banya, massage"
         ogImage="/images/logos/logo-og.png"
       />
-      
+
       {/* Полноэкранная секция героя - единственный критический компонент */}
       <HeroFullscreen />
 
-      {/* Баннер мероприятия SAUNA RAVE - временно отключен */}
-      {/* <EventBanner /> */}
+      {/* Баннер мероприятия SAUNA RAVE */}
+      <EventBanner />
 
       <Suspense fallback={<SectionLoader />}>
         <ExclusiveZones />
@@ -172,7 +172,7 @@ const HomePage = memo(() => {
       <Suspense fallback={<SectionLoader />}>
         <FAQSection />
       </Suspense>
-      
+
       {/* Упрощенная кнопка для перехода на страницу контактов */}
       <ContactButtonContainer>
         <ContactButton to="/contacts">
@@ -182,7 +182,7 @@ const HomePage = memo(() => {
           </svg>
         </ContactButton>
       </ContactButtonContainer>
-    </main>
+    </>
   );
 });
 

@@ -21,16 +21,10 @@ const SportsPage = () => {
 
   // Добавлено сохранение стилей при рендеринге страницы
   useEffect(() => {
-    console.log('SportsPage загружается...');
-    // Добавляем класс для спортивной страницы
     document.body.classList.add('sports-page');
-
-    // Принудительно прокручиваем вверх при загрузке страницы
     window.scrollTo(0, 0);
 
-    // Удаляем класс при уходе со страницы
     return () => {
-      console.log('SportsPage выгружается...');
       document.body.classList.remove('sports-page');
     };
   }, []);

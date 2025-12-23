@@ -8,7 +8,7 @@ import {
   HeartIcon,
   CalendarDaysIcon
 } from '@heroicons/react/24/outline';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 // TODO: Временно отключено - BookingModal
 // import BookingModal from '../../booking/BookingModal';
 
@@ -16,7 +16,6 @@ const WHATSAPP_NUMBER = '66624805877';
 
 import {
   HeroSection as HeroSectionContainer,
-  HeroBackground,
   HeroContainer,
   HeroContent,
   HeroTitle,
@@ -24,10 +23,6 @@ import {
   HeroCTAContainer,
   PrimaryButton,
   SecondaryButton,
-  HeroStatsContainer,
-  HeroStat,
-  HeroStatNumber,
-  HeroStatLabel,
   HeroImageContainer,
   HeroImage,
   HeroImageGlow,
@@ -63,45 +58,21 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <HeroSectionContainer>
-      <AnimatePresence mode="wait">
-        <HeroBackground
-          key={currentImageIndex}
-          style={{
-            backgroundImage: `url(${heroImages[currentImageIndex]})`
-          }}
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.05 }}
-          transition={{ duration: 0.8 }}
-        />
-      </AnimatePresence>
-
-      {/* Декоративные элементы - статичные для производительности */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '20%',
-          right: '10%',
-          width: '300px',
-          height: '300px',
-          background: 'radial-gradient(circle, rgba(210, 155, 132, 0.3) 0%, transparent 70%)',
-          filter: 'blur(80px)',
-          zIndex: 1,
-          opacity: 0.4
-        }}
-      />
-
+    <HeroSectionContainer
+      style={{
+        backgroundImage: `linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.7) 100%), url(${heroImages[currentImageIndex]})`
+      }}
+    >
       <HeroContainer>
         <HeroContent
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.3 }}
         >
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
+            transition={{ duration: 0.2 }}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -124,23 +95,22 @@ const HeroSection = () => {
           </motion.div>
 
           <HeroTitle
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.25, delay: 0.05 }}
           >
             {t('sports.hero.main_title_1', 'YOUR')}
             <br />
             <motion.span
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.2, delay: 0.1 }}
               style={{
                 background: 'linear-gradient(135deg, #FFE600 0%, #FFA500 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
-                display: 'inline-block',
-                filter: 'drop-shadow(0 0 40px rgba(255, 230, 0, 0.6))'
+                display: 'inline-block'
               }}
             >
               {t('sports.hero.main_title_2', 'ELITE')}
@@ -161,17 +131,17 @@ const HeroSection = () => {
           </HeroTitle>
 
           <HeroSubtitle
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2, delay: 0.1 }}
           >
             {t('sports.hero.subtitle', 'Современные тренажеры, профессиональные тренеры и атмосфера для достижения ваших спортивных целей')}
           </HeroSubtitle>
 
           <HeroCTAContainer
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2, delay: 0.15 }}
           >
             <PrimaryButton
               as="button"
@@ -197,7 +167,7 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            transition={{ duration: 0.2, delay: 0.2 }}
             style={{
               display: 'flex',
               gap: '2rem',
@@ -252,35 +222,32 @@ const HeroSection = () => {
 
         {/* Большое изображение справа */}
         <HeroImageContainer
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
         >
           <HeroImageGlow />
           <HeroImageFrame
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.6 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2, delay: 0.1 }}
           />
           <HeroImage
             src="/images/sports/gym/gym-1.jpg"
             alt="Elite Fitness"
-            initial={{ scale: 1.05 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.5 }}
+            loading="eager"
           />
 
           {/* Декоративные плашки */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2, delay: 0.2 }}
             style={{
               position: 'absolute',
               bottom: '20px',
               right: '20px',
               background: '#FFFFFF',
-              backdropFilter: 'blur(20px)',
               padding: '1.2rem 2rem',
               borderRadius: '0',
               border: 'none',

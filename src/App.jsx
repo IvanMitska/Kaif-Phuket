@@ -1,8 +1,9 @@
-import React, { useEffect, Suspense, lazy, useState } from 'react';
+import React, { useEffect, Suspense, lazy, useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { HelmetProvider } from 'react-helmet-async';
+import { MotionConfig } from 'framer-motion';
 
 // DEFER: Load global styles components lazily
 const GlobalFontStyle = lazy(() => import('./components/global/GlobalFontStyle'));
@@ -13,11 +14,11 @@ import { LoadingProvider, useLoading } from './components/global/LoadingContext'
 import LoadingScreen from './components/global/LoadingScreen';
 import ScrollToTop from './components/common/ScrollToTop';
 
-// Holiday components (December 2024 - January 2025)
-import Snowfall from './components/common/Snowfall';
-import SantaHat from './components/common/SantaHat';
-import HolidayGarland from './components/common/HolidayGarland';
-import './styles/holiday-theme.css';
+// Holiday components - DISABLED FOR PERFORMANCE
+// import Snowfall from './components/common/Snowfall';
+// import SantaHat from './components/common/SantaHat';
+// import HolidayGarland from './components/common/HolidayGarland';
+// import './styles/holiday-theme.css';
 
 // Подавляем CSS предупреждения в development режиме
 import './utils/suppressCSSWarnings';
@@ -47,10 +48,10 @@ const SurveyPage = lazy(() => import('./pages/SurveyPage'));
 // Невидимый компонент загрузки - без индикаторов
 const InvisibleLoader = () => null;
 
-// Компонент для управления переходами между страницами с сохранением стилей
-const AnimatedRoutes = () => {
+// Компонент маршрутов (без логики перехода)
+const AppRoutes = () => {
   const location = useLocation();
-  
+
   return (
     <Suspense fallback={<InvisibleLoader />}>
       <Routes location={location}>
@@ -63,8 +64,6 @@ const AnimatedRoutes = () => {
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/survey" element={<SurveyPage />} />
-
-        {/* Добавляем точные маршруты для предотвращения конфликтов */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Suspense>
@@ -73,20 +72,33 @@ const AnimatedRoutes = () => {
 
 // Основной компонент приложения с экраном загрузки
 const AppContent = () => {
-  const { isLoading, isContentReady } = useLoading();
+  const { isLoading, isContentReady, showPageTransition } = useLoading();
+  const location = useLocation();
+  const prevPathRef = useRef(location.pathname);
+  const isFirstRender = useRef(true);
+
+  // Обработка переходов между страницами
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    if (prevPathRef.current !== location.pathname) {
+      prevPathRef.current = location.pathname;
+      showPageTransition(700);
+    }
+  }, [location.pathname, showPageTransition]);
 
   return (
     <>
       <LoadingScreen isVisible={isLoading} />
       <ScrollToTop />
-      <Snowfall />
-      <SantaHat />
-      <HolidayGarland />
       {isContentReady && (
         <Suspense fallback={<InvisibleLoader />}>
-          <div className="App holiday-theme">
+          <div className="App">
             <Layout>
-              <AnimatedRoutes />
+              <AppRoutes />
             </Layout>
           </div>
         </Suspense>
@@ -126,23 +138,26 @@ function App() {
     }
   }, [i18n.language, t, forceUpdate]);
 
-  console.log('App render - Language:', i18n.language, 'Update counter:', forceUpdate);
+  // PERFORMANCE: console.log removed
 
   // Основное приложение
+  // PERFORMANCE: reducedMotion="user" уважает системные настройки пользователя
   return (
-    <HelmetProvider key={`app-${i18n.language}-${forceUpdate}`}>
-      <ThemeProvider theme={theme}>
-        <Suspense fallback={null}>
-          <GlobalFontStyle />
-          <GlobalStyles />
-        </Suspense>
-        <LoadingProvider>
-          <Router basename="/">
-            <AppContent />
-          </Router>
-        </LoadingProvider>
-      </ThemeProvider>
-    </HelmetProvider>
+    <MotionConfig reducedMotion="user" transition={{ duration: 0.2 }}>
+      <HelmetProvider key={`app-${i18n.language}-${forceUpdate}`}>
+        <ThemeProvider theme={theme}>
+          <Suspense fallback={null}>
+            <GlobalFontStyle />
+            <GlobalStyles />
+          </Suspense>
+          <LoadingProvider>
+            <Router basename="/">
+              <AppContent />
+            </Router>
+          </LoadingProvider>
+        </ThemeProvider>
+      </HelmetProvider>
+    </MotionConfig>
   );
 }
 

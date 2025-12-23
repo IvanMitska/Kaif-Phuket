@@ -181,8 +181,8 @@ button {
   padding: 0 1rem;
 }
 
-/* Section base styles */
-section {
+/* Section base styles - только для секций без классов (не styled-components) */
+section:not([class]) {
   padding: var(--section-padding);
 }
 

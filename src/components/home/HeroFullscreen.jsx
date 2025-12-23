@@ -1,6 +1,5 @@
 import React, { useState, useEffect, memo } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import BookingModal from '../booking/BookingModal';
 
@@ -9,23 +8,25 @@ import BookingModal from '../booking/BookingModal';
 import homepageLogo from '../../assets/images/optimized/logo-homepage.png';
 import homepageLogoWebp from '../../assets/images/optimized/webp/logo-homepage.webp';
 
-// ОПТИМИЗАЦИЯ: Используем пути к изображениям вместо импорта (уменьшает initial bundle)
+// ОПТИМИЗАЦИЯ: Используем новые супер-оптимизированные изображения с responsive srcset
 const slideImages = [
   {
-    webp: '/images-optimized/spa.jpg', // Используем самое маленькое изображение для первого слайда
-    fallback: '/images-optimized/spa.jpg'
+    webp: '/images-hero-optimized/spa.webp',
+    webpMobile: '/images-hero-optimized/spa-mobile.webp',
+    fallback: '/images-hero-optimized/spa.jpg',
+    fallbackMobile: '/images-hero-optimized/spa-mobile.jpg'
   },
   {
-    webp: '/images-webp/hero/hero-pool.webp',
-    fallback: '/images-optimized/hero/hero-pool.jpg'
+    webp: '/images-hero-optimized/hero-pool.webp',
+    webpMobile: '/images-hero-optimized/hero-pool-mobile.webp',
+    fallback: '/images-hero-optimized/hero-pool.jpg',
+    fallbackMobile: '/images-hero-optimized/hero-pool-mobile.jpg'
   },
   {
-    webp: '/images-webp/hero/hero-restaurant.webp',
-    fallback: '/images-optimized/hero/hero-restaurant.jpg'
-  },
-  {
-    webp: '/images-webp/hero/hero-fitness.webp',
-    fallback: '/images-optimized/hero/hero-fitness.jpg'
+    webp: '/images-hero-optimized/hero-fitness.webp',
+    webpMobile: '/images-hero-optimized/hero-fitness-mobile.webp',
+    fallback: '/images-hero-optimized/hero-fitness.jpg',
+    fallbackMobile: '/images-hero-optimized/hero-fitness-mobile.jpg'
   }
 ];
 
@@ -33,8 +34,7 @@ const slideImages = [
 const HeroContainer = styled.section`
   position: relative;
   width: 100%;
-  min-height: 100vh;
-  height: auto;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,6 +42,9 @@ const HeroContainer = styled.section`
   color: white;
   overflow: hidden;
   background: #000;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
   /* Убираем все свойства, влияющие на скролл */
   scroll-snap-align: unset;
   scroll-snap-type: unset;
@@ -54,19 +57,20 @@ const HeroContainer = styled.section`
   -webkit-overscroll-behavior: auto;
 
   @media (max-width: 768px) {
-    min-height: 100svh;
-    height: auto;
+    height: 100svh;
     touch-action: auto;
   }
 `;
 
 // Слайдер с современным затемнением - ИСПРАВЛЕН
 const SliderContainer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
   z-index: 1;
   will-change: auto;
   pointer-events: none;
@@ -79,11 +83,13 @@ const SliderContainer = styled.div`
 
 // Слайд с оптимальным затемнением для читаемости - ИСПРАВЛЕН
 const Slide = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
   opacity: ${props => props.$active ? 1 : 0};
   transition: opacity 2s ease-in-out;
   /* ИСПРАВЛЕНИЕ: Оптимизация для GPU без блокировки скролла */
@@ -95,10 +101,7 @@ const Slide = styled.div`
   &::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: linear-gradient(
       135deg,
       rgba(0,0,0,0.65) 0%,
@@ -109,26 +112,29 @@ const Slide = styled.div`
     pointer-events: none;
   }
 
+  picture {
+    position: absolute;
+    inset: 0;
+    display: block;
+  }
+
   img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
-    filter: brightness(0.8) contrast(1.1) saturate(0.9);
-    /* Не блокируем события указателя */
     pointer-events: none;
-    /* Оптимизация без создания новых слоев */
-    will-change: auto;
   }
 `;
 
 // Контейнер контента - минималистичный и элегантный - ИСПРАВЛЕН
 const ContentContainer = styled.div`
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 10;
   text-align: center;
-  padding: 3rem 2rem;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -137,24 +143,21 @@ const ContentContainer = styled.div`
   pointer-events: auto;
   /* Не создаем дополнительные композитные слои */
   will-change: auto;
-  
+
   @media (max-width: 768px) {
-    padding: 2rem 0;
-    /* Сдвигаем контент немного выше для лучшей видимости кнопок */
     justify-content: flex-start;
     padding-top: 15vh;
   }
-  
+
   @media (max-width: 480px) {
-    padding: 1.5rem 0;
     padding-top: 12vh;
   }
-  
+
   /* Специально для iPhone */
   @media (max-width: 414px) and (max-height: 896px) {
     padding-top: 10vh;
   }
-  
+
   /* Для маленьких iPhone */
   @media (max-width: 375px) and (max-height: 812px) {
     padding-top: 8vh;
@@ -176,16 +179,13 @@ const ContentWrapper = styled.div`
   }
 `;
 
-// Увеличенный логотип с лучшим контрастом
-const LogoImage = styled(motion.img)`
+// Увеличенный логотип - PERFORMANCE: убраны тяжёлые drop-shadow
+const LogoImage = styled.img`
   max-width: 520px;
   width: auto;
   height: auto;
   margin: 0 0 3rem 0;
   display: block;
-  filter:
-    drop-shadow(0 25px 80px rgba(0, 0, 0, 0.9))
-    drop-shadow(0 10px 30px rgba(0, 0, 0, 0.7));
 
   @media (max-width: 768px) {
     max-width: 450px;
@@ -203,7 +203,7 @@ const LogoImage = styled(motion.img)`
   }
 `;
 
-// Белая кнопка с чёрным текстом - премиальный вид (static festive glow)
+// Белая кнопка - PERFORMANCE: убраны backdrop-filter и тяжёлые тени
 const PrimaryButton = styled.a`
   display: inline-flex;
   align-items: center;
@@ -215,50 +215,21 @@ const PrimaryButton = styled.a`
   text-decoration: none;
   text-transform: uppercase;
   color: #000;
-  background: rgba(255, 255, 255, 0.95);
+  background: #fff;
   border: none;
   border-radius: 12px;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
   position: relative;
-  overflow: hidden;
   min-width: 220px;
-  box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.3),
-    0 0 15px rgba(255, 215, 0, 0.25);
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(0, 0, 0, 0.05),
-      transparent
-    );
-    transition: left 0.6s ease;
-  }
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 
   &:hover {
-    background: rgba(255, 255, 255, 1);
+    background: #f5f5f5;
     transform: translateY(-2px);
-    box-shadow:
-      0 12px 35px rgba(0, 0, 0, 0.4),
-      0 20px 60px rgba(0, 0, 0, 0.25);
-    color: #000;
-    text-decoration: none;
-
-    &::before {
-      left: 100%;
-    }
   }
 
   &:active {
-    transform: translateY(-1px);
+    transform: translateY(0);
   }
 
   @media (max-width: 768px) {
@@ -276,7 +247,7 @@ const PrimaryButton = styled.a`
   }
 `;
 
-// Вторичная кнопка - улучшенная видимость
+// Вторичная кнопка - PERFORMANCE: убран backdrop-filter
 const SecondaryButton = styled.button`
   display: inline-flex;
   align-items: center;
@@ -288,25 +259,21 @@ const SecondaryButton = styled.button`
   text-decoration: none;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.95);
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 12px;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease-out;
+  transition: background 0.2s ease, transform 0.2s ease;
   position: relative;
   min-width: 220px;
   margin-top: 1.2rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   font-family: inherit;
 
   &:hover {
-    color: rgba(255, 255, 255, 1);
-    border-color: rgba(255, 255, 255, 0.7);
-    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(0, 0, 0, 0.4);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
-    text-decoration: none;
   }
 
   &:active {
@@ -326,10 +293,8 @@ const SecondaryButton = styled.button`
     width: 100%;
     max-width: 300px;
     margin-top: 1rem;
-    /* Улучшенная видимость на мобильных */
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.4);
     border: 2px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
   }
 `;
 
@@ -372,40 +337,6 @@ const ButtonContainer = styled.div`
   }
 `;
 
-// Оптимизированные анимации для быстрой загрузки
-const animations = {
-  logo: {
-    initial: { 
-      scale: 0.95, 
-      opacity: 0
-    },
-    animate: { 
-      scale: 1, 
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-        delay: 0.2
-      }
-    }
-  },
-  buttons: {
-    initial: { 
-      opacity: 0, 
-      y: 15
-    },
-    animate: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-        delay: 0.6
-      }
-    }
-  }
-};
-
 const HeroFullscreen = memo(() => {
   const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -442,27 +373,31 @@ const HeroFullscreen = memo(() => {
             $active={index === currentSlide}
           >
             <picture>
+              {/* WebP для мобильных устройств */}
+              <source
+                media="(max-width: 768px)"
+                srcSet={image.webpMobile}
+                type="image/webp"
+              />
+              {/* WebP для десктопа */}
               <source
                 srcSet={image.webp}
                 type="image/webp"
               />
+              {/* JPG для мобильных устройств */}
+              <source
+                media="(max-width: 768px)"
+                srcSet={image.fallbackMobile}
+                type="image/jpeg"
+              />
               <img
                 src={image.fallback}
                 alt={`KAIF - Слайд ${index + 1}`}
-                width="1920"
-                height="1080"
+                width="1400"
+                height="933"
                 loading={index === 0 ? "eager" : "lazy"}
-                decoding="async"
+                decoding={index === 0 ? "sync" : "async"}
                 fetchpriority={index === 0 ? "high" : "low"}
-                onError={(e) => {
-                  const fallbackImages = [
-                    "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
-                    "https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
-                    "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
-                    "https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75"
-                  ];
-                  e.target.src = fallbackImages[index % fallbackImages.length];
-                }}
               />
             </picture>
           </Slide>
@@ -481,60 +416,21 @@ const HeroFullscreen = memo(() => {
               height="auto"
               loading="eager"
               fetchpriority="high"
-              initial={{ opacity: 1, scale: 1 }}
-              animate={{ opacity: 1, scale: 1 }}
-              whileHover={{
-                scale: 1.02,
-                transition: {
-                  duration: 0.2,
-                  ease: "easeOut"
-                }
-              }}
-              onError={(e) => {
-                e.target.src = homepageLogo;
-              }}
             />
           </picture>
 
-          <ButtonContainer
-            as={motion.div}
-            initial={animations.buttons.initial}
-            animate={animations.buttons.animate}
-          >
-            <motion.div
-              whileHover={{
-                scale: 1.02,
-                transition: {
-                  duration: 0.15,
-                  ease: "easeOut"
-                }
-              }}
-              whileTap={{ scale: 0.98 }}
+          <ButtonContainer>
+            <PrimaryButton
+              as="button"
+              onClick={() => setIsBookingModalOpen(true)}
+              style={{ cursor: 'pointer' }}
             >
-              <PrimaryButton
-                as="button"
-                onClick={() => setIsBookingModalOpen(true)}
-                style={{ cursor: 'pointer' }}
-              >
-                {t('common.book')}
-              </PrimaryButton>
-            </motion.div>
+              {t('common.book')}
+            </PrimaryButton>
 
-            <motion.div
-              onClick={handleScrollToZones}
-              whileHover={{
-                scale: 1.01,
-                transition: {
-                  duration: 0.15,
-                  ease: "easeOut"
-                }
-              }}
-              whileTap={{ scale: 0.99 }}
-            >
-              <SecondaryButton>
-                {t('common.learn_more')}
-              </SecondaryButton>
-            </motion.div>
+            <SecondaryButton onClick={handleScrollToZones}>
+              {t('common.learn_more')}
+            </SecondaryButton>
           </ButtonContainer>
         </ContentWrapper>
       </ContentContainer>

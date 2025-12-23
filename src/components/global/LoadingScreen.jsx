@@ -1,87 +1,15 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
 
 // Импортируем логотип
 import logoHeader from '../../assets/images/logos/logo-header.png';
 
-// Минимальные CSS анимации
-const fadeIn = keyframes`
-  from { opacity: 0; }
-  to { opacity: 1; }
-`;
-
-const fadeOut = keyframes`
-  from { opacity: 1; }
-  to { opacity: 0; }
-`;
-
-const logoAppear = keyframes`
-  0% {
-    opacity: 0;
-    transform: translateY(20px) scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-`;
-
-const LoadingContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-  
-  /* Оптимизированные анимации */
-  animation: ${fadeIn} 0.2s ease-out forwards;
-  
-  &.exiting {
-    animation: ${fadeOut} 0.3s ease-in forwards;
-  }
-  
-  /* Оптимизация производительности */
-  will-change: opacity;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-`;
-
-const LogoContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const LogoImage = styled.img`
-  width: 180px;
-  height: auto;
-  object-fit: contain;
-  
-  /* Упрощенная анимация */
-  animation: ${logoAppear} 0.6s ease-out 0.1s both;
-  
-  /* Оптимизация */
-  will-change: transform, opacity;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  
-  @media (min-width: 768px) {
-    width: 220px;
-  }
-  
-  @media (min-width: 1024px) {
-    width: 260px;
-  }
-`;
+// Кэшируем загрузку логотипа на уровне модуля
+let isLogoCached = false;
 
 const LoadingScreen = ({ isVisible }) => {
   const [shouldRender, setShouldRender] = React.useState(isVisible);
   const [isExiting, setIsExiting] = React.useState(false);
+  const [logoLoaded, setLogoLoaded] = React.useState(isLogoCached);
 
   React.useEffect(() => {
     if (isVisible) {
@@ -89,27 +17,53 @@ const LoadingScreen = ({ isVisible }) => {
       setIsExiting(false);
     } else if (shouldRender) {
       setIsExiting(true);
-      // Уменьшаем время анимации
       const timer = setTimeout(() => {
         setShouldRender(false);
         setIsExiting(false);
-      }, 300);
+      }, 500);
       return () => clearTimeout(timer);
     }
   }, [isVisible, shouldRender]);
 
   if (!shouldRender) return null;
 
+  const containerStyle = {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100vw',
+    height: '100vh',
+    background: '#ffffff',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 99999,
+    opacity: isExiting ? 0 : 1,
+    transition: 'opacity 0.4s ease-in-out'
+  };
+
+  const logoStyle = {
+    width: window.innerWidth >= 1024 ? '280px' : window.innerWidth >= 768 ? '240px' : '200px',
+    height: 'auto',
+    objectFit: 'contain',
+    opacity: logoLoaded ? 1 : 0,
+    transform: logoLoaded ? 'scale(1)' : 'scale(0.8)',
+    transition: 'opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
+  };
+
   return (
-    <LoadingContainer className={isExiting ? 'exiting' : ''}>
-      <LogoContainer>
-        <LogoImage
-          src={logoHeader}
-          alt="KAIF"
-          loading="eager"
-        />
-      </LogoContainer>
-    </LoadingContainer>
+    <div style={containerStyle} data-loading-screen="true">
+      <img
+        src={logoHeader}
+        alt="KAIF"
+        style={logoStyle}
+        onLoad={() => {
+          isLogoCached = true;
+          setLogoLoaded(true);
+        }}
+        data-loading-screen="true"
+      />
+    </div>
   );
 };
 

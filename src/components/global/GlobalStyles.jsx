@@ -33,7 +33,23 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* PERFORMANCE FIX: Отключаем тяжёлые эффекты, но разрешаем для загрузки */
+  *:not([data-loading-screen]):not(.App) {
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Разрешаем простые transitions для интерактивности */
+  button, a, [role="button"], input, select, textarea {
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease, transform 0.15s ease !important;
+  }
+
+  /* Hover эффекты для карточек */
+  [class*="Card"], [class*="card"] {
+    transition: box-shadow 0.2s ease, transform 0.2s ease !important;
   }
   
   /* Оптимизация производительности */
@@ -207,7 +223,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0 1rem;
   }
   
-  section {
+  section:not([class]) {
     padding: 5rem 0;
   }
   

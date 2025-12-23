@@ -2,59 +2,24 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 export const HeroSection = styled.section`
-  min-height: auto;
+  min-height: 100vh;
   position: relative;
   display: flex;
   align-items: center;
-  background: #000000;
-  overflow: visible;
-  padding: 100px 0 30px 0;
-
-  @media (max-width: 768px) {
-    min-height: auto;
-    padding: 80px 0 20px 0;
-    overflow: visible !important;
-  }
-`;
-
-export const HeroBackground = styled(motion.div)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+  background-color: #000000;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  overflow: hidden;
+  padding: 100px 0 30px 0;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg,
-      rgba(0, 0, 0, 0.92) 0%,
-      rgba(0, 0, 0, 0.75) 40%,
-      rgba(0, 0, 0, 0.92) 100%
-    );
-    z-index: 1;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:
-      linear-gradient(90deg, #000 0%, transparent 15%, transparent 85%, #000 100%),
-      radial-gradient(circle at 20% 30%, rgba(210, 155, 132, 0.12) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(200, 168, 233, 0.12) 0%, transparent 50%);
-    z-index: 2;
+  @media (max-width: 768px) {
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 80px 0 40px 0;
+    align-items: flex-start;
+    padding-top: 100px;
+    background-position: center top;
   }
 `;
 
@@ -69,7 +34,6 @@ export const HeroContainer = styled.div`
   gap: 4rem;
   position: relative;
   z-index: 2;
-  height: 100%;
 
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
@@ -384,7 +348,7 @@ export const HeroStatLabel = styled.span`
   }
 `;
 
-// Изображение для героической секции
+// Изображение для героической секции (только десктоп)
 export const HeroImageContainer = styled(motion.div)`
   position: relative;
   display: flex;
@@ -400,9 +364,7 @@ export const HeroImageContainer = styled(motion.div)`
   }
 
   @media (max-width: 768px) {
-    height: auto;
-    min-height: 320px;
-    max-height: none;
+    display: none;
   }
 `;
 
@@ -427,14 +389,12 @@ export const HeroImageGlow = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) translateZ(0);
+  transform: translate(-50%, -50%);
   width: 120%;
   height: 120%;
-  background: radial-gradient(circle, rgba(210, 155, 132, 0.35) 0%, transparent 70%);
-  filter: blur(40px);
+  background: radial-gradient(circle, rgba(210, 155, 132, 0.2) 0%, transparent 70%);
   z-index: 1;
   pointer-events: none;
-  will-change: opacity;
 `;
 
 export const HeroImageFrame = styled(motion.div)`

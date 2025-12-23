@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { RiHeartPulseFill, RiLeafFill, RiInfinityFill } from 'react-icons/ri';
 
@@ -330,17 +330,6 @@ const PhilosophySection = () => {
   const sectionRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
   
-  // Эффект анимации при скролле
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start']
-  });
-  
-  // Трансформации при скролле
-  const y = useTransform(scrollYProgress, [0, 0.5, 1], [30, 0, -30]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.6, 1, 1, 0.6]);
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 0.95]);
-  
   // Отслеживание появления секции в поле зрения
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -434,10 +423,6 @@ const PhilosophySection = () => {
         transition={{ duration: 1.5, delay: 0.2 }}
       />
       
-      <motion.div
-        style={{ y, opacity, scale }}
-        className="philosophy-content-wrapper"
-      >
         <ContentContainer>
           <SectionHeader
             initial="hidden"
@@ -475,7 +460,6 @@ const PhilosophySection = () => {
             </AnimatePresence>
           </CardGrid>
         </ContentContainer>
-      </motion.div>
     </SectionContainer>
   );
 };

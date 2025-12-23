@@ -15,16 +15,15 @@
 
     <!-- Critical inline CSS for instant render -->
     <style>
+      html{scroll-behavior:auto!important}
       *{margin:0;padding:0;box-sizing:border-box}
-      body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',Roboto,sans-serif;background:#000;color:#fff}
+      body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',Roboto,sans-serif;background:#fff;color:#2C3E2D}
       #root{min-height:100vh}
-      .app-loading{position:fixed;top:0;left:0;right:0;bottom:0;background:#000;display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s}
+      .app-loading{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:99999;transition:opacity .3s ease-out}
       .app-loading.hidden{opacity:0;pointer-events:none}
-      .loader{width:48px;height:48px;border:2px solid rgba(255,255,255,0.1);border-top:2px solid #fff;border-radius:50%;animation:spin .8s linear infinite}
-      @keyframes spin{to{transform:rotate(360deg)}}
 
-      /* Critical hero styles */
-      section{position:relative;width:100%;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#000;overflow:hidden}
+      /* Critical hero styles - only for hero section, not all sections */
+      .hero-section{position:relative;width:100%;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#000;overflow:hidden}
       img{max-width:100%;height:auto;display:block}
       picture{display:block}
     </style>
@@ -33,25 +32,27 @@
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600&family=Bebas+Neue&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600&family=Bebas+Neue&display=swap" media="print" onload="this.media='all'">
 
-    <!-- Preload critical resources -->
-    <link rel="preload" as="image" href="/images-optimized/spa.jpg" fetchpriority="high">
-    <link rel="preload" as="image" href="/assets/images/logo-homepage-Bvg3zKLL.webp" type="image/webp">
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="/images-hero-optimized/spa.webp" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images-hero-optimized/spa-mobile.webp" type="image/webp" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/images/logos/logo-header.png" fetchpriority="high">
   </head>
   <body>
-    <div class="app-loading" id="loader">
-      <div class="loader"></div>
-    </div>
+    <script>if(history.scrollRestoration)history.scrollRestoration='manual';window.scrollTo(0,0);</script>
+    <div class="app-loading" id="loader"></div>
 
     <div id="root"></div>
 
-    <!-- Quick loader hide -->
+    <!-- Hide loader when React app is ready -->
     <script>
-      document.addEventListener('DOMContentLoaded',function(){
-        setTimeout(function(){
-          var l=document.getElementById('loader');
-          if(l)l.classList.add('hidden');
-        },100);
-      });
+      window.hideInitialLoader = function() {
+        var l=document.getElementById('loader');
+        if(l)l.classList.add('hidden');
+      };
+      // Fallback: гарантированно скрыть лоадер через 3 секунды
+      setTimeout(function() {
+        window.hideInitialLoader();
+      }, 3000);
     </script>
 
     <script type="module" src="/src/main.jsx"></script>

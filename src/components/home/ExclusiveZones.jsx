@@ -1,14 +1,10 @@
 import React, { useState, useMemo } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { 
-  ArrowLongRightIcon, 
-  FireIcon, 
+import {
+  ArrowLongRightIcon,
   SparklesIcon,
-  HeartIcon,
-  BuildingStorefrontIcon,
   BoltIcon
 } from '@heroicons/react/24/outline';
 
@@ -47,8 +43,8 @@ const SectionHeader = styled.div`
   margin-bottom: 3rem;
 `;
 
-// Маленький текст над заголовком
-const Overline = styled(motion.div)`
+// Маленький текст над заголовком - PERFORMANCE: убран motion
+const Overline = styled.div`
   font-family: ${({ theme }) => theme?.fonts?.primary};
   font-size: 0.9rem;
   font-weight: 400;
@@ -58,19 +54,19 @@ const Overline = styled(motion.div)`
   margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
-  
+
   &::before {
     content: '';
     display: inline-block;
     width: 30px;
     height: 2px;
-    background: ${({ theme }) => theme?.colors?.gradients?.logo || 'linear-gradient(135deg, #90B3A7 0%, #00B4D8 33%, #90B3A7 66%, #5CB848 100%)'};
+    background: #90B3A7;
     margin-right: 1rem;
   }
 `;
 
-// Основной заголовок
-const Title = styled(motion.h2)`
+// Основной заголовок - PERFORMANCE: убран motion
+const Title = styled.h2`
   font-family: ${({ theme }) => theme?.fonts?.elegant || '"Playfair Display", serif'};
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 300;
@@ -141,51 +137,29 @@ const GridContainer = styled.div`
   }
 `;
 
-// Карточка зоны - ИСПРАВЛЕНА для оптимизации скролла
-const ZoneCard = styled(motion.div)`
+// Карточка зоны - PERFORMANCE: максимально упрощена
+const ZoneCard = styled.div`
   position: relative;
   height: 280px;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  /* ИСПРАВЛЕНИЕ: Убираем will-change для предотвращения избыточных композитных слоев */
-  will-change: auto;
-  /* Минимальные трансформации для оптимизации */
-  transform: translateZ(0);
-  /* Оптимизированные переходы */
-  transition: box-shadow 0.2s ease-out;
-  
+
   @media (min-width: 480px) {
     height: 320px;
     border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
   }
-  
+
   @media (min-width: 768px) {
     height: 360px;
     border-radius: 24px;
   }
-  
+
   @media (min-width: 1024px) {
     height: 380px;
   }
-  
-  /* ИСПРАВЛЕНИЕ: Упрощенный hover для desktop без влияния на скролл */
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-      /* Убираем transform для предотвращения compositor thrashing */
-    }
-  }
-  
-  /* Для touch устройств убираем все эффекты */
-  @media (hover: none) or (pointer: coarse) {
-    &:hover {
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-  }
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -196,60 +170,21 @@ const ZoneCard = styled(motion.div)`
     background: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.1) 0%,
-      rgba(0, 0, 0, 0.8) 100%
+      rgba(0, 0, 0, 0.7) 100%
     );
     z-index: 1;
-    transition: background 0.3s ease-out;
-  }
-  
-  /* Hover эффект только для устройств с курсором */
-  @media (hover: hover) and (pointer: fine) {
-    &:hover::after {
-      background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.05) 0%,
-        rgba(0, 0, 0, 0.7) 100%
-      );
-    }
-  }
-  
-  /* Отключаем hover для touch устройств */
-  @media (hover: none) or (pointer: coarse) {
-    &:hover::after {
-      background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.1) 0%,
-        rgba(0, 0, 0, 0.8) 100%
-      );
-    }
   }
 `;
 
-// Изображение зоны - ИСПРАВЛЕНО для оптимизации скролла
+// Изображение зоны - PERFORMANCE: максимально упрощено
 const ZoneImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  /* ИСПРАВЛЕНИЕ: Убираем трансформации изображений для оптимизации скролла */
-  /* Не используем transform hover эффекты, чтобы не создавать дополнительные слои */
-  will-change: auto;
-  
-  /* Убираем все hover эффекты для предотвращения compositor thrashing */
-  @media (hover: hover) and (pointer: fine) {
-    ${ZoneCard}:hover & {
-      /* Убираем scale transform */
-    }
-  }
-  
-  @media (hover: none) or (pointer: coarse) {
-    ${ZoneCard}:hover & {
-      /* Ничего не делаем */
-    }
-  }
 `;
 
-// Контент карточки - ИСПРАВЛЕН для оптимизации скролла
+// Контент карточки - PERFORMANCE: упрощён
 const CardContent = styled.div`
   position: absolute;
   bottom: 0;
@@ -258,24 +193,9 @@ const CardContent = styled.div`
   padding: 2rem;
   z-index: 2;
   color: #fff;
-  /* ИСПРАВЛЕНИЕ: Убираем трансформации для оптимизации скролла */
-  will-change: auto;
-  
-  /* Убираем все hover эффекты с трансформациями */
-  @media (hover: hover) and (pointer: fine) {
-    ${ZoneCard}:hover & {
-      /* Убираем transform */
-    }
-  }
-  
-  @media (hover: none) or (pointer: coarse) {
-    ${ZoneCard}:hover & {
-      /* Ничего не делаем */
-    }
-  }
 `;
 
-// Название зоны - ИСПРАВЛЕНО для оптимизации скролла
+// Название зоны - PERFORMANCE: упрощено
 const ZoneName = styled.h3`
   font-family: 'Montserrat', sans-serif;
   font-size: 1.75rem;
@@ -283,55 +203,21 @@ const ZoneName = styled.h3`
   margin: 0 0 0.5rem;
   letter-spacing: 0.5px;
   color: #fff;
-  text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.8);
-  /* ИСПРАВЛЕНИЕ: Убираем трансформации */
-  will-change: auto;
-  
-  /* Упрощенный hover без трансформаций */
-  @media (hover: hover) and (pointer: fine) {
-    ${ZoneCard}:hover & {
-      text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.9);
-    }
-  }
-  
-  @media (hover: none) or (pointer: coarse) {
-    ${ZoneCard}:hover & {
-      text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.8);
-    }
-  }
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 `;
 
-// Описание зоны - ИСПРАВЛЕНО для оптимизации скролла
+// Описание зоны - PERFORMANCE: упрощено
 const ZoneDescription = styled.p`
   font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
   line-height: 1.5;
   margin: 0 0 1.5rem;
-  opacity: 0.95;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 500;
   letter-spacing: 0.2px;
-  text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.8);
-  /* ИСПРАВЛЕНИЕ: Убираем трансформации */
-  will-change: auto;
-  
-  /* Упрощенный hover без трансформаций */
-  @media (hover: hover) and (pointer: fine) {
-    ${ZoneCard}:hover & {
-      opacity: 1;
-      text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.9);
-    }
-  }
-  
-  @media (hover: none) or (pointer: coarse) {
-    ${ZoneCard}:hover & {
-      opacity: 0.95;
-      text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.8);
-    }
-  }
 `;
 
-// Кнопка "Подробнее"
+// Кнопка "Подробнее" - PERFORMANCE: максимально упрощена, убран backdrop-filter
 const ExploreButton = styled(Link)`
   display: inline-flex;
   align-items: center;
@@ -339,97 +225,25 @@ const ExploreButton = styled(Link)`
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.8px;
-  color: #fff !important;
-  text-decoration: none !important;
+  color: #fff;
+  text-decoration: none;
   padding: 0.8rem 1.5rem;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 50px;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  position: relative;
-  overflow: hidden;
-  transform: translateY(10px);
-  opacity: 0.8;
-  
+  transition: background 0.2s ease;
+
   svg {
     width: 18px;
     height: 18px;
     margin-left: 0.5rem;
-    transition: transform 0.3s ease;
-    color: #fff !important;
+    color: #fff;
   }
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-    transition: left 0.6s ease;
-  }
-  
-  /* Hover только для устройств с курсором */
-  @media (hover: hover) and (pointer: fine) {
-    ${ZoneCard}:hover & {
-      transform: translateY(0);
-      opacity: 1;
-      background: rgba(255, 255, 255, 0.25);
-      border-color: rgba(255, 255, 255, 0.3);
-      color: #fff !important;
-      
-      svg {
-        transform: translateX(4px);
-        color: #fff !important;
-      }
-    }
-    
-    &:hover {
-      background: rgba(255, 255, 255, 0.3) !important;
-      transform: translateY(-2px) !important;
-      color: #fff !important;
-      text-decoration: none !important;
-      
-      svg {
-        color: #fff !important;
-      }
-    }
-    
-    &:hover::before {
-      left: 100%;
-    }
-  }
-  
-  /* Отключаем hover для touch устройств */
-  @media (hover: none) or (pointer: coarse) {
-    ${ZoneCard}:hover & {
-      transform: translateY(10px);
-      opacity: 0.8;
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.2);
-      
-      svg {
-        transform: translateX(0);
-      }
-    }
-    
-    &:hover {
-      background: rgba(255, 255, 255, 0.15) !important;
-      transform: translateY(10px) !important;
-    }
-    
-    &:hover::before {
-      left: -100%;
-    }
-  }
-  
-  &:visited,
-  &:link,
-  &:active {
-    color: #fff !important;
-    text-decoration: none !important;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-decoration: none;
   }
 `;
 
@@ -449,13 +263,11 @@ const TabsContainer = styled.div`
   }
 `;
 
+// TabButton - PERFORMANCE: убран backdrop-filter и тяжёлые эффекты
 const TabButton = styled.button`
-  background: ${props => props.$active 
-    ? 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)' 
-    : 'rgba(255, 255, 255, 0.1)'
-  };
+  background: ${props => props.$active ? '#90B3A7' : '#f5f5f5'};
   color: ${props => props.$active ? 'white' : '#2C3E2D'};
-  border: 2px solid ${props => props.$active ? 'transparent' : 'rgba(144, 179, 167, 0.3)'};
+  border: 2px solid ${props => props.$active ? '#90B3A7' : '#e0e0e0'};
   border-radius: 50px;
   padding: 1rem 2.5rem;
   font-family: ${({ theme }) => theme?.fonts?.primary};
@@ -463,74 +275,29 @@ const TabButton = styled.button`
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  transition: all 0.25s ease-out;
+  transition: background 0.2s ease, border-color 0.2s ease;
   cursor: pointer;
   margin: 0 0.8rem;
   display: flex;
   align-items: center;
-  position: relative;
-  overflow: hidden;
-  box-shadow: ${props => props.$active 
-    ? '0 8px 25px rgba(144, 179, 167, 0.4)' 
-    : '0 4px 15px rgba(0, 0, 0, 0.1)'
-  };
-  backdrop-filter: blur(10px);
   min-width: 180px;
   justify-content: center;
-  /* ИСПРАВЛЕНИЕ: Оптимизация без избыточных слоев */
-  will-change: auto;
-  transform: translateZ(0);
-  
+
   svg {
     width: 18px;
     height: 18px;
     margin-right: 0.6rem;
-    transition: all 0.3s ease;
     color: ${props => props.$active ? 'white' : '#90B3A7'};
   }
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-    transition: left 0.6s ease;
-  }
-  
+
   &:hover {
-    /* ИСПРАВЛЕНИЕ: Упрощенный hover без трансформаций */
-    box-shadow: ${props => props.$active 
-      ? '0 10px 30px rgba(144, 179, 167, 0.5)' 
-      : '0 6px 20px rgba(144, 179, 167, 0.25)'
-    };
-    background: ${props => props.$active 
-      ? 'linear-gradient(135deg, #A8C5B8 0%, #B8CFC2 100%)' 
-      : 'rgba(144, 179, 167, 0.1)'
-    };
-    border-color: ${props => props.$active ? 'transparent' : 'rgba(144, 179, 167, 0.5)'};
-    color: ${props => props.$active ? 'white' : '#90B3A7'};
-    
-    svg {
-      color: ${props => props.$active ? 'white' : '#90B3A7'};
-    }
+    background: ${props => props.$active ? '#7fa396' : '#e8e8e8'};
   }
-  
-  &:hover::before {
-    left: 100%;
-  }
-  
+
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(144, 179, 167, 0.3);
   }
-  
-  &:active {
-    transform: translateY(-1px);
-  }
-  
+
   @media (max-width: 768px) {
     width: 80%;
     justify-content: center;
@@ -594,17 +361,11 @@ const ExclusiveZones = () => {
     }
   ], [t]);
   
-  // Функция для отображения карточек зон без множественных анимаций
+  // Функция для отображения карточек зон - PERFORMANCE: убраны анимации
   const renderZones = (zones, categoryKey) => {
-    return zones.map((zone, index) => (
-      <ZoneCard 
-        key={`${categoryKey}-${zone.id}`}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.1, margin: "-50px" }}
-        transition={{ duration: 0.6, delay: index * 0.05 }}
-      >
-        <ZoneImage src={zone.image} alt={zone.name} />
+    return zones.map((zone) => (
+      <ZoneCard key={`${categoryKey}-${zone.id}`}>
+        <ZoneImage src={zone.image} alt={zone.name} loading="lazy" />
         <CardContent>
           <ZoneName>{zone.name}</ZoneName>
           <ZoneDescription>{zone.description}</ZoneDescription>
@@ -628,21 +389,11 @@ const ExclusiveZones = () => {
     <SectionContainer id="exclusive-zones">
       <ContentWrapper>
         <SectionHeader>
-          <Overline
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8 }}
-          >
+          <Overline>
             {t('zones.overline', 'Пространства KAIF')}
           </Overline>
-          
-          <Title
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
+
+          <Title>
             {t('zones.title', 'Всё необходимое для активного отдыха и релаксации')}
           </Title>
         </SectionHeader>

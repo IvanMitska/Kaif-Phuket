@@ -6,16 +6,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 // Оптимизированный логотип для хедера
 const headerLogoPath = '/images/logos/logo-header.png';
 
-console.log('🔥 HEADER.JSX FILE LOADED!');
-
-
-
 // =============================================================================
-// МАКСИМАЛЬНО АГРЕССИВНЫЙ ИЗОЛИРОВАННЫЙ ХЕДЕР
+// ОПТИМИЗИРОВАННЫЙ ХЕДЕР - PERFORMANCE FIX
 // =============================================================================
 
 const Header = () => {
-  console.log('🚀 HEADER COMPONENT LOADED!');
   
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
@@ -191,88 +186,7 @@ const Header = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [isMobileMenuOpen]);
 
-  // Детальная диагностика хедера
-  useEffect(() => {
-    const checkHeaderVisibility = () => {
-      const header = document.querySelector('.kaif-header');
-      console.log('🔍 Проверяю хедер...', {
-        headerExists: !!header,
-        timestamp: new Date().toLocaleTimeString()
-      });
-      
-      if (header) {
-        const rect = header.getBoundingClientRect();
-        const computedStyle = window.getComputedStyle(header);
-        
-        console.log('📊 Состояние хедера:', {
-          position: computedStyle.position,
-          top: computedStyle.top,
-          zIndex: computedStyle.zIndex,
-          display: computedStyle.display,
-          visibility: computedStyle.visibility,
-          opacity: computedStyle.opacity,
-          rect: {
-            top: rect.top,
-            left: rect.left,
-            width: rect.width,
-            height: rect.height
-          }
-        });
-        
-        // Исправляем если что-то не так
-        if (rect.top !== 0 || rect.height === 0 || computedStyle.position !== 'fixed') {
-          console.log('🚨 Хедер НЕ НА МЕСТЕ! Исправляю...', rect);
-          
-          // АГРЕССИВНОЕ исправление
-          header.style.cssText = `
-            position: fixed !important;
-            top: 0px !important;
-            left: 0px !important;
-            right: 0px !important;
-            width: 100% !important;
-            height: 65px !important;
-            z-index: 9999 !important;
-            background-color: #ffffff !important;
-            display: flex !important;
-            visibility: visible !important;
-            opacity: 1 !important;
-            transform: none !important;
-            transition: none !important;
-            animation: none !important;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
-            align-items: center !important;
-            justify-content: center !important;
-          `;
-          
-          console.log('✅ Хедер агрессивно исправлен!');
-        } else {
-          console.log('✅ Хедер в порядке');
-        }
-      } else {
-        console.log('❌ Хедер не найден!');
-      }
-    };
-
-    // Проверяем сразу
-    console.log('🚀 Запускаю диагностику хедера...');
-    checkHeaderVisibility();
-    
-    // Проверяем каждые 500ms
-    const interval = setInterval(checkHeaderVisibility, 500);
-    
-    // Проверяем при скролле
-    const handleScroll = () => {
-      console.log('📜 Скролл detected, проверяю хедер...');
-      checkHeaderVisibility();
-    };
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      clearInterval(interval);
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  // PERFORMANCE: Убрана диагностика хедера каждые 500мс
 
   return (
     <>
@@ -556,8 +470,8 @@ const Header = () => {
                 }}
                 whileTap={{ scale: 0.95 }}
                 style={{
-                  background: isLanguageDropdownOpen ? 'rgba(144, 179, 167, 0.08)' : 'rgba(255, 255, 255, 0.9)',
-                  border: `1px solid ${isLanguageDropdownOpen ? '#90B3A7' : 'rgba(144, 179, 167, 0.2)'}`,
+                  background: isLanguageDropdownOpen ? '#f0f5f3' : '#fff',
+                  border: `1px solid ${isLanguageDropdownOpen ? '#90B3A7' : '#e0e0e0'}`,
                   borderRadius: '8px',
                   color: isLanguageDropdownOpen ? '#90B3A7' : '#374151',
                   fontSize: '13px',
@@ -565,18 +479,14 @@ const Header = () => {
                   fontFamily: '"KAIF", "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
                   cursor: 'pointer',
                   padding: '8px 12px',
-                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  transition: 'background 0.2s ease',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   height: '36px',
                   minWidth: '56px',
                   margin: 0,
-                  position: 'relative',
-                  boxShadow: isLanguageDropdownOpen 
-                    ? '0 4px 12px rgba(144, 179, 167, 0.25)' 
-                    : '0 2px 4px rgba(0, 0, 0, 0.05)',
-                  backdropFilter: 'blur(8px)'
+                  position: 'relative'
                 }}
                 onMouseEnter={(e) => {
                   if (!isLanguageDropdownOpen) {
@@ -652,15 +562,14 @@ const Header = () => {
                       position: 'absolute',
                       top: 'calc(100% + 8px)',
                       right: 0,
-                      background: 'rgba(255, 255, 255, 0.95)',
-                      border: '1px solid rgba(144, 179, 167, 0.15)',
+                      background: '#fff',
+                      border: '1px solid #e0e0e0',
                       borderRadius: '12px',
-                      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(144, 179, 167, 0.08)',
+                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
                       padding: '8px',
                       minWidth: '140px',
                       zIndex: 999998,
-                      transformOrigin: 'top right',
-                      backdropFilter: 'blur(12px)'
+                      transformOrigin: 'top right'
                     }}
                   >
                     {languages.map((lang, index) => (
@@ -739,8 +648,7 @@ const Header = () => {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                background: 'rgba(44, 62, 45, 0.5)',
-                backdropFilter: 'blur(4px)',
+                background: 'rgba(0, 0, 0, 0.5)',
                 zIndex: 999996
               }}
               onClick={(e) => {
@@ -768,11 +676,10 @@ const Header = () => {
                 maxWidth: '20rem',
                 height: 'calc(100vh - 65px)',
                 background: '#ffffff',
-                backdropFilter: 'blur(20px)',
-                borderLeft: '1px solid rgba(144, 179, 167, 0.1)',
+                borderLeft: '1px solid #e0e0e0',
                 zIndex: 999997,
                 overflowY: 'auto',
-                boxShadow: '-4px 0 20px rgba(0, 0, 0, 0.1)'
+                boxShadow: '-2px 0 8px rgba(0, 0, 0, 0.1)'
               }}
             >
               <div style={{
