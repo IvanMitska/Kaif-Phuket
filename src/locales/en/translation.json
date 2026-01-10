@@ -5,7 +5,37 @@
     "spa": "KAIF SPA | Luxury Spa Treatments and Relaxation",
     "sports": "KAIF Sports | Modern Fitness and Martial Arts",
     "banya": "KAIF Banya | Traditional Russian Sauna Experience",
-    "contacts": "KAIF Contacts | Get in Touch with Us"
+    "contacts": "KAIF Contacts | Get in Touch with Us",
+    "sbp_pay": "SBP Payment | KAIF"
+  },
+  "sbp_pay": {
+    "title": "SBP Payment",
+    "description": "Pay with Russian Fast Payment System",
+    "select_package": "Select amount to pay",
+    "pay_now": "Pay Now",
+    "creating": "Creating payment...",
+    "scan_qr": "Scan QR Code",
+    "pay_with_sbp": "Pay with SBP",
+    "time_left": "Time left",
+    "loading_qr": "Loading QR code...",
+    "amount_thb": "Amount (THB)",
+    "amount_rub": "To pay (RUB)",
+    "status_created": "Created",
+    "status_initialized": "Awaiting payment",
+    "status_success": "Paid",
+    "status_failed": "Failed",
+    "instruction_1": "Open your banking app",
+    "instruction_2": "Choose \"Pay by QR\" or scan",
+    "instruction_3": "Scan the QR code above",
+    "instruction_4": "Confirm the payment",
+    "success": "Payment Successful!",
+    "success_message": "Thank you for your payment",
+    "failed": "Payment Failed",
+    "failed_message": "The payment was not completed. Please try again.",
+    "payment_id": "Payment ID",
+    "done": "Done",
+    "try_again": "Try Again",
+    "mock_mode": "Test mode - no real payment will be made"
   },
   "common": {
     "book": "Book Now",
@@ -2209,11 +2239,18 @@
       "description": "From panoramic banya with jungle views to private VIP rituals with master attendants",
       "rituals": {
         "intro": {
-          "title": "Introductory Steaming",
+          "title": "Children's Introductory Steaming",
           "subtitle": "Light steam",
-          "duration": "5-8 min",
-          "price": "1,200 THB",
-          "description": "Contact warming of back and legs with birch brooms. Light steam without turning over"
+          "duration": "7-10 min",
+          "price": "1,000 THB",
+          "description": "A short and sensitive ritual. The parmaster gently warms the back and legs with brooms. Only pleasant light steam and comfortable warmth"
+        },
+        "lady": {
+          "title": "Lady's Steaming",
+          "subtitle": "Low-temperature",
+          "duration": "10-15 min",
+          "price": "1,500 THB",
+          "description": "Special low-temperature technique with deep local warming. Ideal for first visits and deep relaxation"
         },
         "classic": {
           "title": "Classic Steaming",
@@ -2226,57 +2263,71 @@
           "title": "Artesian",
           "subtitle": "Contrast steaming",
           "duration": "15-20 min",
-          "price": "2,500 THB",
-          "description": "Classic steaming with oak brooms with contrast of cool mineral water. Bubble contrast sensations"
+          "price": "2,250 THB",
+          "description": "Intense warming with oak brooms enhanced by the contrast of cool mineral water. Bright bubbling sensation"
         },
         "gravity": {
           "title": "Gravity",
           "subtitle": "Weightless steaming",
           "duration": "15-20 min",
-          "price": "2,500 THB",
-          "description": "Classic steaming with subsequent floating in a warm pool. Complete relaxation and weightlessness"
+          "price": "2,250 THB",
+          "description": "Intense warming with transition to warm pool. Gentle floating creates a feeling of weightlessness"
         },
         "salt_fire": {
-          "title": "Fire Start",
+          "title": "The Fire Starter",
           "subtitle": "Salt steaming",
           "duration": "15-20 min",
+          "price": "2,250 THB",
+          "description": "Intense warming with sea salt application and warming through a sheet. Salt cave effect"
+        },
+        "four_hands": {
+          "title": "Four-Hand Steaming",
+          "subtitle": "Synchronized steaming",
+          "duration": "15-20 min",
           "price": "2,500 THB",
-          "description": "Classic steaming with sea salt application and warming through a sheet. Salt cave effect"
+          "description": "Two experienced steam masters work in perfect synchronization. Waves of heat, massage with brooms in unison and double attention"
+        },
+        "sports": {
+          "title": "Sports Steaming",
+          "subtitle": "With massage elements",
+          "duration": "20-25 min",
+          "price": "2,500 THB",
+          "description": "Intense warming to the depth of muscles, activating blood circulation. Then massage with brooms right on the shelf"
         },
         "warrior_path": {
           "title": "Warrior's Path",
           "subtitle": "Contrast steaming",
           "duration": "20-25 min",
           "price": "3,500 THB",
-          "description": "Steaming in two sessions with cold water dousing between them. Back warming and kvass refreshment"
+          "description": "Steaming in two sessions with cold water dousing between them. Back warming with birch brooms"
         },
         "stalwar": {
           "title": "Thor's Power",
-          "subtitle": "Steelworker's steaming",
+          "subtitle": "Intense steam",
           "duration": "15-20 min",
-          "price": "3,500 THB",
-          "description": "Dynamic steaming on high hot steam. Tones the body and relieves muscle tension"
+          "price": "3,000 THB",
+          "description": "Intense steam and contrast. The steam master works with high steam creating a dynamic wave of warmth. Post-workout feeling"
         },
         "honey": {
           "title": "Honey Steaming",
           "subtitle": "With natural honey",
           "duration": "15-20 min",
-          "price": "4,000 THB",
-          "description": "Author's steaming with Canadian brooms with honey application. Vitamins through open pores and summer meadow aroma"
+          "price": "3,500 THB",
+          "description": "Original steaming with Canadian brooms with honey application. Vitamins through open pores and summer meadow aroma"
         },
         "royal": {
           "title": "Royal Steaming",
           "subtitle": "Honey-salt scrub",
           "duration": "25-30 min",
-          "price": "4,500 THB",
-          "description": "Royal steaming with Canadian brooms from both sides. Deep scrub with honey and sea salt cleanses the skin"
+          "price": "4,000 THB",
+          "description": "Royal ritual of deep warming and cleansing. Canadian brooms, natural honey and sea salt"
         },
         "valhalla": {
           "title": "Valhalla",
           "subtitle": "Group steaming",
           "duration": "10-20 min",
           "price": "3,500 THB",
-          "description": "Steaming with fan and brooms for a group of 3-5 people. Foot bath with herbs and sea stones"
+          "description": "A soft ritual for a group of 2-4 people. Steaming with fan and brooms, foot bath with herbal decoction"
         }
       },
       "coming_soon": {

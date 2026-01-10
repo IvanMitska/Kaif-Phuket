@@ -1,49 +1,6 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import { motion } from 'framer-motion';
+import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-
-// Holiday garland animation
-const twinkle = keyframes`
-  0%, 100% {
-    opacity: 1;
-    filter: brightness(1.3);
-  }
-  50% {
-    opacity: 0.5;
-    filter: brightness(0.9);
-  }
-`;
-
-// Holiday garland for cards
-const CardGarland = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 12px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  opacity: 0;
-  transform: translateY(-5px);
-  transition: all 0.3s ease;
-  z-index: 10;
-  pointer-events: none;
-`;
-
-const GarlandLight = styled.div`
-  width: 8px;
-  height: 10px;
-  background: ${props => props.$color};
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  animation: ${twinkle} ${props => props.$duration}s ease-in-out infinite;
-  animation-delay: ${props => props.$delay}s;
-  box-shadow:
-    0 0 8px ${props => props.$color},
-    0 0 16px ${props => props.$color}80;
-  margin-top: 2px;
-`;
 
 // =============================================================================
 // СОВРЕМЕННАЯ СЕКЦИЯ УСЛУГ БАНИ
@@ -80,7 +37,7 @@ const SectionHeader = styled.div`
   margin-bottom: clamp(3rem, 6vw, 5rem);
 `;
 
-const SectionTitle = styled(motion.h2)`
+const SectionTitle = styled.h2`
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 300;
   color: #ffffff;
@@ -89,7 +46,7 @@ const SectionTitle = styled(motion.h2)`
   line-height: 1.1;
 `;
 
-const SectionSubtitle = styled(motion.p)`
+const SectionSubtitle = styled.p`
   font-size: clamp(1.1rem, 2vw, 1.35rem);
   background: linear-gradient(135deg, rgba(255, 214, 98, 0.9) 0%, rgba(255, 107, 53, 0.9) 100%);
   background-clip: text;
@@ -108,15 +65,9 @@ const RitualsGrid = styled.div`
   gap: 1.5rem;
   margin: 0 auto;
 
-  /* Оптимизация производительности */
-  contain: layout style;
-
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 1.25rem;
-    /* Оптимизация для мобильных */
-    will-change: auto;
-    transform: translateZ(0);
   }
 
   @media (min-width: 769px) and (max-width: 1200px) {
@@ -129,8 +80,8 @@ const RitualsGrid = styled.div`
   }
 `;
 
-const RitualCard = styled(motion.div)`
-  background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+const RitualCard = styled.div`
+  background: #151515;
   border-radius: 24px;
   padding: 2.5rem;
   position: relative;
@@ -142,45 +93,12 @@ const RitualCard = styled(motion.div)`
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.05);
 
-  /* Отключаем сложные эффекты на мобильных для производительности */
   @media (hover: hover) and (pointer: fine) {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(10px);
-
-    &::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(
-        circle at 50% 50%,
-        rgba(255, 107, 53, 0.04) 0%,
-        transparent 40%
-      );
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-    }
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     &:hover {
       transform: translateY(-4px);
-      box-shadow:
-        0 16px 32px rgba(0, 0, 0, 0.4),
-        0 0 20px rgba(255, 107, 53, 0.03);
-
-      &::after {
-        opacity: 1;
-      }
-
-      .ritual-title {
-        background-size: 200% 100%;
-        background-position: 100% 0;
-      }
-
-      /* Show garland on hover */
-      .card-garland {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
     }
   }
 
@@ -188,13 +106,6 @@ const RitualCard = styled(motion.div)`
     padding: 2rem;
     min-height: auto;
     border-radius: 20px;
-    /* Упрощаем эффекты на мобильных */
-    backdrop-filter: none;
-    transition: none;
-
-    &::after {
-      display: none;
-    }
   }
 `;
 
@@ -336,9 +247,17 @@ const BanyaServicesSection = () => {
       id: 'intro',
       title: 'Introductory Steaming',
       subtitle: 'LIGHT STEAM',
-      duration: '5-8 min',
-      price: '1,200 THB',
-      description: 'Contact warming of back and legs with birch brooms. Light steam without turning over'
+      duration: '7-10 min',
+      price: '1,000 THB',
+      description: 'A short and sensitive ritual with gentle warming of back and legs'
+    },
+    {
+      id: 'lady',
+      title: "Lady's Steaming",
+      subtitle: 'LOW-TEMPERATURE',
+      duration: '10-15 min',
+      price: '1,500 THB',
+      description: 'Special low-temperature technique with deep local warming'
     },
     {
       id: 'classic',
@@ -347,14 +266,6 @@ const BanyaServicesSection = () => {
       duration: '10-15 min',
       price: '1,800 THB',
       description: 'Steaming with oak brooms in one session. Thorough whole body steaming with aromatic steam'
-    },
-    {
-      id: 'artesian',
-      title: 'Artesian',
-      subtitle: 'CONTRAST STEAMING',
-      duration: '15-20 min',
-      price: '2,500 THB',
-      description: 'Classic steaming with oak brooms with contrast of cool mineral water. Bubble contrast sensations'
     }
   ];
 
@@ -365,11 +276,19 @@ const BanyaServicesSection = () => {
       return [
         {
           id: 'intro',
-          title: t('banya.services.rituals.intro.title', 'Introductory Steaming'),
+          title: t('banya.services.rituals.intro.title', "Children's Introductory Steaming"),
           subtitle: t('banya.services.rituals.intro.subtitle', 'LIGHT STEAM'),
-          duration: t('banya.services.rituals.intro.duration', '5-8 min'),
-          price: t('banya.services.rituals.intro.price', '1,200 THB'),
-          description: t('banya.services.rituals.intro.description', 'Contact warming of back and legs with birch brooms. Light steam without turning over')
+          duration: t('banya.services.rituals.intro.duration', '7-10 min'),
+          price: t('banya.services.rituals.intro.price', '1,000 THB'),
+          description: t('banya.services.rituals.intro.description', 'A short and sensitive ritual with gentle warming of back and legs')
+        },
+        {
+          id: 'lady',
+          title: t('banya.services.rituals.lady.title', "Lady's Steaming"),
+          subtitle: t('banya.services.rituals.lady.subtitle', 'LOW-TEMPERATURE'),
+          duration: t('banya.services.rituals.lady.duration', '10-15 min'),
+          price: t('banya.services.rituals.lady.price', '1,500 THB'),
+          description: t('banya.services.rituals.lady.description', 'Special low-temperature technique with deep local warming')
         },
         {
           id: 'classic',
@@ -384,24 +303,48 @@ const BanyaServicesSection = () => {
           title: t('banya.services.rituals.artesian.title', 'Artesian'),
           subtitle: t('banya.services.rituals.artesian.subtitle', 'CONTRAST STEAMING'),
           duration: t('banya.services.rituals.artesian.duration', '15-20 min'),
-          price: t('banya.services.rituals.artesian.price', '2,500 THB'),
-          description: t('banya.services.rituals.artesian.description', 'Classic steaming with oak brooms with contrast of cool mineral water. Bubble contrast sensations')
+          price: t('banya.services.rituals.artesian.price', '2,250 THB'),
+          description: t('banya.services.rituals.artesian.description', 'Intense warming with oak brooms enhanced by the contrast of cool mineral water')
         },
         {
           id: 'gravity',
           title: t('banya.services.rituals.gravity.title', 'Gravity'),
           subtitle: t('banya.services.rituals.gravity.subtitle', 'WEIGHTLESS STEAMING'),
           duration: t('banya.services.rituals.gravity.duration', '15-20 min'),
-          price: t('banya.services.rituals.gravity.price', '2,500 THB'),
-          description: t('banya.services.rituals.gravity.description', 'Classic steaming with subsequent floating in a warm pool. Complete relaxation and weightlessness')
+          price: t('banya.services.rituals.gravity.price', '2,250 THB'),
+          description: t('banya.services.rituals.gravity.description', 'Intense warming with transition to warm pool. Feeling of weightlessness')
         },
         {
           id: 'salt_fire',
-          title: t('banya.services.rituals.salt_fire.title', 'Fire Start'),
+          title: t('banya.services.rituals.salt_fire.title', 'The Fire Starter'),
           subtitle: t('banya.services.rituals.salt_fire.subtitle', 'SALT STEAMING'),
           duration: t('banya.services.rituals.salt_fire.duration', '15-20 min'),
-          price: t('banya.services.rituals.salt_fire.price', '2,500 THB'),
-          description: t('banya.services.rituals.salt_fire.description', 'Classic steaming with sea salt application and warming through a sheet. Salt cave effect')
+          price: t('banya.services.rituals.salt_fire.price', '2,250 THB'),
+          description: t('banya.services.rituals.salt_fire.description', 'Intense warming with sea salt application and warming through a sheet. Salt cave effect')
+        },
+        {
+          id: 'four_hands',
+          title: t('banya.services.rituals.four_hands.title', 'Four-Hand Steaming'),
+          subtitle: t('banya.services.rituals.four_hands.subtitle', 'SYNCHRONIZED'),
+          duration: t('banya.services.rituals.four_hands.duration', '15-20 min'),
+          price: t('banya.services.rituals.four_hands.price', '2,500 THB'),
+          description: t('banya.services.rituals.four_hands.description', 'Two steam masters work in perfect synchronization')
+        },
+        {
+          id: 'sports',
+          title: t('banya.services.rituals.sports.title', 'Sports Steaming'),
+          subtitle: t('banya.services.rituals.sports.subtitle', 'WITH MASSAGE'),
+          duration: t('banya.services.rituals.sports.duration', '20-25 min'),
+          price: t('banya.services.rituals.sports.price', '2,500 THB'),
+          description: t('banya.services.rituals.sports.description', 'Intense warming to the depth of muscles with massage elements')
+        },
+        {
+          id: 'stalwar',
+          title: t('banya.services.rituals.stalwar.title', "Thor's Power"),
+          subtitle: t('banya.services.rituals.stalwar.subtitle', 'INTENSE STEAM'),
+          duration: t('banya.services.rituals.stalwar.duration', '15-20 min'),
+          price: t('banya.services.rituals.stalwar.price', '3,000 THB'),
+          description: t('banya.services.rituals.stalwar.description', 'Intense steam and contrast for those who love the heat')
         },
         {
           id: 'warrior_path',
@@ -409,39 +352,31 @@ const BanyaServicesSection = () => {
           subtitle: t('banya.services.rituals.warrior_path.subtitle', 'CONTRAST STEAMING'),
           duration: t('banya.services.rituals.warrior_path.duration', '20-25 min'),
           price: t('banya.services.rituals.warrior_path.price', '3,500 THB'),
-          description: t('banya.services.rituals.warrior_path.description', 'Steaming in two sessions with cold water dousing between them. Back warming and kvass refreshment')
-        },
-        {
-          id: 'stalwar',
-          title: t('banya.services.rituals.stalwar.title', 'Stalwar'),
-          subtitle: t('banya.services.rituals.stalwar.subtitle', 'STEEL STEAMING'),
-          duration: t('banya.services.rituals.stalwar.duration', '25-30 min'),
-          price: t('banya.services.rituals.stalwar.price', '4,000 THB'),
-          description: t('banya.services.rituals.stalwar.description', 'Intensive steaming with oak and birch brooms. Maximum heat and contrast procedures')
+          description: t('banya.services.rituals.warrior_path.description', 'Steaming in two sessions with cold water dousing between them')
         },
         {
           id: 'honey',
-          title: t('banya.services.rituals.honey.title', 'Honey Ritual'),
-          subtitle: t('banya.services.rituals.honey.subtitle', 'WELLNESS STEAMING'),
-          duration: t('banya.services.rituals.honey.duration', '30-35 min'),
-          price: t('banya.services.rituals.honey.price', '4,500 THB'),
-          description: t('banya.services.rituals.honey.description', 'Steaming with honey body wrap and herbal aromatherapy. Deep skin nourishment and relaxation')
-        },
-        {
-          id: 'royal',
-          title: t('banya.services.rituals.royal.title', 'Royal Treatment'),
-          subtitle: t('banya.services.rituals.royal.subtitle', 'PREMIUM STEAMING'),
-          duration: t('banya.services.rituals.royal.duration', '40-45 min'),
-          price: t('banya.services.rituals.royal.price', '6,000 THB'),
-          description: t('banya.services.rituals.royal.description', 'Full luxury banya experience with premium oils, contrast treatments, and personal service')
+          title: t('banya.services.rituals.honey.title', 'Honey Steaming'),
+          subtitle: t('banya.services.rituals.honey.subtitle', 'WITH NATURAL HONEY'),
+          duration: t('banya.services.rituals.honey.duration', '15-20 min'),
+          price: t('banya.services.rituals.honey.price', '3,500 THB'),
+          description: t('banya.services.rituals.honey.description', 'Steaming with Canadian brooms and honey application')
         },
         {
           id: 'valhalla',
           title: t('banya.services.rituals.valhalla.title', 'Valhalla'),
-          subtitle: t('banya.services.rituals.valhalla.subtitle', 'ULTIMATE STEAMING'),
-          duration: t('banya.services.rituals.valhalla.duration', '50-60 min'),
-          price: t('banya.services.rituals.valhalla.price', '8,000 THB'),
-          description: t('banya.services.rituals.valhalla.description', 'Ultimate warrior experience with multiple steaming sessions, ice treatments, and ceremonial completion')
+          subtitle: t('banya.services.rituals.valhalla.subtitle', 'GROUP STEAMING'),
+          duration: t('banya.services.rituals.valhalla.duration', '10-20 min'),
+          price: t('banya.services.rituals.valhalla.price', '3,500 THB'),
+          description: t('banya.services.rituals.valhalla.description', 'Steaming with fan and brooms for a group of 2-4 people')
+        },
+        {
+          id: 'royal',
+          title: t('banya.services.rituals.royal.title', 'Royal Steaming'),
+          subtitle: t('banya.services.rituals.royal.subtitle', 'HONEY-SALT SCRUB'),
+          duration: t('banya.services.rituals.royal.duration', '25-30 min'),
+          price: t('banya.services.rituals.royal.price', '4,000 THB'),
+          description: t('banya.services.rituals.royal.description', 'Royal ritual of deep warming and cleansing with honey and sea salt')
         }
       ];
     } catch (error) {
@@ -452,37 +387,14 @@ const BanyaServicesSection = () => {
 
   const rituals = getRituals();
 
-  // Определяем мобильное устройство для оптимизации анимаций
-  const [isMobile, setIsMobile] = React.useState(false);
-
-  React.useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
   return (
     <ServicesContainer>
       <ContentWrapper>
         <SectionHeader>
-          <SectionTitle
-            initial={isMobile ? { opacity: 0 } : { opacity: 0, y: 20 }}
-            whileInView={isMobile ? { opacity: 1 } : { opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: isMobile ? 0.4 : 0.6 }}
-          >
+          <SectionTitle>
             {isRussian ? 'Индивидуальные парения' : 'Individual Steam Sessions'}
           </SectionTitle>
-          <SectionSubtitle
-            initial={isMobile ? { opacity: 0 } : { opacity: 0, y: 20 }}
-            whileInView={isMobile ? { opacity: 1 } : { opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: isMobile ? 0.4 : 0.6, delay: isMobile ? 0.05 : 0.1 }}
-          >
+          <SectionSubtitle>
             {isRussian
               ? 'Выберите свой идеальный банный ритуал'
               : 'Choose your perfect banya ritual'}
@@ -490,30 +402,8 @@ const BanyaServicesSection = () => {
         </SectionHeader>
 
         <RitualsGrid>
-          {rituals.map((ritual, index) => {
-            const garlandColors = ['#ff0000', '#FFD700', '#00ff00', '#00bfff', '#ff0000', '#FFD700', '#00ff00'];
-            return (
-              <RitualCard
-                key={`${ritual.id}-${ready}`}
-                initial={isMobile ? { opacity: 0 } : { opacity: 0, y: 20 }}
-                whileInView={isMobile ? { opacity: 1 } : { opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: isMobile ? "-20px" : "-50px" }}
-                transition={{
-                  duration: isMobile ? 0.3 : 0.4,
-                  delay: isMobile ? index * 0.02 : index * 0.05,
-                  ease: "easeOut"
-                }}
-              >
-              <CardGarland className="card-garland">
-                {garlandColors.map((color, i) => (
-                  <GarlandLight
-                    key={i}
-                    $color={color}
-                    $duration={1 + Math.random() * 1.5}
-                    $delay={i * 0.2}
-                  />
-                ))}
-              </CardGarland>
+          {rituals.map((ritual) => (
+              <RitualCard key={ritual.id}>
               <AccentLine />
 
               <RitualHeader>
@@ -539,8 +429,7 @@ const BanyaServicesSection = () => {
                 </RitualPrice>
               </RitualDetails>
             </RitualCard>
-            );
-          })}
+          ))}
         </RitualsGrid>
       </ContentWrapper>
     </ServicesContainer>
