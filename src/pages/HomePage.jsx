@@ -7,7 +7,6 @@ import PageHead from '../components/layout/PageHead';
 
 // Импортируем только критический hero компонент
 import HeroFullscreen from '../components/home/HeroFullscreen';
-import EventBanner from '../components/home/EventBanner';
 
 // Lazy loading для всех некритических компонентов
 const ExclusiveZones = lazy(() => import('../components/home/ExclusiveZones'));
@@ -149,9 +148,6 @@ const HomePage = memo(() => {
 
       {/* Полноэкранная секция героя - единственный критический компонент */}
       <HeroFullscreen />
-
-      {/* Баннер мероприятия SAUNA RAVE */}
-      <EventBanner />
 
       <Suspense fallback={<SectionLoader />}>
         <ExclusiveZones />

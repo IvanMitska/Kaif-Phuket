@@ -26,6 +26,9 @@ const FooterWrapper = styled.footer`
   color: white;
   z-index: 3;
   overflow: hidden;
+  border: none;
+  box-shadow: none;
+  margin-top: -1px;
 
   &::before {
     content: '';
@@ -313,16 +316,33 @@ const Copyright = styled.p`
 const LegalLinks = styled.div`
   display: flex;
   gap: 2rem;
-  
+
   a {
     font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
     font-size: 1rem;
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
     transition: color 0.3s ease;
-    
+
     &:hover {
       color: rgba(255, 255, 255, 0.8);
+    }
+  }
+`;
+
+const MadeBy = styled.p`
+  font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+
+  a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: white;
     }
   }
 `;
@@ -351,16 +371,10 @@ const FloatingDecoration = styled(motion.div)`
     top: -50px;
     left: 10%;
   }
-  
+
   &.deco-2 {
     top: 30%;
     right: 5%;
-  }
-  
-  &.deco-3 {
-    bottom: -50px;
-    left: 50%;
-    transform: translateX(-50%);
   }
 `;
 
@@ -428,25 +442,18 @@ const Footer = () => {
   return (
     <FooterWrapper>
       {/* Floating Decorations */}
-      <FloatingDecoration 
+      <FloatingDecoration
         className="deco-1"
         $variant="primary"
         variants={floatVariants}
         animate="animate"
       />
-      <FloatingDecoration 
+      <FloatingDecoration
         className="deco-2"
         $variant="secondary"
         variants={floatVariants}
         animate="animate"
         style={{ animationDelay: '-4s' }}
-      />
-      <FloatingDecoration 
-        className="deco-3"
-        $variant="tertiary"
-        variants={floatVariants}
-        animate="animate"
-        style={{ animationDelay: '-8s' }}
       />
 
       <FooterContent>
@@ -603,9 +610,12 @@ const Footer = () => {
           {/* Footer Bottom */}
           <FooterBottom>
             <Copyright>
-              &copy; {currentYear} <span className="highlight">KAIF</span>. 
+              &copy; {currentYear} <span className="highlight">KAIF</span>.
               {t('footer.copyright')}
             </Copyright>
+            <MadeBy>
+              Made by <a href="https://sintara.io/" target="_blank" rel="noopener noreferrer">Sintara Studio</a>
+            </MadeBy>
             <LegalLinks>
               <Link to="/privacy">{t('footer.legal.privacy')}</Link>
               <Link to="/terms">{t('footer.legal.terms')}</Link>
