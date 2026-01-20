@@ -1,4 +1,4 @@
-import{r as e,j as i}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-components-fuCKgGld.js";import{u as n}from"./i18n-core-DrMVsQFB.js";import{s,b as t,D as a,E as o,r as d,G as l,H as m,a as h,F as c}from"./heroicons-DSEs4UIN.js";import{m as p,A as f}from"./framer-motion-DOblPXrY.js";import"./vendor-misc-D8JVgYt7.js";const g=r.section`
+import{r as e,j as i}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-components-fuCKgGld.js";import{u as n}from"./i18n-core-DrMVsQFB.js";import{s,b as t,D as a,E as o,r as d,G as l,H as m,a as h,F as c}from"./heroicons-JeCSnvNC.js";import{m as p,A as f}from"./framer-motion-DOblPXrY.js";import"./vendor-misc-D8JVgYt7.js";const g=r.section`
   position: relative;
   padding: 3rem 0;
   background: linear-gradient(135deg, rgba(144, 179, 167, 0.05) 0%, rgba(168, 197, 184, 0.03) 100%); /* Легкий градиент в зеленых тонах */

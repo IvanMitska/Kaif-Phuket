@@ -1,4 +1,4 @@
-import{r as e,j as a,R as t}from"./react-core-DWAaPJsY.js";import{d as i,m as r}from"./styled-components-fuCKgGld.js";import{P as n}from"./PageScrollReset-CpzNA0Jq.js";import{P as o}from"./PageHead-ByG18s83.js";import{B as s}from"./BookingModal-DgblHROr.js";import{u as l}from"./i18n-core-DrMVsQFB.js";import{n as c,a as d,o as p,p as g,q as m,r as b,F as f,b as h,s as u,t as x}from"./heroicons-DSEs4UIN.js";import{m as y}from"./framer-motion-DOblPXrY.js";import"./vendor-misc-D8JVgYt7.js";import"./react-helmet-BCF-s7y-.js";i.div`
+import{r as e,j as a,R as t}from"./react-core-DWAaPJsY.js";import{d as i,m as r}from"./styled-components-fuCKgGld.js";import{P as n}from"./PageScrollReset-CpzNA0Jq.js";import{P as o}from"./PageHead-ByG18s83.js";import{B as s}from"./BookingModal-D1wbjBVS.js";import{u as l}from"./i18n-core-DrMVsQFB.js";import{n as c,a as d,o as p,p as g,q as m,r as b,F as f,b as h,s as u,t as x}from"./heroicons-JeCSnvNC.js";import{m as y}from"./framer-motion-DOblPXrY.js";import"./vendor-misc-D8JVgYt7.js";import"./react-helmet-BCF-s7y-.js";i.div`
   position: relative;
   overflow: hidden;
   background-color: #f0f0f0;

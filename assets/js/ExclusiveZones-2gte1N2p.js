@@ -1,4 +1,4 @@
-import{r as e,j as i}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-components-fuCKgGld.js";import{u as r}from"./i18n-core-DrMVsQFB.js";import{l as a,i as n,u as o}from"./heroicons-DSEs4UIN.js";import{ab as s}from"./vendor-misc-D8JVgYt7.js";const l=t.section`
+import{r as e,j as i}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-components-fuCKgGld.js";import{u as r}from"./i18n-core-DrMVsQFB.js";import{l as a,i as n,u as o}from"./heroicons-JeCSnvNC.js";import{ab as s}from"./vendor-misc-D8JVgYt7.js";const l=t.section`
   position: relative;
   padding: 6rem 0;
   background-color: #ffffff;

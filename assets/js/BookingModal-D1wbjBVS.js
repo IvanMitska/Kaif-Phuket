@@ -1,0 +1,1 @@
+import{r as e}from"./react-core-DWAaPJsY.js";const BookingModal=({isOpen:o,onClose:n,service:t=""})=>(e.useEffect(()=>{if(o){let e="Здравствуйте! Хочу записаться в KAIF.";t&&(e+=`\nУслуга: ${t}`);const o=`https://wa.me/66624805877?text=${encodeURIComponent(e)}`;window.open(o,"_blank"),n()}},[o,t,n]),null);export{BookingModal as B};

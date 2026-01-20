@@ -1,4 +1,4 @@
-import{r as e,j as i}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-components-fuCKgGld.js";import{Y as n}from"./YclientsModal-73bqYTGE.js";import{B as o}from"./BookingModal-DgblHROr.js";import{u as t}from"./i18n-core-DrMVsQFB.js";import{n as a,b as s,a as l,F as d,J as m}from"./heroicons-DSEs4UIN.js";import{m as p}from"./framer-motion-DOblPXrY.js";import{aa as h}from"./vendor-misc-D8JVgYt7.js";const c=r.section`
+import{r as e,j as i}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-components-fuCKgGld.js";import{Y as n}from"./YclientsModal-fERKwjqH.js";import{B as o}from"./BookingModal-D1wbjBVS.js";import{u as t}from"./i18n-core-DrMVsQFB.js";import{n as a,b as s,a as l,F as d,J as m}from"./heroicons-JeCSnvNC.js";import{m as p}from"./framer-motion-DOblPXrY.js";import{aa as h}from"./vendor-misc-D8JVgYt7.js";const c=r.section`
   position: relative;
   padding: 5rem 0 0 0; /* Убираем нижний padding для устранения белой линии */
   background: linear-gradient(135deg, rgba(144, 179, 167, 0.05) 0%, rgba(168, 197, 184, 0.03) 100%);
