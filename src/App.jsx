@@ -43,6 +43,8 @@ const ContactsPage = lazy(() => import('./pages/ContactsPage'));
 const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
 const TermsPage = lazy(() => import('./pages/TermsPage'));
 const SurveyPage = lazy(() => import('./pages/SurveyPage'));
+// const SbpPayPage = lazy(() => import('./pages/SbpPayPage'));
+// const PaymentPage = lazy(() => import('./pages/PaymentPage'));
 
 
 // Невидимый компонент загрузки - без индикаторов
@@ -64,6 +66,8 @@ const AppRoutes = () => {
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/survey" element={<SurveyPage />} />
+        {/* <Route path="/pay" element={<SbpPayPage />} /> */}
+        {/* <Route path="/payment" element={<PaymentPage />} /> */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Suspense>
