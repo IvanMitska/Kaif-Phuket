@@ -244,7 +244,7 @@ const SportsPricingSection = () => {
           </PlanDescription>
 
           <PriceBlock>
-            <PriceValue>4,990</PriceValue>
+            <PriceValue>4,900</PriceValue>
             <PriceCurrency>THB</PriceCurrency>
           </PriceBlock>
           <PricePeriod>{t('sports.pricing.club_access_sport.period', 'per month')}</PricePeriod>

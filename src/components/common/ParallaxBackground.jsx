@@ -37,29 +37,18 @@ const ParallaxBackground = ({ src, overlay }) => {
     );
   }
 
-  // На десктопе — clip-path trick для эффекта fixed background
+  // На десктопе — используем background-attachment: fixed (более стабильно)
   return (
     <div
       style={{
         position: 'absolute',
         inset: 0,
-        clipPath: 'inset(0)', // Магия! Создаёт clipping context для fixed элемента
-        overflow: 'hidden'
+        backgroundImage: `url(${src})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
       }}
     >
-      <div
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundImage: `url(${src})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          zIndex: -1
-        }}
-      />
       {overlay}
     </div>
   );

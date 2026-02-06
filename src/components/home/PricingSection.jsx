@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { FaDumbbell, FaSpa, FaUsers, FaSwimmer, FaClock } from 'react-icons/fa';
+import { FaDumbbell, FaSpa, FaSwimmer, FaClock } from 'react-icons/fa';
 import BookingModal from '../booking/BookingModal';
 
 // === STYLED COMPONENTS — Minimalist Pasture Style ===
@@ -343,6 +343,20 @@ const PricingSection = () => {
             t('pricing.features.towelsIncluded')
           ],
           perMonth: null
+        },
+        {
+          name: '1 Week Pass',
+          duration: t('pricing.durations.week'),
+          price: '1,990',
+          features: [
+            t('pricing.features.gymCardio'),
+            t('pricing.features.swimmingPool'),
+            t('pricing.features.steamRoom'),
+            t('pricing.features.iceBarrel'),
+            t('pricing.features.russianSauna') + ' & ' + t('pricing.features.japanesePool'),
+            t('pricing.features.towelsIncluded')
+          ],
+          perMonth: null
         }
       ]
     },
@@ -463,47 +477,25 @@ const PricingSection = () => {
         }
       ]
     },
-    groupClasses: {
-      icon: <FaUsers />,
-      title: t('pricing.categories.groupClasses'),
-      subtitle: t('pricing.subtitles.groupClasses'),
+    clubAccessSport: {
+      icon: <FaDumbbell />,
+      title: 'Club Access Sport',
+      subtitle: t('pricing.subtitles.clubAccessSport', 'Club Access + групповые тренировки'),
       plans: [
         {
-          name: t('pricing.categories.groupClasses'),
-          duration: t('pricing.durations.single'),
-          price: '600',
-          features: [t('pricing.features.dayAccess'), t('pricing.features.anyClass'), t('pricing.features.professionalTrainer')],
-          perMonth: null
-        },
-        {
-          name: t('pricing.categories.groupClasses'),
-          duration: t('pricing.durations.classes_4'),
-          price: '2,000',
-          features: [`500 ฿ ${t('pricing.features.perClass')}`, t('pricing.features.validMonth'), t('pricing.features.anyClasses')],
-          perMonth: null
-        },
-        {
-          name: t('pricing.categories.groupClasses'),
-          duration: t('pricing.durations.classes_12'),
-          price: '3,000',
-          features: [`250 ฿ ${t('pricing.features.perClass')}`, t('pricing.features.validMonths_2'), t('pricing.features.anyClasses'), `${t('pricing.features.savings')} 50%`],
+          name: 'Club Access Sport',
+          duration: t('pricing.durations.month'),
+          price: '4,900',
+          features: [
+            t('pricing.features.gymCardio'),
+            t('pricing.features.swimmingPool'),
+            t('pricing.features.steamRoom'),
+            t('pricing.features.iceBarrel'),
+            t('pricing.features.unlimitedGroupTraining', 'Безлимитные групповые тренировки'),
+            'Fight Club & Motion'
+          ],
           perMonth: null,
-          featured: false,
-          popular: false
-        },
-        {
-          name: t('pricing.categories.groupClasses'),
-          duration: t('pricing.durations.classes_24'),
-          price: '5,500',
-          features: [`229 ฿ ${t('pricing.features.perClass')}`, t('pricing.features.validMonths_3'), t('pricing.features.anyClasses'), `${t('pricing.features.savings')} 62%`],
-          perMonth: null
-        },
-        {
-          name: t('pricing.categories.groupClasses'),
-          duration: t('pricing.durations.classes_48'),
-          price: '10,200',
-          features: [`213 ฿ ${t('pricing.features.perClass')}`, t('pricing.features.validMonths_6'), t('pricing.features.anyClasses'), `${t('pricing.features.maxSavings')} 65%`],
-          perMonth: null
+          featured: true
         }
       ]
     },
@@ -543,7 +535,7 @@ const PricingSection = () => {
     { key: 'dayPass', label: t('pricing.categories.dayPass'), icon: <FaClock /> },
     { key: 'clubAccess', label: t('pricing.categories.clubAccess'), icon: <FaDumbbell /> },
     { key: 'premium', label: t('pricing.categories.clubAccessPlus'), icon: <FaSpa /> },
-    { key: 'groupClasses', label: t('pricing.categories.groupClasses'), icon: <FaUsers /> },
+    { key: 'clubAccessSport', label: 'Club Access Sport', icon: <FaDumbbell /> },
     { key: 'swimming', label: t('pricing.categories.swimming'), icon: <FaSwimmer /> }
   ];
 
