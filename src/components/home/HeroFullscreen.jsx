@@ -51,27 +51,7 @@ const VideoBackground = styled.div`
     height: 100%;
     object-fit: cover;
     object-position: center;
-
-    /* Hide iOS native play button */
-    &::-webkit-media-controls {
-      display: none !important;
-    }
-    &::-webkit-media-controls-start-playback-button {
-      display: none !important;
-      -webkit-appearance: none;
-    }
-    &::-webkit-media-controls-play-button {
-      display: none !important;
-      -webkit-appearance: none;
-    }
-    &::-webkit-media-controls-panel {
-      display: none !important;
-    }
-    &::-webkit-media-controls-overlay-play-button {
-      display: none !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-    }
+    /* iOS play button hidden via global CSS in index.css */
   }
 
   /* Затемнение поверх видео */

@@ -580,3 +580,61 @@ header.kaif-header {
     z-index: 9998 !important;
   }
 }
+
+/* =============================================================================
+   iOS Video Play Button Hide - MUST be in global CSS
+   ============================================================================= */
+video {
+  /* Hide all iOS Safari video controls */
+  -webkit-tap-highlight-color: transparent;
+}
+
+video::-webkit-media-controls {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+video::-webkit-media-controls-panel {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+video::-webkit-media-controls-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: -9999px;
+}
+
+video::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Extra specificity for hero video */
+video[autoplay],
+video[muted] {
+  -webkit-media-controls-start-playback-button: none;
+}
+
+video[autoplay]::-webkit-media-controls-start-playback-button,
+video[autoplay]::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
