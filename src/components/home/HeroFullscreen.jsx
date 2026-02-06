@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Player from '@vimeo/player';
 
 // Vimeo Video ID
-const VIMEO_VIDEO_ID = '1162456961';
+const VIMEO_VIDEO_ID = '1162460549';
 
 // Fallback poster
 const POSTER_URL = 'https://res.cloudinary.com/dxzz1kj38/video/upload/so_0/0204_xkhajr.jpg';
