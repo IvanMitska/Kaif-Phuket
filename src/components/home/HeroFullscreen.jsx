@@ -1,18 +1,13 @@
-import React, { useEffect, useRef, memo, useState } from 'react';
+import React, { useEffect, useRef, memo } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import Player from '@vimeo/player';
 
-// Cloudinary video URLs
-const VIDEO_MP4 = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_auto/0204_xkhajr.mp4';
-const VIDEO_HLS = 'https://res.cloudinary.com/dxzz1kj38/video/upload/sp_auto/0204_xkhajr.m3u8';
+// Vimeo Video ID
+const VIMEO_VIDEO_ID = '1162456961';
+
+// Fallback poster
 const POSTER_URL = 'https://res.cloudinary.com/dxzz1kj38/video/upload/so_0/0204_xkhajr.jpg';
-
-// Detect iOS
-const isIOS = () => {
-  if (typeof window === 'undefined') return false;
-  return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-};
 
 // Основной контейнер
 const HeroContainer = styled.section`
@@ -45,21 +40,24 @@ const HeroContainer = styled.section`
   }
 `;
 
-// Видео-фон
+// Видео-фон (Vimeo iframe container)
 const VideoBackground = styled.div`
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
+  overflow: hidden;
 
-  video {
+  iframe {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    /* iOS play button hidden via global CSS in index.css */
+    top: 50%;
+    left: 50%;
+    width: 177.78vh; /* 16:9 aspect ratio */
+    height: 100vh;
+    min-width: 100%;
+    min-height: 56.25vw; /* 16:9 aspect ratio */
+    transform: translate(-50%, -50%);
+    pointer-events: none;
   }
 
   /* Затемнение поверх видео */
@@ -151,89 +149,57 @@ const LocationText = styled.span`
 
 const HeroFullscreen = memo(() => {
   const { t } = useTranslation();
-  const videoRef = useRef(null);
-  const [videoSrc, setVideoSrc] = useState(VIDEO_MP4);
+  const vimeoContainerRef = useRef(null);
+  const playerRef = useRef(null);
 
-  // Определяем источник видео при монтировании
+  // Инициализация Vimeo Player
   useEffect(() => {
-    // iOS лучше работает с HLS
-    if (isIOS()) {
-      setVideoSrc(VIDEO_HLS);
+    if (!vimeoContainerRef.current || playerRef.current) return;
+
+    // Проверяем что ID видео установлен
+    if (VIMEO_VIDEO_ID === 'PASTE_YOUR_VIDEO_ID_HERE') {
+      console.warn('Vimeo video ID not set');
+      return;
     }
-  }, []);
 
-  // Autoplay видео при загрузке
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    // Создаём Vimeo Player с настройками для background видео
+    const player = new Player(vimeoContainerRef.current, {
+      id: VIMEO_VIDEO_ID,
+      background: true,      // Background mode - без контролов, autoplay, loop, muted
+      muted: true,
+      autoplay: true,
+      loop: true,
+      controls: false,
+      playsinline: true,
+      transparent: true,
+      responsive: false,
+      dnt: true,             // Do Not Track
+    });
 
-    // Устанавливаем атрибуты программно
-    video.muted = true;
-    video.playsInline = true;
-    video.setAttribute('muted', '');
-    video.setAttribute('playsinline', '');
-    video.setAttribute('webkit-playsinline', '');
+    playerRef.current = player;
 
-    // Функция воспроизведения
-    const tryPlay = async () => {
-      if (video.paused) {
-        video.muted = true;
-        try {
-          await video.play();
-        } catch (e) {
-          // Autoplay blocked
-        }
-      }
-    };
+    // Обработчики
+    player.on('loaded', () => {
+      player.play().catch(() => {});
+    });
 
-    // Обработчики событий видео
-    const events = ['canplay', 'canplaythrough', 'loadeddata', 'loadedmetadata'];
-    events.forEach(event => video.addEventListener(event, tryPlay));
-
-    // Играем сразу
-    tryPlay();
-
-    // IntersectionObserver
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) tryPlay();
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(video);
-
-    // Повторные попытки
-    const timeouts = [100, 300, 600, 1000, 2000].map(ms => setTimeout(tryPlay, ms));
+    player.ready().then(() => {
+      player.play().catch(() => {});
+    });
 
     return () => {
-      events.forEach(event => video.removeEventListener(event, tryPlay));
-      observer.disconnect();
-      timeouts.forEach(clearTimeout);
+      if (playerRef.current) {
+        playerRef.current.destroy();
+        playerRef.current = null;
+      }
     };
-  }, [videoSrc]);
+  }, []);
 
   return (
     <HeroContainer>
-      {/* Видео-фон */}
+      {/* Vimeo видео-фон */}
       <VideoBackground>
-        <video
-          ref={videoRef}
-          src={videoSrc}
-          autoPlay
-          muted
-          defaultMuted
-          loop
-          playsInline
-          webkitPlaysInline
-          x5-playsinline="true"
-          x5-video-player-type="h5"
-          x5-video-player-fullscreen="true"
-          controls={false}
-          disablePictureInPicture
-          disableRemotePlayback
-          preload="auto"
-          poster={POSTER_URL}
-        />
+        <div ref={vimeoContainerRef} style={{ width: '100%', height: '100%' }} />
       </VideoBackground>
 
       {/* Основной контент */}
