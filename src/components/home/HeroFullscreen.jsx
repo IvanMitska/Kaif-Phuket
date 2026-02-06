@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, memo } from 'react';
+import React, { useEffect, useRef, memo, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import Player from '@vimeo/player';
@@ -6,7 +6,7 @@ import Player from '@vimeo/player';
 // Vimeo Video ID
 const VIMEO_VIDEO_ID = '1162460549';
 
-// Fallback poster
+// Poster image (показывается пока видео загружается)
 const POSTER_URL = 'https://res.cloudinary.com/dxzz1kj38/video/upload/so_0/0204_xkhajr.jpg';
 
 // Основной контейнер
@@ -40,13 +40,27 @@ const HeroContainer = styled.section`
   }
 `;
 
+// Poster фон (показывается пока видео загружается)
+const PosterBackground = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: url(${POSTER_URL});
+  background-size: cover;
+  background-position: center;
+  opacity: ${props => props.$visible ? 1 : 0};
+  transition: opacity 0.5s ease;
+`;
+
 // Видео-фон (Vimeo iframe container)
 const VideoBackground = styled.div`
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
   overflow: hidden;
+  opacity: ${props => props.$visible ? 1 : 0};
+  transition: opacity 0.3s ease;
 
   iframe {
     position: absolute;
@@ -151,16 +165,11 @@ const HeroFullscreen = memo(() => {
   const { t } = useTranslation();
   const vimeoContainerRef = useRef(null);
   const playerRef = useRef(null);
+  const [videoReady, setVideoReady] = useState(false);
 
   // Инициализация Vimeo Player
   useEffect(() => {
     if (!vimeoContainerRef.current || playerRef.current) return;
-
-    // Проверяем что ID видео установлен
-    if (VIMEO_VIDEO_ID === 'PASTE_YOUR_VIDEO_ID_HERE') {
-      console.warn('Vimeo video ID not set');
-      return;
-    }
 
     // Создаём Vimeo Player
     const player = new Player(vimeoContainerRef.current, {
@@ -180,20 +189,20 @@ const HeroFullscreen = memo(() => {
 
     playerRef.current = player;
 
-    // Обработчики
-    player.on('loaded', () => {
-      player.setVolume(0);
-      player.play().catch((e) => console.log('Play error:', e));
+    // Когда видео начинает играть - показываем его
+    player.on('playing', () => {
+      setVideoReady(true);
     });
 
-    player.on('error', (error) => {
-      console.error('Vimeo error:', error);
+    player.on('loaded', () => {
+      player.setVolume(0);
+      player.play().catch(() => {});
     });
 
     player.ready().then(() => {
       player.setVolume(0);
-      player.play().catch((e) => console.log('Ready play error:', e));
-    }).catch((e) => console.error('Ready error:', e));
+      player.play().catch(() => {});
+    });
 
     return () => {
       if (playerRef.current) {
@@ -205,8 +214,11 @@ const HeroFullscreen = memo(() => {
 
   return (
     <HeroContainer>
+      {/* Poster - показывается пока видео загружается */}
+      <PosterBackground $visible={!videoReady} />
+
       {/* Vimeo видео-фон */}
-      <VideoBackground>
+      <VideoBackground $visible={videoReady}>
         <div ref={vimeoContainerRef} style={{ width: '100%', height: '100%' }} />
       </VideoBackground>
 
