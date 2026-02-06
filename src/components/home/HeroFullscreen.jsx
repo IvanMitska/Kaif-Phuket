@@ -172,16 +172,16 @@ const HeroFullscreen = memo(() => {
       {/* Видео-фон */}
       <VideoBackground>
         <video
+          key={isMobile ? 'mobile' : 'desktop'}
           ref={videoRef}
+          src={isMobile ? videoMobile : videoDesktop}
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           poster={isMobile ? posterMobile : posterDesktop}
-        >
-          <source src={isMobile ? videoMobile : videoDesktop} type="video/mp4" />
-        </video>
+        />
       </VideoBackground>
 
       {/* Основной контент */}
