@@ -12,6 +12,7 @@ const HeroContainer = styled.section`
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,7 +22,12 @@ const HeroContainer = styled.section`
   background: #000 url(${POSTER_URL}) center/cover no-repeat;
 
   @media (max-width: 768px) {
-    height: 100svh;
+    height: 100vh;
+    height: -webkit-fill-available;
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    min-height: 100dvh;
   }
 `;
 

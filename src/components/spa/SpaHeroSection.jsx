@@ -8,6 +8,7 @@ const HeroContainer = styled.section`
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,16 +19,14 @@ const HeroContainer = styled.section`
   padding: 0 !important;
   margin: 0 !important;
   box-sizing: border-box !important;
-  contain: none;
-  isolation: auto;
-  will-change: auto;
-  touch-action: auto;
-  overscroll-behavior: auto;
-  -webkit-overscroll-behavior: auto;
 
   @media (max-width: 768px) {
-    height: 100svh;
-    touch-action: auto;
+    height: 100vh;
+    height: -webkit-fill-available;
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    min-height: 100dvh;
   }
 `;
 

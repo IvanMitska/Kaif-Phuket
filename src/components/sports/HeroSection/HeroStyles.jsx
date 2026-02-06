@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 
 export const HeroSection = styled.section`
   min-height: 100vh;
+  min-height: 100dvh;
   position: relative;
   display: flex;
   align-items: center;
@@ -15,6 +16,7 @@ export const HeroSection = styled.section`
 
   @media (max-width: 768px) {
     min-height: 100vh;
+    min-height: -webkit-fill-available;
     min-height: 100dvh;
     padding: 80px 0 40px 0;
     align-items: flex-start;
