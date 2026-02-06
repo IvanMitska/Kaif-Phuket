@@ -1,12 +1,9 @@
-import React, { useEffect, useRef, memo, useState } from 'react';
+import React, { useEffect, useRef, memo } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import Player from '@vimeo/player';
 
-// Vimeo Video ID
-const VIMEO_VIDEO_ID = '1162460549';
-
-// Poster image (показывается пока видео загружается)
+// Cloudinary video URL
+const VIDEO_URL = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_auto/0204_xkhajr.mp4';
 const POSTER_URL = 'https://res.cloudinary.com/dxzz1kj38/video/upload/so_0/0204_xkhajr.jpg';
 
 // Основной контейнер
@@ -21,57 +18,26 @@ const HeroContainer = styled.section`
   color: white;
   overflow: hidden;
   background: #000;
-  padding: 0 !important;
-  margin: 0 !important;
-  box-sizing: border-box !important;
-  scroll-snap-align: unset;
-  scroll-snap-type: unset;
-  scroll-snap-stop: unset;
-  contain: none;
-  isolation: auto;
-  will-change: auto;
-  touch-action: auto;
-  overscroll-behavior: auto;
-  -webkit-overscroll-behavior: auto;
 
   @media (max-width: 768px) {
     height: 100svh;
-    touch-action: auto;
   }
 `;
 
-// Poster фон (показывается пока видео загружается)
-const PosterBackground = styled.div`
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background-image: url(${POSTER_URL});
-  background-size: cover;
-  background-position: center;
-  opacity: ${props => props.$visible ? 1 : 0};
-  transition: opacity 0.5s ease;
-`;
-
-// Видео-фон (Vimeo iframe container)
+// Видео-фон
 const VideoBackground = styled.div`
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 1;
   pointer-events: none;
-  overflow: hidden;
-  opacity: ${props => props.$visible ? 1 : 0};
-  transition: opacity 0.3s ease;
 
-  iframe {
+  video {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 177.78vh; /* 16:9 aspect ratio */
-    height: 100vh;
-    min-width: 100%;
-    min-height: 56.25vw; /* 16:9 aspect ratio */
-    transform: translate(-50%, -50%);
-    pointer-events: none;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   /* Затемнение поверх видео */
@@ -101,7 +67,6 @@ const ContentContainer = styled.div`
   align-items: center;
   justify-content: center;
   pointer-events: none;
-  will-change: auto;
 `;
 
 const ContentWrapper = styled.div`
@@ -163,66 +128,58 @@ const LocationText = styled.span`
 
 const HeroFullscreen = memo(() => {
   const { t } = useTranslation();
-  const vimeoContainerRef = useRef(null);
-  const playerRef = useRef(null);
-  const [videoReady, setVideoReady] = useState(false);
+  const videoRef = useRef(null);
 
-  // Инициализация Vimeo Player
+  // Autoplay видео
   useEffect(() => {
-    if (!vimeoContainerRef.current || playerRef.current) return;
+    const video = videoRef.current;
+    if (!video) return;
 
-    // Создаём Vimeo Player
-    const player = new Player(vimeoContainerRef.current, {
-      id: VIMEO_VIDEO_ID,
-      muted: true,
-      autoplay: true,
-      loop: true,
-      controls: false,
-      playsinline: true,
-      transparent: false,
-      responsive: false,
-      dnt: true,
-      title: false,
-      byline: false,
-      portrait: false,
-    });
+    // Устанавливаем атрибуты для iOS
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
 
-    playerRef.current = player;
+    const tryPlay = () => {
+      if (video.paused) {
+        video.muted = true;
+        video.play().catch(() => {});
+      }
+    };
 
-    // Когда видео начинает играть - показываем его
-    player.on('playing', () => {
-      setVideoReady(true);
-    });
+    // События видео
+    video.addEventListener('canplay', tryPlay);
+    video.addEventListener('loadeddata', tryPlay);
 
-    player.on('loaded', () => {
-      player.setVolume(0);
-      player.play().catch(() => {});
-    });
+    // Пробуем запустить сразу
+    tryPlay();
 
-    player.ready().then(() => {
-      player.setVolume(0);
-      player.play().catch(() => {});
-    });
+    // Повторные попытки
+    const timeouts = [100, 500, 1000].map(ms => setTimeout(tryPlay, ms));
 
     return () => {
-      if (playerRef.current) {
-        playerRef.current.destroy();
-        playerRef.current = null;
-      }
+      video.removeEventListener('canplay', tryPlay);
+      video.removeEventListener('loadeddata', tryPlay);
+      timeouts.forEach(clearTimeout);
     };
   }, []);
 
   return (
     <HeroContainer>
-      {/* Poster - показывается пока видео загружается */}
-      <PosterBackground $visible={!videoReady} />
-
-      {/* Vimeo видео-фон */}
-      <VideoBackground $visible={videoReady}>
-        <div ref={vimeoContainerRef} style={{ width: '100%', height: '100%' }} />
+      <VideoBackground>
+        <video
+          ref={videoRef}
+          src={VIDEO_URL}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster={POSTER_URL}
+        />
       </VideoBackground>
 
-      {/* Основной контент */}
       <ContentContainer>
         <ContentWrapper>
           <HeroTextBlock>
