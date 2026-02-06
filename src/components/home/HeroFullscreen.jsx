@@ -149,24 +149,37 @@ const HeroFullscreen = memo(() => {
     const video = videoRef.current;
     if (!video) return;
 
+    // Функция воспроизведения
+    const tryPlay = () => {
+      if (video.paused) {
+        video.muted = true; // Гарантируем muted для iOS
+        video.play().catch(() => {});
+      }
+    };
+
     // Обработчики событий видео
-    const handleCanPlay = () => {
-      video.play().catch(() => {});
+    video.addEventListener('canplay', tryPlay);
+    video.addEventListener('loadeddata', tryPlay);
+    video.addEventListener('loadedmetadata', tryPlay);
+
+    // iOS fallback - запуск при касании экрана
+    const handleTouch = () => {
+      tryPlay();
+      document.removeEventListener('touchstart', handleTouch);
     };
+    document.addEventListener('touchstart', handleTouch, { passive: true });
 
-    const handleLoadedData = () => {
-      video.play().catch(() => {});
-    };
-
-    video.addEventListener('canplay', handleCanPlay);
-    video.addEventListener('loadeddata', handleLoadedData);
-
-    // Принудительная загрузка
+    // Попытка воспроизведения сразу
     video.load();
+    setTimeout(tryPlay, 100);
+    setTimeout(tryPlay, 500);
+    setTimeout(tryPlay, 1000);
 
     return () => {
-      video.removeEventListener('canplay', handleCanPlay);
-      video.removeEventListener('loadeddata', handleLoadedData);
+      video.removeEventListener('canplay', tryPlay);
+      video.removeEventListener('loadeddata', tryPlay);
+      video.removeEventListener('loadedmetadata', tryPlay);
+      document.removeEventListener('touchstart', handleTouch);
     };
   }, []);
 
@@ -179,9 +192,13 @@ const HeroFullscreen = memo(() => {
           src={VIDEO_URL}
           autoPlay
           muted
+          defaultMuted
           loop
           playsInline
-          webkit-playsinline="true"
+          webkitPlaysInline
+          x5-playsinline="true"
+          disablePictureInPicture
+          disableRemotePlayback
           preload="auto"
           poster={POSTER_URL}
         />
