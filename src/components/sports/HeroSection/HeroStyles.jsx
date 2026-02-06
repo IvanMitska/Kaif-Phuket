@@ -15,9 +15,8 @@ export const HeroSection = styled.section`
   padding: 100px 0 30px 0;
 
   @media (max-width: 768px) {
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-    min-height: 100dvh;
+    min-height: calc(100vh + 60px);
+    min-height: calc(100dvh + 60px);
     padding: 80px 0 40px 0;
     align-items: flex-start;
     padding-top: 100px;
