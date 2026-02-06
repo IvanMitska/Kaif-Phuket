@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 // Cloudinary video URLs - desktop full quality, mobile optimized
 const VIDEO_DESKTOP = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_auto/0204_xkhajr.mp4';
-const VIDEO_MOBILE = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_60,w_720/0204_xkhajr.mp4';
+const VIDEO_MOBILE = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_70,w_1080/0204_xkhajr.mp4';
 const POSTER_URL = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_80,w_1280,so_0/0204_xkhajr.jpg';
 
 // Основной контейнер - с poster фоном чтобы не было черного экрана
