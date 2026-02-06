@@ -2,11 +2,12 @@ import React, { useEffect, useRef, memo, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
-// Cloudinary video URL
-const VIDEO_URL = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_auto/0204_xkhajr.mp4';
-const POSTER_URL = 'https://res.cloudinary.com/dxzz1kj38/video/upload/so_0/0204_xkhajr.jpg';
+// Cloudinary video URLs - desktop full quality, mobile optimized
+const VIDEO_DESKTOP = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_auto/0204_xkhajr.mp4';
+const VIDEO_MOBILE = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_60,w_720/0204_xkhajr.mp4';
+const POSTER_URL = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_80,w_1280,so_0/0204_xkhajr.jpg';
 
-// Основной контейнер
+// Основной контейнер - с poster фоном чтобы не было черного экрана
 const HeroContainer = styled.section`
   position: relative;
   width: 100%;
@@ -17,7 +18,7 @@ const HeroContainer = styled.section`
   align-items: center;
   color: white;
   overflow: hidden;
-  background: #000;
+  background: #000 url(${POSTER_URL}) center/cover no-repeat;
 
   @media (max-width: 768px) {
     height: 100svh;
@@ -138,6 +139,14 @@ const HeroFullscreen = memo(() => {
   const { t } = useTranslation();
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Определяем мобильное устройство
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    // Не добавляем resize listener - видео URL определяется один раз
+  }, []);
 
   // Функция запуска видео
   const playVideo = () => {
@@ -196,7 +205,7 @@ const HeroFullscreen = memo(() => {
       <VideoBackground>
         <video
           ref={videoRef}
-          src={VIDEO_URL}
+          src={isMobile ? VIDEO_MOBILE : VIDEO_DESKTOP}
           autoPlay
           muted
           loop
