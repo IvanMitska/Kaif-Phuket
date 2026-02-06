@@ -2,9 +2,9 @@ import React, { useEffect, useRef, memo } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
-// Cloudinary video URL - single responsive version
-const VIDEO_URL = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_auto/0204_xkhajr.mp4';
-const POSTER_URL = 'https://res.cloudinary.com/dxzz1kj38/video/upload/so_0/0204_xkhajr.jpg';
+// Cloudinary video URL - optimized for web
+const VIDEO_URL = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_70,w_1280/0204_xkhajr.mp4';
+const POSTER_URL = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_80,w_1280,so_0/0204_xkhajr.jpg';
 
 // Основной контейнер
 const HeroContainer = styled.section`
@@ -147,17 +147,27 @@ const HeroFullscreen = memo(() => {
   // Autoplay видео при загрузке
   useEffect(() => {
     const video = videoRef.current;
-    if (video) {
-      // Пробуем запустить видео
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // Autoplay заблокирован — пробуем muted
-          video.muted = true;
-          video.play().catch(() => {});
-        });
-      }
-    }
+    if (!video) return;
+
+    // Обработчики событий видео
+    const handleCanPlay = () => {
+      video.play().catch(() => {});
+    };
+
+    const handleLoadedData = () => {
+      video.play().catch(() => {});
+    };
+
+    video.addEventListener('canplay', handleCanPlay);
+    video.addEventListener('loadeddata', handleLoadedData);
+
+    // Принудительная загрузка
+    video.load();
+
+    return () => {
+      video.removeEventListener('canplay', handleCanPlay);
+      video.removeEventListener('loadeddata', handleLoadedData);
+    };
   }, []);
 
   return (
