@@ -82,12 +82,12 @@ import{r as e,j as t}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-
   text-align: center;
 
   @media (max-width: 768px) {
-    font-size: clamp(3.5rem, 16vw, 6rem);
+    font-size: clamp(2.5rem, 11vw, 5rem);
     line-height: 1.05;
   }
 
   @media (max-width: 480px) {
-    font-size: clamp(3rem, 18vw, 5rem);
+    font-size: clamp(2rem, 10vw, 4rem);
   }
 `,d=i.span`
   display: block;
