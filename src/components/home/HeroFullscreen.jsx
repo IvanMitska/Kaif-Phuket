@@ -1,15 +1,10 @@
-import React, { useState, useEffect, useRef, memo } from 'react';
+import React, { useEffect, useRef, memo } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
-// Cloudinary video URLs
-const CLOUD_NAME = 'dxzz1kj38';
-const VIDEO_ID = '0204_xkhajr';
-const videoDesktop = `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/q_auto,f_auto,w_1920/${VIDEO_ID}.mp4`;
-const videoMobile = `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/q_auto,f_auto,w_768/${VIDEO_ID}.mp4`;
-// Poster — первый кадр видео как изображение
-const posterDesktop = `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/q_auto,f_auto,w_1920,so_0/${VIDEO_ID}.jpg`;
-const posterMobile = `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/q_auto,f_auto,w_768,so_0/${VIDEO_ID}.jpg`;
+// Cloudinary video URL - single responsive version
+const VIDEO_URL = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_auto/0204_xkhajr.mp4';
+const POSTER_URL = 'https://res.cloudinary.com/dxzz1kj38/video/upload/so_0/0204_xkhajr.jpg';
 
 // Основной контейнер
 const HeroContainer = styled.section`
@@ -148,39 +143,37 @@ const LocationText = styled.span`
 const HeroFullscreen = memo(() => {
   const { t } = useTranslation();
   const videoRef = useRef(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   // Autoplay видео при загрузке
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
-      video.play().catch(() => {
-        // Autoplay заблокирован — видео останется на poster
-      });
+      // Пробуем запустить видео
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay заблокирован — пробуем muted
+          video.muted = true;
+          video.play().catch(() => {});
+        });
+      }
     }
-  }, [isMobile]);
+  }, []);
 
   return (
     <HeroContainer>
       {/* Видео-фон */}
       <VideoBackground>
         <video
-          key={isMobile ? 'mobile' : 'desktop'}
           ref={videoRef}
-          src={isMobile ? videoMobile : videoDesktop}
+          src={VIDEO_URL}
           autoPlay
           muted
           loop
           playsInline
+          webkit-playsinline="true"
           preload="auto"
-          poster={isMobile ? posterMobile : posterDesktop}
+          poster={POSTER_URL}
         />
       </VideoBackground>
 

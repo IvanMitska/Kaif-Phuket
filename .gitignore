@@ -60,3 +60,6 @@ docs/*.log
 # Original/unoptimized images
 **/originals/
 **/original/
+
+# Local Netlify folder
+.netlify
