@@ -1,4 +1,4 @@
-import{j as e}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-components-CfKEYav0.js";import{u as r}from"./i18n-core-DrMVsQFB.js";import{i as t,j as a,k as s,l as o}from"./heroicons-bIxR1-ju.js";import"./vendor-misc-DORsZxsB.js";const n=i.section`
+import{j as e}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-components-CfKEYav0.js";import{u as r}from"./i18n-core-DrMVsQFB.js";import{d as t,e as a,f as s,g as o}from"./heroicons-lHooInKB.js";import"./vendor-misc-DORsZxsB.js";const n=i.section`
   position: relative;
   padding: 6rem 0;
   background-color: #fffef6;
@@ -14,7 +14,7 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-compone
   @media (max-width: 768px) {
     padding: 0 1.25rem;
   }
-`,l=i.div`
+`,p=i.div`
   font-family: 'Jost', sans-serif;
   font-size: 0.8rem;
   font-weight: 400;
@@ -33,7 +33,7 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-compone
     background: rgba(19, 50, 56, 0.25);
     margin-right: 1rem;
   }
-`,p=i.h2`
+`,l=i.h2`
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: clamp(2rem, 4.5vw, 3.5rem);
   font-weight: 800;
@@ -110,11 +110,11 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-compone
   margin: 0 0 0.75rem;
   text-transform: uppercase;
   letter-spacing: -0.01em;
-`,u=i.p`
+`,g=i.p`
   font-family: 'Jost', sans-serif;
   font-size: 0.9rem;
   line-height: 1.6;
   color: rgba(19, 50, 56, 0.5);
   font-weight: 400;
   margin: 0;
-`,SpaFeaturesSection=()=>{const{t:i}=r(),g=[{id:1,icon:e.jsx(t,{}),title:i("spa.features.premium_quality.title","Premium Quality"),description:i("spa.features.premium_quality.description","We use only the best products and equipment for all treatments")},{id:2,icon:e.jsx(a,{}),title:i("spa.features.full_relaxation.title","Full Relaxation"),description:i("spa.features.full_relaxation.description","Creating an atmosphere of comfort for your relaxation and rest")},{id:3,icon:e.jsx(s,{}),title:i("spa.features.experienced_masters.title","Experienced Masters"),description:i("spa.features.experienced_masters.description","Specialists with years of experience and continuous skill development")},{id:4,icon:e.jsx(o,{}),title:i("spa.features.individual_approach.title","Individual Approach"),description:i("spa.features.individual_approach.description","We consider your preferences and needs for maximum results")}];return e.jsx(n,{children:e.jsxs(d,{children:[e.jsx(l,{children:i("spa.features.badge","Why Choose Us")}),e.jsx(p,{children:i("spa.features.title","Why Choose Us")}),e.jsx(m,{children:i("spa.features.subtitle","We strive to provide you with an exceptional relaxation and care experience")}),e.jsx(c,{children:g.map(i=>e.jsxs(f,{children:[e.jsx(x,{children:i.icon}),e.jsx(h,{children:i.title}),e.jsx(u,{children:i.description})]},i.id))})]})})};export{SpaFeaturesSection as default};
+`,SpaFeaturesSection=()=>{const{t:i}=r(),u=[{id:1,icon:e.jsx(t,{}),title:i("spa.features.premium_quality.title","Premium Quality"),description:i("spa.features.premium_quality.description","We use only the best products and equipment for all treatments")},{id:2,icon:e.jsx(a,{}),title:i("spa.features.full_relaxation.title","Full Relaxation"),description:i("spa.features.full_relaxation.description","Creating an atmosphere of comfort for your relaxation and rest")},{id:3,icon:e.jsx(s,{}),title:i("spa.features.experienced_masters.title","Experienced Masters"),description:i("spa.features.experienced_masters.description","Specialists with years of experience and continuous skill development")},{id:4,icon:e.jsx(o,{}),title:i("spa.features.individual_approach.title","Individual Approach"),description:i("spa.features.individual_approach.description","We consider your preferences and needs for maximum results")}];return e.jsx(n,{children:e.jsxs(d,{children:[e.jsx(p,{children:i("spa.features.badge","Why Choose Us")}),e.jsx(l,{children:i("spa.features.title","Why Choose Us")}),e.jsx(m,{children:i("spa.features.subtitle","We strive to provide you with an exceptional relaxation and care experience")}),e.jsx(c,{children:u.map(i=>e.jsxs(f,{children:[e.jsx(x,{children:i.icon}),e.jsx(h,{children:i.title}),e.jsx(g,{children:i.description})]},i.id))})]})})};export{SpaFeaturesSection as default};

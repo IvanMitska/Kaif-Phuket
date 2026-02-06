@@ -1,4 +1,4 @@
-import{R as e,j as t,r as i}from"./react-core-DWAaPJsY.js";import{d as o}from"./styled-components-CfKEYav0.js";import{A as r,m as n}from"./framer-motion-B0peqmRR.js";import{f as a}from"./heroicons-bIxR1-ju.js";import{B as s}from"./BookingModal-D1wbjBVS.js";import{u as l}from"./i18n-core-DrMVsQFB.js";import"./vendor-misc-DORsZxsB.js";const d=o(n.div)`
+import{R as e,j as t,r as i}from"./react-core-DWAaPJsY.js";import{d as o}from"./styled-components-CfKEYav0.js";import{A as r,m as n}from"./framer-motion-B0peqmRR.js";import{a}from"./heroicons-lHooInKB.js";import{B as s}from"./BookingModal-D1wbjBVS.js";import{u as l}from"./i18n-core-DrMVsQFB.js";import"./vendor-misc-DORsZxsB.js";const d=o(n.div)`
   position: fixed;
   top: 0;
   left: 0;
