@@ -1,167 +1,145 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import { 
-  heroTextAnimation,
-  buttonAnimation 
-} from '../ui/animations';
 
-const HeroSection = styled.section`
+// === STYLED COMPONENTS — Matching other pages hero style ===
+
+const HeroContainer = styled.section`
   position: relative;
-  min-height: 50vh;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  background: linear-gradient(135deg, 
-    rgba(144, 179, 167, 0.95) 0%, 
-    rgba(168, 197, 184, 0.9) 50%, 
-    rgba(184, 207, 194, 0.85) 100%
-  );
+  align-items: center;
   color: white;
-  text-align: center;
-  padding: 6rem 1.5rem;
   overflow: hidden;
-  
-  &::before {
+  background: #000;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+
+  @media (max-width: 768px) {
+    height: calc(100vh + 60px);
+    height: calc(100dvh + 60px);
+    min-height: calc(100vh + 60px);
+    min-height: calc(100dvh + 60px);
+  }
+`;
+
+const BackgroundImage = styled.div`
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/home/terrace.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+
+  &::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-      radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(0,0,0,0.6) 0%,
+      rgba(0,0,0,0.4) 50%,
+      rgba(0,0,0,0.5) 100%
+    );
+    z-index: 2;
     pointer-events: none;
   }
 `;
 
-const HeroContent = styled(motion.div)`
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  margin: 0 auto;
-`;
-
-const HeroTitle = styled(motion.h1)`
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  font-family: ${props => props.theme.fonts.heading};
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-`;
-
-const HeroSubtitle = styled(motion.p)`
-  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-  line-height: 1.6;
-  margin-bottom: 3rem;
-  opacity: 0.95;
-  font-weight: 300;
-`;
-
-const ScrollIndicator = styled(motion.div)`
+const ContentContainer = styled.div`
   position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
+  inset: 0;
+  z-index: 10;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-  
-  &:hover {
-    opacity: 1;
-  }
-  
-  span {
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-  
-  svg {
-    width: 24px;
-    height: 24px;
-    animation: bounce 2s infinite;
-  }
-  
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-10px);
-    }
-    60% {
-      transform: translateY(-5px);
-    }
+  justify-content: center;
+  pointer-events: none;
+`;
+
+const ContentWrapper = styled.div`
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+
+  @media (max-width: 480px) {
+    padding: 0 1.5rem;
   }
 `;
 
-const ContactHero = ({ onScrollToContent }) => {
-  const { t, i18n } = useTranslation();
-  const [forceUpdate, setForceUpdate] = useState(0);
+const HeroTextBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
-  // Принудительное обновление при смене языка
-  useEffect(() => {
-    const handleLanguageChange = () => {
-      setForceUpdate(prev => prev + 1);
-    };
-    
-    i18n.on('languageChanged', handleLanguageChange);
-    
-    return () => {
-      i18n.off('languageChanged', handleLanguageChange);
-    };
-  }, [i18n]);
+const HeroWord = styled.span`
+  display: block;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(4.5rem, 12vw, 9rem);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
 
-  console.log('ContactHero render - Language:', i18n.language, 'Update counter:', forceUpdate);
+  @media (max-width: 768px) {
+    font-size: clamp(3rem, 14vw, 6rem);
+    line-height: 1.05;
+  }
+
+  @media (max-width: 480px) {
+    font-size: clamp(2.5rem, 13vw, 5rem);
+  }
+`;
+
+const LocationText = styled.span`
+  display: block;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  margin-top: 2.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.65rem;
+    margin-top: 2rem;
+  }
+`;
+
+// === COMPONENT ===
+
+const ContactHero = () => {
+  const { t } = useTranslation();
 
   return (
-    <HeroSection>
-      <HeroContent
-        variants={heroTextAnimation}
-        initial="hidden"
-        animate="visible"
-      >
-        <HeroTitle
-          variants={heroTextAnimation}
-          initial="hidden"
-          animate="visible"
-        >
-          {t('contacts.hero.title', 'Контакты')}
-        </HeroTitle>
-        
-        <HeroSubtitle
-          variants={heroTextAnimation}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.3 }}
-        >
-          {t('contacts.hero.subtitle', 'Выберите удобный способ связи')}
-        </HeroSubtitle>
-      </HeroContent>
+    <HeroContainer>
+      <BackgroundImage />
 
-      <ScrollIndicator
-        variants={buttonAnimation}
-        initial="hidden"
-        animate="visible"
-        onClick={onScrollToContent}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <span>{t('common.scroll_down')}</span>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-        </svg>
-      </ScrollIndicator>
-    </HeroSection>
+      <ContentContainer>
+        <ContentWrapper>
+          <HeroTextBlock>
+            <HeroWord>{t('contacts.hero.title', 'Contacts')}</HeroWord>
+            <LocationText>{t('contacts.hero.location', 'Phuket')}</LocationText>
+          </HeroTextBlock>
+        </ContentWrapper>
+      </ContentContainer>
+    </HeroContainer>
   );
 };
 
-export default ContactHero; 
+export default memo(ContactHero);
