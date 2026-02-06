@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, memo } from 'react';
+import React, { useEffect, useRef, memo, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
@@ -29,7 +29,6 @@ const VideoBackground = styled.div`
   position: absolute;
   inset: 0;
   z-index: 1;
-  pointer-events: none;
 
   video {
     position: absolute;
@@ -38,6 +37,7 @@ const VideoBackground = styled.div`
     height: 100%;
     object-fit: cover;
     object-position: center;
+    cursor: pointer;
   }
 
   /* Затемнение поверх видео */
@@ -52,8 +52,16 @@ const VideoBackground = styled.div`
       rgba(0,0,0,0.5) 100%
     );
     z-index: 2;
-    pointer-events: none;
+    pointer-events: none; /* Пропускает клики к видео */
   }
+`;
+
+// Невидимая кнопка для запуска видео на iOS
+const PlayOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  cursor: pointer;
 `;
 
 // Контейнер контента
@@ -129,6 +137,18 @@ const LocationText = styled.span`
 const HeroFullscreen = memo(() => {
   const { t } = useTranslation();
   const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // Функция запуска видео
+  const playVideo = () => {
+    const video = videoRef.current;
+    if (video && video.paused) {
+      video.muted = true;
+      video.play().then(() => {
+        setIsPlaying(true);
+      }).catch(() => {});
+    }
+  };
 
   // Autoplay видео
   useEffect(() => {
@@ -144,9 +164,14 @@ const HeroFullscreen = memo(() => {
     const tryPlay = () => {
       if (video.paused) {
         video.muted = true;
-        video.play().catch(() => {});
+        video.play().then(() => {
+          setIsPlaying(true);
+        }).catch(() => {});
       }
     };
+
+    // Когда видео начинает играть
+    video.addEventListener('playing', () => setIsPlaying(true));
 
     // События видео
     video.addEventListener('canplay', tryPlay);
@@ -161,6 +186,7 @@ const HeroFullscreen = memo(() => {
     return () => {
       video.removeEventListener('canplay', tryPlay);
       video.removeEventListener('loadeddata', tryPlay);
+      video.removeEventListener('playing', () => setIsPlaying(true));
       timeouts.forEach(clearTimeout);
     };
   }, []);
@@ -177,8 +203,12 @@ const HeroFullscreen = memo(() => {
           playsInline
           preload="auto"
           poster={POSTER_URL}
+          onClick={playVideo}
         />
       </VideoBackground>
+
+      {/* Невидимый overlay для тапа на iOS */}
+      {!isPlaying && <PlayOverlay onClick={playVideo} />}
 
       <ContentContainer>
         <ContentWrapper>
