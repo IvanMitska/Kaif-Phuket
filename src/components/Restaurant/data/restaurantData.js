@@ -552,11 +552,65 @@ export const getRestaurantData = (t) => {
     'fat-burner': 'bg-red-100 text-red-700'
   };
 
+  // Category card data for Pasture-style grid
+  const categoryCards = [
+    {
+      key: 'breakfast',
+      number: '01',
+      name: safeT('restaurant.categories.breakfast', 'Завтраки'),
+      description: safeT('restaurant.categories.breakfast_desc', 'Начните утро с авторских блюд от нашего шефа'),
+      image: '/images-optimized/menu/breakfast/kaif-breakfast.jpg'
+    },
+    {
+      key: 'soup',
+      number: '02',
+      name: safeT('restaurant.categories.soup', 'Супы'),
+      description: safeT('restaurant.categories.soup_desc', 'Согревающие бульоны и кремовые классические супы'),
+      image: '/images-optimized/menu/soup/borsch-classic.jpg'
+    },
+    {
+      key: 'salad',
+      number: '03',
+      name: safeT('restaurant.categories.salad', 'Салаты и закуски'),
+      description: safeT('restaurant.categories.salad_desc', 'Свежая зелень и изысканные закуски'),
+      image: '/images-optimized/menu/salad/caesar-salad.jpg'
+    },
+    {
+      key: 'grill',
+      number: '04',
+      name: safeT('restaurant.categories.grill', 'Блюда на мангале'),
+      description: safeT('restaurant.categories.grill_desc', 'Шашлыки на углях и мясо на мангале'),
+      image: '/images-optimized/menu/grill/chicken_kebab.jpg'
+    },
+    {
+      key: 'main',
+      number: '05',
+      name: safeT('restaurant.categories.main', 'Горячие блюда'),
+      description: safeT('restaurant.categories.main_desc', 'Авторские горячие блюда, приготовленные с заботой'),
+      image: '/images-optimized/menu/burger/cheeseburger-deluxe.jpg'
+    },
+    {
+      key: 'side',
+      number: '06',
+      name: safeT('restaurant.categories.side', 'Гарниры'),
+      description: safeT('restaurant.categories.side_desc', 'Идеальное дополнение к основным блюдам'),
+      image: null
+    },
+    {
+      key: 'dessert',
+      number: '07',
+      name: safeT('restaurant.categories.dessert', 'Десерты'),
+      description: safeT('restaurant.categories.dessert_desc', 'Сладкое завершение идеального ужина'),
+      image: '/images-optimized/menu/dessert/apple.jpg'
+    }
+  ];
+
   return {
     menuItems,
     slides,
     tagStyles,
     getMenuByCategory,
-    menuCategories
+    menuCategories,
+    categoryCards
   };
 };

@@ -110,10 +110,9 @@ module.exports = {
       },
       
       fontFamily: {
-        'primary': ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        'heading': ['"Poppins"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        'elegant': ['"Playfair Display"', 'Georgia', 'serif'], // Для спа-секций
-        'strong': ['"Oswald"', 'Impact', 'sans-serif'], // Для спортивных секций
+        'primary': ['"Jost"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        'heading': ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        'kaif': ['"KAIF"', '"Jost"', 'sans-serif'],
         'mono': ['"JetBrains Mono"', 'Consolas', 'monospace'],
       },
 

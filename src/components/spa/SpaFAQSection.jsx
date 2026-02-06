@@ -1,124 +1,88 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  QuestionMarkCircleIcon,
-  ClockIcon,
-  CreditCardIcon,
-  UserGroupIcon,
-  PlusIcon,
-  MinusIcon,
-  ChatBubbleLeftRightIcon,
-  HeartIcon
-} from '@heroicons/react/24/solid';
+import { useTranslation } from 'react-i18next';
 
-// =============================================================================
-// SPA FAQ СЕКЦИЯ (НА ОСНОВЕ ГЛАВНОЙ СТРАНИЦЫ)
-// =============================================================================
+// === STYLED COMPONENTS — Minimalist Pasture Style (matching BanyaFAQSection) ===
 
-const FAQContainer = styled.section`
+const SectionContainer = styled.section`
   position: relative;
-  padding: 5rem 0;
-  background: linear-gradient(135deg, rgba(144, 179, 167, 0.05) 0%, rgba(168, 197, 184, 0.03) 100%);
+  padding: 6rem 0;
+  background-color: #fffef6;
   overflow: hidden;
-  
-  @media (max-width: 768px) {
-    padding: 3rem 0;
-  }
-  
-  @media (max-width: 480px) {
-    padding: 2rem 0;
+
+  @media (min-width: 768px) {
+    padding: 8rem 0;
   }
 `;
 
 const ContentWrapper = styled.div`
-  position: relative;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 0 1.5rem;
-  
-  @media (min-width: 1024px) {
-    padding: 0 2rem;
-  }
-`;
+  padding: 0 2rem;
 
-const SectionHeader = styled(motion.div)`
-  text-align: center;
-  margin-bottom: 3rem;
-  
   @media (max-width: 768px) {
-    margin-bottom: 2rem;
-  }
-  
-  @media (max-width: 480px) {
-    margin-bottom: 1.5rem;
+    padding: 0 1.25rem;
   }
 `;
 
-const SectionBadge = styled(motion.div)`
-  display: inline-flex;
+const Overline = styled.div`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(19, 50, 56, 0.4);
+  margin-bottom: 1.25rem;
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: rgba(144, 179, 167, 0.08);
-  border: 1px solid rgba(144, 179, 167, 0.15);
-  border-radius: 24px;
-  font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #90B3A7;
-  margin-bottom: 2rem;
-  
-  svg {
-    width: 1rem;
-    height: 1rem;
-    color: #90B3A7;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1.5px;
+    background: rgba(19, 50, 56, 0.25);
+    margin-right: 1rem;
   }
 `;
 
-const SectionTitle = styled(motion.h2)`
-  font-family: ${({ theme }) => theme?.fonts?.heading || '"Poppins", sans-serif'};
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 700;
+const Title = styled.h2`
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
   line-height: 1.1;
-  margin-bottom: 1.5rem;
-  color: #0f172a;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
+  color: #133238;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+  max-width: 800px;
 `;
 
-const SectionSubtitle = styled(motion.p)`
-  font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 1.125rem;
+const Subtitle = styled.p`
+  font-family: 'Jost', sans-serif;
+  font-size: 1.05rem;
   line-height: 1.6;
-  color: #64748b;
-  max-width: 600px;
-  margin: 0 auto;
+  color: rgba(19, 50, 56, 0.55);
+  font-weight: 400;
+  max-width: 550px;
+  margin: 0 0 4rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    margin-bottom: 3rem;
+  }
 `;
 
-const FAQList = styled(motion.div)`
+const FAQList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 `;
 
-const FAQItem = styled(motion.div)`
-  background: white;
-  border: 1px solid ${({ $isOpen }) => 
-    $isOpen ? '#e2e8f0' : '#f1f5f9'
-  };
-  border-radius: 16px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  
-  ${({ $isOpen }) => $isOpen && `
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    transform: translateY(-1px);
-  `}
-  
-  &:hover {
-    border-color: #e2e8f0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+const FAQItem = styled.div`
+  border-bottom: 1px solid rgba(19, 50, 56, 0.08);
+
+  &:first-child {
+    border-top: 1px solid rgba(19, 50, 56, 0.08);
   }
 `;
 
@@ -127,259 +91,147 @@ const QuestionButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 0;
   background: none;
   border: none;
   cursor: pointer;
   text-align: left;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: #f8fafc;
-  }
-  
-  @media (max-width: 768px) {
-    padding: 1.2rem 1.5rem;
-  }
-`;
-
-const QuestionContent = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex: 1;
-`;
-
-const QuestionIcon = styled.div`
-  width: 2.5rem;
-  height: 2.5rem;
-  background: rgba(144, 179, 167, 0.08);
-  border: 1px solid rgba(144, 179, 167, 0.15);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #90B3A7;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-  
-  svg {
-    width: 1rem;
-    height: 1rem;
-  }
-  
-  ${FAQItem}:hover & {
-    background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
-    color: white;
-    border-color: transparent;
-  }
+  gap: 1.5rem;
 `;
 
 const QuestionText = styled.h3`
-  font-family: ${({ theme }) => theme?.fonts?.heading || '"Poppins", sans-serif'};
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #0f172a;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #133238;
   margin: 0;
   line-height: 1.4;
+  flex: 1;
 `;
 
-const ToggleIcon = styled(motion.div)`
+const ToggleIcon = styled.div`
   width: 2rem;
   height: 2rem;
-  background: ${({ $isOpen }) => 
-    $isOpen ? 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)' : 'rgba(144, 179, 167, 0.08)'
-  };
-  border-radius: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(19, 50, 56, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${({ $isOpen }) => 
-    $isOpen ? 'white' : '#90B3A7'
-  };
-  transition: all 0.3s ease;
   flex-shrink: 0;
-  box-shadow: ${({ $isOpen }) => 
-    $isOpen ? '0 4px 8px rgba(0, 0, 0, 0.1)' : 'none'
-  };
-  
-  svg {
-    width: 1rem;
-    height: 1rem;
+  position: relative;
+  transition: background 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  background: ${props => props.$isOpen ? '#133238' : 'transparent'};
+  border-color: ${props => props.$isOpen ? '#133238' : 'rgba(19, 50, 56, 0.15)'};
+  transform: ${props => props.$isOpen ? 'rotate(45deg)' : 'rotate(0deg)'};
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    background: ${props => props.$isOpen ? '#fffef6' : '#133238'};
+    transition: background 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 1px;
+  }
+
+  &::before {
+    width: 12px;
+    height: 1.5px;
+  }
+
+  &::after {
+    width: 1.5px;
+    height: 12px;
   }
 `;
 
-const AnswerWrapper = styled(motion.div)`
-  overflow: hidden;
-`;
+const AnswerWrapper = styled.div`
+  display: grid;
+  grid-template-rows: ${props => props.$isOpen ? '1fr' : '0fr'};
+  opacity: ${props => props.$isOpen ? '1' : '0'};
+  transition: grid-template-rows 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 
-const AnswerContent = styled.div`
-  padding: 0 2rem 2rem 5.5rem;
-  
-  @media (max-width: 768px) {
-    padding: 0 1.5rem 2rem 1.5rem;
+  > div {
+    overflow: hidden;
   }
 `;
 
 const AnswerText = styled.p`
-  font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 1rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.95rem;
   line-height: 1.7;
-  color: #64748b;
+  color: rgba(19, 50, 56, 0.6);
   margin: 0;
+  padding-bottom: 1.75rem;
+  transform: ${props => props.$isOpen ? 'translateY(0)' : 'translateY(-8px)'};
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
-// =============================================================================
-// SPA FAQ SECTION COMPONENT
-// =============================================================================
+// === COMPONENT ===
 
 const SpaFAQSection = () => {
   const { t } = useTranslation();
-  const [openFAQ, setOpenFAQ] = useState(null);
+  const [openItem, setOpenItem] = useState(null);
 
-  const toggleFAQ = (index) => {
-    setOpenFAQ(openFAQ === index ? null : index);
+  const toggleItem = (index) => {
+    setOpenItem(openItem === index ? null : index);
   };
 
-  // Animation variants
-  const faqVariants = {
-    hidden: { opacity: 0.4, y: 15 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const answerVariants = {
-    hidden: {
-      height: 0,
-      opacity: 0,
-      transition: {
-        height: { duration: 0.3 },
-        opacity: { duration: 0.2 }
-      }
-    },
-    visible: {
-      height: "auto",
-      opacity: 1,
-      transition: {
-        height: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
-        opacity: { duration: 0.3, delay: 0.1 }
-      }
-    }
-  };
-
-  // SPA FAQ данные
   const faqs = [
     {
-      category: 'services',
-      icon: <HeartIcon />,
-      question: t('spa.faq.questions.services.question', 'Какие SPA услуги вы предлагаете?'),
-      answer: t('spa.faq.questions.services.answer', 'Мы предлагаем полный спектр SPA услуг: массаж (тайский, масляный, спортивный), косметологические процедуры, лазерную эпиляцию, маникюр, педикюр, уход за волосами, а также сауну и хаммам.')
+      question: t('spa.faq.questions.services.question', 'What SPA services do you offer?'),
+      answer: t('spa.faq.questions.services.answer', 'We offer a full range of SPA services: massage (Thai, oil, sports), cosmetology, laser hair removal, manicure, pedicure, hair care, sauna and hammam.')
     },
     {
-      category: 'booking',
-      icon: <ClockIcon />,
-      question: t('spa.faq.questions.booking.question', 'Как записаться на SPA процедуру?'),
-      answer: t('spa.faq.questions.booking.answer', 'Записаться можно по телефону +66 62 480 5877, через WhatsApp или лично в нашем центре. Рекомендуем бронировать заранее, особенно на популярные процедуры.')
+      question: t('spa.faq.questions.booking.question', 'How to book a SPA treatment?'),
+      answer: t('spa.faq.questions.booking.answer', 'You can book by phone +66 62 480 5877, via WhatsApp, or in person at our center. We recommend booking in advance, especially for popular treatments.')
     },
     {
-      category: 'policy',
-      icon: <QuestionMarkCircleIcon />,
-      question: t('spa.faq.questions.policy.question', 'Каковы правила отмены записи?'),
-      answer: t('spa.faq.questions.policy.answer', 'Просим уведомлять об отмене не менее чем за 24 часа до назначенного времени. При отмене менее чем за 24 часа может взиматься плата за отмену в размере 50% от стоимости процедуры.')
+      question: t('spa.faq.questions.policy.question', 'What is the cancellation policy?'),
+      answer: t('spa.faq.questions.policy.answer', 'Please notify us at least 24 hours before the appointment. Cancellations less than 24 hours in advance may incur a fee of 50% of the treatment cost.')
     },
     {
-      category: 'payment',
-      icon: <CreditCardIcon />,
-      question: t('spa.faq.questions.payment.question', 'Какие способы оплаты принимаются?'),
-      answer: t('spa.faq.questions.payment.answer', 'Мы принимаем наличные (THB, USD, EUR), банковские карты всех систем, а также мобильные платежи. Оплата производится после процедуры.')
+      question: t('spa.faq.questions.payment.question', 'What payment methods are accepted?'),
+      answer: t('spa.faq.questions.payment.answer', 'We accept cash (THB, USD, EUR), bank cards of all systems, and mobile payments. Payment is made after the treatment.')
     },
     {
-      category: 'preparation',
-      icon: <UserGroupIcon />,
-      question: t('spa.faq.questions.preparation.question', 'Нужно ли что-то приносить с собой?'),
-      answer: t('spa.faq.questions.preparation.answer', 'Мы предоставляем все необходимое: полотенца, халаты, тапочки и косметические средства. Вам нужно только прийти и расслабиться.')
+      question: t('spa.faq.questions.preparation.question', 'Do I need to bring anything?'),
+      answer: t('spa.faq.questions.preparation.answer', 'We provide everything you need: towels, robes, slippers, and cosmetic products. You just need to come and relax.')
     },
     {
-      category: 'gifts',
-      icon: <HeartIcon />,
-      question: t('spa.faq.questions.gifts.question', 'Есть ли подарочные сертификаты?'),
-      answer: t('spa.faq.questions.gifts.answer', 'Да! Мы предлагаем подарочные сертификаты различного номинала на любые SPA услуги. Их можно приобрести в нашем центре или заказать по телефону.')
+      question: t('spa.faq.questions.gifts.question', 'Do you have gift certificates?'),
+      answer: t('spa.faq.questions.gifts.answer', 'Yes! We offer gift certificates of various denominations for any SPA services. They can be purchased at our center or ordered by phone.')
     }
   ];
 
   return (
-    <FAQContainer>
+    <SectionContainer>
       <ContentWrapper>
-        <SectionHeader>
-          <SectionBadge>
-            <ChatBubbleLeftRightIcon />
-            {t('spa.faq.badge', 'SPA Вопросы')}
-          </SectionBadge>
-          
-          <SectionTitle>
-            {t('spa.faq.title', 'Часто задаваемые вопросы')}
-          </SectionTitle>
-          
-          <SectionSubtitle>
-            {t('spa.faq.subtitle', 'Всё, что нужно знать о наших SPA услугах и процедурах')}
-          </SectionSubtitle>
-        </SectionHeader>
+        <Overline>{t('spa.faq.badge', 'Questions & Answers')}</Overline>
+        <Title>{t('spa.faq.title', 'Frequently Asked Questions')}</Title>
+        <Subtitle>
+          {t('spa.faq.subtitle', 'Everything you need to know about our SPA services and treatments')}
+        </Subtitle>
 
         <FAQList>
           {faqs.map((faq, index) => (
-            <motion.div
-              key={index}
-              variants={faqVariants}
-              custom={index}
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-            >
-              <FAQItem $isOpen={openFAQ === index}>
-                <QuestionButton onClick={() => toggleFAQ(index)}>
-                  <QuestionContent>
-                    <QuestionIcon>
-                      {faq.icon}
-                    </QuestionIcon>
-                    <QuestionText>{faq.question}</QuestionText>
-                  </QuestionContent>
-                  
-                  <ToggleIcon
-                    $isOpen={openFAQ === index}
-                    animate={{ 
-                      rotate: openFAQ === index ? 180 : 0
-                    }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                  >
-                    {openFAQ === index ? <MinusIcon /> : <PlusIcon />}
-                  </ToggleIcon>
-                </QuestionButton>
-
-                <AnimatePresence>
-                  {openFAQ === index && (
-                    <AnswerWrapper
-                      variants={answerVariants}
-                      initial="hidden"
-                      animate="visible"
-                      exit="hidden"
-                    >
-                      <AnswerContent>
-                        <AnswerText>{faq.answer}</AnswerText>
-                      </AnswerContent>
-                    </AnswerWrapper>
-                  )}
-                </AnimatePresence>
-              </FAQItem>
-            </motion.div>
+            <FAQItem key={index}>
+              <QuestionButton onClick={() => toggleItem(index)}>
+                <QuestionText>{faq.question}</QuestionText>
+                <ToggleIcon $isOpen={openItem === index} />
+              </QuestionButton>
+              <AnswerWrapper $isOpen={openItem === index}>
+                <div>
+                  <AnswerText $isOpen={openItem === index}>{faq.answer}</AnswerText>
+                </div>
+              </AnswerWrapper>
+            </FAQItem>
           ))}
         </FAQList>
       </ContentWrapper>
-    </FAQContainer>
+    </SectionContainer>
   );
 };
 

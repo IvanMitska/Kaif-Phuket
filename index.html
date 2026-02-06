@@ -17,9 +17,9 @@
     <style>
       html{scroll-behavior:auto!important}
       *{margin:0;padding:0;box-sizing:border-box}
-      body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',Roboto,sans-serif;background:#fff;color:#2C3E2D}
+      body{font-family:'Jost',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#000;color:#2C3E2D}
       #root{min-height:100vh}
-      .app-loading{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:99999;transition:opacity .3s ease-out}
+      .app-loading{position:fixed;top:0;left:0;right:0;bottom:0;background:#000;z-index:99999;transition:opacity .3s ease-out}
       .app-loading.hidden{opacity:0;pointer-events:none}
 
       /* Critical hero styles - only for hero section, not all sections */
@@ -28,9 +28,9 @@
       picture{display:block}
     </style>
 
-    <!-- Async fonts -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600&family=Bebas+Neue&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600&family=Bebas+Neue&display=swap" media="print" onload="this.media='all'">
+    <!-- Google Fonts - Jost (body) + Plus Jakarta Sans (headings) + Cormorant Garamond (accent) -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Cormorant+Garamond:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
 
     <!-- Preload critical images -->
     <link rel="preload" as="image" href="/images-hero-optimized/spa.webp" type="image/webp" fetchpriority="high">
@@ -66,11 +66,18 @@
       gtag('config', 'GTM-5WP6GKBQ');
     </script>
 
-    <!-- Bitrix24 Chat Widget -->
+    <!-- Bitrix24 Chat Widget — deferred to not block mobile scroll -->
     <script>
       (function(w,d,u){
-        var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
-        var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
+        function loadBitrix(){
+          var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
+          var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
+        }
+        if('ontouchstart' in w || navigator.maxTouchPoints>0){
+          w.addEventListener('load',function(){setTimeout(loadBitrix,5000);});
+        }else{
+          loadBitrix();
+        }
       })(window,document,'https://cdn-ru.bitrix24.ru/b34562104/crm/site_button/loader_4_q4macf.js');
     </script>
   </body>

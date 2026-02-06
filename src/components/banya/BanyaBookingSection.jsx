@@ -1,429 +1,215 @@
-import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
-import { motion } from 'framer-motion';
+import React from 'react';
+import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import {
-  PhoneIcon,
-  ChatBubbleLeftRightIcon,
-  MapPinIcon,
-  ClockIcon,
-  FireIcon,
-  ArrowRightIcon,
-  CalendarDaysIcon
-} from '@heroicons/react/24/solid';
-import BookingModal from '../booking/BookingModal';
 
-// =============================================================================
-// СКАНДИНАВСКАЯ СЕКЦИЯ БРОНИРОВАНИЯ
-// =============================================================================
+// === STYLED COMPONENTS — Minimalist Pasture Style ===
 
-const runeGlow = keyframes`
-  0%, 100% { text-shadow: 0 0 10px #ff6b35, 0 0 20px #ff6b35; }
-  50% { text-shadow: 0 0 20px #ff6b35, 0 0 30px #ff6b35, 0 0 40px #ff6b35; }
-`;
-
-const vikingFlame = keyframes`
-  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
-  25% { transform: scale(1.1) rotate(2deg); opacity: 1; }
-  50% { transform: scale(0.9) rotate(-1deg); opacity: 0.9; }
-  75% { transform: scale(1.05) rotate(1deg); opacity: 0.95; }
-`;
-
-const BookingContainer = styled.section`
-  padding: clamp(5rem, 10vw, 8rem) 0;
-  background:
-    linear-gradient(180deg, #0a0a0a 0%, #0f0d0a 50%, #0a0a0a 100%),
-    radial-gradient(ellipse at 20% 0%, rgba(255, 107, 53, 0.03) 0%, transparent 40%),
-    radial-gradient(ellipse at 80% 100%, rgba(255, 214, 98, 0.03) 0%, transparent 40%);
+const SectionContainer = styled.section`
   position: relative;
+  padding: 6rem 0;
+  background-color: #133238;
   overflow: hidden;
-  margin: 0;
-  
+
+  @media (min-width: 768px) {
+    padding: 8rem 0;
+  }
+
+  /* Background image */
   &::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-      radial-gradient(circle at 30% 20%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
-      radial-gradient(circle at 70% 80%, rgba(255, 107, 53, 0.08) 0%, transparent 50%);
-    z-index: 1;
+    inset: 0;
+    background-image: url('/images/banya/gallery/banya-steam-room.webp');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
   }
-  
+
+  /* Dark overlay 40% */
   &::after {
     content: '';
     position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 50%, #1a1a1a 100%);
-    z-index: 2;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
   }
 `;
 
 const ContentWrapper = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 clamp(1rem, 4vw, 2rem);
   position: relative;
-  z-index: 2;
-`;
-
-const SectionHeader = styled.div`
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
   text-align: center;
-  margin-bottom: clamp(4rem, 8vw, 6rem);
+
+  @media (max-width: 768px) {
+    padding: 0 1.25rem;
+  }
 `;
 
-const VikingBadge = styled(motion.div)`
+const Overline = styled.div`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 254, 246, 0.4);
+  margin-bottom: 1.25rem;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.625rem 1.5rem;
-  background:
-    linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, transparent 100%),
-    rgba(20, 20, 20, 0.4);
-  border: 1px solid rgba(255, 214, 98, 0.25);
-  border-radius: 40px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: #ffd662;
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 
-  &::before {
-    content: '✱';
-    font-size: 1em;
-    color: #ff6b35;
-    opacity: 0.7;
-  }
-`;
-
-const SectionTitle = styled(motion.h2)`
-  font-size: clamp(2.75rem, 7vw, 4.5rem);
-  font-weight: 700;
-  color: transparent;
-  background: linear-gradient(
-    135deg,
-    #ffffff 0%,
-    #f0f0f0 50%,
-    #e0e0e0 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  margin-bottom: 1.75rem;
-  line-height: 1.05;
-  font-family: 'Inter', 'Helvetica Neue', sans-serif;
-  letter-spacing: -0.02em;
-
-  .highlight {
-    background: linear-gradient(
-      135deg,
-      #ff6b35 0%,
-      #ffd662 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-  }
-`;
-
-const SectionDescription = styled(motion.p)`
-  font-size: clamp(1.05rem, 2.25vw, 1.375rem);
-  line-height: 1.7;
-  color: rgba(204, 204, 204, 0.9);
-  max-width: 600px;
-  margin: 0 auto;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  opacity: 0.85;
-`;
-
-const CTAContainer = styled.div`
-  background:
-    linear-gradient(135deg, rgba(20, 18, 15, 0.6) 0%, rgba(10, 10, 10, 0.7) 100%),
-    radial-gradient(ellipse at top left, rgba(255, 107, 53, 0.05) 0%, transparent 50%);
-  border: 1px solid rgba(255, 214, 98, 0.15);
-  border-radius: 32px;
-  padding: 3.5rem 2.5rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(30px) saturate(1.2);
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  
-  &::before {
+  &::before,
+  &::after {
     content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 214, 98, 0.5),
-      transparent
-    );
-    background-size: 200% 100%;
-    animation: shimmer 3s linear infinite;
+    display: inline-block;
+    width: 30px;
+    height: 1.5px;
+    background: rgba(255, 254, 246, 0.2);
   }
-  
-  @keyframes shimmer {
-    0% { background-position: -200px 0; }
-    100% { background-position: 200px 0; }
+
+  &::before {
+    margin-right: 1rem;
   }
-  
-  &:hover {
-    border-color: rgba(255, 214, 98, 0.25);
-    box-shadow:
-      0 25px 70px rgba(0, 0, 0, 0.5),
-      0 10px 30px rgba(255, 107, 53, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    transform: translateY(-2px);
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  &::after {
+    margin-left: 1rem;
   }
 `;
 
-const CTATitle = styled.h3`
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 900;
-  color: #f5f5f5;
-  margin-bottom: 1.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  font-family: 'Bebas Neue', 'Arial Black', sans-serif;
-  
-  .highlight {
-    color: #ff6b35;
-    animation: ${runeGlow} 4s ease-in-out infinite;
-  }
+const Title = styled.h2`
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #fffef6;
+  text-transform: uppercase;
+  margin: 0 0 1.5rem;
 `;
 
-const CTADescription = styled.p`
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  line-height: 1.6;
-  color: #cccccc;
-  margin-bottom: 3rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+const Description = styled.p`
+  font-family: 'Jost', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 254, 246, 0.55);
+  font-weight: 400;
+  max-width: 550px;
+  margin: 0 auto 3rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+  }
 `;
 
 const ContactGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  gap: 1rem;
   margin-bottom: 3rem;
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
   }
 `;
 
-const ContactCard = styled(motion.div)`
-  background:
-    linear-gradient(135deg, rgba(255, 107, 53, 0.03) 0%, transparent 100%),
-    rgba(20, 20, 20, 0.3);
-  border: 1px solid rgba(255, 214, 98, 0.15);
-  border-radius: 24px;
-  padding: 2.25rem 1.75rem;
+const ContactCard = styled.div`
+  background: rgba(255, 254, 246, 0.05);
+  border: 1px solid rgba(255, 254, 246, 0.08);
+  border-radius: 12px;
+  padding: 1.75rem 1.5rem;
   text-align: center;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  
-  &:hover {
-    border-color: rgba(255, 214, 98, 0.3);
-    background:
-      linear-gradient(135deg, rgba(255, 107, 53, 0.08) 0%, transparent 100%),
-      rgba(25, 25, 25, 0.4);
-    transform: translateY(-4px) scale(1.02);
-    box-shadow:
-      0 12px 35px rgba(0, 0, 0, 0.3),
-      0 5px 15px rgba(255, 107, 53, 0.15);
-  }
-`;
-
-const ContactIcon = styled.div`
-  width: 56px;
-  height: 56px;
-  background:
-    linear-gradient(135deg, rgba(255, 107, 53, 0.9) 0%, rgba(255, 140, 66, 0.9) 100%),
-    rgba(30, 30, 30, 0.8);
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1.25rem;
-  box-shadow:
-    0 4px 12px rgba(255, 107, 53, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
-  
-  svg {
-    width: 1.4rem;
-    height: 1.4rem;
-    color: #ffffff;
+  cursor: ${props => props.$clickable ? 'pointer' : 'default'};
+
+  &:hover {
+    border-color: rgba(255, 254, 246, 0.15);
+    background: rgba(255, 254, 246, 0.08);
   }
 `;
 
 const ContactTitle = styled.h4`
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #f5f5f5;
-  margin-bottom: 0.75rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #fffef6;
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 `;
 
 const ContactValue = styled.p`
-  font-size: 1rem;
-  color: #cccccc;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 254, 246, 0.5);
   margin: 0;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  font-weight: 400;
 `;
 
 const ButtonGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   align-items: center;
-  
+
   @media (min-width: 768px) {
     flex-direction: row;
     justify-content: center;
-    gap: 2rem;
+    gap: 1.25rem;
   }
 `;
 
-const VikingButton = styled(motion.button)`
-  display: flex;
+const PrimaryButton = styled.button`
+  display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1.25rem 2.5rem;
-  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
-  color: #ffffff;
+  gap: 0.5rem;
+  padding: 1rem 2.25rem;
+  background: #fffef6;
+  color: #133238;
   border: none;
   border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  text-transform: none;
-  letter-spacing: 0.02em;
-  position: relative;
-  overflow: hidden;
-  min-width: 200px;
-  justify-content: center;
-  box-shadow:
-    0 4px 15px rgba(255, 107, 53, 0.35),
-    0 1px 3px rgba(0, 0, 0, 0.1);
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s ease;
-  }
-  
-  &:hover {
-    transform: translateY(-2px) scale(1.03);
-    box-shadow:
-      0 8px 25px rgba(255, 107, 53, 0.45),
-      0 2px 8px rgba(0, 0, 0, 0.15);
-  
-    &::before {
-      left: 100%;
-    }
-  }
-  
-  svg {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-`;
-
-const SecondaryButton = styled(motion.button)`
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1.25rem 2.5rem;
-  background: rgba(255, 255, 255, 0.02);
-  color: rgba(245, 245, 245, 0.95);
-  border: 1.5px solid rgba(255, 107, 53, 0.35);
-  border-radius: 50px;
-  font-size: 1rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85rem;
   font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  text-transform: none;
-  letter-spacing: 0.02em;
-  backdrop-filter: blur(20px) saturate(1.2);
-  min-width: 200px;
-  justify-content: center;
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
-  
+  transition: all 0.3s ease;
+
   &:hover {
-    background: rgba(255, 107, 53, 0.06);
-    border-color: rgba(255, 214, 98, 0.5);
-    color: #ffd662;
-    transform: translateY(-2px) scale(1.03);
-    box-shadow:
-      0 6px 20px rgba(255, 107, 53, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  }
-  
-  svg {
-    width: 1.5rem;
-    height: 1.5rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
   }
 `;
 
-// Декоративные викингские элементы
-const VikingOrnament = styled.div`
-  position: absolute;
-  font-size: 6rem;
-  color: rgba(255, 107, 53, 0.05);
-  z-index: 1;
-  
-  &.top-left {
-    top: 10%;
-    left: 5%;
-    transform: rotate(-30deg);
-  }
-  
-  &.bottom-right {
-    bottom: 10%;
-    right: 5%;
-    transform: rotate(30deg);
-  }
-  
-  @media (max-width: 768px) {
-    display: none;
+const SecondaryButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2.25rem;
+  background: transparent;
+  color: rgba(255, 254, 246, 0.8);
+  border: 1px solid rgba(255, 254, 246, 0.2);
+  border-radius: 50px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: rgba(255, 254, 246, 0.5);
+    color: #fffef6;
   }
 `;
+
+// === COMPONENT ===
 
 const BanyaBookingSection = () => {
   const { t } = useTranslation();
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-
-  const handleContactClick = () => {
-    const phoneNumber = t('common.phone_number', '+66 62 480 5877');
-    window.open(`tel:${phoneNumber}`, '_self');
-  };
 
   const handleWhatsAppClick = () => {
     const phoneNumber = t('common.phone_number', '+66 62 480 5877');
@@ -431,25 +217,27 @@ const BanyaBookingSection = () => {
     window.open(`https://wa.me/${phoneNumber.replace(/\D/g, '')}?text=${message}`, '_blank');
   };
 
-      const handleLocationClick = () => {
-      window.open('https://maps.app.goo.gl/h7PzpHpBeurg7eK18', '_blank');
-    };
+  const handleContactClick = () => {
+    const phoneNumber = t('common.phone_number', '+66 62 480 5877');
+    window.open(`tel:${phoneNumber}`, '_self');
+  };
+
+  const handleLocationClick = () => {
+    window.open('https://maps.app.goo.gl/h7PzpHpBeurg7eK18', '_blank');
+  };
 
   const contactInfo = [
     {
-      icon: ChatBubbleLeftRightIcon,
       title: t('banya.booking.contact.whatsapp.title', 'WhatsApp'),
       value: t('banya.booking.contact.whatsapp.value', 'Book via WhatsApp'),
       action: handleWhatsAppClick
     },
     {
-      icon: MapPinIcon,
       title: t('banya.booking.contact.location.title', 'Location'),
       value: t('banya.booking.contact.location.value', 'Kathu, Phuket'),
       action: handleLocationClick
     },
     {
-      icon: ClockIcon,
       title: t('banya.booking.contact.hours.title', 'Hours'),
       value: t('banya.booking.contact.hours.value', '17:00 - 22:00'),
       action: null
@@ -457,108 +245,38 @@ const BanyaBookingSection = () => {
   ];
 
   return (
-    <BookingContainer>
-      {/* Декоративные викингские орнаменты */}
-      <VikingOrnament className="top-left">᚛ᚃᚔᚏᚓ᚜</VikingOrnament>
-      <VikingOrnament className="bottom-right">᚛ᚔᚉᚓ᚜</VikingOrnament>
-      
+    <SectionContainer>
       <ContentWrapper>
-        <SectionHeader>
-          <VikingBadge
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            {t('banya.booking.badge', 'Booking')}
-          </VikingBadge>
-          
-          <SectionTitle
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <span dangerouslySetInnerHTML={{ __html: t('banya.booking.title', 'Book the <span className="highlight">Banya</span>') }} />
-          </SectionTitle>
-          
-          <SectionDescription
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            {t('banya.booking.description', 'Contact us through convenient channels for booking')}
-          </SectionDescription>
-        </SectionHeader>
+        <Overline>{t('banya.booking.badge', 'Booking')}</Overline>
+        <Title>{t('banya.booking.cta.title_plain', 'Book the Banya')}</Title>
+        <Description>
+          {t('banya.booking.cta.description', 'Contact us for detailed information about prices, availability and features of our banya programs')}
+        </Description>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <CTAContainer>
-            <CTATitle>
-              <span dangerouslySetInnerHTML={{ __html: t('banya.booking.cta.title', 'Ready to immerse in the world of <span className="highlight">Russian Banya</span>?') }} />
-            </CTATitle>
-            
-            <CTADescription>
-              {t('banya.booking.cta.description', 'Contact us for detailed information about prices, availability and features of our banya programs')}
-            </CTADescription>
-            
-          
-            <ContactGrid>
-              {contactInfo.map((contact, index) => (
-                <ContactCard
-                  key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-                  onClick={contact.action}
-                  style={{ cursor: contact.action ? 'pointer' : 'default' }}
-                >
-                  <ContactIcon>
-                    <contact.icon />
-                  </ContactIcon>
-                  <ContactTitle>{contact.title}</ContactTitle>
-                  <ContactValue>{contact.value}</ContactValue>
-                </ContactCard>
-              ))}
-            </ContactGrid>
-        
-            <ButtonGroup>
-              <VikingButton
-                onClick={() => setIsBookingModalOpen(true)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <CalendarDaysIcon />
-                {t('banya.booking.book_online_button', 'Book Online')}
-              </VikingButton>
+        <ContactGrid>
+          {contactInfo.map((contact, index) => (
+            <ContactCard
+              key={index}
+              $clickable={!!contact.action}
+              onClick={contact.action}
+            >
+              <ContactTitle>{contact.title}</ContactTitle>
+              <ContactValue>{contact.value}</ContactValue>
+            </ContactCard>
+          ))}
+        </ContactGrid>
 
-              <SecondaryButton
-                onClick={handleContactClick}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <PhoneIcon />
-                {t('banya.booking.call_now_button', 'Call Now')}
-              </SecondaryButton>
-            </ButtonGroup>
-          </CTAContainer>
-        </motion.div>
+        <ButtonGroup>
+          <PrimaryButton onClick={handleWhatsAppClick}>
+            {t('banya.booking.book_online_button', 'Book Online')}
+          </PrimaryButton>
+          <SecondaryButton onClick={handleContactClick}>
+            {t('banya.booking.call_now_button', 'Call Now')}
+          </SecondaryButton>
+        </ButtonGroup>
       </ContentWrapper>
-
-      <BookingModal
-        isOpen={isBookingModalOpen}
-        onClose={() => setIsBookingModalOpen(false)}
-        service={t('banya.booking.service', 'Russian Banya')}
-        source="Banya page - booking section"
-      />
-    </BookingContainer>
+    </SectionContainer>
   );
 };
 
-export default BanyaBookingSection; 
+export default BanyaBookingSection;

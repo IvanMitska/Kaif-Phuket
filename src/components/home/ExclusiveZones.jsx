@@ -1,57 +1,43 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import {
-  ArrowLongRightIcon,
-  SparklesIcon,
-  BoltIcon
-} from '@heroicons/react/24/outline';
+import { ArrowLongRightIcon } from '@heroicons/react/24/outline';
 
-// Импорт локального изображения для карточки "Русская баня" (оптимизированный WebP)
-import heroLuxuryImage from '../../assets/images/hero/hero-luxury.webp';
 
-// Основной контейнер - ИСПРАВЛЕН для предотвращения блокировки скролла
+
+// === STYLED COMPONENTS — Asymmetric Pasture-style Grid ===
+
 const SectionContainer = styled.section`
   position: relative;
   padding: 6rem 0;
-  background-color: #ffffff;
-  overflow: hidden;
-  /* ИСПРАВЛЕНИЕ: Не блокируем скролл */
+  background-color: #fffef6;
   touch-action: pan-y;
   overscroll-behavior: auto;
-  -webkit-overscroll-behavior: auto;
-  
+
   @media (min-width: 768px) {
     padding: 8rem 0;
   }
 `;
 
-// Внутренний контейнер
 const ContentWrapper = styled.div`
-  max-width: 1400px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0 2rem;
-  
+
   @media (max-width: 768px) {
-    padding: 0 1.5rem;
+    padding: 0 1.25rem;
   }
 `;
 
-// Заголовок секции
-const SectionHeader = styled.div`
-  margin-bottom: 3rem;
-`;
-
-// Маленький текст над заголовком - PERFORMANCE: убран motion
 const Overline = styled.div`
-  font-family: ${({ theme }) => theme?.fonts?.primary};
-  font-size: 0.9rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
   font-weight: 400;
-  letter-spacing: 3px;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: #90B3A7;
-  margin-bottom: 1.5rem;
+  color: rgba(19, 50, 56, 0.4);
+  margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
 
@@ -59,132 +45,85 @@ const Overline = styled.div`
     content: '';
     display: inline-block;
     width: 30px;
-    height: 2px;
-    background: #90B3A7;
+    height: 1.5px;
+    background: rgba(19, 50, 56, 0.25);
     margin-right: 1rem;
   }
 `;
 
-// Основной заголовок - PERFORMANCE: убран motion
 const Title = styled.h2`
-  font-family: ${({ theme }) => theme?.fonts?.elegant || '"Playfair Display", serif'};
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 300;
-  line-height: 1.2;
-  color: ${({ theme }) => theme?.colors?.text?.primary || '#2C3E2D'};
-  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #133238;
+  text-transform: uppercase;
+  margin: 0 0 4rem;
+  max-width: 800px;
 `;
 
-// Контейнер для категорий
-const CategoriesContainer = styled.div`
-  margin-top: 2rem;
-`;
-
-// Заголовок категории
-const CategoryHeader = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 2.5rem;
-  position: relative;
-  
-  &::after {
-    content: '';
-    flex-grow: 1;
-    height: 1px;
-    background-color: rgba(44, 62, 45, 0.1);
-    margin-left: 2rem;
-  }
-`;
-
-// Заголовок категории
-const CategoryTitle = styled.h3`
-  font-family: ${({ theme }) => theme?.fonts?.elegant || '"Playfair Display", serif'};
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
-  font-weight: 300;
-  margin: 0;
-  color: ${({ theme }) => theme?.colors?.text?.primary || '#2C3E2D'};
-  position: relative;
-  display: flex;
-  align-items: center;
-  
-  svg {
-    width: 24px;
-    height: 24px;
-    margin-right: 1rem;
-    color: #5CB848;
-  }
-`;
-
-// Контейнер для сетки карточек
-const GridContainer = styled.div`
+/* Asymmetric row: 2fr + 1fr, then 1fr + 2fr */
+const GridRow = styled.div`
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 5rem;
-  
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+
   @media (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-  
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
-  }
-  
-  @media (max-width: 767px) {
-    margin-bottom: 4rem;
+    grid-template-columns: ${props => props.$reverse ? '1fr 2fr' : '2fr 1fr'};
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 `;
 
-// Карточка зоны - PERFORMANCE: максимально упрощена
-const ZoneCard = styled.div`
+const ZoneCard = styled(Link)`
   position: relative;
-  height: 280px;
-  border-radius: 16px;
+  display: block;
+  height: 320px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-
-  @media (min-width: 480px) {
-    height: 320px;
-    border-radius: 20px;
-  }
+  text-decoration: none;
 
   @media (min-width: 768px) {
-    height: 360px;
-    border-radius: 24px;
-  }
-
-  @media (min-width: 1024px) {
-    height: 380px;
+    height: 420px;
   }
 
   &::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.1) 0%,
-      rgba(0, 0, 0, 0.7) 100%
+      rgba(0, 0, 0, 0) 30%,
+      rgba(0, 0, 0, 0.6) 100%
     );
     z-index: 1;
+    transition: background 0.3s ease;
+  }
+
+  &:hover::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 20%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
   }
 `;
 
-// Изображение зоны - PERFORMANCE: максимально упрощено
 const ZoneImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
+  transition: transform 0.5s ease;
+
+  ${ZoneCard}:hover & {
+    transform: scale(1.04);
+  }
 `;
 
-// Контент карточки - PERFORMANCE: упрощён
 const CardContent = styled.div`
   position: absolute;
   bottom: 0;
@@ -193,126 +132,67 @@ const CardContent = styled.div`
   padding: 2rem;
   z-index: 2;
   color: #fff;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
 `;
 
-// Название зоны - PERFORMANCE: упрощено
 const ZoneName = styled.h3`
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.75rem;
-  font-weight: 600;
-  margin: 0 0 0.5rem;
-  letter-spacing: 0.5px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 800;
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.01em;
   color: #fff;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
 `;
 
-// Описание зоны - PERFORMANCE: упрощено
 const ZoneDescription = styled.p`
-  font-family: 'Inter', sans-serif;
-  font-size: 1.1rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.95rem;
   line-height: 1.5;
-  margin: 0 0 1.5rem;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 500;
-  letter-spacing: 0.2px;
+  margin: 0 0 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+  max-width: 400px;
 `;
 
-// Кнопка "Подробнее" - PERFORMANCE: максимально упрощена, убран backdrop-filter
 const ExploreButton = styled(Link)`
   display: inline-flex;
   align-items: center;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.8px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
   color: #fff;
   text-decoration: none;
-  padding: 0.8rem 1.5rem;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.65rem 1.4rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50px;
-  transition: background 0.2s ease;
+  transition: background 0.25s ease;
 
   svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     margin-left: 0.5rem;
-    color: #fff;
   }
 
   &:hover {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.25);
     color: #fff;
     text-decoration: none;
   }
 `;
 
-
-
-// Контейнер для кнопок-вкладок
-const TabsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 3rem;
-  position: relative;
-  
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-`;
-
-// TabButton - PERFORMANCE: убран backdrop-filter и тяжёлые эффекты
-const TabButton = styled.button`
-  background: ${props => props.$active ? '#90B3A7' : '#f5f5f5'};
-  color: ${props => props.$active ? 'white' : '#2C3E2D'};
-  border: 2px solid ${props => props.$active ? '#90B3A7' : '#e0e0e0'};
-  border-radius: 50px;
-  padding: 1rem 2.5rem;
-  font-family: ${({ theme }) => theme?.fonts?.primary};
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  transition: background 0.2s ease, border-color 0.2s ease;
-  cursor: pointer;
-  margin: 0 0.8rem;
-  display: flex;
-  align-items: center;
-  min-width: 180px;
-  justify-content: center;
-
-  svg {
-    width: 18px;
-    height: 18px;
-    margin-right: 0.6rem;
-    color: ${props => props.$active ? 'white' : '#90B3A7'};
-  }
-
-  &:hover {
-    background: ${props => props.$active ? '#7fa396' : '#e8e8e8'};
-  }
-
-  &:focus {
-    outline: none;
-  }
-
-  @media (max-width: 768px) {
-    width: 80%;
-    justify-content: center;
-    margin: 0 0 1rem 0;
-    min-width: unset;
-    padding: 0.9rem 2rem;
-  }
-`;
+// === COMPONENT ===
 
 const ExclusiveZones = () => {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState('all');
 
-  // Данные для категории "Активити" с переводами
-  const activityZones = useMemo(() => [
+  const zones = useMemo(() => [
     {
       id: 'fitness',
       name: t('zones.activity.fitness.name'),
@@ -333,11 +213,7 @@ const ExclusiveZones = () => {
       description: t('zones.activity.pool.description'),
       image: '/images/zones/pool.jpg',
       path: '/sports'
-    }
-  ], [t]);
-
-  // Данные для категории "Релакс" с переводами
-  const relaxZones = useMemo(() => [
+    },
     {
       id: 'spa',
       name: t('zones.relax.spa.name'),
@@ -349,7 +225,7 @@ const ExclusiveZones = () => {
       id: 'banya',
       name: t('zones.relax.banya.name'),
       description: t('zones.relax.banya.description'),
-      image: heroLuxuryImage,
+      image: '/images/zones/banya.jpg',
       path: '/banya'
     },
     {
@@ -360,103 +236,44 @@ const ExclusiveZones = () => {
       path: '/restaurant'
     }
   ], [t]);
-  
-  // Функция для отображения карточек зон - PERFORMANCE: убраны анимации
-  const renderZones = (zones, categoryKey) => {
-    return zones.map((zone) => (
-      <ZoneCard key={`${categoryKey}-${zone.id}`}>
-        <ZoneImage src={zone.image} alt={zone.name} loading="lazy" />
-        <CardContent>
-          <ZoneName>{zone.name}</ZoneName>
-          <ZoneDescription>{zone.description}</ZoneDescription>
-          <ExploreButton to={zone.path}>
-            {t('common.exploreMore', 'Подробнее')}
-            <ArrowLongRightIcon />
-          </ExploreButton>
-        </CardContent>
-      </ZoneCard>
-    ));
-  };
-  
-  // Обработчик изменения вкладки с дебаунсом
-  const handleTabChange = (tab) => {
-    if (tab !== activeTab) {
-      setActiveTab(tab);
-    }
-  };
-  
+
+  const renderCard = (zone) => (
+    <ZoneCard key={zone.id} to={zone.path}>
+      <ZoneImage src={zone.image} alt={zone.name} loading="lazy" />
+      <CardContent>
+        <ZoneName>{zone.name}</ZoneName>
+        <ZoneDescription>{zone.description}</ZoneDescription>
+        <ExploreButton as="span">
+          {t('common.learnMore', 'Learn More')}
+          <ArrowLongRightIcon />
+        </ExploreButton>
+      </CardContent>
+    </ZoneCard>
+  );
+
   return (
     <SectionContainer id="exclusive-zones">
       <ContentWrapper>
-        <SectionHeader>
-          <Overline>
-            {t('zones.overline', 'Пространства KAIF')}
-          </Overline>
+        <Overline>{t('zones.overline', 'KAIF Spaces')}</Overline>
+        <Title>{t('zones.title', 'Everything you need for active recreation and relaxation')}</Title>
 
-          <Title>
-            {t('zones.title', 'Всё необходимое для активного отдыха и релаксации')}
-          </Title>
-        </SectionHeader>
-        
-        {/* Кнопки-вкладки */}
-        <TabsContainer>
-          <TabButton 
-            $active={activeTab === 'all'} 
-            onClick={() => handleTabChange('all')}
-          >
-            {t('zones.all', 'Все зоны')}
-          </TabButton>
-          
-          <TabButton 
-            $active={activeTab === 'activity'} 
-            onClick={() => handleTabChange('activity')}
-          >
-            <BoltIcon />
-            {t('zones.activity_label', 'Активити')}
-          </TabButton>
-          
-          <TabButton 
-            $active={activeTab === 'relax'} 
-            onClick={() => handleTabChange('relax')}
-          >
-            <SparklesIcon />
-            {t('zones.relax_label', 'Релакс')}
-          </TabButton>
-        </TabsContainer>
-        
-        <CategoriesContainer>
-          {/* Зона Активити */}
-          {(activeTab === 'all' || activeTab === 'activity') && (
-            <div>
-              <CategoryHeader>
-                <CategoryTitle>
-                  <BoltIcon />
-                  {t('zones.activity_label', 'Активити')}
-                </CategoryTitle>
-              </CategoryHeader>
-              
-              <GridContainer>
-                {renderZones(activityZones, 'activity')}
-              </GridContainer>
-            </div>
-          )}
-          
-          {/* Зона Релакс */}
-          {(activeTab === 'all' || activeTab === 'relax') && (
-            <div>
-              <CategoryHeader>
-                <CategoryTitle>
-                  <SparklesIcon />
-                  {t('zones.relax_label', 'Релакс')}
-                </CategoryTitle>
-              </CategoryHeader>
-              
-              <GridContainer>
-                {renderZones(relaxZones, 'relax')}
-              </GridContainer>
-            </div>
-          )}
-        </CategoriesContainer>
+        {/* Row 1: Gym (large) + Combat (small) */}
+        <GridRow>
+          {renderCard(zones[0])}
+          {renderCard(zones[1])}
+        </GridRow>
+
+        {/* Row 2: Pool (small) + Spa (large) */}
+        <GridRow $reverse>
+          {renderCard(zones[2])}
+          {renderCard(zones[3])}
+        </GridRow>
+
+        {/* Row 3: Banya (large) + Restaurant (small) */}
+        <GridRow>
+          {renderCard(zones[4])}
+          {renderCard(zones[5])}
+        </GridRow>
       </ContentWrapper>
     </SectionContainer>
   );

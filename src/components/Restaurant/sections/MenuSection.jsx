@@ -477,7 +477,7 @@ const MenuSection = ({ menuSectionRef }) => {
             <ShoppingBagIcon className="w-6 h-6" />
             <span className="text-base font-bold">Заказать столик</span>
           </motion.button>
-
+               
           <motion.button
             onClick={handleDownloadPDF}
             className="inline-flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-2xl hover:bg-white hover:text-[#D29B84] transition-all duration-300"

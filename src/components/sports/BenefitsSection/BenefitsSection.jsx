@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
+import styled from 'styled-components';
 import {
   FireIcon,
   UserGroupIcon,
@@ -9,178 +9,179 @@ import {
   SparklesIcon,
   ShieldCheckIcon
 } from '@heroicons/react/24/outline';
-import {
-  BenefitsContainer,
-  BenefitsGrid,
-  BenefitCard,
-  BenefitIcon,
-  BenefitTitle,
-  BenefitDescription,
-  FloatingShape
-} from './BenefitsStyles';
-import { Section, SectionTag, SectionTitle, ContentContainer } from '../../../styles/sports/CommonStyles';
+
+// === STYLED COMPONENTS — Minimalist Pasture Style ===
+
+const SectionContainer = styled.section`
+  position: relative;
+  padding: 6rem 0;
+  background-color: #fffef6;
+
+  @media (min-width: 768px) {
+    padding: 8rem 0;
+  }
+`;
+
+const ContentWrapper = styled.div`
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1.25rem;
+  }
+`;
+
+const Overline = styled.div`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(19, 50, 56, 0.4);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1.5px;
+    background: rgba(19, 50, 56, 0.25);
+    margin-right: 1rem;
+  }
+`;
+
+const Title = styled.h2`
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #133238;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+  max-width: 800px;
+`;
+
+const Subtitle = styled.p`
+  font-family: 'Jost', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(19, 50, 56, 0.55);
+  font-weight: 400;
+  max-width: 550px;
+  margin: 0 0 4rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    margin-bottom: 3rem;
+  }
+`;
+
+const BenefitsGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1100px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+`;
+
+const BenefitCard = styled.div`
+  background: #ffffff;
+  border: 1px solid rgba(19, 50, 56, 0.08);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: rgba(19, 50, 56, 0.15);
+    box-shadow: 0 8px 30px rgba(19, 50, 56, 0.06);
+  }
+`;
+
+const IconWrapper = styled.div`
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(19, 50, 56, 0.04);
+  margin-bottom: 1.5rem;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    color: #133238;
+  }
+`;
+
+const BenefitTitle = styled.h3`
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #133238;
+  margin: 0 0 0.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+`;
+
+const BenefitDescription = styled.p`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(19, 50, 56, 0.55);
+  font-weight: 400;
+  margin: 0;
+`;
+
+// === DATA ===
 
 const benefits = [
-  {
-    icon: FireIcon,
-    titleKey: 'sports.benefits.premium.title',
-    descriptionKey: 'sports.benefits.premium.description',
-    defaultTitle: 'Премиальное оборудование',
-    defaultDescription: 'Тренажеры от ведущих мировых производителей Technogym и Life Fitness',
-    color: '#D29B84'
-  },
-  {
-    icon: UserGroupIcon,
-    titleKey: 'sports.benefits.trainers.title',
-    descriptionKey: 'sports.benefits.trainers.description',
-    defaultTitle: 'Профессиональные тренеры',
-    defaultDescription: 'Сертифицированные специалисты с международным опытом',
-    color: '#90B3A7'
-  },
-  {
-    icon: ClockIcon,
-    titleKey: 'sports.benefits.schedule.title',
-    descriptionKey: 'sports.benefits.schedule.description',
-    defaultTitle: 'Гибкое расписание',
-    defaultDescription: 'Открыты с 07:00 до 22:00 каждый день недели',
-    color: '#C8A8E9'
-  },
-  {
-    icon: CpuChipIcon,
-    titleKey: 'sports.benefits.technology.title',
-    descriptionKey: 'sports.benefits.technology.description',
-    defaultTitle: 'Современные технологии',
-    defaultDescription: 'Мониторинг прогресса и персональные программы тренировок',
-    color: '#D29B84'
-  },
-  {
-    icon: SparklesIcon,
-    titleKey: 'sports.benefits.atmosphere.title',
-    descriptionKey: 'sports.benefits.atmosphere.description',
-    defaultTitle: 'Комфортная атмосфера',
-    defaultDescription: 'Просторные залы с кондиционированием и панорамными окнами',
-    color: '#90B3A7'
-  },
-  {
-    icon: ShieldCheckIcon,
-    titleKey: 'sports.benefits.safety.title',
-    descriptionKey: 'sports.benefits.safety.description',
-    defaultTitle: 'Безопасность превыше всего',
-    defaultDescription: 'Страхование, медицинский контроль и соблюдение всех стандартов',
-    color: '#C8A8E9'
-  }
+  { icon: FireIcon, titleKey: 'sports.benefits.premium.title', descriptionKey: 'sports.benefits.premium.description', defaultTitle: 'Premium Equipment', defaultDescription: 'Machines from world-leading manufacturers Technogym and Life Fitness' },
+  { icon: UserGroupIcon, titleKey: 'sports.benefits.trainers.title', descriptionKey: 'sports.benefits.trainers.description', defaultTitle: 'Professional Trainers', defaultDescription: 'Certified specialists with international experience' },
+  { icon: ClockIcon, titleKey: 'sports.benefits.schedule.title', descriptionKey: 'sports.benefits.schedule.description', defaultTitle: 'Flexible Schedule', defaultDescription: 'Open from 07:00 to 22:00 every day of the week' },
+  { icon: CpuChipIcon, titleKey: 'sports.benefits.technology.title', descriptionKey: 'sports.benefits.technology.description', defaultTitle: 'Modern Technology', defaultDescription: 'Progress monitoring and personalized training programs' },
+  { icon: SparklesIcon, titleKey: 'sports.benefits.atmosphere.title', descriptionKey: 'sports.benefits.atmosphere.description', defaultTitle: 'Comfortable Atmosphere', defaultDescription: 'Spacious halls with air conditioning and panoramic windows' },
+  { icon: ShieldCheckIcon, titleKey: 'sports.benefits.safety.title', descriptionKey: 'sports.benefits.safety.description', defaultTitle: 'Safety First', defaultDescription: 'Insurance, medical oversight and compliance with all standards' }
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: 'easeOut'
-    }
-  }
-};
+// === COMPONENT ===
 
 const BenefitsSection = () => {
   const { t } = useTranslation();
 
   return (
-    <Section>
-      {/* Статичные декоративные элементы без анимации для производительности */}
-      <FloatingShape
-        style={{
-          top: '10%',
-          left: '5%',
-          width: '200px',
-          height: '200px',
-          background: 'radial-gradient(circle, rgba(210, 155, 132, 0.1) 0%, transparent 70%)',
-          opacity: 0.4
-        }}
-      />
+    <SectionContainer>
+      <ContentWrapper>
+        <Overline>{t('sports.benefits.tag', 'Why Choose Us')}</Overline>
+        <Title>{t('sports.benefits.title_plain', 'Advantages')}</Title>
+        <Subtitle>{t('sports.benefits.subtitle', 'Everything you need for effective training')}</Subtitle>
 
-      <FloatingShape
-        style={{
-          bottom: '10%',
-          right: '5%',
-          width: '150px',
-          height: '150px',
-          background: 'radial-gradient(circle, rgba(144, 179, 167, 0.1) 0%, transparent 70%)',
-          opacity: 0.4
-        }}
-      />
-
-      <ContentContainer>
-        <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-          <SectionTag
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5 }}
-          >
-            {t('sports.benefits.tag', 'Почему выбирают нас')}
-          </SectionTag>
-
-          <SectionTitle
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7 }}
-            dangerouslySetInnerHTML={{
-              __html: t('sports.benefits.title', 'Преимущества <span>спортивного комплекса</span> KAIF')
-            }}
-          />
-        </div>
-
-        <BenefitsContainer>
-          <BenefitsGrid
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            {benefits.map((benefit, index) => {
-              const IconComponent = benefit.icon;
-
-              return (
-                <BenefitCard
-                  key={index}
-                  variants={cardVariants}
-                  whileHover={{
-                    y: -10,
-                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
-                    transition: { duration: 0.3 }
-                  }}
-                >
-                  <BenefitIcon color={benefit.color}>
-                    <IconComponent />
-                  </BenefitIcon>
-
-                  <BenefitTitle>
-                    {t(benefit.titleKey, benefit.defaultTitle)}
-                  </BenefitTitle>
-
-                  <BenefitDescription>
-                    {t(benefit.descriptionKey, benefit.defaultDescription)}
-                  </BenefitDescription>
-                </BenefitCard>
-              );
-            })}
-          </BenefitsGrid>
-        </BenefitsContainer>
-      </ContentContainer>
-    </Section>
+        <BenefitsGrid>
+          {benefits.map((benefit, index) => {
+            const IconComponent = benefit.icon;
+            return (
+              <BenefitCard key={index}>
+                <IconWrapper>
+                  <IconComponent />
+                </IconWrapper>
+                <BenefitTitle>{t(benefit.titleKey, benefit.defaultTitle)}</BenefitTitle>
+                <BenefitDescription>{t(benefit.descriptionKey, benefit.defaultDescription)}</BenefitDescription>
+              </BenefitCard>
+            );
+          })}
+        </BenefitsGrid>
+      </ContentWrapper>
+    </SectionContainer>
   );
 };
 

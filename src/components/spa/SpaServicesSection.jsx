@@ -1,511 +1,396 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { ArrowLongRightIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 import { getSpaData } from './data/spaData';
-// import SpaServiceModal from './SpaServiceModal'; // Временно отключено
 
-// =============================================================================
-// ОПТИМИЗИРОВАННАЯ СЕКЦИЯ УСЛУГ SPA
-// =============================================================================
+// === STYLED COMPONENTS — Minimalist Pasture Style ===
 
-// Контейнер секции
-const ServicesSection = styled.section`
-  padding: 5rem 0;
-  background: linear-gradient(135deg, rgba(144, 179, 167, 0.02) 0%, rgba(168, 197, 184, 0.01) 100%);
+const SectionContainer = styled.section`
   position: relative;
-  overflow: hidden;
-  
-  @media (max-width: 768px) {
-    padding: 3rem 0;
+  padding: 6rem 0;
+  background-color: #fffef6;
+
+  @media (min-width: 768px) {
+    padding: 8rem 0;
   }
 `;
 
-const SectionContainer = styled.div`
-  max-width: 1400px;
+const ContentWrapper = styled.div`
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0 2rem;
-  
+
   @media (max-width: 768px) {
-    padding: 0 1.5rem;
-  }
-  
-  @media (max-width: 480px) {
-    padding: 0 1rem;
+    padding: 0 1.25rem;
   }
 `;
 
-// Заголовок секции
-const SectionHeader = styled.div`
-  text-align: center;
-  margin-bottom: 3rem;
-  
-  @media (max-width: 768px) {
-    margin-bottom: 2rem;
+const Overline = styled.div`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(19, 50, 56, 0.4);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1.5px;
+    background: rgba(19, 50, 56, 0.25);
+    margin-right: 1rem;
   }
 `;
 
-const SectionTitle = styled(motion.h2)`
-  font-size: 3rem;
-  font-weight: 600;
-  color: #5A6B5D;
-  margin-bottom: 1rem;
-  font-family: ${props => props.theme.fonts.heading};
-  
-  @media (max-width: 768px) {
-    font-size: 2.8rem;
-    margin-bottom: 1rem;
-  }
-  
-  @media (max-width: 480px) {
-    font-size: 2.4rem;
-    margin-bottom: 1rem;
-  }
+const Title = styled.h2`
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #133238;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+  max-width: 800px;
 `;
 
-const SectionSubtitle = styled(motion.p)`
-  font-size: 1.25rem;
-  color: #7A8A7D;
+const Subtitle = styled.p`
+  font-family: 'Jost', sans-serif;
+  font-size: 1.05rem;
   line-height: 1.6;
-  max-width: 600px;
-  margin: 0 auto;
-  
-  @media (max-width: 768px) {
-    font-size: 1.3rem;
-    padding: 0 1.5rem;
-    line-height: 1.6;
-  }
-  
-  @media (max-width: 480px) {
-    font-size: 1.2rem;
-    padding: 0 1rem;
-    line-height: 1.5;
-  }
-`;
+  color: rgba(19, 50, 56, 0.55);
+  font-weight: 400;
+  max-width: 550px;
+  margin: 0 0 3rem;
 
-// Табы категорий
-const CategoryTabsContainer = styled.div`
-  margin-bottom: 3rem;
-  
   @media (max-width: 768px) {
+    font-size: 0.95rem;
     margin-bottom: 2rem;
   }
 `;
 
 const CategoryTabs = styled.div`
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  gap: 1rem;
-  
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+
   @media (max-width: 768px) {
-    justify-content: center;
-    flex-wrap: wrap;
     gap: 0.5rem;
-  }
-  
-  @media (max-width: 480px) {
-    gap: 0.4rem;
+    margin-bottom: 2rem;
   }
 `;
 
-const CategoryTab = styled(motion.button)`
-  padding: 0.75rem 1.5rem;
-  background: ${props => props.active ? 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)' : 'rgba(255, 255, 255, 0.9)'};
-  color: ${props => props.active ? 'white' : '#5A6B5D'};
-  border: 2px solid ${props => props.active ? '#90B3A7' : 'rgba(144, 179, 167, 0.2)'};
-  border-radius: 25px;
+const CategoryTab = styled.button`
+  padding: 0.7rem 1.5rem;
+  background: ${props => props.$active ? '#133238' : 'transparent'};
+  color: ${props => props.$active ? '#fffef6' : 'rgba(19, 50, 56, 0.6)'};
+  border: 1px solid ${props => props.$active ? '#133238' : 'rgba(19, 50, 56, 0.15)'};
+  border-radius: 50px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
   cursor: pointer;
-  font-weight: 500;
   transition: all 0.3s ease;
   white-space: nowrap;
-  flex-shrink: 0;
-  
+
   &:hover {
-    background: ${props => props.active ? 'linear-gradient(135deg, #A8C5B8 0%, #B8CFC2 100%)' : 'rgba(144, 179, 167, 0.15)'};
-    border-color: #90B3A7;
+    border-color: #133238;
+    color: ${props => props.$active ? '#fffef6' : '#133238'};
   }
-  
+
   @media (max-width: 768px) {
-    padding: 0.8rem 1.4rem;
-    font-size: 0.9rem;
-    border-radius: 25px;
-    box-shadow: ${props => props.active ? '0 4px 12px rgba(144, 179, 167, 0.3)' : '0 2px 8px rgba(0, 0, 0, 0.1)'};
-    
-    &:hover {
-      transform: translateY(-1px);
-      box-shadow: ${props => props.active ? '0 6px 16px rgba(144, 179, 167, 0.4)' : '0 4px 12px rgba(144, 179, 167, 0.2)'};
-    }
-  }
-  
-  @media (max-width: 480px) {
-    padding: 0.7rem 1.2rem;
-    font-size: 0.85rem;
-    border-radius: 20px;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
   }
 `;
 
-// Сетка услуг - упрощенная для мобильных
-const ServicesGrid = styled(motion.div)`
+const ServicesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  
-  @media (max-width: 1024px) {
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+
+  @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
   }
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    padding: 0;
-  }
-  
-  @media (max-width: 480px) {
-    gap: 2rem;
+
+  @media (min-width: 1100px) {
+    grid-template-columns: repeat(3, 1fr);
   }
 `;
 
-const ServiceCard = styled(motion.div)`
-  background: white;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+const ServiceCard = styled.div`
+  background: #ffffff;
+  border: 1px solid rgba(19, 50, 56, 0.08);
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 240px;
   transition: all 0.3s ease;
-  cursor: pointer;
-  height: auto;
-  
+
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  }
-  
-  @media (max-width: 768px) {
-    border-radius: 16px;
+    border-color: rgba(19, 50, 56, 0.15);
+    box-shadow: 0 8px 30px rgba(19, 50, 56, 0.06);
   }
 `;
 
-const ServiceDetails = styled.div`
-  padding: 1.5rem;
-  
-  @media (max-width: 768px) {
-    padding: 2rem;
-  }
-  
-  @media (max-width: 480px) {
-    padding: 1.8rem;
-  }
+const CardHeader = styled.div`
+  flex: 1;
+  margin-bottom: 1.5rem;
 `;
 
 const ServiceName = styled.h3`
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #5A6B5D;
-  margin-bottom: 0.75rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #133238;
+  margin: 0 0 0.5rem;
   line-height: 1.3;
-  
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  @media (max-width: 480px) {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-  }
+  letter-spacing: -0.01em;
 `;
 
 const ServiceDescription = styled.p`
-  color: #7A8A7D;
-  line-height: 1.5;
-  margin-bottom: 1rem;
-  font-size: 0.95rem;
-  
-  @media (max-width: 768px) {
-    font-size: 1.1rem;
-    margin-bottom: 1.2rem;
-    line-height: 1.6;
-  }
-  
-  @media (max-width: 480px) {
-    font-size: 1.05rem;
-    margin-bottom: 1.2rem;
-    line-height: 1.6;
-  }
-`;
-
-const ServicePrice = styled.div`
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #90B3A7;
-  margin-bottom: 0.5rem;
-  
-  @media (max-width: 768px) {
-    font-size: 1.4rem;
-    margin-bottom: 0.8rem;
-  }
-  
-  @media (max-width: 480px) {
-    font-size: 1.3rem;
-    margin-bottom: 0.8rem;
-  }
-`;
-
-const ServiceDuration = styled.div`
+  font-family: 'Jost', sans-serif;
   font-size: 0.9rem;
-  color: #7A8A7D;
-  
-  @media (max-width: 768px) {
-    font-size: 1rem;
-  }
-  
-  @media (max-width: 480px) {
-    font-size: 0.95rem;
-  }
+  line-height: 1.6;
+  color: rgba(19, 50, 56, 0.55);
+  font-weight: 400;
+  margin: 0;
 `;
 
-const PopularBadge = styled.div`
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: linear-gradient(135deg, #E8A87C 0%, #F8B88C 100%);
-  color: white;
-  padding: 0.3rem 0.8rem;
-  border-radius: 15px;
-  font-size: 0.75rem;
-  font-weight: 600;
+const CardFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 1.5rem;
+  margin-top: auto;
+  border-top: 1px solid rgba(19, 50, 56, 0.06);
+`;
+
+const DurationBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+`;
+
+const FooterLabel = styled.span`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 2px 8px rgba(232, 168, 124, 0.3);
-  
-  @media (max-width: 768px) {
-    top: 0.75rem;
-    right: 0.75rem;
-    padding: 0.25rem 0.6rem;
-    font-size: 0.7rem;
-    border-radius: 12px;
-  }
-  
-  @media (max-width: 480px) {
-    top: 0.6rem;
-    right: 0.6rem;
-    padding: 0.2rem 0.5rem;
-    font-size: 0.65rem;
-    border-radius: 10px;
-  }
+  color: rgba(19, 50, 56, 0.35);
 `;
 
-// Кнопка показать больше/меньше
+const DurationValue = styled.span`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgba(19, 50, 56, 0.7);
+`;
+
+const PriceBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+`;
+
+const PriceValue = styled.span`
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #133238;
+  letter-spacing: -0.02em;
+`;
+
+const DurationsDetail = styled.div`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(19, 50, 56, 0.5);
+  margin-top: 0.5rem;
+`;
+
 const ShowMoreContainer = styled.div`
   text-align: center;
   margin-top: 3rem;
 `;
 
-const ShowMoreButton = styled(motion.button)`
+const ShowMoreButton = styled.button`
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 2rem;
+  gap: 0.5rem;
+  padding: 1rem 2.25rem;
   background: transparent;
-  color: #90B3A7;
-  border: 2px solid #90B3A7;
+  color: rgba(19, 50, 56, 0.6);
+  border: 1px solid rgba(19, 50, 56, 0.15);
   border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 500;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
-  
+
+  &:hover {
+    border-color: #133238;
+    color: #133238;
+  }
+
   svg {
     width: 1rem;
     height: 1rem;
     transition: transform 0.3s ease;
   }
-  
-  &:hover {
-    background: #90B3A7;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(144, 179, 167, 0.3);
-  }
-  
-  @media (max-width: 768px) {
-    padding: 0.875rem 1.75rem;
-    font-size: 0.9rem;
-  }
 `;
+
+const ChevronDown = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="6 9 12 15 18 9" />
+  </svg>
+);
+
+const ChevronUp = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="18 15 12 9 6 15" />
+  </svg>
+);
+
+// === COMPONENT ===
 
 const SpaServicesSection = () => {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState('massage');
-  // const [selectedService, setSelectedService] = useState(null); // Временно отключено
-  // const [isModalOpen, setIsModalOpen] = useState(false); // Временно отключено
   const [showAllServices, setShowAllServices] = useState(false);
-  
+
   const spaData = getSpaData(t);
   const { allServices, serviceCategories } = spaData;
-  
-  // Основные категории для мобильного (самые популярные)
+
   const mainCategories = ['massage', 'manicure', 'pedicure', 'eyelashes', 'brows', 'hair-care', 'laser', 'endosphere'];
   const visibleCategories = serviceCategories.filter(cat => mainCategories.includes(cat.id));
-  
-  // Функция для получения услуг по категории
+
   const getServicesByCategory = (categoryId) => {
     return allServices.filter(service => service.category === categoryId);
   };
-  
+
   const currentCategoryServices = getServicesByCategory(activeCategory);
-  const SERVICES_TO_SHOW = 6; // Показываем 6 услуг изначально (2 полных ряда по 3 карточки)
+  const SERVICES_TO_SHOW = 6;
   const currentServices = showAllServices ? currentCategoryServices : currentCategoryServices.slice(0, SERVICES_TO_SHOW);
-  
-  // Сброс состояния "показать все" при смене категории
+
   useEffect(() => {
     setShowAllServices(false);
   }, [activeCategory]);
-  
-  // Убеждаемся, что активная категория доступна в видимых категориях
+
   useEffect(() => {
     if (!visibleCategories.find(cat => cat.id === activeCategory)) {
       setActiveCategory(visibleCategories[0]?.id || 'massage');
     }
   }, []);
 
-  const handleServiceClick = (service) => {
-    // Модальное окно временно отключено
-    console.log('Выбрана услуга:', service.name);
-  };
-
-  // const closeModal = () => {
-  //   setIsModalOpen(false);
-  //   setSelectedService(null);
-  // }; // Временно отключено
-
-  // Функция для форматирования цены
   const formatPrice = (service) => {
     if (service.durations && service.prices) {
-      // Для услуг с различными временными интервалами
       return `${Math.min(...service.prices)} - ${Math.max(...service.prices)} ฿`;
     } else if (service.priceFrom && service.priceTo) {
-      // Для услуг с диапазоном цен
       return `${service.priceFrom} - ${service.priceTo} ฿`;
     } else if (service.priceFrom) {
-      // Для услуг с ценой "от"
       return t('spa.services.price_from', `от ${service.priceFrom} ฿`, { price: service.priceFrom });
     } else {
-      // Для услуг с фиксированной ценой
       return `${service.price} ฿`;
     }
   };
 
-  // Функция для отображения продолжительности
   const formatDurations = (service) => {
     if (service.durations && service.prices) {
-      return service.durations.map((duration, index) => 
+      return service.durations.map((duration, index) =>
         t('spa.services.duration_price', `${duration} мин - ${service.prices[index]} ฿`, { duration, price: service.prices[index] })
-      ).join(' • ');
+      ).join(' · ');
+    }
+    return null;
+  };
+
+  const getDurationDisplay = (service) => {
+    if (service.durations) {
+      const min = Math.min(...service.durations);
+      const max = Math.max(...service.durations);
+      return min === max ? `${min} min` : `${min}-${max} min`;
+    }
+    if (service.duration) {
+      return `${service.duration} min`;
     }
     return null;
   };
 
   return (
-    <ServicesSection>
-      <SectionContainer>
-        <SectionHeader>
-          <SectionTitle
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            {t('spa.services.title', 'Наши услуги')}
-          </SectionTitle>
-          <SectionSubtitle
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            {t('spa.services.subtitle', 'Полный спектр SPA и Beauty услуг для вашего комфорта и красоты')}
-          </SectionSubtitle>
-        </SectionHeader>
+    <SectionContainer>
+      <ContentWrapper>
+        <Overline>{t('spa.services.badge', 'Services')}</Overline>
+        <Title>{t('spa.services.title', 'Our Services')}</Title>
+        <Subtitle>
+          {t('spa.services.subtitle', 'Full range of SPA and Beauty services for your comfort and beauty')}
+        </Subtitle>
 
-        <CategoryTabsContainer>
-          <CategoryTabs>
-            {visibleCategories.map((category, index) => (
-              <CategoryTab
-                key={category.id}
-                active={activeCategory === category.id}
-                onClick={() => setActiveCategory(category.id)}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {category.name}
-              </CategoryTab>
-            ))}
-          </CategoryTabs>
-        </CategoryTabsContainer>
+        <CategoryTabs>
+          {visibleCategories.map((category) => (
+            <CategoryTab
+              key={category.id}
+              $active={activeCategory === category.id}
+              onClick={() => setActiveCategory(category.id)}
+            >
+              {category.name}
+            </CategoryTab>
+          ))}
+        </CategoryTabs>
 
-        <ServicesGrid
-          key={activeCategory}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          {currentServices.map((service, index) => {
-            const categoryData = serviceCategories.find(cat => cat.id === service.category);
-            
-            return (
-              <ServiceCard
-                key={service.id}
-                layout
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -30 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-                onClick={() => handleServiceClick(service)}
-              >
-                <ServiceDetails>
-                  <ServiceName>{service.name}</ServiceName>
-                  <ServiceDescription>{service.description}</ServiceDescription>
-                  <ServicePrice>{formatPrice(service)}</ServicePrice>
-                  {formatDurations(service) && (
-                    <ServiceDuration>⏱ {formatDurations(service)}</ServiceDuration>
+        <ServicesGrid key={activeCategory}>
+          {currentServices.map((service) => (
+            <ServiceCard key={service.id}>
+              <CardHeader>
+                <ServiceName>{service.name}</ServiceName>
+                <ServiceDescription>{service.description}</ServiceDescription>
+                {formatDurations(service) && (
+                  <DurationsDetail>{formatDurations(service)}</DurationsDetail>
+                )}
+              </CardHeader>
+
+              <CardFooter>
+                <DurationBlock>
+                  {getDurationDisplay(service) && (
+                    <>
+                      <FooterLabel>{t('spa.services.duration_label', 'Duration')}</FooterLabel>
+                      <DurationValue>{getDurationDisplay(service)}</DurationValue>
+                    </>
                   )}
-                </ServiceDetails>
-              </ServiceCard>
-            );
-          })}
+                </DurationBlock>
+                <PriceBlock>
+                  <FooterLabel>{t('spa.services.price_label', 'Price')}</FooterLabel>
+                  <PriceValue>{formatPrice(service)}</PriceValue>
+                </PriceBlock>
+              </CardFooter>
+            </ServiceCard>
+          ))}
         </ServicesGrid>
 
         {currentCategoryServices.length > SERVICES_TO_SHOW && (
           <ShowMoreContainer>
-            <ShowMoreButton
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setShowAllServices(!showAllServices)}
-            >
-              {showAllServices ? t('spa.services.show_less', 'Показать меньше') : t('spa.services.show_more', `Показать ещё ${currentCategoryServices.length - SERVICES_TO_SHOW} услуг`, { count: currentCategoryServices.length - SERVICES_TO_SHOW })}
-              {showAllServices ? <ChevronUpIcon /> : <ChevronDownIcon />}
+            <ShowMoreButton onClick={() => setShowAllServices(!showAllServices)}>
+              {showAllServices
+                ? t('spa.services.show_less', 'Show less')
+                : t('spa.services.show_more', `Show ${currentCategoryServices.length - SERVICES_TO_SHOW} more`, { count: currentCategoryServices.length - SERVICES_TO_SHOW })
+              }
+              {showAllServices ? <ChevronUp /> : <ChevronDown />}
             </ShowMoreButton>
           </ShowMoreContainer>
         )}
-      </SectionContainer>
-
-      {/* Модальное окно временно отключено
-      <SpaServiceModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        service={selectedService}
-        categoryData={selectedService ? serviceCategories.find(cat => cat.id === selectedService.category) : null}
-      />
-      */}
-    </ServicesSection>
+      </ContentWrapper>
+    </SectionContainer>
   );
 };
 

@@ -7,20 +7,18 @@ export const useLoading = () => useContext(LoadingContext);
 export const LoadingProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isContentReady, setIsContentReady] = useState(false);
-  const loadingRef = useRef(false);
   const isInitialLoad = useRef(true);
+  const transitionTimer = useRef(null);
 
   // Начальная загрузка при первом открытии
   React.useEffect(() => {
     if (isInitialLoad.current) {
       isInitialLoad.current = false;
-      // Даём React LoadingScreen отрендериться, потом скрываем HTML лоадер
       requestAnimationFrame(() => {
         if (window.hideInitialLoader) {
           window.hideInitialLoader();
         }
       });
-      // Показываем контент, потом скрываем загрузку
       setTimeout(() => {
         setIsContentReady(true);
         setTimeout(() => {
@@ -28,7 +26,7 @@ export const LoadingProvider = ({ children }) => {
         }, 300);
       }, 500);
 
-      // Fallback: гарантированно показать контент через 2 секунды
+      // Fallback
       setTimeout(() => {
         setIsContentReady(true);
         setIsLoading(false);
@@ -38,33 +36,40 @@ export const LoadingProvider = ({ children }) => {
 
   // Показать загрузку при переходе между страницами
   const showPageTransition = useCallback((duration = 350) => {
-    if (loadingRef.current) return Promise.resolve();
+    // Очищаем предыдущий таймер если есть
+    if (transitionTimer.current) {
+      clearTimeout(transitionTimer.current);
+      transitionTimer.current = null;
+    }
 
-    loadingRef.current = true;
+    // Сбрасываем body styles
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
 
-    // Сразу показываем загрузку и скрываем контент
+    // Показываем loading screen мгновенно
     setIsLoading(true);
-    setIsContentReady(false);
+
+    // Скролл наверх
     window.scrollTo(0, 0);
 
     return new Promise((resolve) => {
-      setTimeout(() => {
-        // Сначала показываем контент ЗА экраном загрузки
-        setIsContentReady(true);
-        // Даём контенту загрузиться перед fade out
-        setTimeout(() => {
-          setIsLoading(false);
-          loadingRef.current = false;
-          resolve();
-        }, 300);
+      transitionTimer.current = setTimeout(() => {
+        setIsLoading(false);
+        transitionTimer.current = null;
+        resolve();
       }, duration);
     });
   }, []);
 
   const hideLoading = useCallback(() => {
+    if (transitionTimer.current) {
+      clearTimeout(transitionTimer.current);
+      transitionTimer.current = null;
+    }
     setIsLoading(false);
     setIsContentReady(true);
-    loadingRef.current = false;
   }, []);
 
   return (
@@ -77,4 +82,4 @@ export const LoadingProvider = ({ children }) => {
       {children}
     </LoadingContext.Provider>
   );
-}; 
+};

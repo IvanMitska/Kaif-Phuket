@@ -1,192 +1,203 @@
 import React from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { SparklesIcon, HeartIcon, UserGroupIcon, StarIcon } from '@heroicons/react/24/outline';
 
-// =============================================================================
-// ОПТИМИЗИРОВАННАЯ СЕКЦИЯ ПРЕИМУЩЕСТВ SPA
-// =============================================================================
+// === STYLED COMPONENTS — Minimalist Pasture Style ===
 
-const FeaturesSection = styled.section`
-  padding: 8rem 2rem;
-  background: linear-gradient(135deg, 
-    #f5f3f0 0%,
-    #ede9e4 50%,
-    #e6e2dc 100%
-  );
+const SectionContainer = styled.section`
   position: relative;
+  padding: 6rem 0;
+  background-color: #fffef6;
+
+  @media (min-width: 768px) {
+    padding: 8rem 0;
+  }
 `;
 
-const SectionContainer = styled.div`
-  max-width: 1400px;
+const ContentWrapper = styled.div`
+  max-width: 1300px;
   margin: 0 auto;
-  position: relative;
+  padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1.25rem;
+  }
 `;
 
-const SectionTitle = styled(motion.h2)`
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  color: #5A6B5D;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
-`;
-
-const SectionSubtitle = styled(motion.p)`
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
-  color: #7A8A7D;
-  text-align: center;
-  max-width: 700px;
-  margin: 2.5rem auto 4.5rem auto;
-  line-height: 1.8;
+const Overline = styled.div`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
   font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(19, 50, 56, 0.4);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1.5px;
+    background: rgba(19, 50, 56, 0.25);
+    margin-right: 1rem;
+  }
+`;
+
+const Title = styled.h2`
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #133238;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+  max-width: 800px;
+`;
+
+const Subtitle = styled.p`
+  font-family: 'Jost', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(19, 50, 56, 0.55);
+  font-weight: 400;
+  max-width: 550px;
+  margin: 0 0 4rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    margin-bottom: 3rem;
+  }
 `;
 
 const FeaturesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2.5rem;
-  max-width: 1200px;
-  margin: 4rem auto 0;
-  
-  @media (min-width: 992px) {
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
     grid-template-columns: repeat(4, 1fr);
   }
 `;
 
-const FeatureCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.8);
+const FeatureCard = styled.div`
+  background: #ffffff;
+  border: 1px solid rgba(19, 50, 56, 0.08);
+  border-radius: 12px;
   padding: 2.5rem 2rem;
-  border-radius: 25px;
-  box-shadow: 0 10px 30px rgba(144, 179, 167, 0.08);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
   transition: all 0.3s ease;
-  border: 1px solid rgba(144, 179, 167, 0.1);
-  
+
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(144, 179, 167, 0.15);
+    border-color: rgba(19, 50, 56, 0.15);
+    box-shadow: 0 8px 30px rgba(19, 50, 56, 0.06);
   }
 `;
 
-const FeatureIcon = styled.div`
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(144, 179, 167, 0.15) 0%, rgba(184, 196, 168, 0.15) 100%);
+const IconWrapper = styled.div`
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(19, 50, 56, 0.04);
+  border: 1px solid rgba(19, 50, 56, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
-  color: #90B3A7;
+  color: #133238;
   transition: all 0.3s ease;
-  
-  &:hover {
-    background: linear-gradient(135deg, rgba(144, 179, 167, 0.25) 0%, rgba(184, 196, 168, 0.25) 100%);
-    transform: scale(1.05);
-  }
-  
+
   svg {
-    width: 36px;
-    height: 36px;
+    width: 22px;
+    height: 22px;
+  }
+
+  ${FeatureCard}:hover & {
+    background: #133238;
+    border-color: #133238;
+    color: #fffef6;
   }
 `;
 
 const FeatureTitle = styled.h3`
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: #5A6B5D;
-  transition: color 0.3s ease;
-  
-  ${FeatureCard}:hover & {
-    color: #90B3A7;
-  }
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #133238;
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
 `;
 
 const FeatureDescription = styled.p`
-  font-size: 1rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
   line-height: 1.6;
-  color: #7A8A7D;
-  margin-bottom: 0;
+  color: rgba(19, 50, 56, 0.5);
   font-weight: 400;
+  margin: 0;
 `;
+
+// === COMPONENT ===
 
 const SpaFeaturesSection = () => {
   const { t } = useTranslation();
-  
+
   const features = [
     {
       id: 1,
       icon: <SparklesIcon />,
-      title: t('spa.features.premium_quality.title', 'Премиум качество'),
-      description: t('spa.features.premium_quality.description', 'Используем только лучшие продукты и оборудование для всех процедур')
+      title: t('spa.features.premium_quality.title', 'Premium Quality'),
+      description: t('spa.features.premium_quality.description', 'We use only the best products and equipment for all treatments')
     },
     {
       id: 2,
       icon: <HeartIcon />,
-      title: t('spa.features.full_relaxation.title', 'Полное расслабление'),
-      description: t('spa.features.full_relaxation.description', 'Создаем атмосферу комфорта для вашего расслабления и отдыха')
+      title: t('spa.features.full_relaxation.title', 'Full Relaxation'),
+      description: t('spa.features.full_relaxation.description', 'Creating an atmosphere of comfort for your relaxation and rest')
     },
     {
       id: 3,
       icon: <UserGroupIcon />,
-      title: t('spa.features.experienced_masters.title', 'Опытные мастера'),
-      description: t('spa.features.experienced_masters.description', 'Специалисты с многолетним опытом и постоянным развитием навыков')
+      title: t('spa.features.experienced_masters.title', 'Experienced Masters'),
+      description: t('spa.features.experienced_masters.description', 'Specialists with years of experience and continuous skill development')
     },
     {
       id: 4,
       icon: <StarIcon />,
-      title: t('spa.features.individual_approach.title', 'Индивидуальный подход'),
-      description: t('spa.features.individual_approach.description', 'Учитываем ваши пожелания и особенности для максимального результата')
+      title: t('spa.features.individual_approach.title', 'Individual Approach'),
+      description: t('spa.features.individual_approach.description', 'We consider your preferences and needs for maximum results')
     }
   ];
 
   return (
-    <FeaturesSection>
-      <SectionContainer>
-        <SectionTitle
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          {t('spa.features.title', 'Почему выбирают нас')}
-        </SectionTitle>
-
-        <SectionSubtitle
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          {t('spa.features.subtitle', 'Мы стремимся предоставить вам исключительный опыт релаксации и ухода')}
-        </SectionSubtitle>
+    <SectionContainer>
+      <ContentWrapper>
+        <Overline>{t('spa.features.badge', 'Why Choose Us')}</Overline>
+        <Title>{t('spa.features.title', 'Why Choose Us')}</Title>
+        <Subtitle>
+          {t('spa.features.subtitle', 'We strive to provide you with an exceptional relaxation and care experience')}
+        </Subtitle>
 
         <FeaturesGrid>
-          {features.map((feature, index) => (
-            <FeatureCard
-              key={feature.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
-            >
-              <FeatureIcon>
+          {features.map((feature) => (
+            <FeatureCard key={feature.id}>
+              <IconWrapper>
                 {feature.icon}
-              </FeatureIcon>
-              
+              </IconWrapper>
               <FeatureTitle>{feature.title}</FeatureTitle>
               <FeatureDescription>{feature.description}</FeatureDescription>
             </FeatureCard>
           ))}
         </FeaturesGrid>
-      </SectionContainer>
-    </FeaturesSection>
+      </ContentWrapper>
+    </SectionContainer>
   );
 };
 

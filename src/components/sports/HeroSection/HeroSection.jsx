@@ -1,35 +1,123 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  ArrowRightIcon,
-  FireIcon,
-  BoltIcon,
-  TrophyIcon,
-  HeartIcon,
-  CalendarDaysIcon
-} from '@heroicons/react/24/outline';
-import { motion } from 'framer-motion';
-// TODO: Временно отключено - BookingModal
-// import BookingModal from '../../booking/BookingModal';
+import styled from 'styled-components';
 
-const WHATSAPP_NUMBER = '66624805877';
+const HeroContainer = styled.section`
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  overflow: hidden;
+  background: #000;
 
-import {
-  HeroSection as HeroSectionContainer,
-  HeroContainer,
-  HeroContent,
-  HeroTitle,
-  HeroSubtitle,
-  HeroCTAContainer,
-  PrimaryButton,
-  SecondaryButton,
-  HeroImageContainer,
-  HeroImage,
-  HeroImageGlow,
-  HeroImageFrame
-} from './HeroStyles';
+  @media (max-width: 768px) {
+    height: 100svh;
+  }
+`;
 
-// Слайдер изображений для фона
+const BackgroundSlider = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+`;
+
+const BackgroundImage = styled.div`
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 2s ease-in-out;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(0,0,0,0.6) 0%,
+      rgba(0,0,0,0.4) 50%,
+      rgba(0,0,0,0.5) 100%
+    );
+    z-index: 2;
+    pointer-events: none;
+  }
+`;
+
+const ContentContainer = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+`;
+
+const ContentWrapper = styled.div`
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+
+  @media (max-width: 480px) {
+    padding: 0 1.5rem;
+  }
+`;
+
+const HeroTextBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const HeroWord = styled.span`
+  display: block;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(4.5rem, 12vw, 9rem);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: clamp(4rem, 20vw, 7rem);
+    line-height: 1.05;
+  }
+
+  @media (max-width: 480px) {
+    font-size: clamp(3.5rem, 22vw, 6rem);
+  }
+`;
+
+const LocationText = styled.span`
+  display: block;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  margin-top: 2.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.65rem;
+    margin-top: 2rem;
+  }
+`;
+
 const heroImages = [
   '/images/sports/gym/gym-1.jpg',
   '/images/sports/fight-club/fight-1.jpg',
@@ -39,256 +127,40 @@ const heroImages = [
 
 const HeroSection = () => {
   const { t } = useTranslation();
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  const handleBookClick = () => {
-    const message = encodeURIComponent('Здравствуйте! Хочу записаться на тренировку в KAIF.');
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
-  };
-
-  // Автоматическая смена изображений
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) =>
-        (prevIndex + 1) % heroImages.length
-      );
-    }, 5000); // Меняем каждые 5 секунд
-
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <HeroSectionContainer
-      style={{
-        backgroundImage: `linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.7) 100%), url(${heroImages[currentImageIndex]})`
-      }}
-    >
-      <HeroContainer>
-        <HeroContent
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.2 }}
+    <HeroContainer>
+      <BackgroundSlider>
+        {heroImages.map((src, index) => (
+          <BackgroundImage
+            key={index}
             style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.6rem',
-              background: '#FFE600',
-              padding: '0.7rem 1.4rem',
-              borderRadius: '0',
-              border: 'none',
-              marginBottom: '1.5rem',
-              fontSize: '0.85rem',
-              fontWeight: '800',
-              color: '#000000',
-              textTransform: 'uppercase',
-              letterSpacing: '2px',
-              boxShadow: '0 6px 24px rgba(255, 230, 0, 0.4)'
+              backgroundImage: `url(${src})`,
+              opacity: currentSlide === index ? 1 : 0,
+              zIndex: currentSlide === index ? 2 : 1
             }}
-          >
-            <FireIcon style={{ width: '18px', height: '18px', color: '#000000' }} />
-            {t('sports.hero.tag', 'YOUR ELITE FITNESS')}
-          </motion.div>
-
-          <HeroTitle
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.25, delay: 0.05 }}
-          >
-            {t('sports.hero.main_title_1', 'YOUR')}
-            <br />
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.2, delay: 0.1 }}
-              style={{
-                background: 'linear-gradient(135deg, #FFE600 0%, #FFA500 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                display: 'inline-block'
-              }}
-            >
-              {t('sports.hero.main_title_2', 'ELITE')}
-            </motion.span>
-            <br />
-            {t('sports.hero.main_title_3', 'FITNESS')}
-            <br />
-            <motion.span
-              style={{
-                fontSize: '0.5em',
-                fontWeight: '400',
-                color: 'rgba(255, 255, 255, 0.7)',
-                letterSpacing: '0.1em'
-              }}
-            >
-              {t('sports.hero.main_title_4', 'EXPERIENCE')}
-            </motion.span>
-          </HeroTitle>
-
-          <HeroSubtitle
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.2, delay: 0.1 }}
-          >
-            {t('sports.hero.subtitle', 'Современные тренажеры, профессиональные тренеры и атмосфера для достижения ваших спортивных целей')}
-          </HeroSubtitle>
-
-          <HeroCTAContainer
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.2, delay: 0.15 }}
-          >
-            <PrimaryButton
-              as="button"
-              onClick={handleBookClick}
-              whileHover={{ scale: 1.05, boxShadow: '0 15px 50px rgba(210, 155, 132, 0.6)' }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <CalendarDaysIcon />
-              {t('sports.hero.primary_cta', 'BOOK A TRAINING')}
-            </PrimaryButton>
-
-            <SecondaryButton
-              as="a"
-              href="#facilities"
-              whileHover={{ scale: 1.05, borderColor: 'rgba(255, 255, 255, 1)' }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {t('sports.hero.secondary_cta', 'LEARN MORE')}
-            </SecondaryButton>
-          </HeroCTAContainer>
-
-          {/* Дополнительная информация */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.2, delay: 0.2 }}
-            style={{
-              display: 'flex',
-              gap: '2rem',
-              marginTop: '2rem',
-              flexWrap: 'wrap'
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              <div style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '0',
-                background: '#FFE600',
-                border: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <TrophyIcon style={{ width: '20px', height: '20px', color: '#000000' }} />
-              </div>
-              <div>
-                <div style={{ fontSize: '1.3rem', fontWeight: '900', color: '#FFF', lineHeight: '1' }}>70+</div>
-                <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                  {t('sports.hero.equipment_count', 'Equipment')}
-                </div>
-              </div>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              <div style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '0',
-                background: '#FFE600',
-                border: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <FireIcon style={{ width: '20px', height: '20px', color: '#000000' }} />
-              </div>
-              <div>
-                <div style={{ fontSize: '1.3rem', fontWeight: '900', color: '#FFF', lineHeight: '1' }}>10+</div>
-                <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                  {t('sports.hero.trainers_count', 'Pro Trainers')}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-        </HeroContent>
-
-        {/* Большое изображение справа */}
-        <HeroImageContainer
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          <HeroImageGlow />
-          <HeroImageFrame
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.2, delay: 0.1 }}
           />
-          <HeroImage
-            src="/images/sports/gym/gym-1.jpg"
-            alt="Elite Fitness"
-            loading="eager"
-          />
+        ))}
+      </BackgroundSlider>
 
-          {/* Декоративные плашки */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.2, delay: 0.2 }}
-            style={{
-              position: 'absolute',
-              bottom: '20px',
-              right: '20px',
-              background: '#FFFFFF',
-              padding: '1.2rem 2rem',
-              borderRadius: '0',
-              border: 'none',
-              boxShadow: '0 10px 40px rgba(255, 255, 255, 0.3)',
-              zIndex: 3
-            }}
-            className="hero-badge-right"
-          >
-            <div style={{
-              fontSize: '2.2rem',
-              fontWeight: '900',
-              color: '#000000',
-              lineHeight: '1',
-              marginBottom: '0.3rem',
-              letterSpacing: '-0.02em'
-            }}>
-              500+
-            </div>
-            <div style={{
-              fontSize: '0.7rem',
-              fontWeight: '800',
-              color: '#000000',
-              textTransform: 'uppercase',
-              letterSpacing: '0.15em'
-            }}>
-              {t('sports.hero.members_badge', 'MEMBERS')}
-            </div>
-          </motion.div>
-        </HeroImageContainer>
-      </HeroContainer>
-
-      {/* TODO: Временно отключено - BookingModal, используем WhatsApp
-      <BookingModal
-        isOpen={isBookingModalOpen}
-        onClose={() => setIsBookingModalOpen(false)}
-        service={t('sports.booking.service', 'Fitness Training')}
-        source="Sports page - Hero"
-      />
-      */}
-    </HeroSectionContainer>
+      <ContentContainer>
+        <ContentWrapper>
+          <HeroTextBlock>
+            <HeroWord>{t('sports.hero.title', 'Sports')}</HeroWord>
+            <LocationText>{t('sports.hero.location', 'Phuket')}</LocationText>
+          </HeroTextBlock>
+        </ContentWrapper>
+      </ContentContainer>
+    </HeroContainer>
   );
 };
 
-export default HeroSection;
+export default memo(HeroSection);

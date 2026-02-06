@@ -44,7 +44,7 @@ button {
   --color-tertiary: #b8c4a8;
 
   /* Backgrounds */
-  --color-background: #ffffff;
+  --color-background: #000000;
   --color-surface: #ffffff;
   --color-surface-secondary: #fdfcfa;
 
@@ -71,8 +71,8 @@ button {
   --color-info: #4a90b8;
 
   /* Typography */
-  --font-primary: "KAIF", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-heading: "KAIF", "Playfair Display", Georgia, serif;
+  --font-primary: "Jost", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Spacing */
   --section-padding: 5rem 0;
@@ -138,7 +138,6 @@ h6 {
 
 p,
 span,
-div,
 a,
 button,
 input,
@@ -147,7 +146,6 @@ li,
 label {
   font-family: var(--font-primary);
   font-weight: 400;
-  margin-bottom: 1rem;
   letter-spacing: 0.01em;
 }
 
@@ -191,13 +189,13 @@ section:not([class]) {
 
 /* Оптимизация скролла для всего документа */
 html {
-  /* Принудительно включаем плавный скролл */
-  scroll-behavior: smooth !important;
+  /* НЕ используем scroll-behavior: smooth — ломает скролл на iOS Safari */
+  scroll-behavior: auto;
   /* Оптимизация для мобильных устройств */
   -webkit-overflow-scrolling: touch;
-  /* Предотвращаем bounce эффект на iOS */
-  overscroll-behavior-y: contain;
-  -webkit-overscroll-behavior-y: contain;
+  /* Разрешаем нормальный overscroll */
+  overscroll-behavior-y: auto;
+  -webkit-overscroll-behavior-y: auto;
 }
 
 body {
@@ -259,7 +257,7 @@ a,
     overflow-x: hidden;
     /* Оптимизация для iOS Safari */
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
+    overscroll-behavior-y: auto;
   }
 }
 
@@ -268,8 +266,8 @@ section[class*="Hero"],
 section[class*="hero"] {
   /* Не создаем стекинг контекст без необходимости */
   isolation: auto;
-  /* Минимальная оптимизация */
-  contain: layout style;
+  /* НЕ используем contain: layout — ломает скролл на iOS в сочетании с overflow:hidden */
+  contain: none;
   /* Не блокируем скролл */
   touch-action: pan-y;
   scroll-snap-align: none !important;

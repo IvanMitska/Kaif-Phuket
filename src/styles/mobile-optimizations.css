@@ -24,8 +24,6 @@
   /* Улучшаем скролл на iOS */
   body {
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior: none;
-    -webkit-overscroll-behavior: none;
   }
 }
 

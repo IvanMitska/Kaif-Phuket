@@ -1,1079 +1,621 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { 
-  XMarkIcon, 
-  ChevronLeftIcon, 
-  ChevronRightIcon,
-  PhotoIcon,
-  EyeIcon,
-  HeartIcon
-} from '@heroicons/react/24/outline';
-import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
-import { 
-  useLazyImage, 
-  useIntersectionObserver, 
-  usePerformanceOptimization,
-  useTouchGestures,
-  useModal,
-  useLocalStorage
-} from './hooks/useLazyLoading';
+import { XMarkIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
+// === STYLED COMPONENTS — Minimalist Pasture Style ===
 
-
-// Основные стили с оптимизацией производительности
-const SectionContainer = styled(motion.section)`
+const SectionContainer = styled.section`
   position: relative;
   padding: 6rem 0;
-  background: linear-gradient(135deg, #fafafa 0%, #ffffff 50%, #f8fffe 100%);
-  overflow: hidden;
-  min-height: auto;
-  /* Оптимизация производительности */
-  will-change: auto;
-  transform: translateZ(0);
-  
-  @media (max-width: 1024px) {
-    padding: 4rem 0;
-  }
-  
-  @media (max-width: 768px) {
-    padding: 3rem 0;
-  }
-  
-  @media (max-width: 480px) {
-    padding: 2rem 0;
-    min-height: auto;
-  }
+  background-color: #fffef6;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-      radial-gradient(circle at 20% 80%, rgba(144, 179, 167, 0.08) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(212, 165, 116, 0.06) 0%, transparent 50%),
-      radial-gradient(circle at 50% 50%, rgba(232, 115, 74, 0.03) 0%, transparent 60%);
-    pointer-events: none;
+  @media (min-width: 768px) {
+    padding: 8rem 0;
   }
 `;
 
-const ContentWrapper = styled(motion.div)`
-  max-width: 1400px;
+const ContentWrapper = styled.div`
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0 2rem;
-  position: relative;
-  z-index: 1;
-  
+
   @media (max-width: 768px) {
-    padding: 0 1.5rem;
-  }
-  
-  @media (max-width: 480px) {
-    padding: 0 1rem;
+    padding: 0 1.25rem;
   }
 `;
 
-const SectionHeader = styled(motion.div)`
-  text-align: center;
-  margin-bottom: 4rem;
-  
-  @media (max-width: 768px) {
-    margin-bottom: 3rem;
-  }
-  
-  @media (max-width: 480px) {
-    margin-bottom: 2rem;
-  }
-`;
-
-const Overline = styled(motion.p)`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #90B3A7;
-  margin-bottom: 1rem;
-  opacity: 0.9;
-  
-  @media (max-width: 480px) {
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-  }
-`;
-
-const SectionTitle = styled(motion.h2)`
-  font-family: 'Playfair Display', serif;
-  font-size: 3.5rem;
-  font-weight: 600;
-  color: #2C3E2D;
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-  
-  @media (max-width: 1024px) {
-    font-size: 3rem;
-  }
-  
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  @media (max-width: 480px) {
-    font-size: 2rem;
-    line-height: 1.3;
-  }
-`;
-
-const SectionSubtitle = styled(motion.p)`
-  font-family: 'Inter', sans-serif;
-  font-size: 1.25rem;
-  color: #5A6B5D;
-  max-width: 800px;
-  margin: 0 auto 2.5rem;
-  line-height: 1.8;
+const Overline = styled.div`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
   font-weight: 400;
-  opacity: 0.9;
-  
-  @media (max-width: 768px) {
-    font-size: 1.125rem;
-    margin-bottom: 2rem;
-  }
-  
-  @media (max-width: 480px) {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-  }
-`;
-
-const FilterBar = styled(motion.div)`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 3rem;
-  
-  @media (max-width: 768px) {
-    gap: 0.75rem;
-    margin-bottom: 2rem;
-  }
-  
-  @media (max-width: 480px) {
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
-`;
-
-const FilterButton = styled(motion.button)`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 2.5rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 1.5px;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.25s ease-out;
-  position: relative;
-  overflow: hidden;
-  font-family: 'Inter', sans-serif;
-  text-decoration: none;
-  min-width: 140px;
-  text-align: center;
-  /* Оптимизация производительности */
-  will-change: transform, background-color, box-shadow;
-  transform: translateZ(0);
-  
-  background: ${({ active }) => active 
-    ? 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)' 
-    : 'rgba(255, 255, 255, 0.1)'};
-  color: ${({ active }) => active ? 'white' : '#2C3E2D'};
-  box-shadow: ${({ active }) => active 
-    ? '0 8px 32px rgba(144, 179, 167, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2)' 
-    : '0 4px 20px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.25)'};
-  backdrop-filter: blur(25px);
-  border: 1px solid ${({ active }) => active 
-    ? 'rgba(255, 255, 255, 0.3)' 
-    : 'rgba(255, 255, 255, 0.15)'};
-  
+  color: rgba(19, 50, 56, 0.4);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+
   &::before {
     content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transition: left 0.8s ease;
+    display: inline-block;
+    width: 30px;
+    height: 1.5px;
+    background: rgba(19, 50, 56, 0.25);
+    margin-right: 1rem;
   }
-  
+`;
+
+const Title = styled.h2`
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #133238;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+  max-width: 800px;
+`;
+
+const Subtitle = styled.p`
+  font-family: 'Jost', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(19, 50, 56, 0.55);
+  font-weight: 400;
+  max-width: 550px;
+  margin: 0 0 3rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+`;
+
+/* Filter pills */
+const FilterBar = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    gap: 0.4rem;
+    margin-bottom: 2rem;
+  }
+`;
+
+const FilterButton = styled.button`
+  font-family: 'Jost', sans-serif;
+  padding: 0.6rem 1.25rem;
+  background: ${props => props.$active ? '#133238' : 'transparent'};
+  color: ${props => props.$active ? '#fffef6' : 'rgba(19, 50, 56, 0.5)'};
+  border: 1px solid ${props => props.$active ? '#133238' : 'rgba(19, 50, 56, 0.15)'};
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: ${props => props.$active ? '500' : '400'};
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover {
+    color: ${props => props.$active ? '#fffef6' : '#133238'};
+    border-color: ${props => props.$active ? '#133238' : 'rgba(19, 50, 56, 0.4)'};
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+`;
+
+/* Asymmetric gallery grid */
+const GalleryGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 240px;
+    gap: 1.25rem;
+  }
+`;
+
+/* Keyframes for fade-in animation */
+const fadeInUp = `
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+`;
+
+// Inject keyframes
+if (typeof document !== 'undefined' && !document.getElementById('gallery-animations')) {
+  const style = document.createElement('style');
+  style.id = 'gallery-animations';
+  style.textContent = fadeInUp;
+  document.head.appendChild(style);
+}
+
+const GalleryItem = styled.div`
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  height: 260px;
+  animation: fadeInUp 0.5s ease forwards;
+  animation-delay: ${props => props.$delay || '0s'};
+  opacity: 0;
+
+  @media (min-width: 768px) {
+    height: auto;
+
+    /* Asymmetric layout: 1st and 5th items span 2 rows */
+    &:nth-child(1),
+    &:nth-child(5) {
+      grid-row: span 2;
+    }
+  }
+
   &::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
-    opacity: 0;
-    transition: all 0.4s ease;
-    border-radius: 50px;
-    z-index: -1;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+    z-index: 1;
+    transition: background 0.3s ease;
   }
-  
-  &:hover {
-    transform: translateY(-4px) scale(1.03);
-    color: ${({ active }) => active ? 'white' : 'white'};
-    background: ${({ active }) => active 
-      ? 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)' 
-      : 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)'};
-    box-shadow: ${({ active }) => active 
-      ? '0 12px 45px rgba(144, 179, 167, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4)' 
-      : '0 8px 35px rgba(144, 179, 167, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5)'};
-    border-color: rgba(255, 255, 255, 0.4);
-    
-    &::before {
-      left: 100%;
-    }
-    
-    &::after {
-      opacity: 0;
-    }
+
+  &:hover::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 30%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
   }
-  
-  &:active {
-    transform: translateY(-2px) scale(0.98);
-  }
-  
-  @media (max-width: 768px) {
-    padding: 0.875rem 2rem;
-    font-size: 0.8rem;
-    min-width: 120px;
-    letter-spacing: 1.2px;
-  }
-  
-  @media (max-width: 480px) {
-    padding: 0.75rem 1.75rem;
-    font-size: 0.75rem;
-    min-width: 100px;
-    letter-spacing: 1px;
+
+  &:hover img {
+    transform: scale(1.04);
   }
 `;
 
-const SliderContainer = styled(motion.div)`
-  position: relative;
-  width: 100%;
-  max-width: 1200px;
-  margin: 3rem auto;
-  overflow: hidden;
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-  background: transparent;
-  touch-action: pan-y;
-  will-change: auto;
-  pointer-events: auto;
-  
-  @media (max-width: 768px) {
-    margin: 2rem auto;
-    border-radius: 16px;
-  }
-  
-  @media (max-width: 480px) {
-    margin: 1.5rem auto;
-    border-radius: 12px;
-  }
-`;
-
-const SliderTrack = styled(motion.div)`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  will-change: transform;
-  background: transparent;
-  margin: 0;
-  padding: 0;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  touch-action: pan-y;
-`;
-
-const Slide = styled(motion.div)`
-  flex-shrink: 0;
-  width: 100%;
-  height: 650px;
-  position: relative;
-  background: transparent;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-  border: none;
-  pointer-events: auto;
-  will-change: auto;
-  
-  @media (max-width: 768px) {
-    height: 500px;
-  }
-  
-  @media (max-width: 480px) {
-    height: 400px;
-  }
-`;
-
-const SlideImage = styled(motion.img)`
+const GalleryImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  cursor: pointer;
-  will-change: auto;
-  backface-visibility: hidden;
-  transform: translateZ(0);
+  object-position: ${props => props.$position || 'center'};
+  transition: transform 0.5s ease;
   display: block;
-  margin: 0;
-  padding: 0;
-  border: none;
-  outline: none;
-  vertical-align: top;
-  object-position: ${props => props.$customPosition || 'center'};
-  loading: lazy;
-  pointer-events: auto;
-  
-  &:hover {
-    transition: opacity 0.3s ease-out;
-    opacity: 0.95;
-  }
 `;
 
-const SlideOverlay = styled(motion.div)`
+const ImageCaption = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 2.5rem 3rem;
-  background: transparent;
-  color: white;
-  pointer-events: none;
-  
-  @media (max-width: 768px) {
-    padding: 2rem 2.5rem;
-  }
-  
-  @media (max-width: 480px) {
-    padding: 1.5rem 2rem;
-  }
+  padding: 1.5rem;
+  z-index: 2;
+  color: #fff;
 `;
 
-const SlideTitle = styled(motion.h3)`
-  font-family: 'Playfair Display', serif;
-  font-size: 1.875rem;
-  font-weight: 500;
+const CaptionTitle = styled.h3`
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
   margin: 0;
-  color: white;
-  text-shadow: 
-    0 0 20px rgba(0, 0, 0, 0.9),
-    0 2px 8px rgba(0, 0, 0, 0.8),
-    0 4px 16px rgba(0, 0, 0, 0.7),
-    0 8px 32px rgba(0, 0, 0, 0.5);
-  pointer-events: auto;
-  line-height: 1.2;
-  
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-  }
-  
-  @media (max-width: 480px) {
-    font-size: 1.25rem;
-  }
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
 `;
 
-const SlideDescription = styled(motion.p)`
-  font-family: 'Inter', sans-serif;
-  font-size: 1.125rem;
-  color: white;
-  opacity: 0.95;
-  line-height: 1.7;
-  max-width: 600px;
-  text-shadow: 
-    0 0 16px rgba(0, 0, 0, 0.9),
-    0 2px 6px rgba(0, 0, 0, 0.8),
-    0 4px 12px rgba(0, 0, 0, 0.5);
-  pointer-events: auto;
-  
-  @media (max-width: 768px) {
-    font-size: 1rem;
-  }
-  
-  @media (max-width: 480px) {
-    font-size: 0.95rem;
-  }
-`;
-
-const SliderButton = styled(motion.button)`
-  position: absolute !important;
-  top: 50% !important;
-  transform: translateY(-50%) translateZ(0) !important;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  color: #2C3E2D;
-  border: none;
-  border-radius: 50%;
-  width: 2.5rem;
-  height: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease-out;
-  z-index: 10;
-  opacity: 0.8;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  /* Оптимизация производительности */
-  will-change: transform, opacity;
-  
-  &:hover {
-    opacity: 1;
-    background: rgba(255, 255, 255, 1);
-    transform: translateY(-50%) scale(1.03) translateZ(0) !important;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  }
-  
-  &:active {
-    transform: translateY(-50%) scale(0.97) translateZ(0) !important;
-  }
-  
-  &:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-    
-    &:hover {
-      transform: translateY(-50%) !important;
-      background: rgba(255, 255, 255, 0.9);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-  }
-  
-  &.prev {
-    left: 1rem;
-  }
-  
-  &.next {
-    right: 1rem;
-  }
-  
-  svg {
-    width: 1rem;
-    height: 1rem;
-    opacity: 0.8;
-  }
-  
-  @media (max-width: 768px) {
-    width: 2.25rem;
-    height: 2.25rem;
-    
-    &.prev {
-      left: 0.75rem;
-    }
-    
-    &.next {
-      right: 0.75rem;
-    }
-    
-    svg {
-      width: 0.875rem;
-      height: 0.875rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    width: 2rem;
-    height: 2rem;
-    
-    &.prev {
-      left: 0.5rem;
-    }
-    
-    &.next {
-      right: 0.5rem;
-    }
-    
-    svg {
-      width: 0.75rem;
-      height: 0.75rem;
-    }
-  }
-`;
-
-
-
-
-// Модальное окно
-const ModalOverlay = styled(motion.div)`
+/* Lightbox modal */
+const ModalOverlay = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.95);
-  z-index: 1000;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  
-  @media (max-width: 480px) {
-    padding: 1rem;
-  }
+  opacity: ${props => props.$visible ? '1' : '0'};
+  transition: opacity 0.3s ease;
 `;
 
-const ModalContainer = styled(motion.div)`
+const ModalImageWrapper = styled.div`
   position: relative;
   max-width: 90vw;
-  max-height: 90vh;
-  background: white;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-  
-  @media (max-width: 768px) {
-    max-width: 95vw;
-    max-height: 95vh;
-    border-radius: 16px;
-  }
-  
-  @media (max-width: 480px) {
-    max-width: 100vw;
-    max-height: 100vh;
-    border-radius: 0;
-  }
-`;
-
-const ModalImage = styled(motion.img)`
-  width: 100%;
-  max-height: 70vh;
-  object-fit: contain;
-  display: block;
-  
-  @media (max-width: 480px) {
-    max-height: 60vh;
-  }
-`;
-
-const ModalInfo = styled(motion.div)`
-  padding: 2rem;
-  
-  h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.75rem;
-    font-weight: 600;
-    color: #2C3E2D;
-    margin-bottom: 0.75rem;
-    
-    @media (max-width: 480px) {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-  }
-  
-  p {
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    color: #5A6B5D;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    
-    @media (max-width: 480px) {
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    padding: 1.5rem;
-  }
-`;
-
-const ModalNavigation = styled(motion.div)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1rem;
-`;
-
-const NavButton = styled(motion.button)`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
-  color: white;
-  border: none;
-  border-radius: 50px;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.875rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  opacity: ${({ disabled }) => disabled ? 0.5 : 1};
-  pointer-events: ${({ disabled }) => disabled ? 'none' : 'auto'};
-  
-  &:hover:not(:disabled) {
-    background: linear-gradient(135deg, #7DA096 0%, #90B3A7 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(144, 179, 167, 0.3);
-  }
-  
-  svg {
-    width: 16px;
-    height: 16px;
-  }
-  
-  @media (max-width: 480px) {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.8rem;
-  }
-`;
-
-const CloseButton = styled(motion.button)`
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
-  border: none;
+  max-height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+`;
+
+const ModalImage = styled.img`
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+`;
+
+const ModalInfo = styled.div`
+  position: absolute;
+  bottom: -3rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const ModalTitle = styled.span`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+`;
+
+const ModalCounter = styled.span`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+`;
+
+const ModalNavButton = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  transition: all 0.25s ease;
   z-index: 10;
-  transition: all 0.3s ease;
-  
+
   &:hover {
-    background: rgba(0, 0, 0, 0.7);
-    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
   }
-  
+
+  &.prev { left: -5rem; }
+  &.next { right: -5rem; }
+
   svg {
-    width: 24px;
-    height: 24px;
+    width: 1.25rem;
+    height: 1.25rem;
   }
-  
-  @media (max-width: 480px) {
-    top: 0.75rem;
-    right: 0.75rem;
-    width: 40px;
-    height: 40px;
-    
-    svg {
-      width: 20px;
-      height: 20px;
-    }
+
+  @media (max-width: 768px) {
+    &.prev { left: -0.5rem; }
+    &.next { right: -0.5rem; }
+    width: 2.5rem;
+    height: 2.5rem;
   }
 `;
+
+const CloseButton = styled.button`
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10001;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+`;
+
+// === COMPONENT ===
 
 const GallerySection = () => {
   const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState('all');
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  
-  // Используем наши кастомные хуки
-  const { isOpen: isModalOpen, content: selectedImage, open: openModal, close: closeModal } = useModal();
-  const [likedImages, setLikedImages] = useLocalStorage('gallery-liked-images', []);
-  const { getOptimizedAnimation, isReducedMotion } = usePerformanceOptimization();
-  const [sectionRef, isSectionVisible] = useIntersectionObserver({ threshold: 0.1 });
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalIndex, setModalIndex] = useState(0);
 
-  // Оптимизированные данные галереи с уменьшенным набором
   const galleryData = useMemo(() => [
-    // СПА
+    // === ALL (первые 10 — видны в "All") ===
     {
       id: 1,
       image: '/images/spa/services/thai-massage.jpg',
       title: t('gallery.slides.thai_massage.title', 'Thai Massage'),
       category: 'spa',
-      description: t('gallery.slides.thai_massage.description', 'Traditional Thai massage performed by experienced masters. Energy restoration and body harmony.')
+      position: 'center bottom'
     },
     {
       id: 2,
-      image: '/images/spa/services/aromatherapy.jpg',
-      title: t('gallery.slides.aromatherapy.title', 'Aromatherapy'),
-      category: 'spa',
-      description: t('gallery.slides.aromatherapy.description', 'Relaxing treatments with premium natural essential oils.')
+      image: '/images/banya/gallery/banya-steam-room.jpg',
+      title: t('gallery.slides.banya.title', 'Russian Banya'),
+      category: 'banya'
     },
-    // Фитнес
     {
       id: 3,
-      image: '/images/sports/gym/gym-1.jpg',
-      title: t('gallery.slides.gym.title', 'Gym'),
+      image: '/images/sports/fight-club/fight-1.jpg',
+      title: t('gallery.slides.combat.title', 'Fight Club'),
       category: 'fitness',
-      description: t('gallery.slides.gym.description', 'Over 70 modern premium equipment. Professional equipment for all types of workouts.')
+      position: 'center top'
     },
-    // Релаксация
     {
       id: 4,
+      image: '/images/zones/pool.jpg',
+      title: t('gallery.slides.pool.title', 'Pool'),
+      category: 'relax'
+    },
+    {
+      id: 5,
+      image: '/images/home/terrace.jpg',
+      title: t('gallery.slides.terrace.title', 'Rooftop Terrace'),
+      category: 'relax'
+    },
+    {
+      id: 6,
+      image: '/images/spa/gallery/spa-5.jpg',
+      title: t('gallery.slides.spa_room.title', 'Spa Suite'),
+      category: 'spa'
+    },
+    {
+      id: 7,
+      image: '/images/sports/gym/gym-1.jpg',
+      title: t('gallery.slides.gym.title', 'Gym'),
+      category: 'fitness'
+    },
+    {
+      id: 8,
+      image: '/images/banya/gallery/banya-cold-pool.jpg',
+      title: t('gallery.slides.cold_pool.title', 'Ice Pool'),
+      category: 'banya'
+    },
+    {
+      id: 9,
+      image: '/images/spa/services/aromatherapy.jpg',
+      title: t('gallery.slides.aromatherapy.title', 'Aromatherapy'),
+      category: 'spa'
+    },
+    {
+      id: 10,
+      image: '/images/banya/gallery/banya-rest-area.jpg',
+      title: t('gallery.slides.rest_area.title', 'Rest Area'),
+      category: 'banya'
+    },
+    // === Дополнительные для категорий ===
+    // SPA +4
+    {
+      id: 11,
+      image: '/images/spa/gallery/spa-1.jpg',
+      title: t('gallery.slides.spa_interior.title', 'Spa Interior'),
+      category: 'spa'
+    },
+    {
+      id: 12,
+      image: '/images/spa/services/massage.jpg',
+      title: t('gallery.slides.massage.title', 'Massage'),
+      category: 'spa'
+    },
+    {
+      id: 21,
+      image: '/images/spa/gallery/spa-2.jpg',
+      title: t('gallery.slides.spa_treatment.title', 'Spa Treatment'),
+      category: 'spa'
+    },
+    {
+      id: 22,
+      image: '/images/spa/gallery/spa-3.jpg',
+      title: t('gallery.slides.relaxation.title', 'Relaxation'),
+      category: 'spa'
+    },
+    // FITNESS +2
+    {
+      id: 13,
+      image: '/images/sports/gym/gym-2.jpg',
+      title: t('gallery.slides.gym_equipment.title', 'Gym Equipment'),
+      category: 'fitness'
+    },
+    {
+      id: 14,
+      image: '/images/sports/fight-club/fight-2.jpg',
+      title: t('gallery.slides.boxing.title', 'Boxing Ring'),
+      category: 'fitness'
+    },
+    // BANYA +4
+    {
+      id: 15,
+      image: '/images/banya/gallery/banya-hot-stones.jpg',
+      title: t('gallery.slides.hot_stones.title', 'Hot Stones'),
+      category: 'banya'
+    },
+    {
+      id: 16,
+      image: '/images/banya/gallery/banya-tea-ceremony.jpg',
+      title: t('gallery.slides.tea_ceremony.title', 'Tea Ceremony'),
+      category: 'banya'
+    },
+    {
+      id: 19,
+      image: '/images/banya/gallery/banya-lounge.jpg',
+      title: t('gallery.slides.banya_lounge.title', 'Lounge Zone'),
+      category: 'banya'
+    },
+    {
+      id: 20,
+      image: '/images/banya/gallery/banya-steam-room1.jpg',
+      title: t('gallery.slides.steam_ritual.title', 'Steam Ritual'),
+      category: 'banya'
+    },
+    // RELAX +2
+    {
+      id: 17,
+      image: '/images/restaurant/restaurant.jpg',
+      title: t('gallery.slides.restaurant.title', 'Restaurant'),
+      category: 'relax'
+    },
+    {
+      id: 18,
       image: '/images/beauty/services/facial.jpg',
-      title: t('gallery.slides.facial.title', 'Cosmetology'),
-      category: 'relax',
-      description: t('gallery.slides.facial.description', 'Professional facial treatments using premium cosmetics.')
+      title: t('gallery.slides.smoking_area.title', 'Smoking Area'),
+      category: 'relax'
     }
   ], [t]);
 
-  // Упрощенные фильтры
   const filters = useMemo(() => [
-    { id: 'all', label: t('gallery.filters.all') },
-    { id: 'spa', label: t('gallery.filters.spa') },
-    { id: 'fitness', label: t('gallery.filters.fitness') }
+    { id: 'all', label: t('gallery.filters.all', 'All') },
+    { id: 'spa', label: t('gallery.filters.spa', 'Spa') },
+    { id: 'fitness', label: t('gallery.filters.fitness', 'Fitness') },
+    { id: 'banya', label: t('gallery.filters.banya', 'Banya') },
+    { id: 'relax', label: t('gallery.filters.relax', 'Relax') }
   ], [t]);
 
-  // Фильтрация данных
   const filteredGallery = useMemo(() => {
-    return activeFilter === 'all' 
-      ? galleryData 
-      : galleryData.filter(item => item.category === activeFilter);
+    if (activeFilter === 'all') {
+      // Для "All" показываем только первые 10 (основной грид)
+      return galleryData.slice(0, 10);
+    }
+    // Для категорий — все фото этой категории
+    return galleryData.filter(item => item.category === activeFilter);
   }, [activeFilter, galleryData]);
 
-  // Сброс слайда при смене фильтра
-  useEffect(() => {
-    setCurrentSlide(0);
-  }, [activeFilter]);
-
-  // Обработчики событий
-  const handleFilterChange = useCallback((filterId) => {
-    setActiveFilter(filterId);
+  const openModal = useCallback((index) => {
+    setModalIndex(index);
+    setModalOpen(true);
+    document.body.style.overflow = 'hidden';
   }, []);
 
-  // Навигация слайдера
-  const goToNextSlide = useCallback(() => {
-    setCurrentSlide(prev => (prev + 1) % filteredGallery.length);
-  }, [filteredGallery.length]);
-
-  const goToPrevSlide = useCallback(() => {
-    setCurrentSlide(prev => (prev - 1 + filteredGallery.length) % filteredGallery.length);
-  }, [filteredGallery.length]);
-
-
-
-  // Состояние автопроигрывания
-  const [isAutoplay, setIsAutoplay] = useState(true);
-
-  // Автоматическое переключение слайдов с оптимизацией
-  useEffect(() => {
-    if (filteredGallery.length <= 1 || !isAutoplay || !isSectionVisible) return;
-    
-    const interval = setInterval(() => {
-      setCurrentSlide(prev => (prev + 1) % filteredGallery.length);
-    }, 4000); // Оптимальный интервал для плавности
-
-    return () => clearInterval(interval);
-  }, [filteredGallery.length, isAutoplay, isSectionVisible]);
-
-  // Обработчики для управления автопроигрыванием
-  const handleMouseEnter = useCallback(() => {
-    setIsAutoplay(false);
+  const closeModal = useCallback(() => {
+    setModalOpen(false);
+    document.body.style.overflow = 'auto';
   }, []);
-
-  const handleMouseLeave = useCallback(() => {
-    setIsAutoplay(true);
-  }, []);
-
-  // Touch gestures для слайдера - ИСПРАВЛЕНО для предотвращения блокировки скролла
-  const sliderTouchGestures = useTouchGestures(
-    goToNextSlide,
-    goToPrevSlide
-  );
-
-  const handleLikeToggle = useCallback((imageId) => {
-    setLikedImages(prev => {
-      const newArray = [...prev];
-      const index = newArray.indexOf(imageId);
-      if (index > -1) {
-        newArray.splice(index, 1);
-      } else {
-        newArray.push(imageId);
-      }
-      return newArray;
-    });
-  }, [setLikedImages]);
-
-  const handleModalOpen = useCallback((item, index) => {
-    setSelectedImageIndex(index);
-    openModal(item);
-  }, [openModal]);
 
   const navigateModal = useCallback((direction) => {
-    const newIndex = direction === 'next' 
-      ? (selectedImageIndex + 1) % filteredGallery.length
-      : (selectedImageIndex - 1 + filteredGallery.length) % filteredGallery.length;
-    
-    setSelectedImageIndex(newIndex);
-    openModal(filteredGallery[newIndex]);
-  }, [selectedImageIndex, filteredGallery, openModal]);
+    setModalIndex(prev => {
+      if (direction === 'next') return (prev + 1) % filteredGallery.length;
+      return (prev - 1 + filteredGallery.length) % filteredGallery.length;
+    });
+  }, [filteredGallery.length]);
 
-  // Touch gestures для модального окна - ИСПРАВЛЕНО для предотвращения блокировки скролла
-  const touchGestures = useTouchGestures(
-    () => navigateModal('next'),
-    () => navigateModal('prev')
-  );
-
-  // Обработка клавиатуры для модального окна
+  // Keyboard navigation
   useEffect(() => {
-    if (!isModalOpen) return;
-
-    const handleKeyDown = (event) => {
-      switch (event.key) {
-        case 'Escape':
-          closeModal();
-          break;
-        case 'ArrowLeft':
-          navigateModal('prev');
-          break;
-        case 'ArrowRight':
-          navigateModal('next');
-          break;
-        default:
-          break;
-      }
+    if (!modalOpen) return;
+    const handleKey = (e) => {
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') navigateModal('prev');
+      if (e.key === 'ArrowRight') navigateModal('next');
     };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [isModalOpen, closeModal, navigateModal]);
-
-
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [modalOpen, closeModal, navigateModal]);
 
   return (
-    <SectionContainer id="gallery" ref={sectionRef}>
+    <SectionContainer id="gallery">
       <ContentWrapper>
-        <SectionHeader>
-          <Overline
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={getOptimizedAnimation({ duration: 0.8, ease: "easeOut" })}
-            viewport={{ once: true }}
-          >
-            {t('gallery.overline')}
-          </Overline>
-          <SectionTitle
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={getOptimizedAnimation({ duration: 0.8, delay: 0.2, ease: "easeOut" })}
-            viewport={{ once: true }}
-          >
-            {t('gallery.title')}
-          </SectionTitle>
-          <SectionSubtitle
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={getOptimizedAnimation({ duration: 0.8, delay: 0.4, ease: "easeOut" })}
-            viewport={{ once: true }}
-          >
-            {t('gallery.subtitle')} 
-            Познакомьтесь с нашими услугами и возможностями комплекса.
-          </SectionSubtitle>
-        </SectionHeader>
-        
-        <FilterBar
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={getOptimizedAnimation({ duration: 0.8, delay: 0.6, ease: "easeOut" })}
-          viewport={{ once: true }}
-        >
-          {filters.map((filter, index) => (
+        <Overline>{t('gallery.overline', 'Gallery')}</Overline>
+        <Title>{t('gallery.title', 'KAIF Experiences')}</Title>
+        <Subtitle>
+          {t('gallery.subtitle', 'Immerse yourself in the KAIF atmosphere through our photo gallery.')}
+        </Subtitle>
+
+        <FilterBar>
+          {filters.map((filter) => (
             <FilterButton
               key={filter.id}
-              active={activeFilter === filter.id}
-              onClick={() => handleFilterChange(filter.id)}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={getOptimizedAnimation({ duration: 0.5, delay: 0.7 + index * 0.1 })}
-              viewport={{ once: true }}
-              whileHover={!isReducedMotion ? { scale: 1.05 } : {}}
-              whileTap={!isReducedMotion ? { scale: 0.95 } : {}}
+              $active={activeFilter === filter.id}
+              onClick={() => setActiveFilter(filter.id)}
             >
               {filter.label}
             </FilterButton>
           ))}
         </FilterBar>
-        
-        {isSectionVisible && filteredGallery.length > 0 && (
-          <AnimatePresence mode="wait">
-            <SliderContainer
-              key={activeFilter}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={getOptimizedAnimation({ duration: 0.4, ease: "easeInOut" })}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              {...sliderTouchGestures}
-              style={{
-                ...sliderTouchGestures.style,
-                // Дополнительная защита от блокировки скролла
-                overscrollBehavior: 'auto',
-                WebkitOverscrollBehavior: 'auto'
-              }}
+
+        <GalleryGrid key={activeFilter}>
+          {filteredGallery.map((item, index) => (
+            <GalleryItem
+              key={item.id}
+              onClick={() => openModal(index)}
+              $delay={`${index * 0.06}s`}
             >
-              <SliderTrack
-                animate={{ x: `-${currentSlide * 100}%` }}
-                transition={{
-                  type: "tween",
-                  ease: "easeOut",
-                  duration: 0.4
-                }}
-              >
-                {filteredGallery.map((item, index) => (
-                  <Slide key={`${activeFilter}-${item.id}`}>
-                    <SlideImage
-                      src={item.image}
-                      alt={item.title}
-                      onClick={() => handleModalOpen(item, index)}
-                      loading="lazy"
-                      $customPosition={item.title === 'Тайский массаж' ? 'center bottom' : 'center'}
-                    />
-                    <SlideOverlay>
-                      <SlideTitle>
-                        {item.title}
-                      </SlideTitle>
-                    </SlideOverlay>
-                  </Slide>
-                ))}
-              </SliderTrack>
-              
-              {filteredGallery.length > 1 && (
-                <>
-                  <SliderButton
-                    className="prev"
-                    onClick={goToPrevSlide}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    disabled={filteredGallery.length <= 1}
-                  >
-                    <ChevronLeftIcon />
-                  </SliderButton>
-                  
-                  <SliderButton
-                    className="next"
-                    onClick={goToNextSlide}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    disabled={filteredGallery.length <= 1}
-                  >
-                    <ChevronRightIcon />
-                  </SliderButton>
-                </>
-              )}
-            </SliderContainer>
-          </AnimatePresence>
-        )}
-      </ContentWrapper>
-      
-      <AnimatePresence>
-        {isModalOpen && selectedImage && (
-          <ModalOverlay
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={getOptimizedAnimation({ duration: 0.3 })}
-            onClick={closeModal}
-            {...touchGestures}
-            style={{
-              ...touchGestures.style,
-              // Обеспечиваем, что модальное окно не блокирует скролл под собой
-              overscrollBehavior: 'contain'
-            }}
-          >
-            <ModalContainer
-              onClick={(e) => e.stopPropagation()}
-              initial={{ scale: 0.8, opacity: 0, y: 50 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.8, opacity: 0, y: 30 }}
-              transition={getOptimizedAnimation({ 
-                duration: 0.4, 
-                ease: [0.25, 0.1, 0.25, 1] 
-              })}
-            >
-              <ModalImage 
-                src={selectedImage.image} 
-                alt={selectedImage.title}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={getOptimizedAnimation({ duration: 0.5, delay: 0.2 })}
+              <GalleryImage
+                src={item.image}
+                alt={item.title}
+                loading="lazy"
+                $position={item.position}
               />
-              
-              <ModalInfo>
-                <motion.h3
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={getOptimizedAnimation({ duration: 0.5, delay: 0.3 })}
-                >
-                  {selectedImage.title}
-                </motion.h3>
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={getOptimizedAnimation({ duration: 0.5, delay: 0.4 })}
-                >
-                  {selectedImage.description}
-                </motion.p>
-                
-                <ModalNavigation>
-                  <NavButton
-                    onClick={() => navigateModal('prev')}
-                    disabled={selectedImageIndex === 0}
-                    whileHover={!isReducedMotion ? { scale: 1.05 } : {}}
-                    whileTap={!isReducedMotion ? { scale: 0.95 } : {}}
-                  >
-                    <ChevronLeftIcon />
-                    Предыдущее
-                  </NavButton>
-                  
-                  <span style={{ 
-                    color: '#5A6B5D', 
-                    fontSize: '0.875rem',
-                    fontWeight: '500'
-                  }}>
-                    {selectedImageIndex + 1} из {filteredGallery.length}
-                  </span>
-                  
-                  <NavButton
-                    onClick={() => navigateModal('next')}
-                    disabled={selectedImageIndex === filteredGallery.length - 1}
-                    whileHover={!isReducedMotion ? { scale: 1.05 } : {}}
-                    whileTap={!isReducedMotion ? { scale: 0.95 } : {}}
-                  >
-                    Следующее
-                    <ChevronRightIcon />
-                  </NavButton>
-                </ModalNavigation>
-              </ModalInfo>
-              
-              <CloseButton 
-                onClick={closeModal}
-                whileHover={!isReducedMotion ? { scale: 1.1, rotate: 90 } : {}}
-                whileTap={!isReducedMotion ? { scale: 0.9 } : {}}
-              >
-                <XMarkIcon />
-              </CloseButton>
-            </ModalContainer>
-          </ModalOverlay>
-        )}
-      </AnimatePresence>
+              <ImageCaption>
+                <CaptionTitle>{item.title}</CaptionTitle>
+              </ImageCaption>
+            </GalleryItem>
+          ))}
+        </GalleryGrid>
+      </ContentWrapper>
+
+      {/* Lightbox Modal */}
+      {modalOpen && filteredGallery[modalIndex] && (
+        <ModalOverlay $visible={modalOpen} onClick={closeModal}>
+          <CloseButton onClick={closeModal}>
+            <XMarkIcon />
+          </CloseButton>
+
+          <ModalImageWrapper onClick={(e) => e.stopPropagation()}>
+            {filteredGallery.length > 1 && (
+              <ModalNavButton className="prev" onClick={() => navigateModal('prev')}>
+                <ChevronLeftIcon />
+              </ModalNavButton>
+            )}
+
+            <ModalImage
+              src={filteredGallery[modalIndex].image}
+              alt={filteredGallery[modalIndex].title}
+            />
+
+            {filteredGallery.length > 1 && (
+              <ModalNavButton className="next" onClick={() => navigateModal('next')}>
+                <ChevronRightIcon />
+              </ModalNavButton>
+            )}
+
+            <ModalInfo>
+              <ModalTitle>{filteredGallery[modalIndex].title}</ModalTitle>
+              <ModalCounter>{modalIndex + 1} / {filteredGallery.length}</ModalCounter>
+            </ModalInfo>
+          </ModalImageWrapper>
+        </ModalOverlay>
+      )}
     </SectionContainer>
   );
 };
 
-// Оптимизированный экспорт для lazy loading
 export { GallerySection };
-
-// Легкий экспорт по умолчанию для производительности
-export default GallerySection; 
+export default GallerySection;

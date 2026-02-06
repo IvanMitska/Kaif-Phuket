@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-// Глобальные стили для применения шрифта Playfair Display ко всему сайту
+// Глобальные стили типографики - Jost (минималистичный геометрический шрифт)
 const GlobalFontStyle = createGlobalStyle`
   /* Импортируем шрифт KAIF */
   @font-face {
@@ -11,58 +11,72 @@ const GlobalFontStyle = createGlobalStyle`
     font-display: swap;
   }
 
-  /* Применяем Playfair Display ко всем элементам */
-  body, 
-  h1, h2, h3, h4, h5, h6,
-  p, span, div, button, input, textarea, select, label, li {
-    font-family: 'Playfair Display', Georgia, serif !important;
+  /* Базовая типографика - Jost */
+  body {
+    font-family: 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  
-  /* Специальные стили для навигации в хедере */
+
+  /* Заголовки - Plus Jakarta Sans (bold uppercase, как Hero) */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-weight: 800;
+  }
+
+  h2 {
+    font-weight: 800;
+  }
+
+  /* Параграфы и текст */
+  p, span, li {
+    font-family: 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  /* Интерактивные элементы */
+  button, input, textarea, select, label {
+    font-family: 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+  }
+
+  /* Навигация */
   header nav a {
-    font-family: 'KAIF', 'Playfair Display', Georgia, serif !important;
+    font-family: 'Jost', sans-serif;
   }
-  
+
   /* Языковые настройки размера шрифта для хедера */
-  /* Для русского и английского языков - уменьшенный шрифт */
   html[lang='ru'] header nav a,
   html[lang='en'] header nav a {
-    font-size: 0.85rem !important;
+    font-size: 0.85rem;
   }
-  
-  /* Для тайского языка - увеличенный шрифт */
+
   html[lang='th'] header nav a {
-    font-size: 1.05rem !important;
+    font-size: 1.05rem;
   }
-  
+
   /* Настройки для мобильной навигации */
   html[lang='ru'] div[class*='MobileNavContainer'] a,
   html[lang='en'] div[class*='MobileNavContainer'] a {
-    font-size: 1rem !important;
+    font-size: 1rem;
   }
-  
+
   html[lang='th'] div[class*='MobileNavContainer'] a {
-    font-size: 1.2rem !important;
+    font-size: 1.2rem;
   }
-  
-  /* Усиливаем вес для заголовков */
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
-  }
-  
-  /* Настраиваем вес для обычного текста */
-  p, span, div, li {
-    font-weight: 400;
-  }
-  
-  /* Кнопки и интерактивные элементы */
-  button, a, input, textarea, select, label {
-    font-weight: 500;
-  }
-  
-  /* Исключаем монолитные шрифты для кода */
+
+  /* Код */
   code, pre {
-    font-family: 'JetBrains Mono', Consolas, monospace !important;
+    font-family: 'JetBrains Mono', Consolas, monospace;
   }
 `;
 

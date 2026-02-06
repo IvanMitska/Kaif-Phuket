@@ -86,6 +86,10 @@
       "overline": "คอมเพล็กซ์พรีเมียมในภูเก็ต",
       "mainTitle": "KAIF",
       "services": "บริการของเรา",
+      "word1": "FEEL",
+      "word2": "THE",
+      "word3": "KAIF",
+      "location": "ภูเก็ต · ประเทศไทย",
       "bookNow": "จองตอนนี้",
       "virtualTour": "ทัวร์เสมือนจริง",
       "slideAlt": "KAIF - Sauna & Spa",
@@ -277,6 +281,14 @@
     "location": {
       "title": "ค้นหาเรา",
       "description": "ตั้งอยู่อย่างสะดวกในกะทู้ ห่างจากป่าตองเพียงไม่กี่นาที"
+    },
+    "parallax": {
+      "title": "ที่ซึ่งเวลาหยุดนิ่ง"
+    },
+    "terrace": {
+      "overline": "ชั้น 2",
+      "title": "ระเบียงดาดฟ้า",
+      "description": "โซนพักผ่อนสบายบนชั้นสองติดกับซาวน่ารัสเซีย สั่งอาหารและเครื่องดื่มจากร้านอาหาร พักผ่อนระหว่างการอบไอน้ำ และชมวิวพระอาทิตย์ตกเหนือภูเก็ต"
     }
   },
   "facilities": {
@@ -399,7 +411,9 @@
       "highlight": "ที่ผสานแนวใหม่",
       "subtitle": "อาหารเฉพาะตัวและอาหารชั้นเลิศ",
       "button": "เมนูของเรา",
-      "reviews": "รีวิวยอดเยี่ยม"
+      "reviews": "รีวิวยอดเยี่ยม",
+      "title_line1": "ร้านอาหาร",
+      "location": "ภูเก็ต"
     },
     "menu": {
       "title": "เมนูของเรา",
@@ -1159,7 +1173,10 @@
       "book_online": "จองออนไลน์",
       "book_whatsapp": "WhatsApp",
       "book_now": "จองทรีทเมนต์",
-      "learn_more": "เรียนรู้เพิ่มเติม"
+      "learn_more": "เรียนรู้เพิ่มเติม",
+      "title_part1": "SPA",
+      "title_part2": "& Beauty",
+      "location": "ภูเก็ต"
     },
     "services": {
       "title": "บริการของเรา",
@@ -1793,7 +1810,8 @@
     "description": "สิ่งอำนวยความสะดวกในการออกกำลังกายที่ทันสมัยสำหรับทุกคน",
     "hero": {
       "tag": "ฟิตเนสชั้นนำ",
-      "title": "เอาชนะตัวเองในด้าน<span>กีฬา</span>กับ KAIF",
+      "title": "กีฬา",
+      "location": "ภูเก็ต",
       "subtitle": "อุปกรณ์ออกกำลังกายที่ทันสมัย โค้ชมืออาชีพ และบรรยากาศเพื่อบรรลุเป้าหมายกีฬาของคุณ",
       "cta": "สำรวจสิ่งอำนวยความสะดวก",
       "primary_cta": "จองการฝึก",
@@ -1814,6 +1832,8 @@
     "benefits": {
       "tag": "ทำไมต้องเลือกเรา",
       "title": "ข้อดีของ <span>คอมเพล็กซ์กีฬา</span> KAIF",
+      "title_plain": "ข้อดี",
+      "subtitle": "ทุกสิ่งที่คุณต้องการสำหรับการออกกำลังกาย",
       "premium": {
         "title": "อุปกรณ์พรีเมียม",
         "description": "อุปกรณ์จากผู้ผลิตชั้นนำของโลก Technogym และ Life Fitness"
@@ -1840,6 +1860,7 @@
       }
     },
     "cta": {
+      "badge": "เริ่มต้น",
       "title": "พร้อมที่จะเริ่ม?",
       "subtitle": "ลงทะเบียนเพื่อทดลองฟรีและเริ่มต้นเส้นทางสู่เป้าหมายกีฬาของคุณวันนี้",
       "primary_button": "จองการฝึก",
@@ -1878,6 +1899,7 @@
     "schedule": {
       "tag": "การวางแผน",
       "title": "ตารางเวลา",
+      "title_plain": "ตารางเรียน",
       "subtitle": "เลือกวันของสัปดาห์",
       "minutes": "นาที",
       "spots": "ที่นั่ง",
@@ -1940,6 +1962,7 @@
     "facilities": {
       "tag": "สิ่งอำนวยความสะดวกของเรา",
       "title": "พื้นที่<span>กีฬา</span>ที่ทันสมัย",
+      "title_plain": "โซนกีฬา",
       "subtitle": "KAIF มีพื้นที่กีฬาระดับพรีเมียมหลากหลายแบบ พร้อมอุปกรณ์ล้ำสมัยและโค้ชมืออาชีพที่จะช่วยให้คุณบรรลุเป้าหมายฟิตเนสของคุณ",
       "book_button": "จองการฝึกซ้อม",
       "gym": {
@@ -2001,6 +2024,33 @@
         "filter_group": "กลุ่ม",
         "filter_personal": "ส่วนบุคคล",
         "filter_events": "กิจกรรม"
+      },
+      "swim": {
+        "tag": "ว่ายน้ำ",
+        "title": "สระว่ายน้ำ",
+        "short_description": "สระว่ายน้ำ 25 เมตร สำหรับว่ายน้ำ แอโรบิกในน้ำ และบทเรียนเด็ก",
+        "description": "สระว่ายน้ำ 25 เมตร",
+        "hours": "07:00 - 22:00",
+        "capacity": "รองรับได้สูงสุด 20 คน",
+        "feature1": "สระว่ายน้ำ 25 เมตร",
+        "feature2": "คลาสแอโรบิกในน้ำ",
+        "feature3": "บทเรียนว่ายน้ำสำหรับเด็ก"
+      }
+    },
+    "pricing": {
+      "badge": "รวมทุกอย่าง",
+      "cta_button": "เริ่มต้น",
+      "all_plans": "แผนทั้งหมด",
+      "club_access_sport": {
+        "name": "Club Access Sport",
+        "description": "เข้าถึงสิ่งอำนวยความสะดวกกีฬาทั้งหมดพร้อมการฝึกกลุ่มไม่จำกัด",
+        "period": "ต่อเดือน",
+        "f1": "ยิมและคาร์ดิโอ",
+        "f2": "สระว่ายน้ำ",
+        "f3": "ซาวน่ารัสเซียและห้องอบไอน้ำ",
+        "f4": "การฝึกกลุ่มไม่จำกัด",
+        "f5": "คลาส Fight Club",
+        "f6": "คลาส KAIF Motion"
       }
     },
     "membership": {
@@ -2021,6 +2071,24 @@
   "banya": {
     "title": "บันยารัสเซีย",
     "description": "ห้องบันยารัสเซียแบบพาโนรามาที่มองเห็นป่าไผ่",
+    "steam_schedule": {
+      "overline": "ตารางประจำวัน",
+      "title": "เซสชันอบไอน้ำ",
+      "sessions": [
+        { "time": "10:00", "name": "ไอน้ำเบาแรก" },
+        { "time": "11:00", "name": "เซสชันอโรมาสมุนไพร" },
+        { "time": "12:00", "name": "คลื่นยูคาลิปตัส" },
+        { "time": "13:00", "name": "พลังกระเทียม" },
+        { "time": "14:00", "name": "ไอน้ำแรง" },
+        { "time": "15:00", "name": "เวลาพักผ่อน" },
+        { "time": "16:00", "name": "ไอน้ำเบาแรก" },
+        { "time": "17:00", "name": "เซสชันอโรมาสมุนไพร" },
+        { "time": "18:00", "name": "คลื่นยูคาลิปตัส" },
+        { "time": "19:00", "name": "พลังกระเทียม" },
+        { "time": "20:00", "name": "ไอน้ำแรง" },
+        { "time": "21:00", "name": "เวลาพักผ่อน" }
+      ]
+    },
     "hero": {
       "badge": "บันยาที่ดีที่สุดในภูเก็ต",
       "title": "บันยารัสเซียแบบพาโนรามา",
@@ -2388,8 +2456,8 @@
       "all": "ทั้งหมด",
       "spa": "สปา",
       "fitness": "ฟิตเนส",
-      "pool": "สระว่ายน้ำ",
-      "relax": "การผ่อนคลาย"
+      "banya": "บันยา",
+      "relax": "ผ่อนคลาย"
     },
     "slides": {
       "thai_massage": {
@@ -2407,6 +2475,82 @@
       "facial": {
         "title": "เสริมความงาม",
         "description": "ทรีทเมนต์ใบหน้าระดับมืออาชีพด้วยเครื่องสำอางระดับพรีเมียม"
+      },
+      "banya": {
+        "title": "บันยารัสเซีย",
+        "description": "ห้องอบไอน้ำรัสเซียแบบดั้งเดิมพร้อมไม้กวาดเบิร์ชและอโรมาเธอราพี"
+      },
+      "combat": {
+        "title": "ไฟท์คลับ",
+        "description": "การฝึกศิลปะการต่อสู้กับโค้ชมืออาชีพ"
+      },
+      "pool": {
+        "title": "สระว่ายน้ำ",
+        "description": "สระว่ายน้ำกลางแจ้งสำหรับว่ายน้ำและพักผ่อน"
+      },
+      "terrace": {
+        "title": "ระเบียงบนชั้นดาดฟ้า",
+        "description": "โซนพักผ่อนที่อบอุ่นพร้อมวิวพระอาทิตย์ตกที่งดงาม"
+      },
+      "spa_room": {
+        "title": "ห้องสปา",
+        "description": "ห้องสปาส่วนตัวสำหรับทรีทเมนต์ระดับพรีเมียม"
+      },
+      "cold_pool": {
+        "title": "สระน้ำแข็ง",
+        "description": "สระคอนทราสต์สำหรับพิธีกรรมบันยาและการฟื้นฟู"
+      },
+      "rest_area": {
+        "title": "โซนพักผ่อน",
+        "description": "โซนลาวจ์ที่สะดวกสบายสำหรับพักผ่อนระหว่างเซสชั่น"
+      },
+      "spa_interior": {
+        "title": "ภายในสปา",
+        "description": "ภายในสปาสุดหรูเพื่อการผ่อนคลายอย่างสมบูรณ์"
+      },
+      "massage": {
+        "title": "นวด",
+        "description": "ทรีทเมนต์นวดมืออาชีพสำหรับร่างกายและจิตใจ"
+      },
+      "gym_equipment": {
+        "title": "อุปกรณ์ออกกำลังกาย",
+        "description": "อุปกรณ์ฟิตเนสทันสมัยสำหรับการออกกำลังกายที่มีประสิทธิภาพ"
+      },
+      "boxing": {
+        "title": "สังเวียนมวย",
+        "description": "สังเวียนมวยมืออาชีพสำหรับการฝึกศิลปะการต่อสู้"
+      },
+      "hot_stones": {
+        "title": "หินร้อน",
+        "description": "หินร้อนแบบดั้งเดิมสำหรับสร้างไอน้ำแท้จริง"
+      },
+      "tea_ceremony": {
+        "title": "พิธีชา",
+        "description": "พิธีกรรมการดื่มชาแบบดั้งเดิมหลังจากเซสชั่นบันยา"
+      },
+      "restaurant": {
+        "title": "ร้านอาหาร",
+        "description": "อาหารรสเลิศจากตะวันออกและรัสเซีย"
+      },
+      "smoking_area": {
+        "title": "พื้นที่สูบบุหรี่",
+        "description": "พื้นที่สูบบุหรี่กลางแจ้งพร้อมวิวสวนเขตร้อน"
+      },
+      "banya_lounge": {
+        "title": "โซนลาวจ์",
+        "description": "โซนพักผ่อนที่สะดวกสบายระหว่างเซสชั่นอบไอน้ำ"
+      },
+      "steam_ritual": {
+        "title": "พิธีกรรมอบไอน้ำ",
+        "description": "พิธีกรรมอบไอน้ำบันยาแบบดั้งเดิมพร้อมไม้กวาดเบิร์ช"
+      },
+      "spa_treatment": {
+        "title": "ทรีทเมนต์สปา",
+        "description": "ทรีทเมนต์สปาระดับพรีเมียมเพื่อการฟื้นฟูอย่างสมบูรณ์"
+      },
+      "relaxation": {
+        "title": "การผ่อนคลาย",
+        "description": "บรรยากาศสงบสุขเพื่อการผ่อนคลายอย่างสูงสุด"
       }
     }
   },
@@ -2552,6 +2696,105 @@
       "groupClasses": "(คลาสกลุ่ม)",
       "swimmingSchool": "(โรงเรียนว่ายน้ำ)",
       "dayPass": "(บัตรเข้าชมรายวัน)"
+    }
+  },
+  "bar": {
+    "hero": {
+      "badge": "บาร์ของเรา",
+      "parallax_title": "บาร์",
+      "title": "เมนูบาร์",
+      "subtitle": "จากค็อกเทลพิเศษและสุราพรีเมียมไปจนถึงน้ำผลไม้คั้นสดและเครื่องดื่มฟิตเนส"
+    },
+    "categories": {
+      "cocktails": "ค็อกเทล",
+      "cocktails_desc": "ค็อกเทลมีแอลกอฮอล์และไม่มีแอลกอฮอล์",
+      "wine_spirits": "ไวน์และสุรา",
+      "wine_spirits_desc": "ไวน์ วิสกี้ วอดก้า รัม จิน และอื่นๆ",
+      "beer": "เบียร์",
+      "beer_desc": "เบียร์สดคราฟท์และเบียร์ขวด",
+      "coffee_tea": "กาแฟและชา",
+      "coffee_tea_desc": "เอสเพรสโซ มัทฉะ และชาจีนพรีเมียม",
+      "soft_drinks": "เครื่องดื่มเย็น",
+      "soft_drinks_desc": "น้ำอัดลม น้ำดื่ม และน้ำแร่",
+      "juices": "น้ำผลไม้และสมูทตี้",
+      "juices_desc": "น้ำผลไม้คั้นสดและสมูทตี้",
+      "fitness": "ฟิตเนสและโปรตีน",
+      "fitness_desc": "เครื่องดื่มกีฬาและโปรตีนเชค"
+    },
+    "items": {
+      "aperol_spritz": "Aperol Spritz",
+      "mojito": "Mojito",
+      "negroni": "Negroni",
+      "frozen_margarita": "Frozen Margarita",
+      "pina_colada": "Pina Colada",
+      "honey_lemon": "น้ำผึ้งมะนาว",
+      "mojito_nonalco": "Mojito ไม่มีแอลกอฮอล์",
+      "passion_fruit": "เสาวรส",
+      "pink_lemonade": "Pink Lemonade (Premix)",
+      "red_wine": "ไวน์แดง แก้ว 150 มล.",
+      "white_wine": "ไวน์ขาว แก้ว 150 มล.",
+      "sparkling_glass": "ไวน์สปาร์คกลิ้ง แก้ว 150 มล.",
+      "sparkling_bottle": "ไวน์สปาร์คกลิ้ง ขวด 750 มล.",
+      "cherry_03": "Cherry 0.3",
+      "classic_lager_03": "Classic Lager 0.3",
+      "german_wheat_03": "German Wheat Beer 0.3",
+      "imperial_stout_03": "Russian Imperial Stout 0.3",
+      "cherry_05": "Cherry 0.5",
+      "classic_lager_05": "Classic Lager 0.5",
+      "german_wheat_05": "German Wheat Beer 0.5",
+      "imperial_stout_05": "Russian Imperial Stout 0.5",
+      "tower_cherry": "Tower Cherry 3L",
+      "tower_classic": "Tower Classic Lager 3L",
+      "tower_wheat": "Tower German Wheat 3L",
+      "tower_stout": "Tower Imperial Stout 3L",
+      "espresso": "เอสเพรสโซ",
+      "americano": "อเมริกาโน (ร้อน/เย็น)",
+      "cappuccino": "คาปูชิโน (ร้อน/เย็น)",
+      "bumble_coffee": "Bumble Coffee",
+      "espresso_tonic": "Espresso Tonic",
+      "latte": "ลาเต้",
+      "matcha_coco": "Matcha Coco",
+      "ya_bao": "ชาขาวจากยูนนาน (Ya Bao)",
+      "ya_bao_desc": "เก็บจากต้นชาโบราณอายุกว่า 100 ปี ในมณฑลยูนนาน อ่อนนุ่ม สดชื่น เหมาะสำหรับการผ่อนคลาย",
+      "tie_guan_yin": "อู่หลงอ่อน (Tie Guan Yin)",
+      "tie_guan_yin_desc": "อู่หลงอ่อนชื่อดังจากฝูเจี้ยนใต้ รสดอกไม้ละเอียดอ่อน สดชื่นทั้งกายและใจ",
+      "da_hong_pao": "อู่หลงเข้ม (Da Hong Pao)",
+      "da_hong_pao_desc": "อู่หลงอุดมด้วยแร่ธาตุจาก Wuishan มีกลิ่นไม้และยาสูบ รสหวาน ซับซ้อน",
+      "gaba_oolong": "GABA Oolong (Ali Shan)",
+      "gaba_oolong_desc": "อุดมด้วยคาเทชินและวิตามินซี ชาสดชื่นให้พลังงาน",
+      "milk_oolong": "อู่หลงนม (Nai Xiang)",
+      "milk_oolong_desc": "การผสมผสานชาที่น่าสนใจพร้อมกลิ่นหอมเข้มข้น",
+      "shu_puerh": "ผู่เอ๋อร์ดำ (Shu Pu-erh)",
+      "shu_puerh_desc": "ผู่เอ๋อร์เข้มข้นมีกลิ่นไม้และถั่ว เหนียวเล็กน้อย สำหรับคนชอบชาเข้มข้น",
+      "herbal_tea": "ชาสมุนไพร",
+      "herbal_tea_desc": "สมุนไพรหอมผสมสะระแหน่ ไธม์ และออริกาโน สดชื่น ฟื้นฟูร่างกาย เหมาะหลังซาวน่า",
+      "buckwheat_tea": "ชาบัควีท",
+      "buckwheat_tea_desc": "ชาบัควีทหวานธรรมชาติ ไม่มีคาเฟอีน ผ่อนคลาย เหมาะสำหรับเด็ก",
+      "ivan_tea": "Ivan Tea",
+      "ivan_tea_desc": "ชาสมุนไพรรัสเซียดั้งเดิม รสดอกไม้-สมุนไพรละเอียดอ่อนพร้อมกลิ่นน้ำผึ้ง-ผลไม้ ไม่มีคาเฟอีน",
+      "coconut": "มะพร้าว 1 ลูก",
+      "kvas": "Kvas 0.5L",
+      "mors": "Mors 0.35L",
+      "soda_singha": "โซดา Singha 0.33L",
+      "narzan": "Narzan 0.5L",
+      "essentuki": "Essentuki 1L",
+      "apple_juice": "น้ำแอปเปิ้ล",
+      "apple_carrot": "น้ำแอปเปิ้ล/แครอท",
+      "carrot_juice": "น้ำแครอท",
+      "mango_juice": "น้ำมะม่วง",
+      "orange_juice": "น้ำส้ม",
+      "pineapple_juice": "น้ำสับปะรด",
+      "banana_shake": "Banana Shake",
+      "lychee_lime": "Lychee-Lime",
+      "mango_passion": "Mango-Passionfruit",
+      "electrolyte": "Electrolyte Boost",
+      "fat_burning": "Fat Burning",
+      "mass_gainer": "Mass Gainer",
+      "pre_workout": "Pre-Workout",
+      "protein_chocolate": "ช็อกโกแลต",
+      "protein_strawberry": "สตรอว์เบอร์รี่",
+      "protein_vanilla": "วานิลลา",
+      "protein_desc": "โปรตีน / นมอัลมอนด์ / นม / น้ำมะพร้าว"
     }
   }
 }

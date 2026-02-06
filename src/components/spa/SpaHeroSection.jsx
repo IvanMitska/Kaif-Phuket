@@ -1,380 +1,189 @@
-import React, { memo, useState } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import {
-  ArrowRightIcon,
-  SparklesIcon,
-  StarIcon,
-  CalendarDaysIcon,
-  PaperAirplaneIcon
-} from '@heroicons/react/24/solid';
-import heroRestaurantImg from '../../assets/images/hero/hero-restaurant.jpg';
-import YclientsModal from '../booking/YclientsModal';
-import BookingModal from '../booking/BookingModal';
 
-// =============================================================================
-// ОПТИМИЗИРОВАННЫЙ SPA HERO (БЕЗ ТЯЖЕЛЫХ ИЗОБРАЖЕНИЙ)
-// =============================================================================
+// === STYLED COMPONENTS — Matching BanyaHeroSection / HeroFullscreen style ===
 
 const HeroContainer = styled.section`
   position: relative;
-  min-height: 100vh;
-  background: url(${heroRestaurantImg});
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  overflow: hidden;
+  background: #000;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  contain: none;
+  isolation: auto;
+  will-change: auto;
+  touch-action: auto;
+  overscroll-behavior: auto;
+  -webkit-overscroll-behavior: auto;
+
+  @media (max-width: 768px) {
+    height: 100svh;
+    touch-action: auto;
+  }
+`;
+
+const BackgroundSlider = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+`;
+
+const BackgroundImage = styled.div`
+  position: absolute;
+  inset: 0;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  padding: 6rem 0;
-  
+  background-repeat: no-repeat;
+  transition: opacity 2s ease-in-out;
+
   &::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: linear-gradient(
-      135deg, 
-      rgba(0, 0, 0, 0.5) 0%, 
-      rgba(0, 0, 0, 0.3) 60%,
-      rgba(0, 0, 0, 0.6) 100%
+      135deg,
+      rgba(0,0,0,0.6) 0%,
+      rgba(0,0,0,0.4) 50%,
+      rgba(0,0,0,0.5) 100%
     );
-    z-index: 1;
+    z-index: 2;
     pointer-events: none;
   }
-  
-  @media (max-width: 768px) {
-    background-attachment: scroll;
-    min-height: 100vh; /* Оставляем полную высоту чтобы скрыть "Наши услуги" */
-    padding: 4rem 0;
-  }
-  
-  @media (max-width: 480px) {
-    min-height: 100vh; /* Полная высота экрана на мобильных */
-    padding: 3rem 0;
-  }
 `;
 
-const ContentWrapper = styled.div`
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  
-  @media (min-width: 768px) {
-    padding: 0 2rem;
-  }
-  
-  @media (min-width: 1280px) {
-    padding: 0 3rem;
-  }
-  
-  @media (max-width: 480px) {
-    padding: 0 2rem;
-  }
-`;
-
-const HeroGrid = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 2;
-  width: 100%;
-`;
-
-const MainContent = styled(motion.div)`
-  position: relative;
-  text-align: center;
-  max-width: 800px;
-  width: 100%;
+const ContentContainer = styled.div`
+  position: absolute;
+  inset: 0;
   z-index: 10;
-  margin: 0 auto;
-  padding: 0 1rem;
-  
-  @media (max-width: 768px) {
-    max-width: 95%;
-    padding: 0 0.5rem;
-  }
-  
-  @media (max-width: 480px) {
-    max-width: 100%;
-    padding: 0;
-  }
-`;
-
-const Badge = styled(motion.div)`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 30px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: white;
-  margin-bottom: 2rem;
-  backdrop-filter: blur(10px);
-  
-  svg {
-    width: 1rem;
-    height: 1rem;
-    color: #D4A574;
-  }
-  
-  @media (max-width: 768px) {
-    margin-bottom: 2.5rem;
-    padding: 0.9rem 1.8rem;
-    font-size: 1rem;
-  }
-  
-  @media (max-width: 480px) {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    margin-bottom: 3rem;
-    
-    svg {
-      width: 1.2rem;
-      height: 1.2rem;
-    }
-  }
-`;
-
-const Title = styled(motion.h1)`
-  font-size: clamp(2.2rem, 6vw, 3.8rem);
-  font-weight: 600;
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   text-align: center;
-  max-width: 100%;
-  word-wrap: break-word;
-  hyphens: auto;
-  
-  @media (max-width: 768px) {
-    font-size: clamp(1.8rem, 5vw, 2.5rem);
-    margin-bottom: 2rem;
-    line-height: 1.3;
-  }
-  
-  @media (max-width: 480px) {
-    font-size: clamp(1.6rem, 6vw, 2rem);
-    margin-bottom: 2.5rem;
-    line-height: 1.4;
-  }
-`;
-
-const Subtitle = styled(motion.h2)`
-  font-size: clamp(1.125rem, 2.2vw, 1.4rem);
-  font-weight: 400;
-  line-height: 1.5;
-  margin-bottom: 3rem;
-  color: white;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-  text-align: center;
-  max-width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  word-wrap: break-word;
-  
-  @media (max-width: 768px) {
-    margin-bottom: 3.5rem;
-    font-size: clamp(1.1rem, 3vw, 1.25rem);
-    line-height: 1.6;
-    max-width: 95%;
-  }
-  
-  @media (max-width: 480px) {
-    font-size: clamp(1rem, 4vw, 1.2rem);
-    margin-bottom: 4rem;
-    line-height: 1.6;
-    max-width: 100%;
-  }
-`;
-
-
-
-const CTAContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  width: 100%;
-  margin: 0 auto;
-  
-  @media (min-width: 768px) {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 1rem;
-    width: auto;
-  }
-  
-  @media (max-width: 768px) {
-    gap: 1rem;
-    max-width: 90%;
-    flex-direction: column;
-  }
-  
-  @media (max-width: 480px) {
-    gap: 0.75rem;
-    max-width: 95%;
-    flex-direction: column;
-  }
+  pointer-events: none;
 `;
 
-const PrimaryButton = styled(motion.button)`
+const ContentWrapper = styled.div`
+  max-width: 800px;
+  width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0;
-  background: transparent;
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  height: 46px;
-  width: 220px;
-  backdrop-filter: blur(20px);
-  transition: all 0.3s ease;
-  text-align: center;
-  white-space: nowrap;
-  text-decoration: none;
-  box-sizing: border-box;
-  
-  &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.5);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-  }
-  
-  svg {
-    width: 1rem;
-    height: 1rem;
-    flex-shrink: 0;
-  }
-  
-  @media (max-width: 768px) {
-    width: 100%;
-    max-width: 280px;
-    height: 48px;
-    font-size: 0.95rem;
-  }
-  
+  padding: 0 1rem;
+
   @media (max-width: 480px) {
-    height: 46px;
-    font-size: 0.9rem;
-    max-width: 240px;
-    
-    svg {
-      width: 0.95rem;
-      height: 0.95rem;
-    }
+    padding: 0 1.5rem;
   }
 `;
 
+const HeroTextBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
+const HeroWord = styled.span`
+  display: block;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(4.5rem, 12vw, 9rem);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
 
+  @media (max-width: 768px) {
+    font-size: clamp(4rem, 20vw, 7rem);
+    line-height: 1.05;
+  }
 
-const SpaHeroSection = memo(() => {
+  @media (max-width: 480px) {
+    font-size: clamp(3.5rem, 22vw, 6rem);
+  }
+`;
+
+const LocationText = styled.span`
+  display: block;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  margin-top: 2.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.65rem;
+    margin-top: 2rem;
+  }
+`;
+
+// === COMPONENT ===
+
+const SpaHeroSection = () => {
   const { t } = useTranslation();
-  const [isYclientsModalOpen, setIsYclientsModalOpen] = useState(false);
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const images = [
+    {
+      src: '/images/spa/services/thai-massage.jpg',
+      alt: t('spa.hero.images.thai_massage', 'Thai Massage')
+    },
+    {
+      src: '/images/spa/services/massage.jpg',
+      alt: t('spa.hero.images.massage', 'Massage')
+    },
+    {
+      src: '/images/spa/services/aromatherapy.jpg',
+      alt: t('spa.hero.images.aromatherapy', 'Aromatherapy')
+    }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % images.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [images.length]);
 
   return (
     <HeroContainer>
-      <ContentWrapper>
-        <HeroGrid>
-          <MainContent
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <Badge
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <SparklesIcon />
-              {t('spa.hero.badge', 'Премиум СПА')}
-            </Badge>
+      <BackgroundSlider>
+        {images.map((image, index) => (
+          <BackgroundImage
+            key={index}
+            style={{
+              backgroundImage: `url(${image.src})`,
+              opacity: currentSlide === index ? 1 : 0,
+              zIndex: currentSlide === index ? 2 : 1
+            }}
+          />
+        ))}
+      </BackgroundSlider>
 
-            <Title
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              {t('spa.hero.title', 'Погрузитесь в мир релаксации и красоты')}
-            </Title>
-
-            <Subtitle
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
-              {t('spa.hero.subtitle', 'Профессиональные СПА процедуры в роскошной атмосфере KAIF')}
-            </Subtitle>
-
-
-
-            <CTAContainer
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              <PrimaryButton
-                onClick={() => setIsYclientsModalOpen(true)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <CalendarDaysIcon />
-                {t('spa.hero.book_online', 'Онлайн-запись')}
-              </PrimaryButton>
-
-              <PrimaryButton
-                onClick={() => setIsBookingModalOpen(true)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <PaperAirplaneIcon />
-                {t('spa.hero.book_form', 'Оставить заявку')}
-              </PrimaryButton>
-            </CTAContainer>
-          </MainContent>
-
-
-        </HeroGrid>
-      </ContentWrapper>
-      
-      <YclientsModal
-        isOpen={isYclientsModalOpen}
-        onClose={() => setIsYclientsModalOpen(false)}
-        customUrl="https://n1329009.alteg.io"
-      />
-
-      <BookingModal
-        isOpen={isBookingModalOpen}
-        onClose={() => setIsBookingModalOpen(false)}
-        service={t('spa.booking.service', 'SPA-процедура')}
-        source="SPA страница - Hero"
-      />
+      <ContentContainer>
+        <ContentWrapper>
+          <HeroTextBlock>
+            <HeroWord>{t('spa.hero.title_part1', 'SPA')}</HeroWord>
+            <HeroWord>{t('spa.hero.title_part2', '& Beauty')}</HeroWord>
+            <LocationText>{t('spa.hero.location', 'Phuket')}</LocationText>
+          </HeroTextBlock>
+        </ContentWrapper>
+      </ContentContainer>
     </HeroContainer>
   );
-});
+};
 
-SpaHeroSection.displayName = 'SpaHeroSection';
-
-export default SpaHeroSection;
+export default memo(SpaHeroSection);

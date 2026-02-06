@@ -82,6 +82,10 @@
       "overline": "Premium Complex in Phuket",
       "mainTitle": "KAIF",
       "services": "Our Services",
+      "word1": "FEEL",
+      "word2": "THE",
+      "word3": "KAIF",
+      "location": "PHUKET · THAILAND",
       "bookNow": "Book Now",
       "virtualTour": "Virtual Tour",
       "slideAlt": "KAIF - Sauna & Spa",
@@ -272,6 +276,14 @@
     "location": {
       "title": "Find Us",
       "description": "Conveniently located in Kathu, just minutes away from Patong"
+    },
+    "parallax": {
+      "title": "Where Time Stands Still"
+    },
+    "terrace": {
+      "overline": "2nd Floor",
+      "title": "Rooftop Terrace",
+      "description": "A cozy lounge on the second floor right next to the Russian banya. Order food and drinks from our restaurant, unwind between steam sessions, and take in the breathtaking sunset views over Phuket"
     }
   },
   "facilities": {
@@ -392,11 +404,31 @@
       "label": "Our Restaurant",
       "badge": "Our Restaurant",
       "title": "Exquisite Cuisine",
+      "title_pasture": "OUR MENUS",
       "highlight": "with Modern Twist",
       "subtitle": "Signature cuisine and exquisite dishes",
+      "subtitle_pasture": "Discover a variety of flavors crafted by our talented chefs using the finest ingredients",
       "button": "Our Menu",
       "menu_button": "Our Menu",
-      "reviews": "Excellent Reviews"
+      "reviews": "Excellent Reviews",
+      "title_line1": "Restaurant",
+      "location": "Phuket"
+    },
+    "categories": {
+      "breakfast": "Breakfast",
+      "breakfast_desc": "Start your morning with signature dishes from our chef",
+      "soup": "Soups",
+      "soup_desc": "Comforting broths and creamy classics",
+      "salad": "Salads & Appetizers",
+      "salad_desc": "Fresh greens and refined starters",
+      "grill": "Grill",
+      "grill_desc": "Charcoal-grilled kebabs and roasted meats",
+      "main": "Main Courses",
+      "main_desc": "Signature hot dishes crafted with care",
+      "side": "Side Dishes",
+      "side_desc": "Perfect complements to every main course",
+      "dessert": "Desserts",
+      "dessert_desc": "Sweet endings to a perfect meal"
     },
     "menu": {
       "title": "Our Menu",
@@ -1288,7 +1320,10 @@
       "book_online": "Book Online",
       "book_whatsapp": "WhatsApp",
       "book_now": "Book a Treatment",
-      "learn_more": "Learn More"
+      "learn_more": "Learn More",
+      "title_part1": "SPA",
+      "title_part2": "& Beauty",
+      "location": "Phuket"
     },
     "services": {
       "title": "Our Services",
@@ -1926,7 +1961,8 @@
     "description": "State-of-the-art exercise facilities for everyone",
     "hero": {
       "tag": "YOUR ELITE FITNESS",
-      "title": "Reach new <span>sports heights</span> with KAIF",
+      "title": "Sports",
+      "location": "Phuket",
       "subtitle": "Modern equipment, professional trainers and atmosphere to achieve your sports goals",
       "cta": "Explore Facilities",
       "primary_cta": "BOOK A TRAINING",
@@ -1947,6 +1983,8 @@
     "benefits": {
       "tag": "Why Choose Us",
       "title": "Advantages of <span>KAIF sports complex</span>",
+      "title_plain": "Advantages",
+      "subtitle": "Everything you need for effective training",
       "premium": {
         "title": "Premium Equipment",
         "description": "Equipment from world-leading manufacturers Technogym and Life Fitness"
@@ -1973,8 +2011,9 @@
       }
     },
     "cta": {
+      "badge": "Get Started",
       "title": "Ready to Start?",
-      "subtitle": "Sign up for a free trial session and start your journey to your sports goals today",
+      "subtitle": "Sign up for a training session and start your journey to your sports goals today",
       "primary_button": "Book a Training",
       "secondary_button": "Call Us"
     },
@@ -2011,6 +2050,7 @@
     "schedule": {
       "tag": "Planning",
       "title": "SCHEDULE",
+      "title_plain": "Class Schedule",
       "subtitle": "SELECT DAY OF WEEK",
       "minutes": "min",
       "spots": "spots",
@@ -2073,6 +2113,7 @@
     "facilities": {
       "tag": "Our facilities",
       "title": "Modern <span>sports</span> spaces",
+      "title_plain": "Sports Zones",
       "subtitle": "KAIF offers a wide selection of premium sports spaces with cutting-edge equipment and professional trainers to help you achieve your fitness goals.",
       "gym": {
         "tag": "GYM",
@@ -2134,6 +2175,33 @@
         "filter_group": "Group",
         "filter_personal": "Personal",
         "filter_events": "Events"
+      },
+      "swim": {
+        "tag": "SWIMMING",
+        "title": "Swimming Pool",
+        "short_description": "25-meter pool for swimming, aqua aerobics and kids lessons",
+        "description": "25-meter swimming pool",
+        "hours": "07:00 - 22:00",
+        "capacity": "Up to 20 people",
+        "feature1": "25-meter pool",
+        "feature2": "Aqua aerobics classes",
+        "feature3": "Kids swimming lessons"
+      }
+    },
+    "pricing": {
+      "badge": "All-Inclusive",
+      "cta_button": "Get Started",
+      "all_plans": "All Plans",
+      "club_access_sport": {
+        "name": "Club Access Sport",
+        "description": "Full access to all sports facilities plus unlimited group training",
+        "period": "per month",
+        "f1": "Gym & Cardio",
+        "f2": "Swimming Pool",
+        "f3": "Russian Sauna & Steam",
+        "f4": "Unlimited Group Training",
+        "f5": "Fight Club Classes",
+        "f6": "KAIF Motion Classes"
       }
     },
     "membership": {
@@ -2154,6 +2222,24 @@
   "banya": {
     "title": "Russian Banya",
     "description": "Panoramic Russian bathhouse overlooking the jungle",
+    "steam_schedule": {
+      "overline": "Daily Schedule",
+      "title": "Steam Sessions",
+      "sessions": [
+        { "time": "10:00", "name": "First light steam" },
+        { "time": "11:00", "name": "Herbs aroma session" },
+        { "time": "12:00", "name": "Eucalyptus waves" },
+        { "time": "13:00", "name": "Garlic power" },
+        { "time": "14:00", "name": "Hard steam" },
+        { "time": "15:00", "name": "Relax time" },
+        { "time": "16:00", "name": "First light steam" },
+        { "time": "17:00", "name": "Herbs aroma session" },
+        { "time": "18:00", "name": "Eucalyptus waves" },
+        { "time": "19:00", "name": "Garlic power" },
+        { "time": "20:00", "name": "Hard steam" },
+        { "time": "21:00", "name": "Relax time" }
+      ]
+    },
     "hero": {
       "badge": "Best Banya in Phuket",
       "title": "Panoramic <span className=\"highlight\">Russian Banya</span>",
@@ -2527,7 +2613,9 @@
     "filters": {
       "all": "All",
       "spa": "SPA",
-      "fitness": "Fitness"
+      "fitness": "Fitness",
+      "banya": "Banya",
+      "relax": "Relax"
     },
     "slides": {
       "thai_massage": {
@@ -2545,6 +2633,82 @@
       "facial": {
         "title": "Cosmetology",
         "description": "Professional facial treatments using premium cosmetics."
+      },
+      "banya": {
+        "title": "Russian Banya",
+        "description": "Traditional Russian steam room with birch brooms and aromatherapy."
+      },
+      "combat": {
+        "title": "Fight Club",
+        "description": "Professional martial arts training with experienced coaches."
+      },
+      "pool": {
+        "title": "Pool",
+        "description": "Outdoor pool for swimming and relaxation."
+      },
+      "terrace": {
+        "title": "Rooftop Terrace",
+        "description": "Cozy lounge area with stunning sunset views."
+      },
+      "spa_room": {
+        "title": "Spa Suite",
+        "description": "Private spa rooms for premium treatments."
+      },
+      "cold_pool": {
+        "title": "Ice Pool",
+        "description": "Contrast pool for banya rituals and recovery."
+      },
+      "rest_area": {
+        "title": "Rest Area",
+        "description": "Comfortable lounge zone for relaxation between sessions."
+      },
+      "spa_interior": {
+        "title": "Spa Interior",
+        "description": "Elegant spa interior for complete relaxation."
+      },
+      "massage": {
+        "title": "Massage",
+        "description": "Professional massage treatments for body and mind."
+      },
+      "gym_equipment": {
+        "title": "Gym Equipment",
+        "description": "Modern fitness equipment for effective workouts."
+      },
+      "boxing": {
+        "title": "Boxing Ring",
+        "description": "Professional boxing ring for martial arts training."
+      },
+      "hot_stones": {
+        "title": "Hot Stones",
+        "description": "Traditional hot stones for authentic steam creation."
+      },
+      "tea_ceremony": {
+        "title": "Tea Ceremony",
+        "description": "Traditional tea drinking ritual after banya session."
+      },
+      "restaurant": {
+        "title": "Restaurant",
+        "description": "Gourmet dining with Eastern and Russian cuisine."
+      },
+      "smoking_area": {
+        "title": "Smoking Area",
+        "description": "Designated outdoor smoking area with tropical garden views."
+      },
+      "banya_lounge": {
+        "title": "Lounge Zone",
+        "description": "Comfortable lounge area for relaxation between steam sessions."
+      },
+      "steam_ritual": {
+        "title": "Steam Ritual",
+        "description": "Traditional banya steam ritual with birch brooms."
+      },
+      "spa_treatment": {
+        "title": "Spa Treatment",
+        "description": "Premium spa treatments for complete rejuvenation."
+      },
+      "relaxation": {
+        "title": "Relaxation",
+        "description": "Peaceful environment for ultimate relaxation."
       }
     }
   },
@@ -2690,6 +2854,105 @@
       "groupClasses": "(group classes)",
       "swimmingSchool": "(swimming school)",
       "dayPass": "(single visits)"
+    }
+  },
+  "bar": {
+    "hero": {
+      "badge": "Our Bar",
+      "parallax_title": "Bar",
+      "title": "Bar Menu",
+      "subtitle": "From signature cocktails and premium spirits to freshly squeezed juices and fitness drinks"
+    },
+    "categories": {
+      "cocktails": "Cocktails",
+      "cocktails_desc": "Alcoholic & non-alcoholic cocktails",
+      "wine_spirits": "Wine & Spirits",
+      "wine_spirits_desc": "Wine, whiskey, vodka, rum, gin & more",
+      "beer": "Beer",
+      "beer_desc": "Craft draft & bottled beer",
+      "coffee_tea": "Coffee & Tea",
+      "coffee_tea_desc": "Espresso, matcha & premium Chinese tea",
+      "soft_drinks": "Soft Drinks",
+      "soft_drinks_desc": "Soda, water & mineral water",
+      "juices": "Juices & Smoothies",
+      "juices_desc": "Fresh juices & smoothies",
+      "fitness": "Fitness & Protein",
+      "fitness_desc": "Sports drinks & protein shakes"
+    },
+    "items": {
+      "aperol_spritz": "Aperol Spritz",
+      "mojito": "Mojito",
+      "negroni": "Negroni",
+      "frozen_margarita": "Frozen Margarita",
+      "pina_colada": "Pina Colada",
+      "honey_lemon": "Honey and Lemon",
+      "mojito_nonalco": "Mojito Without Alcohol",
+      "passion_fruit": "Passion Fruit",
+      "pink_lemonade": "Pink Lemonade (Premix)",
+      "red_wine": "Red Wine Glass 150 ml",
+      "white_wine": "White Wine Glass 150 ml",
+      "sparkling_glass": "Sparkling Wine Glass 150 ml",
+      "sparkling_bottle": "Sparkling Wine Bottle 750 ml",
+      "cherry_03": "Cherry 0.3",
+      "classic_lager_03": "Classic Lager 0.3",
+      "german_wheat_03": "German Wheat Beer 0.3",
+      "imperial_stout_03": "Russian Imperial Stout 0.3",
+      "cherry_05": "Cherry 0.5",
+      "classic_lager_05": "Classic Lager 0.5",
+      "german_wheat_05": "German Wheat Beer 0.5",
+      "imperial_stout_05": "Russian Imperial Stout 0.5",
+      "tower_cherry": "Tower Cherry 3L",
+      "tower_classic": "Tower Classic Lager 3L",
+      "tower_wheat": "Tower German Wheat 3L",
+      "tower_stout": "Tower Imperial Stout 3L",
+      "espresso": "Espresso",
+      "americano": "Americano (Hot/Iced)",
+      "cappuccino": "Cappuccino (Hot/Iced)",
+      "bumble_coffee": "Bumble Coffee",
+      "espresso_tonic": "Espresso Tonic",
+      "latte": "Latte",
+      "matcha_coco": "Matcha Coco",
+      "ya_bao": "White Kidney Tea from Yunnan (Ya Bao)",
+      "ya_bao_desc": "Harvested from ancient tea trees over 100 years old in Yunnan province. Soft, fresh and ideal for relaxation",
+      "tie_guan_yin": "Light Oolong (Tie Guan Yin)",
+      "tie_guan_yin_desc": "Famous light oolong from Southern Fujian with a delicate floral taste. Refreshes body and mind",
+      "da_hong_pao": "Dark Oolong (Da Hong Pao)",
+      "da_hong_pao_desc": "Mineral-rich oolong from Wuishan with woody and tobacco notes. Sweet, complex aftertaste",
+      "gaba_oolong": "GABA Oolong (Ali Shan)",
+      "gaba_oolong_desc": "Rich in catechins and vitamin C. Refreshing and energizing tea",
+      "milk_oolong": "Milk Oolong (Nai Xiang)",
+      "milk_oolong_desc": "Intriguing tea combinations with rich aromas",
+      "shu_puerh": "Black Pu-erh (Shu Pu-erh)",
+      "shu_puerh_desc": "Rich pu-erh with woody and nutty notes. Slightly viscous, for lovers of strong tea",
+      "herbal_tea": "Herbal Collection",
+      "herbal_tea_desc": "Aromatic herbal blend with mint, thyme and oregano. Refreshing, restorative and ideal after sauna",
+      "buckwheat_tea": "Buckwheat Tea",
+      "buckwheat_tea_desc": "Natural sweet buckwheat tea. Caffeine-free, soothing and good for children",
+      "ivan_tea": "Ivan Tea",
+      "ivan_tea_desc": "Traditional Russian herbal tea with a delicate floral-herbal taste and light honey-fruit aroma. Caffeine-free",
+      "coconut": "Coconut 1 piece",
+      "kvas": "Kvas 0.5L",
+      "mors": "Mors 0.35L",
+      "soda_singha": "Soda Singha 0.33L",
+      "narzan": "Narzan 0.5L",
+      "essentuki": "Essentuki 1L",
+      "apple_juice": "Apple Juice",
+      "apple_carrot": "Apple/Carrot Juice",
+      "carrot_juice": "Carrot Juice",
+      "mango_juice": "Mango Juice",
+      "orange_juice": "Orange Juice",
+      "pineapple_juice": "Pineapple Juice",
+      "banana_shake": "Banana Shake",
+      "lychee_lime": "Lychee-Lime",
+      "mango_passion": "Mango-Passionfruit",
+      "electrolyte": "Electrolyte Boost",
+      "fat_burning": "Fat Burning",
+      "mass_gainer": "Mass Gainer",
+      "pre_workout": "Pre-Workout",
+      "protein_chocolate": "Chocolate",
+      "protein_strawberry": "Strawberry",
+      "protein_vanilla": "Vanilla",
+      "protein_desc": "Protein / Almond Milk / Milk / Coconut Water"
     }
   }
 }

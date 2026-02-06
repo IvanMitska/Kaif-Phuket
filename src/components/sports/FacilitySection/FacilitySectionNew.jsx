@@ -1,38 +1,253 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion, AnimatePresence } from 'framer-motion';
+import styled from 'styled-components';
 import {
-  CalendarIcon,
   ClockIcon,
   UserGroupIcon,
-  CheckCircleIcon,
-  ArrowRightIcon
+  CheckCircleIcon
 } from '@heroicons/react/24/outline';
-// TODO: Временно отключено - BookingModal
-// import BookingModal from '../../booking/BookingModal';
 
 const WHATSAPP_NUMBER = '66624805877';
 
-import {
-  FacilityGrid,
-  FacilityCardModern,
-  FacilityImageContainer,
-  FacilityImage,
-  FacilityOverlay,
-  FacilityContent,
-  FacilityTag,
-  FacilityTitle,
-  FacilityDescription,
-  FacilityMetaRow,
-  FacilityMetaItem,
-  FacilityFeaturesList,
-  FacilityFeatureItem,
-  FacilityButton,
-  ImageGalleryDots,
-  ImageDot
-} from './FacilityStylesNew';
+// === STYLED COMPONENTS — Minimalist Pasture Style ===
 
-import { Section, SectionTag, SectionTitle, SectionSubtitle, ContentContainer } from '../../../styles/sports/CommonStyles';
+const SectionContainer = styled.section`
+  position: relative;
+  padding: 6rem 0;
+  background-color: #fffef6;
+
+  @media (min-width: 768px) {
+    padding: 8rem 0;
+  }
+`;
+
+const ContentWrapper = styled.div`
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1.25rem;
+  }
+`;
+
+const Overline = styled.div`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(19, 50, 56, 0.4);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1.5px;
+    background: rgba(19, 50, 56, 0.25);
+    margin-right: 1rem;
+  }
+`;
+
+const Title = styled.h2`
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #133238;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+  max-width: 800px;
+`;
+
+const Subtitle = styled.p`
+  font-family: 'Jost', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(19, 50, 56, 0.55);
+  font-weight: 400;
+  max-width: 550px;
+  margin: 0 0 4rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    margin-bottom: 3rem;
+  }
+`;
+
+const FacilityGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
+
+const FacilityCard = styled.div`
+  background: #ffffff;
+  border: 1px solid rgba(19, 50, 56, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: rgba(19, 50, 56, 0.15);
+    box-shadow: 0 8px 30px rgba(19, 50, 56, 0.06);
+  }
+`;
+
+const FacilityImageWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+`;
+
+const FacilityImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+
+  ${FacilityCard}:hover & {
+    transform: scale(1.03);
+  }
+`;
+
+const ImageDots = styled.div`
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.4rem;
+  z-index: 2;
+`;
+
+const Dot = styled.button`
+  width: ${props => props.$active ? '20px' : '6px'};
+  height: 6px;
+  border-radius: 3px;
+  border: none;
+  background: ${props => props.$active ? '#ffffff' : 'rgba(255, 255, 255, 0.5)'};
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+`;
+
+const FacilityContent = styled.div`
+  padding: 1.75rem;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+`;
+
+const FacilityTag = styled.div`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(19, 50, 56, 0.4);
+  margin-bottom: 0.75rem;
+`;
+
+const FacilityTitle = styled.h3`
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #133238;
+  margin: 0 0 0.75rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+`;
+
+const FacilityDescription = styled.p`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(19, 50, 56, 0.55);
+  font-weight: 400;
+  margin: 0 0 1.25rem;
+`;
+
+const MetaRow = styled.div`
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+`;
+
+const MetaItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  color: rgba(19, 50, 56, 0.5);
+
+  svg {
+    width: 16px;
+    height: 16px;
+    color: rgba(19, 50, 56, 0.35);
+  }
+`;
+
+const FeaturesList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+`;
+
+const FeatureItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(19, 50, 56, 0.65);
+
+  svg {
+    width: 16px;
+    height: 16px;
+    color: rgba(19, 50, 56, 0.3);
+    flex-shrink: 0;
+  }
+`;
+
+const BookButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  background: #133238;
+  color: #fffef6;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 8px 30px rgba(19, 50, 56, 0.15);
+    transform: translateY(-1px);
+  }
+`;
+
+// === DATA ===
 
 const facilities = [
   {
@@ -43,20 +258,19 @@ const facilities = [
       '/images/sports/gym/gym-3.jpg'
     ],
     tagKey: 'sports.facilities.gym.tag',
-    defaultTag: 'ТРЕНАЖЕРНЫЙ ЗАЛ',
+    defaultTag: 'Gym',
     titleKey: 'sports.facilities.gym.title',
-    defaultTitle: 'Современный тренажерный зал',
+    defaultTitle: 'Modern Gym',
     descriptionKey: 'sports.facilities.gym.short_description',
-    defaultDescription: 'Премиальное оборудование от Technogym и Life Fitness для эффективных тренировок',
-    hours: '07:00 - 22:00',
-    capacity: '40 человек',
+    defaultDescription: 'Premium equipment from Technogym and Life Fitness for effective workouts',
+    hours: '07:00 – 22:00',
+    capacity: '40',
     features: [
-      { key: 'sports.facilities.gym.feature1', default: 'Зона кардио-тренажеров' },
-      { key: 'sports.facilities.gym.feature2', default: 'Зона свободных весов' },
-      { key: 'sports.facilities.gym.feature3', default: 'Функциональный тренинг' }
+      { key: 'sports.facilities.gym.feature1', default: 'Cardio zone' },
+      { key: 'sports.facilities.gym.feature2', default: 'Free weights area' },
+      { key: 'sports.facilities.gym.feature3', default: 'Functional training' }
     ],
-    whatsappMessage: 'Здравствуйте!%20Хочу%20записаться%20на%20тренировку%20в%20тренажерном%20зале%20KAIF',
-    gradient: 'linear-gradient(135deg, rgba(210, 155, 132, 0.9) 0%, rgba(144, 179, 167, 0.9) 100%)'
+    whatsappMessage: 'Hello! I would like to book a gym session at KAIF'
   },
   {
     id: 'fight',
@@ -66,196 +280,142 @@ const facilities = [
       '/images/sports/fight-club/fight-3.jpg'
     ],
     tagKey: 'sports.facilities.fight.tag',
-    defaultTag: 'БОЕВЫЕ ИСКУССТВА',
+    defaultTag: 'Martial Arts',
     titleKey: 'sports.facilities.fight.title',
-    defaultTitle: 'Бойцовский клуб',
+    defaultTitle: 'Fight Club',
     descriptionKey: 'sports.facilities.fight.short_description',
-    defaultDescription: 'Профессиональный ринг и оборудование для бокса, муай-тай и ММА',
-    hours: '07:00 - 22:00',
-    capacity: '25 человек',
+    defaultDescription: 'Professional ring and equipment for boxing, Muay Thai and MMA',
+    hours: '07:00 – 22:00',
+    capacity: '25',
     features: [
-      { key: 'sports.facilities.fight.feature1', default: 'Профессиональный ринг' },
-      { key: 'sports.facilities.fight.feature2', default: 'Боксерские мешки и груши' },
-      { key: 'sports.facilities.fight.feature3', default: 'Тренеры-чемпионы' }
+      { key: 'sports.facilities.fight.feature1', default: 'Professional ring' },
+      { key: 'sports.facilities.fight.feature2', default: 'Heavy bags and speed bags' },
+      { key: 'sports.facilities.fight.feature3', default: 'Champion trainers' }
     ],
-    whatsappMessage: 'Здравствуйте!%20Хочу%20записаться%20на%20тренировку%20в%20бойцовском%20клубе%20KAIF',
-    gradient: 'linear-gradient(135deg, rgba(200, 168, 233, 0.9) 0%, rgba(144, 179, 167, 0.9) 100%)'
+    whatsappMessage: 'Hello! I would like to book a fight club session at KAIF'
   },
   {
     id: 'dance',
     images: [
-      '/images/hero/hero-fitness.jpg'
+      '/images/hero/fitnes.jpg'
     ],
     tagKey: 'sports.facilities.dance.tag',
-    defaultTag: 'ТАНЦЫ И ФИТНЕС',
+    defaultTag: 'Dance & Fitness',
     titleKey: 'sports.facilities.dance.title',
-    defaultTitle: 'Танцевальная студия',
+    defaultTitle: 'Dance Studio',
     descriptionKey: 'sports.facilities.dance.short_description',
-    defaultDescription: 'Просторная студия для танцев, йоги и групповых фитнес-программ',
-    hours: '07:00 - 22:00',
-    capacity: '30 человек',
+    defaultDescription: 'Spacious studio for dance, yoga and group fitness programs',
+    hours: '07:00 – 22:00',
+    capacity: '30',
     features: [
-      { key: 'sports.facilities.dance.feature1', default: 'Зеркальные стены' },
-      { key: 'sports.facilities.dance.feature2', default: 'Профессиональное покрытие' },
-      { key: 'sports.facilities.dance.feature3', default: 'Звуковая система' }
+      { key: 'sports.facilities.dance.feature1', default: 'Mirror walls' },
+      { key: 'sports.facilities.dance.feature2', default: 'Professional flooring' },
+      { key: 'sports.facilities.dance.feature3', default: 'Sound system' }
     ],
-    whatsappMessage: 'Здравствуйте!%20Хочу%20записаться%20на%20танцевальные%20занятия%20в%20KAIF',
-    gradient: 'linear-gradient(135deg, rgba(144, 179, 167, 0.9) 0%, rgba(210, 155, 132, 0.9) 100%)'
+    whatsappMessage: 'Hello! I would like to book a dance class at KAIF'
+  },
+  {
+    id: 'swim',
+    images: [
+      '/images/zones/pool.jpg'
+    ],
+    tagKey: 'sports.facilities.swim.tag',
+    defaultTag: 'Swimming',
+    titleKey: 'sports.facilities.swim.title',
+    defaultTitle: 'Swimming Pool',
+    descriptionKey: 'sports.facilities.swim.short_description',
+    defaultDescription: '25-meter pool for swimming, aqua aerobics and kids lessons',
+    hours: '07:00 – 22:00',
+    capacity: '20',
+    features: [
+      { key: 'sports.facilities.swim.feature1', default: '25-meter pool' },
+      { key: 'sports.facilities.swim.feature2', default: 'Aqua aerobics classes' },
+      { key: 'sports.facilities.swim.feature3', default: 'Kids swimming lessons' }
+    ],
+    whatsappMessage: 'Hello! I would like to book a swimming session at KAIF'
   }
 ];
+
+// === COMPONENT ===
 
 const FacilitySectionNew = () => {
   const { t } = useTranslation();
   const [activeImages, setActiveImages] = useState(
-    facilities.reduce((acc, facility) => ({ ...acc, [facility.id]: 0 }), {})
+    facilities.reduce((acc, f) => ({ ...acc, [f.id]: 0 }), {})
   );
 
   const handleBookClick = (facility) => {
-    // Прямой переход в WhatsApp
-    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${facility.whatsappMessage}`;
-    window.open(whatsappUrl, '_blank');
+    const message = encodeURIComponent(facility.whatsappMessage);
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
   };
 
-  const handleImageChange = (facilityId, imageIndex) => {
-    setActiveImages(prev => ({
-      ...prev,
-      [facilityId]: imageIndex
-    }));
+  const handleImageChange = (facilityId, index) => {
+    setActiveImages(prev => ({ ...prev, [facilityId]: index }));
   };
 
   return (
-    <Section id="facilities">
-      <ContentContainer>
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <SectionTag
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5 }}
-          >
-            {t('sports.facilities.tag', 'Наши объекты')}
-          </SectionTag>
-
-          <SectionTitle
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7 }}
-            dangerouslySetInnerHTML={{
-              __html: t('sports.facilities.title', 'Современные <span>спортивные зоны</span>')
-            }}
-          />
-
-          <SectionSubtitle
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            {t('sports.facilities.subtitle', 'Выберите зону, которая подходит именно вам')}
-          </SectionSubtitle>
-        </div>
+    <SectionContainer id="facilities">
+      <ContentWrapper>
+        <Overline>{t('sports.facilities.tag', 'Our Facilities')}</Overline>
+        <Title>{t('sports.facilities.title_plain', 'Sports Zones')}</Title>
+        <Subtitle>{t('sports.facilities.subtitle', 'Choose the zone that suits you')}</Subtitle>
 
         <FacilityGrid>
-          {facilities.map((facility, index) => (
-            <FacilityCardModern
-              key={facility.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              whileHover={{ y: -10 }}
-            >
-              <FacilityImageContainer>
-                <AnimatePresence mode="wait">
-                  <FacilityImage
-                    key={activeImages[facility.id]}
-                    src={facility.images[activeImages[facility.id]]}
-                    alt={facility.defaultTitle}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                  />
-                </AnimatePresence>
-
+          {facilities.map((facility) => (
+            <FacilityCard key={facility.id}>
+              <FacilityImageWrapper>
+                <FacilityImg
+                  src={facility.images[activeImages[facility.id]]}
+                  alt={t(facility.titleKey, facility.defaultTitle)}
+                  loading="lazy"
+                />
                 {facility.images.length > 1 && (
-                  <ImageGalleryDots>
-                    {facility.images.map((_, imgIndex) => (
-                      <ImageDot
-                        key={imgIndex}
-                        active={activeImages[facility.id] === imgIndex}
-                        onClick={() => handleImageChange(facility.id, imgIndex)}
-                        whileHover={{ scale: 1.3 }}
-                        whileTap={{ scale: 0.9 }}
+                  <ImageDots>
+                    {facility.images.map((_, idx) => (
+                      <Dot
+                        key={idx}
+                        $active={activeImages[facility.id] === idx}
+                        onClick={() => handleImageChange(facility.id, idx)}
                       />
                     ))}
-                  </ImageGalleryDots>
+                  </ImageDots>
                 )}
-
-                <FacilityTag
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                >
-                  {t(facility.tagKey, facility.defaultTag)}
-                </FacilityTag>
-              </FacilityImageContainer>
+              </FacilityImageWrapper>
 
               <FacilityContent>
-                <FacilityTitle>
-                  {t(facility.titleKey, facility.defaultTitle)}
-                </FacilityTitle>
+                <FacilityTag>{t(facility.tagKey, facility.defaultTag)}</FacilityTag>
+                <FacilityTitle>{t(facility.titleKey, facility.defaultTitle)}</FacilityTitle>
+                <FacilityDescription>{t(facility.descriptionKey, facility.defaultDescription)}</FacilityDescription>
 
-                <FacilityDescription>
-                  {t(facility.descriptionKey, facility.defaultDescription)}
-                </FacilityDescription>
-
-                <FacilityMetaRow>
-                  <FacilityMetaItem>
+                <MetaRow>
+                  <MetaItem>
                     <ClockIcon />
                     <span>{facility.hours}</span>
-                  </FacilityMetaItem>
-                  <FacilityMetaItem>
+                  </MetaItem>
+                  <MetaItem>
                     <UserGroupIcon />
-                    <span>{t('sports.facilities.capacity', 'До {{count}} человек', { count: facility.capacity.split(' ')[0] })}</span>
-                  </FacilityMetaItem>
-                </FacilityMetaRow>
+                    <span>{t('sports.facilities.capacity', 'Up to {{count}}', { count: facility.capacity })}</span>
+                  </MetaItem>
+                </MetaRow>
 
-                <FacilityFeaturesList>
-                  {facility.features.map((feature, featureIndex) => (
-                    <FacilityFeatureItem key={featureIndex}>
+                <FeaturesList>
+                  {facility.features.map((feature, i) => (
+                    <FeatureItem key={i}>
                       <CheckCircleIcon />
                       <span>{t(feature.key, feature.default)}</span>
-                    </FacilityFeatureItem>
+                    </FeatureItem>
                   ))}
-                </FacilityFeaturesList>
+                </FeaturesList>
 
-                <FacilityButton
-                  as="button"
-                  onClick={() => handleBookClick(facility)}
-                  whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(210, 155, 132, 0.3)' }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <CalendarIcon />
-                  {t('sports.facilities.book_button', 'Забронировать')}
-                  <ArrowRightIcon />
-                </FacilityButton>
+                <BookButton onClick={() => handleBookClick(facility)}>
+                  {t('sports.facilities.book_button', 'Book a Session')}
+                </BookButton>
               </FacilityContent>
-            </FacilityCardModern>
+            </FacilityCard>
           ))}
         </FacilityGrid>
-      </ContentContainer>
-
-      {/* TODO: Временно отключено - BookingModal, используем WhatsApp
-      <BookingModal
-        isOpen={isBookingModalOpen}
-        onClose={() => setIsBookingModalOpen(false)}
-        service={selectedFacility ? t(selectedFacility.titleKey, selectedFacility.defaultTitle) : ''}
-        source={`Sports - ${selectedFacility?.id || 'Facility'}`}
-      />
-      */}
-    </Section>
+      </ContentWrapper>
+    </SectionContainer>
   );
 };
 

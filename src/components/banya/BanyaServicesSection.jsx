@@ -2,128 +2,104 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
-// =============================================================================
-// СОВРЕМЕННАЯ СЕКЦИЯ УСЛУГ БАНИ
-// =============================================================================
+// === STYLED COMPONENTS — Minimalist Pasture Style ===
 
-const ServicesContainer = styled.section`
-  padding: clamp(4rem, 8vw, 6rem) 0;
-  margin-top: -1px;
-  background: #0a0a0a;
+const SectionContainer = styled.section`
   position: relative;
-  margin-bottom: 0;
+  padding: 6rem 0;
+  background-color: #fffef6;
 
-  /* Оптимизация для мобильных */
-  @media (max-width: 768px) {
-    overflow-x: hidden;
-    will-change: auto;
-  }
-
-  @media (min-width: 769px) {
-    overflow: hidden;
+  @media (min-width: 768px) {
+    padding: 8rem 0;
   }
 `;
 
 const ContentWrapper = styled.div`
-  max-width: 1400px;
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 0 clamp(1rem, 4vw, 2rem);
-  position: relative;
-  z-index: 2;
+  padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1.25rem;
+  }
 `;
 
-const SectionHeader = styled.div`
-  text-align: center;
-  margin-bottom: clamp(3rem, 6vw, 5rem);
+const Overline = styled.div`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(19, 50, 56, 0.4);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1.5px;
+    background: rgba(19, 50, 56, 0.25);
+    margin-right: 1rem;
+  }
 `;
 
-const SectionTitle = styled.h2`
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 300;
-  color: #ffffff;
-  margin-bottom: 1rem;
-  letter-spacing: -0.02em;
+const Title = styled.h2`
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
   line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #133238;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+  max-width: 800px;
 `;
 
-const SectionSubtitle = styled.p`
-  font-size: clamp(1.1rem, 2vw, 1.35rem);
-  background: linear-gradient(135deg, rgba(255, 214, 98, 0.9) 0%, rgba(255, 107, 53, 0.9) 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  max-width: 700px;
-  margin: 0 auto;
+const Subtitle = styled.p`
+  font-family: 'Jost', sans-serif;
+  font-size: 1.05rem;
   line-height: 1.6;
-  font-weight: 500;
-  letter-spacing: 0.02em;
+  color: rgba(19, 50, 56, 0.55);
+  font-weight: 400;
+  max-width: 550px;
+  margin: 0 0 4rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    margin-bottom: 3rem;
+  }
 `;
 
 const RitualsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 1.5rem;
-  margin: 0 auto;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-
-  @media (min-width: 769px) and (max-width: 1200px) {
+  @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (min-width: 1201px) {
+  @media (min-width: 1100px) {
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.75rem;
   }
 `;
 
 const RitualCard = styled.div`
-  background: #151515;
-  border-radius: 24px;
-  padding: 2.5rem;
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  min-height: 340px;
+  background: #ffffff;
+  border: 1px solid rgba(19, 50, 56, 0.08);
+  border-radius: 12px;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  min-height: 280px;
+  transition: all 0.3s ease;
 
-  @media (hover: hover) and (pointer: fine) {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
-    }
+  &:hover {
+    border-color: rgba(19, 50, 56, 0.15);
+    box-shadow: 0 8px 30px rgba(19, 50, 56, 0.06);
   }
-
-  @media (max-width: 768px) {
-    padding: 2rem;
-    min-height: auto;
-    border-radius: 20px;
-  }
-`;
-
-const AccentLine = styled.div`
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    #ff6b35 25%,
-    #ffd662 50%,
-    #ff6b35 75%,
-    transparent 100%
-  );
-  opacity: 0.8;
 `;
 
 const RitualHeader = styled.div`
@@ -132,145 +108,97 @@ const RitualHeader = styled.div`
 `;
 
 const RitualTitle = styled.h3`
-  font-size: 1.875rem;
-  font-weight: 600;
-  background: linear-gradient(135deg, #ffffff 0%, #ffd662 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 100% 100%;
-  background-position: 0 0;
-  margin: 0 0 0.5rem 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #133238;
+  margin: 0 0 0.5rem;
   line-height: 1.2;
-  letter-spacing: -0.02em;
-  transition: all 0.4s ease;
-
-  @media (max-width: 768px) {
-    font-size: 1.625rem;
-  }
+  letter-spacing: -0.01em;
 `;
 
 const RitualSubtitle = styled.div`
-  color: rgba(255, 214, 98, 0.8);
-  font-size: 0.875rem;
-  margin-bottom: 1.25rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75rem;
   font-weight: 400;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  display: inline-block;
-  padding: 4px 12px;
-  background: rgba(255, 107, 53, 0.1);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 107, 53, 0.2);
+  color: rgba(19, 50, 56, 0.4);
+  margin-bottom: 1rem;
 `;
 
-const RitualDescription = styled.div`
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1rem;
-  line-height: 1.7;
+const RitualDescription = styled.p`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(19, 50, 56, 0.55);
   font-weight: 400;
-  letter-spacing: 0.02em;
-
-  @media (max-width: 768px) {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
+  margin: 0;
 `;
 
-const RitualDetails = styled.div`
+const RitualFooter = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding-top: 2rem;
+  padding-top: 1.5rem;
   margin-top: auto;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(19, 50, 56, 0.06);
 `;
 
 const RitualDuration = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.2rem;
 `;
 
 const DurationLabel = styled.span`
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.7rem;
   font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(19, 50, 56, 0.35);
 `;
 
 const DurationValue = styled.span`
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1rem;
-  font-weight: 500;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgba(19, 50, 56, 0.7);
 `;
 
 const RitualPrice = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 0.25rem;
-  transition: transform 0.3s ease;
+  gap: 0.2rem;
 `;
 
 const PriceLabel = styled.span`
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.7rem;
   font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(19, 50, 56, 0.35);
 `;
 
 const PriceValue = styled.span`
-  font-size: 1.625rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #ffd662 0%, #ff6b35 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #133238;
   letter-spacing: -0.02em;
-  white-space: nowrap;
-
-  @media (max-width: 768px) {
-    font-size: 1.375rem;
-  }
 `;
+
+// === COMPONENT ===
 
 const BanyaServicesSection = () => {
   const { t, i18n, ready } = useTranslation();
   const isRussian = i18n.language === 'ru';
 
-  // Fallback data in case translations fail to load
-  const fallbackRituals = [
-    {
-      id: 'intro',
-      title: 'Introductory Steaming',
-      subtitle: 'LIGHT STEAM',
-      duration: '7-10 min',
-      price: '1,000 THB',
-      description: 'A short and sensitive ritual with gentle warming of back and legs'
-    },
-    {
-      id: 'lady',
-      title: "Lady's Steaming",
-      subtitle: 'LOW-TEMPERATURE',
-      duration: '10-15 min',
-      price: '1,500 THB',
-      description: 'Special low-temperature technique with deep local warming'
-    },
-    {
-      id: 'classic',
-      title: 'Classic Steaming',
-      subtitle: 'MEDIUM STEAM',
-      duration: '10-15 min',
-      price: '1,800 THB',
-      description: 'Steaming with oak brooms in one session. Thorough whole body steaming with aromatic steam'
-    }
-  ];
-
   const getRituals = () => {
-    if (!ready) return fallbackRituals.slice(0, 3); // Show fewer cards while loading
+    if (!ready) return [];
 
     try {
       return [
@@ -380,59 +308,45 @@ const BanyaServicesSection = () => {
         }
       ];
     } catch (error) {
-      console.error('Translation error:', error);
-      return fallbackRituals;
+      return [];
     }
   };
 
   const rituals = getRituals();
 
   return (
-    <ServicesContainer>
+    <SectionContainer>
       <ContentWrapper>
-        <SectionHeader>
-          <SectionTitle>
-            {isRussian ? 'Индивидуальные парения' : 'Individual Steam Sessions'}
-          </SectionTitle>
-          <SectionSubtitle>
-            {isRussian
-              ? 'Выберите свой идеальный банный ритуал'
-              : 'Choose your perfect banya ritual'}
-          </SectionSubtitle>
-        </SectionHeader>
+        <Overline>{t('banya.services.badge', isRussian ? 'Ритуалы' : 'Rituals')}</Overline>
+        <Title>{t('banya.services.title', isRussian ? 'Индивидуальные парения' : 'Individual Steam Sessions')}</Title>
+        <Subtitle>
+          {t('banya.services.subtitle', isRussian ? 'Выберите свой идеальный банный ритуал' : 'Choose your perfect banya ritual')}
+        </Subtitle>
 
         <RitualsGrid>
           {rituals.map((ritual) => (
-              <RitualCard key={ritual.id}>
-              <AccentLine />
-
+            <RitualCard key={ritual.id}>
               <RitualHeader>
-                <RitualTitle className="ritual-title">
-                  {ritual.title || 'Loading...'}
-                </RitualTitle>
-                <RitualSubtitle>
-                  {ritual.subtitle || 'STEAM'}
-                </RitualSubtitle>
-                <RitualDescription>
-                  {ritual.description || 'Loading description...'}
-                </RitualDescription>
+                <RitualTitle>{ritual.title}</RitualTitle>
+                <RitualSubtitle>{ritual.subtitle}</RitualSubtitle>
+                <RitualDescription>{ritual.description}</RitualDescription>
               </RitualHeader>
 
-              <RitualDetails>
+              <RitualFooter>
                 <RitualDuration>
                   <DurationLabel>{isRussian ? 'Время' : 'Duration'}</DurationLabel>
-                  <DurationValue>{ritual.duration || '0 min'}</DurationValue>
+                  <DurationValue>{ritual.duration}</DurationValue>
                 </RitualDuration>
                 <RitualPrice>
                   <PriceLabel>{isRussian ? 'Стоимость' : 'Price'}</PriceLabel>
-                  <PriceValue>{ritual.price || '0 THB'}</PriceValue>
+                  <PriceValue>{ritual.price}</PriceValue>
                 </RitualPrice>
-              </RitualDetails>
+              </RitualFooter>
             </RitualCard>
           ))}
         </RitualsGrid>
       </ContentWrapper>
-    </ServicesContainer>
+    </SectionContainer>
   );
 };
 

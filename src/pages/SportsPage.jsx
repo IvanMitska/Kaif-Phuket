@@ -1,36 +1,23 @@
-import React, { useEffect, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import PageHead from '../components/layout/PageHead';
-import '../styles/ios-scroll-fix.css';
-
-// Ленивая загрузка компонентов спорта для оптимизации
-const HeroSection = React.lazy(() => import('../components/sports/HeroSection/HeroSection'));
-const BenefitsSection = React.lazy(() => import('../components/sports/BenefitsSection/BenefitsSection'));
-const ScrollingText = React.lazy(() => import('../components/sports/ScrollingText/ScrollingText'));
-const FacilitySectionNew = React.lazy(() => import('../components/sports/FacilitySection/FacilitySectionNew'));
-const ScheduleSectionNew = React.lazy(() => import('../components/sports/ScheduleSection/ScheduleSectionNew'));
-const CTASection = React.lazy(() => import('../components/sports/CTASection/CTASection'));
-import { PageContainer } from '../styles/sports/CommonStyles';
 import PageScrollReset from '../components/common/PageScrollReset';
 
-// Невидимый компонент загрузки
-const InvisibleLoader = () => null;
+import HeroSection from '../components/sports/HeroSection/HeroSection';
+
+const FacilitySectionNew = lazy(() => import('../components/sports/FacilitySection/FacilitySectionNew'));
+const SportsPricingSection = lazy(() => import('../components/sports/PricingSection/SportsPricingSection'));
+const BenefitsSection = lazy(() => import('../components/sports/BenefitsSection/BenefitsSection'));
+const ScheduleSectionNew = lazy(() => import('../components/sports/ScheduleSection/ScheduleSectionNew'));
+const CTASection = lazy(() => import('../components/sports/CTASection/CTASection'));
+
+const SectionLoader = () => null;
 
 const SportsPage = () => {
   const { t } = useTranslation();
 
-  // Добавлено сохранение стилей при рендеринге страницы
-  useEffect(() => {
-    document.body.classList.add('sports-page');
-    window.scrollTo(0, 0);
-
-    return () => {
-      document.body.classList.remove('sports-page');
-    };
-  }, []);
-
   return (
-    <PageContainer>
+    <>
       <PageHead
         titleKey="page_titles.sports"
         description={t('sports.hero.subtitle', 'Modern equipment, professional trainers and atmosphere to achieve your sporting goals')}
@@ -38,25 +25,28 @@ const SportsPage = () => {
         ogImage="/images/sports/gym/gym-main.jpg"
       />
       <PageScrollReset />
-      <Suspense fallback={<InvisibleLoader />}>
-        <HeroSection />
-      </Suspense>
-      <Suspense fallback={<InvisibleLoader />}>
+      <HeroSection />
+
+      <Suspense fallback={<SectionLoader />}>
         <FacilitySectionNew />
       </Suspense>
-      <Suspense fallback={<InvisibleLoader />}>
+
+      <Suspense fallback={<SectionLoader />}>
+        <SportsPricingSection />
+      </Suspense>
+
+      <Suspense fallback={<SectionLoader />}>
         <BenefitsSection />
       </Suspense>
-      <Suspense fallback={<InvisibleLoader />}>
-        <ScrollingText />
-      </Suspense>
-      <Suspense fallback={<InvisibleLoader />}>
+
+      <Suspense fallback={<SectionLoader />}>
         <ScheduleSectionNew />
       </Suspense>
-      <Suspense fallback={<InvisibleLoader />}>
+
+      <Suspense fallback={<SectionLoader />}>
         <CTASection />
       </Suspense>
-    </PageContainer>
+    </>
   );
 };
 

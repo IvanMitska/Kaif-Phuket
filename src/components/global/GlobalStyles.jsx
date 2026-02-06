@@ -35,13 +35,6 @@ const GlobalStyles = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* PERFORMANCE FIX: Отключаем тяжёлые эффекты, но разрешаем для загрузки */
-  *:not([data-loading-screen]):not(.App) {
-    filter: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-
   /* Разрешаем простые transitions для интерактивности */
   button, a, [role="button"], input, select, textarea {
     transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease, transform 0.15s ease !important;
@@ -126,44 +119,17 @@ const GlobalStyles = createGlobalStyle`
     vertical-align: baseline;
   }
   
-  /* Специальное правило для footer */
-  footer {
-    display: block;
-    margin: 0;
-    border: 0;
-    outline: 0;
-    vertical-align: baseline;
-    margin-top: 0 !important;
-    padding-top: 0;
-  }
-  
   /* Устранение зазоров между main и footer */
   main {
     margin: 0;
     padding-bottom: 0;
     display: block;
   }
-  
-  /* Устранение любых возможных зазоров */
-  main + footer,
-  section + footer,
-  div + footer {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-  }
-  
-  /* Принудительное устранение зазоров для всех элементов перед footer */
+
   footer {
-    margin-top: 0 !important;
-    border-top: none !important;
-  }
-  
-  /* Убираем любые возможные отступы в конце main контента */
-  main > *:last-child,
-  main > div:last-child,
-  main > section:last-child {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
+    display: block;
+    margin-top: 0;
+    border-top: none;
   }
   
   /* Типография */

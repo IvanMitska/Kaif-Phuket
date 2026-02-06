@@ -1,138 +1,99 @@
 import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ChevronDownIcon, 
-  QuestionMarkCircleIcon,
-  ClockIcon,
-  MapPinIcon,
-  CreditCardIcon,
-  UserGroupIcon,
-  PlusIcon,
-  MinusIcon,
-  PhoneIcon,
-  ChatBubbleLeftRightIcon
-} from '@heroicons/react/24/solid';
 
-// =============================================================================
-// СОВРЕМЕННАЯ МИНИМАЛИСТИЧНАЯ СЕКЦИЯ FAQ
-// =============================================================================
+// === STYLED COMPONENTS — Minimalist Pasture Style ===
 
-const FAQContainer = styled.section`
+const SectionContainer = styled.section`
   position: relative;
-  padding: 3rem 0;
-  background: linear-gradient(135deg, rgba(144, 179, 167, 0.05) 0%, rgba(168, 197, 184, 0.03) 100%); /* Легкий градиент в зеленых тонах */
-  overflow: hidden;
-  
-  @media (max-width: 768px) {
-    padding: 1.5rem 0;
-  }
-  
-  @media (max-width: 480px) {
-    padding: 1rem 0;
+  padding: 6rem 0;
+  background-color: #fffef6;
+
+  @media (min-width: 768px) {
+    padding: 8rem 0;
   }
 `;
 
 const ContentWrapper = styled.div`
-  position: relative;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 0 1.5rem;
-  
-  @media (min-width: 1024px) {
-    padding: 0 2rem;
-  }
-`;
+  padding: 0 2rem;
 
-const SectionHeader = styled(motion.div)`
-  text-align: center;
-  margin-bottom: 2rem;
-  
   @media (max-width: 768px) {
-    margin-bottom: 1.5rem;
-  }
-  
-  @media (max-width: 480px) {
-    margin-bottom: 1rem;
+    padding: 0 1.25rem;
   }
 `;
 
-const SectionBadge = styled(motion.div)`
-  display: inline-flex;
+const Overline = styled.div`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(19, 50, 56, 0.4);
+  margin-bottom: 1.25rem;
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: rgba(144, 179, 167, 0.08); /* Зеленый цвет KAIF с прозрачностью */
-  border: 1px solid rgba(144, 179, 167, 0.15); /* Зеленый бордер */
-  border-radius: 24px;
-  font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #90B3A7; /* Зеленый цвет KAIF */
-  margin-bottom: 2rem;
-  
-  svg {
-    width: 1rem;
-    height: 1rem;
-    color: #90B3A7; /* Зеленый цвет KAIF */
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1.5px;
+    background: rgba(19, 50, 56, 0.25);
+    margin-right: 1rem;
   }
 `;
 
-const SectionTitle = styled(motion.h2)`
-  font-family: ${({ theme }) => theme?.fonts?.heading || '"Poppins", sans-serif'};
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 700;
+const Title = styled.h2`
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
   line-height: 1.1;
-  margin-bottom: 1.5rem;
-  color: #0f172a;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
+  color: #133238;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+  max-width: 800px;
 `;
 
-const SectionSubtitle = styled(motion.p)`
-  font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 1.125rem;
+const Subtitle = styled.p`
+  font-family: 'Jost', sans-serif;
+  font-size: 1.05rem;
   line-height: 1.6;
-  color: #64748b;
-  max-width: 600px;
-  margin: 0 auto;
+  color: rgba(19, 50, 56, 0.55);
+  font-weight: 400;
+  max-width: 550px;
+  margin: 0 0 4rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    margin-bottom: 3rem;
+  }
 `;
 
-// FAQ Grid
 const FAQGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
-  
+
   @media (min-width: 1024px) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 380px;
     gap: 4rem;
   }
 `;
 
-const FAQList = styled(motion.div)`
+/* FAQ accordion */
+const FAQList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 `;
 
-const FAQItem = styled(motion.div)`
-  background: white;
-  border: 1px solid ${({ $isOpen }) => 
-    $isOpen ? '#e2e8f0' : '#f1f5f9'
-  };
-  border-radius: 16px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  
-  ${({ $isOpen }) => $isOpen && `
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    transform: translateY(-1px);
-  `}
-  
-  &:hover {
-    border-color: #e2e8f0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+const FAQItem = styled.div`
+  border-bottom: 1px solid rgba(19, 50, 56, 0.08);
+
+  &:first-child {
+    border-top: 1px solid rgba(19, 50, 56, 0.08);
   }
 `;
 
@@ -141,224 +102,136 @@ const QuestionButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 0;
   background: none;
   border: none;
   cursor: pointer;
   text-align: left;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: #f8fafc;
-  }
-`;
-
-const QuestionContent = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex: 1;
-`;
-
-const QuestionIcon = styled.div`
-  width: 2.5rem;
-  height: 2.5rem;
-  background: rgba(144, 179, 167, 0.08); /* Зеленый цвет KAIF с прозрачностью */
-  border: 1px solid rgba(144, 179, 167, 0.15); /* Зеленый бордер */
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #90B3A7; /* Зеленый цвет KAIF */
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-  
-  svg {
-    width: 1rem;
-    height: 1rem;
-  }
-  
-  ${FAQItem}:hover & {
-    background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%); /* Градиент зеленого цвета */
-    color: white;
-    border-color: transparent;
-  }
+  gap: 1.5rem;
 `;
 
 const QuestionText = styled.h3`
-  font-family: ${({ theme }) => theme?.fonts?.heading || '"Poppins", sans-serif'};
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #0f172a;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #133238;
   margin: 0;
   line-height: 1.4;
+  flex: 1;
 `;
 
-const ToggleIcon = styled(motion.div)`
+const ToggleIcon = styled.div`
   width: 2rem;
   height: 2rem;
-  background: ${({ $isOpen }) => 
-    $isOpen ? 'linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%)' : 'rgba(144, 179, 167, 0.08)' /* Зеленый чайный цвет */
-  };
-  border-radius: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(19, 50, 56, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${({ $isOpen }) => 
-    $isOpen ? 'white' : '#5CB848' /* Зеленый из логотипа */
-  };
-  transition: all 0.3s ease;
   flex-shrink: 0;
-  box-shadow: ${({ $isOpen }) => 
-    $isOpen ? '0 4px 8px rgba(0, 0, 0, 0.1)' : 'none'
-  };
-  
-  svg {
-    width: 1rem;
-    height: 1rem;
+  position: relative;
+  transition: background 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  background: ${props => props.$isOpen ? '#133238' : 'transparent'};
+  border-color: ${props => props.$isOpen ? '#133238' : 'rgba(19, 50, 56, 0.15)'};
+  transform: ${props => props.$isOpen ? 'rotate(45deg)' : 'rotate(0deg)'};
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    background: ${props => props.$isOpen ? '#fffef6' : '#133238'};
+    transition: background 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 1px;
+  }
+
+  &::before {
+    width: 12px;
+    height: 1.5px;
+  }
+
+  &::after {
+    width: 1.5px;
+    height: 12px;
   }
 `;
 
-const AnswerWrapper = styled(motion.div)`
-  overflow: hidden;
-`;
+const AnswerWrapper = styled.div`
+  display: grid;
+  grid-template-rows: ${props => props.$isOpen ? '1fr' : '0fr'};
+  opacity: ${props => props.$isOpen ? '1' : '0'};
+  transition: grid-template-rows 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 
-const AnswerContent = styled.div`
-  padding: 0 2rem 2rem 5.5rem;
-  
-  @media (max-width: 768px) {
-    padding: 0 1.5rem 2rem 1.5rem;
+  > div {
+    overflow: hidden;
   }
 `;
 
 const AnswerText = styled.p`
-  font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 1rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.95rem;
   line-height: 1.7;
-  color: #64748b;
+  color: rgba(19, 50, 56, 0.6);
   margin: 0;
+  padding-bottom: 1.75rem;
+  transform: ${props => props.$isOpen ? 'translateY(0)' : 'translateY(-8px)'};
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
-// Поддержка
-const SupportSection = styled(motion.div)`
+/* Support sidebar */
+const SupportSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 `;
 
-const SupportCard = styled(motion.div)`
-  background: white;
-  border: 1px solid rgba(144, 179, 167, 0.1); /* Зеленый цвет KAIF */
-  border-radius: 16px;
-  padding: 2rem 1.5rem;
-  text-align: center;
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.6s ease;
-  }
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(144, 179, 167, 0.15); /* Тень с зеленым цветом KAIF */
-    border-color: rgba(144, 179, 167, 0.2); /* Зеленый цвет KAIF */
-    
-    &::before {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-  }
-`;
-
-const SupportIcon = styled.div`
-  width: 3rem;
-  height: 3rem;
-  margin: 0 auto 1.5rem;
-  background: rgba(144, 179, 167, 0.08); /* Зеленый цвет KAIF с прозрачностью */
-  border: 1px solid rgba(144, 179, 167, 0.15); /* Зеленый бордер */
+const SupportCard = styled.div`
+  background: #ffffff;
+  border: 1px solid rgba(19, 50, 56, 0.08);
   border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #90B3A7; /* Зеленый цвет KAIF */
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-  
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    transition: transform 0.4s ease;
-  }
-  
-  ${SupportCard}:hover & {
-    background: linear-gradient(135deg, #90B3A7 0%, #A8C5B8 100%); /* Градиент зеленого цвета */
-    color: white;
-    border-color: transparent;
-    transform: scale(1.1);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-    
-    svg {
-      transform: scale(1.1);
-    }
+  padding: 2rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: rgba(19, 50, 56, 0.15);
+    box-shadow: 0 8px 30px rgba(19, 50, 56, 0.06);
   }
 `;
 
 const SupportTitle = styled.h3`
-  font-family: ${({ theme }) => theme?.fonts?.heading || '"Poppins", sans-serif'};
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #0f172a;
-  margin-bottom: 1rem;
-  line-height: 1.3;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #133238;
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
 `;
 
 const SupportDescription = styled.p`
-  font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
+  font-family: 'Jost', sans-serif;
   font-size: 0.9rem;
-  color: #64748b;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  color: rgba(19, 50, 56, 0.5);
+  line-height: 1.5;
+  margin: 0 0 1.25rem;
 `;
 
 const SupportInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
 `;
 
 const InfoItem = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  font-family: ${({ theme }) => theme?.fonts?.primary || 'Inter, sans-serif'};
-  font-size: 0.875rem;
-  color: #64748b;
-  font-weight: 500;
-  
-  svg {
-    width: 1rem;
-    height: 1rem;
-    color: #94a3b8;
-    flex-shrink: 0;
-  }
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(19, 50, 56, 0.45);
+  font-weight: 400;
 `;
 
-// =============================================================================
-// FAQ SECTION COMPONENT
-// =============================================================================
+// === COMPONENT ===
 
 const FAQSection = () => {
   const { t } = useTranslation();
@@ -368,257 +241,89 @@ const FAQSection = () => {
     setOpenFAQ(openFAQ === index ? null : index);
   };
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0.3 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        staggerChildren: 0.05
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0.5, y: 10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.4,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const faqVariants = {
-    hidden: { opacity: 0.4, y: 15 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const answerVariants = {
-    hidden: {
-      height: 0,
-      opacity: 0,
-      transition: {
-        height: { duration: 0.3 },
-        opacity: { duration: 0.2 }
-      }
-    },
-    visible: {
-      height: "auto",
-      opacity: 1,
-      transition: {
-        height: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
-        opacity: { duration: 0.3, delay: 0.1 }
-      }
-    }
-  };
-
-  // FAQ данные с переводами
   const faqs = useMemo(() => [
     {
-      category: 'general',
-      icon: <QuestionMarkCircleIcon />,
       question: t('faq.questions.what_includes.question'),
       answer: t('faq.questions.what_includes.answer')
     },
     {
-      category: 'general',
-      icon: <ClockIcon />,
       question: t('faq.questions.working_hours.question'),
       answer: t('faq.questions.working_hours.answer')
     },
     {
-      category: 'booking',
-      icon: <UserGroupIcon />,
       question: t('faq.questions.how_to_book.question'),
       answer: t('faq.questions.how_to_book.answer')
     },
     {
-      category: 'booking',
-      icon: <CreditCardIcon />,
       question: t('faq.questions.memberships.question'),
       answer: t('faq.questions.memberships.answer')
     },
     {
-      category: 'services',
-      icon: <UserGroupIcon />,
       question: t('faq.questions.experience_needed.question'),
       answer: t('faq.questions.experience_needed.answer')
     },
     {
-      category: 'payment',
-      icon: <CreditCardIcon />,
       question: t('faq.questions.payment_methods.question'),
       answer: t('faq.questions.payment_methods.answer')
     }
   ], [t]);
 
   return (
-    <FAQContainer>
+    <SectionContainer id="faq">
       <ContentWrapper>
-        <div>
-          <SectionHeader>
-            <SectionBadge>
-              <ChatBubbleLeftRightIcon />
-              {t('faq.badge')}
-            </SectionBadge>
-            
-            <SectionTitle>
-              {t('faq.title')}
-            </SectionTitle>
-            
-            <SectionSubtitle>
-              {t('faq.subtitle')}
-            </SectionSubtitle>
-          </SectionHeader>
+        <Overline>{t('faq.badge', 'FAQ')}</Overline>
+        <Title>{t('faq.title')}</Title>
+        <Subtitle>{t('faq.subtitle')}</Subtitle>
 
-          <FAQGrid>
-            {/* FAQ List */}
-            <FAQList>
-              {faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  variants={faqVariants}
-                  custom={index}
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.1 }}
-                >
-                  <FAQItem $isOpen={openFAQ === index}>
-                    <QuestionButton onClick={() => toggleFAQ(index)}>
-                      <QuestionContent>
-                        <QuestionIcon>
-                          {faq.icon}
-                        </QuestionIcon>
-                        <QuestionText>{faq.question}</QuestionText>
-                      </QuestionContent>
-                      
-                      <ToggleIcon
-                        $isOpen={openFAQ === index}
-                        animate={{ 
-                          rotate: openFAQ === index ? 180 : 0
-                        }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                      >
-                        {openFAQ === index ? <MinusIcon /> : <PlusIcon />}
-                      </ToggleIcon>
-                    </QuestionButton>
+        <FAQGrid>
+          {/* FAQ Accordion */}
+          <FAQList>
+            {faqs.map((faq, index) => (
+              <FAQItem key={index}>
+                <QuestionButton onClick={() => toggleFAQ(index)}>
+                  <QuestionText>{faq.question}</QuestionText>
+                  <ToggleIcon $isOpen={openFAQ === index} />
+                </QuestionButton>
+                <AnswerWrapper $isOpen={openFAQ === index}>
+                  <div>
+                    <AnswerText $isOpen={openFAQ === index}>{faq.answer}</AnswerText>
+                  </div>
+                </AnswerWrapper>
+              </FAQItem>
+            ))}
+          </FAQList>
 
-                    <AnimatePresence>
-                      {openFAQ === index && (
-                        <AnswerWrapper
-                          variants={answerVariants}
-                          initial="hidden"
-                          animate="visible"
-                          exit="hidden"
-                        >
-                          <AnswerContent>
-                            <AnswerText>{faq.answer}</AnswerText>
-                          </AnswerContent>
-                        </AnswerWrapper>
-                      )}
-                    </AnimatePresence>
-                  </FAQItem>
-                </motion.div>
-              ))}
-            </FAQList>
+          {/* Support sidebar */}
+          <SupportSection>
+            <SupportCard>
+              <SupportTitle>{t('faq.support.title')}</SupportTitle>
+              <SupportDescription>{t('faq.support.description')}</SupportDescription>
+              <SupportInfo>
+                <InfoItem>{t('faq.support.location')}</InfoItem>
+                <InfoItem>{t('faq.support.hours')}</InfoItem>
+              </SupportInfo>
+            </SupportCard>
 
-            {/* Support Section */}
-            <SupportSection>
-              <motion.div variants={itemVariants}>
-                <SupportCard
-                  whileHover={{ 
-                    scale: 1.02,
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  <SupportIcon>
-                    <PhoneIcon />
-                  </SupportIcon>
-                  <SupportTitle>{t('faq.support.title')}</SupportTitle>
-                  <SupportDescription>
-                    {t('faq.support.description')}
-                  </SupportDescription>
-                  <SupportInfo>
-                    <InfoItem>
-                      <MapPinIcon />
-                      {t('faq.support.location')}
-                    </InfoItem>
-                    <InfoItem>
-                      <ClockIcon />
-                      {t('faq.support.hours')}
-                    </InfoItem>
-                  </SupportInfo>
-                </SupportCard>
-              </motion.div>
+            <SupportCard>
+              <SupportTitle>{t('faq.whatsapp.title')}</SupportTitle>
+              <SupportDescription>{t('faq.whatsapp.description')}</SupportDescription>
+              <SupportInfo>
+                <InfoItem>{t('faq.whatsapp.instant_replies')}</InfoItem>
+                <InfoItem>{t('faq.whatsapp.personal_manager')}</InfoItem>
+              </SupportInfo>
+            </SupportCard>
 
-              <motion.div variants={itemVariants}>
-                <SupportCard
-                  whileHover={{ 
-                    scale: 1.02,
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  <SupportIcon>
-                    <ChatBubbleLeftRightIcon />
-                  </SupportIcon>
-                  <SupportTitle>{t('faq.whatsapp.title')}</SupportTitle>
-                  <SupportDescription>
-                    {t('faq.whatsapp.description')}
-                  </SupportDescription>
-                  <SupportInfo>
-                    <InfoItem>
-                      <UserGroupIcon />
-                      {t('faq.whatsapp.instant_replies')}
-                    </InfoItem>
-                    <InfoItem>
-                      <PhoneIcon />
-                      {t('faq.whatsapp.personal_manager')}
-                    </InfoItem>
-                  </SupportInfo>
-                </SupportCard>
-              </motion.div>
-
-              <motion.div variants={itemVariants}>
-                <SupportCard
-                  whileHover={{ 
-                    scale: 1.02,
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  <SupportIcon>
-                    <QuestionMarkCircleIcon />
-                  </SupportIcon>
-                  <SupportTitle>{t('faq.consultation.title')}</SupportTitle>
-                  <SupportDescription>
-                    {t('faq.consultation.description')}
-                  </SupportDescription>
-                  <SupportInfo>
-                    <InfoItem>
-                      <QuestionMarkCircleIcon />
-                      {t('faq.consultation.free')}
-                    </InfoItem>
-                    <InfoItem>
-                      <CreditCardIcon />
-                      Гибкая оплата
-                    </InfoItem>
-                  </SupportInfo>
-                </SupportCard>
-              </motion.div>
-            </SupportSection>
-          </FAQGrid>
-        </div>
+            <SupportCard>
+              <SupportTitle>{t('faq.consultation.title')}</SupportTitle>
+              <SupportDescription>{t('faq.consultation.description')}</SupportDescription>
+              <SupportInfo>
+                <InfoItem>{t('faq.consultation.free')}</InfoItem>
+              </SupportInfo>
+            </SupportCard>
+          </SupportSection>
+        </FAQGrid>
       </ContentWrapper>
-    </FAQContainer>
+    </SectionContainer>
   );
 };
 

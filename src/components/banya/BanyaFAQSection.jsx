@@ -1,230 +1,175 @@
 import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
-import { motion } from 'framer-motion';
+import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { 
-  ChevronDownIcon,
-  QuestionMarkCircleIcon
-} from '@heroicons/react/24/solid';
 
-// =============================================================================
-// СКАНДИНАВСКАЯ FAQ СЕКЦИЯ
-// =============================================================================
+// === STYLED COMPONENTS — Minimalist Pasture Style ===
 
-const runeGlow = keyframes`
-  0%, 100% { text-shadow: 0 0 10px #ff6b35, 0 0 20px #ff6b35; }
-  50% { text-shadow: 0 0 20px #ff6b35, 0 0 30px #ff6b35, 0 0 40px #ff6b35; }
-`;
-
-const emberFlicker = keyframes`
-  0%, 100% { opacity: 0.7; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
-`;
-
-const FAQContainer = styled.section`
-  padding: clamp(5rem, 10vw, 8rem) 0;
-  background: #0a0a0a;
+const SectionContainer = styled.section`
   position: relative;
+  padding: 6rem 0;
+  background-color: #fffef6;
   overflow: hidden;
-  margin-bottom: 0;
+
+  @media (min-width: 768px) {
+    padding: 8rem 0;
+  }
 `;
 
 const ContentWrapper = styled.div`
-  max-width: 1100px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 0 clamp(1rem, 4vw, 2rem);
-  position: relative;
-`;
+  padding: 0 2rem;
 
-const SectionHeader = styled.div`
-  text-align: center;
-  margin-bottom: clamp(4rem, 8vw, 6rem);
-`;
-
-const VikingBadge = styled(motion.div)`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.625rem 1.25rem;
-  background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 214, 98, 0.1) 100%);
-  border: 1px solid rgba(255, 214, 98, 0.3);
-  border-radius: 30px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #ffd662;
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  backdrop-filter: blur(10px);
-
-  svg {
-    width: 1rem;
-    height: 1rem;
-    color: #ff6b35;
+  @media (max-width: 768px) {
+    padding: 0 1.25rem;
   }
 `;
 
-const SectionTitle = styled(motion.h2)`
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 300;
-  color: #ffffff;
-  margin-bottom: 1rem;
+const Overline = styled.div`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(19, 50, 56, 0.4);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1.5px;
+    background: rgba(19, 50, 56, 0.25);
+    margin-right: 1rem;
+  }
+`;
+
+const Title = styled.h2`
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.02em;
-
-  .highlight {
-    background: linear-gradient(135deg, #ff6b35 0%, #ffd662 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+  color: #133238;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+  max-width: 800px;
 `;
 
-const SectionDescription = styled(motion.p)`
-  font-size: clamp(1.1rem, 2vw, 1.35rem);
+const Subtitle = styled.p`
+  font-family: 'Jost', sans-serif;
+  font-size: 1.05rem;
   line-height: 1.6;
-  background: linear-gradient(135deg, rgba(255, 214, 98, 0.9) 0%, rgba(255, 107, 53, 0.9) 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  max-width: 700px;
-  margin: 0 auto 3rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
+  color: rgba(19, 50, 56, 0.55);
+  font-weight: 400;
+  max-width: 550px;
+  margin: 0 0 4rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    margin-bottom: 3rem;
+  }
 `;
 
 const FAQList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
 `;
 
-const FAQItem = styled(motion.div)`
-  background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
-  border-radius: 20px;
-  overflow: hidden;
-  position: relative;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+const FAQItem = styled.div`
+  border-bottom: 1px solid rgba(19, 50, 56, 0.08);
 
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-      rgba(255, 107, 53, 0.03) 0%,
-      transparent 40%
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-  }
-
-  &:hover::before {
-    opacity: 1;
-  }
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow:
-      0 20px 40px rgba(0, 0, 0, 0.4),
-      0 0 30px rgba(255, 107, 53, 0.05);
+  &:first-child {
+    border-top: 1px solid rgba(19, 50, 56, 0.08);
   }
 `;
 
-const FAQQuestion = styled.button`
+const QuestionButton = styled.button`
   width: 100%;
-  padding: 2rem 2.5rem;
-  background: transparent;
-  border: none;
-  text-align: left;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 1.5rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
   gap: 1.5rem;
-  transition: all 0.3s ease;
-  position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 2.5rem;
-    right: 2.5rem;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-  }
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.01);
-  }
 `;
 
 const QuestionText = styled.h3`
-  font-size: clamp(1.25rem, 2.5vw, 1.625rem);
-  font-weight: ${props => props.$isOpen ? '600' : '500'};
-  background: ${props => props.$isOpen
-    ? 'linear-gradient(135deg, #ffffff 0%, #ffd662 100%)'
-    : 'linear-gradient(135deg, #ffffff 0%, #cccccc 100%)'};
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #133238;
   margin: 0;
+  line-height: 1.4;
   flex: 1;
-  transition: all 0.3s ease;
-  letter-spacing: -0.01em;
-  text-align: left;
 `;
 
-const QuestionIcon = styled.div`
-  width: 42px;
-  height: 42px;
-  background: ${props => props.$isOpen
-    ? 'linear-gradient(135deg, #ff6b35 0%, #ffd662 100%)'
-    : 'rgba(255, 107, 53, 0.1)'};
-  border: 1px solid ${props => props.$isOpen
-    ? 'rgba(255, 214, 98, 0.3)'
-    : 'rgba(255, 107, 53, 0.2)'};
-  border-radius: 12px;
+const ToggleIcon = styled.div`
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid rgba(19, 50, 56, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  transition: background 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  background: ${props => props.$isOpen ? '#133238' : 'transparent'};
+  border-color: ${props => props.$isOpen ? '#133238' : 'rgba(19, 50, 56, 0.15)'};
+  transform: ${props => props.$isOpen ? 'rotate(45deg)' : 'rotate(0deg)'};
 
-  svg {
-    width: 1.5rem;
-    height: 1.5rem;
-    color: ${props => props.$isOpen ? '#1a1a1a' : '#ff6b35'};
-    transform: ${props => props.$isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    background: ${props => props.$isOpen ? '#fffef6' : '#133238'};
+    transition: background 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 1px;
+  }
+
+  &::before {
+    width: 12px;
+    height: 1.5px;
+  }
+
+  &::after {
+    width: 1.5px;
+    height: 12px;
   }
 `;
 
-const FAQAnswer = styled.div`
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  max-height: ${props => props.$isOpen ? '500px' : '0'};
+const AnswerWrapper = styled.div`
+  display: grid;
+  grid-template-rows: ${props => props.$isOpen ? '1fr' : '0fr'};
   opacity: ${props => props.$isOpen ? '1' : '0'};
-`;
+  transition: grid-template-rows 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 
-const FAQAnswerContent = styled.div`
-  padding: 0 2.5rem 2.5rem;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
-  line-height: 1.8;
-  letter-spacing: 0.02em;
-
-  p {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 400;
+  > div {
+    overflow: hidden;
   }
 `;
 
-// Removed Viking runes for cleaner design
+const AnswerText = styled.p`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(19, 50, 56, 0.6);
+  margin: 0;
+  padding-bottom: 1.75rem;
+  transform: ${props => props.$isOpen ? 'translateY(0)' : 'translateY(-8px)'};
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+`;
+
+// === COMPONENT ===
 
 const BanyaFAQSection = () => {
   const { t } = useTranslation();
@@ -236,12 +181,12 @@ const BanyaFAQSection = () => {
 
   const faqData = [
     {
-      question: t('banya.faq.questions.panoramic.question', 'What\'s special about the panoramic banya?'),
-      answer: t('banya.faq.questions.panoramic.answer', 'Our banya is unique with several features: 150 square meters with panoramic jungle windows, built from Siberian cedar and Altai linden - premium natural materials. It\'s the only panoramic Russian banya in Phuket where you can enjoy traditional banya rituals with tropical nature views.')
+      question: t('banya.faq.questions.panoramic.question', "What's special about the panoramic banya?"),
+      answer: t('banya.faq.questions.panoramic.answer', "Our banya is unique with several features: 150 square meters with panoramic jungle windows, built from Siberian cedar and Altai linden - premium natural materials. It's the only panoramic Russian banya in Phuket where you can enjoy traditional banya rituals with tropical nature views.")
     },
     {
       question: t('banya.faq.questions.procedures.question', 'What procedures are included in the banya ritual?'),
-      answer: t('banya.faq.questions.procedures.answer', 'Depending on your chosen program you\'ll receive: classic banya ritual with birch brooms, aromatherapy with essential oils, herbal infusions and teas, option to order massage in the steam room, and personal accompaniment by a master attendant for VIP programs.')
+      answer: t('banya.faq.questions.procedures.answer', "Depending on your chosen program you'll receive: classic banya ritual with birch brooms, aromatherapy with essential oils, herbal infusions and teas, option to order massage in the steam room, and personal accompaniment by a master attendant for VIP programs.")
     },
     {
       question: t('banya.faq.questions.materials.question', 'What materials is the banya built from?'),
@@ -250,65 +195,32 @@ const BanyaFAQSection = () => {
   ];
 
   return (
-    <FAQContainer>
+    <SectionContainer>
       <ContentWrapper>
-        <SectionHeader>
-          <VikingBadge
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <QuestionMarkCircleIcon />
-            {t('banya.faq.badge', 'Questions & Answers')}
-          </VikingBadge>
-          
-          <SectionTitle
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <span dangerouslySetInnerHTML={{ __html: t('banya.faq.title', 'Frequently Asked <span className="highlight">Questions</span>') }} />
-          </SectionTitle>
-          
-          <SectionDescription
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            {t('banya.faq.subtitle', 'Answers to the most popular questions about our banya')}
-          </SectionDescription>
-        </SectionHeader>
+        <Overline>{t('banya.faq.badge', 'Questions & Answers')}</Overline>
+        <Title>{t('banya.faq.title_plain', 'Frequently Asked Questions')}</Title>
+        <Subtitle>
+          {t('banya.faq.subtitle', 'Answers to the most popular questions about our banya')}
+        </Subtitle>
 
         <FAQList>
           {faqData.map((item, index) => (
-            <FAQItem
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-            >
-              <FAQQuestion onClick={() => toggleItem(index)}>
-                <QuestionText $isOpen={openItem === index}>{item.question}</QuestionText>
-                <QuestionIcon $isOpen={openItem === index}>
-                  <ChevronDownIcon />
-                </QuestionIcon>
-              </FAQQuestion>
-
-              <FAQAnswer $isOpen={openItem === index}>
-                <FAQAnswerContent>
-                  <p>{item.answer}</p>
-                </FAQAnswerContent>
-              </FAQAnswer>
+            <FAQItem key={index}>
+              <QuestionButton onClick={() => toggleItem(index)}>
+                <QuestionText>{item.question}</QuestionText>
+                <ToggleIcon $isOpen={openItem === index} />
+              </QuestionButton>
+              <AnswerWrapper $isOpen={openItem === index}>
+                <div>
+                  <AnswerText $isOpen={openItem === index}>{item.answer}</AnswerText>
+                </div>
+              </AnswerWrapper>
             </FAQItem>
           ))}
         </FAQList>
       </ContentWrapper>
-    </FAQContainer>
+    </SectionContainer>
   );
 };
 
-export default BanyaFAQSection; 
+export default BanyaFAQSection;

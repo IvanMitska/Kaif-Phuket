@@ -1,70 +1,82 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
-// Импортируем логотип
-import logoHeader from '../../assets/images/logos/logo-header.png';
+// CSS анимация - надёжнее чем React state
+const styles = `
+  .loading-curtain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000000;
+    z-index: 99999;
+    pointer-events: auto;
+    transform: translateY(0%);
+    visibility: visible;
+  }
 
-// Кэшируем загрузку логотипа на уровне модуля
-let isLogoCached = false;
+  .loading-curtain.exiting {
+    pointer-events: none;
+    transform: translateY(100%);
+    transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .loading-curtain.hidden {
+    visibility: hidden;
+    pointer-events: none;
+  }
+`;
+
+// Добавляем стили один раз
+if (typeof document !== 'undefined' && !document.getElementById('loading-curtain-styles')) {
+  const styleEl = document.createElement('style');
+  styleEl.id = 'loading-curtain-styles';
+  styleEl.textContent = styles;
+  document.head.appendChild(styleEl);
+}
 
 const LoadingScreen = ({ isVisible }) => {
-  const [shouldRender, setShouldRender] = React.useState(isVisible);
-  const [isExiting, setIsExiting] = React.useState(false);
-  const [logoLoaded, setLogoLoaded] = React.useState(isLogoCached);
+  const ref = useRef(null);
+  const prevVisible = useRef(isVisible);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
     if (isVisible) {
-      setShouldRender(true);
-      setIsExiting(false);
-    } else if (shouldRender) {
-      setIsExiting(true);
-      const timer = setTimeout(() => {
-        setShouldRender(false);
-        setIsExiting(false);
-      }, 500);
-      return () => clearTimeout(timer);
+      // Показываем мгновенно
+      el.classList.remove('exiting', 'hidden');
+    } else if (prevVisible.current && !isVisible) {
+      // Запускаем exit анимацию
+      el.classList.remove('hidden');
+
+      // Force reflow
+      el.offsetHeight;
+
+      // Добавляем класс анимации
+      el.classList.add('exiting');
+
+      // После анимации скрываем
+      const onEnd = () => {
+        el.classList.add('hidden');
+        el.classList.remove('exiting');
+      };
+
+      el.addEventListener('transitionend', onEnd, { once: true });
+
+      // Fallback таймер
+      const fallback = setTimeout(onEnd, 2200);
+
+      return () => {
+        clearTimeout(fallback);
+        el.removeEventListener('transitionend', onEnd);
+      };
     }
-  }, [isVisible, shouldRender]);
 
-  if (!shouldRender) return null;
+    prevVisible.current = isVisible;
+  }, [isVisible]);
 
-  const containerStyle = {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100vw',
-    height: '100vh',
-    background: '#ffffff',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 99999,
-    opacity: isExiting ? 0 : 1,
-    transition: 'opacity 0.4s ease-in-out'
-  };
-
-  const logoStyle = {
-    width: window.innerWidth >= 1024 ? '280px' : window.innerWidth >= 768 ? '240px' : '200px',
-    height: 'auto',
-    objectFit: 'contain',
-    opacity: logoLoaded ? 1 : 0,
-    transform: logoLoaded ? 'scale(1)' : 'scale(0.8)',
-    transition: 'opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
-  };
-
-  return (
-    <div style={containerStyle} data-loading-screen="true">
-      <img
-        src={logoHeader}
-        alt="KAIF"
-        style={logoStyle}
-        onLoad={() => {
-          isLogoCached = true;
-          setLogoLoaded(true);
-        }}
-        data-loading-screen="true"
-      />
-    </div>
-  );
+  return <div ref={ref} className="loading-curtain" />;
 };
 
-export default LoadingScreen; 
+export default LoadingScreen;

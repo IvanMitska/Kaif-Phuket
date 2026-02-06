@@ -5,9 +5,9 @@ import { useTranslation } from 'react-i18next';
 import { HelmetProvider } from 'react-helmet-async';
 import { MotionConfig } from 'framer-motion';
 
-// DEFER: Load global styles components lazily
-const GlobalFontStyle = lazy(() => import('./components/global/GlobalFontStyle'));
-const GlobalStyles = lazy(() => import('./components/global/GlobalStyles'));
+// Global styles - загружаем синхронно чтобы избежать layout shift
+import GlobalFontStyle from './components/global/GlobalFontStyle';
+import GlobalStyles from './components/global/GlobalStyles';
 
 // CRITICAL: Loading components (needed immediately)
 import { LoadingProvider, useLoading } from './components/global/LoadingContext';
@@ -23,10 +23,10 @@ import ScrollToTop from './components/common/ScrollToTop';
 // Подавляем CSS предупреждения в development режиме
 import './utils/suppressCSSWarnings';
 
-// DEFER: Load non-critical CSS asynchronously
-import('./styles/mobile-optimizations.css');
-import('./styles/simple-header-fix.css');
-import('./styles/scroll-fix.css');
+// CSS стили - загружаем синхронно чтобы не ломать скролл на мобильных
+import './styles/mobile-optimizations.css';
+import './styles/simple-header-fix.css';
+import './styles/scroll-fix.css';
 
 import { theme } from './theme.fixed';
 
@@ -90,7 +90,7 @@ const AppContent = () => {
 
     if (prevPathRef.current !== location.pathname) {
       prevPathRef.current = location.pathname;
-      showPageTransition(700);
+      showPageTransition(400);
     }
   }, [location.pathname, showPageTransition]);
 
@@ -98,15 +98,13 @@ const AppContent = () => {
     <>
       <LoadingScreen isVisible={isLoading} />
       <ScrollToTop />
-      {isContentReady && (
+      <div className="App" style={{ visibility: isContentReady ? 'visible' : 'hidden' }}>
         <Suspense fallback={<InvisibleLoader />}>
-          <div className="App">
-            <Layout>
-              <AppRoutes />
-            </Layout>
-          </div>
+          <Layout>
+            <AppRoutes />
+          </Layout>
         </Suspense>
-      )}
+      </div>
     </>
   );
 };
@@ -150,10 +148,8 @@ function App() {
     <MotionConfig reducedMotion="user" transition={{ duration: 0.2 }}>
       <HelmetProvider key={`app-${i18n.language}-${forceUpdate}`}>
         <ThemeProvider theme={theme}>
-          <Suspense fallback={null}>
-            <GlobalFontStyle />
-            <GlobalStyles />
-          </Suspense>
+          <GlobalFontStyle />
+          <GlobalStyles />
           <LoadingProvider>
             <Router basename="/">
               <AppContent />
