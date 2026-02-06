@@ -1,10 +1,18 @@
-import React, { useEffect, useRef, memo } from 'react';
+import React, { useEffect, useRef, memo, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
-// Cloudinary video URL - high quality
-const VIDEO_URL = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_auto/0204_xkhajr.mp4';
+// Cloudinary video URLs
+const VIDEO_MP4 = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_auto/0204_xkhajr.mp4';
+const VIDEO_HLS = 'https://res.cloudinary.com/dxzz1kj38/video/upload/sp_auto/0204_xkhajr.m3u8';
 const POSTER_URL = 'https://res.cloudinary.com/dxzz1kj38/video/upload/so_0/0204_xkhajr.jpg';
+
+// Detect iOS
+const isIOS = () => {
+  if (typeof window === 'undefined') return false;
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+};
 
 // Основной контейнер
 const HeroContainer = styled.section`
@@ -144,13 +152,22 @@ const LocationText = styled.span`
 const HeroFullscreen = memo(() => {
   const { t } = useTranslation();
   const videoRef = useRef(null);
+  const [videoSrc, setVideoSrc] = useState(VIDEO_MP4);
 
-  // Autoplay видео при загрузке - агрессивный подход для iOS
+  // Определяем источник видео при монтировании
+  useEffect(() => {
+    // iOS лучше работает с HLS
+    if (isIOS()) {
+      setVideoSrc(VIDEO_HLS);
+    }
+  }, []);
+
+  // Autoplay видео при загрузке
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Устанавливаем атрибуты программно для iOS
+    // Устанавливаем атрибуты программно
     video.muted = true;
     video.playsInline = true;
     video.setAttribute('muted', '');
@@ -164,41 +181,36 @@ const HeroFullscreen = memo(() => {
         try {
           await video.play();
         } catch (e) {
-          // Autoplay blocked - это нормально для iOS в некоторых случаях
+          // Autoplay blocked
         }
       }
     };
 
     // Обработчики событий видео
-    const events = ['canplay', 'canplaythrough', 'loadeddata', 'loadedmetadata', 'playing'];
+    const events = ['canplay', 'canplaythrough', 'loadeddata', 'loadedmetadata'];
     events.forEach(event => video.addEventListener(event, tryPlay));
 
-    // Играем сразу после монтирования
+    // Играем сразу
     tryPlay();
 
-    // IntersectionObserver - запуск когда видео видно на экране
+    // IntersectionObserver
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            tryPlay();
-          }
-        });
+        if (entries[0].isIntersecting) tryPlay();
       },
       { threshold: 0.1 }
     );
     observer.observe(video);
 
     // Повторные попытки
-    const intervals = [50, 150, 300, 600, 1200];
-    const timeouts = intervals.map(ms => setTimeout(tryPlay, ms));
+    const timeouts = [100, 300, 600, 1000, 2000].map(ms => setTimeout(tryPlay, ms));
 
     return () => {
       events.forEach(event => video.removeEventListener(event, tryPlay));
       observer.disconnect();
       timeouts.forEach(clearTimeout);
     };
-  }, []);
+  }, [videoSrc]);
 
   return (
     <HeroContainer>
@@ -206,7 +218,7 @@ const HeroFullscreen = memo(() => {
       <VideoBackground>
         <video
           ref={videoRef}
-          src={VIDEO_URL}
+          src={videoSrc}
           autoPlay
           muted
           defaultMuted
