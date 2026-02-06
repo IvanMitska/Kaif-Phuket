@@ -15,12 +15,10 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   box-sizing: border-box !important;
 
   @media (max-width: 768px) {
-    height: 100vh;
-    height: -webkit-fill-available;
-    height: 100dvh;
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-    min-height: 100dvh;
+    height: calc(100vh + 60px);
+    height: calc(100dvh + 60px);
+    min-height: calc(100vh + 60px);
+    min-height: calc(100dvh + 60px);
   }
 `,l=r.div`
   position: absolute;
