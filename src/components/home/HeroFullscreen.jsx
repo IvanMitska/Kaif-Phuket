@@ -162,30 +162,38 @@ const HeroFullscreen = memo(() => {
       return;
     }
 
-    // Создаём Vimeo Player с настройками для background видео
+    // Создаём Vimeo Player
     const player = new Player(vimeoContainerRef.current, {
       id: VIMEO_VIDEO_ID,
-      background: true,      // Background mode - без контролов, autoplay, loop, muted
       muted: true,
       autoplay: true,
       loop: true,
       controls: false,
       playsinline: true,
-      transparent: true,
+      transparent: false,
       responsive: false,
-      dnt: true,             // Do Not Track
+      dnt: true,
+      title: false,
+      byline: false,
+      portrait: false,
     });
 
     playerRef.current = player;
 
     // Обработчики
     player.on('loaded', () => {
-      player.play().catch(() => {});
+      player.setVolume(0);
+      player.play().catch((e) => console.log('Play error:', e));
+    });
+
+    player.on('error', (error) => {
+      console.error('Vimeo error:', error);
     });
 
     player.ready().then(() => {
-      player.play().catch(() => {});
-    });
+      player.setVolume(0);
+      player.play().catch((e) => console.log('Ready play error:', e));
+    }).catch((e) => console.error('Ready error:', e));
 
     return () => {
       if (playerRef.current) {
