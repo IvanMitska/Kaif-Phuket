@@ -51,6 +51,27 @@ const VideoBackground = styled.div`
     height: 100%;
     object-fit: cover;
     object-position: center;
+
+    /* Hide iOS native play button */
+    &::-webkit-media-controls {
+      display: none !important;
+    }
+    &::-webkit-media-controls-start-playback-button {
+      display: none !important;
+      -webkit-appearance: none;
+    }
+    &::-webkit-media-controls-play-button {
+      display: none !important;
+      -webkit-appearance: none;
+    }
+    &::-webkit-media-controls-panel {
+      display: none !important;
+    }
+    &::-webkit-media-controls-overlay-play-button {
+      display: none !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
   }
 
   /* Затемнение поверх видео */
@@ -144,42 +165,58 @@ const HeroFullscreen = memo(() => {
   const { t } = useTranslation();
   const videoRef = useRef(null);
 
-  // Autoplay видео при загрузке
+  // Autoplay видео при загрузке - агрессивный подход для iOS
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
+    // Устанавливаем атрибуты программно для iOS
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+
     // Функция воспроизведения
-    const tryPlay = () => {
+    const tryPlay = async () => {
       if (video.paused) {
-        video.muted = true; // Гарантируем muted для iOS
-        video.play().catch(() => {});
+        video.muted = true;
+        try {
+          await video.play();
+        } catch (e) {
+          // Autoplay blocked - это нормально для iOS в некоторых случаях
+        }
       }
     };
 
     // Обработчики событий видео
-    video.addEventListener('canplay', tryPlay);
-    video.addEventListener('loadeddata', tryPlay);
-    video.addEventListener('loadedmetadata', tryPlay);
+    const events = ['canplay', 'canplaythrough', 'loadeddata', 'loadedmetadata', 'playing'];
+    events.forEach(event => video.addEventListener(event, tryPlay));
 
-    // iOS fallback - запуск при касании экрана
-    const handleTouch = () => {
-      tryPlay();
-      document.removeEventListener('touchstart', handleTouch);
-    };
-    document.addEventListener('touchstart', handleTouch, { passive: true });
+    // Играем сразу после монтирования
+    tryPlay();
 
-    // Попытка воспроизведения сразу
-    video.load();
-    setTimeout(tryPlay, 100);
-    setTimeout(tryPlay, 500);
-    setTimeout(tryPlay, 1000);
+    // IntersectionObserver - запуск когда видео видно на экране
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            tryPlay();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(video);
+
+    // Повторные попытки
+    const intervals = [50, 150, 300, 600, 1200];
+    const timeouts = intervals.map(ms => setTimeout(tryPlay, ms));
 
     return () => {
-      video.removeEventListener('canplay', tryPlay);
-      video.removeEventListener('loadeddata', tryPlay);
-      video.removeEventListener('loadedmetadata', tryPlay);
-      document.removeEventListener('touchstart', handleTouch);
+      events.forEach(event => video.removeEventListener(event, tryPlay));
+      observer.disconnect();
+      timeouts.forEach(clearTimeout);
     };
   }, []);
 
@@ -197,6 +234,7 @@ const HeroFullscreen = memo(() => {
           playsInline
           webkitPlaysInline
           x5-playsinline="true"
+          controls={false}
           disablePictureInPicture
           disableRemotePlayback
           preload="auto"
