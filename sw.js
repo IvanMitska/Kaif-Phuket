@@ -1,5 +1,5 @@
 // PERFORMANCE: Enhanced Service Worker for KAIF - cache JS, CSS, and images
-const CACHE_VERSION = 'v3';
+const CACHE_VERSION = 'v5';
 const STATIC_CACHE_NAME = `kaif-static-${CACHE_VERSION}`;
 const IMAGE_CACHE_NAME = `kaif-images-${CACHE_VERSION}`;
 const RUNTIME_CACHE_NAME = `kaif-runtime-${CACHE_VERSION}`;
@@ -83,49 +83,47 @@ self.addEventListener('fetch', (event) => {
   if (request.method !== 'GET') return;
 
   // Cache strategy based on resource type
-  // 1. JS/CSS bundles - Cache First with Network Fallback
+  // 1. JS/CSS bundles - Network First with Cache Fallback (always get fresh content)
   if (url.pathname.match(/\.(js|css)$/i)) {
     event.respondWith(
-      caches.open(STATIC_CACHE_NAME).then((cache) => {
-        return cache.match(request).then((cachedResponse) => {
-          if (cachedResponse) {
-            log('📦 JS/CSS from cache:', url.pathname);
-            return cachedResponse;
-          }
-
-          return fetch(request).then((networkResponse) => {
-            if (networkResponse.status === 200) {
-              log('💾 Caching JS/CSS:', url.pathname);
-              cache.put(request, networkResponse.clone());
-            }
-            return networkResponse;
+      fetch(request).then((networkResponse) => {
+        if (networkResponse.status === 200) {
+          log('💾 Caching JS/CSS:', url.pathname);
+          const responseToCache = networkResponse.clone();
+          caches.open(STATIC_CACHE_NAME).then((cache) => {
+            cache.put(request, responseToCache);
           });
-        });
+        }
+        return networkResponse;
+      }).catch(() => {
+        log('📦 JS/CSS from cache (offline):', url.pathname);
+        return caches.match(request);
       })
     );
   }
 
-  // 2. Images - Cache First with Network Fallback
+  // 2. Images - Stale While Revalidate (show cache, update in background)
   else if (url.pathname.match(/\.(jpg|jpeg|png|webp|svg|gif)$/i)) {
     event.respondWith(
       caches.open(IMAGE_CACHE_NAME).then((cache) => {
         return cache.match(request).then((cachedResponse) => {
+          // Fetch fresh version in background
+          const fetchPromise = fetch(request).then((networkResponse) => {
+            if (networkResponse.status === 200) {
+              log('💾 Updating image cache:', url.pathname);
+              cache.put(request, networkResponse.clone());
+            }
+            return networkResponse;
+          }).catch(() => null);
+
+          // Return cached version immediately, or wait for network
           if (cachedResponse) {
             log('📦 Image from cache:', url.pathname);
             return cachedResponse;
           }
 
           log('🌐 Fetching image:', url.pathname);
-          return fetch(request).then((networkResponse) => {
-            if (networkResponse.status === 200) {
-              log('💾 Caching image:', url.pathname);
-              cache.put(request, networkResponse.clone());
-            }
-            return networkResponse;
-          }).catch((error) => {
-            logError('❌ Image fetch failed:', error);
-            return new Response('', { status: 404 });
-          });
+          return fetchPromise.then(response => response || new Response('', { status: 404 }));
         });
       })
     );
