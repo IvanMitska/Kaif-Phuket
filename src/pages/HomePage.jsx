@@ -9,6 +9,7 @@ import HeroFullscreen from '../components/home/HeroFullscreen';
 
 // Lazy loading для всех некритических компонентов
 const ExclusiveZones = lazy(() => import('../components/home/ExclusiveZones'));
+const EventsSection = lazy(() => import('../components/home/EventsSection'));
 const PricingSection = lazy(() => import('../components/home/PricingSection'));
 
 const AdvantagesSection = lazy(() =>
@@ -83,6 +84,10 @@ const HomePage = memo(() => {
 
       <Suspense fallback={<SectionLoader />}>
         <ExclusiveZones />
+      </Suspense>
+
+      <Suspense fallback={<SectionLoader />}>
+        <EventsSection />
       </Suspense>
 
       <Suspense fallback={<SectionLoader />}>

@@ -343,6 +343,14 @@
       }
     }
   },
+  "events": {
+    "overline": "What's On",
+    "title": "Upcoming Events",
+    "empty": {
+      "title": "No upcoming events",
+      "text": "Check back soon for new events"
+    }
+  },
   "popular_services": {
     "title": "Popular Services",
     "subtitle": "Most requested SPA and Beauty treatments in our center",
