@@ -208,21 +208,21 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   text-transform: uppercase;
   color: rgba(19, 50, 56, 0.4);
   margin-bottom: 1rem;
-`,T=r.p`
+`,J=r.p`
   font-family: 'Jost', sans-serif;
   font-size: 0.9rem;
   line-height: 1.6;
   color: rgba(19, 50, 56, 0.55);
   font-weight: 400;
   margin: 0;
-`,_=r.div`
+`,T=r.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   padding-top: 1.5rem;
   margin-top: auto;
   border-top: 1px solid rgba(19, 50, 56, 0.06);
-`,J=r.div`
+`,_=r.div`
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
@@ -238,25 +238,25 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   font-size: 0.9rem;
   font-weight: 400;
   color: rgba(19, 50, 56, 0.7);
-`,B=r.div`
+`,q=r.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 0.2rem;
-`,q=r.span`
+`,B=r.span`
   font-family: 'Jost', sans-serif;
   font-size: 0.7rem;
   font-weight: 400;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: rgba(19, 50, 56, 0.35);
-`,I=r.span`
+`,C=r.span`
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 1.25rem;
   font-weight: 800;
   color: #133238;
   letter-spacing: -0.02em;
-`,BanyaServicesSection=()=>{const{t:e,i18n:i,ready:t}=n(),r="ru"===i.language,s=(()=>{if(!t)return[];try{return[{id:"intro",title:e("banya.services.rituals.intro.title","Children's Introductory Steaming"),subtitle:e("banya.services.rituals.intro.subtitle","LIGHT STEAM"),duration:e("banya.services.rituals.intro.duration","7-10 min"),price:e("banya.services.rituals.intro.price","1,000 THB"),description:e("banya.services.rituals.intro.description","A short and sensitive ritual with gentle warming of back and legs")},{id:"lady",title:e("banya.services.rituals.lady.title","Lady's Steaming"),subtitle:e("banya.services.rituals.lady.subtitle","LOW-TEMPERATURE"),duration:e("banya.services.rituals.lady.duration","10-15 min"),price:e("banya.services.rituals.lady.price","1,500 THB"),description:e("banya.services.rituals.lady.description","Special low-temperature technique with deep local warming")},{id:"classic",title:e("banya.services.rituals.classic.title","Classic Steaming"),subtitle:e("banya.services.rituals.classic.subtitle","MEDIUM STEAM"),duration:e("banya.services.rituals.classic.duration","10-15 min"),price:e("banya.services.rituals.classic.price","1,800 THB"),description:e("banya.services.rituals.classic.description","Steaming with oak brooms in one session. Thorough whole body steaming with aromatic steam")},{id:"artesian",title:e("banya.services.rituals.artesian.title","Artesian"),subtitle:e("banya.services.rituals.artesian.subtitle","CONTRAST STEAMING"),duration:e("banya.services.rituals.artesian.duration","15-20 min"),price:e("banya.services.rituals.artesian.price","2,250 THB"),description:e("banya.services.rituals.artesian.description","Intense warming with oak brooms enhanced by the contrast of cool mineral water")},{id:"gravity",title:e("banya.services.rituals.gravity.title","Gravity"),subtitle:e("banya.services.rituals.gravity.subtitle","WEIGHTLESS STEAMING"),duration:e("banya.services.rituals.gravity.duration","15-20 min"),price:e("banya.services.rituals.gravity.price","2,250 THB"),description:e("banya.services.rituals.gravity.description","Intense warming with transition to warm pool. Feeling of weightlessness")},{id:"salt_fire",title:e("banya.services.rituals.salt_fire.title","The Fire Starter"),subtitle:e("banya.services.rituals.salt_fire.subtitle","SALT STEAMING"),duration:e("banya.services.rituals.salt_fire.duration","15-20 min"),price:e("banya.services.rituals.salt_fire.price","2,250 THB"),description:e("banya.services.rituals.salt_fire.description","Intense warming with sea salt application and warming through a sheet. Salt cave effect")},{id:"four_hands",title:e("banya.services.rituals.four_hands.title","Four-Hand Steaming"),subtitle:e("banya.services.rituals.four_hands.subtitle","SYNCHRONIZED"),duration:e("banya.services.rituals.four_hands.duration","15-20 min"),price:e("banya.services.rituals.four_hands.price","2,500 THB"),description:e("banya.services.rituals.four_hands.description","Two steam masters work in perfect synchronization")},{id:"sports",title:e("banya.services.rituals.sports.title","Sports Steaming"),subtitle:e("banya.services.rituals.sports.subtitle","WITH MASSAGE"),duration:e("banya.services.rituals.sports.duration","20-25 min"),price:e("banya.services.rituals.sports.price","2,500 THB"),description:e("banya.services.rituals.sports.description","Intense warming to the depth of muscles with massage elements")},{id:"stalwar",title:e("banya.services.rituals.stalwar.title","Thor's Power"),subtitle:e("banya.services.rituals.stalwar.subtitle","INTENSE STEAM"),duration:e("banya.services.rituals.stalwar.duration","15-20 min"),price:e("banya.services.rituals.stalwar.price","3,000 THB"),description:e("banya.services.rituals.stalwar.description","Intense steam and contrast for those who love the heat")},{id:"warrior_path",title:e("banya.services.rituals.warrior_path.title","Warrior's Path"),subtitle:e("banya.services.rituals.warrior_path.subtitle","CONTRAST STEAMING"),duration:e("banya.services.rituals.warrior_path.duration","20-25 min"),price:e("banya.services.rituals.warrior_path.price","3,500 THB"),description:e("banya.services.rituals.warrior_path.description","Steaming in two sessions with cold water dousing between them")},{id:"honey",title:e("banya.services.rituals.honey.title","Honey Steaming"),subtitle:e("banya.services.rituals.honey.subtitle","WITH NATURAL HONEY"),duration:e("banya.services.rituals.honey.duration","15-20 min"),price:e("banya.services.rituals.honey.price","3,500 THB"),description:e("banya.services.rituals.honey.description","Steaming with Canadian brooms and honey application")},{id:"valhalla",title:e("banya.services.rituals.valhalla.title","Valhalla"),subtitle:e("banya.services.rituals.valhalla.subtitle","GROUP STEAMING"),duration:e("banya.services.rituals.valhalla.duration","10-20 min"),price:e("banya.services.rituals.valhalla.price","3,500 THB"),description:e("banya.services.rituals.valhalla.description","Steaming with fan and brooms for a group of 2-4 people")},{id:"royal",title:e("banya.services.rituals.royal.title","Royal Steaming"),subtitle:e("banya.services.rituals.royal.subtitle","HONEY-SALT SCRUB"),duration:e("banya.services.rituals.royal.duration","25-30 min"),price:e("banya.services.rituals.royal.price","4,000 THB"),description:e("banya.services.rituals.royal.description","Royal ritual of deep warming and cleansing with honey and sea salt")}]}catch(a){return[]}})();return a.jsx(b,{children:a.jsxs(u,{children:[a.jsx(y,{children:e("banya.services.badge",r?"Ритуалы":"Rituals")}),a.jsx(x,{children:e("banya.services.title",r?"Индивидуальные парения":"Individual Steam Sessions")}),a.jsx(w,{children:e("banya.services.subtitle",r?"Выберите свой идеальный банный ритуал":"Choose your perfect banya ritual")}),a.jsx(v,{children:s.map(e=>a.jsxs(j,{children:[a.jsxs(k,{children:[a.jsx(z,{children:e.title}),a.jsx(S,{children:e.subtitle}),a.jsx(T,{children:e.description})]}),a.jsxs(_,{children:[a.jsxs(J,{children:[a.jsx(P,{children:r?"Время":"Duration"}),a.jsx(A,{children:e.duration})]}),a.jsxs(B,{children:[a.jsx(q,{children:r?"Стоимость":"Price"}),a.jsx(I,{children:e.price})]})]})]},e.id))})]})})},C=r.section`
+`,BanyaServicesSection=()=>{const{t:e,i18n:i,ready:t}=n(),r="ru"===i.language,s=(()=>{if(!t)return[];try{return[{id:"intro",title:e("banya.services.rituals.intro.title","Children's Introductory Steaming"),subtitle:e("banya.services.rituals.intro.subtitle","LIGHT STEAM"),duration:e("banya.services.rituals.intro.duration","7-10 min"),price:e("banya.services.rituals.intro.price","1,000 THB"),description:e("banya.services.rituals.intro.description","A short and sensitive ritual with gentle warming of back and legs")},{id:"lady",title:e("banya.services.rituals.lady.title","Lady's Steaming"),subtitle:e("banya.services.rituals.lady.subtitle","LOW-TEMPERATURE"),duration:e("banya.services.rituals.lady.duration","10-15 min"),price:e("banya.services.rituals.lady.price","1,500 THB"),description:e("banya.services.rituals.lady.description","Special low-temperature technique with deep local warming")},{id:"classic",title:e("banya.services.rituals.classic.title","Classic Steaming"),subtitle:e("banya.services.rituals.classic.subtitle","MEDIUM STEAM"),duration:e("banya.services.rituals.classic.duration","10-15 min"),price:e("banya.services.rituals.classic.price","1,800 THB"),description:e("banya.services.rituals.classic.description","Steaming with oak brooms in one session. Thorough whole body steaming with aromatic steam")},{id:"artesian",title:e("banya.services.rituals.artesian.title","Artesian"),subtitle:e("banya.services.rituals.artesian.subtitle","CONTRAST STEAMING"),duration:e("banya.services.rituals.artesian.duration","15-20 min"),price:e("banya.services.rituals.artesian.price","2,250 THB"),description:e("banya.services.rituals.artesian.description","Intense warming with oak brooms enhanced by the contrast of cool mineral water")},{id:"gravity",title:e("banya.services.rituals.gravity.title","Gravity"),subtitle:e("banya.services.rituals.gravity.subtitle","WEIGHTLESS STEAMING"),duration:e("banya.services.rituals.gravity.duration","15-20 min"),price:e("banya.services.rituals.gravity.price","2,250 THB"),description:e("banya.services.rituals.gravity.description","Intense warming with transition to warm pool. Feeling of weightlessness")},{id:"salt_fire",title:e("banya.services.rituals.salt_fire.title","The Fire Starter"),subtitle:e("banya.services.rituals.salt_fire.subtitle","SALT STEAMING"),duration:e("banya.services.rituals.salt_fire.duration","15-20 min"),price:e("banya.services.rituals.salt_fire.price","2,250 THB"),description:e("banya.services.rituals.salt_fire.description","Intense warming with sea salt application and warming through a sheet. Salt cave effect")},{id:"four_hands",title:e("banya.services.rituals.four_hands.title","Four-Hand Steaming"),subtitle:e("banya.services.rituals.four_hands.subtitle","SYNCHRONIZED"),duration:e("banya.services.rituals.four_hands.duration","15-20 min"),price:e("banya.services.rituals.four_hands.price","2,500 THB"),description:e("banya.services.rituals.four_hands.description","Two steam masters work in perfect synchronization")},{id:"sports",title:e("banya.services.rituals.sports.title","Sports Steaming"),subtitle:e("banya.services.rituals.sports.subtitle","WITH MASSAGE"),duration:e("banya.services.rituals.sports.duration","20-25 min"),price:e("banya.services.rituals.sports.price","2,500 THB"),description:e("banya.services.rituals.sports.description","Intense warming to the depth of muscles with massage elements")},{id:"stalwar",title:e("banya.services.rituals.stalwar.title","Thor's Power"),subtitle:e("banya.services.rituals.stalwar.subtitle","INTENSE STEAM"),duration:e("banya.services.rituals.stalwar.duration","15-20 min"),price:e("banya.services.rituals.stalwar.price","3,000 THB"),description:e("banya.services.rituals.stalwar.description","Intense steam and contrast for those who love the heat")},{id:"warrior_path",title:e("banya.services.rituals.warrior_path.title","Warrior's Path"),subtitle:e("banya.services.rituals.warrior_path.subtitle","CONTRAST STEAMING"),duration:e("banya.services.rituals.warrior_path.duration","20-25 min"),price:e("banya.services.rituals.warrior_path.price","3,500 THB"),description:e("banya.services.rituals.warrior_path.description","Steaming in two sessions with cold water dousing between them")},{id:"honey",title:e("banya.services.rituals.honey.title","Honey Steaming"),subtitle:e("banya.services.rituals.honey.subtitle","WITH NATURAL HONEY"),duration:e("banya.services.rituals.honey.duration","15-20 min"),price:e("banya.services.rituals.honey.price","3,500 THB"),description:e("banya.services.rituals.honey.description","Steaming with Canadian brooms and honey application")},{id:"valhalla",title:e("banya.services.rituals.valhalla.title","Valhalla"),subtitle:e("banya.services.rituals.valhalla.subtitle","GROUP STEAMING"),duration:e("banya.services.rituals.valhalla.duration","10-20 min"),price:e("banya.services.rituals.valhalla.price","3,500 THB"),description:e("banya.services.rituals.valhalla.description","Steaming with fan and brooms for a group of 2-4 people")},{id:"royal",title:e("banya.services.rituals.royal.title","Royal Steaming"),subtitle:e("banya.services.rituals.royal.subtitle","HONEY-SALT SCRUB"),duration:e("banya.services.rituals.royal.duration","25-30 min"),price:e("banya.services.rituals.royal.price","4,000 THB"),description:e("banya.services.rituals.royal.description","Royal ritual of deep warming and cleansing with honey and sea salt")}]}catch(a){return[]}})();return a.jsx(b,{children:a.jsxs(u,{children:[a.jsx(y,{children:e("banya.services.badge",r?"Ритуалы":"Rituals")}),a.jsx(x,{children:e("banya.services.title",r?"Индивидуальные парения":"Individual Steam Sessions")}),a.jsx(w,{children:e("banya.services.subtitle",r?"Выберите свой идеальный банный ритуал":"Choose your perfect banya ritual")}),a.jsx(v,{children:s.map(e=>a.jsxs(j,{children:[a.jsxs(k,{children:[a.jsx(z,{children:e.title}),a.jsx(S,{children:e.subtitle}),a.jsx(J,{children:e.description})]}),a.jsxs(T,{children:[a.jsxs(_,{children:[a.jsx(P,{children:r?"Время":"Duration"}),a.jsx(A,{children:e.duration})]}),a.jsxs(q,{children:[a.jsx(B,{children:r?"Стоимость":"Price"}),a.jsx(C,{children:e.price})]})]})]},e.id))})]})})},E=r.section`
   position: relative;
   padding: 6rem 0;
   background-color: #fffef6;
@@ -264,7 +264,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   @media (min-width: 768px) {
     padding: 8rem 0;
   }
-`,E=r.div`
+`,I=r.div`
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 2rem;
@@ -314,7 +314,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
     font-size: 0.95rem;
     margin-bottom: 3rem;
   }
-`,O=r.div`
+`,N=r.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.25rem;
@@ -322,7 +322,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   @media (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
   }
-`,N=r.div`
+`,O=r.div`
   background: #ffffff;
   border: 1px solid rgba(19, 50, 56, 0.08);
   border-radius: 12px;
@@ -373,7 +373,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
     border-radius: 50%;
     flex-shrink: 0;
   }
-`,BanyaFeaturesSection=()=>{const{t:e}=n(),i=[{id:"materials",title:e("banya.features.materials.title","Natural Materials"),description:e("banya.features.materials.description","100% natural finish from Siberian wood species"),items:[e("banya.features.materials.items.cedar","Siberian Cedar"),e("banya.features.materials.items.linden","Altai Linden"),e("banya.features.materials.items.birch","Karelian Birch"),e("banya.features.materials.items.coating","Eco-friendly finishes"),e("banya.features.materials.items.aromatherapy","Natural aromatherapy")]},{id:"panoramic",title:e("banya.features.panoramic.title","Panoramic Design"),description:e("banya.features.panoramic.description","Unique architecture with tropical jungle views"),items:[e("banya.features.panoramic.items.area","150 square meters"),e("banya.features.panoramic.items.windows","Panoramic windows"),e("banya.features.panoramic.items.view","Jungle views"),e("banya.features.panoramic.items.lighting","Natural lighting"),e("banya.features.panoramic.items.harmony","Harmony with nature")]},{id:"safety",title:e("banya.features.safety.title","Safety"),description:e("banya.features.safety.description","Compliance with all international safety standards"),items:[e("banya.features.safety.items.fire","Fire safety"),e("banya.features.safety.items.ventilation","Ventilation system"),e("banya.features.safety.items.emergency","Emergency lighting"),e("banya.features.safety.items.medical","Medical assistance"),e("banya.features.safety.items.security","24/7 security")]}];return a.jsx(C,{children:a.jsxs(E,{children:[a.jsx(H,{children:e("banya.features.badge","Best Banya in Phuket")}),a.jsx($,{children:e("banya.features.title_plain","Why Choose Us")}),a.jsx(R,{children:e("banya.features.subtitle","Experience the authentic Russian banya with modern comfort and traditional techniques")}),a.jsx(O,{children:i.map(e=>a.jsxs(N,{children:[a.jsx(M,{children:e.title}),a.jsx(L,{children:e.description}),a.jsx(G,{children:e.items.map((e,i)=>a.jsx(W,{children:e},i))})]},e.id))})]})})},F=r.section`
+`,BanyaFeaturesSection=()=>{const{t:e}=n(),i=[{id:"materials",title:e("banya.features.materials.title","Natural Materials"),description:e("banya.features.materials.description","100% natural finish from Siberian wood species"),items:[e("banya.features.materials.items.cedar","Siberian Cedar"),e("banya.features.materials.items.linden","Altai Linden"),e("banya.features.materials.items.birch","Karelian Birch"),e("banya.features.materials.items.coating","Eco-friendly finishes"),e("banya.features.materials.items.aromatherapy","Natural aromatherapy")]},{id:"panoramic",title:e("banya.features.panoramic.title","Panoramic Design"),description:e("banya.features.panoramic.description","Unique architecture with tropical jungle views"),items:[e("banya.features.panoramic.items.area","150 square meters"),e("banya.features.panoramic.items.windows","Panoramic windows"),e("banya.features.panoramic.items.view","Jungle views"),e("banya.features.panoramic.items.lighting","Natural lighting"),e("banya.features.panoramic.items.harmony","Harmony with nature")]},{id:"safety",title:e("banya.features.safety.title","Safety"),description:e("banya.features.safety.description","Compliance with all international safety standards"),items:[e("banya.features.safety.items.fire","Fire safety"),e("banya.features.safety.items.ventilation","Ventilation system"),e("banya.features.safety.items.emergency","Emergency lighting"),e("banya.features.safety.items.medical","Medical assistance"),e("banya.features.safety.items.security","24/7 security")]}];return a.jsx(E,{children:a.jsxs(I,{children:[a.jsx(H,{children:e("banya.features.badge","Best Banya in Phuket")}),a.jsx($,{children:e("banya.features.title_plain","Why Choose Us")}),a.jsx(R,{children:e("banya.features.subtitle","Experience the authentic Russian banya with modern comfort and traditional techniques")}),a.jsx(N,{children:i.map(e=>a.jsxs(O,{children:[a.jsx(M,{children:e.title}),a.jsx(L,{children:e.description}),a.jsx(G,{children:e.items.map((e,i)=>a.jsx(W,{children:e},i))})]},e.id))})]})})},F=r.section`
   position: relative;
   padding: 6rem 0;
   background-color: #fffef6;
@@ -834,16 +834,16 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
     font-size: 0.95rem;
     margin-bottom: 3rem;
   }
-`,Te=r.div`
+`,Je=r.div`
   display: flex;
   flex-direction: column;
-`,_e=r.div`
+`,Te=r.div`
   border-bottom: 1px solid rgba(19, 50, 56, 0.08);
 
   &:first-child {
     border-top: 1px solid rgba(19, 50, 56, 0.08);
   }
-`,Je=r.button`
+`,_e=r.button`
   width: 100%;
   display: flex;
   align-items: center;
@@ -897,7 +897,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
     width: 1.5px;
     height: 12px;
   }
-`,Be=r.div`
+`,qe=r.div`
   display: grid;
   grid-template-rows: ${e=>e.$isOpen?"1fr":"0fr"};
   opacity: ${e=>e.$isOpen?"1":"0"};
@@ -907,7 +907,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   > div {
     overflow: hidden;
   }
-`,qe=r.p`
+`,Be=r.p`
   font-family: 'Jost', sans-serif;
   font-size: 0.95rem;
   line-height: 1.7;
@@ -916,7 +916,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   padding-bottom: 1.75rem;
   transform: ${e=>e.$isOpen?"translateY(0)":"translateY(-8px)"};
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-`,BanyaFAQSection=()=>{const{t:i}=n(),[t,r]=e.useState(null),s=[{question:i("banya.faq.questions.panoramic.question","What's special about the panoramic banya?"),answer:i("banya.faq.questions.panoramic.answer","Our banya is unique with several features: 150 square meters with panoramic jungle windows, built from Siberian cedar and Altai linden - premium natural materials. It's the only panoramic Russian banya in Phuket where you can enjoy traditional banya rituals with tropical nature views.")},{question:i("banya.faq.questions.procedures.question","What procedures are included in the banya ritual?"),answer:i("banya.faq.questions.procedures.answer","Depending on your chosen program you'll receive: classic banya ritual with birch brooms, aromatherapy with essential oils, herbal infusions and teas, option to order massage in the steam room, and personal accompaniment by a master attendant for VIP programs.")},{question:i("banya.faq.questions.materials.question","What materials is the banya built from?"),answer:i("banya.faq.questions.materials.answer","The banya is built exclusively from natural eco-friendly materials: Siberian cedar, Altai linden, Karelian birch. All finishes are natural, without chemical additives. Such materials create a special microclimate and provide natural aromatherapy.")}];return a.jsx(ve,{children:a.jsxs(je,{children:[a.jsx(ke,{children:i("banya.faq.badge","Questions & Answers")}),a.jsx(ze,{children:i("banya.faq.title_plain","Frequently Asked Questions")}),a.jsx(Se,{children:i("banya.faq.subtitle","Answers to the most popular questions about our banya")}),a.jsx(Te,{children:s.map((e,i)=>a.jsxs(_e,{children:[a.jsxs(Je,{onClick:()=>(e=>{r(t===e?null:e)})(i),children:[a.jsx(Pe,{children:e.question}),a.jsx(Ae,{$isOpen:t===i})]}),a.jsx(Be,{$isOpen:t===i,children:a.jsx("div",{children:a.jsx(qe,{$isOpen:t===i,children:e.answer})})})]},i))})]})})},Ie=r.section`
+`,BanyaFAQSection=()=>{const{t:i}=n(),[t,r]=e.useState(null),s=[{question:i("banya.faq.questions.panoramic.question","What's special about the panoramic banya?"),answer:i("banya.faq.questions.panoramic.answer","Our banya is unique with several features: 150 square meters with panoramic jungle windows, built from Siberian cedar and Altai linden - premium natural materials. It's the only panoramic Russian banya in Phuket where you can enjoy traditional banya rituals with tropical nature views.")},{question:i("banya.faq.questions.procedures.question","What procedures are included in the banya ritual?"),answer:i("banya.faq.questions.procedures.answer","Depending on your chosen program you'll receive: classic banya ritual with birch brooms, aromatherapy with essential oils, herbal infusions and teas, option to order massage in the steam room, and personal accompaniment by a master attendant for VIP programs.")},{question:i("banya.faq.questions.materials.question","What materials is the banya built from?"),answer:i("banya.faq.questions.materials.answer","The banya is built exclusively from natural eco-friendly materials: Siberian cedar, Altai linden, Karelian birch. All finishes are natural, without chemical additives. Such materials create a special microclimate and provide natural aromatherapy.")}];return a.jsx(ve,{children:a.jsxs(je,{children:[a.jsx(ke,{children:i("banya.faq.badge","Questions & Answers")}),a.jsx(ze,{children:i("banya.faq.title_plain","Frequently Asked Questions")}),a.jsx(Se,{children:i("banya.faq.subtitle","Answers to the most popular questions about our banya")}),a.jsx(Je,{children:s.map((e,i)=>a.jsxs(Te,{children:[a.jsxs(_e,{onClick:()=>(e=>{r(t===e?null:e)})(i),children:[a.jsx(Pe,{children:e.question}),a.jsx(Ae,{$isOpen:t===i})]}),a.jsx(qe,{$isOpen:t===i,children:a.jsx("div",{children:a.jsx(Be,{$isOpen:t===i,children:e.answer})})})]},i))})]})})},Ce=r.section`
   position: relative;
   padding: 6rem 0;
   background-color: #fffef6;
@@ -924,7 +924,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   @media (min-width: 768px) {
     padding: 8rem 0;
   }
-`,Ce=r.div`
+`,Ee=r.div`
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 2rem;
@@ -932,7 +932,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   @media (max-width: 768px) {
     padding: 0 1.25rem;
   }
-`,Ee=r.div`
+`,Ie=r.div`
   font-family: 'Jost', sans-serif;
   font-size: 0.8rem;
   font-weight: 400;
@@ -973,7 +973,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
 `,Re=r.div`
   display: flex;
   flex-direction: column;
-`,Oe=r.div`
+`,Ne=r.div`
   display: flex;
   align-items: baseline;
   gap: 1.5rem;
@@ -988,7 +988,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
     gap: 1rem;
     padding: 1.25rem 0;
   }
-`,Ne=r.span`
+`,Oe=r.span`
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   font-weight: 800;
@@ -1011,4 +1011,4 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   font-weight: 400;
   color: rgba(19, 50, 56, 0.6);
   letter-spacing: 0.02em;
-`,Ge=e.memo(()=>{const{t:e}=n(),i=e("banya.steam_schedule.sessions",{returnObjects:!0}),t=Math.ceil((Array.isArray(i)?i.length:0)/2),r=Array.isArray(i)?i.slice(0,t):[],s=Array.isArray(i)?i.slice(t):[],renderItem=(e,i)=>a.jsxs(Oe,{children:[a.jsx(Ne,{children:e.time}),a.jsx(Me,{children:"—"}),a.jsx(Le,{children:e.name})]},i);return a.jsx(Ie,{children:a.jsxs(Ce,{children:[a.jsx(Ee,{children:e("banya.steam_schedule.overline","Daily Schedule")}),a.jsx(He,{children:e("banya.steam_schedule.title","Steam Sessions")}),a.jsxs($e,{children:[a.jsx(Re,{children:r.map(renderItem)}),a.jsx(Re,{children:s.map(renderItem)})]})]})})}),BanyaPage=()=>{const{t:e}=n();return a.jsxs(a.Fragment,{children:[a.jsx(t,{titleKey:"page_titles.banya",description:e("banya.hero.subtitle","Traditional Russian banya experience"),keywords:"KAIF banya, Russian sauna, traditional banya, steam bath, Phuket",ogImage:"/images/banya/panoramic.jpg"}),a.jsx(i,{}),a.jsx(h,{}),a.jsx(Ge,{}),a.jsx(s,{image:"/images/banya/parallax2.jpg"}),a.jsx(BanyaServicesSection,{}),a.jsx(s,{}),a.jsx(BanyaGallerySection,{}),a.jsx(BanyaFeaturesSection,{}),a.jsx(BanyaFAQSection,{}),a.jsx(BanyaBookingSection,{})]})};export{BanyaPage as default};
+`,Ge=e.memo(()=>{const{t:e}=n(),i=e("banya.steam_schedule.sessions",{returnObjects:!0}),t=Math.ceil((Array.isArray(i)?i.length:0)/2),r=Array.isArray(i)?i.slice(0,t):[],s=Array.isArray(i)?i.slice(t):[],renderItem=(e,i)=>a.jsxs(Ne,{children:[a.jsx(Oe,{children:e.time}),a.jsx(Me,{children:"—"}),a.jsx(Le,{children:e.name})]},i);return a.jsx(Ce,{children:a.jsxs(Ee,{children:[a.jsx(Ie,{children:e("banya.steam_schedule.overline","Daily Schedule")}),a.jsx(He,{children:e("banya.steam_schedule.title","Steam Sessions")}),a.jsxs($e,{children:[a.jsx(Re,{children:r.map(renderItem)}),a.jsx(Re,{children:s.map(renderItem)})]})]})})}),BanyaPage=()=>{const{t:e}=n();return a.jsxs(a.Fragment,{children:[a.jsx(t,{titleKey:"page_titles.banya",description:e("banya.hero.subtitle","Traditional Russian banya experience"),keywords:"KAIF banya, Russian sauna, traditional banya, steam bath, Phuket",ogImage:"/images/banya/panoramic.jpg"}),a.jsx(i,{}),a.jsx(h,{}),a.jsx(Ge,{}),a.jsx(s,{image:"/images/banya/parallax2.jpg"}),a.jsx(BanyaServicesSection,{}),a.jsx(s,{}),a.jsx(BanyaGallerySection,{}),a.jsx(BanyaFeaturesSection,{}),a.jsx(BanyaFAQSection,{}),a.jsx(BanyaBookingSection,{})]})};export{BanyaPage as default};
