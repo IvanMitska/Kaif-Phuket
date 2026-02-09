@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Header from './Header';
 import Footer from './Footer';
+import FloatingWhatsApp from '../common/FloatingWhatsApp';
 
 const MainContainer = styled.div`
   width: 100%;
@@ -37,6 +38,7 @@ const Layout = ({ children }) => {
         </MainContent>
         <Footer />
       </MainContainer>
+      <FloatingWhatsApp />
     </>
   );
 };

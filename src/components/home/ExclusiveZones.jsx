@@ -77,14 +77,12 @@ const GridRow = styled.div`
   }
 `;
 
-const ZoneCard = styled(Link)`
+const ZoneCard = styled.div`
   position: relative;
   display: block;
   height: 320px;
   border-radius: 12px;
   overflow: hidden;
-  cursor: pointer;
-  text-decoration: none;
 
   @media (min-width: 768px) {
     height: 420px;
@@ -113,6 +111,8 @@ const ZoneCard = styled(Link)`
 `;
 
 const ZoneImage = styled.img`
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -158,6 +158,12 @@ const ZoneDescription = styled.p`
   max-width: 400px;
 `;
 
+const ButtonsRow = styled.div`
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+`;
+
 const ExploreButton = styled(Link)`
   display: inline-flex;
   align-items: center;
@@ -187,6 +193,28 @@ const ExploreButton = styled(Link)`
   }
 `;
 
+const BookButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: #133238;
+  text-decoration: none;
+  padding: 0.65rem 1.4rem;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50px;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: #fff;
+    color: #133238;
+    text-decoration: none;
+  }
+`;
+
 // === COMPONENT ===
 
 const ExclusiveZones = () => {
@@ -198,55 +226,70 @@ const ExclusiveZones = () => {
       name: t('zones.activity.fitness.name'),
       description: t('zones.activity.fitness.description'),
       image: '/images/zones/fitness.jpg',
-      path: '/sports'
+      path: '/sports',
+      bookMessage: 'Hello! I would like to book a gym session at KAIF'
     },
     {
       id: 'combat',
       name: t('zones.activity.combat.name'),
       description: t('zones.activity.combat.description'),
       image: '/images/zones/combat.jpg',
-      path: '/sports'
+      path: '/sports',
+      bookMessage: 'Hello! I would like to book a martial arts session at KAIF'
     },
     {
       id: 'pool',
       name: t('zones.activity.pool.name'),
       description: t('zones.activity.pool.description'),
       image: '/images/zones/pool.jpg',
-      path: '/sports'
+      path: '/sports',
+      bookMessage: 'Hello! I would like to book a swimming session at KAIF'
     },
     {
       id: 'spa',
       name: t('zones.relax.spa.name'),
       description: t('zones.relax.spa.description'),
       image: '/images/zones/spa.jpg',
-      path: '/spa'
+      path: '/spa',
+      bookMessage: 'Hello! I would like to book a SPA treatment at KAIF'
     },
     {
       id: 'banya',
       name: t('zones.relax.banya.name'),
       description: t('zones.relax.banya.description'),
       image: '/images/zones/banya.jpg',
-      path: '/banya'
+      path: '/banya',
+      bookMessage: 'Hello! I would like to book the Russian Banya at KAIF'
     },
     {
       id: 'restaurant',
       name: t('zones.relax.restaurant.name'),
       description: t('zones.relax.restaurant.description'),
       image: '/images/zones/restaurant.jpg',
-      path: '/restaurant'
+      path: '/restaurant',
+      bookMessage: 'Hello! I would like to book a table at KAIF Restaurant'
     }
   ], [t]);
 
   const renderCard = (zone) => (
-    <ZoneCard key={zone.id} to={zone.path}>
+    <ZoneCard key={zone.id}>
       <ZoneImage src={zone.image} alt={zone.name} loading="lazy" />
       <CardContent>
         <ZoneName>{zone.name}</ZoneName>
         <ZoneDescription>{zone.description}</ZoneDescription>
-        <ExploreButton as="span">
-          {t('common.learnMore', 'Learn More')}
-          <ArrowLongRightIcon />
-        </ExploreButton>
+        <ButtonsRow>
+          <ExploreButton to={zone.path}>
+            {t('common.learnMore', 'Learn More')}
+            <ArrowLongRightIcon />
+          </ExploreButton>
+          <BookButton
+            href={`https://wa.me/66624805877?text=${encodeURIComponent(zone.bookMessage)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t('common.book', 'Book')}
+          </BookButton>
+        </ButtonsRow>
       </CardContent>
     </ZoneCard>
   );

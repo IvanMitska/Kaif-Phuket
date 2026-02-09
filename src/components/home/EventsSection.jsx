@@ -86,10 +86,11 @@ const EventCard = styled.div`
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  cursor: pointer;
   background: #fff;
   border: 1px solid rgba(19, 50, 56, 0.08);
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
 
   @media (min-width: 768px) {
     flex: none;
@@ -177,6 +178,9 @@ const DateMonth = styled.div`
 
 const CardContent = styled.div`
   padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 `;
 
 const EventTitle = styled.h3`
@@ -265,7 +269,31 @@ const EventDescription = styled.p`
   font-size: 0.85rem;
   line-height: 1.5;
   color: rgba(19, 50, 56, 0.6);
-  margin: 0;
+  margin: 0 0 1rem;
+`;
+
+const BookButton = styled.a`
+  display: block;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #133238;
+  background: transparent;
+  border: 1px solid rgba(19, 50, 56, 0.2);
+  padding: 0.85rem 1.25rem;
+  border-radius: 50px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  margin-top: auto;
+
+  &:hover {
+    background: #133238;
+    color: #fff;
+    border-color: #133238;
+  }
 `;
 
 const EmptyState = styled.div`
@@ -339,7 +367,8 @@ const EventsSection = () => {
       features: ['DJ Show', 'Welcome Drink', 'Group Steaming'],
       promo: '1+1 for Special Mocktails',
       promoLink: 'https://wa.me/66624805877?text=Hello!%20I%20want%20to%20register%20for%20Pool%20Party%20on%20February%2021',
-      description: 'Music, water, sunset, and mocktails — the perfect vibe to relax and move'
+      description: 'Music, water, sunset, and mocktails — the perfect vibe to relax and move',
+      bookingLink: 'https://wa.me/66624805877?text=Hello!%20I%20want%20to%20book%20Pool%20Party%20on%20February%2021'
     }
   ], []);
 
@@ -392,6 +421,16 @@ const EventsSection = () => {
 
         {event.description && (
           <EventDescription>{event.description}</EventDescription>
+        )}
+
+        {event.bookingLink && (
+          <BookButton
+            href={event.bookingLink}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t('common.book_now', 'Book Now')}
+          </BookButton>
         )}
       </CardContent>
     </EventCard>
