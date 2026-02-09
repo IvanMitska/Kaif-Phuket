@@ -2,10 +2,10 @@ import React, { useEffect, useRef, memo, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
-// Cloudinary video URLs - desktop full quality, mobile optimized
-const VIDEO_DESKTOP = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_auto/0204_xkhajr.mp4';
-const VIDEO_MOBILE = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_80,w_1280/0204_xkhajr.mp4';
-const POSTER_URL = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_80,w_1280,so_0/0204_xkhajr.jpg';
+// Cloudinary video URLs - optimized for streaming
+const VIDEO_DESKTOP = 'https://res.cloudinary.com/dxzz1kj38/video/upload/f_auto,q_60,br_3000k/a5af7faa-2bd7-4340-9cab-02441b892030_llml00.mp4';
+const VIDEO_MOBILE = 'https://res.cloudinary.com/dxzz1kj38/video/upload/f_auto,q_50,w_720,br_1500k/d1d565d2-6755-4365-94ad-3e33b179e8bd_t7zojp.mp4';
+const POSTER_URL = 'https://res.cloudinary.com/dxzz1kj38/video/upload/q_70,so_0,f_auto/a5af7faa-2bd7-4340-9cab-02441b892030_llml00.jpg';
 
 // Основной контейнер - с poster фоном чтобы не было черного экрана
 const HeroContainer = styled.section`

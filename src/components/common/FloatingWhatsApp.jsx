@@ -1,54 +1,43 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
-
-const pulse = keyframes`
-  0% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
-  }
-  70% {
-    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-  }
-`;
+import styled from 'styled-components';
 
 const FloatingButton = styled.a`
   position: fixed;
   bottom: 24px;
   right: 24px;
-  width: 56px;
-  height: 56px;
-  background: #25D366;
+  width: 54px;
+  height: 54px;
+  background: #133238;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  box-shadow: 0 4px 20px rgba(19, 50, 56, 0.25);
   z-index: 999;
   transition: all 0.3s ease;
-  animation: ${pulse} 2s infinite;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
   &:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+    transform: scale(1.08);
+    box-shadow: 0 6px 28px rgba(19, 50, 56, 0.35);
+    background: #1a4a52;
   }
 
   svg {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
     fill: #fff;
   }
 
   @media (max-width: 768px) {
     bottom: 16px;
     right: 16px;
-    width: 52px;
-    height: 52px;
+    width: 50px;
+    height: 50px;
 
     svg {
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
     }
   }
 `;
