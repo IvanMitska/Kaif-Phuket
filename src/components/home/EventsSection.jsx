@@ -65,18 +65,31 @@ const Title = styled.h2`
 
 const EventsGrid = styled.div`
   display: flex;
-  justify-content: center;
   gap: 1.25rem;
   padding-bottom: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @media (min-width: 768px) {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
+    overflow-x: visible;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   @media (min-width: 1024px) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 `;
 
@@ -191,16 +204,19 @@ const EventTitle = styled.h3`
   margin: 0 0 0.75rem;
   line-height: 1.3;
   text-transform: uppercase;
+  min-height: 86px;
 `;
 
 const EventMeta = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
   gap: 0.75rem;
   font-family: 'Jost', sans-serif;
   font-size: 0.8rem;
   color: rgba(19, 50, 56, 0.5);
   margin-bottom: 1rem;
+  min-height: 40px;
 `;
 
 const EventTime = styled.span`
@@ -230,6 +246,8 @@ const EventFeatures = styled.div`
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 1rem;
+  min-height: 230px;
+  align-content: flex-start;
 `;
 
 const FeatureTag = styled.span`
@@ -270,6 +288,7 @@ const EventDescription = styled.p`
   line-height: 1.5;
   color: rgba(19, 50, 56, 0.6);
   margin: 0 0 1rem;
+  min-height: 65px;
 `;
 
 const BookButton = styled.a`
@@ -369,6 +388,58 @@ const EventsSection = () => {
       promoLink: 'https://wa.me/66624805877?text=Hello!%20I%20want%20to%20register%20for%20Pool%20Party%20on%20February%2021',
       description: 'Music, water, sunset, and mocktails — the perfect vibe to relax and move',
       bookingLink: 'https://wa.me/66624805877?text=Hello!%20I%20want%20to%20book%20Pool%20Party%20on%20February%2021'
+    },
+    {
+      id: 2,
+      title: 'Apollo Fight Night',
+      date: { day: '14', month: 'FEB' },
+      time: '19:00 – 22:00',
+      location: 'KAIF',
+      image: '/images/events/apollo-fight-main.jpg',
+      features: ['10 Fights', 'Pro & Amateur', 'Main Event', 'Live Boxing', 'KAIF x Apollo', 'Tickets Available'],
+      promo: 'Palibin vs Sharov',
+      promoLink: 'https://wa.me/66624805877?text=Hello!%20I%20want%20to%20buy%20tickets%20for%20Apollo%20Fight%20Night%20on%20February%2014',
+      description: 'A real boxing night. Main event: Anton Palibin vs Vitaly Sharov. Two schools. Two camps.',
+      bookingLink: 'https://wa.me/66624805877?text=Hello!%20I%20want%20to%20buy%20tickets%20for%20Apollo%20Fight%20Night%20on%20February%2014'
+    },
+    {
+      id: 3,
+      title: 'Apollo Fight Night — VIP Table for Four',
+      date: { day: '14', month: 'FEB' },
+      time: '19:00 – 22:00',
+      location: 'KAIF',
+      image: '/images/events/apollo-fight-vip-four.png',
+      features: ['4 Event Tickets', 'Private Table', 'Cheese Platter', 'Fruit Platter', 'Soft Drinks', 'Bottle Included'],
+      promo: '10,000 THB',
+      promoLink: 'https://wa.me/66624805877?text=Hello!%20I%20want%20to%20book%20VIP%20Table%20for%20Four%20at%20Apollo%20Fight%20Night%20on%20February%2014',
+      description: 'Comfort & style for your group. KAIF x Apollo Gym presents an unforgettable fight night experience.',
+      bookingLink: 'https://wa.me/66624805877?text=Hello!%20I%20want%20to%20book%20VIP%20Table%20for%20Four%20at%20Apollo%20Fight%20Night%20on%20February%2014'
+    },
+    {
+      id: 4,
+      title: 'Apollo Fight Night — VIP Table for Two',
+      date: { day: '14', month: 'FEB' },
+      time: '19:00 – 22:00',
+      location: 'KAIF',
+      image: '/images/events/apollo-fight-vip-two.png',
+      features: ['2 Event Tickets', 'Private Table', 'Cheese Platter', 'Fruit Platter', 'Soft Drinks', '2 Cocktails'],
+      promo: '4,000 THB',
+      promoLink: 'https://wa.me/66624805877?text=Hello!%20I%20want%20to%20book%20VIP%20Table%20for%20Two%20at%20Apollo%20Fight%20Night%20on%20February%2014',
+      description: 'Perfect for couples or friends. Enjoy the fights with premium service and special cocktails.',
+      bookingLink: 'https://wa.me/66624805877?text=Hello!%20I%20want%20to%20book%20VIP%20Table%20for%20Two%20at%20Apollo%20Fight%20Night%20on%20February%2014'
+    },
+    {
+      id: 5,
+      title: 'Apollo Fight Night — Tickets',
+      date: { day: '14', month: 'FEB' },
+      time: '19:00 – 22:00',
+      location: 'KAIF',
+      image: '/images/events/apollo-fight-tickets.png',
+      features: ['Event Entry', 'Access to All Fights'],
+      promo: 'From 600 THB',
+      promoLink: 'https://wa.me/66624805877?text=Hello!%20I%20want%20to%20buy%20tickets%20for%20Apollo%20Fight%20Night%20on%20February%2014',
+      description: 'General Admission 1,000 THB • Club Member Ticket 600 THB. Special rate for active club members.',
+      bookingLink: 'https://wa.me/66624805877?text=Hello!%20I%20want%20to%20buy%20tickets%20for%20Apollo%20Fight%20Night%20on%20February%2014'
     }
   ], []);
 
