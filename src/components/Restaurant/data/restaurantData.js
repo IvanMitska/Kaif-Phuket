@@ -19,8 +19,8 @@ export const getRestaurantData = (t) => {
     // ===============================
     {
       id: 1,
-      name: safeT('restaurant.menu.items.kaif_breakfast.name', 'Завтрак "KAIF"'),
-      description: safeT('restaurant.menu.items.kaif_breakfast.description', 'Отварные яйца / сыр эмменталь / ростбиф / микс черри / зерновой хлеб'),
+      name: safeT('restaurant.menu.items.kaif_breakfast.name', 'Завтрак KAIF · KAIF Breakfast'),
+      description: safeT('restaurant.menu.items.kaif_breakfast.description', 'Яйца / эмменталь / ростбиф / черри / хлеб · Eggs / emmental / roast beef / cherry / bread'),
       price: '450 THB',
       image: '/images/menu/breakfast/kaif-breakfast.jpg',
       tags: ['breakfast', 'popular'],
@@ -29,8 +29,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 43,
-      name: safeT('restaurant.menu.items.buckwheat_chicken_mushrooms.name', 'Гречневая каша с цыпленком и соусом пармезан'),
-      description: safeT('restaurant.menu.items.buckwheat_chicken_mushrooms.description', 'Гречневая каша / цыпленок / соус пармезан'),
+      name: safeT('restaurant.menu.items.buckwheat_chicken_mushrooms.name', 'Гречка с цыпленком · Buckwheat with Chicken'),
+      description: safeT('restaurant.menu.items.buckwheat_chicken_mushrooms.description', 'Гречка / цыпленок / соус пармезан · Buckwheat / chicken / parmesan sauce'),
       price: '285 THB',
       image: '/images/menu/breakfast/grechka.jpg',
       tags: ['breakfast', 'healthy'],
@@ -39,8 +39,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 2,
-      name: safeT('restaurant.menu.items.oatmeal_apple_almonds.name', 'Овсяная каша на кокосовом молоке'),
-      description: safeT('restaurant.menu.items.oatmeal_apple_almonds.description', 'Овсяная каша на кокосовом молоке / манго / мед / микс орехов'),
+      name: safeT('restaurant.menu.items.oatmeal_apple_almonds.name', 'Овсянка на кокосовом молоке · Coconut Oatmeal'),
+      description: safeT('restaurant.menu.items.oatmeal_apple_almonds.description', 'Овсянка / манго / мед / орехи · Oatmeal / mango / honey / nuts'),
       price: '210 THB',
       image: '/images/menu/breakfast/oatmeal-breakfast.jpg',
       tags: ['breakfast', 'sweet', 'healthy', 'vegan'],
@@ -49,8 +49,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 3,
-      name: safeT('restaurant.menu.items.shakshuka_spinach_salmon.name', 'Скрэмбл с риетом из лосося'),
-      description: safeT('restaurant.menu.items.shakshuka_spinach_salmon.description', 'Скрэмбл / риет из лосося / микс черри / зерновой хлеб / сливочное масло'),
+      name: safeT('restaurant.menu.items.shakshuka_spinach_salmon.name', 'Скрэмбл с лососем · Scramble with Salmon'),
+      description: safeT('restaurant.menu.items.shakshuka_spinach_salmon.description', 'Скрэмбл / риет лосося / черри / хлеб · Scramble / salmon rillette / cherry / bread'),
       price: '310 THB',
       image: '/images/menu/breakfast/Shakshuka-salmon.jpg',
       tags: ['breakfast', 'seafood'],
@@ -59,8 +59,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 5,
-      name: safeT('restaurant.menu.items.toast_salmon_avocado.name', 'Тост с лососем'),
-      description: safeT('restaurant.menu.items.toast_salmon_avocado.description', 'Тост с лососем / скрэмбл / гуакамоле / салат'),
+      name: safeT('restaurant.menu.items.toast_salmon_avocado.name', 'Тост с лососем · Salmon Toast'),
+      description: safeT('restaurant.menu.items.toast_salmon_avocado.description', 'Лосось / скрэмбл / гуакамоле / салат · Salmon / scramble / guacamole / salad'),
       price: '370 THB',
       image: '/images/menu/breakfast/tostlos.jpg',
       tags: ['breakfast', 'seafood'],
@@ -69,8 +69,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 6,
-      name: safeT('restaurant.menu.items.homemade_granola.name', 'Домашняя гранола'),
-      description: safeT('restaurant.menu.items.homemade_granola.description', 'Домашняя гранола / лабне / микс ягод'),
+      name: safeT('restaurant.menu.items.homemade_granola.name', 'Домашняя гранола · Homemade Granola'),
+      description: safeT('restaurant.menu.items.homemade_granola.description', 'Гранола / лабне / ягоды · Granola / labneh / berries'),
       price: '310 THB',
       image: null,
       tags: ['breakfast', 'healthy', 'vegan'],
@@ -79,8 +79,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 7,
-      name: safeT('restaurant.menu.items.syrniki_passion_fruit.name', 'Сырники'),
-      description: safeT('restaurant.menu.items.syrniki_passion_fruit.description', 'Сырники / крем из сметаны / манго джем'),
+      name: safeT('restaurant.menu.items.syrniki_passion_fruit.name', 'Сырники · Cottage Cheese Pancakes'),
+      description: safeT('restaurant.menu.items.syrniki_passion_fruit.description', 'Сырники / сметана / манго джем · Syrniki / sour cream / mango jam'),
       price: '290 THB',
       image: '/images/menu/breakfast/sirniki.jpg',
       tags: ['breakfast', 'sweet'],
@@ -89,8 +89,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 44,
-      name: safeT('restaurant.menu.items.potato_pancakes.name', 'Драники с грибным соусом'),
-      description: safeT('restaurant.menu.items.potato_pancakes.description', 'Драники с грибным соусом'),
+      name: safeT('restaurant.menu.items.potato_pancakes.name', 'Драники · Potato Pancakes'),
+      description: safeT('restaurant.menu.items.potato_pancakes.description', 'Драники / грибной соус · Potato pancakes / mushroom sauce'),
       price: '230 THB',
       image: null,
       tags: ['breakfast'],
@@ -99,8 +99,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 45,
-      name: safeT('restaurant.menu.items.eggs_benedict.name', 'Яйца Бенедикт'),
-      description: safeT('restaurant.menu.items.eggs_benedict.description', 'Яйца Бенедикт'),
+      name: safeT('restaurant.menu.items.eggs_benedict.name', 'Яйца Бенедикт · Eggs Benedict'),
+      description: safeT('restaurant.menu.items.eggs_benedict.description', 'Классические яйца Бенедикт · Classic Eggs Benedict'),
       price: '390 THB',
       image: null,
       tags: ['breakfast', 'popular'],
@@ -109,8 +109,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 46,
-      name: safeT('restaurant.menu.items.waffles.name', 'Вафли'),
-      description: safeT('restaurant.menu.items.waffles.description', 'Вафли / домашняя соленая карамель / ванильное мороженое'),
+      name: safeT('restaurant.menu.items.waffles.name', 'Вафли · Waffles'),
+      description: safeT('restaurant.menu.items.waffles.description', 'Вафли / соленая карамель / мороженое · Waffles / salted caramel / ice cream'),
       price: '190 THB',
       image: null,
       tags: ['breakfast', 'sweet'],
@@ -123,8 +123,8 @@ export const getRestaurantData = (t) => {
     // ===============================
     {
       id: 8,
-      name: safeT('restaurant.menu.items.pumpkin_soup.name', 'Тыквенный крем-суп'),
-      description: safeT('restaurant.menu.items.pumpkin_soup.description', 'Тыквенный крем-суп / сыр фета / тыквенные семечки'),
+      name: safeT('restaurant.menu.items.pumpkin_soup.name', 'Тыквенный крем-суп · Pumpkin Cream Soup'),
+      description: safeT('restaurant.menu.items.pumpkin_soup.description', 'Тыква / фета / семечки · Pumpkin / feta / seeds'),
       price: '210 THB',
       image: null,
       tags: ['soup', 'hot', 'vegan'],
@@ -133,8 +133,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 47,
-      name: safeT('restaurant.menu.items.minestrone.name', 'Минестроне'),
-      description: safeT('restaurant.menu.items.minestrone.description', 'Минестроне'),
+      name: safeT('restaurant.menu.items.minestrone.name', 'Минестроне · Minestrone'),
+      description: safeT('restaurant.menu.items.minestrone.description', 'Итальянский овощной суп · Italian vegetable soup'),
       price: '190 THB',
       image: null,
       tags: ['soup', 'hot', 'vegetarian'],
@@ -143,8 +143,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 9,
-      name: safeT('restaurant.menu.items.borsch_classic.name', 'Классический борщ с говядиной'),
-      description: safeT('restaurant.menu.items.borsch_classic.description', 'Классический борщ с говядиной'),
+      name: safeT('restaurant.menu.items.borsch_classic.name', 'Борщ с говядиной · Borsch with Beef'),
+      description: safeT('restaurant.menu.items.borsch_classic.description', 'Классический борщ · Classic Ukrainian borsch'),
       price: '310 THB',
       image: '/images/menu/soup/borsch-classic.jpg',
       tags: ['soup', 'hot'],
@@ -153,8 +153,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 10,
-      name: safeT('restaurant.menu.items.creamy_salmon.name', 'Сливочный суп с лососем'),
-      description: safeT('restaurant.menu.items.creamy_salmon.description', 'Сливочный суп с лососем'),
+      name: safeT('restaurant.menu.items.creamy_salmon.name', 'Сливочный суп с лососем · Creamy Salmon Soup'),
+      description: safeT('restaurant.menu.items.creamy_salmon.description', 'Лосось / сливки · Salmon / cream'),
       price: '330 THB',
       image: null,
       tags: ['soup', 'hot', 'seafood'],
@@ -163,8 +163,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 11,
-      name: safeT('restaurant.menu.items.gazpacho_shrimp.name', 'Гаспачо с креветками'),
-      description: safeT('restaurant.menu.items.gazpacho_shrimp.description', 'Гаспачо / тар-тар из креветок / тар-тар из свежих овощей'),
+      name: safeT('restaurant.menu.items.gazpacho_shrimp.name', 'Гаспачо с креветками · Gazpacho with Shrimp'),
+      description: safeT('restaurant.menu.items.gazpacho_shrimp.description', 'Гаспачо / тар-тар креветок · Gazpacho / shrimp tartare'),
       price: '290 THB',
       image: null,
       tags: ['soup', 'cold'],
@@ -176,8 +176,8 @@ export const getRestaurantData = (t) => {
     // ===============================
     {
       id: 12,
-      name: safeT('restaurant.menu.items.green_salad.name', 'Зеленый салат'),
-      description: safeT('restaurant.menu.items.green_salad.description', 'Зеленый салат / брокколи / огурцы / бэби шпинат / бобы эдамамэ'),
+      name: safeT('restaurant.menu.items.green_salad.name', 'Зелёный салат · Green Salad'),
+      description: safeT('restaurant.menu.items.green_salad.description', 'Брокколи / огурцы / шпинат / эдамамэ · Broccoli / cucumber / spinach / edamame'),
       price: '310 THB',
       image: null,
       tags: ['salad', 'vegetarian', 'vegan', 'healthy'],
@@ -186,8 +186,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 13,
-      name: safeT('restaurant.menu.items.crispy_eggplant.name', 'Хрустящие баклажаны'),
-      description: safeT('restaurant.menu.items.crispy_eggplant.description', 'Хрустящие баклажаны / йогурт / микс орехов / соус сладкий чили'),
+      name: safeT('restaurant.menu.items.crispy_eggplant.name', 'Хрустящие баклажаны · Crispy Eggplant'),
+      description: safeT('restaurant.menu.items.crispy_eggplant.description', 'Баклажаны / йогурт / орехи / чили · Eggplant / yogurt / nuts / chili'),
       price: '310 THB',
       image: null,
       tags: ['appetizer', 'vegetarian'],
@@ -196,8 +196,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 14,
-      name: safeT('restaurant.menu.items.caesar_chicken.name', 'Салат Цезарь с цыпленком'),
-      description: safeT('restaurant.menu.items.caesar_chicken.description', 'Салат цезарь / печеный цыпленок / перепелиные яйца'),
+      name: safeT('restaurant.menu.items.caesar_chicken.name', 'Цезарь с цыплёнком · Caesar with Chicken'),
+      description: safeT('restaurant.menu.items.caesar_chicken.description', 'Цыплёнок / перепелиные яйца · Chicken / quail eggs'),
       price: '350 THB',
       image: '/images/menu/salad/caesar-salad.jpg',
       tags: ['salad', 'meat'],
@@ -206,8 +206,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 15,
-      name: safeT('restaurant.menu.items.vegetable_salad.name', 'Овощной салат'),
-      description: safeT('restaurant.menu.items.vegetable_salad.description', 'Овощной салат / огурцы / томаты / редис / оливковое масло'),
+      name: safeT('restaurant.menu.items.vegetable_salad.name', 'Овощной салат · Vegetable Salad'),
+      description: safeT('restaurant.menu.items.vegetable_salad.description', 'Огурцы / томаты / редис / оливковое масло · Cucumber / tomato / radish / olive oil'),
       price: '190 THB',
       image: null,
       tags: ['salad', 'vegetarian', 'vegan', 'healthy'],
@@ -216,8 +216,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 16,
-      name: safeT('restaurant.menu.items.roast_beef_salad.name', 'Салат с ростбифом'),
-      description: safeT('restaurant.menu.items.roast_beef_salad.description', 'Салат с ростбифом / болгарский перец / огурцы / микс салатов / азиатская заправка'),
+      name: safeT('restaurant.menu.items.roast_beef_salad.name', 'Салат с ростбифом · Roast Beef Salad'),
+      description: safeT('restaurant.menu.items.roast_beef_salad.description', 'Ростбиф / перец / огурцы / азиатская заправка · Roast beef / pepper / cucumber / Asian dressing'),
       price: '420 THB',
       image: null,
       tags: ['salad', 'meat'],
@@ -226,8 +226,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 17,
-      name: safeT('restaurant.menu.items.crispy_shrimp.name', 'Хрустящие креветки'),
-      description: safeT('restaurant.menu.items.crispy_shrimp.description', 'Хрустящие креветки / мусс из печеных овощей'),
+      name: safeT('restaurant.menu.items.crispy_shrimp.name', 'Хрустящие креветки · Crispy Shrimp'),
+      description: safeT('restaurant.menu.items.crispy_shrimp.description', 'Креветки / овощной мусс · Shrimp / vegetable mousse'),
       price: '420 THB',
       image: null,
       tags: ['appetizer', 'seafood'],
@@ -236,8 +236,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 48,
-      name: safeT('restaurant.menu.items.chili_con_carne.name', 'Чили кон карне'),
-      description: safeT('restaurant.menu.items.chili_con_carne.description', 'Чили кон карне / копченая сметана'),
+      name: safeT('restaurant.menu.items.chili_con_carne.name', 'Чили кон карне · Chili con Carne'),
+      description: safeT('restaurant.menu.items.chili_con_carne.description', 'Чили / копчёная сметана · Chili / smoked sour cream'),
       price: '390 THB',
       image: null,
       tags: ['appetizer', 'meat', 'spicy'],
@@ -246,8 +246,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 18,
-      name: safeT('restaurant.menu.items.big_snack_set.name', 'Большой сет снеков'),
-      description: safeT('restaurant.menu.items.big_snack_set.description', 'Большой сет снеков: микс рыб холодного и горячего копчения'),
+      name: safeT('restaurant.menu.items.big_snack_set.name', 'Большой сет снеков · Large Snack Set'),
+      description: safeT('restaurant.menu.items.big_snack_set.description', 'Микс копчёной рыбы · Smoked fish mix'),
       price: '2390 THB',
       image: null,
       tags: ['appetizer', 'meat', 'seafood'],
@@ -256,8 +256,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 19,
-      name: safeT('restaurant.menu.items.small_snack_set.name', 'Маленький сет снеков'),
-      description: safeT('restaurant.menu.items.small_snack_set.description', 'Маленький сет снеков: микс рыб холодного и горячего копчения'),
+      name: safeT('restaurant.menu.items.small_snack_set.name', 'Малый сет снеков · Small Snack Set'),
+      description: safeT('restaurant.menu.items.small_snack_set.description', 'Микс копчёной рыбы · Smoked fish mix'),
       price: '1310 THB',
       image: null,
       tags: ['appetizer', 'meat'],
@@ -269,8 +269,8 @@ export const getRestaurantData = (t) => {
     // ===============================
     {
       id: 20,
-      name: safeT('restaurant.menu.items.chicken_kebab.name', 'Шашлык из куриного филе'),
-      description: safeT('restaurant.menu.items.chicken_kebab.description', 'Шашлык из куриного филе'),
+      name: safeT('restaurant.menu.items.chicken_kebab.name', 'Шашлык из курицы · Chicken Kebab'),
+      description: safeT('restaurant.menu.items.chicken_kebab.description', 'Куриное филе на мангале · Grilled chicken fillet'),
       price: '290 THB',
       image: '/images/menu/grill/chicken_kebab.jpg',
       tags: ['grill', 'meat'],
@@ -279,8 +279,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 21,
-      name: safeT('restaurant.menu.items.pork_kebab.name', 'Шашлык из свинины'),
-      description: safeT('restaurant.menu.items.pork_kebab.description', 'Шашлык из свинины'),
+      name: safeT('restaurant.menu.items.pork_kebab.name', 'Шашлык из свинины · Pork Kebab'),
+      description: safeT('restaurant.menu.items.pork_kebab.description', 'Свинина на мангале · Grilled pork'),
       price: '310 THB',
       image: '/images/menu/grill/pork_kebab.jpg',
       tags: ['grill', 'meat'],
@@ -289,8 +289,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 22,
-      name: safeT('restaurant.menu.items.lyulya_chicken.name', 'Люля-кебаб из курицы'),
-      description: safeT('restaurant.menu.items.lyulya_chicken.description', 'Люля-кебаб из курицы'),
+      name: safeT('restaurant.menu.items.lyulya_chicken.name', 'Люля-кебаб из курицы · Chicken Lula Kebab'),
+      description: safeT('restaurant.menu.items.lyulya_chicken.description', 'Куриный люля-кебаб · Minced chicken kebab'),
       price: '290 THB',
       image: '/images/menu/grill/lyulya_chicken.jpg',
       tags: ['grill', 'meat'],
@@ -299,8 +299,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 23,
-      name: safeT('restaurant.menu.items.lyulya_lamb.name', 'Люля кебаб из баранины'),
-      description: safeT('restaurant.menu.items.lyulya_lamb.description', 'Люля кебаб из баранины'),
+      name: safeT('restaurant.menu.items.lyulya_lamb.name', 'Люля-кебаб из баранины · Lamb Lula Kebab'),
+      description: safeT('restaurant.menu.items.lyulya_lamb.description', 'Бараний люля-кебаб · Minced lamb kebab'),
       price: '420 THB',
       image: '/images/menu/grill/lyulya_lamb.jpg',
       tags: ['grill', 'meat'],
@@ -309,8 +309,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 24,
-      name: safeT('restaurant.menu.items.lyulya_beef_pork.name', 'Люля кебаб из говядины и свинины'),
-      description: safeT('restaurant.menu.items.lyulya_beef_pork.description', 'Люля кебаб из говядины и свинины'),
+      name: safeT('restaurant.menu.items.lyulya_beef_pork.name', 'Люля-кебаб говядина-свинина · Beef & Pork Lula'),
+      description: safeT('restaurant.menu.items.lyulya_beef_pork.description', 'Говядина и свинина · Beef and pork'),
       price: '410 THB',
       image: '/images/menu/grill/lyulya_beef_pork.jpg',
       tags: ['grill', 'meat'],
@@ -319,9 +319,9 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 25,
-      name: safeT('restaurant.menu.items.assorted_kebabs.name', 'Ассорти шашлыков'),
-      description: safeT('restaurant.menu.items.assorted_kebabs.description', 'Ассорти шашлыков'),
-      price: '1610 THB',
+      name: safeT('restaurant.menu.items.assorted_kebabs.name', 'Ассорти шашлыков · Kebab Platter'),
+      description: safeT('restaurant.menu.items.assorted_kebabs.description', 'Микс шашлыков · Mixed kebabs'),
+      price: '1490 THB',
       image: '/images/menu/grill/assorted_kebabs.jpg',
       tags: ['grill', 'meat'],
       popular: false,
@@ -329,8 +329,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 26,
-      name: safeT('restaurant.menu.items.vegetables_kebab.name', 'Овощной шашлык'),
-      description: safeT('restaurant.menu.items.vegetables_kebab.description', 'Овощной шашлык'),
+      name: safeT('restaurant.menu.items.vegetables_kebab.name', 'Овощной шашлык · Vegetable Kebab'),
+      description: safeT('restaurant.menu.items.vegetables_kebab.description', 'Овощи на мангале · Grilled vegetables'),
       price: '190 THB',
       image: '/images/menu/grill/vegetables_kebab.jpg',
       tags: ['grill', 'vegetarian', 'vegan'],
@@ -339,8 +339,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 27,
-      name: safeT('restaurant.menu.items.chicken_thigh_grill.name', 'Бедро цыпленка на мангале'),
-      description: safeT('restaurant.menu.items.chicken_thigh_grill.description', 'Бедро цыпленка на мангале / молодой картофель'),
+      name: safeT('restaurant.menu.items.chicken_thigh_grill.name', 'Бедро цыплёнка · Grilled Chicken Thigh'),
+      description: safeT('restaurant.menu.items.chicken_thigh_grill.description', 'Цыплёнок / молодой картофель · Chicken / baby potatoes'),
       price: '370 THB',
       image: '/images/menu/grill/chicken_thigh.jpg',
       tags: ['grill', 'meat'],
@@ -349,8 +349,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 49,
-      name: safeT('restaurant.menu.items.pork_ribs_bbq.name', 'Свиные ребра BBQ'),
-      description: safeT('restaurant.menu.items.pork_ribs_bbq.description', 'Свиные ребра BBQ / кукуруза на мангале'),
+      name: safeT('restaurant.menu.items.pork_ribs_bbq.name', 'Свиные рёбра BBQ · BBQ Pork Ribs'),
+      description: safeT('restaurant.menu.items.pork_ribs_bbq.description', 'Рёбра / кукуруза на мангале · Ribs / grilled corn'),
       price: '420 THB',
       image: null,
       tags: ['grill', 'meat'],
@@ -362,8 +362,8 @@ export const getRestaurantData = (t) => {
     // ===============================
     {
       id: 28,
-      name: safeT('restaurant.menu.items.salmon_steak.name', 'Стейк лосося'),
-      description: safeT('restaurant.menu.items.salmon_steak.description', 'Стейк лосося / спаржа / шпинат / копченый йогурт'),
+      name: safeT('restaurant.menu.items.salmon_steak.name', 'Стейк лосося · Salmon Steak'),
+      description: safeT('restaurant.menu.items.salmon_steak.description', 'Лосось / спаржа / шпинат · Salmon / asparagus / spinach'),
       price: '530 THB',
       image: null,
       tags: ['main', 'seafood'],
@@ -372,8 +372,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 29,
-      name: safeT('restaurant.menu.items.sea_bass_zucchini.name', 'Сибас с цукини'),
-      description: safeT('restaurant.menu.items.sea_bass_zucchini.description', 'Сибас с цукини / соус из белого вина / оливок и каперсов'),
+      name: safeT('restaurant.menu.items.sea_bass_zucchini.name', 'Сибас с цукини · Sea Bass with Zucchini'),
+      description: safeT('restaurant.menu.items.sea_bass_zucchini.description', 'Сибас / цукини / белое вино · Sea bass / zucchini / white wine'),
       price: '490 THB',
       image: null,
       tags: ['main', 'seafood'],
@@ -382,8 +382,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 50,
-      name: safeT('restaurant.menu.items.grilled_lobster.name', 'Лобстер на гриле'),
-      description: safeT('restaurant.menu.items.grilled_lobster.description', 'Лобстер на гриле'),
+      name: safeT('restaurant.menu.items.grilled_lobster.name', 'Лобстер на гриле · Grilled Lobster'),
+      description: safeT('restaurant.menu.items.grilled_lobster.description', 'Целый лобстер на гриле · Whole grilled lobster'),
       price: '3790 THB',
       image: null,
       tags: ['main', 'seafood', 'popular'],
@@ -392,8 +392,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 51,
-      name: safeT('restaurant.menu.items.wagyu_ribeye.name', 'Стейк рибай Вагю'),
-      description: safeT('restaurant.menu.items.wagyu_ribeye.description', 'Стейк рибай Вагю'),
+      name: safeT('restaurant.menu.items.wagyu_ribeye.name', 'Рибай Вагю · Wagyu Ribeye'),
+      description: safeT('restaurant.menu.items.wagyu_ribeye.description', 'Стейк рибай Вагю · Wagyu ribeye steak'),
       price: '1590 THB',
       image: null,
       tags: ['main', 'meat', 'popular'],
@@ -402,8 +402,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 30,
-      name: safeT('restaurant.menu.items.classic_cheeseburger.name', 'Классический чизбургер'),
-      description: safeT('restaurant.menu.items.classic_cheeseburger.description', 'Классический чизбургер / картофель фри с пармезаном'),
+      name: safeT('restaurant.menu.items.classic_cheeseburger.name', 'Чизбургер · Cheeseburger'),
+      description: safeT('restaurant.menu.items.classic_cheeseburger.description', 'Бургер / фри с пармезаном · Burger / parmesan fries'),
       price: '450 THB',
       image: '/images/menu/burger/cheeseburger-deluxe.jpg',
       tags: ['burger', 'meat'],
@@ -412,8 +412,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 31,
-      name: safeT('restaurant.menu.items.mignon_steak.name', 'Стейк миньон'),
-      description: safeT('restaurant.menu.items.mignon_steak.description', 'Стейк миньон / картофельное пюре / ромейн / соус демиглас'),
+      name: safeT('restaurant.menu.items.mignon_steak.name', 'Стейк миньон · Filet Mignon'),
+      description: safeT('restaurant.menu.items.mignon_steak.description', 'Миньон / пюре / соус демиглас · Mignon / mash / demi-glace'),
       price: '1190 THB',
       image: null,
       tags: ['main', 'meat'],
@@ -422,8 +422,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 32,
-      name: safeT('restaurant.menu.items.fried_rice_shrimp.name', 'Жареный рис с овощами и креветками'),
-      description: safeT('restaurant.menu.items.fried_rice_shrimp.description', 'Жареный рис с овощами и креветками'),
+      name: safeT('restaurant.menu.items.fried_rice_shrimp.name', 'Рис с креветками · Fried Rice with Shrimp'),
+      description: safeT('restaurant.menu.items.fried_rice_shrimp.description', 'Жареный рис / овощи / креветки · Fried rice / vegetables / shrimp'),
       price: '230 THB',
       image: null,
       tags: ['main', 'seafood'],
@@ -432,8 +432,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 52,
-      name: safeT('restaurant.menu.items.chicken_schnitzel.name', 'Куриный шницель'),
-      description: safeT('restaurant.menu.items.chicken_schnitzel.description', 'Куриный шницель / печеный картофель / томатная сальса / сметана'),
+      name: safeT('restaurant.menu.items.chicken_schnitzel.name', 'Куриный шницель · Chicken Schnitzel'),
+      description: safeT('restaurant.menu.items.chicken_schnitzel.description', 'Шницель / картофель / сальса · Schnitzel / potato / salsa'),
       price: '250 THB',
       image: null,
       tags: ['main', 'meat'],
@@ -442,8 +442,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 53,
-      name: safeT('restaurant.menu.items.duck_breast.name', 'Утиное филе'),
-      description: safeT('restaurant.menu.items.duck_breast.description', 'Утиное филе / соус из брусники / пюре из батата'),
+      name: safeT('restaurant.menu.items.duck_breast.name', 'Утиная грудка · Duck Breast'),
+      description: safeT('restaurant.menu.items.duck_breast.description', 'Утка / брусника / пюре батата · Duck / lingonberry / sweet potato'),
       price: '420 THB',
       image: null,
       tags: ['main', 'meat'],
@@ -456,8 +456,8 @@ export const getRestaurantData = (t) => {
     // ===============================
     {
       id: 33,
-      name: safeT('restaurant.menu.items.mashed_potatoes_truffle.name', 'Картофельное пюре с трюфельным маслом'),
-      description: safeT('restaurant.menu.items.mashed_potatoes_truffle.description', 'Картофельное пюре с трюфельным маслом'),
+      name: safeT('restaurant.menu.items.mashed_potatoes_truffle.name', 'Пюре с трюфелем · Truffle Mashed Potatoes'),
+      description: safeT('restaurant.menu.items.mashed_potatoes_truffle.description', 'Картофель / трюфельное масло · Potato / truffle oil'),
       price: '160 THB',
       image: null,
       tags: ['side', 'vegetarian'],
@@ -466,8 +466,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 34,
-      name: safeT('restaurant.menu.items.broccoli_grill.name', 'Брокколи на мангале'),
-      description: safeT('restaurant.menu.items.broccoli_grill.description', 'Брокколи на мангале / мусс из йогурта и авокадо'),
+      name: safeT('restaurant.menu.items.broccoli_grill.name', 'Брокколи гриль · Grilled Broccoli'),
+      description: safeT('restaurant.menu.items.broccoli_grill.description', 'Брокколи / йогурт / авокадо · Broccoli / yogurt / avocado'),
       price: '160 THB',
       image: null,
       tags: ['side', 'vegetarian', 'healthy'],
@@ -476,8 +476,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 35,
-      name: safeT('restaurant.menu.items.steamed_rice.name', 'Рис на пару'),
-      description: safeT('restaurant.menu.items.steamed_rice.description', 'Рис на пару'),
+      name: safeT('restaurant.menu.items.steamed_rice.name', 'Рис на пару · Steamed Rice'),
+      description: safeT('restaurant.menu.items.steamed_rice.description', 'Белый рис · White rice'),
       price: '80 THB',
       image: null,
       tags: ['side', 'vegetarian', 'vegan'],
@@ -486,8 +486,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 36,
-      name: safeT('restaurant.menu.items.baked_potatoes_herbs.name', 'Картофель печеный с зеленью'),
-      description: safeT('restaurant.menu.items.baked_potatoes_herbs.description', 'Картофель печеный с зеленью'),
+      name: safeT('restaurant.menu.items.baked_potatoes_herbs.name', 'Печёный картофель · Baked Potatoes'),
+      description: safeT('restaurant.menu.items.baked_potatoes_herbs.description', 'Картофель / зелень · Potato / herbs'),
       price: '160 THB',
       image: null,
       tags: ['side', 'vegetarian'],
@@ -499,8 +499,8 @@ export const getRestaurantData = (t) => {
     // ===============================
     {
       id: 37,
-      name: safeT('restaurant.menu.items.napoleon.name', 'Наполеон'),
-      description: safeT('restaurant.menu.items.napoleon.description', 'Наполеон / соус из белого шоколада'),
+      name: safeT('restaurant.menu.items.napoleon.name', 'Наполеон · Napoleon Cake'),
+      description: safeT('restaurant.menu.items.napoleon.description', 'Наполеон / белый шоколад · Napoleon / white chocolate'),
       price: '280 THB',
       image: null,
       tags: ['dessert', 'sweet'],
@@ -509,8 +509,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 38,
-      name: safeT('restaurant.menu.items.cheesecake_pistachio.name', 'Чизкейк'),
-      description: safeT('restaurant.menu.items.cheesecake_pistachio.description', 'Чизкейк / фисташковый соус'),
+      name: safeT('restaurant.menu.items.cheesecake_pistachio.name', 'Чизкейк · Cheesecake'),
+      description: safeT('restaurant.menu.items.cheesecake_pistachio.description', 'Чизкейк / фисташковый соус · Cheesecake / pistachio sauce'),
       price: '280 THB',
       image: null,
       tags: ['dessert', 'sweet'],
@@ -519,8 +519,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 39,
-      name: safeT('restaurant.menu.items.chocolate_fondant.name', 'Шоколадный фондан'),
-      description: safeT('restaurant.menu.items.chocolate_fondant.description', 'Шоколадный фондан / ванильное мороженое / варенье из вишни'),
+      name: safeT('restaurant.menu.items.chocolate_fondant.name', 'Шоколадный фондан · Chocolate Fondant'),
+      description: safeT('restaurant.menu.items.chocolate_fondant.description', 'Фондан / мороженое / вишня · Fondant / ice cream / cherry'),
       price: '280 THB',
       image: null,
       tags: ['dessert', 'sweet'],
@@ -529,8 +529,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 40,
-      name: safeT('restaurant.menu.items.tiramisu.name', 'Тирамису'),
-      description: safeT('restaurant.menu.items.tiramisu.description', 'Тирамису'),
+      name: safeT('restaurant.menu.items.tiramisu.name', 'Тирамису · Tiramisu'),
+      description: safeT('restaurant.menu.items.tiramisu.description', 'Классический тирамису · Classic tiramisu'),
       price: '280 THB',
       image: null,
       tags: ['dessert', 'sweet'],
@@ -539,8 +539,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 41,
-      name: safeT('restaurant.menu.items.coconut_pudding_chia.name', 'Кокосовый пудинг с чиа'),
-      description: safeT('restaurant.menu.items.coconut_pudding_chia.description', 'Кокосовый пудинг с чиа / джем манго и маракуйя'),
+      name: safeT('restaurant.menu.items.coconut_pudding_chia.name', 'Кокосовый пудинг · Coconut Chia Pudding'),
+      description: safeT('restaurant.menu.items.coconut_pudding_chia.description', 'Кокос / чиа / манго · Coconut / chia / mango'),
       price: '190 THB',
       image: null,
       tags: ['dessert', 'sweet', 'vegan'],
@@ -549,8 +549,8 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 42,
-      name: safeT('restaurant.menu.items.italian_gelato.name', 'Итальянский джелато'),
-      description: safeT('restaurant.menu.items.italian_gelato.description', 'Итальянский джелато / ваниль / черный шоколад / соленая карамель'),
+      name: safeT('restaurant.menu.items.italian_gelato.name', 'Джелато · Italian Gelato'),
+      description: safeT('restaurant.menu.items.italian_gelato.description', 'Ваниль / шоколад / карамель · Vanilla / chocolate / caramel'),
       price: '80 THB',
       image: null,
       tags: ['dessert', 'sweet'],
@@ -559,19 +559,84 @@ export const getRestaurantData = (t) => {
     },
     {
       id: 54,
-      name: safeT('restaurant.menu.items.bonafi_pie.name', 'Бонафи пай'),
-      description: safeT('restaurant.menu.items.bonafi_pie.description', 'Бонафи пай'),
+      name: safeT('restaurant.menu.items.bonafi_pie.name', 'Банофи пай · Banoffee Pie'),
+      description: safeT('restaurant.menu.items.bonafi_pie.description', 'Банан / карамель / сливки · Banana / caramel / cream'),
       price: '280 THB',
       image: null,
       tags: ['dessert', 'sweet'],
       popular: false,
       category: 'dessert'
     },
+
+    // ===============================
+    // МАСЛЕНИЦА / MASLENITSA (24 Feb – 2 Mar)
+    // ===============================
+    {
+      id: 55,
+      name: safeT('restaurant.menu.items.classic_pancakes.name', 'Блины классические · Classic Pancakes'),
+      description: safeT('restaurant.menu.items.classic_pancakes.description', 'Традиционные русские блины · Traditional Russian pancakes'),
+      price: '170 THB',
+      image: null,
+      tags: ['maslenitsa', 'sweet'],
+      popular: true,
+      category: 'maslenitsa'
+    },
+    {
+      id: 56,
+      name: safeT('restaurant.menu.items.pancakes_apple_cinnamon.name', 'Блины с яблоком и корицей · Apple Cinnamon Pancakes'),
+      description: safeT('restaurant.menu.items.pancakes_apple_cinnamon.description', 'Яблоко / корица · Apple / cinnamon'),
+      price: '170 THB',
+      image: null,
+      tags: ['maslenitsa', 'sweet'],
+      popular: false,
+      category: 'maslenitsa'
+    },
+    {
+      id: 57,
+      name: safeT('restaurant.menu.items.pancakes_chicken_mushrooms.name', 'Блины с курицей и грибами · Chicken & Mushroom Pancakes'),
+      description: safeT('restaurant.menu.items.pancakes_chicken_mushrooms.description', 'Курица / грибы · Chicken / mushrooms'),
+      price: '190 THB',
+      image: null,
+      tags: ['maslenitsa', 'meat'],
+      popular: true,
+      category: 'maslenitsa'
+    },
+    {
+      id: 58,
+      name: safeT('restaurant.menu.items.pancake_cake.name', 'Блинный торт · Pancake Cake'),
+      description: safeT('restaurant.menu.items.pancake_cake.description', 'Слоёный блинный торт · Layered pancake cake'),
+      price: '190 THB',
+      image: null,
+      tags: ['maslenitsa', 'sweet'],
+      popular: false,
+      category: 'maslenitsa'
+    },
+    {
+      id: 59,
+      name: safeT('restaurant.menu.items.pancakes_cream_cheese_salmon.name', 'Блины с крем-чизом · Cream Cheese Pancakes'),
+      description: safeT('restaurant.menu.items.pancakes_cream_cheese_salmon.description', 'Слабосоленый лосось / соус Голландез · Salted salmon / Hollandaise sauce'),
+      price: '260 THB',
+      image: null,
+      tags: ['maslenitsa', 'seafood'],
+      popular: true,
+      category: 'maslenitsa'
+    },
+    {
+      id: 60,
+      name: safeT('restaurant.menu.items.pancakes_sour_cream_caviar.name', 'Блины с икрой · Red Caviar Pancakes'),
+      description: safeT('restaurant.menu.items.pancakes_sour_cream_caviar.description', 'Сметана / красная икра · Sour cream / red caviar'),
+      price: '490 THB',
+      image: null,
+      tags: ['maslenitsa', 'seafood', 'popular'],
+      popular: true,
+      category: 'maslenitsa'
+    },
   ];
 
   // Функция для группировки меню по категориям
   const getMenuByCategory = () => {
     return {
+      maslenitsa: menuItems.filter(item => item.category === 'maslenitsa'),
       breakfast: menuItems.filter(item => item.category === 'breakfast'),
       soup: menuItems.filter(item => item.category === 'soup'),
       salad: menuItems.filter(item => item.category === 'salad'),
@@ -584,6 +649,7 @@ export const getRestaurantData = (t) => {
 
   // Категории меню в порядке отображения
   const menuCategories = [
+    { key: 'maslenitsa', name: safeT('restaurant.categories.maslenitsa', 'Масленица · Maslenitsa'), nameEn: 'Maslenitsa' },
     { key: 'breakfast', name: safeT('restaurant.categories.breakfast', 'Завтраки'), nameEn: 'Breakfast' },
     { key: 'soup', name: safeT('restaurant.categories.soup', 'Супы'), nameEn: 'Soups' },
     { key: 'salad', name: safeT('restaurant.categories.salad', 'Салаты и закуски'), nameEn: 'Salads and Appetizers' },
@@ -617,6 +683,7 @@ export const getRestaurantData = (t) => {
 
   // Стили для тегов
   const tagStyles = {
+    maslenitsa: 'bg-amber-50 text-amber-700',
     breakfast: 'bg-orange-50 text-orange-600',
     soup: 'bg-blue-50 text-blue-600',
     salad: 'bg-green-50 text-green-600',
@@ -641,6 +708,13 @@ export const getRestaurantData = (t) => {
 
   // Category card data for Pasture-style grid
   const categoryCards = [
+    {
+      key: 'maslenitsa',
+      number: '🥞',
+      name: safeT('restaurant.categories.maslenitsa', 'Масленица · Maslenitsa'),
+      description: safeT('restaurant.categories.maslenitsa_desc', '24 Feb – 2 Mar'),
+      image: null
+    },
     {
       key: 'breakfast',
       number: '01',
