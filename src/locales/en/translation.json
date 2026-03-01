@@ -2115,7 +2115,10 @@
         "muay_thai_kids": "Muay Thai (Kids)",
         "muay_thai_family": "Muay Thai (Family)",
         "boxing": "Boxing",
-        "boxing_women": "Boxing (Women)"
+        "boxing_women": "Boxing (Women)",
+        "kids_workout": "Kids Workout",
+        "cardio": "Cardio",
+        "jiujitsu": "Jiu-Jitsu"
       }
     },
     "facilities": {

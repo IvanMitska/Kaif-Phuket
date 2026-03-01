@@ -2028,7 +2028,10 @@
         "muay_thai_kids": "Муай Тай (дети)",
         "muay_thai_family": "Муай Тай (семейный)",
         "boxing": "Бокс",
-        "boxing_women": "Бокс (женский)"
+        "boxing_women": "Бокс (женский)",
+        "kids_workout": "Детская тренировка",
+        "cardio": "Кардио",
+        "jiujitsu": "Джиу-джитсу"
       }
     },
     "facilities": {

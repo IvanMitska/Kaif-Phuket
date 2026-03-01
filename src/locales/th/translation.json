@@ -1964,7 +1964,10 @@
         "muay_thai_kids": "มวยไทย (เด็ก)",
         "muay_thai_family": "มวยไทย (ครอบครัว)",
         "boxing": "มวยสากล",
-        "boxing_women": "มวยสากล (ผู้หญิง)"
+        "boxing_women": "มวยสากล (ผู้หญิง)",
+        "kids_workout": "การออกกำลังกายสำหรับเด็ก",
+        "cardio": "คาร์ดิโอ",
+        "jiujitsu": "จิวจิตสู"
       }
     },
     "facilities": {
