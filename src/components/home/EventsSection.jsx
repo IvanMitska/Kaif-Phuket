@@ -375,21 +375,7 @@ const LocationIcon = () => (
 const EventsSection = () => {
   const { t } = useTranslation();
 
-  const events = useMemo(() => [
-    {
-      id: 1,
-      title: 'Pool Party',
-      date: { day: '21', month: 'FEB' },
-      time: '16:00 – 20:00',
-      location: 'Pool',
-      image: '/images/events/pool-party.jpeg',
-      features: ['DJ Show', 'Welcome Drink', 'Group Steaming'],
-      promo: '1+1 for Special Mocktails',
-      promoLink: 'https://wa.me/66624805877?text=Hello!%20I%20want%20to%20register%20for%20Pool%20Party%20on%20February%2021',
-      description: 'Music, water, sunset, and mocktails — the perfect vibe to relax and move',
-      bookingLink: 'https://wa.me/66624805877?text=Hello!%20I%20want%20to%20book%20Pool%20Party%20on%20February%2021'
-    }
-  ], []);
+  const events = useMemo(() => [], []);
 
   const renderEventCard = (event) => (
     <EventCard key={event.id}>
