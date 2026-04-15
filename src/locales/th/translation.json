@@ -105,7 +105,7 @@
         },
         "martialArts": {
           "title": "ศิลปะการต่อสู้",
-          "description": "MMA มวย มวยไทย กับครูฝึกมืออาชีพ"
+          "description": "ยิวยิตสู มวย มวยไทย กับครูฝึกมืออาชีพ"
         },
         "pool": {
           "title": "สระ 25 เมตร",
@@ -164,9 +164,9 @@
       },
       "combat": {
         "title": "ศิลปะการต่อสู้",
-        "description": "การฝึก MMA มวย และมวยไทยแบบมืออาชีพภายใต้การดูแลของครูฝึกที่มีประสบการณ์",
+        "description": "การฝึกยิวยิตสู มวย และมวยไทยแบบมืออาชีพภายใต้การดูแลของครูฝึกที่มีประสบการณ์",
         "features": [
-          "MMA และมวย",
+          "ยิวยิตสูและมวย",
           "มวยไทย",
           "สังเวียนมืออาชีพ",
           "คลาสกลุ่มและส่วนบุคคล"
@@ -250,7 +250,7 @@
         },
         "martial": {
           "title": "ศิลปะการต่อสู้",
-          "description": "MMA มวย มวยไทย กับครูฝึกมืออาชีพ"
+          "description": "ยิวยิตสู มวย มวยไทย กับครูฝึกมืออาชีพ"
         },
         "pool": {
           "title": "สระโอลิมปิก",
@@ -326,7 +326,7 @@
       },
       "combat": {
         "name": "ศิลปะการต่อสู้",
-        "description": "MMA มวย และมวยไทยกับครูฝึกมืออาชีพ"
+        "description": "ยิวยิตสู มวย และมวยไทยกับครูฝึกมืออาชีพ"
       },
       "pool": {
         "name": "สระว่ายน้ำ",
@@ -1116,6 +1116,182 @@
         "endosphere_subscription_12": {
           "name": "แพ็กเกจเอนโดสเฟียร์ (12 ครั้ง)",
           "description": "แพ็กเกจสูงสุด 12 ทรีทเมนต์"
+        },
+        "homemade_granola": {
+          "name": "Homemade Granola",
+          "description": "Granola / labneh / berries"
+        },
+        "potato_pancakes": {
+          "name": "Potato Pancakes",
+          "description": "Potato pancakes / mushroom sauce"
+        },
+        "eggs_benedict": {
+          "name": "Eggs Benedict",
+          "description": "Classic Eggs Benedict"
+        },
+        "waffles": {
+          "name": "Waffles",
+          "description": "Waffles / salted caramel / ice cream"
+        },
+        "pumpkin_soup": {
+          "name": "Pumpkin Cream Soup",
+          "description": "Pumpkin / feta / seeds"
+        },
+        "minestrone": {
+          "name": "Minestrone",
+          "description": "Italian vegetable soup"
+        },
+        "creamy_salmon": {
+          "name": "Creamy Salmon Soup",
+          "description": "Salmon / cream"
+        },
+        "gazpacho_shrimp": {
+          "name": "Gazpacho with Shrimp",
+          "description": "Gazpacho / shrimp tartare"
+        },
+        "green_salad": {
+          "name": "Green Salad",
+          "description": "Broccoli / cucumber / spinach / edamame"
+        },
+        "crispy_eggplant": {
+          "name": "Crispy Eggplant",
+          "description": "Eggplant / yogurt / nuts / chili"
+        },
+        "caesar_chicken": {
+          "name": "Caesar with Chicken",
+          "description": "Chicken / quail eggs"
+        },
+        "vegetable_salad": {
+          "name": "Vegetable Salad",
+          "description": "Cucumber / tomato / radish / olive oil"
+        },
+        "roast_beef_salad": {
+          "name": "Roast Beef Salad",
+          "description": "Roast beef / pepper / cucumber / Asian dressing"
+        },
+        "crispy_shrimp": {
+          "name": "Crispy Shrimp",
+          "description": "Shrimp / vegetable mousse"
+        },
+        "chili_con_carne": {
+          "name": "Chili con Carne",
+          "description": "Chili / smoked sour cream"
+        },
+        "big_snack_set": {
+          "name": "Large Snack Set",
+          "description": "Smoked fish mix"
+        },
+        "small_snack_set": {
+          "name": "Small Snack Set",
+          "description": "Smoked fish mix"
+        },
+        "chicken_kebab": {
+          "name": "Chicken Kebab",
+          "description": "Grilled chicken fillet"
+        },
+        "pork_kebab": {
+          "name": "Pork Kebab",
+          "description": "Grilled pork"
+        },
+        "lyulya_chicken": {
+          "name": "Chicken Lula Kebab",
+          "description": "Minced chicken kebab"
+        },
+        "lyulya_lamb": {
+          "name": "Lamb Lula Kebab",
+          "description": "Minced lamb kebab"
+        },
+        "lyulya_beef_pork": {
+          "name": "Beef & Pork Lula",
+          "description": "Beef and pork"
+        },
+        "assorted_kebabs": {
+          "name": "Kebab Platter",
+          "description": "Mixed kebabs"
+        },
+        "vegetables_kebab": {
+          "name": "Vegetable Kebab",
+          "description": "Grilled vegetables"
+        },
+        "chicken_thigh_grill": {
+          "name": "Grilled Chicken Thigh",
+          "description": "Chicken / baby potatoes"
+        },
+        "pork_ribs_bbq": {
+          "name": "BBQ Pork Ribs",
+          "description": "Ribs / grilled corn"
+        },
+        "salmon_steak": {
+          "name": "Salmon Steak",
+          "description": "Salmon / asparagus / spinach"
+        },
+        "sea_bass_zucchini": {
+          "name": "Sea Bass with Zucchini",
+          "description": "Sea bass / zucchini / white wine"
+        },
+        "grilled_lobster": {
+          "name": "Grilled Lobster",
+          "description": "Whole grilled lobster"
+        },
+        "wagyu_ribeye": {
+          "name": "Wagyu Ribeye",
+          "description": "Wagyu ribeye steak"
+        },
+        "mignon_steak": {
+          "name": "Filet Mignon",
+          "description": "Mignon / mash / demi-glace"
+        },
+        "fried_rice_shrimp": {
+          "name": "Fried Rice with Shrimp",
+          "description": "Fried rice / vegetables / shrimp"
+        },
+        "chicken_schnitzel": {
+          "name": "Chicken Schnitzel",
+          "description": "Schnitzel / potato / salsa"
+        },
+        "duck_breast": {
+          "name": "Duck Breast",
+          "description": "Duck / lingonberry / sweet potato"
+        },
+        "mashed_potatoes_truffle": {
+          "name": "Truffle Mashed Potatoes",
+          "description": "Potato / truffle oil"
+        },
+        "broccoli_grill": {
+          "name": "Grilled Broccoli",
+          "description": "Broccoli / yogurt / avocado"
+        },
+        "steamed_rice": {
+          "name": "Steamed Rice",
+          "description": "White rice"
+        },
+        "baked_potatoes_herbs": {
+          "name": "Baked Potatoes",
+          "description": "Potato / herbs"
+        },
+        "cheesecake_pistachio": {
+          "name": "Cheesecake",
+          "description": "Cheesecake / pistachio sauce"
+        },
+        "chocolate_fondant": {
+          "name": "Chocolate Fondant",
+          "description": "Fondant / ice cream / cherry"
+        },
+        "tiramisu": {
+          "name": "Tiramisu",
+          "description": "Classic tiramisu"
+        },
+        "coconut_pudding_chia": {
+          "name": "Coconut Chia Pudding",
+          "description": "Coconut / chia / mango"
+        },
+        "italian_gelato": {
+          "name": "Italian Gelato",
+          "description": "Vanilla / chocolate / caramel"
+        },
+        "bonafi_pie": {
+          "name": "Banoffee Pie",
+          "description": "Banana / caramel / cream"
         }
       }
     },
@@ -1992,8 +2168,8 @@
       "fight": {
         "tag": "ศิลปะการต่อสู้",
         "title": "คลับมวย",
-        "short_description": "เวทีมืออาชีพและอุปกรณ์สำหรับมวย มวยไทย และ MMA",
-        "description": "สิ่งอำนวยความสะดวกมวยและ MMA มืออาชีพ",
+        "short_description": "เวทีมืออาชีพและอุปกรณ์สำหรับมวย มวยไทย และยิวยิตสู",
+        "description": "สิ่งอำนวยความสะดวกมวยและยิวยิตสูมืออาชีพ",
         "hours": "07:00 - 22:00",
         "capacity": "รองรับได้สูงสุด 25 คน",
         "description1": "คลับมวย KAIF เป็นพื้นที่ที่ทันสมัยสำหรับการฝึกซ้อมศิลปะการต่อสู้ต่างๆ เวทีมืออาชีพ กระสอบทราย กระสอบใหญ่ และพื้นผิวพิเศษสร้างสภาพที่เหมาะสำหรับทั้งผู้เริ่มต้นและนักสู้ที่มีประสบการณ์",
@@ -2005,8 +2181,8 @@
       "fight_club": {
         "tag": "ศิลปะการต่อสู้",
         "title": "คลับมวย",
-        "short_description": "เวทีมืออาชีพและอุปกรณ์สำหรับมวย มวยไทย และ MMA",
-        "description": "สิ่งอำนวยความสะดวกมวยและ MMA มืออาชีพ",
+        "short_description": "เวทีมืออาชีพและอุปกรณ์สำหรับมวย มวยไทย และยิวยิตสู",
+        "description": "สิ่งอำนวยความสะดวกมวยและยิวยิตสูมืออาชีพ",
         "hours": "07:00 - 22:00",
         "capacity": "รองรับได้สูงสุด 25 คน",
         "description1": "คลับมวย KAIF เป็นพื้นที่ที่ทันสมัยสำหรับการฝึกซ้อมศิลปะการต่อสู้ต่างๆ เวทีมืออาชีพ กระสอบทราย กระสอบใหญ่ และพื้นผิวพิเศษสร้างสภาพที่เหมาะสำหรับทั้งผู้เริ่มต้นและนักสู้ที่มีประสบการณ์",
@@ -2086,18 +2262,46 @@
       "overline": "ตารางประจำวัน",
       "title": "เซสชันอบไอน้ำ",
       "sessions": [
-        { "time": "10:00", "name": "ไอน้ำเบาแรก" },
-        { "time": "11:00", "name": "เซสชันอโรมาสมุนไพร" },
-        { "time": "12:00", "name": "คลื่นยูคาลิปตัส" },
-        { "time": "13:00", "name": "พลังกระเทียม" },
-        { "time": "14:00", "name": "ไอน้ำแรง" },
-        { "time": "15:00", "name": "เวลาพักผ่อน" },
-        { "time": "16:00", "name": "ไอน้ำเบาแรก" },
-        { "time": "17:00", "name": "เซสชันอโรมาสมุนไพร" },
-        { "time": "18:00", "name": "คลื่นยูคาลิปตัส" },
-        { "time": "19:00", "name": "พลังกระเทียม" },
-        { "time": "20:00", "name": "ไอน้ำแรง" },
-        { "time": "21:00", "name": "เวลาพักผ่อน" }
+        {
+          "time": "12:00",
+          "name": "คลื่นยูคาลิปตัส"
+        },
+        {
+          "time": "13:00",
+          "name": "พลังกระเทียม"
+        },
+        {
+          "time": "14:00",
+          "name": "ไอน้ำแรง"
+        },
+        {
+          "time": "15:00",
+          "name": "เวลาพักผ่อน"
+        },
+        {
+          "time": "16:00",
+          "name": "ไอน้ำเบาแรก"
+        },
+        {
+          "time": "17:00",
+          "name": "เซสชันอโรมาสมุนไพร"
+        },
+        {
+          "time": "18:00",
+          "name": "คลื่นยูคาลิปตัส"
+        },
+        {
+          "time": "19:00",
+          "name": "พลังกระเทียม"
+        },
+        {
+          "time": "20:00",
+          "name": "ไอน้ำแรง"
+        },
+        {
+          "time": "21:00",
+          "name": "เวลาพักผ่อน"
+        }
       ]
     },
     "hero": {
@@ -2643,6 +2847,7 @@
     "title": "สมาชิกและราคา",
     "subtitle": "เลือกแพ็คเกจที่เหมาะกับเป้าหมายของคุณ",
     "select_plan": "เลือกแพ็คเกจ",
+    "mostPopular": "ยอดนิยม",
     "categories": {
       "clubAccess": "Club Access",
       "clubAccessPlus": "Club Access+",
@@ -2699,15 +2904,19 @@
       "iceBarrel": "อ่างน้ำแข็ง",
       "russianSauna": "ซาวน่ารัสเซีย",
       "collectiveSteaming": "การอบไอน้ำแบบกลุ่ม",
+      "groupSteamIncluded": "เซสชันอบไอน้ำแบบกลุ่มตามตาราง — รวมอยู่ในราคา",
       "japanesePool": "สระน้ำ",
-      "aromaIceBarrel": "อ่างน้ำแข็งอโรมา"
+      "aromaIceBarrel": "อ่างน้ำแข็งอโรมา",
+      "unlimitedGroupTraining": "คลาสกลุ่มไม่จำกัด",
+      "unlimitedDanceAndFight": "คลาสในแดนซ์สตูดิโอและไฟต์คลับแบบไม่จำกัด"
     },
     "subtitles": {
       "withoutBanya": "(ไม่รวมซาวน่า)",
       "allPlusBanya": "(ทั้งหมด + ซาวน่า)",
       "groupClasses": "(คลาสกลุ่ม)",
       "swimmingSchool": "(โรงเรียนว่ายน้ำ)",
-      "dayPass": "(บัตรเข้าชมรายวัน)"
+      "dayPass": "(บัตรเข้าชมรายวัน)",
+      "clubAccessSport": "Club Access+ + คลาสกลุ่ม"
     }
   },
   "bar": {

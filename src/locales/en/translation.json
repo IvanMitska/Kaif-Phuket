@@ -101,7 +101,7 @@
         },
         "martialArts": {
           "title": "Martial Arts",
-          "description": "MMA, boxing, muay thai with professional trainers"
+          "description": "Jiu-Jitsu, boxing, muay thai with professional trainers"
         },
         "pool": {
           "title": "25m Pool",
@@ -160,9 +160,9 @@
       },
       "combat": {
         "title": "Martial Arts",
-        "description": "Professional MMA, boxing and muay thai training under experienced trainers.",
+        "description": "Professional Jiu-Jitsu, boxing and muay thai training under experienced trainers.",
         "features": [
-          "MMA and boxing",
+          "Jiu-Jitsu and boxing",
           "Muay Thai",
           "Professional ring",
           "Group and individual classes"
@@ -245,7 +245,7 @@
         },
         "martial": {
           "title": "Martial Arts",
-          "description": "MMA, boxing, muay thai with professional trainers"
+          "description": "Jiu-Jitsu, boxing, muay thai with professional trainers"
         },
         "pool": {
           "title": "Olympic Pool",
@@ -321,7 +321,7 @@
       },
       "combat": {
         "name": "Martial Arts",
-        "description": "MMA, boxing and muay thai with professional trainers"
+        "description": "Jiu-Jitsu, boxing and muay thai with professional trainers"
       },
       "pool": {
         "name": "Swimming Pool",
@@ -1263,6 +1263,182 @@
         "hair_express_care": {
           "name": "Express care",
           "description": "Quick restorative procedure"
+        },
+        "homemade_granola": {
+          "name": "Homemade Granola",
+          "description": "Granola / labneh / berries"
+        },
+        "potato_pancakes": {
+          "name": "Potato Pancakes",
+          "description": "Potato pancakes / mushroom sauce"
+        },
+        "eggs_benedict": {
+          "name": "Eggs Benedict",
+          "description": "Classic Eggs Benedict"
+        },
+        "waffles": {
+          "name": "Waffles",
+          "description": "Waffles / salted caramel / ice cream"
+        },
+        "pumpkin_soup": {
+          "name": "Pumpkin Cream Soup",
+          "description": "Pumpkin / feta / seeds"
+        },
+        "minestrone": {
+          "name": "Minestrone",
+          "description": "Italian vegetable soup"
+        },
+        "creamy_salmon": {
+          "name": "Creamy Salmon Soup",
+          "description": "Salmon / cream"
+        },
+        "gazpacho_shrimp": {
+          "name": "Gazpacho with Shrimp",
+          "description": "Gazpacho / shrimp tartare"
+        },
+        "green_salad": {
+          "name": "Green Salad",
+          "description": "Broccoli / cucumber / spinach / edamame"
+        },
+        "crispy_eggplant": {
+          "name": "Crispy Eggplant",
+          "description": "Eggplant / yogurt / nuts / chili"
+        },
+        "caesar_chicken": {
+          "name": "Caesar with Chicken",
+          "description": "Chicken / quail eggs"
+        },
+        "vegetable_salad": {
+          "name": "Vegetable Salad",
+          "description": "Cucumber / tomato / radish / olive oil"
+        },
+        "roast_beef_salad": {
+          "name": "Roast Beef Salad",
+          "description": "Roast beef / pepper / cucumber / Asian dressing"
+        },
+        "crispy_shrimp": {
+          "name": "Crispy Shrimp",
+          "description": "Shrimp / vegetable mousse"
+        },
+        "chili_con_carne": {
+          "name": "Chili con Carne",
+          "description": "Chili / smoked sour cream"
+        },
+        "big_snack_set": {
+          "name": "Large Snack Set",
+          "description": "Smoked fish mix"
+        },
+        "small_snack_set": {
+          "name": "Small Snack Set",
+          "description": "Smoked fish mix"
+        },
+        "chicken_kebab": {
+          "name": "Chicken Kebab",
+          "description": "Grilled chicken fillet"
+        },
+        "pork_kebab": {
+          "name": "Pork Kebab",
+          "description": "Grilled pork"
+        },
+        "lyulya_chicken": {
+          "name": "Chicken Lula Kebab",
+          "description": "Minced chicken kebab"
+        },
+        "lyulya_lamb": {
+          "name": "Lamb Lula Kebab",
+          "description": "Minced lamb kebab"
+        },
+        "lyulya_beef_pork": {
+          "name": "Beef & Pork Lula",
+          "description": "Beef and pork"
+        },
+        "assorted_kebabs": {
+          "name": "Kebab Platter",
+          "description": "Mixed kebabs"
+        },
+        "vegetables_kebab": {
+          "name": "Vegetable Kebab",
+          "description": "Grilled vegetables"
+        },
+        "chicken_thigh_grill": {
+          "name": "Grilled Chicken Thigh",
+          "description": "Chicken / baby potatoes"
+        },
+        "pork_ribs_bbq": {
+          "name": "BBQ Pork Ribs",
+          "description": "Ribs / grilled corn"
+        },
+        "salmon_steak": {
+          "name": "Salmon Steak",
+          "description": "Salmon / asparagus / spinach"
+        },
+        "sea_bass_zucchini": {
+          "name": "Sea Bass with Zucchini",
+          "description": "Sea bass / zucchini / white wine"
+        },
+        "grilled_lobster": {
+          "name": "Grilled Lobster",
+          "description": "Whole grilled lobster"
+        },
+        "wagyu_ribeye": {
+          "name": "Wagyu Ribeye",
+          "description": "Wagyu ribeye steak"
+        },
+        "mignon_steak": {
+          "name": "Filet Mignon",
+          "description": "Mignon / mash / demi-glace"
+        },
+        "fried_rice_shrimp": {
+          "name": "Fried Rice with Shrimp",
+          "description": "Fried rice / vegetables / shrimp"
+        },
+        "chicken_schnitzel": {
+          "name": "Chicken Schnitzel",
+          "description": "Schnitzel / potato / salsa"
+        },
+        "duck_breast": {
+          "name": "Duck Breast",
+          "description": "Duck / lingonberry / sweet potato"
+        },
+        "mashed_potatoes_truffle": {
+          "name": "Truffle Mashed Potatoes",
+          "description": "Potato / truffle oil"
+        },
+        "broccoli_grill": {
+          "name": "Grilled Broccoli",
+          "description": "Broccoli / yogurt / avocado"
+        },
+        "steamed_rice": {
+          "name": "Steamed Rice",
+          "description": "White rice"
+        },
+        "baked_potatoes_herbs": {
+          "name": "Baked Potatoes",
+          "description": "Potato / herbs"
+        },
+        "cheesecake_pistachio": {
+          "name": "Cheesecake",
+          "description": "Cheesecake / pistachio sauce"
+        },
+        "chocolate_fondant": {
+          "name": "Chocolate Fondant",
+          "description": "Fondant / ice cream / cherry"
+        },
+        "tiramisu": {
+          "name": "Tiramisu",
+          "description": "Classic tiramisu"
+        },
+        "coconut_pudding_chia": {
+          "name": "Coconut Chia Pudding",
+          "description": "Coconut / chia / mango"
+        },
+        "italian_gelato": {
+          "name": "Italian Gelato",
+          "description": "Vanilla / chocolate / caramel"
+        },
+        "bonafi_pie": {
+          "name": "Banoffee Pie",
+          "description": "Banana / caramel / cream"
         }
       }
     },
@@ -2143,8 +2319,8 @@
       "fight": {
         "tag": "MARTIAL ARTS",
         "title": "Fight Club",
-        "short_description": "Professional ring and equipment for boxing, Muay Thai and MMA",
-        "description": "Professional boxing and MMA facility",
+        "short_description": "Professional ring and equipment for boxing, Muay Thai and Jiu-Jitsu",
+        "description": "Professional boxing and Jiu-Jitsu facility",
         "hours": "07:00 - 22:00",
         "capacity": "Up to 25 people",
         "description1": "KAIF Fighting Club is a modern space for training in various martial arts. Professional ring, punching bags, heavy bags, and special flooring create ideal conditions for both beginners and experienced fighters.",
@@ -2156,8 +2332,8 @@
       "fight_club": {
         "tag": "MARTIAL ARTS",
         "title": "Fight Club",
-        "short_description": "Professional ring and equipment for boxing, Muay Thai and MMA",
-        "description": "Professional boxing and MMA facility",
+        "short_description": "Professional ring and equipment for boxing, Muay Thai and Jiu-Jitsu",
+        "description": "Professional boxing and Jiu-Jitsu facility",
         "hours": "07:00 - 22:00",
         "capacity": "Up to 25 people",
         "description1": "KAIF Fighting Club is a modern space for training in various martial arts. Professional ring, punching bags, heavy bags, and special flooring create ideal conditions for both beginners and experienced fighters.",
@@ -2237,18 +2413,46 @@
       "overline": "Daily Schedule",
       "title": "Steam Sessions",
       "sessions": [
-        { "time": "10:00", "name": "First light steam" },
-        { "time": "11:00", "name": "Herbs aroma session" },
-        { "time": "12:00", "name": "Eucalyptus waves" },
-        { "time": "13:00", "name": "Garlic power" },
-        { "time": "14:00", "name": "Hard steam" },
-        { "time": "15:00", "name": "Relax time" },
-        { "time": "16:00", "name": "First light steam" },
-        { "time": "17:00", "name": "Herbs aroma session" },
-        { "time": "18:00", "name": "Eucalyptus waves" },
-        { "time": "19:00", "name": "Garlic power" },
-        { "time": "20:00", "name": "Hard steam" },
-        { "time": "21:00", "name": "Relax time" }
+        {
+          "time": "12:00",
+          "name": "Eucalyptus waves"
+        },
+        {
+          "time": "13:00",
+          "name": "Garlic power"
+        },
+        {
+          "time": "14:00",
+          "name": "Hard steam"
+        },
+        {
+          "time": "15:00",
+          "name": "Relax time"
+        },
+        {
+          "time": "16:00",
+          "name": "First light steam"
+        },
+        {
+          "time": "17:00",
+          "name": "Herbs aroma session"
+        },
+        {
+          "time": "18:00",
+          "name": "Eucalyptus waves"
+        },
+        {
+          "time": "19:00",
+          "name": "Garlic power"
+        },
+        {
+          "time": "20:00",
+          "name": "Hard steam"
+        },
+        {
+          "time": "21:00",
+          "name": "Relax time"
+        }
       ]
     },
     "hero": {
@@ -2801,6 +3005,7 @@
     "title": "Memberships & Pricing",
     "subtitle": "Choose the perfect plan for your goals",
     "select_plan": "Select Plan",
+    "mostPopular": "Most Popular",
     "categories": {
       "clubAccess": "Club Access",
       "clubAccessPlus": "Club Access+",
@@ -2857,15 +3062,19 @@
       "iceBarrel": "Ice barrel",
       "russianSauna": "Russian sauna",
       "collectiveSteaming": "Collective steaming",
+      "groupSteamIncluded": "Group steam sessions per schedule — included",
       "japanesePool": "Pool",
-      "aromaIceBarrel": "Aroma ice barrel"
+      "aromaIceBarrel": "Aroma ice barrel",
+      "unlimitedGroupTraining": "Unlimited group classes",
+      "unlimitedDanceAndFight": "Unlimited dance studio and fight club classes"
     },
     "subtitles": {
       "withoutBanya": "(without sauna)",
       "allPlusBanya": "(all + sauna)",
       "groupClasses": "(group classes)",
       "swimmingSchool": "(swimming school)",
-      "dayPass": "(single visits)"
+      "dayPass": "(single visits)",
+      "clubAccessSport": "Club Access+ + group classes"
     }
   },
   "bar": {

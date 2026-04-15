@@ -257,29 +257,47 @@ const EmptyMessage = styled.div`
 
 const swimSchedule = {
   monday: [],
-  tuesday: [{ time: '09:00', titleKey: 'adults_group', duration: 60 }],
-  wednesday: [{ time: '17:00', titleKey: 'kids_7_12', duration: 60 }],
+  tuesday: [],
+  wednesday: [],
   thursday: [{ time: '09:00', titleKey: 'adults_group', duration: 60 }],
-  friday: [{ time: '17:00', titleKey: 'kids_7_12', duration: 60 }],
+  friday: [],
   saturday: []
 };
 
 const danceSchedule = {
-  monday: [{ time: '09:00', titleKey: 'yoga', duration: 60 }, { time: '13:10', titleKey: 'yoga_pro', duration: 50 }, { time: '18:00', titleKey: 'zumba', duration: 60 }],
-  tuesday: [{ time: '09:00', titleKey: 'stretching', duration: 60 }],
-  wednesday: [{ time: '09:00', titleKey: 'circl_mobility', duration: 60 }, { time: '10:00', titleKey: 'zumba_toning', duration: 60 }, { time: '13:10', titleKey: 'yoga_pro', duration: 50 }],
-  thursday: [{ time: '09:00', titleKey: 'stretching', duration: 60 }],
-  friday: [{ time: '09:00', titleKey: 'yoga', duration: 60 }, { time: '13:10', titleKey: 'yoga_pro', duration: 50 }],
+  monday: [
+    { time: '09:00', titleKey: 'yoga', duration: 60 },
+    { time: '13:10', titleKey: 'yoga_pro', duration: 50 }
+  ],
+  tuesday: [
+    { time: '09:00', titleKey: 'stretching', duration: 60 },
+    { time: '16:00', titleKey: 'stretching', duration: 60 },
+    { time: '19:00', titleKey: 'high_heels', duration: 60 },
+    { time: '20:00', titleKey: 'girli_hiphop', duration: 60 }
+  ],
+  wednesday: [
+    { time: '13:10', titleKey: 'yoga_pro', duration: 50 }
+  ],
+  thursday: [
+    { time: '09:00', titleKey: 'stretching', duration: 60 },
+    { time: '16:00', titleKey: 'stretching', duration: 60 },
+    { time: '19:00', titleKey: 'high_heels', duration: 60 },
+    { time: '20:00', titleKey: 'girli_hiphop', duration: 60 }
+  ],
+  friday: [
+    { time: '09:00', titleKey: 'yoga', duration: 60 },
+    { time: '13:10', titleKey: 'yoga_pro', duration: 50 }
+  ],
   saturday: []
 };
 
 const fightSchedule = {
   monday: [{ time: '09:30', titleKey: 'muay_thai', duration: 60 }, { time: '11:00', titleKey: 'kickboxing', duration: 60 }, { time: '18:00', titleKey: 'jiujitsu', duration: 90 }],
-  tuesday: [{ time: '09:30', titleKey: 'boxing', duration: 60 }, { time: '16:30', titleKey: 'kids_workout', duration: 60 }, { time: '19:30', titleKey: 'muay_thai', duration: 60 }],
-  wednesday: [{ time: '09:30', titleKey: 'muay_thai', duration: 60 }, { time: '11:00', titleKey: 'kickboxing', duration: 60 }, { time: '13:30', titleKey: 'cardio', duration: 60 }, { time: '18:00', titleKey: 'jiujitsu', duration: 90 }],
+  tuesday: [{ time: '09:30', titleKey: 'boxing', duration: 60 }],
+  wednesday: [{ time: '09:30', titleKey: 'muay_thai', duration: 60 }, { time: '11:00', titleKey: 'kickboxing', duration: 60 }, { time: '18:00', titleKey: 'jiujitsu', duration: 90 }],
   thursday: [{ time: '09:30', titleKey: 'boxing', duration: 60 }],
   friday: [{ time: '09:30', titleKey: 'muay_thai', duration: 60 }, { time: '11:00', titleKey: 'kickboxing', duration: 60 }, { time: '18:00', titleKey: 'jiujitsu', duration: 90 }],
-  saturday: [{ time: '09:30', titleKey: 'boxing', duration: 60 }, { time: '12:00', titleKey: 'cardio', duration: 60 }]
+  saturday: [{ time: '09:30', titleKey: 'boxing', duration: 60 }]
 };
 
 const scheduleData = { swim: swimSchedule, dance: danceSchedule, fight: fightSchedule };

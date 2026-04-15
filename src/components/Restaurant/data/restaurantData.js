@@ -568,75 +568,11 @@ export const getRestaurantData = (t) => {
       category: 'dessert'
     },
 
-    // ===============================
-    // МАСЛЕНИЦА / MASLENITSA (24 Feb – 2 Mar)
-    // ===============================
-    {
-      id: 55,
-      name: safeT('restaurant.menu.items.classic_pancakes.name', 'Блины классические · Classic Pancakes'),
-      description: safeT('restaurant.menu.items.classic_pancakes.description', 'Традиционные русские блины · Traditional Russian pancakes'),
-      price: '170 THB',
-      image: null,
-      tags: ['maslenitsa', 'sweet'],
-      popular: true,
-      category: 'maslenitsa'
-    },
-    {
-      id: 56,
-      name: safeT('restaurant.menu.items.pancakes_apple_cinnamon.name', 'Блины с яблоком и корицей · Apple Cinnamon Pancakes'),
-      description: safeT('restaurant.menu.items.pancakes_apple_cinnamon.description', 'Яблоко / корица · Apple / cinnamon'),
-      price: '170 THB',
-      image: null,
-      tags: ['maslenitsa', 'sweet'],
-      popular: false,
-      category: 'maslenitsa'
-    },
-    {
-      id: 57,
-      name: safeT('restaurant.menu.items.pancakes_chicken_mushrooms.name', 'Блины с курицей и грибами · Chicken & Mushroom Pancakes'),
-      description: safeT('restaurant.menu.items.pancakes_chicken_mushrooms.description', 'Курица / грибы · Chicken / mushrooms'),
-      price: '190 THB',
-      image: null,
-      tags: ['maslenitsa', 'meat'],
-      popular: true,
-      category: 'maslenitsa'
-    },
-    {
-      id: 58,
-      name: safeT('restaurant.menu.items.pancake_cake.name', 'Блинный торт · Pancake Cake'),
-      description: safeT('restaurant.menu.items.pancake_cake.description', 'Слоёный блинный торт · Layered pancake cake'),
-      price: '190 THB',
-      image: null,
-      tags: ['maslenitsa', 'sweet'],
-      popular: false,
-      category: 'maslenitsa'
-    },
-    {
-      id: 59,
-      name: safeT('restaurant.menu.items.pancakes_cream_cheese_salmon.name', 'Блины с крем-чизом · Cream Cheese Pancakes'),
-      description: safeT('restaurant.menu.items.pancakes_cream_cheese_salmon.description', 'Слабосоленый лосось / соус Голландез · Salted salmon / Hollandaise sauce'),
-      price: '260 THB',
-      image: null,
-      tags: ['maslenitsa', 'seafood'],
-      popular: true,
-      category: 'maslenitsa'
-    },
-    {
-      id: 60,
-      name: safeT('restaurant.menu.items.pancakes_sour_cream_caviar.name', 'Блины с икрой · Red Caviar Pancakes'),
-      description: safeT('restaurant.menu.items.pancakes_sour_cream_caviar.description', 'Сметана / красная икра · Sour cream / red caviar'),
-      price: '490 THB',
-      image: null,
-      tags: ['maslenitsa', 'seafood', 'popular'],
-      popular: true,
-      category: 'maslenitsa'
-    },
   ];
 
   // Функция для группировки меню по категориям
   const getMenuByCategory = () => {
     return {
-      maslenitsa: menuItems.filter(item => item.category === 'maslenitsa'),
       breakfast: menuItems.filter(item => item.category === 'breakfast'),
       soup: menuItems.filter(item => item.category === 'soup'),
       salad: menuItems.filter(item => item.category === 'salad'),
@@ -649,7 +585,6 @@ export const getRestaurantData = (t) => {
 
   // Категории меню в порядке отображения
   const menuCategories = [
-    { key: 'maslenitsa', name: safeT('restaurant.categories.maslenitsa', 'Масленица · Maslenitsa'), nameEn: 'Maslenitsa' },
     { key: 'breakfast', name: safeT('restaurant.categories.breakfast', 'Завтраки'), nameEn: 'Breakfast' },
     { key: 'soup', name: safeT('restaurant.categories.soup', 'Супы'), nameEn: 'Soups' },
     { key: 'salad', name: safeT('restaurant.categories.salad', 'Салаты и закуски'), nameEn: 'Salads and Appetizers' },
@@ -683,7 +618,6 @@ export const getRestaurantData = (t) => {
 
   // Стили для тегов
   const tagStyles = {
-    maslenitsa: 'bg-amber-50 text-amber-700',
     breakfast: 'bg-orange-50 text-orange-600',
     soup: 'bg-blue-50 text-blue-600',
     salad: 'bg-green-50 text-green-600',
@@ -708,13 +642,6 @@ export const getRestaurantData = (t) => {
 
   // Category card data for Pasture-style grid
   const categoryCards = [
-    {
-      key: 'maslenitsa',
-      number: '🥞',
-      name: safeT('restaurant.categories.maslenitsa', 'Масленица · Maslenitsa'),
-      description: safeT('restaurant.categories.maslenitsa_desc', '24 Feb – 2 Mar'),
-      image: null
-    },
     {
       key: 'breakfast',
       number: '01',

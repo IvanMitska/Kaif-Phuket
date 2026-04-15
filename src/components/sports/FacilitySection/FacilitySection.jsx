@@ -286,7 +286,7 @@ const FacilitySection = () => {
               
               <FacilityFeature variants={itemVariants}>
                 <SparklesIcon />
-                <span>{t('sports.facilities.fight.feature2', 'Тренировки по боксу, тайскому боксу, ММА')}</span>
+                <span>{t('sports.facilities.fight.feature2', 'Тренировки по боксу, тайскому боксу, джиу-джитсу')}</span>
               </FacilityFeature>
               
               <FacilityFeature variants={itemVariants}>

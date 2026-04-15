@@ -165,6 +165,11 @@ const PricingCard = styled.div`
     border-color: #133238;
   `}
 
+  ${props => props.$popular && `
+    border-color: #133238;
+    box-shadow: 0 10px 40px rgba(19, 50, 56, 0.08);
+  `}
+
   &:hover {
     border-color: rgba(19, 50, 56, 0.2);
     box-shadow: 0 8px 30px rgba(19, 50, 56, 0.06);
@@ -172,6 +177,43 @@ const PricingCard = styled.div`
 
   @media (max-width: 768px) {
     padding: 1.75rem 1.5rem;
+  }
+`;
+
+const PopularBadge = styled.div`
+  position: absolute;
+  top: 0;
+  right: 1.75rem;
+  transform: translateY(-50%);
+  background: #133238;
+  color: #fffef6;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.9rem;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  z-index: 2;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #fffef6;
+    opacity: 0.8;
+  }
+
+  @media (max-width: 768px) {
+    right: 1.25rem;
+    font-size: 0.6rem;
+    padding: 0.4rem 0.8rem;
   }
 `;
 
@@ -306,7 +348,7 @@ const BookButton = styled.button`
 
 const PricingSection = () => {
   const { t } = useTranslation();
-  const [activeCategory, setActiveCategory] = useState('premium');
+  const [activeCategory, setActiveCategory] = useState('dayPass');
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
 
@@ -340,9 +382,11 @@ const PricingSection = () => {
             t('pricing.features.steamRoom'),
             t('pricing.features.iceBarrel'),
             t('pricing.features.russianSauna') + ' & ' + t('pricing.features.japanesePool'),
+            t('pricing.features.groupSteamIncluded'),
             t('pricing.features.towelsIncluded')
           ],
-          perMonth: null
+          perMonth: null,
+          popular: true
         },
         {
           name: '1 Week Pass',
@@ -354,6 +398,7 @@ const PricingSection = () => {
             t('pricing.features.steamRoom'),
             t('pricing.features.iceBarrel'),
             t('pricing.features.russianSauna') + ' & ' + t('pricing.features.japanesePool'),
+            t('pricing.features.groupSteamIncluded'),
             t('pricing.features.towelsIncluded')
           ],
           perMonth: null
@@ -433,6 +478,7 @@ const PricingSection = () => {
             t('pricing.features.unlimitedAccess'),
             t('pricing.features.gymAndBanya'),
             t('pricing.features.swimmingPool'),
+            t('pricing.features.groupSteamIncluded'),
             t('pricing.features.towelsIncluded')
           ],
           perMonth: null
@@ -444,6 +490,7 @@ const PricingSection = () => {
           features: [
             t('pricing.features.unlimitedAccess'),
             t('pricing.features.gymAndBanya'),
+            t('pricing.features.groupSteamIncluded'),
             t('pricing.features.towelsIncluded'),
             `${t('pricing.features.savings')} 18%`
           ],
@@ -458,6 +505,7 @@ const PricingSection = () => {
           features: [
             t('pricing.features.unlimitedAccess'),
             t('pricing.features.gymAndBanya'),
+            t('pricing.features.groupSteamIncluded'),
             t('pricing.features.towelsIncluded'),
             `${t('pricing.features.savings')} 22%`
           ],
@@ -470,6 +518,7 @@ const PricingSection = () => {
           features: [
             t('pricing.features.unlimitedAccess'),
             t('pricing.features.gymAndBanya'),
+            t('pricing.features.groupSteamIncluded'),
             t('pricing.features.towelsIncluded'),
             `${t('pricing.features.maxSavings')} 36%`
           ],
@@ -480,7 +529,7 @@ const PricingSection = () => {
     clubAccessSport: {
       icon: <FaDumbbell />,
       title: 'Club Access Sport',
-      subtitle: t('pricing.subtitles.clubAccessSport', 'Club Access + групповые тренировки'),
+      subtitle: t('pricing.subtitles.clubAccessSport', 'Club Access+ + групповые тренировки'),
       plans: [
         {
           name: 'Club Access Sport',
@@ -491,11 +540,9 @@ const PricingSection = () => {
             t('pricing.features.swimmingPool'),
             t('pricing.features.steamRoom'),
             t('pricing.features.iceBarrel'),
-            t('pricing.features.unlimitedGroupTraining', 'Безлимитные групповые тренировки'),
-            'Fight Club & Motion'
+            t('pricing.features.unlimitedDanceAndFight', 'Неограниченные тренировки в танцевальной студии и файт-клабе')
           ],
-          perMonth: null,
-          featured: true
+          perMonth: null
         }
       ]
     },
@@ -570,7 +617,11 @@ const PricingSection = () => {
             <PricingCard
               key={`${activeCategory}-${index}`}
               $featured={plan.featured}
+              $popular={plan.popular}
             >
+              {plan.popular && (
+                <PopularBadge>{t('pricing.mostPopular', 'Most Popular')}</PopularBadge>
+              )}
               <CardHeader>
                 <PlanDuration>{plan.duration}</PlanDuration>
                 <PlanName>{plan.name}</PlanName>

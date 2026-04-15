@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { events } from '../../data/events';
+import PageHead from '../components/layout/PageHead';
+import PageScrollReset from '../components/common/PageScrollReset';
+import { events } from '../data/events';
 
-const SectionContainer = styled.section`
+const Section = styled.section`
   position: relative;
-  padding: 6rem 0;
+  padding: 8rem 0 6rem;
   background-color: #fffef6;
-  touch-action: pan-y;
-  overscroll-behavior: auto;
+  min-height: 80vh;
 
   @media (min-width: 768px) {
-    padding: 8rem 0;
+    padding: 10rem 0 8rem;
   }
 `;
 
@@ -47,71 +48,37 @@ const Overline = styled.div`
   }
 `;
 
-const HeaderRow = styled.div`
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-bottom: 3rem;
+const Title = styled.h1`
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #133238;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+`;
+
+const Subtitle = styled.p`
+  font-family: 'Jost', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(19, 50, 56, 0.55);
+  margin: 0 0 3rem;
+  max-width: 600px;
 
   @media (min-width: 768px) {
     margin-bottom: 4rem;
   }
 `;
 
-const Title = styled.h2`
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(2rem, 4.5vw, 3.5rem);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: #133238;
-  text-transform: uppercase;
-  margin: 0;
-  max-width: 800px;
-`;
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
 
-const ViewAllLink = styled(Link)`
-  font-family: 'Jost', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(19, 50, 56, 0.6);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(19, 50, 56, 0.2);
-  padding-bottom: 2px;
-  transition: color 0.2s ease, border-color 0.2s ease;
-
-  &:hover {
-    color: #133238;
-    border-color: #133238;
-  }
-`;
-
-const EventsGrid = styled.div`
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  padding: 0 1.25rem 1rem;
-  margin: 0 -1.25rem;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  @media (min-width: 768px) {
-    display: grid;
+  @media (min-width: 640px) {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    overflow-x: visible;
-    padding: 0;
-    margin: 0;
   }
 
   @media (min-width: 1024px) {
@@ -119,7 +86,7 @@ const EventsGrid = styled.div`
   }
 `;
 
-const EventCard = styled(Link)`
+const Card = styled(Link)`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -130,12 +97,6 @@ const EventCard = styled(Link)`
   text-decoration: none;
   color: inherit;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  flex: 0 0 82%;
-  scroll-snap-align: start;
-
-  @media (min-width: 768px) {
-    flex: none;
-  }
 
   &:hover {
     transform: translateY(-4px);
@@ -158,7 +119,7 @@ const PosterImage = styled.img`
   display: block;
   transition: transform 0.5s ease;
 
-  ${EventCard}:hover & {
+  ${Card}:hover & {
     transform: scale(1.03);
   }
 `;
@@ -195,14 +156,14 @@ const DateMonth = styled.div`
   margin-top: 2px;
 `;
 
-const CardBody = styled.div`
+const Body = styled.div`
   padding: 1.25rem 1.5rem 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
 `;
 
-const EventTitle = styled.h3`
+const EventTitle = styled.h2`
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 1.15rem;
   font-weight: 700;
@@ -229,7 +190,7 @@ const DetailsRow = styled.div`
   text-transform: uppercase;
   color: rgba(19, 50, 56, 0.5);
 
-  ${EventCard}:hover & {
+  ${Card}:hover & {
     color: #133238;
   }
 `;
@@ -237,64 +198,70 @@ const DetailsRow = styled.div`
 const Arrow = styled.span`
   transition: transform 0.3s ease;
 
-  ${EventCard}:hover & {
+  ${Card}:hover & {
     transform: translateX(4px);
   }
 `;
 
 const EmptyState = styled.div`
-  grid-column: 1 / -1;
-  padding: 4rem 2rem;
-  text-align: center;
-  color: rgba(19, 50, 56, 0.4);
+  padding: 4rem 0;
+  color: rgba(19, 50, 56, 0.45);
   font-family: 'Jost', sans-serif;
-  font-size: 0.95rem;
+  font-size: 1rem;
 `;
 
-const EventsSection = () => {
+const EventsPage = () => {
   const { t } = useTranslation();
 
   return (
-    <SectionContainer id="events">
-      <ContentWrapper>
-        <Overline>{t('events.overline', "What's On")}</Overline>
-        <HeaderRow>
-          <Title>{t('events.title', 'Upcoming Events')}</Title>
-          {events.length > 0 && (
-            <ViewAllLink to="/events">
-              {t('events.view_all', 'View all')} →
-            </ViewAllLink>
-          )}
-        </HeaderRow>
+    <>
+      <PageHead
+        titleKey="page_titles.events"
+        defaultTitle="KAIF Events | Upcoming Parties, Fights & Festivals"
+        description="Upcoming events at KAIF Sauna & Spa Phuket: festivals, fight nights, pool parties and banya experiences."
+      />
+      <PageScrollReset />
 
-        <EventsGrid>
-          {events.length > 0 ? (
-            events.map((event) => (
-              <EventCard key={event.slug} to={`/events/${event.slug}`} state={{ from: '/' }}>
-                <PosterWrapper>
-                  <PosterImage src={event.image} alt={event.title} loading="lazy" />
-                  <DateBadge>
-                    <DateDay>{event.date.day}</DateDay>
-                    <DateMonth>{event.date.month}</DateMonth>
-                  </DateBadge>
-                </PosterWrapper>
-                <CardBody>
-                  <EventTitle>{event.title}</EventTitle>
-                  <EventHook>{event.hook}</EventHook>
-                  <DetailsRow>
-                    <span>{t('events.details', 'Details')}</span>
-                    <Arrow>→</Arrow>
-                  </DetailsRow>
-                </CardBody>
-              </EventCard>
-            ))
-          ) : (
+      <Section>
+        <ContentWrapper>
+          <Overline>{t('events.overline', "What's On")}</Overline>
+          <Title>{t('events.page_title', 'Events at KAIF')}</Title>
+          <Subtitle>
+            {t(
+              'events.page_subtitle',
+              'Festivals, fight nights and seasonal experiences — all happening at KAIF.'
+            )}
+          </Subtitle>
+
+          {events.length === 0 ? (
             <EmptyState>{t('events.empty.text', 'Check back soon for new events')}</EmptyState>
+          ) : (
+            <Grid>
+              {events.map((event) => (
+                <Card key={event.slug} to={`/events/${event.slug}`} state={{ from: '/events' }}>
+                  <PosterWrapper>
+                    <PosterImage src={event.image} alt={event.title} loading="lazy" />
+                    <DateBadge>
+                      <DateDay>{event.date.day}</DateDay>
+                      <DateMonth>{event.date.month}</DateMonth>
+                    </DateBadge>
+                  </PosterWrapper>
+                  <Body>
+                    <EventTitle>{event.title}</EventTitle>
+                    <EventHook>{event.hook}</EventHook>
+                    <DetailsRow>
+                      <span>{t('events.details', 'Details')}</span>
+                      <Arrow>→</Arrow>
+                    </DetailsRow>
+                  </Body>
+                </Card>
+              ))}
+            </Grid>
           )}
-        </EventsGrid>
-      </ContentWrapper>
-    </SectionContainer>
+        </ContentWrapper>
+      </Section>
+    </>
   );
 };
 
-export default EventsSection;
+export default memo(EventsPage);

@@ -21,7 +21,7 @@ const SportsPage = () => {
       <PageHead
         titleKey="page_titles.sports"
         description={t('sports.hero.subtitle', 'Modern equipment, professional trainers and atmosphere to achieve your sporting goals')}
-        keywords="KAIF sports, gym, fitness, martial arts, MMA, boxing, training, Phuket"
+        keywords="KAIF sports, gym, fitness, martial arts, jiu-jitsu, boxing, training, Phuket"
         ogImage="/images/sports/gym/gym-main.jpg"
       />
       <PageScrollReset />

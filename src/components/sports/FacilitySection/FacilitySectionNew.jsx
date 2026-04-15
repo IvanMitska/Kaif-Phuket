@@ -284,7 +284,7 @@ const facilities = [
     titleKey: 'sports.facilities.fight.title',
     defaultTitle: 'Fight Club',
     descriptionKey: 'sports.facilities.fight.short_description',
-    defaultDescription: 'Professional ring and equipment for boxing, Muay Thai and MMA',
+    defaultDescription: 'Professional ring and equipment for boxing, Muay Thai and Jiu-Jitsu',
     hours: '07:00 – 22:00',
     capacity: '25',
     features: [
