@@ -1,4 +1,4 @@
-import{j as e}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-components-BY9Yozyu.js";import{u as t}from"./i18n-core-DrMVsQFB.js";import{k as r,f as s,h as n,l as o,d as a,m as l}from"./heroicons-lHooInKB.js";import"./vendor-misc-Dpgsgh4W.js";const d=i.section`
+import{j as e}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-components-BY9Yozyu.js";import{u as t}from"./i18n-core-DrMVsQFB.js";import{l as r,a as s,F as n,m as o,g as a,n as l}from"./heroicons-CckZQ0I5.js";import"./vendor-misc-Dpgsgh4W.js";const d=i.section`
   position: relative;
   padding: 6rem 0;
   background-color: #fffef6;
@@ -33,7 +33,7 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-compone
     background: rgba(19, 50, 56, 0.25);
     margin-right: 1rem;
   }
-`,f=i.h2`
+`,c=i.h2`
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: clamp(2rem, 4.5vw, 3.5rem);
   font-weight: 800;
@@ -43,7 +43,7 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-compone
   text-transform: uppercase;
   margin: 0 0 1rem;
   max-width: 800px;
-`,c=i.p`
+`,f=i.p`
   font-family: 'Jost', sans-serif;
   font-size: 1.05rem;
   line-height: 1.6;
@@ -56,7 +56,7 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-compone
     font-size: 0.95rem;
     margin-bottom: 3rem;
   }
-`,h=i.div`
+`,g=i.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.25rem;
@@ -68,7 +68,7 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-compone
   @media (min-width: 1100px) {
     grid-template-columns: repeat(3, 1fr);
   }
-`,g=i.div`
+`,h=i.div`
   background: #ffffff;
   border: 1px solid rgba(19, 50, 56, 0.08);
   border-radius: 12px;
@@ -109,4 +109,4 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as i}from"./styled-compone
   color: rgba(19, 50, 56, 0.55);
   font-weight: 400;
   margin: 0;
-`,y=[{icon:r,titleKey:"sports.benefits.premium.title",descriptionKey:"sports.benefits.premium.description",defaultTitle:"Premium Equipment",defaultDescription:"Machines from world-leading manufacturers Technogym and Life Fitness"},{icon:s,titleKey:"sports.benefits.trainers.title",descriptionKey:"sports.benefits.trainers.description",defaultTitle:"Professional Trainers",defaultDescription:"Certified specialists with international experience"},{icon:n,titleKey:"sports.benefits.schedule.title",descriptionKey:"sports.benefits.schedule.description",defaultTitle:"Flexible Schedule",defaultDescription:"Open from 07:00 to 22:00 every day of the week"},{icon:o,titleKey:"sports.benefits.technology.title",descriptionKey:"sports.benefits.technology.description",defaultTitle:"Modern Technology",defaultDescription:"Progress monitoring and personalized training programs"},{icon:a,titleKey:"sports.benefits.atmosphere.title",descriptionKey:"sports.benefits.atmosphere.description",defaultTitle:"Comfortable Atmosphere",defaultDescription:"Spacious halls with air conditioning and panoramic windows"},{icon:l,titleKey:"sports.benefits.safety.title",descriptionKey:"sports.benefits.safety.description",defaultTitle:"Safety First",defaultDescription:"Insurance, medical oversight and compliance with all standards"}],BenefitsSection=()=>{const{t:i}=t();return e.jsx(d,{children:e.jsxs(p,{children:[e.jsx(m,{children:i("sports.benefits.tag","Why Choose Us")}),e.jsx(f,{children:i("sports.benefits.title_plain","Advantages")}),e.jsx(c,{children:i("sports.benefits.subtitle","Everything you need for effective training")}),e.jsx(h,{children:y.map((t,r)=>{const s=t.icon;return e.jsxs(g,{children:[e.jsx(u,{children:e.jsx(s,{})}),e.jsx(x,{children:i(t.titleKey,t.defaultTitle)}),e.jsx(b,{children:i(t.descriptionKey,t.defaultDescription)})]},r)})})]})})};export{BenefitsSection as default};
+`,y=[{icon:r,titleKey:"sports.benefits.premium.title",descriptionKey:"sports.benefits.premium.description",defaultTitle:"Premium Equipment",defaultDescription:"Machines from world-leading manufacturers Technogym and Life Fitness"},{icon:s,titleKey:"sports.benefits.trainers.title",descriptionKey:"sports.benefits.trainers.description",defaultTitle:"Professional Trainers",defaultDescription:"Certified specialists with international experience"},{icon:n,titleKey:"sports.benefits.schedule.title",descriptionKey:"sports.benefits.schedule.description",defaultTitle:"Flexible Schedule",defaultDescription:"Open from 07:00 to 22:00 every day of the week"},{icon:o,titleKey:"sports.benefits.technology.title",descriptionKey:"sports.benefits.technology.description",defaultTitle:"Modern Technology",defaultDescription:"Progress monitoring and personalized training programs"},{icon:a,titleKey:"sports.benefits.atmosphere.title",descriptionKey:"sports.benefits.atmosphere.description",defaultTitle:"Comfortable Atmosphere",defaultDescription:"Spacious halls with air conditioning and panoramic windows"},{icon:l,titleKey:"sports.benefits.safety.title",descriptionKey:"sports.benefits.safety.description",defaultTitle:"Safety First",defaultDescription:"Insurance, medical oversight and compliance with all standards"}],BenefitsSection=()=>{const{t:i}=t();return e.jsx(d,{children:e.jsxs(p,{children:[e.jsx(m,{children:i("sports.benefits.tag","Why Choose Us")}),e.jsx(c,{children:i("sports.benefits.title_plain","Advantages")}),e.jsx(f,{children:i("sports.benefits.subtitle","Everything you need for effective training")}),e.jsx(g,{children:y.map((t,r)=>{const s=t.icon;return e.jsxs(h,{children:[e.jsx(u,{children:e.jsx(s,{})}),e.jsx(x,{children:i(t.titleKey,t.defaultTitle)}),e.jsx(b,{children:i(t.descriptionKey,t.defaultDescription)})]},r)})})]})})};export{BenefitsSection as default};
