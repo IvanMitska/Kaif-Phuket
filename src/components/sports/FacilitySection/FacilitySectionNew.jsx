@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   ClockIcon,
   UserGroupIcon,
-  CheckCircleIcon
+  CheckCircleIcon,
+  ArrowRightIcon
 } from '@heroicons/react/24/outline';
+import { sportsDirections as directionsData } from '../../../data/sportsDirections';
 
 const WHATSAPP_NUMBER = '66624805877';
 
@@ -95,6 +98,7 @@ const FacilityCard = styled.div`
   border-radius: 12px;
   overflow: hidden;
   transition: all 0.3s ease;
+  cursor: ${props => props.$clickable ? 'pointer' : 'default'};
 
   &:hover {
     border-color: rgba(19, 50, 56, 0.15);
@@ -222,6 +226,12 @@ const FeatureItem = styled.div`
   }
 `;
 
+const ButtonsRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+`;
+
 const BookButton = styled.button`
   display: inline-flex;
   align-items: center;
@@ -244,6 +254,55 @@ const BookButton = styled.button`
   &:hover {
     box-shadow: 0 8px 30px rgba(19, 50, 56, 0.15);
     transform: translateY(-1px);
+  }
+`;
+
+const DetailsLink = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  background: transparent;
+  color: #133238;
+  border: 1px solid rgba(19, 50, 56, 0.2);
+  border-radius: 50px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    background: #133238;
+    color: #fffef6;
+    border-color: #133238;
+
+    svg { transform: translateX(3px); }
+  }
+`;
+
+const ClickableImageLink = styled(Link)`
+  display: block;
+  width: 100%;
+  height: 100%;
+`;
+
+const TitleLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: rgba(19, 50, 56, 0.75);
   }
 `;
 
@@ -340,18 +399,30 @@ const facilities = [
 
 const FacilitySectionNew = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [activeImages, setActiveImages] = useState(
     facilities.reduce((acc, f) => ({ ...acc, [f.id]: 0 }), {})
   );
 
-  const handleBookClick = (facility) => {
+  const handleBookClick = (e, facility) => {
+    e.stopPropagation();
     const message = encodeURIComponent(facility.whatsappMessage);
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
   };
 
-  const handleImageChange = (facilityId, index) => {
+  const handleImageChange = (e, facilityId, index) => {
+    e.stopPropagation();
     setActiveImages(prev => ({ ...prev, [facilityId]: index }));
   };
+
+  const handleCardNav = (detailPath) => {
+    if (detailPath) navigate(detailPath);
+  };
+
+  const slugById = directionsData.reduce((acc, d) => {
+    acc[d.id] = d.slug;
+    return acc;
+  }, {});
 
   return (
     <SectionContainer id="facilities">
@@ -361,12 +432,29 @@ const FacilitySectionNew = () => {
         <Subtitle>{t('sports.facilities.subtitle', 'Choose the zone that suits you')}</Subtitle>
 
         <FacilityGrid>
-          {facilities.map((facility) => (
-            <FacilityCard key={facility.id}>
+          {facilities.map((facility) => {
+            const slug = slugById[facility.id];
+            const detailPath = slug ? `/sports/${slug}` : null;
+            const title = t(facility.titleKey, facility.defaultTitle);
+
+            return (
+            <FacilityCard
+              key={facility.id}
+              $clickable={!!detailPath}
+              onClick={() => handleCardNav(detailPath)}
+              role={detailPath ? 'link' : undefined}
+              tabIndex={detailPath ? 0 : undefined}
+              onKeyDown={(e) => {
+                if (detailPath && (e.key === 'Enter' || e.key === ' ')) {
+                  e.preventDefault();
+                  handleCardNav(detailPath);
+                }
+              }}
+            >
               <FacilityImageWrapper>
                 <FacilityImg
                   src={facility.images[activeImages[facility.id]]}
-                  alt={t(facility.titleKey, facility.defaultTitle)}
+                  alt={title}
                   loading="lazy"
                 />
                 {facility.images.length > 1 && (
@@ -375,7 +463,8 @@ const FacilitySectionNew = () => {
                       <Dot
                         key={idx}
                         $active={activeImages[facility.id] === idx}
-                        onClick={() => handleImageChange(facility.id, idx)}
+                        onClick={(e) => handleImageChange(e, facility.id, idx)}
+                        aria-label={`${title} image ${idx + 1}`}
                       />
                     ))}
                   </ImageDots>
@@ -384,7 +473,7 @@ const FacilitySectionNew = () => {
 
               <FacilityContent>
                 <FacilityTag>{t(facility.tagKey, facility.defaultTag)}</FacilityTag>
-                <FacilityTitle>{t(facility.titleKey, facility.defaultTitle)}</FacilityTitle>
+                <FacilityTitle>{title}</FacilityTitle>
                 <FacilityDescription>{t(facility.descriptionKey, facility.defaultDescription)}</FacilityDescription>
 
                 <MetaRow>
@@ -407,12 +496,24 @@ const FacilitySectionNew = () => {
                   ))}
                 </FeaturesList>
 
-                <BookButton onClick={() => handleBookClick(facility)}>
-                  {t('sports.facilities.book_button', 'Book a Session')}
-                </BookButton>
+                <ButtonsRow>
+                  <BookButton onClick={(e) => handleBookClick(e, facility)}>
+                    {t('sports.facilities.book_button', 'Book a Session')}
+                  </BookButton>
+                  {detailPath && (
+                    <DetailsLink
+                      to={detailPath}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {t('sports.facilities.learn_more', 'Learn more')}
+                      <ArrowRightIcon />
+                    </DetailsLink>
+                  )}
+                </ButtonsRow>
               </FacilityContent>
             </FacilityCard>
-          ))}
+            );
+          })}
         </FacilityGrid>
       </ContentWrapper>
     </SectionContainer>

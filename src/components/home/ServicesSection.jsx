@@ -544,7 +544,7 @@ const ServicesSection = () => {
         title: t('home.services.fitness.title'),
         description: t('home.services.fitness.description'),
         features: t('home.services.fitness.features', { returnObjects: true }),
-        link: '/sports'
+        link: '/sports/gym'
       },
       {
         zone: 'combat',
@@ -552,7 +552,7 @@ const ServicesSection = () => {
         title: t('home.services.combat.title'),
         description: t('home.services.combat.description'),
         features: t('home.services.combat.features', { returnObjects: true }),
-        link: '/sports'
+        link: '/sports/fight-club'
       },
       {
         zone: 'pool',
@@ -560,7 +560,7 @@ const ServicesSection = () => {
         title: t('home.services.pool.title'),
         description: t('home.services.pool.description'),
         features: t('home.services.pool.features', { returnObjects: true }),
-        link: '/sports'
+        link: '/sports/swimming-pool'
       }
     ],
     relax: [

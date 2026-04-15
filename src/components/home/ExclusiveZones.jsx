@@ -118,8 +118,31 @@ const ZoneImage = styled.img`
   object-fit: cover;
   object-position: center;
   transition: transform 0.5s ease;
+  background-color: #e5e5e5;
 
   ${ZoneCard}:hover & {
+    transform: scale(1.04);
+  }
+`;
+
+const ZonePicture = styled.picture`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+    background-color: #e5e5e5;
+  }
+
+  ${ZoneCard}:hover & img {
     transform: scale(1.04);
   }
 `;
@@ -222,42 +245,15 @@ const ExclusiveZones = () => {
 
   const zones = useMemo(() => [
     {
-      id: 'fitness',
-      name: t('zones.activity.fitness.name'),
-      description: t('zones.activity.fitness.description'),
-      image: '/images/zones/fitness.jpg',
-      path: '/sports',
-      bookMessage: 'Hello! I would like to book a gym session at KAIF'
-    },
-    {
-      id: 'combat',
-      name: t('zones.activity.combat.name'),
-      description: t('zones.activity.combat.description'),
-      image: '/images/zones/combat.jpg',
-      path: '/sports',
-      bookMessage: 'Hello! I would like to book a martial arts session at KAIF'
-    },
-    {
-      id: 'pool',
-      name: t('zones.activity.pool.name'),
-      description: t('zones.activity.pool.description'),
-      image: '/images/zones/pool.jpg',
-      path: '/sports',
-      bookMessage: 'Hello! I would like to book a swimming session at KAIF'
-    },
-    {
-      id: 'spa',
-      name: t('zones.relax.spa.name'),
-      description: t('zones.relax.spa.description'),
-      image: '/images/zones/spa.jpg',
-      path: '/spa',
-      bookMessage: 'Hello! I would like to book a SPA treatment at KAIF'
-    },
-    {
       id: 'banya',
       name: t('zones.relax.banya.name'),
       description: t('zones.relax.banya.description'),
       image: '/images/zones/banya.jpg',
+      imageWebp: '/images-webp/zones/banya.webp',
+      imageSmall: '/images-webp/small/zones/banya.webp',
+      imageMedium: '/images-webp/medium/zones/banya.webp',
+      width: 1920,
+      height: 1440,
       path: '/banya',
       bookMessage: 'Hello! I would like to book the Russian Banya at KAIF'
     },
@@ -266,14 +262,86 @@ const ExclusiveZones = () => {
       name: t('zones.relax.restaurant.name'),
       description: t('zones.relax.restaurant.description'),
       image: '/images/zones/restaurant.jpg',
+      imageWebp: '/images-webp/zones/restaurant.webp',
+      imageSmall: '/images-webp/small/zones/restaurant.webp',
+      imageMedium: '/images-webp/medium/zones/restaurant.webp',
+      width: 1920,
+      height: 1440,
       path: '/restaurant',
       bookMessage: 'Hello! I would like to book a table at KAIF Restaurant'
+    },
+    {
+      id: 'spa',
+      name: t('zones.relax.spa.name'),
+      description: t('zones.relax.spa.description'),
+      image: '/images/zones/spa.jpg',
+      imageWebp: '/images-webp/zones/spa.webp',
+      imageSmall: '/images-webp/small/zones/spa.webp',
+      imageMedium: '/images-webp/medium/zones/spa.webp',
+      width: 1920,
+      height: 1280,
+      path: '/spa',
+      bookMessage: 'Hello! I would like to book a SPA treatment at KAIF'
+    },
+    {
+      id: 'pool',
+      name: t('zones.activity.pool.name'),
+      description: t('zones.activity.pool.description'),
+      image: '/images/zones/pool.jpg',
+      imageWebp: '/images-webp/zones/pool.webp',
+      imageSmall: '/images-webp/small/zones/pool.webp',
+      imageMedium: '/images-webp/medium/zones/pool.webp',
+      width: 1920,
+      height: 1440,
+      path: '/sports/swimming-pool',
+      bookMessage: 'Hello! I would like to book a swimming session at KAIF'
+    },
+    {
+      id: 'fitness',
+      name: t('zones.activity.fitness.name'),
+      description: t('zones.activity.fitness.description'),
+      image: '/images/zones/fitness.jpg',
+      imageWebp: '/images-webp/zones/fitness.webp',
+      imageSmall: '/images-webp/small/zones/fitness.webp',
+      imageMedium: '/images-webp/medium/zones/fitness.webp',
+      width: 1920,
+      height: 1440,
+      path: '/sports/gym',
+      bookMessage: 'Hello! I would like to book a gym session at KAIF'
+    },
+    {
+      id: 'combat',
+      name: t('zones.activity.combat.name'),
+      description: t('zones.activity.combat.description'),
+      image: '/images/zones/combat.jpg',
+      imageWebp: '/images-webp/zones/combat.webp',
+      imageSmall: '/images-webp/small/zones/combat.webp',
+      imageMedium: '/images-webp/medium/zones/combat.webp',
+      width: 1920,
+      height: 1440,
+      path: '/sports/fight-club',
+      bookMessage: 'Hello! I would like to book a martial arts session at KAIF'
     }
   ], [t]);
 
   const renderCard = (zone) => (
     <ZoneCard key={zone.id}>
-      <ZoneImage src={zone.image} alt={zone.name} loading="lazy" />
+      <ZonePicture>
+        <source
+          type="image/webp"
+          srcSet={`${zone.imageSmall} 768w, ${zone.imageMedium} 1024w, ${zone.imageWebp} 1920w`}
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+        <img
+          src={zone.image}
+          alt={zone.name}
+          loading="lazy"
+          decoding="async"
+          width={zone.width}
+          height={zone.height}
+          fetchPriority={zone.id === 'banya' ? 'high' : 'low'}
+        />
+      </ZonePicture>
       <CardContent>
         <ZoneName>{zone.name}</ZoneName>
         <ZoneDescription>{zone.description}</ZoneDescription>
@@ -300,19 +368,19 @@ const ExclusiveZones = () => {
         <Overline>{t('zones.overline', 'KAIF Spaces')}</Overline>
         <Title>{t('zones.title', 'Everything you need for active recreation and relaxation')}</Title>
 
-        {/* Row 1: Gym (large) + Combat (small) */}
+        {/* Row 1: Banya (large) + Restaurant (small) */}
         <GridRow>
           {renderCard(zones[0])}
           {renderCard(zones[1])}
         </GridRow>
 
-        {/* Row 2: Pool (small) + Spa (large) */}
+        {/* Row 2: Spa (small) + Pool (large) */}
         <GridRow $reverse>
           {renderCard(zones[2])}
           {renderCard(zones[3])}
         </GridRow>
 
-        {/* Row 3: Banya (large) + Restaurant (small) */}
+        {/* Row 3: Gym (large) + Combat (small) */}
         <GridRow>
           {renderCard(zones[4])}
           {renderCard(zones[5])}

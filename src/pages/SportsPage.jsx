@@ -32,15 +32,15 @@ const SportsPage = () => {
       </Suspense>
 
       <Suspense fallback={<SectionLoader />}>
+        <ScheduleSectionNew />
+      </Suspense>
+
+      <Suspense fallback={<SectionLoader />}>
         <SportsPricingSection />
       </Suspense>
 
       <Suspense fallback={<SectionLoader />}>
         <BenefitsSection />
-      </Suspense>
-
-      <Suspense fallback={<SectionLoader />}>
-        <ScheduleSectionNew />
       </Suspense>
 
       <Suspense fallback={<SectionLoader />}>

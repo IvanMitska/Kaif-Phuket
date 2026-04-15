@@ -38,6 +38,7 @@ const HomePage = lazy(() => import('./pages/HomePage'));
 const RestaurantPage = lazy(() => import('./pages/RestaurantPage'));
 const SpaPage = lazy(() => import('./pages/SpaPage'));
 const SportsPage = lazy(() => import('./pages/SportsPage'));
+const SportsDirectionPage = lazy(() => import('./pages/SportsDirectionPage'));
 const BanyaPage = lazy(() => import('./pages/BanyaPage'));
 const ContactsPage = lazy(() => import('./pages/ContactsPage'));
 const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
@@ -63,6 +64,7 @@ const AppRoutes = () => {
         <Route path="/restaurant" element={<RestaurantPage />} />
         <Route path="/spa" element={<SpaPage />} />
         <Route path="/sports" element={<SportsPage />} />
+        <Route path="/sports/:direction" element={<SportsDirectionPage />} />
         <Route path="/banya" element={<BanyaPage />} />
         <Route path="/contacts" element={<ContactsPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />

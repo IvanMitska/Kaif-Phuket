@@ -233,9 +233,9 @@ const Footer = () => {
   const serviceLinks = [
     { path: '/spa', label: t('footer.services.sauna'), id: 'spa-sauna' },
     { path: '/restaurant', label: t('navigation.restaurant'), id: 'restaurant' },
-    { path: '/sports', label: t('footer.services.fitness'), id: 'sports-fitness' },
+    { path: '/sports/gym', label: t('footer.services.fitness'), id: 'sports-fitness' },
     { path: '/banya', label: t('navigation.banya'), id: 'banya' },
-    { path: '/sports', label: t('footer.services.fight_club'), id: 'sports-club' },
+    { path: '/sports/fight-club', label: t('footer.services.fight_club'), id: 'sports-club' },
   ];
 
   return (
