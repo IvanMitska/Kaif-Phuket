@@ -58,7 +58,7 @@ const Title = styled.h2`
 const ScheduleGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0;
+  gap: 3rem 0;
 
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
@@ -69,6 +69,18 @@ const ScheduleGrid = styled.div`
 const ScheduleColumn = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const DaysLabel = styled.div`
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #133238;
+  padding-bottom: 1rem;
+  margin-bottom: 0.25rem;
+  border-bottom: 1.5px solid rgba(19, 50, 56, 0.15);
 `;
 
 const ScheduleItem = styled.div`
@@ -120,10 +132,8 @@ const SessionName = styled.span`
 const BanyaSteamSchedule = () => {
   const { t } = useTranslation();
 
-  const sessions = t('banya.steam_schedule.sessions', { returnObjects: true });
-  const half = Math.ceil((Array.isArray(sessions) ? sessions.length : 0) / 2);
-  const firstHalf = Array.isArray(sessions) ? sessions.slice(0, half) : [];
-  const secondHalf = Array.isArray(sessions) ? sessions.slice(half) : [];
+  const groups = t('banya.steam_schedule.groups', { returnObjects: true });
+  const groupList = Array.isArray(groups) ? groups : [];
 
   const renderItem = (session, index) => (
     <ScheduleItem key={index}>
@@ -136,16 +146,16 @@ const BanyaSteamSchedule = () => {
   return (
     <SectionContainer>
       <ContentWrapper>
-        <Overline>{t('banya.steam_schedule.overline', 'Daily Schedule')}</Overline>
+        <Overline>{t('banya.steam_schedule.overline', 'Weekly Schedule')}</Overline>
         <Title>{t('banya.steam_schedule.title', 'Steam Sessions')}</Title>
 
         <ScheduleGrid>
-          <ScheduleColumn>
-            {firstHalf.map(renderItem)}
-          </ScheduleColumn>
-          <ScheduleColumn>
-            {secondHalf.map(renderItem)}
-          </ScheduleColumn>
+          {groupList.map((group, idx) => (
+            <ScheduleColumn key={idx}>
+              <DaysLabel>{group.days}</DaysLabel>
+              {Array.isArray(group.sessions) && group.sessions.map(renderItem)}
+            </ScheduleColumn>
+          ))}
         </ScheduleGrid>
       </ContentWrapper>
     </SectionContainer>
