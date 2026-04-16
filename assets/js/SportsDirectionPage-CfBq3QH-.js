@@ -177,7 +177,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as s}from"./styled-
   gap: 0.75rem;
   flex-wrap: wrap;
   margin-top: 0.75rem;
-`,N=s.a`
+`,F=s.a`
   font-family: 'Jost', sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
@@ -194,7 +194,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as s}from"./styled-
     background: #0a1f22;
     transform: translateY(-1px);
   }
-`,T=s.a`
+`,N=s.a`
   font-family: 'Jost', sans-serif;
   font-size: 0.8rem;
   font-weight: 500;
@@ -213,9 +213,9 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as s}from"./styled-
     color: #fffef6;
     border-color: #133238;
   }
-`,F=s.section`
+`,T=s.section`
   margin-bottom: 4rem;
-`,I=s.h2`
+`,A=s.h2`
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 800;
@@ -223,12 +223,12 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as s}from"./styled-
   color: #133238;
   text-transform: uppercase;
   margin: 0 0 1.5rem;
-`,A=s.div`
+`,I=s.div`
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
-`,E=s.button`
+`,B=s.button`
   padding: 0.6rem 1.2rem;
   background: ${e=>e.$active?"#133238":"transparent"};
   color: ${e=>e.$active?"#fffef6":"rgba(19, 50, 56, 0.6)"};
@@ -256,7 +256,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as s}from"./styled-
     .short { display: inline; }
     .full { display: none; }
   }
-`,B=s.div`
+`,E=s.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
@@ -282,7 +282,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as s}from"./styled-
     border-color: rgba(19, 50, 56, 0.15);
     box-shadow: 0 8px 30px rgba(19, 50, 56, 0.06);
   }
-`,R=s.div`
+`,U=s.div`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -300,14 +300,14 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as s}from"./styled-
     height: 14px;
     color: rgba(19, 50, 56, 0.4);
   }
-`,U=s.h4`
+`,L=s.h4`
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 1.1rem;
   font-weight: 800;
   color: #133238;
   margin: 0;
   line-height: 1.2;
-`,L=s.div`
+`,M=s.div`
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -320,7 +320,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as s}from"./styled-
     height: 14px;
     color: rgba(19, 50, 56, 0.3);
   }
-`,M=s.button`
+`,R=s.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -360,4 +360,4 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as s}from"./styled-
   font-size: 0.95rem;
   color: rgba(19, 50, 56, 0.7);
   line-height: 1.6;
-`,G=e.memo(()=>{const{t:s}=l(),{direction:G}=d(),O=c(),Q=t(G),[V,W]=e.useState(0),[X,Z]=e.useState("monday");if(e.useEffect(()=>{const e=(new Date).getDay();Z(["monday","monday","tuesday","wednesday","thursday","friday","saturday"][e])},[]),!Q)return r.jsx(m,{to:"/sports",replace:!0});const ee=s(Q.titleKey,Q.defaultTitle),re=s(Q.tagKey,Q.defaultTag),se=s(Q.descriptionKey,Q.defaultDescription),ie=s(Q.longDescriptionKey,Q.defaultLongDescription),ae=s(Q.extraDescriptionKey,Q.defaultExtraDescription),te=Q.schedule&&Q.schedule[X]||[];return r.jsxs(r.Fragment,{children:[r.jsx(i,{titleKey:`page_titles.sports_${Q.id}`,defaultTitle:`${ee} · KAIF Sports`,description:se,ogImage:Q.images[0]}),r.jsx(a,{}),r.jsx(h,{children:r.jsxs(x,{children:[r.jsxs(u,{type:"button",onClick:()=>O("/sports"),children:["← ",s("sports.direction.back","Back to Sports")]}),r.jsxs(b,{children:[r.jsxs(y,{children:[r.jsx(j,{children:r.jsx("img",{src:Q.images[V],alt:ee,loading:"eager"},V)}),Q.images.length>1&&r.jsx(v,{$count:Q.images.length,children:Q.images.map((e,s)=>r.jsx(w,{$active:V===s,onClick:()=>W(s),"aria-label":`${ee} ${s+1}`,children:r.jsx("img",{src:e,alt:"",loading:"lazy"})},e))})]}),r.jsxs(k,{children:[r.jsx($,{children:re}),r.jsx(z,{children:ee}),r.jsx(J,{children:se}),r.jsxs(K,{children:[r.jsxs(S,{children:[r.jsx(p,{}),r.jsx("span",{children:Q.hours})]}),r.jsxs(S,{children:[r.jsx(f,{}),r.jsx("span",{children:s("sports.facilities.capacity","Up to {{count}}",{count:Q.capacity})})]})]}),r.jsx(D,{children:Q.features.map((e,i)=>r.jsxs(P,{children:[r.jsx(g,{}),r.jsx("span",{children:s(e.key,e.default)})]},i))}),r.jsxs(_,{children:[r.jsx(N,{href:o(Q.whatsappMessage),target:"_blank",rel:"noopener noreferrer",children:s("sports.facilities.book_button","Book a Session")}),r.jsx(T,{href:"tel:+66624805877",children:s("events.call","Call us")})]})]})]}),r.jsxs(F,{children:[r.jsx(I,{children:s("sports.direction.about","About")}),r.jsx(C,{children:ie}),ae&&r.jsx(C,{style:{marginTop:"1rem"},children:ae})]}),r.jsxs(F,{children:[r.jsx(I,{children:s("sports.direction.schedule","Schedule")}),Q.schedule?r.jsxs(r.Fragment,{children:[r.jsx(A,{children:n.map(e=>r.jsxs(E,{$active:X===e.key,onClick:()=>Z(e.key),children:[r.jsx("span",{className:"full",children:s(`sports.schedule.days.${e.labelKey}`)}),r.jsx("span",{className:"short",children:s(`sports.schedule.days.${e.shortKey}`)})]},e.key))}),r.jsx(B,{children:0===te.length?r.jsx(Y,{children:s("sports.schedule.no_classes","No classes on this day")}):te.map((e,i)=>r.jsxs(H,{children:[r.jsxs(R,{children:[r.jsx(p,{}),r.jsx("span",{children:e.time})]}),r.jsx(U,{children:s(`sports.schedule.classes.${e.titleKey}`)}),r.jsxs(L,{children:[r.jsx(p,{}),e.duration," ",s("sports.schedule.minutes","min")]}),r.jsx(M,{onClick:()=>(e=>{const r=s(`sports.schedule.classes.${e.titleKey}`),i=s(`sports.schedule.days.${X}`),a=`Hello! I would like to book a class at KAIF.\n\nDirection: ${ee}\nClass: ${r}\nDay: ${i}\nTime: ${e.time}`;window.open(o(a),"_blank","noopener,noreferrer")})(e),children:s("sports.schedule.book","Sign Up")})]},i))})]}):r.jsx(q,{children:s(Q.scheduleNoteKey,Q.scheduleNoteDefault)})]})]})})]})});export{G as default};
+`,G=e.memo(()=>{const{t:s}=l(),{direction:G}=d(),O=c(),Q=t(G),[V,W]=e.useState(0),[X,Z]=e.useState("monday");if(e.useEffect(()=>{const e=(new Date).getDay();Z(["monday","monday","tuesday","wednesday","thursday","friday","saturday"][e])},[]),!Q)return r.jsx(m,{to:"/sports",replace:!0});const ee=s(Q.titleKey,Q.defaultTitle),re=s(Q.tagKey,Q.defaultTag),se=s(Q.descriptionKey,Q.defaultDescription),ie=s(Q.longDescriptionKey,Q.defaultLongDescription),ae=s(Q.extraDescriptionKey,Q.defaultExtraDescription),te=Q.schedule&&Q.schedule[X]||[];return r.jsxs(r.Fragment,{children:[r.jsx(i,{titleKey:`page_titles.sports_${Q.id}`,defaultTitle:`${ee} · KAIF Sports`,description:se,ogImage:Q.images[0]}),r.jsx(a,{}),r.jsx(h,{children:r.jsxs(x,{children:[r.jsxs(u,{type:"button",onClick:()=>O("/sports"),children:["← ",s("sports.direction.back","Back to Sports")]}),r.jsxs(b,{children:[r.jsxs(y,{children:[r.jsx(j,{children:r.jsx("img",{src:Q.images[V],alt:ee,loading:"eager"},V)}),Q.images.length>1&&r.jsx(v,{$count:Q.images.length,children:Q.images.map((e,s)=>r.jsx(w,{$active:V===s,onClick:()=>W(s),"aria-label":`${ee} ${s+1}`,children:r.jsx("img",{src:e,alt:"",loading:"lazy"})},e))})]}),r.jsxs(k,{children:[r.jsx($,{children:re}),r.jsx(z,{children:ee}),r.jsx(J,{children:se}),r.jsxs(K,{children:[r.jsxs(S,{children:[r.jsx(p,{}),r.jsx("span",{children:Q.hours})]}),r.jsxs(S,{children:[r.jsx(f,{}),r.jsx("span",{children:s("sports.facilities.capacity","Up to {{count}}",{count:Q.capacity})})]})]}),r.jsx(D,{children:Q.features.map((e,i)=>r.jsxs(P,{children:[r.jsx(g,{}),r.jsx("span",{children:s(e.key,e.default)})]},i))}),r.jsxs(_,{children:[r.jsx(F,{href:o(Q.whatsappMessage),target:"_blank",rel:"noopener noreferrer",children:s("sports.facilities.book_button","Book a Session")}),r.jsx(N,{href:"tel:+66624805877",children:s("events.call","Call us")})]})]})]}),r.jsxs(T,{children:[r.jsx(A,{children:s("sports.direction.about","About")}),r.jsx(C,{children:ie}),ae&&r.jsx(C,{style:{marginTop:"1rem"},children:ae})]}),r.jsxs(T,{children:[r.jsx(A,{children:s("sports.direction.schedule","Schedule")}),Q.schedule?r.jsxs(r.Fragment,{children:[r.jsx(I,{children:n.map(e=>r.jsxs(B,{$active:X===e.key,onClick:()=>Z(e.key),children:[r.jsx("span",{className:"full",children:s(`sports.schedule.days.${e.labelKey}`)}),r.jsx("span",{className:"short",children:s(`sports.schedule.days.${e.shortKey}`)})]},e.key))}),r.jsx(E,{children:0===te.length?r.jsx(Y,{children:s("sports.schedule.no_classes","No classes on this day")}):te.map((e,i)=>r.jsxs(H,{children:[r.jsxs(U,{children:[r.jsx(p,{}),r.jsx("span",{children:e.time})]}),r.jsx(L,{children:s(`sports.schedule.classes.${e.titleKey}`)}),r.jsxs(M,{children:[r.jsx(p,{}),e.duration," ",s("sports.schedule.minutes","min")]}),r.jsx(R,{onClick:()=>(e=>{const r=s(`sports.schedule.classes.${e.titleKey}`),i=s(`sports.schedule.days.${X}`),a=`Hello! I would like to book a class at KAIF.\n\nDirection: ${ee}\nClass: ${r}\nDay: ${i}\nTime: ${e.time}`;window.open(o(a),"_blank","noopener,noreferrer")})(e),children:s("sports.schedule.book","Sign Up")})]},i))})]}):r.jsx(q,{children:s(Q.scheduleNoteKey,Q.scheduleNoteDefault)})]})]})})]})});export{G as default};
