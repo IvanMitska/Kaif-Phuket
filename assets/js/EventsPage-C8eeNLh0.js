@@ -1,4 +1,4 @@
-import{r as e,j as t}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-components-BY9Yozyu.js";import{P as i}from"./PageHead-DVihzIO-.js";import{P as s}from"./PageScrollReset-CpzNA0Jq.js";import{e as a}from"./events-C395q1AA.js";import{u as n}from"./i18n-core-DrMVsQFB.js";import{aa as o}from"./vendor-misc-Dpgsgh4W.js";import"./react-helmet-xz8aecK8.js";const l=r.section`
+import{r as e,j as t}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-components-BY9Yozyu.js";import{P as i}from"./PageHead-DVihzIO-.js";import{P as s}from"./PageScrollReset-CpzNA0Jq.js";import{e as a}from"./events-DvtCAtWM.js";import{u as n}from"./i18n-core-DrMVsQFB.js";import{aa as o}from"./vendor-misc-Dpgsgh4W.js";import"./react-helmet-xz8aecK8.js";const l=r.section`
   position: relative;
   padding: 8rem 0 6rem;
   background-color: #fffef6;

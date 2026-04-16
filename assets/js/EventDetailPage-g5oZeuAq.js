@@ -1,4 +1,4 @@
-import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-components-BY9Yozyu.js";import{P as s}from"./PageHead-DVihzIO-.js";import{P as i}from"./PageScrollReset-CpzNA0Jq.js";import{g as n,a}from"./events-C395q1AA.js";import{u as o}from"./i18n-core-DrMVsQFB.js";import{ab as l,a9 as m,a4 as d,a8 as c}from"./vendor-misc-Dpgsgh4W.js";import"./react-helmet-xz8aecK8.js";const f=t.div`
+import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-components-BY9Yozyu.js";import{P as s}from"./PageHead-DVihzIO-.js";import{P as i}from"./PageScrollReset-CpzNA0Jq.js";import{g as n,a}from"./events-DvtCAtWM.js";import{u as o}from"./i18n-core-DrMVsQFB.js";import{ab as l,a9 as m,a4 as d,a8 as c}from"./vendor-misc-Dpgsgh4W.js";import"./react-helmet-xz8aecK8.js";const f=t.div`
   background-color: #fffef6;
   min-height: 100vh;
   padding: 8rem 0 6rem;
