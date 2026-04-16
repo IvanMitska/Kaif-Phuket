@@ -64,12 +64,10 @@ const PosterColumn = styled.div`
   border-radius: 16px;
   overflow: hidden;
   background: #1a1a1a;
-  aspect-ratio: 3 / 4;
 
   img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
   }
 `;

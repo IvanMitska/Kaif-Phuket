@@ -2,7 +2,17 @@
 
 const WHATSAPP_NUMBER = '66624805877';
 
-export const events = [
+const MONTHS = { JAN: 0, FEB: 1, MAR: 2, APR: 3, MAY: 4, JUN: 5, JUL: 6, AUG: 7, SEP: 8, OCT: 9, NOV: 10, DEC: 11 };
+
+const getEventStart = (event) => {
+  const firstDay = parseInt(String(event.date.day).split(/[–-]/)[0], 10);
+  const yearMatch = String(event.date.full).match(/\d{4}/);
+  const year = yearMatch ? parseInt(yearMatch[0], 10) : new Date().getFullYear();
+  const month = MONTHS[String(event.date.month).toUpperCase()] ?? 0;
+  return new Date(year, month, firstDay);
+};
+
+const rawEvents = [
   {
     slug: 'pool-party-18-april',
     title: 'Pool Party',
@@ -52,6 +62,54 @@ export const events = [
     whatsappMessage: 'Hello! I want to join Pool Party at KAIF on 25 April'
   },
   {
+    slug: 'womens-friday-17-april',
+    title: "Women's Friday",
+    hook: 'Ladies Only · Spa · Banya · Cocktails',
+    date: { day: '17', month: 'APR', full: 'Friday, 17 April 2026' },
+    location: 'Kathu, Phuket',
+    image: '/images/events/women-fri-17.webp',
+    shortDescription: "Ladies only Friday at KAIF — spa, banya, pool and signature cocktails in a relaxed atmosphere.",
+    longDescription:
+      "A Friday made for women. Enjoy full access to spa, banya and pool, share a glass with friends and unwind with signature cocktails. Bring your girlfriends — the evening is yours.",
+    schedule: [
+      {
+        date: 'All evening',
+        title: 'Ladies Only Access',
+        description: 'Spa, banya and pool reserved for women — relax, recharge and enjoy.'
+      },
+      {
+        date: 'Bar',
+        title: 'Signature Cocktails',
+        description: 'Special cocktail menu crafted for the evening.'
+      }
+    ],
+    whatsappMessage: "Hello! I want to join Women's Friday at KAIF on 17 April"
+  },
+  {
+    slug: 'womens-friday-24-april',
+    title: "Women's Friday",
+    hook: 'Ladies Only · Spa · Banya · Cocktails',
+    date: { day: '24', month: 'APR', full: 'Friday, 24 April 2026' },
+    location: 'Kathu, Phuket',
+    image: '/images/events/women-fri-24.webp',
+    shortDescription: "Ladies only Friday at KAIF — spa, banya, pool and signature cocktails in a relaxed atmosphere.",
+    longDescription:
+      "A Friday made for women. Enjoy full access to spa, banya and pool, share a glass with friends and unwind with signature cocktails. Bring your girlfriends — the evening is yours.",
+    schedule: [
+      {
+        date: 'All evening',
+        title: 'Ladies Only Access',
+        description: 'Spa, banya and pool reserved for women — relax, recharge and enjoy.'
+      },
+      {
+        date: 'Bar',
+        title: 'Signature Cocktails',
+        description: 'Special cocktail menu crafted for the evening.'
+      }
+    ],
+    whatsappMessage: "Hello! I want to join Women's Friday at KAIF on 24 April"
+  },
+  {
     slug: 'songkran-festival',
     title: 'Songkran Festival',
     hook: '3 Days · 3 Different Vibes',
@@ -79,8 +137,40 @@ export const events = [
       }
     ],
     whatsappMessage: 'Hello! I want to join Songkran Festival at KAIF (13-16 April)'
+  },
+  {
+    slug: 'english-breakfast',
+    title: 'English Breakfast',
+    hook: 'Every Friday · English Practice · Community',
+    date: { day: 'FRI', month: 'WEEKLY', full: 'Every Friday · 10:00–11:30' },
+    location: 'KAIF · Second Floor Restaurant',
+    image: '/images/events/English-Breakfast.webp',
+    recurring: true,
+    shortDescription: 'Light breakfast format with English practice and live communication. Every Friday, 10:00–11:30 at the second floor restaurant.',
+    longDescription:
+      'A warm, relaxed Friday morning format: light breakfast, English practice and live conversation in good company. Join to meet new people and make connections over coffee and fruit. Donation to the coach from 200 THB — fruits are served during the session.',
+    schedule: [
+      {
+        date: '10:00 – 11:30',
+        title: 'Second Floor Restaurant',
+        description: 'Light breakfast format with English practice and live communication — warm atmosphere and new connections.'
+      },
+      {
+        date: 'Donation',
+        title: 'From 200 THB to the coach',
+        description: 'Fruits will be served during the session.'
+      }
+    ],
+    whatsappMessage: 'Hello! I want to join English Breakfast at KAIF (every Friday)'
   }
 ];
+
+export const events = [...rawEvents].sort((a, b) => {
+  if (a.recurring && !b.recurring) return 1;
+  if (!a.recurring && b.recurring) return -1;
+  if (a.recurring && b.recurring) return 0;
+  return getEventStart(a) - getEventStart(b);
+});
 
 export const getEventBookingLink = (event) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(event.whatsappMessage)}`;

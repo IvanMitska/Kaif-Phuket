@@ -106,16 +106,9 @@ const EventsGrid = styled.div`
   }
 
   @media (min-width: 768px) {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
-    overflow-x: visible;
-    padding: 0;
-    margin: 0;
-  }
-
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
+    padding: 0 2rem 1rem;
+    margin: 0 -2rem;
   }
 `;
 
@@ -134,7 +127,11 @@ const EventCard = styled(Link)`
   scroll-snap-align: start;
 
   @media (min-width: 768px) {
-    flex: none;
+    flex: 0 0 320px;
+  }
+
+  @media (min-width: 1024px) {
+    flex: 0 0 340px;
   }
 
   &:hover {
@@ -155,6 +152,7 @@ const PosterImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 55%;
   display: block;
   transition: transform 0.5s ease;
 
