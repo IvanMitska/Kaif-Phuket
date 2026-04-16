@@ -2261,6 +2261,8 @@
     "steam_schedule": {
       "overline": "ตารางรายสัปดาห์",
       "title": "เซสชันอบไอน้ำ",
+      "note": "<strong>จ. – พฤ.</strong> — เริ่ม 15:00 · <strong>ศ. – อา.</strong> — เริ่ม 12:00",
+      "early_slot_badge": "ศ. – อา. เท่านั้น",
       "groups": [
         {
           "days": "จ. – พฤ.",

@@ -2412,6 +2412,8 @@
     "steam_schedule": {
       "overline": "Weekly Schedule",
       "title": "Steam Sessions",
+      "note": "<strong>Mon – Thu</strong> — sessions from 15:00 · <strong>Fri – Sun</strong> — sessions from 12:00",
+      "early_slot_badge": "Fri – Sun only",
       "groups": [
         {
           "days": "Mon – Thu",

@@ -1809,6 +1809,8 @@
     "steam_schedule": {
       "overline": "Расписание на неделю",
       "title": "Групповые парения",
+      "note": "<strong>Пн – Чт</strong> — парения с 15:00 · <strong>Пт – Вс</strong> — парения с 12:00",
+      "early_slot_badge": "Только Пт – Вс",
       "groups": [
         {
           "days": "Пн – Чт",
