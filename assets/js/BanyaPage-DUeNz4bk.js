@@ -25,7 +25,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   inset: 0;
   z-index: 1;
   pointer-events: none;
-`,c=r.div`
+`,m=r.div`
   position: absolute;
   inset: 0;
   background-size: cover;
@@ -46,7 +46,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
     z-index: 2;
     pointer-events: none;
   }
-`,m=r.div`
+`,c=r.div`
   position: absolute;
   inset: 0;
   z-index: 10;
@@ -105,7 +105,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
     font-size: 0.65rem;
     margin-top: 2rem;
   }
-`,h=e.memo(()=>{const{t:i}=n(),[t,r]=e.useState(0),s=[{src:"/images/banya/panoramic.jpg",alt:i("banya.hero.images.panoramic","Panoramic sauna 150 m²")},{src:"/images/banya/private.jpg",alt:i("banya.hero.images.private","Private sauna")},{src:"/images/banya/public.jpg",alt:i("banya.hero.images.public","Public sauna")}];return e.useEffect(()=>{const e=setInterval(()=>{r(e=>(e+1)%s.length)},6e3);return()=>clearInterval(e)},[s.length]),a.jsxs(o,{children:[a.jsx(l,{children:s.map((e,i)=>a.jsx(c,{style:{backgroundImage:`url(${e.src})`,opacity:t===i?1:0,zIndex:t===i?2:1}},i))}),a.jsx(m,{children:a.jsx(d,{children:a.jsxs(p,{children:[a.jsx(g,{children:i("banya.hero.title_part1","Russian")}),a.jsx(g,{children:i("banya.hero.title_part2","Banya")}),a.jsx(f,{children:i("banya.hero.location","Phuket")})]})})})]})}),b=r.section`
+`,h=e.memo(()=>{const{t:i}=n(),[t,r]=e.useState(0),s=[{src:"/images/banya/panoramic.jpg",alt:i("banya.hero.images.panoramic","Panoramic sauna 150 m²")},{src:"/images/banya/private.jpg",alt:i("banya.hero.images.private","Private sauna")},{src:"/images/banya/public.jpg",alt:i("banya.hero.images.public","Public sauna")}];return e.useEffect(()=>{const e=setInterval(()=>{r(e=>(e+1)%s.length)},6e3);return()=>clearInterval(e)},[s.length]),a.jsxs(o,{children:[a.jsx(l,{children:s.map((e,i)=>a.jsx(m,{style:{backgroundImage:`url(${e.src})`,opacity:t===i?1:0,zIndex:t===i?2:1}},i))}),a.jsx(c,{children:a.jsx(d,{children:a.jsxs(p,{children:[a.jsx(g,{children:i("banya.hero.title_part1","Russian")}),a.jsx(g,{children:i("banya.hero.title_part2","Banya")}),a.jsx(f,{children:i("banya.hero.location","Phuket")})]})})})]})}),u=r.section`
   position: relative;
   padding: 6rem 0;
   background-color: #fffef6;
@@ -113,7 +113,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   @media (min-width: 768px) {
     padding: 8rem 0;
   }
-`,u=r.div`
+`,b=r.div`
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 2rem;
@@ -208,7 +208,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   text-transform: uppercase;
   color: rgba(19, 50, 56, 0.4);
   margin-bottom: 1rem;
-`,J=r.p`
+`,_=r.p`
   font-family: 'Jost', sans-serif;
   font-size: 0.9rem;
   line-height: 1.6;
@@ -222,7 +222,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   padding-top: 1.5rem;
   margin-top: auto;
   border-top: 1px solid rgba(19, 50, 56, 0.06);
-`,_=r.div`
+`,J=r.div`
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
@@ -256,7 +256,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   font-weight: 800;
   color: #133238;
   letter-spacing: -0.02em;
-`,BanyaServicesSection=()=>{const{t:e,i18n:i,ready:t}=n(),r="ru"===i.language,s=(()=>{if(!t)return[];try{return[{id:"intro",title:e("banya.services.rituals.intro.title","Children's Introductory Steaming"),subtitle:e("banya.services.rituals.intro.subtitle","LIGHT STEAM"),duration:e("banya.services.rituals.intro.duration","7-10 min"),price:e("banya.services.rituals.intro.price","1,000 THB"),description:e("banya.services.rituals.intro.description","A short and sensitive ritual with gentle warming of back and legs")},{id:"lady",title:e("banya.services.rituals.lady.title","Lady's Steaming"),subtitle:e("banya.services.rituals.lady.subtitle","LOW-TEMPERATURE"),duration:e("banya.services.rituals.lady.duration","10-15 min"),price:e("banya.services.rituals.lady.price","1,500 THB"),description:e("banya.services.rituals.lady.description","Special low-temperature technique with deep local warming")},{id:"classic",title:e("banya.services.rituals.classic.title","Classic Steaming"),subtitle:e("banya.services.rituals.classic.subtitle","MEDIUM STEAM"),duration:e("banya.services.rituals.classic.duration","10-15 min"),price:e("banya.services.rituals.classic.price","1,800 THB"),description:e("banya.services.rituals.classic.description","Steaming with oak brooms in one session. Thorough whole body steaming with aromatic steam")},{id:"artesian",title:e("banya.services.rituals.artesian.title","Artesian"),subtitle:e("banya.services.rituals.artesian.subtitle","CONTRAST STEAMING"),duration:e("banya.services.rituals.artesian.duration","15-20 min"),price:e("banya.services.rituals.artesian.price","2,250 THB"),description:e("banya.services.rituals.artesian.description","Intense warming with oak brooms enhanced by the contrast of cool mineral water")},{id:"gravity",title:e("banya.services.rituals.gravity.title","Gravity"),subtitle:e("banya.services.rituals.gravity.subtitle","WEIGHTLESS STEAMING"),duration:e("banya.services.rituals.gravity.duration","15-20 min"),price:e("banya.services.rituals.gravity.price","2,250 THB"),description:e("banya.services.rituals.gravity.description","Intense warming with transition to warm pool. Feeling of weightlessness")},{id:"salt_fire",title:e("banya.services.rituals.salt_fire.title","The Fire Starter"),subtitle:e("banya.services.rituals.salt_fire.subtitle","SALT STEAMING"),duration:e("banya.services.rituals.salt_fire.duration","15-20 min"),price:e("banya.services.rituals.salt_fire.price","2,250 THB"),description:e("banya.services.rituals.salt_fire.description","Intense warming with sea salt application and warming through a sheet. Salt cave effect")},{id:"four_hands",title:e("banya.services.rituals.four_hands.title","Four-Hand Steaming"),subtitle:e("banya.services.rituals.four_hands.subtitle","SYNCHRONIZED"),duration:e("banya.services.rituals.four_hands.duration","15-20 min"),price:e("banya.services.rituals.four_hands.price","2,500 THB"),description:e("banya.services.rituals.four_hands.description","Two steam masters work in perfect synchronization")},{id:"sports",title:e("banya.services.rituals.sports.title","Sports Steaming"),subtitle:e("banya.services.rituals.sports.subtitle","WITH MASSAGE"),duration:e("banya.services.rituals.sports.duration","20-25 min"),price:e("banya.services.rituals.sports.price","2,500 THB"),description:e("banya.services.rituals.sports.description","Intense warming to the depth of muscles with massage elements")},{id:"stalwar",title:e("banya.services.rituals.stalwar.title","Thor's Power"),subtitle:e("banya.services.rituals.stalwar.subtitle","INTENSE STEAM"),duration:e("banya.services.rituals.stalwar.duration","15-20 min"),price:e("banya.services.rituals.stalwar.price","3,000 THB"),description:e("banya.services.rituals.stalwar.description","Intense steam and contrast for those who love the heat")},{id:"warrior_path",title:e("banya.services.rituals.warrior_path.title","Warrior's Path"),subtitle:e("banya.services.rituals.warrior_path.subtitle","CONTRAST STEAMING"),duration:e("banya.services.rituals.warrior_path.duration","20-25 min"),price:e("banya.services.rituals.warrior_path.price","3,500 THB"),description:e("banya.services.rituals.warrior_path.description","Steaming in two sessions with cold water dousing between them")},{id:"honey",title:e("banya.services.rituals.honey.title","Honey Steaming"),subtitle:e("banya.services.rituals.honey.subtitle","WITH NATURAL HONEY"),duration:e("banya.services.rituals.honey.duration","15-20 min"),price:e("banya.services.rituals.honey.price","3,500 THB"),description:e("banya.services.rituals.honey.description","Steaming with Canadian brooms and honey application")},{id:"valhalla",title:e("banya.services.rituals.valhalla.title","Valhalla"),subtitle:e("banya.services.rituals.valhalla.subtitle","GROUP STEAMING"),duration:e("banya.services.rituals.valhalla.duration","10-20 min"),price:e("banya.services.rituals.valhalla.price","3,500 THB"),description:e("banya.services.rituals.valhalla.description","Steaming with fan and brooms for a group of 2-4 people")},{id:"royal",title:e("banya.services.rituals.royal.title","Royal Steaming"),subtitle:e("banya.services.rituals.royal.subtitle","HONEY-SALT SCRUB"),duration:e("banya.services.rituals.royal.duration","25-30 min"),price:e("banya.services.rituals.royal.price","4,000 THB"),description:e("banya.services.rituals.royal.description","Royal ritual of deep warming and cleansing with honey and sea salt")}]}catch(a){return[]}})();return a.jsx(b,{children:a.jsxs(u,{children:[a.jsx(y,{children:e("banya.services.badge",r?"Ритуалы":"Rituals")}),a.jsx(x,{children:e("banya.services.title",r?"Индивидуальные парения":"Individual Steam Sessions")}),a.jsx(w,{children:e("banya.services.subtitle",r?"Выберите свой идеальный банный ритуал":"Choose your perfect banya ritual")}),a.jsx(v,{children:s.map(e=>a.jsxs(j,{children:[a.jsxs(k,{children:[a.jsx(z,{children:e.title}),a.jsx(S,{children:e.subtitle}),a.jsx(J,{children:e.description})]}),a.jsxs(T,{children:[a.jsxs(_,{children:[a.jsx(P,{children:r?"Время":"Duration"}),a.jsx(A,{children:e.duration})]}),a.jsxs(q,{children:[a.jsx(B,{children:r?"Стоимость":"Price"}),a.jsx(E,{children:e.price})]})]})]},e.id))})]})})},C=r.section`
+`,BanyaServicesSection=()=>{const{t:e,i18n:i,ready:t}=n(),r="ru"===i.language,s=(()=>{if(!t)return[];try{return[{id:"intro",title:e("banya.services.rituals.intro.title","Children's Introductory Steaming"),subtitle:e("banya.services.rituals.intro.subtitle","LIGHT STEAM"),duration:e("banya.services.rituals.intro.duration","7-10 min"),price:e("banya.services.rituals.intro.price","1,000 THB"),description:e("banya.services.rituals.intro.description","A short and sensitive ritual with gentle warming of back and legs")},{id:"lady",title:e("banya.services.rituals.lady.title","Lady's Steaming"),subtitle:e("banya.services.rituals.lady.subtitle","LOW-TEMPERATURE"),duration:e("banya.services.rituals.lady.duration","10-15 min"),price:e("banya.services.rituals.lady.price","1,500 THB"),description:e("banya.services.rituals.lady.description","Special low-temperature technique with deep local warming")},{id:"classic",title:e("banya.services.rituals.classic.title","Classic Steaming"),subtitle:e("banya.services.rituals.classic.subtitle","MEDIUM STEAM"),duration:e("banya.services.rituals.classic.duration","10-15 min"),price:e("banya.services.rituals.classic.price","1,800 THB"),description:e("banya.services.rituals.classic.description","Steaming with oak brooms in one session. Thorough whole body steaming with aromatic steam")},{id:"artesian",title:e("banya.services.rituals.artesian.title","Artesian"),subtitle:e("banya.services.rituals.artesian.subtitle","CONTRAST STEAMING"),duration:e("banya.services.rituals.artesian.duration","15-20 min"),price:e("banya.services.rituals.artesian.price","2,250 THB"),description:e("banya.services.rituals.artesian.description","Intense warming with oak brooms enhanced by the contrast of cool mineral water")},{id:"gravity",title:e("banya.services.rituals.gravity.title","Gravity"),subtitle:e("banya.services.rituals.gravity.subtitle","WEIGHTLESS STEAMING"),duration:e("banya.services.rituals.gravity.duration","15-20 min"),price:e("banya.services.rituals.gravity.price","2,250 THB"),description:e("banya.services.rituals.gravity.description","Intense warming with transition to warm pool. Feeling of weightlessness")},{id:"salt_fire",title:e("banya.services.rituals.salt_fire.title","The Fire Starter"),subtitle:e("banya.services.rituals.salt_fire.subtitle","SALT STEAMING"),duration:e("banya.services.rituals.salt_fire.duration","15-20 min"),price:e("banya.services.rituals.salt_fire.price","2,250 THB"),description:e("banya.services.rituals.salt_fire.description","Intense warming with sea salt application and warming through a sheet. Salt cave effect")},{id:"four_hands",title:e("banya.services.rituals.four_hands.title","Four-Hand Steaming"),subtitle:e("banya.services.rituals.four_hands.subtitle","SYNCHRONIZED"),duration:e("banya.services.rituals.four_hands.duration","15-20 min"),price:e("banya.services.rituals.four_hands.price","2,500 THB"),description:e("banya.services.rituals.four_hands.description","Two steam masters work in perfect synchronization")},{id:"sports",title:e("banya.services.rituals.sports.title","Sports Steaming"),subtitle:e("banya.services.rituals.sports.subtitle","WITH MASSAGE"),duration:e("banya.services.rituals.sports.duration","20-25 min"),price:e("banya.services.rituals.sports.price","2,500 THB"),description:e("banya.services.rituals.sports.description","Intense warming to the depth of muscles with massage elements")},{id:"stalwar",title:e("banya.services.rituals.stalwar.title","Thor's Power"),subtitle:e("banya.services.rituals.stalwar.subtitle","INTENSE STEAM"),duration:e("banya.services.rituals.stalwar.duration","15-20 min"),price:e("banya.services.rituals.stalwar.price","3,000 THB"),description:e("banya.services.rituals.stalwar.description","Intense steam and contrast for those who love the heat")},{id:"warrior_path",title:e("banya.services.rituals.warrior_path.title","Warrior's Path"),subtitle:e("banya.services.rituals.warrior_path.subtitle","CONTRAST STEAMING"),duration:e("banya.services.rituals.warrior_path.duration","20-25 min"),price:e("banya.services.rituals.warrior_path.price","3,500 THB"),description:e("banya.services.rituals.warrior_path.description","Steaming in two sessions with cold water dousing between them")},{id:"honey",title:e("banya.services.rituals.honey.title","Honey Steaming"),subtitle:e("banya.services.rituals.honey.subtitle","WITH NATURAL HONEY"),duration:e("banya.services.rituals.honey.duration","15-20 min"),price:e("banya.services.rituals.honey.price","3,500 THB"),description:e("banya.services.rituals.honey.description","Steaming with Canadian brooms and honey application")},{id:"valhalla",title:e("banya.services.rituals.valhalla.title","Valhalla"),subtitle:e("banya.services.rituals.valhalla.subtitle","GROUP STEAMING"),duration:e("banya.services.rituals.valhalla.duration","10-20 min"),price:e("banya.services.rituals.valhalla.price","3,500 THB"),description:e("banya.services.rituals.valhalla.description","Steaming with fan and brooms for a group of 2-4 people")},{id:"royal",title:e("banya.services.rituals.royal.title","Royal Steaming"),subtitle:e("banya.services.rituals.royal.subtitle","HONEY-SALT SCRUB"),duration:e("banya.services.rituals.royal.duration","25-30 min"),price:e("banya.services.rituals.royal.price","4,000 THB"),description:e("banya.services.rituals.royal.description","Royal ritual of deep warming and cleansing with honey and sea salt")}]}catch(a){return[]}})();return a.jsx(u,{children:a.jsxs(b,{children:[a.jsx(y,{children:e("banya.services.badge",r?"Ритуалы":"Rituals")}),a.jsx(x,{children:e("banya.services.title",r?"Индивидуальные парения":"Individual Steam Sessions")}),a.jsx(w,{children:e("banya.services.subtitle",r?"Выберите свой идеальный банный ритуал":"Choose your perfect banya ritual")}),a.jsx(v,{children:s.map(e=>a.jsxs(j,{children:[a.jsxs(k,{children:[a.jsx(z,{children:e.title}),a.jsx(S,{children:e.subtitle}),a.jsx(_,{children:e.description})]}),a.jsxs(T,{children:[a.jsxs(J,{children:[a.jsx(P,{children:r?"Время":"Duration"}),a.jsx(A,{children:e.duration})]}),a.jsxs(q,{children:[a.jsx(B,{children:r?"Стоимость":"Price"}),a.jsx(E,{children:e.price})]})]})]},e.id))})]})})},I=r.section`
   position: relative;
   padding: 6rem 0;
   background-color: #fffef6;
@@ -264,7 +264,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   @media (min-width: 768px) {
     padding: 8rem 0;
   }
-`,I=r.div`
+`,C=r.div`
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 2rem;
@@ -373,7 +373,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
     border-radius: 50%;
     flex-shrink: 0;
   }
-`,BanyaFeaturesSection=()=>{const{t:e}=n(),i=[{id:"materials",title:e("banya.features.materials.title","Natural Materials"),description:e("banya.features.materials.description","100% natural finish from Siberian wood species"),items:[e("banya.features.materials.items.cedar","Siberian Cedar"),e("banya.features.materials.items.linden","Altai Linden"),e("banya.features.materials.items.birch","Karelian Birch"),e("banya.features.materials.items.coating","Eco-friendly finishes"),e("banya.features.materials.items.aromatherapy","Natural aromatherapy")]},{id:"panoramic",title:e("banya.features.panoramic.title","Panoramic Design"),description:e("banya.features.panoramic.description","Unique architecture with tropical jungle views"),items:[e("banya.features.panoramic.items.area","150 square meters"),e("banya.features.panoramic.items.windows","Panoramic windows"),e("banya.features.panoramic.items.view","Jungle views"),e("banya.features.panoramic.items.lighting","Natural lighting"),e("banya.features.panoramic.items.harmony","Harmony with nature")]},{id:"safety",title:e("banya.features.safety.title","Safety"),description:e("banya.features.safety.description","Compliance with all international safety standards"),items:[e("banya.features.safety.items.fire","Fire safety"),e("banya.features.safety.items.ventilation","Ventilation system"),e("banya.features.safety.items.emergency","Emergency lighting"),e("banya.features.safety.items.medical","Medical assistance"),e("banya.features.safety.items.security","24/7 security")]}];return a.jsx(C,{children:a.jsxs(I,{children:[a.jsx(H,{children:e("banya.features.badge","Best Banya in Phuket")}),a.jsx($,{children:e("banya.features.title_plain","Why Choose Us")}),a.jsx(R,{children:e("banya.features.subtitle","Experience the authentic Russian banya with modern comfort and traditional techniques")}),a.jsx(N,{children:i.map(e=>a.jsxs(O,{children:[a.jsx(M,{children:e.title}),a.jsx(L,{children:e.description}),a.jsx(G,{children:e.items.map((e,i)=>a.jsx(W,{children:e},i))})]},e.id))})]})})},F=r.section`
+`,BanyaFeaturesSection=()=>{const{t:e}=n(),i=[{id:"materials",title:e("banya.features.materials.title","Natural Materials"),description:e("banya.features.materials.description","100% natural finish from Siberian wood species"),items:[e("banya.features.materials.items.cedar","Siberian Cedar"),e("banya.features.materials.items.linden","Altai Linden"),e("banya.features.materials.items.birch","Karelian Birch"),e("banya.features.materials.items.coating","Eco-friendly finishes"),e("banya.features.materials.items.aromatherapy","Natural aromatherapy")]},{id:"panoramic",title:e("banya.features.panoramic.title","Panoramic Design"),description:e("banya.features.panoramic.description","Unique architecture with tropical jungle views"),items:[e("banya.features.panoramic.items.area","150 square meters"),e("banya.features.panoramic.items.windows","Panoramic windows"),e("banya.features.panoramic.items.view","Jungle views"),e("banya.features.panoramic.items.lighting","Natural lighting"),e("banya.features.panoramic.items.harmony","Harmony with nature")]},{id:"safety",title:e("banya.features.safety.title","Safety"),description:e("banya.features.safety.description","Compliance with all international safety standards"),items:[e("banya.features.safety.items.fire","Fire safety"),e("banya.features.safety.items.ventilation","Ventilation system"),e("banya.features.safety.items.emergency","Emergency lighting"),e("banya.features.safety.items.medical","Medical assistance"),e("banya.features.safety.items.security","24/7 security")]}];return a.jsx(I,{children:a.jsxs(C,{children:[a.jsx(H,{children:e("banya.features.badge","Best Banya in Phuket")}),a.jsx($,{children:e("banya.features.title_plain","Why Choose Us")}),a.jsx(R,{children:e("banya.features.subtitle","Experience the authentic Russian banya with modern comfort and traditional techniques")}),a.jsx(N,{children:i.map(e=>a.jsxs(O,{children:[a.jsx(M,{children:e.title}),a.jsx(L,{children:e.description}),a.jsx(G,{children:e.items.map((e,i)=>a.jsx(W,{children:e},i))})]},e.id))})]})})},F=r.section`
   position: relative;
   padding: 6rem 0;
   background-color: #fffef6;
@@ -597,7 +597,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   &:hover {
     background: rgba(255, 255, 255, 0.2);
   }
-`,BanyaGallerySection=()=>{const{t:i}=n(),[t,r]=e.useState(!1),[s,o]=e.useState(0),l=[{id:1,src:"/images/banya/gallery/banya-steam-room.jpg",title:i("banya.gallery.steam_room","Steam Room")},{id:2,src:"/images/banya/gallery/banya-rest-area.jpg",title:i("banya.gallery.rest_area","Rest Area")},{id:3,src:"/images/banya/gallery/banya-cold-pool.jpg",title:i("banya.gallery.cold_pool","Cold Pool")},{id:4,src:"/images/banya/gallery/banya-hot-stones.jpg",title:i("banya.gallery.hot_stones","Hot Stones")},{id:5,src:"/images/banya/gallery/banya-tea-ceremony.jpg",title:i("banya.gallery.tea_ceremony","Tea Ceremony")},{id:6,src:"/images/banya/gallery/banya-lounge.jpg",title:i("banya.gallery.lounge","Lounge")}],c=e.useCallback(e=>{o(e),r(!0),document.body.style.overflow="hidden"},[]),m=e.useCallback(()=>{r(!1),document.body.style.overflow="auto"},[]),d=e.useCallback(e=>{o(a=>"next"===e?(a+1)%l.length:(a-1+l.length)%l.length)},[l.length]);return e.useEffect(()=>()=>{document.body.style.overflow=""},[]),e.useEffect(()=>{if(!t)return;const handleKey=e=>{"Escape"===e.key&&m(),"ArrowLeft"===e.key&&d("prev"),"ArrowRight"===e.key&&d("next")};return document.addEventListener("keydown",handleKey),()=>document.removeEventListener("keydown",handleKey)},[t,m,d]),a.jsxs(F,{id:"banya-gallery",children:[a.jsxs(U,{children:[a.jsx(D,{children:i("banya.gallery.badge","Gallery")}),a.jsx(Y,{children:i("banya.gallery.title","Gallery")}),a.jsx(K,{children:i("banya.gallery.subtitle","The atmosphere of an authentic Russian banya")}),a.jsx(V,{children:l.map((e,i)=>a.jsxs(Q,{onClick:()=>c(i),children:[a.jsx(Z,{src:e.src,alt:e.title,loading:"lazy"}),a.jsx(X,{children:a.jsx(ee,{children:e.title})})]},e.id))})]}),t&&l[s]&&a.jsxs(ae,{onClick:m,children:[a.jsx(le,{onClick:m,children:"✕"}),a.jsxs(ie,{onClick:e=>e.stopPropagation(),children:[l.length>1&&a.jsx(oe,{className:"prev",onClick:()=>d("prev"),children:"‹"}),a.jsx(te,{src:l[s].src,alt:l[s].title}),l.length>1&&a.jsx(oe,{className:"next",onClick:()=>d("next"),children:"›"}),a.jsxs(re,{children:[a.jsx(ne,{children:l[s].title}),a.jsxs(se,{children:[s+1," / ",l.length]})]})]})]})]})},ce=r.section`
+`,BanyaGallerySection=()=>{const{t:i}=n(),[t,r]=e.useState(!1),[s,o]=e.useState(0),l=[{id:1,src:"/images/banya/gallery/banya-steam-room.jpg",title:i("banya.gallery.steam_room","Steam Room")},{id:2,src:"/images/banya/gallery/banya-rest-area.jpg",title:i("banya.gallery.rest_area","Rest Area")},{id:3,src:"/images/banya/gallery/banya-cold-pool.jpg",title:i("banya.gallery.cold_pool","Cold Pool")},{id:4,src:"/images/banya/gallery/banya-hot-stones.jpg",title:i("banya.gallery.hot_stones","Hot Stones")},{id:5,src:"/images/banya/gallery/banya-tea-ceremony.jpg",title:i("banya.gallery.tea_ceremony","Tea Ceremony")},{id:6,src:"/images/banya/gallery/banya-lounge.jpg",title:i("banya.gallery.lounge","Lounge")}],m=e.useCallback(e=>{o(e),r(!0),document.body.style.overflow="hidden"},[]),c=e.useCallback(()=>{r(!1),document.body.style.overflow="auto"},[]),d=e.useCallback(e=>{o(a=>"next"===e?(a+1)%l.length:(a-1+l.length)%l.length)},[l.length]);return e.useEffect(()=>()=>{document.body.style.overflow=""},[]),e.useEffect(()=>{if(!t)return;const handleKey=e=>{"Escape"===e.key&&c(),"ArrowLeft"===e.key&&d("prev"),"ArrowRight"===e.key&&d("next")};return document.addEventListener("keydown",handleKey),()=>document.removeEventListener("keydown",handleKey)},[t,c,d]),a.jsxs(F,{id:"banya-gallery",children:[a.jsxs(U,{children:[a.jsx(D,{children:i("banya.gallery.badge","Gallery")}),a.jsx(Y,{children:i("banya.gallery.title","Gallery")}),a.jsx(K,{children:i("banya.gallery.subtitle","The atmosphere of an authentic Russian banya")}),a.jsx(V,{children:l.map((e,i)=>a.jsxs(Q,{onClick:()=>m(i),children:[a.jsx(Z,{src:e.src,alt:e.title,loading:"lazy"}),a.jsx(X,{children:a.jsx(ee,{children:e.title})})]},e.id))})]}),t&&l[s]&&a.jsxs(ae,{onClick:c,children:[a.jsx(le,{onClick:c,children:"✕"}),a.jsxs(ie,{onClick:e=>e.stopPropagation(),children:[l.length>1&&a.jsx(oe,{className:"prev",onClick:()=>d("prev"),children:"‹"}),a.jsx(te,{src:l[s].src,alt:l[s].title}),l.length>1&&a.jsx(oe,{className:"next",onClick:()=>d("next"),children:"›"}),a.jsxs(re,{children:[a.jsx(ne,{children:l[s].title}),a.jsxs(se,{children:[s+1," / ",l.length]})]})]})]})]})},me=r.section`
   position: relative;
   padding: 6rem 0;
   background-color: #133238;
@@ -626,7 +626,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
     background: rgba(0, 0, 0, 0.4);
     z-index: 0;
   }
-`,me=r.div`
+`,ce=r.div`
   position: relative;
   z-index: 1;
   max-width: 800px;
@@ -708,7 +708,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
     border-color: rgba(255, 254, 246, 0.15);
     background: rgba(255, 254, 246, 0.08);
   }
-`,be=r.h4`
+`,ue=r.h4`
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 0.85rem;
   font-weight: 800;
@@ -716,7 +716,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   margin: 0 0 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-`,ue=r.p`
+`,be=r.p`
   font-family: 'Jost', sans-serif;
   font-size: 0.9rem;
   color: rgba(255, 254, 246, 0.5);
@@ -775,7 +775,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
     border-color: rgba(255, 254, 246, 0.5);
     color: #fffef6;
   }
-`,BanyaBookingSection=()=>{const{t:e}=n(),handleWhatsAppClick=()=>{const a=e("common.phone_number","+66 62 480 5877"),i=encodeURIComponent(e("common.whatsapp_messages.book_banya","Hello! I would like to book the Russian Banya"));window.open(`https://wa.me/${a.replace(/\D/g,"")}?text=${i}`,"_blank")},i=[{title:e("banya.booking.contact.whatsapp.title","WhatsApp"),value:e("banya.booking.contact.whatsapp.value","Book via WhatsApp"),action:handleWhatsAppClick},{title:e("banya.booking.contact.location.title","Location"),value:e("banya.booking.contact.location.value","Kathu, Phuket"),action:()=>{window.open("https://maps.app.goo.gl/h7PzpHpBeurg7eK18","_blank")}},{title:e("banya.booking.contact.hours.title","Hours"),value:e("banya.booking.contact.hours.value","17:00 - 22:00"),action:null}];return a.jsx(ce,{children:a.jsxs(me,{children:[a.jsx(de,{children:e("banya.booking.badge","Booking")}),a.jsx(pe,{children:e("banya.booking.cta.title_plain","Book the Banya")}),a.jsx(ge,{children:e("banya.booking.cta.description","Contact us for detailed information about prices, availability and features of our banya programs")}),a.jsx(fe,{children:i.map((e,i)=>a.jsxs(he,{$clickable:!!e.action,onClick:e.action,children:[a.jsx(be,{children:e.title}),a.jsx(ue,{children:e.value})]},i))}),a.jsxs(ye,{children:[a.jsx(xe,{onClick:handleWhatsAppClick,children:e("banya.booking.book_online_button","Book Online")}),a.jsx(we,{onClick:()=>{const a=e("common.phone_number","+66 62 480 5877");window.open(`tel:${a}`,"_self")},children:e("banya.booking.call_now_button","Call Now")})]})]})})},ve=r.section`
+`,BanyaBookingSection=()=>{const{t:e}=n(),handleWhatsAppClick=()=>{const a=e("common.phone_number","+66 62 480 5877"),i=encodeURIComponent(e("common.whatsapp_messages.book_banya","Hello! I would like to book the Russian Banya"));window.open(`https://wa.me/${a.replace(/\D/g,"")}?text=${i}`,"_blank")},i=[{title:e("banya.booking.contact.whatsapp.title","WhatsApp"),value:e("banya.booking.contact.whatsapp.value","Book via WhatsApp"),action:handleWhatsAppClick},{title:e("banya.booking.contact.location.title","Location"),value:e("banya.booking.contact.location.value","Kathu, Phuket"),action:()=>{window.open("https://maps.app.goo.gl/h7PzpHpBeurg7eK18","_blank")}},{title:e("banya.booking.contact.hours.title","Hours"),value:e("banya.booking.contact.hours.value","17:00 - 22:00"),action:null}];return a.jsx(me,{children:a.jsxs(ce,{children:[a.jsx(de,{children:e("banya.booking.badge","Booking")}),a.jsx(pe,{children:e("banya.booking.cta.title_plain","Book the Banya")}),a.jsx(ge,{children:e("banya.booking.cta.description","Contact us for detailed information about prices, availability and features of our banya programs")}),a.jsx(fe,{children:i.map((e,i)=>a.jsxs(he,{$clickable:!!e.action,onClick:e.action,children:[a.jsx(ue,{children:e.title}),a.jsx(be,{children:e.value})]},i))}),a.jsxs(ye,{children:[a.jsx(xe,{onClick:handleWhatsAppClick,children:e("banya.booking.book_online_button","Book Online")}),a.jsx(we,{onClick:()=>{const a=e("common.phone_number","+66 62 480 5877");window.open(`tel:${a}`,"_self")},children:e("banya.booking.call_now_button","Call Now")})]})]})})},ve=r.section`
   position: relative;
   padding: 6rem 0;
   background-color: #fffef6;
@@ -834,7 +834,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
     font-size: 0.95rem;
     margin-bottom: 3rem;
   }
-`,Je=r.div`
+`,_e=r.div`
   display: flex;
   flex-direction: column;
 `,Te=r.div`
@@ -843,7 +843,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   &:first-child {
     border-top: 1px solid rgba(19, 50, 56, 0.08);
   }
-`,_e=r.button`
+`,Je=r.button`
   width: 100%;
   display: flex;
   align-items: center;
@@ -916,7 +916,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   padding-bottom: 1.75rem;
   transform: ${e=>e.$isOpen?"translateY(0)":"translateY(-8px)"};
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-`,BanyaFAQSection=()=>{const{t:i}=n(),[t,r]=e.useState(null),s=[{question:i("banya.faq.questions.panoramic.question","What's special about the panoramic banya?"),answer:i("banya.faq.questions.panoramic.answer","Our banya is unique with several features: 150 square meters with panoramic jungle windows, built from Siberian cedar and Altai linden - premium natural materials. It's the only panoramic Russian banya in Phuket where you can enjoy traditional banya rituals with tropical nature views.")},{question:i("banya.faq.questions.procedures.question","What procedures are included in the banya ritual?"),answer:i("banya.faq.questions.procedures.answer","Depending on your chosen program you'll receive: classic banya ritual with birch brooms, aromatherapy with essential oils, herbal infusions and teas, option to order massage in the steam room, and personal accompaniment by a master attendant for VIP programs.")},{question:i("banya.faq.questions.materials.question","What materials is the banya built from?"),answer:i("banya.faq.questions.materials.answer","The banya is built exclusively from natural eco-friendly materials: Siberian cedar, Altai linden, Karelian birch. All finishes are natural, without chemical additives. Such materials create a special microclimate and provide natural aromatherapy.")}];return a.jsx(ve,{children:a.jsxs(je,{children:[a.jsx(ke,{children:i("banya.faq.badge","Questions & Answers")}),a.jsx(ze,{children:i("banya.faq.title_plain","Frequently Asked Questions")}),a.jsx(Se,{children:i("banya.faq.subtitle","Answers to the most popular questions about our banya")}),a.jsx(Je,{children:s.map((e,i)=>a.jsxs(Te,{children:[a.jsxs(_e,{onClick:()=>(e=>{r(t===e?null:e)})(i),children:[a.jsx(Pe,{children:e.question}),a.jsx(Ae,{$isOpen:t===i})]}),a.jsx(qe,{$isOpen:t===i,children:a.jsx("div",{children:a.jsx(Be,{$isOpen:t===i,children:e.answer})})})]},i))})]})})},Ee=r.section`
+`,BanyaFAQSection=()=>{const{t:i}=n(),[t,r]=e.useState(null),s=[{question:i("banya.faq.questions.panoramic.question","What's special about the panoramic banya?"),answer:i("banya.faq.questions.panoramic.answer","Our banya is unique with several features: 150 square meters with panoramic jungle windows, built from Siberian cedar and Altai linden - premium natural materials. It's the only panoramic Russian banya in Phuket where you can enjoy traditional banya rituals with tropical nature views.")},{question:i("banya.faq.questions.procedures.question","What procedures are included in the banya ritual?"),answer:i("banya.faq.questions.procedures.answer","Depending on your chosen program you'll receive: classic banya ritual with birch brooms, aromatherapy with essential oils, herbal infusions and teas, option to order massage in the steam room, and personal accompaniment by a master attendant for VIP programs.")},{question:i("banya.faq.questions.materials.question","What materials is the banya built from?"),answer:i("banya.faq.questions.materials.answer","The banya is built exclusively from natural eco-friendly materials: Siberian cedar, Altai linden, Karelian birch. All finishes are natural, without chemical additives. Such materials create a special microclimate and provide natural aromatherapy.")}];return a.jsx(ve,{children:a.jsxs(je,{children:[a.jsx(ke,{children:i("banya.faq.badge","Questions & Answers")}),a.jsx(ze,{children:i("banya.faq.title_plain","Frequently Asked Questions")}),a.jsx(Se,{children:i("banya.faq.subtitle","Answers to the most popular questions about our banya")}),a.jsx(_e,{children:s.map((e,i)=>a.jsxs(Te,{children:[a.jsxs(Je,{onClick:()=>(e=>{r(t===e?null:e)})(i),children:[a.jsx(Pe,{children:e.question}),a.jsx(Ae,{$isOpen:t===i})]}),a.jsx(qe,{$isOpen:t===i,children:a.jsx("div",{children:a.jsx(Be,{$isOpen:t===i,children:e.answer})})})]},i))})]})})},Ee=r.section`
   position: relative;
   padding: 6rem 0;
   background-color: #fffef6;
@@ -924,7 +924,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   @media (min-width: 768px) {
     padding: 8rem 0;
   }
-`,Ce=r.div`
+`,Ie=r.div`
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 2rem;
@@ -932,7 +932,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   @media (max-width: 768px) {
     padding: 0 1.25rem;
   }
-`,Ie=r.div`
+`,Ce=r.div`
   font-family: 'Jost', sans-serif;
   font-size: 0.8rem;
   font-weight: 400;
@@ -959,31 +959,51 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   letter-spacing: -0.02em;
   color: #133238;
   text-transform: uppercase;
-  margin: 0 0 4rem;
+  margin: 0 0 1.25rem;
   max-width: 800px;
 `,$e=r.div`
+  font-family: 'Jost', sans-serif;
+  font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+  line-height: 1.5;
+  color: rgba(19, 50, 56, 0.65);
+  margin: 0 0 3rem;
+  max-width: 720px;
+
+  strong {
+    font-weight: 600;
+    color: #133238;
+    letter-spacing: 0.02em;
+  }
+
+  @media (min-width: 768px) {
+    margin-bottom: 3.5rem;
+  }
+`,Re=r.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem 0;
+  gap: 0;
 
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
     gap: 0 4rem;
   }
-`,Re=r.div`
+`,Ne=r.div`
   display: flex;
   flex-direction: column;
-`,Ne=r.div`
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
+`,Oe=r.span`
+  font-family: 'Jost', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #133238;
-  padding-bottom: 1rem;
-  margin-bottom: 0.25rem;
-  border-bottom: 1.5px solid rgba(19, 50, 56, 0.15);
-`,Oe=r.div`
+  color: #90b3a7;
+  border: 1px solid rgba(144, 179, 167, 0.45);
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+  margin-left: auto;
+  white-space: nowrap;
+  flex-shrink: 0;
+`,Me=r.div`
   display: flex;
   align-items: baseline;
   gap: 1.5rem;
@@ -998,7 +1018,7 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
     gap: 1rem;
     padding: 1.25rem 0;
   }
-`,Me=r.span`
+`,Le=r.span`
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   font-weight: 800;
@@ -1010,15 +1030,15 @@ import{r as e,j as a}from"./react-core-DWAaPJsY.js";import{P as i}from"./PageScr
   @media (max-width: 480px) {
     min-width: 65px;
   }
-`,Le=r.span`
+`,Ge=r.span`
   font-family: 'Jost', sans-serif;
   font-size: 1.25rem;
   color: rgba(19, 50, 56, 0.25);
   flex-shrink: 0;
-`,Ge=r.span`
+`,We=r.span`
   font-family: 'Jost', sans-serif;
   font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 400;
   color: rgba(19, 50, 56, 0.6);
   letter-spacing: 0.02em;
-`,We=e.memo(()=>{const{t:e}=n(),i=e("banya.steam_schedule.groups",{returnObjects:!0}),t=Array.isArray(i)?i:[],renderItem=(e,i)=>a.jsxs(Oe,{children:[a.jsx(Me,{children:e.time}),a.jsx(Le,{children:"—"}),a.jsx(Ge,{children:e.name})]},i);return a.jsx(Ee,{children:a.jsxs(Ce,{children:[a.jsx(Ie,{children:e("banya.steam_schedule.overline","Weekly Schedule")}),a.jsx(He,{children:e("banya.steam_schedule.title","Steam Sessions")}),a.jsx($e,{children:t.map((e,i)=>a.jsxs(Re,{children:[a.jsx(Ne,{children:e.days}),Array.isArray(e.sessions)&&e.sessions.map(renderItem)]},i))})]})})}),BanyaPage=()=>{const{t:e}=n();return a.jsxs(a.Fragment,{children:[a.jsx(t,{titleKey:"page_titles.banya",description:e("banya.hero.subtitle","Traditional Russian banya experience"),keywords:"KAIF banya, Russian sauna, traditional banya, steam bath, Phuket",ogImage:"/images/banya/panoramic.jpg"}),a.jsx(i,{}),a.jsx(h,{}),a.jsx(We,{}),a.jsx(s,{image:"/images/banya/parallax2.jpg"}),a.jsx(BanyaServicesSection,{}),a.jsx(s,{}),a.jsx(BanyaGallerySection,{}),a.jsx(BanyaFeaturesSection,{}),a.jsx(BanyaFAQSection,{}),a.jsx(BanyaBookingSection,{})]})};export{BanyaPage as default};
+`,Fe=e.memo(()=>{const{t:e}=n(),i=e("banya.steam_schedule.groups",{returnObjects:!0}),t=Array.isArray(i)?i:[],r=t.find(e=>Array.isArray(e.sessions)&&e.sessions.length>=10),s=t.find(e=>e!==r&&Array.isArray(e.sessions)),o=(null==r?void 0:r.sessions)||[],l=new Set(((null==s?void 0:s.sessions)||[]).map(e=>e.time)),m=e("banya.steam_schedule.early_slot_badge","Fri – Sun only"),c=Math.ceil(o.length/2),d=o.slice(0,c),p=o.slice(c),renderItem=(e,i)=>{const t=!l.has(e.time);return a.jsxs(Me,{children:[a.jsx(Le,{children:e.time}),a.jsx(Ge,{children:"—"}),a.jsx(We,{children:e.name}),t&&a.jsx(Oe,{children:m})]},i)};return a.jsx(Ee,{children:a.jsxs(Ie,{children:[a.jsx(Ce,{children:e("banya.steam_schedule.overline","Weekly Schedule")}),a.jsx(He,{children:e("banya.steam_schedule.title","Steam Sessions")}),a.jsx($e,{dangerouslySetInnerHTML:{__html:e("banya.steam_schedule.note","<strong>Mon – Thu</strong> — sessions from 15:00 · <strong>Fri – Sun</strong> — sessions from 12:00")}}),a.jsxs(Re,{children:[a.jsx(Ne,{children:d.map(renderItem)}),a.jsx(Ne,{children:p.map(renderItem)})]})]})})}),BanyaPage=()=>{const{t:e}=n();return a.jsxs(a.Fragment,{children:[a.jsx(t,{titleKey:"page_titles.banya",description:e("banya.hero.subtitle","Traditional Russian banya experience"),keywords:"KAIF banya, Russian sauna, traditional banya, steam bath, Phuket",ogImage:"/images/banya/panoramic.jpg"}),a.jsx(i,{}),a.jsx(h,{}),a.jsx(Fe,{}),a.jsx(s,{image:"/images/banya/parallax2.jpg"}),a.jsx(BanyaServicesSection,{}),a.jsx(s,{}),a.jsx(BanyaGallerySection,{}),a.jsx(BanyaFeaturesSection,{}),a.jsx(BanyaFAQSection,{}),a.jsx(BanyaBookingSection,{})]})};export{BanyaPage as default};
