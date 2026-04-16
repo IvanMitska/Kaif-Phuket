@@ -110,35 +110,6 @@ const rawEvents = [
     whatsappMessage: "Hello! I want to join Women's Friday at KAIF on 24 April"
   },
   {
-    slug: 'songkran-festival',
-    title: 'Songkran Festival',
-    hook: '3 Days · 3 Different Vibes',
-    date: { day: '13–16', month: 'APR', full: '13–16 April 2026' },
-    location: 'KAIF',
-    image: '/images/events/songkran-festival.png',
-    shortDescription: 'Three days of Songkran at KAIF — 1+1 Day Pass, restaurant-credit deposits, ice bath challenges and a banya finale.',
-    longDescription:
-      'Celebrate Thai New Year with us. Over three days we pack training, relaxation and tradition into one festival: bring a friend on the first day, dive into full access with restaurant credit on days two and three, and close everything out with ice bath competitions and a tea ceremony in our panoramic Russian banya.',
-    schedule: [
-      {
-        date: '13 April',
-        title: 'Day Pass 1+1',
-        description: 'Bring a friend — pay for one, both get full access. Train, steam and relax together.'
-      },
-      {
-        date: '14–15 April',
-        title: 'Day Pass 590 THB + Deposit 590 THB',
-        description: 'Day Pass 590 THB plus a 590 THB deposit fully redeemable on the restaurant menu. Train hard, feast harder.'
-      },
-      {
-        date: '16 April',
-        title: 'Banya Day Experience',
-        description: 'Ice bath competitions, a traditional tea ceremony and group steam sessions in our panoramic Russian banya.'
-      }
-    ],
-    whatsappMessage: 'Hello! I want to join Songkran Festival at KAIF (13-16 April)'
-  },
-  {
     slug: 'english-breakfast',
     title: 'English Breakfast',
     hook: 'Every Friday · English Practice · Community',
