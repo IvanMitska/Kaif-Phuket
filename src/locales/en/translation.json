@@ -6,6 +6,7 @@
     "sports": "KAIF Sports | Modern Fitness and Martial Arts",
     "banya": "KAIF Banya | Traditional Russian Sauna Experience",
     "contacts": "KAIF Contacts | Get in Touch with Us",
+    "services": "KAIF Services & Prices | Full Price List",
     "sbp_pay": "SBP Payment | KAIF"
   },
   "sbp_pay": {
@@ -72,7 +73,84 @@
     "banya": "Russian Banya",
     "about": "About Us",
     "promotions": "Promotions",
-    "contacts": "Contacts"
+    "contacts": "Contacts",
+    "services": "Services & Prices"
+  },
+  "services_page": {
+    "overline": "Price List",
+    "title": "All Services & Prices",
+    "subtitle": "Choose a category to see the full list of services and prices.",
+    "meta_description": "Full KAIF price list — memberships, banya, spa, massage, beauty, laser hair removal.",
+    "duration": "Duration",
+    "price": "Price",
+    "min": "min",
+    "per_visit": "per visit",
+    "duration_label": "duration",
+    "from_label": "From",
+    "features": {
+      "multi_duration": "Multiple durations available"
+    },
+    "banya_groups": {
+      "classic": "Classic",
+      "intense": "Intense",
+      "signature": "Signature"
+    },
+    "massage_groups": {
+      "relax": "Relaxing",
+      "therapeutic": "Therapeutic",
+      "express": "Express"
+    },
+    "hair_groups": {
+      "cuts": "Cuts",
+      "coloring": "Colouring",
+      "care": "Care"
+    },
+    "laser_groups": {
+      "complex3": "Pack • 3",
+      "complex5": "Pack • 5"
+    },
+    "nav": {
+      "memberships": "Memberships",
+      "banya": "Banya",
+      "massage": "Massage",
+      "hair": "Hair",
+      "nails": "Nails",
+      "brows": "Brows & Lashes",
+      "laser": "Laser & Endosphere"
+    },
+    "overlines": {
+      "memberships": "Memberships",
+      "banya": "Banya",
+      "massage": "Massage",
+      "hair": "Hair Care",
+      "nails": "Manicure & Pedicure",
+      "brows": "Brows & Lashes",
+      "laser": "Laser & Endosphere"
+    },
+    "titles": {
+      "memberships": "Club Cards & Memberships",
+      "banya": "Banya Rituals",
+      "massage": "Massage & Body Care",
+      "hair": "Hair Care",
+      "nails": "Manicure, Pedicure & PRO Care",
+      "brows": "Extensions, Lamination, Tinting",
+      "laser": "Laser Hair Removal & Endosphere"
+    },
+    "subtitles": {
+      "memberships": "Flexible cards for gym, pool, banya and group training.",
+      "banya": "Individual steam sessions designed by master parilshchiks.",
+      "massage": "Relaxing, therapeutic and sports programs.",
+      "hair": "Cuts, colouring and restoration by top masters.",
+      "nails": "From classic treatments to medical pedicure.",
+      "brows": "Expressive eyes and perfectly shaped brows.",
+      "laser": "Advanced equipment procedures and bundled packages."
+    },
+    "cta": {
+      "title": "Can't find the right service?",
+      "subtitle": "Message us — we'll help you pick the treatment or membership that fits your goals.",
+      "button": "Get in Touch",
+      "source": "Services consultation"
+    }
   },
   "home": {
     "hero": {
@@ -2994,6 +3072,7 @@
     "title": "Memberships & Pricing",
     "subtitle": "Choose the perfect plan for your goals",
     "select_plan": "Select Plan",
+    "view_all_prices": "View all services & prices",
     "mostPopular": "Most Popular",
     "categories": {
       "clubAccess": "Club Access",

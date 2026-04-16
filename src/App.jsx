@@ -46,6 +46,7 @@ const TermsPage = lazy(() => import('./pages/TermsPage'));
 const SurveyPage = lazy(() => import('./pages/SurveyPage'));
 const EventsPage = lazy(() => import('./pages/EventsPage'));
 const EventDetailPage = lazy(() => import('./pages/EventDetailPage'));
+const ServicesPage = lazy(() => import('./pages/ServicesPage'));
 // const SbpPayPage = lazy(() => import('./pages/SbpPayPage'));
 // const PaymentPage = lazy(() => import('./pages/PaymentPage'));
 
@@ -72,6 +73,7 @@ const AppRoutes = () => {
         <Route path="/survey" element={<SurveyPage />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/events/:slug" element={<EventDetailPage />} />
+        <Route path="/services" element={<ServicesPage />} />
         {/* <Route path="/pay" element={<SbpPayPage />} /> */}
         {/* <Route path="/payment" element={<PaymentPage />} /> */}
         <Route path="*" element={<Navigate to="/" replace />} />

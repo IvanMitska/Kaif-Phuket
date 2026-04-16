@@ -14,7 +14,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const isHomePage = location.pathname === '/';
-  const isDarkHeroPage = isHomePage || location.pathname === '/banya' || location.pathname === '/spa' || location.pathname === '/restaurant' || location.pathname === '/sports' || location.pathname === '/contacts';
+  const isDarkHeroPage = isHomePage || location.pathname === '/banya' || location.pathname === '/spa' || location.pathname === '/restaurant' || location.pathname === '/sports' || location.pathname === '/contacts' || location.pathname === '/services';
 
   // Сбрасываем isScrolled при смене страницы и проверяем текущую позицию
   useEffect(() => {
@@ -83,6 +83,11 @@ const Header = () => {
     { path: '/sports', label: t('navigation.sports') },
     { path: '/contacts', label: t('navigation.contacts') }
   ], [t]);
+
+  const menuItems = useMemo(() => [
+    ...navItems,
+    { path: '/services', label: t('navigation.services', 'Услуги и цены') }
+  ], [navItems, t]);
 
   const leftNav = navItems.slice(0, 3);
   const rightNav = navItems.slice(3);
@@ -376,7 +381,7 @@ const Header = () => {
                   alignItems: 'center',
                   gap: '0.1rem'
                 }}>
-                  {navItems.map((item, index) => (
+                  {menuItems.map((item, index) => (
                     <motion.button
                       key={item.path}
                       initial={{ opacity: 0, x: 30 }}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { FaDumbbell, FaSpa, FaSwimmer, FaClock } from 'react-icons/fa';
 import BookingModal from '../booking/BookingModal';
 
@@ -344,13 +345,66 @@ const BookButton = styled.button`
   }
 `;
 
+const SectionFooter = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+
+  @media (max-width: 768px) {
+    margin-top: 2rem;
+  }
+`;
+
+const AllPricesLink = styled.button`
+  font-family: 'Jost', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1rem 2rem;
+  background: transparent;
+  color: #133238;
+  border: 1px solid rgba(19, 50, 56, 0.25);
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+
+  svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &:hover {
+    background: #133238;
+    color: #fffef6;
+    border-color: #133238;
+
+    svg { transform: translateX(4px); }
+  }
+
+  &:active { transform: scale(0.98); }
+`;
+
 // === COMPONENT ===
 
 const PricingSection = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState('dayPass');
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
+
+  const goToAllPrices = () => {
+    navigate('/services');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
 
   const handleBookClick = (plan) => {
     setSelectedPlan(plan);
@@ -653,6 +707,15 @@ const PricingSection = () => {
             </PricingCard>
           ))}
         </PricingGrid>
+
+        <SectionFooter>
+          <AllPricesLink onClick={goToAllPrices}>
+            {t('pricing.view_all_prices', 'Все услуги и цены')}
+            <svg viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </AllPricesLink>
+        </SectionFooter>
       </ContentWrapper>
 
       <BookingModal
