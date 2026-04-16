@@ -5,7 +5,15 @@ import { useTranslation } from 'react-i18next';
 // Cloudinary video URLs - optimized for streaming
 const VIDEO_DESKTOP = 'https://res.cloudinary.com/dgkymvotb/video/upload/f_auto,q_60,br_3000k/a5af7faa-2bd7-4340-9cab-02441b892030_iafcm6.mp4';
 const VIDEO_MOBILE = 'https://res.cloudinary.com/dgkymvotb/video/upload/f_auto,q_50,w_720,br_1500k/d1d565d2-6755-4365-94ad-3e33b179e8bd_yjxf5i.mp4';
-const POSTER_URL = 'https://res.cloudinary.com/dgkymvotb/video/upload/q_70,so_0,f_auto/a5af7faa-2bd7-4340-9cab-02441b892030_iafcm6.jpg';
+const POSTER_URL = 'https://res.cloudinary.com/dgkymvotb/video/upload/q_auto,w_1920,c_fill,so_0,f_auto/a5af7faa-2bd7-4340-9cab-02441b892030_iafcm6.jpg';
+const POSTER_MOBILE_URL = 'https://res.cloudinary.com/dgkymvotb/video/upload/q_auto,w_768,c_fill,so_0,f_auto/a5af7faa-2bd7-4340-9cab-02441b892030_iafcm6.jpg';
+
+// Синхронное определение мобильного до первого рендера —
+// иначе браузер сначала качает desktop-видео, потом mobile (двойная загрузка).
+const detectMobile = () => {
+  if (typeof window === 'undefined') return false;
+  return window.matchMedia('(max-width: 768px)').matches;
+};
 
 // Основной контейнер - с poster фоном чтобы не было черного экрана
 const HeroContainer = styled.section`
@@ -19,7 +27,7 @@ const HeroContainer = styled.section`
   align-items: center;
   color: white;
   overflow: hidden;
-  background: #000 url(${POSTER_URL}) center/cover no-repeat;
+  background: #000;
 
   @media (max-width: 768px) {
     height: calc(100vh + 60px);
@@ -143,14 +151,7 @@ const HeroFullscreen = memo(() => {
   const { t } = useTranslation();
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Определяем мобильное устройство
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
-    checkMobile();
-    // Не добавляем resize listener - видео URL определяется один раз
-  }, []);
+  const [isMobile] = useState(detectMobile);
 
   // Функция запуска видео
   const playVideo = () => {
@@ -214,8 +215,8 @@ const HeroFullscreen = memo(() => {
           muted
           loop
           playsInline
-          preload="auto"
-          poster={POSTER_URL}
+          preload="metadata"
+          poster={isMobile ? POSTER_MOBILE_URL : POSTER_URL}
           onClick={playVideo}
         />
       </VideoBackground>

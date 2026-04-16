@@ -6,9 +6,11 @@ import PageHead from '../components/layout/PageHead';
 
 // Импортируем только критический hero компонент
 import HeroFullscreen from '../components/home/HeroFullscreen';
+// ExclusiveZones — первая секция после hero. Загружаем в основной бандл,
+// чтобы при скролле не было round-trip за чанком → сразу стартует загрузка картинок.
+import ExclusiveZones from '../components/home/ExclusiveZones';
 
 // Lazy loading для всех некритических компонентов
-const ExclusiveZones = lazy(() => import('../components/home/ExclusiveZones'));
 const EventsSection = lazy(() => import('../components/home/EventsSection'));
 const PricingSection = lazy(() => import('../components/home/PricingSection'));
 
@@ -82,9 +84,7 @@ const HomePage = memo(() => {
       {/* Полноэкранная секция героя - единственный критический компонент */}
       <HeroFullscreen />
 
-      <Suspense fallback={<SectionLoader />}>
-        <ExclusiveZones />
-      </Suspense>
+      <ExclusiveZones />
 
       <Suspense fallback={<SectionLoader />}>
         <EventsSection />

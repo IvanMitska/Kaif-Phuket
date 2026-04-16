@@ -243,103 +243,53 @@ const BookButton = styled.a`
 const ExclusiveZones = () => {
   const { t } = useTranslation();
 
-  const zones = useMemo(() => [
-    {
-      id: 'banya',
-      name: t('zones.relax.banya.name'),
-      description: t('zones.relax.banya.description'),
-      image: '/images/zones/banya.jpg',
-      imageWebp: '/images-webp/zones/banya.webp',
-      imageSmall: '/images-webp/small/zones/banya.webp',
-      imageMedium: '/images-webp/medium/zones/banya.webp',
-      width: 1920,
-      height: 1440,
-      path: '/banya',
-      bookMessage: 'Hello! I would like to book the Russian Banya at KAIF'
-    },
-    {
-      id: 'restaurant',
-      name: t('zones.relax.restaurant.name'),
-      description: t('zones.relax.restaurant.description'),
-      image: '/images/zones/restaurant.jpg',
-      imageWebp: '/images-webp/zones/restaurant.webp',
-      imageSmall: '/images-webp/small/zones/restaurant.webp',
-      imageMedium: '/images-webp/medium/zones/restaurant.webp',
-      width: 1920,
-      height: 1440,
-      path: '/restaurant',
-      bookMessage: 'Hello! I would like to book a table at KAIF Restaurant'
-    },
-    {
-      id: 'spa',
-      name: t('zones.relax.spa.name'),
-      description: t('zones.relax.spa.description'),
-      image: '/images/zones/spa.jpg',
-      imageWebp: '/images-webp/zones/spa.webp',
-      imageSmall: '/images-webp/small/zones/spa.webp',
-      imageMedium: '/images-webp/medium/zones/spa.webp',
-      width: 1920,
-      height: 1280,
-      path: '/spa',
-      bookMessage: 'Hello! I would like to book a SPA treatment at KAIF'
-    },
-    {
-      id: 'pool',
-      name: t('zones.activity.pool.name'),
-      description: t('zones.activity.pool.description'),
-      image: '/images/zones/pool.jpg',
-      imageWebp: '/images-webp/zones/pool.webp',
-      imageSmall: '/images-webp/small/zones/pool.webp',
-      imageMedium: '/images-webp/medium/zones/pool.webp',
-      width: 1920,
-      height: 1440,
-      path: '/sports/swimming-pool',
-      bookMessage: 'Hello! I would like to book a swimming session at KAIF'
-    },
-    {
-      id: 'fitness',
-      name: t('zones.activity.fitness.name'),
-      description: t('zones.activity.fitness.description'),
-      image: '/images/zones/fitness.jpg',
-      imageWebp: '/images-webp/zones/fitness.webp',
-      imageSmall: '/images-webp/small/zones/fitness.webp',
-      imageMedium: '/images-webp/medium/zones/fitness.webp',
-      width: 1920,
-      height: 1440,
-      path: '/sports/gym',
-      bookMessage: 'Hello! I would like to book a gym session at KAIF'
-    },
-    {
-      id: 'combat',
-      name: t('zones.activity.combat.name'),
-      description: t('zones.activity.combat.description'),
-      image: '/images/zones/combat.jpg',
-      imageWebp: '/images-webp/zones/combat.webp',
-      imageSmall: '/images-webp/small/zones/combat.webp',
-      imageMedium: '/images-webp/medium/zones/combat.webp',
-      width: 1920,
-      height: 1440,
-      path: '/sports/fight-club',
-      bookMessage: 'Hello! I would like to book a martial arts session at KAIF'
-    }
-  ], [t]);
+  const zones = useMemo(() => {
+    const build = (id, group, width, height, path, bookMessage) => ({
+      id,
+      name: t(`zones.${group}.${id}.name`),
+      description: t(`zones.${group}.${id}.description`),
+      image: `/images/zones/${id}.jpg`,
+      avifXs: `/images-avif/xs/zones/${id}.avif`,
+      avifSmall: `/images-avif/small/zones/${id}.avif`,
+      avifMedium: `/images-avif/medium/zones/${id}.avif`,
+      avifFull: `/images-avif/zones/${id}.avif`,
+      webpXs: `/images-webp/xs/zones/${id}.webp`,
+      webpSmall: `/images-webp/small/zones/${id}.webp`,
+      webpMedium: `/images-webp/medium/zones/${id}.webp`,
+      webpFull: `/images-webp/zones/${id}.webp`,
+      width,
+      height,
+      path,
+      bookMessage,
+    });
+    return [
+      build('banya',      'relax',    1920, 1440, '/banya',                'Hello! I would like to book the Russian Banya at KAIF'),
+      build('restaurant', 'relax',    1920, 1440, '/restaurant',           'Hello! I would like to book a table at KAIF Restaurant'),
+      build('spa',        'relax',    1920, 1280, '/spa',                  'Hello! I would like to book a SPA treatment at KAIF'),
+      build('pool',       'activity', 1920, 1440, '/sports/swimming-pool', 'Hello! I would like to book a swimming session at KAIF'),
+      build('fitness',    'activity', 1920, 1440, '/sports/gym',           'Hello! I would like to book a gym session at KAIF'),
+      build('combat',     'activity', 1920, 1440, '/sports/fight-club',    'Hello! I would like to book a martial arts session at KAIF'),
+    ];
+  }, [t]);
 
-  const renderCard = (zone) => (
+  const renderCard = (zone, index) => {
+    const eager = index < 2;
+    const sizes = '(max-width: 480px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw';
+    const avifSet = `${zone.avifXs} 480w, ${zone.avifSmall} 768w, ${zone.avifMedium} 1024w, ${zone.avifFull} 1920w`;
+    const webpSet = `${zone.webpXs} 480w, ${zone.webpSmall} 768w, ${zone.webpMedium} 1024w, ${zone.webpFull} 1920w`;
+    return (
     <ZoneCard key={zone.id}>
       <ZonePicture>
-        <source
-          type="image/webp"
-          srcSet={`${zone.imageSmall} 768w, ${zone.imageMedium} 1024w, ${zone.imageWebp} 1920w`}
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        />
+        <source type="image/avif" srcSet={avifSet} sizes={sizes} />
+        <source type="image/webp" srcSet={webpSet} sizes={sizes} />
         <img
           src={zone.image}
           alt={zone.name}
-          loading="lazy"
+          loading={eager ? 'eager' : 'lazy'}
           decoding="async"
           width={zone.width}
           height={zone.height}
-          fetchPriority={zone.id === 'banya' ? 'high' : 'low'}
+          fetchPriority={eager ? 'high' : 'low'}
         />
       </ZonePicture>
       <CardContent>
@@ -360,7 +310,8 @@ const ExclusiveZones = () => {
         </ButtonsRow>
       </CardContent>
     </ZoneCard>
-  );
+    );
+  };
 
   return (
     <SectionContainer id="exclusive-zones">
@@ -370,20 +321,20 @@ const ExclusiveZones = () => {
 
         {/* Row 1: Banya (large) + Restaurant (small) */}
         <GridRow>
-          {renderCard(zones[0])}
-          {renderCard(zones[1])}
+          {renderCard(zones[0], 0)}
+          {renderCard(zones[1], 1)}
         </GridRow>
 
         {/* Row 2: Spa (small) + Pool (large) */}
         <GridRow $reverse>
-          {renderCard(zones[2])}
-          {renderCard(zones[3])}
+          {renderCard(zones[2], 2)}
+          {renderCard(zones[3], 3)}
         </GridRow>
 
         {/* Row 3: Gym (large) + Combat (small) */}
         <GridRow>
-          {renderCard(zones[4])}
-          {renderCard(zones[5])}
+          {renderCard(zones[4], 4)}
+          {renderCard(zones[5], 5)}
         </GridRow>
       </ContentWrapper>
     </SectionContainer>
