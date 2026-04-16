@@ -12,6 +12,7 @@
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 
     <!-- Critical inline CSS for instant render -->
     <style>
@@ -32,9 +33,9 @@
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Cormorant+Garamond:wght@300;400;500;600&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
 
-    <!-- Preload critical images -->
-    <link rel="preload" as="image" href="/images-hero-optimized/spa.webp" type="image/webp" fetchpriority="high">
-    <link rel="preload" as="image" href="/images-hero-optimized/spa-mobile.webp" type="image/webp" media="(max-width: 768px)">
+    <!-- Preload critical images: hero video poster (LCP) + logo -->
+    <link rel="preload" as="image" href="https://res.cloudinary.com/dgkymvotb/video/upload/q_auto,w_1920,c_fill,so_0,f_auto/a5af7faa-2bd7-4340-9cab-02441b892030_iafcm6.jpg" fetchpriority="high" media="(min-width: 769px)">
+    <link rel="preload" as="image" href="https://res.cloudinary.com/dgkymvotb/video/upload/q_auto,w_768,c_fill,so_0,f_auto/a5af7faa-2bd7-4340-9cab-02441b892030_iafcm6.jpg" fetchpriority="high" media="(max-width: 768px)">
     <link rel="preload" as="image" href="/images/logos/logo-header.png" fetchpriority="high">
 
     <!-- Google Tag Manager -->
@@ -44,7 +45,7 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5WP6GKBQ');</script>
     <!-- End Google Tag Manager -->
-    <script type="module" crossorigin src="/assets/js/main-D0BkSEnf.js"></script>
+    <script type="module" crossorigin src="/assets/js/main-DT2sjJVn.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/js/react-core-DWAaPJsY.js">
     <link rel="modulepreload" crossorigin href="/assets/js/vendor-scheduler-9xQDShOA.js">
     <link rel="modulepreload" crossorigin href="/assets/js/react-dom-Bb3pWfRT.js">
