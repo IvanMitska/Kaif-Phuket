@@ -1,4 +1,4 @@
-import{r as e,j as t}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-components-BY9Yozyu.js";import{P as i}from"./PageHead-DVihzIO-.js";import{P as s}from"./PageScrollReset-CpzNA0Jq.js";import{e as a}from"./events-DVYtoGCZ.js";import{u as n}from"./i18n-core-DrMVsQFB.js";import{aa as o}from"./vendor-misc-Dpgsgh4W.js";import"./react-helmet-xz8aecK8.js";const l=r.section`
+import{r as e,j as t}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-components-BY9Yozyu.js";import{P as i}from"./PageHead-DVihzIO-.js";import{P as s}from"./PageScrollReset-CpzNA0Jq.js";import{e as a}from"./events-C395q1AA.js";import{u as n}from"./i18n-core-DrMVsQFB.js";import{aa as o}from"./vendor-misc-Dpgsgh4W.js";import"./react-helmet-xz8aecK8.js";const l=r.section`
   position: relative;
   padding: 8rem 0 6rem;
   background-color: #fffef6;
@@ -92,13 +92,14 @@ import{r as e,j as t}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 55%;
   display: block;
   transition: transform 0.5s ease;
 
   ${g}:hover & {
     transform: scale(1.03);
   }
-`,v=r.div`
+`,b=r.div`
   position: absolute;
   bottom: 1rem;
   left: 1rem;
@@ -109,7 +110,7 @@ import{r as e,j as t}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-
   text-align: center;
   min-width: 54px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-`,b=r.div`
+`,v=r.div`
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 1.05rem;
   font-weight: 800;
@@ -166,4 +167,4 @@ import{r as e,j as t}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-
   color: rgba(19, 50, 56, 0.45);
   font-family: 'Jost', sans-serif;
   font-size: 1rem;
-`,P=e.memo(()=>{const{t:e}=n();return t.jsxs(t.Fragment,{children:[t.jsx(i,{titleKey:"page_titles.events",defaultTitle:"KAIF Events | Upcoming Parties, Fights & Festivals",description:"Upcoming events at KAIF Sauna & Spa Phuket: festivals, fight nights, pool parties and banya experiences."}),t.jsx(s,{}),t.jsx(l,{children:t.jsxs(m,{children:[t.jsx(d,{children:e("events.overline","What's On")}),t.jsx(p,{children:e("events.page_title","Events at KAIF")}),t.jsx(c,{children:e("events.page_subtitle","Festivals, fight nights and seasonal experiences — all happening at KAIF.")}),0===a.length?t.jsx(J,{children:e("events.empty.text","Check back soon for new events")}):t.jsx(f,{children:a.map(r=>t.jsxs(g,{to:`/events/${r.slug}`,state:{from:"/events"},children:[t.jsxs(h,{children:[t.jsx(x,{src:r.image,alt:r.title,loading:"lazy"}),t.jsxs(v,{children:[t.jsx(b,{children:r.date.day}),t.jsx(j,{children:r.date.month})]})]}),t.jsxs(u,{children:[t.jsx(w,{children:r.title}),t.jsx(y,{children:r.hook}),t.jsxs(k,{children:[t.jsx("span",{children:e("events.details","Details")}),t.jsx(z,{children:"→"})]})]})]},r.slug))})]})})]})});export{P as default};
+`,P=e.memo(()=>{const{t:e}=n();return t.jsxs(t.Fragment,{children:[t.jsx(i,{titleKey:"page_titles.events",defaultTitle:"KAIF Events | Upcoming Parties, Fights & Festivals",description:"Upcoming events at KAIF Sauna & Spa Phuket: festivals, fight nights, pool parties and banya experiences."}),t.jsx(s,{}),t.jsx(l,{children:t.jsxs(m,{children:[t.jsx(d,{children:e("events.overline","What's On")}),t.jsx(p,{children:e("events.page_title","Events at KAIF")}),t.jsx(c,{children:e("events.page_subtitle","Festivals, fight nights and seasonal experiences — all happening at KAIF.")}),0===a.length?t.jsx(J,{children:e("events.empty.text","Check back soon for new events")}):t.jsx(f,{children:a.map(r=>t.jsxs(g,{to:`/events/${r.slug}`,state:{from:"/events"},children:[t.jsxs(h,{children:[t.jsx(x,{src:r.image,alt:r.title,loading:"lazy"}),t.jsxs(b,{children:[t.jsx(v,{children:r.date.day}),t.jsx(j,{children:r.date.month})]})]}),t.jsxs(u,{children:[t.jsx(w,{children:r.title}),t.jsx(y,{children:r.hook}),t.jsxs(k,{children:[t.jsx("span",{children:e("events.details","Details")}),t.jsx(z,{children:"→"})]})]})]},r.slug))})]})})]})});export{P as default};

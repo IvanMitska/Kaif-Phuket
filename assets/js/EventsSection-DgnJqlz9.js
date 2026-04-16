@@ -1,4 +1,4 @@
-import{j as e}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-components-BY9Yozyu.js";import{e as t}from"./events-DVYtoGCZ.js";import{u as o}from"./i18n-core-DrMVsQFB.js";import{aa as i}from"./vendor-misc-Dpgsgh4W.js";const a=r.section`
+import{j as e}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-components-BY9Yozyu.js";import{e as t}from"./events-C395q1AA.js";import{u as o}from"./i18n-core-DrMVsQFB.js";import{aa as i}from"./vendor-misc-Dpgsgh4W.js";const n=r.section`
   position: relative;
   padding: 6rem 0;
   background-color: #fffef6;
@@ -16,7 +16,7 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-compone
   @media (max-width: 768px) {
     padding: 0 1.25rem;
   }
-`,n=r.div`
+`,a=r.div`
   font-family: 'Jost', sans-serif;
   font-size: 0.8rem;
   font-weight: 400;
@@ -88,16 +88,9 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-compone
   }
 
   @media (min-width: 768px) {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
-    overflow-x: visible;
-    padding: 0;
-    margin: 0;
-  }
-
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
+    padding: 0 2rem 1rem;
+    margin: 0 -2rem;
   }
 `,p=r(i)`
   position: relative;
@@ -114,7 +107,11 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-compone
   scroll-snap-align: start;
 
   @media (min-width: 768px) {
-    flex: none;
+    flex: 0 0 320px;
+  }
+
+  @media (min-width: 1024px) {
+    flex: 0 0 340px;
   }
 
   &:hover {
@@ -127,17 +124,18 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-compone
   aspect-ratio: 3 / 4;
   overflow: hidden;
   background: #1a1a1a;
-`,g=r.img`
+`,x=r.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 55%;
   display: block;
   transition: transform 0.5s ease;
 
   ${p}:hover & {
     transform: scale(1.03);
   }
-`,x=r.div`
+`,g=r.div`
   position: absolute;
   bottom: 1rem;
   left: 1rem;
@@ -207,4 +205,4 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-compone
   color: rgba(19, 50, 56, 0.4);
   font-family: 'Jost', sans-serif;
   font-size: 0.95rem;
-`,EventsSection=()=>{const{t:r}=o();return e.jsx(a,{id:"events",children:e.jsxs(s,{children:[e.jsx(n,{children:r("events.overline","What's On")}),e.jsxs(l,{children:[e.jsx(m,{children:r("events.title","Upcoming Events")}),t.length>0&&e.jsxs(d,{to:"/events",children:[r("events.view_all","View all")," →"]})]}),e.jsx(c,{children:t.length>0?t.map(t=>e.jsxs(p,{to:`/events/${t.slug}`,state:{from:"/"},children:[e.jsxs(f,{children:[e.jsx(g,{src:t.image,alt:t.title,loading:"lazy"}),e.jsxs(x,{children:[e.jsx(h,{children:t.date.day}),e.jsx(b,{children:t.date.month})]})]}),e.jsxs(v,{children:[e.jsx(w,{children:t.title}),e.jsx(u,{children:t.hook}),e.jsxs(j,{children:[e.jsx("span",{children:r("events.details","Details")}),e.jsx(y,{children:"→"})]})]})]},t.slug)):e.jsx(k,{children:r("events.empty.text","Check back soon for new events")})})]})})};export{EventsSection as default};
+`,EventsSection=()=>{const{t:r}=o();return e.jsx(n,{id:"events",children:e.jsxs(s,{children:[e.jsx(a,{children:r("events.overline","What's On")}),e.jsxs(l,{children:[e.jsx(m,{children:r("events.title","Upcoming Events")}),t.length>0&&e.jsxs(d,{to:"/events",children:[r("events.view_all","View all")," →"]})]}),e.jsx(c,{children:t.length>0?t.map(t=>e.jsxs(p,{to:`/events/${t.slug}`,state:{from:"/"},children:[e.jsxs(f,{children:[e.jsx(x,{src:t.image,alt:t.title,loading:"lazy"}),e.jsxs(g,{children:[e.jsx(h,{children:t.date.day}),e.jsx(b,{children:t.date.month})]})]}),e.jsxs(v,{children:[e.jsx(w,{children:t.title}),e.jsx(u,{children:t.hook}),e.jsxs(j,{children:[e.jsx("span",{children:r("events.details","Details")}),e.jsx(y,{children:"→"})]})]})]},t.slug)):e.jsx(k,{children:r("events.empty.text","Check back soon for new events")})})]})})};export{EventsSection as default};
