@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import PageHead from '../components/layout/PageHead';
 import PageScrollReset from '../components/common/PageScrollReset';
-import { getEventBySlug, getEventBookingLink } from '../data/events';
+import { getEventBySlug, getEventBookingLink, localizeEvent } from '../data/events';
 
 const Page = styled.div`
   background-color: #fffef6;
@@ -250,11 +250,13 @@ const ScheduleDescription = styled.p`
 `;
 
 const EventDetailPage = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { slug } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const event = getEventBySlug(slug);
+  const lang = (i18n.language || 'en').split('-')[0];
+  const rawEvent = getEventBySlug(slug);
+  const event = rawEvent ? localizeEvent(rawEvent, lang) : null;
 
   const handleBack = () => {
     const from = location.state?.from;

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import PageHead from '../components/layout/PageHead';
 import PageScrollReset from '../components/common/PageScrollReset';
-import { events } from '../data/events';
+import { events, localizeEvent } from '../data/events';
 
 const Section = styled.section`
   position: relative;
@@ -93,15 +93,46 @@ const Card = styled(Link)`
   border-radius: 14px;
   overflow: hidden;
   background: #fff;
-  border: 1px solid rgba(19, 50, 56, 0.08);
+  border: 1px solid ${(p) => (p.$featured ? '#C9A652' : 'rgba(19, 50, 56, 0.08)')};
+  box-shadow: ${(p) => (p.$featured ? '0 10px 28px rgba(0, 0, 0, 0.12)' : 'none')};
   text-decoration: none;
   color: inherit;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 
   &:hover {
     transform: translateY(-4px);
-    border-color: rgba(19, 50, 56, 0.15);
-    box-shadow: 0 16px 40px rgba(19, 50, 56, 0.08);
+    border-color: ${(p) => (p.$featured ? '#C9A652' : 'rgba(19, 50, 56, 0.15)')};
+    box-shadow: ${(p) =>
+      p.$featured
+        ? '0 18px 40px rgba(0, 0, 0, 0.18)'
+        : '0 16px 40px rgba(19, 50, 56, 0.08)'};
+  }
+`;
+
+const FeaturedBadge = styled.div`
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  background: linear-gradient(135deg, #9B7A30 0%, #C9A652 50%, #E2CB99 100%);
+  color: #1A0A08;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+
+  &::before,
+  &::after {
+    content: '✦';
+    font-size: 0.65rem;
+    color: #4A0910;
   }
 `;
 
@@ -212,7 +243,9 @@ const EmptyState = styled.div`
 `;
 
 const EventsPage = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = (i18n.language || 'en').split('-')[0];
+  const localizedEvents = events.map((e) => localizeEvent(e, lang));
 
   return (
     <>
@@ -234,14 +267,22 @@ const EventsPage = () => {
             )}
           </Subtitle>
 
-          {events.length === 0 ? (
+          {localizedEvents.length === 0 ? (
             <EmptyState>{t('events.empty.text', 'Check back soon for new events')}</EmptyState>
           ) : (
             <Grid>
-              {events.map((event) => (
-                <Card key={event.slug} to={`/events/${event.slug}`} state={{ from: '/events' }}>
+              {localizedEvents.map((event) => (
+                <Card
+                  key={event.slug}
+                  to={`/events/${event.slug}`}
+                  state={{ from: '/events' }}
+                  $featured={event.featured}
+                >
                   <PosterWrapper>
                     <PosterImage src={event.image} alt={event.title} loading="lazy" />
+                    {event.featured && (
+                      <FeaturedBadge>{t('events.featured', 'Featured')}</FeaturedBadge>
+                    )}
                     <DateBadge>
                       <DateDay>{event.date.day}</DateDay>
                       <DateMonth>{event.date.month}</DateMonth>

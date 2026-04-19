@@ -14,7 +14,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const isHomePage = location.pathname === '/';
-  const isDarkHeroPage = isHomePage || location.pathname === '/banya' || location.pathname === '/spa' || location.pathname === '/restaurant' || location.pathname === '/sports' || location.pathname === '/contacts' || location.pathname === '/services';
+  const isDarkHeroPage = isHomePage || location.pathname === '/banya' || location.pathname === '/spa' || location.pathname === '/restaurant' || location.pathname === '/sports' || location.pathname === '/contacts' || location.pathname === '/services' || location.pathname === '/events/miss-kaif-2026';
 
   // Сбрасываем isScrolled при смене страницы и проверяем текущую позицию
   useEffect(() => {

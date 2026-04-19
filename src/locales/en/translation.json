@@ -424,6 +424,7 @@
   "events": {
     "overline": "What's On",
     "title": "Upcoming Events",
+    "featured": "Featured",
     "empty": {
       "title": "No upcoming events",
       "text": "Check back soon for new events"
