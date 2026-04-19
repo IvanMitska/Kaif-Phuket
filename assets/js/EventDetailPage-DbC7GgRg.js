@@ -1,4 +1,4 @@
-import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-components-BY9Yozyu.js";import{P as s}from"./PageHead-DVihzIO-.js";import{P as i}from"./PageScrollReset-CpzNA0Jq.js";import{g as n,a}from"./events-DvtCAtWM.js";import{u as o}from"./i18n-core-DrMVsQFB.js";import{ab as l,a9 as m,a4 as d,a8 as c}from"./vendor-misc-Dpgsgh4W.js";import"./react-helmet-xz8aecK8.js";const f=t.div`
+import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-components-BY9Yozyu.js";import{P as s}from"./PageHead-DVihzIO-.js";import{P as i}from"./PageScrollReset-CpzNA0Jq.js";import{g as n,l as a,a as o}from"./events-C9SxqLj4.js";import{u as l}from"./i18n-core-DrMVsQFB.js";import{ab as m,a9 as d,a4 as c,a8 as f}from"./vendor-misc-Dpgsgh4W.js";import"./react-helmet-xz8aecK8.js";const p=t.div`
   background-color: #fffef6;
   min-height: 100vh;
   padding: 8rem 0 6rem;
@@ -6,7 +6,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
   @media (min-width: 768px) {
     padding: 10rem 0 8rem;
   }
-`,p=t.div`
+`,g=t.div`
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 2rem;
@@ -14,7 +14,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
   @media (max-width: 768px) {
     padding: 0 1.25rem;
   }
-`,g=t.button`
+`,h=t.button`
   font-family: 'Jost', sans-serif;
   font-size: 0.8rem;
   letter-spacing: 0.1em;
@@ -33,7 +33,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
   &:hover {
     color: #133238;
   }
-`,h=t.div`
+`,x=t.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 2.5rem;
@@ -44,7 +44,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
     grid-template-columns: 0.8fr 1fr;
     gap: 4rem;
   }
-`,x=t.div`
+`,u=t.div`
   border-radius: 16px;
   overflow: hidden;
   background: #1a1a1a;
@@ -54,11 +54,11 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
     height: auto;
     display: block;
   }
-`,u=t.div`
+`,b=t.div`
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-`,b=t.div`
+`,j=t.div`
   font-family: 'Jost', sans-serif;
   font-size: 0.75rem;
   font-weight: 500;
@@ -69,7 +69,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
   border: 1px solid rgba(19, 50, 56, 0.15);
   border-radius: 50px;
   width: fit-content;
-`,j=t.h1`
+`,v=t.h1`
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: clamp(2.25rem, 5vw, 3.75rem);
   font-weight: 800;
@@ -78,13 +78,13 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
   color: #133238;
   text-transform: uppercase;
   margin: 0;
-`,v=t.p`
+`,y=t.p`
   font-family: 'Jost', sans-serif;
   font-size: 1.1rem;
   line-height: 1.5;
   color: rgba(19, 50, 56, 0.7);
   margin: 0;
-`,y=t.ul`
+`,w=t.ul`
   list-style: none;
   padding: 0;
   margin: 0.5rem 0;
@@ -105,12 +105,12 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
       font-weight: 600;
     }
   }
-`,w=t.div`
+`,k=t.div`
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
   margin-top: 1rem;
-`,k=t.a`
+`,z=t.a`
   font-family: 'Jost', sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
@@ -127,7 +127,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
     background: #0a1f22;
     transform: translateY(-1px);
   }
-`,z=t.a`
+`,J=t.a`
   font-family: 'Jost', sans-serif;
   font-size: 0.8rem;
   font-weight: 500;
@@ -146,9 +146,9 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
     color: #fffef6;
     border-color: #133238;
   }
-`,J=t.section`
+`,P=t.section`
   margin-bottom: 3.5rem;
-`,P=t.h2`
+`,S=t.h2`
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: clamp(1.4rem, 2.5vw, 1.75rem);
   font-weight: 700;
@@ -156,14 +156,14 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
   color: #133238;
   text-transform: uppercase;
   margin: 0 0 1.5rem;
-`,A=t.p`
+`,W=t.p`
   font-family: 'Jost', sans-serif;
   font-size: 1rem;
   line-height: 1.7;
   color: rgba(19, 50, 56, 0.7);
   margin: 0;
   max-width: 720px;
-`,S=t.div`
+`,A=t.div`
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr;
@@ -171,7 +171,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
   @media (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
   }
-`,D=t.div`
+`,B=t.div`
   background: #fff;
   border: 1px solid rgba(19, 50, 56, 0.08);
   border-radius: 12px;
@@ -179,24 +179,24 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
-`,F=t.div`
+`,D=t.div`
   font-family: 'Jost', sans-serif;
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: rgba(19, 50, 56, 0.5);
-`,W=t.h3`
+`,_=t.h3`
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 1.05rem;
   font-weight: 700;
   color: #133238;
   margin: 0;
   line-height: 1.3;
-`,_=t.p`
+`,C=t.p`
   font-family: 'Jost', sans-serif;
   font-size: 0.9rem;
   line-height: 1.5;
   color: rgba(19, 50, 56, 0.6);
   margin: 0;
-`,B=e.memo(()=>{const{t:e}=o(),{slug:t}=l(),B=m(),C=d(),K=n(t);if(!K)return r.jsx(c,{to:"/events",replace:!0});const $=a(K);return r.jsxs(r.Fragment,{children:[r.jsx(s,{titleKey:`page_titles.event_${K.slug}`,defaultTitle:`${K.title} · KAIF`,description:K.shortDescription}),r.jsx(i,{}),r.jsx(f,{children:r.jsxs(p,{children:[r.jsxs(g,{type:"button",onClick:()=>{var e;const r=null==(e=C.state)?void 0:e.from;B("/events"===r?"/events":"/#events")},children:["← ",e("events.back","Back")]}),r.jsxs(h,{children:[r.jsx(x,{children:r.jsx("img",{src:K.image,alt:K.title})}),r.jsxs(u,{children:[r.jsx(b,{children:K.date.full}),r.jsx(j,{children:K.title}),r.jsx(v,{children:K.hook}),r.jsxs(y,{children:[r.jsxs("li",{children:[r.jsxs("strong",{children:[e("events.meta.when","When"),":"]})," ",K.date.full]}),r.jsxs("li",{children:[r.jsxs("strong",{children:[e("events.meta.where","Where"),":"]})," ",K.location]})]}),r.jsxs(w,{children:[r.jsx(k,{href:$,target:"_blank",rel:"noopener noreferrer",children:e("events.book","Book via WhatsApp")}),r.jsx(z,{href:"tel:+66624805877",children:e("events.call","Call us")})]})]})]}),K.longDescription&&r.jsxs(J,{children:[r.jsx(P,{children:e("events.about","About the event")}),r.jsx(A,{children:K.longDescription})]}),K.schedule&&K.schedule.length>0&&r.jsxs(J,{children:[r.jsx(P,{children:e("events.program","Program")}),r.jsx(S,{children:K.schedule.map((e,t)=>r.jsxs(D,{children:[r.jsx(F,{children:e.date}),r.jsx(W,{children:e.title}),r.jsx(_,{children:e.description})]},t))})]})]})})]})});export{B as default};
+`,F=e.memo(()=>{const{t:e,i18n:t}=l(),{slug:F}=m(),K=d(),$=c(),G=(t.language||"en").split("-")[0],H=n(F),I=H?a(H,G):null;if(!I)return r.jsx(f,{to:"/events",replace:!0});const R=o(I);return r.jsxs(r.Fragment,{children:[r.jsx(s,{titleKey:`page_titles.event_${I.slug}`,defaultTitle:`${I.title} · KAIF`,description:I.shortDescription}),r.jsx(i,{}),r.jsx(p,{children:r.jsxs(g,{children:[r.jsxs(h,{type:"button",onClick:()=>{var e;const r=null==(e=$.state)?void 0:e.from;K("/events"===r?"/events":"/#events")},children:["← ",e("events.back","Back")]}),r.jsxs(x,{children:[r.jsx(u,{children:r.jsx("img",{src:I.image,alt:I.title})}),r.jsxs(b,{children:[r.jsx(j,{children:I.date.full}),r.jsx(v,{children:I.title}),r.jsx(y,{children:I.hook}),r.jsxs(w,{children:[r.jsxs("li",{children:[r.jsxs("strong",{children:[e("events.meta.when","When"),":"]})," ",I.date.full]}),r.jsxs("li",{children:[r.jsxs("strong",{children:[e("events.meta.where","Where"),":"]})," ",I.location]})]}),r.jsxs(k,{children:[r.jsx(z,{href:R,target:"_blank",rel:"noopener noreferrer",children:e("events.book","Book via WhatsApp")}),r.jsx(J,{href:"tel:+66624805877",children:e("events.call","Call us")})]})]})]}),I.longDescription&&r.jsxs(P,{children:[r.jsx(S,{children:e("events.about","About the event")}),r.jsx(W,{children:I.longDescription})]}),I.schedule&&I.schedule.length>0&&r.jsxs(P,{children:[r.jsx(S,{children:e("events.program","Program")}),r.jsx(A,{children:I.schedule.map((e,t)=>r.jsxs(B,{children:[r.jsx(D,{children:e.date}),r.jsx(_,{children:e.title}),r.jsx(C,{children:e.description})]},t))})]})]})})]})});export{F as default};
