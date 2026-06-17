@@ -1,4 +1,4 @@
-import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as s}from"./styled-components-BY9Yozyu.js";import{P as i}from"./PageHead-DVihzIO-.js";import{P as a}from"./PageScrollReset-CpzNA0Jq.js";import{g as t,b as o,s as n}from"./sportsDirections-D0H5c4UK.js";import{u as l}from"./i18n-core-DrMVsQFB.js";import{ab as d,a9 as c,a8 as m}from"./vendor-misc-Dpgsgh4W.js";import{a as p,b as f,c as g}from"./heroicons-B_QlOOyR.js";import"./react-helmet-xz8aecK8.js";const h=s.div`
+import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as s}from"./styled-components-BY9Yozyu.js";import{P as i}from"./PageHead-DVihzIO-.js";import{P as a}from"./PageScrollReset-CpzNA0Jq.js";import{g as t,b as o,s as n}from"./sportsDirections-CNBh_bYw.js";import{u as l}from"./i18n-core-DrMVsQFB.js";import{ab as d,a9 as c,a8 as m}from"./vendor-misc-Dpgsgh4W.js";import{a as p,b as f,c as g}from"./heroicons-B_QlOOyR.js";import"./react-helmet-xz8aecK8.js";const h=s.div`
   background-color: #fffef6;
   min-height: 100vh;
   padding: 8rem 0 6rem;
