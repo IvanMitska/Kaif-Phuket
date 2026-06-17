@@ -285,6 +285,9 @@ const EventsSection = () => {
   const lang = (i18n.language || 'en').split('-')[0];
   const localizedEvents = events.map((e) => localizeEvent(e, lang));
 
+  // No events — hide the section entirely from the homepage.
+  if (localizedEvents.length === 0) return null;
+
   return (
     <SectionContainer id="events">
       <ContentWrapper>

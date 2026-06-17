@@ -46,7 +46,6 @@ const TermsPage = lazy(() => import('./pages/TermsPage'));
 const SurveyPage = lazy(() => import('./pages/SurveyPage'));
 const EventsPage = lazy(() => import('./pages/EventsPage'));
 const EventDetailPage = lazy(() => import('./pages/EventDetailPage'));
-const MissKaifPage = lazy(() => import('./pages/MissKaifPage'));
 const ServicesPage = lazy(() => import('./pages/ServicesPage'));
 // const SbpPayPage = lazy(() => import('./pages/SbpPayPage'));
 // const PaymentPage = lazy(() => import('./pages/PaymentPage'));
@@ -73,7 +72,6 @@ const AppRoutes = () => {
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/survey" element={<SurveyPage />} />
         <Route path="/events" element={<EventsPage />} />
-        <Route path="/events/miss-kaif-2026" element={<MissKaifPage />} />
         <Route path="/events/:slug" element={<EventDetailPage />} />
         <Route path="/services" element={<ServicesPage />} />
         {/* <Route path="/pay" element={<SbpPayPage />} /> */}
