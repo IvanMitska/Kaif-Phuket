@@ -1,4 +1,4 @@
-import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-components-BY9Yozyu.js";import{P as s}from"./PageHead-DVihzIO-.js";import{P as i}from"./PageScrollReset-CpzNA0Jq.js";import{g as n,l as a,a as o}from"./events-C9SxqLj4.js";import{u as l}from"./i18n-core-DrMVsQFB.js";import{ab as m,a9 as d,a4 as c,a8 as f}from"./vendor-misc-Dpgsgh4W.js";import"./react-helmet-xz8aecK8.js";const p=t.div`
+import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-components-BY9Yozyu.js";import{P as s}from"./PageHead-DVihzIO-.js";import{P as i}from"./PageScrollReset-CpzNA0Jq.js";import{g as n,l as a,a as o}from"./events-USx80m1m.js";import{u as l}from"./i18n-core-DrMVsQFB.js";import{ab as m,a9 as d,a4 as c,a8 as f}from"./vendor-misc-Dpgsgh4W.js";import"./react-helmet-xz8aecK8.js";const p=t.div`
   background-color: #fffef6;
   min-height: 100vh;
   padding: 8rem 0 6rem;
@@ -148,7 +148,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
   }
 `,P=t.section`
   margin-bottom: 3.5rem;
-`,S=t.h2`
+`,A=t.h2`
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: clamp(1.4rem, 2.5vw, 1.75rem);
   font-weight: 700;
@@ -156,14 +156,14 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
   color: #133238;
   text-transform: uppercase;
   margin: 0 0 1.5rem;
-`,W=t.p`
+`,S=t.p`
   font-family: 'Jost', sans-serif;
   font-size: 1rem;
   line-height: 1.7;
   color: rgba(19, 50, 56, 0.7);
   margin: 0;
   max-width: 720px;
-`,A=t.div`
+`,D=t.div`
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr;
@@ -171,7 +171,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
   @media (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
   }
-`,B=t.div`
+`,F=t.div`
   background: #fff;
   border: 1px solid rgba(19, 50, 56, 0.08);
   border-radius: 12px;
@@ -179,7 +179,7 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
-`,D=t.div`
+`,W=t.div`
   font-family: 'Jost', sans-serif;
   font-size: 0.7rem;
   font-weight: 500;
@@ -193,10 +193,10 @@ import{r as e,j as r}from"./react-core-DWAaPJsY.js";import{d as t}from"./styled-
   color: #133238;
   margin: 0;
   line-height: 1.3;
-`,C=t.p`
+`,B=t.p`
   font-family: 'Jost', sans-serif;
   font-size: 0.9rem;
   line-height: 1.5;
   color: rgba(19, 50, 56, 0.6);
   margin: 0;
-`,F=e.memo(()=>{const{t:e,i18n:t}=l(),{slug:F}=m(),K=d(),$=c(),G=(t.language||"en").split("-")[0],H=n(F),I=H?a(H,G):null;if(!I)return r.jsx(f,{to:"/events",replace:!0});const R=o(I);return r.jsxs(r.Fragment,{children:[r.jsx(s,{titleKey:`page_titles.event_${I.slug}`,defaultTitle:`${I.title} · KAIF`,description:I.shortDescription}),r.jsx(i,{}),r.jsx(p,{children:r.jsxs(g,{children:[r.jsxs(h,{type:"button",onClick:()=>{var e;const r=null==(e=$.state)?void 0:e.from;K("/events"===r?"/events":"/#events")},children:["← ",e("events.back","Back")]}),r.jsxs(x,{children:[r.jsx(u,{children:r.jsx("img",{src:I.image,alt:I.title})}),r.jsxs(b,{children:[r.jsx(j,{children:I.date.full}),r.jsx(v,{children:I.title}),r.jsx(y,{children:I.hook}),r.jsxs(w,{children:[r.jsxs("li",{children:[r.jsxs("strong",{children:[e("events.meta.when","When"),":"]})," ",I.date.full]}),r.jsxs("li",{children:[r.jsxs("strong",{children:[e("events.meta.where","Where"),":"]})," ",I.location]})]}),r.jsxs(k,{children:[r.jsx(z,{href:R,target:"_blank",rel:"noopener noreferrer",children:e("events.book","Book via WhatsApp")}),r.jsx(J,{href:"tel:+66624805877",children:e("events.call","Call us")})]})]})]}),I.longDescription&&r.jsxs(P,{children:[r.jsx(S,{children:e("events.about","About the event")}),r.jsx(W,{children:I.longDescription})]}),I.schedule&&I.schedule.length>0&&r.jsxs(P,{children:[r.jsx(S,{children:e("events.program","Program")}),r.jsx(A,{children:I.schedule.map((e,t)=>r.jsxs(B,{children:[r.jsx(D,{children:e.date}),r.jsx(_,{children:e.title}),r.jsx(C,{children:e.description})]},t))})]})]})})]})});export{F as default};
+`,C=e.memo(()=>{const{t:e,i18n:t}=l(),{slug:C}=m(),K=d(),$=c(),H=(t.language||"en").split("-")[0],I=n(C),R=I?a(I,H):null;if(!R)return r.jsx(f,{to:"/events",replace:!0});const T=o(R);return r.jsxs(r.Fragment,{children:[r.jsx(s,{titleKey:`page_titles.event_${R.slug}`,defaultTitle:`${R.title} · KAIF`,description:R.shortDescription}),r.jsx(i,{}),r.jsx(p,{children:r.jsxs(g,{children:[r.jsxs(h,{type:"button",onClick:()=>{var e;const r=null==(e=$.state)?void 0:e.from;K("/events"===r?"/events":"/#events")},children:["← ",e("events.back","Back")]}),r.jsxs(x,{children:[r.jsx(u,{children:r.jsx("img",{src:R.image,alt:R.title})}),r.jsxs(b,{children:[r.jsx(j,{children:R.date.full}),r.jsx(v,{children:R.title}),r.jsx(y,{children:R.hook}),r.jsxs(w,{children:[r.jsxs("li",{children:[r.jsxs("strong",{children:[e("events.meta.when","When"),":"]})," ",R.date.full]}),r.jsxs("li",{children:[r.jsxs("strong",{children:[e("events.meta.where","Where"),":"]})," ",R.location]})]}),r.jsxs(k,{children:[r.jsx(z,{href:T,target:"_blank",rel:"noopener noreferrer",children:e("events.book","Book via WhatsApp")}),r.jsx(J,{href:"tel:+66624805877",children:e("events.call","Call us")})]})]})]}),R.longDescription&&r.jsxs(P,{children:[r.jsx(A,{children:e("events.about","About the event")}),r.jsx(S,{children:R.longDescription})]}),R.schedule&&R.schedule.length>0&&r.jsxs(P,{children:[r.jsx(A,{children:e("events.program","Program")}),r.jsx(D,{children:R.schedule.map((e,t)=>r.jsxs(F,{children:[r.jsx(W,{children:e.date}),r.jsx(_,{children:e.title}),r.jsx(B,{children:e.description})]},t))})]})]})})]})});export{C as default};

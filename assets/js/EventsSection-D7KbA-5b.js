@@ -1,4 +1,4 @@
-import{j as e}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-components-BY9Yozyu.js";import{e as t,l as o}from"./events-C9SxqLj4.js";import{u as a}from"./i18n-core-DrMVsQFB.js";import{aa as i}from"./vendor-misc-Dpgsgh4W.js";const n=r.section`
+import{j as e}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-components-BY9Yozyu.js";import{e as t,l as o}from"./events-USx80m1m.js";import{u as a}from"./i18n-core-DrMVsQFB.js";import{aa as i}from"./vendor-misc-Dpgsgh4W.js";const n=r.section`
   position: relative;
   padding: 6rem 0;
   background-color: #fffef6;
@@ -120,7 +120,7 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-compone
     border-color: ${e=>e.$featured?"#C9A652":"rgba(19, 50, 56, 0.15)"};
     box-shadow: ${e=>e.$featured?"0 18px 40px rgba(0, 0, 0, 0.18)":"0 16px 40px rgba(19, 50, 56, 0.08)"};
   }
-`,x=r.div`
+`,g=r.div`
   position: absolute;
   top: 0.85rem;
   right: 0.85rem;
@@ -145,7 +145,7 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-compone
     font-size: 0.65rem;
     color: #4A0910;
   }
-`,g=r.div`
+`,x=r.div`
   position: relative;
   aspect-ratio: 3 / 4;
   overflow: hidden;
@@ -231,4 +231,4 @@ import{j as e}from"./react-core-DWAaPJsY.js";import{d as r}from"./styled-compone
   color: rgba(19, 50, 56, 0.4);
   font-family: 'Jost', sans-serif;
   font-size: 0.95rem;
-`,EventsSection=()=>{const{t:r,i18n:i}=a(),J=(i.language||"en").split("-")[0],A=t.map(e=>o(e,J));return e.jsx(n,{id:"events",children:e.jsxs(s,{children:[e.jsx(l,{children:r("events.overline","What's On")}),e.jsxs(d,{children:[e.jsx(m,{children:r("events.title","Upcoming Events")}),A.length>0&&e.jsxs(p,{to:"/events",children:[r("events.view_all","View all")," →"]})]}),e.jsx(f,{children:A.length>0?A.map(t=>e.jsxs(c,{to:`/events/${t.slug}`,state:{from:"/"},$featured:t.featured,children:[e.jsxs(g,{children:[e.jsx(h,{src:t.image,alt:t.title,loading:"lazy"}),t.featured&&e.jsx(x,{children:r("events.featured","Featured")}),e.jsxs(b,{children:[e.jsx(u,{children:t.date.day}),e.jsx(v,{children:t.date.month})]})]}),e.jsxs(w,{children:[e.jsx(j,{children:t.title}),e.jsx(y,{children:t.hook}),e.jsxs(k,{children:[e.jsx("span",{children:r("events.details","Details")}),e.jsx(z,{children:"→"})]})]})]},t.slug)):e.jsx($,{children:r("events.empty.text","Check back soon for new events")})})]})})};export{EventsSection as default};
+`,EventsSection=()=>{const{t:r,i18n:i}=a(),J=(i.language||"en").split("-")[0],A=t.map(e=>o(e,J));return 0===A.length?null:e.jsx(n,{id:"events",children:e.jsxs(s,{children:[e.jsx(l,{children:r("events.overline","What's On")}),e.jsxs(d,{children:[e.jsx(m,{children:r("events.title","Upcoming Events")}),A.length>0&&e.jsxs(p,{to:"/events",children:[r("events.view_all","View all")," →"]})]}),e.jsx(f,{children:A.length>0?A.map(t=>e.jsxs(c,{to:`/events/${t.slug}`,state:{from:"/"},$featured:t.featured,children:[e.jsxs(x,{children:[e.jsx(h,{src:t.image,alt:t.title,loading:"lazy"}),t.featured&&e.jsx(g,{children:r("events.featured","Featured")}),e.jsxs(b,{children:[e.jsx(u,{children:t.date.day}),e.jsx(v,{children:t.date.month})]})]}),e.jsxs(w,{children:[e.jsx(j,{children:t.title}),e.jsx(y,{children:t.hook}),e.jsxs(k,{children:[e.jsx("span",{children:r("events.details","Details")}),e.jsx(z,{children:"→"})]})]})]},t.slug)):e.jsx($,{children:r("events.empty.text","Check back soon for new events")})})]})})};export{EventsSection as default};
