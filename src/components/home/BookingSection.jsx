@@ -526,11 +526,11 @@ const BookingSection = () => {
             >
               <ContactItem variants={fadeInUp}>
                 <CalendarIcon />
-                <span>Ежедневно: 7:00 - 22:00</span>
+                <span>Ежедневно: 11:00 - 20:00</span>
               </ContactItem>
               <ContactItem variants={fadeInUp}>
                 <ClockIcon />
-                <span>СПА: 9:00 - 22:00</span>
+                <span>СПА: 11:00 - 20:00</span>
               </ContactItem>
               <ContactItem variants={fadeInUp}>
                 <UserIcon />

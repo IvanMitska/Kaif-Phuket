@@ -194,7 +194,7 @@ const ContactInfo = () => {
             <ContactTitle>{t('contacts.info.hours.title', 'Opening Hours')}</ContactTitle>
             <ContactDetails>
               <div>
-                <div>{t('contacts.info.hours.daily', 'Daily: 7:00 AM - 10:00 PM')}</div>
+                <div>{t('contacts.info.hours.daily', 'Daily: 11:00 AM - 8:00 PM')}</div>
                 <div>{t('contacts.info.hours.booking', 'Booking 24/7')}</div>
                 <ContactLink 
                   href="https://n807534.yclients.com/"

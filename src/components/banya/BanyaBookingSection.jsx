@@ -239,7 +239,7 @@ const BanyaBookingSection = () => {
     },
     {
       title: t('banya.booking.contact.hours.title', 'Hours'),
-      value: t('banya.booking.contact.hours.value', '17:00 - 22:00'),
+      value: t('banya.booking.contact.hours.value', '17:00 - 20:00'),
       action: null
     }
   ];

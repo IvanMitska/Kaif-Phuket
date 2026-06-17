@@ -322,7 +322,7 @@ const facilities = [
     defaultTitle: 'Modern Gym',
     descriptionKey: 'sports.facilities.gym.short_description',
     defaultDescription: 'Premium equipment from Technogym and Life Fitness for effective workouts',
-    hours: '07:00 – 22:00',
+    hours: '07:00 – 20:00',
     capacity: '40',
     features: [
       { key: 'sports.facilities.gym.feature1', default: 'Cardio zone' },
@@ -344,7 +344,7 @@ const facilities = [
     defaultTitle: 'Fight Club',
     descriptionKey: 'sports.facilities.fight.short_description',
     defaultDescription: 'Professional ring and equipment for boxing, Muay Thai and Jiu-Jitsu',
-    hours: '07:00 – 22:00',
+    hours: '11:00 – 20:00',
     capacity: '25',
     features: [
       { key: 'sports.facilities.fight.feature1', default: 'Professional ring' },
@@ -364,7 +364,7 @@ const facilities = [
     defaultTitle: 'Dance Studio',
     descriptionKey: 'sports.facilities.dance.short_description',
     defaultDescription: 'Spacious studio for dance, yoga and group fitness programs',
-    hours: '07:00 – 22:00',
+    hours: '11:00 – 20:00',
     capacity: '30',
     features: [
       { key: 'sports.facilities.dance.feature1', default: 'Mirror walls' },
@@ -384,7 +384,7 @@ const facilities = [
     defaultTitle: 'Swimming Pool',
     descriptionKey: 'sports.facilities.swim.short_description',
     defaultDescription: '25-meter pool for swimming, aqua aerobics and kids lessons',
-    hours: '07:00 – 22:00',
+    hours: '11:00 – 20:00',
     capacity: '20',
     features: [
       { key: 'sports.facilities.swim.feature1', default: '25-meter pool' },

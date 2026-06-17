@@ -288,7 +288,7 @@ const ContactsPage = () => {
     },
     {
       title: t('contacts.hours.title', 'Opening Hours'),
-      value: t('contacts.hours.value', '7:00 — 22:00'),
+      value: t('contacts.hours.value', '11:00 — 20:00'),
       subtext: t('contacts.hours.subtext', 'Daily'),
       action: t('contacts.hours.action', 'Book Now'),
       href: 'https://wa.me/66624805877'

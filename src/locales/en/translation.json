@@ -447,7 +447,7 @@
       },
       "working_hours": {
         "question": "What are the complex's operating hours?",
-        "answer": ". Some zones (SPA, restaurant) may have separate schedules. We recommend checking the operating hours of specific services when booking."
+        "answer": "We are open daily from 11:00 to 20:00, the gym from 7:00 to 20:00. Some zones (SPA, restaurant) may have separate schedules. We recommend checking the operating hours of specific services when booking."
       },
       "how_to_book": {
         "question": "How to book services?",
@@ -2258,7 +2258,7 @@
       },
       "schedule": {
         "title": "Flexible Schedule",
-        "description": "Open from 07:00 to 22:00 every day of the week"
+        "description": "Open from 07:00 to 20:00 every day of the week"
       },
       "technology": {
         "title": "Modern Technology",
@@ -2386,7 +2386,7 @@
         "title": "Modern Gym",
         "short_description": "Premium equipment from Technogym and Life Fitness for effective workouts",
         "description": "Over 70 pieces of professional equipment",
-        "hours": "07:00 - 22:00",
+        "hours": "07:00 - 20:00",
         "capacity": "Up to 40 people",
         "description1": "Our gym is equipped with modern premium equipment from leading manufacturers. Here you will find everything you need for effective workouts - from free weights to the latest generation of cardio machines.",
         "description2": "The spacious room with panoramic windows creates the perfect atmosphere for training, and professional trainers are always ready to help create an individual program.",
@@ -2400,7 +2400,7 @@
         "title": "Fight Club",
         "short_description": "Professional ring and equipment for boxing, Muay Thai and Jiu-Jitsu",
         "description": "Professional boxing and Jiu-Jitsu facility",
-        "hours": "07:00 - 22:00",
+        "hours": "11:00 - 20:00",
         "capacity": "Up to 25 people",
         "description1": "KAIF Fighting Club is a modern space for training in various martial arts. Professional ring, punching bags, heavy bags, and special flooring create ideal conditions for both beginners and experienced fighters.",
         "description2": "Our trainers are experienced fighters and champions who will help you master techniques and achieve high results in your chosen martial art.",
@@ -2413,7 +2413,7 @@
         "title": "Fight Club",
         "short_description": "Professional ring and equipment for boxing, Muay Thai and Jiu-Jitsu",
         "description": "Professional boxing and Jiu-Jitsu facility",
-        "hours": "07:00 - 22:00",
+        "hours": "11:00 - 20:00",
         "capacity": "Up to 25 people",
         "description1": "KAIF Fighting Club is a modern space for training in various martial arts. Professional ring, punching bags, heavy bags, and special flooring create ideal conditions for both beginners and experienced fighters.",
         "description2": "Our trainers are experienced fighters and champions who will help you master techniques and achieve high results in your chosen martial art.",
@@ -2426,7 +2426,7 @@
         "title": "Dance Studio",
         "short_description": "Spacious studio for dance, yoga and group fitness programs",
         "description": "For yoga and dance classes",
-        "hours": "07:00 - 22:00",
+        "hours": "11:00 - 20:00",
         "capacity": "Up to 30 people",
         "description1": "Spacious dance studio with professional flooring, mirrored walls and advanced audio system creates ideal conditions for various dance styles and group classes.",
         "description2": "Classes in modern and classical dance styles are held here, as well as group fitness training under the guidance of experienced instructors.",
@@ -2447,7 +2447,7 @@
         "title": "Swimming Pool",
         "short_description": "25-meter pool for swimming, aqua aerobics and kids lessons",
         "description": "25-meter swimming pool",
-        "hours": "07:00 - 22:00",
+        "hours": "11:00 - 20:00",
         "capacity": "Up to 20 people",
         "feature1": "25-meter pool",
         "feature2": "Aqua aerobics classes",
@@ -2502,8 +2502,7 @@
             { "time": "17:00", "name": "Herbs aroma session" },
             { "time": "18:00", "name": "Eucalyptus waves" },
             { "time": "19:00", "name": "Garlic power" },
-            { "time": "20:00", "name": "Hard steam" },
-            { "time": "21:00", "name": "Relax time" }
+            { "time": "20:00", "name": "Hard steam" }
           ]
         },
         {
@@ -2517,8 +2516,7 @@
             { "time": "17:00", "name": "Herbs aroma session" },
             { "time": "18:00", "name": "Eucalyptus waves" },
             { "time": "19:00", "name": "Garlic power" },
-            { "time": "20:00", "name": "Hard steam" },
-            { "time": "21:00", "name": "Relax time" }
+            { "time": "20:00", "name": "Hard steam" }
           ]
         }
       ]
@@ -2762,7 +2760,7 @@
         },
         "hours": {
           "title": "Hours",
-          "value": "17:00 - 22:00"
+          "value": "17:00 - 20:00"
         }
       },
       "book_whatsapp_button": "Book via WhatsApp",
@@ -2854,7 +2852,7 @@
       },
       "hours": {
         "title": "Opening Hours",
-        "daily": "Daily: 7:00 AM - 10:00 PM",
+        "daily": "Daily: 11:00 AM - 8:00 PM",
         "booking": "Booking 24/7"
       },
       "social": {
@@ -3008,7 +3006,7 @@
     },
     "schedule": {
       "daily": "Daily",
-      "hours": "7:00 - 22:00"
+      "hours": "7:00 - 20:00"
     },
     "copyright": "All rights reserved.",
     "legal": {

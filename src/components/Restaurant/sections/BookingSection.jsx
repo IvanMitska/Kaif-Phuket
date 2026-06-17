@@ -76,7 +76,7 @@ const BookingSection = () => {
                 </div>
                 <div>
                   <p className="font-medium text-base md:text-base text-lg">{t('restaurant.booking.open_hours', 'Часы работы')}</p>
-                  <p className="text-gray-500 text-base md:text-sm">08:00 - 22:00</p>
+                  <p className="text-gray-500 text-base md:text-sm">11:00 - 20:00</p>
                 </div>
               </div>
               
