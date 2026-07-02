@@ -77,7 +77,7 @@ export const sportsDirections = [
     defaultLongDescription: 'Our gym is equipped with modern premium equipment from leading manufacturers. Here you will find everything you need for effective workouts - from free weights to the latest generation of cardio machines.',
     extraDescriptionKey: 'sports.facilities.gym.description2',
     defaultExtraDescription: 'The spacious room with panoramic windows creates the perfect atmosphere for training, and professional trainers are always ready to help create an individual program.',
-    hours: '07:00 – 20:00',
+    hours: '07:00 – 21:00',
     capacity: '40',
     features: [
       { key: 'sports.facilities.gym.feature1', default: 'Cardio equipment zone' },
@@ -86,7 +86,7 @@ export const sportsDirections = [
     ],
     schedule: null,
     scheduleNoteKey: 'sports.direction.gym_open_access',
-    scheduleNoteDefault: 'The gym is open access from 07:00 to 20:00 — no class booking required.',
+    scheduleNoteDefault: 'The gym is open access from 07:00 to 21:00 — no class booking required.',
     whatsappMessage: 'Hello! I would like to book a gym session at KAIF'
   },
   {
@@ -107,7 +107,7 @@ export const sportsDirections = [
     defaultLongDescription: 'KAIF Fighting Club is a modern space for training in various martial arts. Professional ring, punching bags, heavy bags, and special flooring create ideal conditions for both beginners and experienced fighters.',
     extraDescriptionKey: 'sports.facilities.fight.description2',
     defaultExtraDescription: 'Our trainers are experienced fighters and champions who will help you master techniques and achieve high results in your chosen martial art.',
-    hours: '11:00 – 20:00',
+    hours: '07:00 – 21:00',
     capacity: '25',
     features: [
       { key: 'sports.facilities.fight.feature1', default: 'Professional boxing ring' },
@@ -133,7 +133,7 @@ export const sportsDirections = [
     defaultLongDescription: 'Spacious dance studio with professional flooring, mirrored walls and advanced audio system creates ideal conditions for various dance styles and group classes.',
     extraDescriptionKey: 'sports.facilities.dance.description2',
     defaultExtraDescription: 'Classes in modern and classical dance styles are held here, as well as group fitness training under the guidance of experienced instructors.',
-    hours: '11:00 – 20:00',
+    hours: '07:00 – 21:00',
     capacity: '30',
     features: [
       { key: 'sports.facilities.dance.feature1', default: 'Mirrored walls' },
@@ -159,7 +159,7 @@ export const sportsDirections = [
     defaultLongDescription: '25-meter pool with comfortable lanes for swimming, aqua aerobics classes and children swimming lessons with certified instructors.',
     extraDescriptionKey: 'sports.facilities.swim.description2',
     defaultExtraDescription: 'Clean water, comfortable temperature and spacious zones around the pool make every visit enjoyable and safe.',
-    hours: '11:00 – 20:00',
+    hours: '07:00 – 21:00',
     capacity: '20',
     features: [
       { key: 'sports.facilities.swim.feature1', default: '25-meter pool' },

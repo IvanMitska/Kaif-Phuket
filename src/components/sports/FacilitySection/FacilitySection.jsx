@@ -163,7 +163,7 @@ const FacilitySection = () => {
             <FacilityMeta>
               <FacilityMetaItem>
                 <ClockIcon />
-                <span>{t('sports.facilities.gym.hours', '07:00 - 20:00')}</span>
+                <span>{t('sports.facilities.gym.hours', '07:00 - 21:00')}</span>
               </FacilityMetaItem>
               
               <FacilityMetaItem>
@@ -259,7 +259,7 @@ const FacilitySection = () => {
             <FacilityMeta>
               <FacilityMetaItem>
                 <ClockIcon />
-                <span>{t('sports.facilities.fight.hours', '11:00 - 20:00')}</span>
+                <span>{t('sports.facilities.fight.hours', '07:00 - 21:00')}</span>
               </FacilityMetaItem>
               
               <FacilityMetaItem>
@@ -355,7 +355,7 @@ const FacilitySection = () => {
             <FacilityMeta>
               <FacilityMetaItem>
                 <ClockIcon />
-                <span>{t('sports.facilities.dance.hours', '11:00 - 20:00')}</span>
+                <span>{t('sports.facilities.dance.hours', '07:00 - 21:00')}</span>
               </FacilityMetaItem>
               
               <FacilityMetaItem>

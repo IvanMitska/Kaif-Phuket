@@ -148,7 +148,7 @@ const BenefitDescription = styled.p`
 const benefits = [
   { icon: FireIcon, titleKey: 'sports.benefits.premium.title', descriptionKey: 'sports.benefits.premium.description', defaultTitle: 'Premium Equipment', defaultDescription: 'Machines from world-leading manufacturers Technogym and Life Fitness' },
   { icon: UserGroupIcon, titleKey: 'sports.benefits.trainers.title', descriptionKey: 'sports.benefits.trainers.description', defaultTitle: 'Professional Trainers', defaultDescription: 'Certified specialists with international experience' },
-  { icon: ClockIcon, titleKey: 'sports.benefits.schedule.title', descriptionKey: 'sports.benefits.schedule.description', defaultTitle: 'Flexible Schedule', defaultDescription: 'Open from 07:00 to 20:00 every day of the week' },
+  { icon: ClockIcon, titleKey: 'sports.benefits.schedule.title', descriptionKey: 'sports.benefits.schedule.description', defaultTitle: 'Flexible Schedule', defaultDescription: 'Open from 07:00 to 21:00 every day of the week' },
   { icon: CpuChipIcon, titleKey: 'sports.benefits.technology.title', descriptionKey: 'sports.benefits.technology.description', defaultTitle: 'Modern Technology', defaultDescription: 'Progress monitoring and personalized training programs' },
   { icon: SparklesIcon, titleKey: 'sports.benefits.atmosphere.title', descriptionKey: 'sports.benefits.atmosphere.description', defaultTitle: 'Comfortable Atmosphere', defaultDescription: 'Spacious halls with air conditioning and panoramic windows' },
   { icon: ShieldCheckIcon, titleKey: 'sports.benefits.safety.title', descriptionKey: 'sports.benefits.safety.description', defaultTitle: 'Safety First', defaultDescription: 'Insurance, medical oversight and compliance with all standards' }
